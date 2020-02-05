@@ -1,0 +1,104 @@
+language: cpp
+
+matrix:
+  include:
+    - os: osx
+      osx_image: xcode11
+      env: BADGE=osx
+    - os: linux
+      dist: xenial
+      sudo: required
+      env: 
+        - BADGE=linux
+        - QT_CI_PACKAGES=qt.qt5.5132.gcc_64,qt.qt5.5132.qtwebengine PATH="$TRAVIS_BUILD_DIR/Qt/5.13.2/gcc_64/bin:${PATH}"
+      addons:
+        apt:
+          packages:
+            - libxkbcommon-x11-0
+            - libgl1-mesa-dev
+      services:
+        - xvfb
+
+before_install:
+  - if [ "$BADGE" = "linux" ]; then
+      sudo apt-get update;
+    fi
+  - if [ "$BADGE" = "osx" ]; then
+      brew update;
+    fi
+
+install:
+  - if [ "$BADGE" = "linux" ]; then    
+      sudo apt-get install libgl-dev git build-essential g++ python-dev autotools-dev libicu-dev libbz2-dev checkinstall zlib1g-dev -y;
+      git clone https://github.com/benlau/qtci.git;
+      source qtci/path.env;
+      install-qt 5.13.2;
+      wget -O zbar-0.10.tar.gz https://sourceforge.net/projects/zbar/files/zbar/0.10/zbar-0.10.tar.gz/download;
+      tar -xf zbar-0.10.tar.gz;
+      cd zbar-0.10;
+      ./configure --prefix=/usr/local/zbar --disable-video --without-qt --without-gtk --without-python;
+      make -j$(nproc);
+      make install;
+      cd ..;
+      git clone https://github.com/fukuchi/libqrencode.git;
+      cd libqrencode;
+      ./autogen.sh;
+      ./configure --prefix=/usr/local/qrencode;
+      make -j$(nproc);
+      make install;
+      cd ..;
+      wget https://www.openssl.org/source/openssl-1.1.1d.tar.gz;
+      tar -xf openssl-1.1.1d.tar.gz;
+      cd openssl-1.1.1d;
+      ./config --prefix=/usr/local/openssl --openssldir=/usr/local/openssl shared zlib;
+      make -j$(nproc);
+      make install;
+      cd ..;
+      wget -O boost_1_72_0.tar.gz https://sourceforge.net/projects/boost/files/boost/1.72.0/boost_1_72_0.tar.gz/download;
+      tar xzvf boost_1_72_0.tar.gz;
+      cd boost_1_72_0/;
+      ./bootstrap.sh --prefix=/usr/local/boost;
+      ./b2;
+      ./b2 install;
+      cd ..;
+    fi
+  - if [ "$BADGE" = "osx" ]; then    
+      brew install zbar qrencode boost openssl@1.1;
+      brew reinstall https://raw.githubusercontent.com/Homebrew/homebrew-core/89bf3a54383d884f8b8511c6237325dd5b5ae6ba/Formula/qt.rb --verbose;
+    fi
+
+before_script:
+  - if [ "$BADGE" = "osx" ];   then    export PATH="/usr/local/Cellar/qt/5.13.1/bin:$PATH"; fi
+
+script:
+  - git submodule update --init
+  - mkdir build && cd ./build
+  - if [ "$BADGE" = "osx" ]; then
+      qmake ../;
+      make -j$(nproc);
+      macdeployqt trojan-qt5.app -dmg
+    fi
+  - if [ "$BADGE" = "linux" ]; then
+      wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage";
+      chmod a+x linuxdeployqt-continuous-x86_64.AppImage;
+      qmake CONFIG+=release .. PREFIX=/usr;
+      make -j$(nproc);
+      make INSTALL_ROOT=appdir -j$(nproc) install ; find appdir/;
+      ./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -appimage
+    fi
+
+defore_deploy:
+  - ls
+  - cd ..
+
+deploy:
+  provider: release
+  file: 
+    - build/trojan-qt5.dmg
+    - build/*.AppImage
+  api_key: $GIT_REPO_TOKEN
+  skip_cleanup: true
+  overwrite: true
+  on:
+    branch: master
+    tags: true

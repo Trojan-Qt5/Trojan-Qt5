@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>480</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>400</width>
+    <height>400</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Connection Manager</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="icons.qrc">
+    <normaloff>:/icons/icons/trojan-qt5.png</normaloff>:/icons/icons/trojan-qt5.png</iconset>
+  </property>
+  <property name="toolButtonStyle">
+   <enum>Qt::ToolButtonFollowStyle</enum>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLineEdit" name="filterLineEdit">
+      <property name="placeholderText">
+       <string>Input to filter</string>
+      </property>
+      <property name="clearButtonEnabled">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTableView" name="connectionView">
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="tabKeyNavigation">
+       <bool>false</bool>
+      </property>
+      <property name="selectionMode">
+       <enum>QAbstractItemView::SingleSelection</enum>
+      </property>
+      <property name="selectionBehavior">
+       <enum>QAbstractItemView::SelectRows</enum>
+      </property>
+      <property name="showGrid">
+       <bool>false</bool>
+      </property>
+      <property name="sortingEnabled">
+       <bool>true</bool>
+      </property>
+      <property name="wordWrap">
+       <bool>false</bool>
+      </property>
+      <property name="cornerButtonEnabled">
+       <bool>false</bool>
+      </property>
+      <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>Show Toolbar</string>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::AllToolBarAreas</set>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonFollowStyle</enum>
+   </property>
+   <property name="floatable">
+    <bool>false</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionConnect"/>
+   <addaction name="actionDisconnect"/>
+   <addaction name="actionTestLatency"/>
+   <addaction name="separator"/>
+   <addaction name="actionEdit"/>
+   <addaction name="actionDelete"/>
+   <addaction name="actionShare"/>
+   <addaction name="separator"/>
+   <addaction name="actionMoveUp"/>
+   <addaction name="actionMoveDown"/>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>480</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuConnection">
+    <property name="title">
+     <string>&amp;Connection</string>
+    </property>
+    <widget class="QMenu" name="menuAdd">
+     <property name="title">
+      <string>&amp;Add</string>
+     </property>
+     <property name="icon">
+      <iconset theme="list-add">
+       <normaloff>.</normaloff>.</iconset>
+     </property>
+     <addaction name="actionManually"/>
+     <addaction name="actionURI"/>
+     <addaction name="actionQRCodeFromFile"/>
+     <addaction name="actionQRCode"/>
+     <addaction name="actionScanQRCodeCapturer"/>
+     <addaction name="actionFromConfigJson"/>
+    </widget>
+    <addaction name="menuAdd"/>
+    <addaction name="actionEdit"/>
+    <addaction name="actionShare"/>
+    <addaction name="actionDelete"/>
+    <addaction name="separator"/>
+    <addaction name="actionConnect"/>
+    <addaction name="actionForceConnect"/>
+    <addaction name="actionDisconnect"/>
+    <addaction name="actionTestLatency"/>
+    <addaction name="actionTestAllLatency"/>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="actionMoveUp"/>
+    <addaction name="actionMoveDown"/>
+   </widget>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>Fi&amp;le</string>
+    </property>
+    <addaction name="actionImportGUIJson"/>
+    <addaction name="actionExportGUIJson"/>
+    <addaction name="actionSaveManually"/>
+    <addaction name="separator"/>
+    <addaction name="actionQuit"/>
+   </widget>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>Settin&amp;gs</string>
+    </property>
+    <addaction name="actionGeneralSettings"/>
+    <addaction name="separator"/>
+    <addaction name="actionShowFilterBar"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+    <addaction name="actionAboutQt"/>
+    <addaction name="separator"/>
+    <addaction name="actionReportBug"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuConnection"/>
+   <addaction name="menuSettings"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <action name="actionManually">
+   <property name="text">
+    <string>&amp;Manually</string>
+   </property>
+   <property name="toolTip">
+    <string>Add connection manually</string>
+   </property>
+  </action>
+  <action name="actionQRCode">
+   <property name="text">
+    <string>&amp;Scan QR Code on Screen</string>
+   </property>
+  </action>
+  <action name="actionQRCodeFromFile">
+   <property name="icon">
+    <iconset theme="document-open">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;From QR Code Image File</string>
+   </property>
+   <property name="toolTip">
+    <string>From QR code image file</string>
+   </property>
+  </action>
+  <action name="actionURI">
+   <property name="text">
+    <string>&amp;URI</string>
+   </property>
+   <property name="toolTip">
+    <string>Add connection from URI</string>
+   </property>
+  </action>
+  <action name="actionDelete">
+   <property name="icon">
+    <iconset theme="list-remove">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Delete</string>
+   </property>
+  </action>
+  <action name="actionEdit">
+   <property name="text">
+    <string>&amp;Edit</string>
+   </property>
+  </action>
+  <action name="actionConnect">
+   <property name="text">
+    <string>&amp;Connect</string>
+   </property>
+  </action>
+  <action name="actionDisconnect">
+   <property name="text">
+    <string>D&amp;isconnect</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="icon">
+    <iconset theme="application-exit">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Quit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="icon">
+    <iconset theme="help-about">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;About</string>
+   </property>
+  </action>
+  <action name="actionAboutQt">
+   <property name="text">
+    <string>About &amp;Qt</string>
+   </property>
+  </action>
+  <action name="actionGeneralSettings">
+   <property name="text">
+    <string>&amp;General Settings</string>
+   </property>
+  </action>
+  <action name="actionShare">
+   <property name="text">
+    <string>&amp;Share</string>
+   </property>
+  </action>
+  <action name="actionReportBug">
+   <property name="text">
+    <string>&amp;Report Bug</string>
+   </property>
+  </action>
+  <action name="actionTestLatency">
+   <property name="text">
+    <string>&amp;Test Latency</string>
+   </property>
+   <property name="toolTip">
+    <string>Test the latency of selected connection</string>
+   </property>
+  </action>
+  <action name="actionTestAllLatency">
+   <property name="text">
+    <string>Test All C&amp;onnections Latency</string>
+   </property>
+  </action>
+  <action name="actionImportGUIJson">
+   <property name="text">
+    <string>&amp;Import Connections from gui-config.json</string>
+   </property>
+   <property name="toolTip">
+    <string>Import connections from old version configuration file</string>
+   </property>
+  </action>
+  <action name="actionFromConfigJson">
+   <property name="icon">
+    <iconset theme="document-open">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>From &amp;config.json</string>
+   </property>
+  </action>
+  <action name="actionSaveManually">
+   <property name="icon">
+    <iconset theme="document-save">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Save Manually</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
+  </action>
+  <action name="actionMoveUp">
+   <property name="icon">
+    <iconset theme="go-up">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Move Up</string>
+   </property>
+  </action>
+  <action name="actionMoveDown">
+   <property name="icon">
+    <iconset theme="go-down">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Mo&amp;ve Down</string>
+   </property>
+  </action>
+  <action name="actionShowFilterBar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Show Filter Bar</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="actionExportGUIJson">
+   <property name="text">
+    <string>&amp;Export as gui-config.json</string>
+   </property>
+  </action>
+  <action name="actionScanQRCodeCapturer">
+   <property name="text">
+    <string>Scan &amp;QR Code using Capturer</string>
+   </property>
+   <property name="toolTip">
+    <string>Scan QR Code using Capturer</string>
+   </property>
+  </action>
+  <action name="actionForceConnect">
+   <property name="text">
+    <string>&amp;Force Connect</string>
+   </property>
+   <property name="toolTip">
+    <string>Connect to this connection and disconnect any connections currently using  the same local port</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>actionShowFilterBar</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>filterLineEdit</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>239</x>
+     <y>88</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

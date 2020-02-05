@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Trojan-Qt5
+GenericName=Trojan-Qt5
+Comment=Trojan GUI client
+Exec=trojan-qt5
+Icon=trojan-qt5
+Terminal=false
+Type=Application
+Categories=Network;
+StartupNotify=true
