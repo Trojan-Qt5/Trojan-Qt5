@@ -29,37 +29,38 @@ before_install:
 
 install:
   - if [ "$BADGE" = "linux" ]; then    
-      sudo apt-get install libgl-dev git build-essential g++ python-dev autotools-dev libicu-dev libbz2-dev checkinstall zlib1g-dev -y;
-      git clone https://github.com/benlau/qtci.git;
+      sudo -i;
+      apt-get install libgl-dev git build-essential g++ python-dev autotools-dev libicu-dev libbz2-dev checkinstall zlib1g-dev -y >/dev/null 2>&1;
+      git clone https://github.com/benlau/qtci.git >/dev/null 2>&1;
       source qtci/path.env;
-      install-qt 5.13.2;
+      install-qt 5.13.2 >/dev/null 2>&1;
       wget -O zbar-0.10.tar.gz https://sourceforge.net/projects/zbar/files/zbar/0.10/zbar-0.10.tar.gz/download;
       tar -xf zbar-0.10.tar.gz;
       cd zbar-0.10;
-      ./configure --prefix=/usr/local/zbar --disable-video --without-qt --without-gtk --without-python;
-      make -j$(nproc);
-      make install;
+      ./configure --prefix=/usr/local/zbar --disable-video --without-qt --without-gtk --without-python >/dev/null 2>&1;
+      make -j$(nproc) >/dev/null 2>&1;
+      make install >/dev/null 2>&1;
       cd ..;
       git clone https://github.com/fukuchi/libqrencode.git;
       cd libqrencode;
-      ./autogen.sh;
-      ./configure --prefix=/usr/local/qrencode;
-      make -j$(nproc);
-      make install;
+      ./autogen.sh >/dev/null 2>&1;
+      ./configure --prefix=/usr/local/qrencode >/dev/null 2>&1;
+      make -j$(nproc) >/dev/null 2>&1;
+      make install >/dev/null 2>&1;
       cd ..;
       wget https://www.openssl.org/source/openssl-1.1.1d.tar.gz;
       tar -xf openssl-1.1.1d.tar.gz;
       cd openssl-1.1.1d;
-      ./config --prefix=/usr/local/openssl --openssldir=/usr/local/openssl shared zlib;
-      make -j$(nproc);
-      make install;
+      ./config --prefix=/usr/local/openssl --openssldir=/usr/local/openssl shared zlib >/dev/null 2>&1;
+      make -j$(nproc) >/dev/null 2>&1;
+      make install >/dev/null 2>&1;
       cd ..;
       wget -O boost_1_72_0.tar.gz https://sourceforge.net/projects/boost/files/boost/1.72.0/boost_1_72_0.tar.gz/download;
       tar xzvf boost_1_72_0.tar.gz;
       cd boost_1_72_0/;
-      ./bootstrap.sh --prefix=/usr/local/boost;
-      ./b2;
-      ./b2 install;
+      ./bootstrap.sh --prefix=/usr/local/boost >/dev/null 2>&1;
+      ./b2 >/dev/null 2>&1;
+      ./b2 install >/dev/null 2>&1;
       cd ..;
     fi
   - if [ "$BADGE" = "osx" ]; then    
@@ -84,7 +85,7 @@ script:
       qmake CONFIG+=release .. PREFIX=/usr;
       make -j$(nproc);
       make INSTALL_ROOT=appdir -j$(nproc) install ; find appdir/;
-      ./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -appimage
+      ./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -appimage;
     fi
 
 defore_deploy:

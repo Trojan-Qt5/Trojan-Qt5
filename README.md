@@ -1,4 +1,10 @@
-# Trojan-Qt5
+<h1 align="center">
+  <img src="https://github.com/TheWanderingCoel/Trojan-Qt5/blob/master/icons/trojan-qt5.png?raw=true" alt="Trojan-Qt5" width="200">
+  <br>
+  Trojan-Qt5
+  <br>
+</h1>
+
 A cross-platform trojan GUI client
 
 [![Build status](https://travis-ci.org/TheWanderingCoel/Trojan-Qt5.svg?branch=master)](https://travis-ci.org/TheWanderingCoel/Trojan-Qt5)
@@ -10,3 +16,12 @@ A cross-platform trojan GUI client
 ## Install
 
 You can download from [release](https://github.com/TheWanderingCoel/Trojan-Qt5/releases) page
+
+## Special Thanks
+
+This project is based on:
+
+- [libQtShadowsocks](https://github.com/shadowsocks/libQtShadowsocks) LGPL-3.0
+- [Shadowsocks-qt](https://github.com/trojan-gfw/trojan-qt) LGPL-3.0
+- [trojan](https://github.com/trojan-gfw/trojan) GPL-3.0
+- [trojan-qt](https://github.com/trojan-gfw/trojan-qt) GPL-3.0
