@@ -4,7 +4,7 @@ image:
 install:
   - set QTDIR=C:\Qt\5.14.0\msvc2017\bin
   - curl -LO https://slproweb.com/download/Win32OpenSSL-1_1_1d.exe
-  - powershell ".\\Win64OpenSSL-1_1_1d.exe /silent /sp- /suppressmsgboxes /DIR='C:\\Libraries\\OpenSSL-Win32'"
+  - powershell ".\\Win32OpenSSL-1_1_1d.exe /silent /sp- /suppressmsgboxes /DIR='C:\\Libraries\\OpenSSL-Win32'"
   - git clone https://github.com/TheWanderingCoel/ZBar.git C:\Libraries\ZBar
   - git clone https://github.com/TheWanderingCoel/QREncode.git C:\Libraries\QREncode
   - set PATH=%QTDIR%;%PATH%;
@@ -20,6 +20,8 @@ build_script:
   - windeployqt trojan-qt5.exe
   - del *.o *.h *.cpp *.stash *.qrc *.obj Makefile
   - rd /s /q bearer iconengines translations bearer styles platforms imageformats
+  - curl -LO https://github.com/TheWanderingCoel/Trojan-Qt5-DLL/raw/master/libiconv-2.dll
+  - curl -LO https://github.com/TheWanderingCoel/Trojan-Qt5-DLL/raw/master/libzbar-0.dll
   - 7z a Trojan-Qt5-Windows.zip *
   - cd ..
 
