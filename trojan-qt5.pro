@@ -54,14 +54,15 @@ DEFINES += ENABLE_TLS13_CIPHERSUITES
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 win32 {
+    INCLUDEPATH += $$PWD\src\trojan\src
     INCLUDEPATH += C:\Libraries\ZBar\include
     INCLUDEPATH += C:\Libraries\boost_1_71_0\include\boost-1_71
     INCLUDEPATH += C:\Libraries\OpenSSL-Win64\include
     INCLUDEPATH += C:\Libraries\QREncode\include
-    LIBS += -LC:\Program Files\ZBar\lib -llibzbar-0
-    LIBS += -LC:\Program Files\OpenSSL-Win64\lib -llibcrypto -llibssl
-    LIBS += -LC:\Program Files\boost_1_71_0\lib -lboost_system
-    LIBS += -LC:\Program Files\QREncode\lib -lqrcodelib
+    LIBS += -LC:\Libraries\ZBar\lib -llibzbar-0
+    LIBS += -LC:\Libraries\OpenSSL-Win64\lib -llibcrypto -llibssl
+    LIBS += -LC:\Libraries\boost_1_71_0\lib -lboost_system
+    LIBS += -LC:\Libraries\QREncode\lib -lqrcodelib
     LIBS += -lwsock32 -lws2_32
     LIBS += -lCrypt32
     DEFINES += WIN32_LEAN_AND_MEAN
@@ -80,7 +81,7 @@ mac {
     LIBS += -framework Security -framework Cocoa
 }
 
-unix {
+unix:!mac {
     INCLUDEPATH += $$PWD/src/trojan/src
     INCLUDEPATH += /usr/local/zbar/include
     INCLUDEPATH += /usr/local/qrencode/include
@@ -90,9 +91,6 @@ unix {
     LIBS += -L/usr/local/qrencode/lib -lqrencode
     LIBS += -L/usr/local/openssl/lib -lcrypto -lssl
     LIBS += -L/usr/local/boost/lib -lboost_system
-}
-
-unix:!mac {
 
     isEmpty(PREFIX) {
         PREFIX = /usr/local

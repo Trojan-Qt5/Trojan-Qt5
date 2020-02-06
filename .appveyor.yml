@@ -4,9 +4,9 @@ image:
 install:
   - set QTDIR=C:\Qt\5.13\msvc2017_64\bin
   - curl -LO https://slproweb.com/download/Win64OpenSSL-1_1_1d.exe
-  - powershell ".\\Win64OpenSSL-1_1_1d.exe /silent /sp- /suppressmsgboxes /DIR='C:\\Program Files\\OpenSSL-Win64'"
-  - git clone https://github.com/TheWanderingCoel/ZBar.git C:\Libraires\ZBar
-  - git clone https://github.com/TheWanderingCoel/QREncode.git C:\Librairs\QREncode
+  - powershell ".\\Win64OpenSSL-1_1_1d.exe /silent /sp- /suppressmsgboxes /DIR='C:\\Libraries\\OpenSSL-Win64'"
+  - git clone https://github.com/TheWanderingCoel/ZBar.git C:\Libraries\ZBar
+  - git clone https://github.com/TheWanderingCoel/QREncode.git C:\Libraries\QREncode
   - set PATH=%QTDIR%;%PATH%;
   - git submodule update --init
 
