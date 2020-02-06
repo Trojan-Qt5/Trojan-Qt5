@@ -212,7 +212,7 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
     QJsonDocument JSONDoc(configObj);
 
 #ifdef Q_OS_WIN
-        QString file = a.applicationDirPath() + "/config.json";
+        QString file = QCoreApplication::applicationDirPath() + "/config.json";
 #else
         QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
         QString file = configDir.absolutePath() + "/config.json";

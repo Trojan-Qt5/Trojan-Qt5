@@ -2,6 +2,7 @@
 #include "connection.h"
 #include "confighelper.h"
 #include "servicethread.h"
+#include <QCoreApplication>
 #include <QDir>
 #include <QHostInfo>
 #include <QHostAddress>
@@ -83,7 +84,7 @@ void Connection::start()
     ConfigHelper::connectionToJson(profile);
 
 #ifdef Q_OS_WIN
-    QString file = a.applicationDirPath() + "/config.json";
+    QString file = QCoreApplication::applicationDirPath() + "/config.json";
 #else
     QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
     QString file = configDir.absolutePath() + "/config.json";

@@ -80,6 +80,7 @@ mac {
 }
 
 unix:!mac {
+    QT += dbus
     INCLUDEPATH += $$PWD/src/trojan/src
     INCLUDEPATH += /usr/local/zbar/include
     INCLUDEPATH += /usr/local/qrencode/include
