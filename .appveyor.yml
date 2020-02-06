@@ -17,10 +17,9 @@ build_script:
   - mkdir build && cd build
   - qmake ../
   - nmake
-  - cd Release
+  - cd release
   - windeployqt trojan-qt5.exe
   - del *.o *.h *.cpp *.stash *.qrc *.obj Makefile
-  - rd /s /q bearer iconengines translations bearer styles platforms imageformats
   - curl -LO https://github.com/TheWanderingCoel/Trojan-Qt5-DLL/raw/master/libiconv-2.dll
   - curl -LO https://github.com/TheWanderingCoel/Trojan-Qt5-DLL/raw/master/libzbar-0.dll
   - 7z a Trojan-Qt5-Windows.zip *
@@ -28,7 +27,7 @@ build_script:
   - cd ..
 
 artifacts:
-- path: build\Release\Trojan-Qt5-Windows.zip
+- path: build\release\Trojan-Qt5-Windows.zip
   name: Trojan-Qt5
 
 deploy:
