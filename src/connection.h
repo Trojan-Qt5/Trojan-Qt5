@@ -33,6 +33,7 @@ public:
     Connection(QObject *parent = 0);
     Connection(const TQProfile &_profile, QObject *parent = 0);
     Connection(QString uri, QObject *parent = 0);
+    ~Connection();
 
     Connection(const Connection&) = delete;
     Connection(Connection&&) = default;
@@ -41,6 +42,7 @@ public:
     const QString &getName() const;
     QByteArray getURI() const;
     bool isValid() const;
+    const bool &isRunning() const;
     void latencyTest();
 
 signals:

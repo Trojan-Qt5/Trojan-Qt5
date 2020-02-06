@@ -43,7 +43,7 @@ void StatusNotifier::showNotification(const QString &msg)
     //Using DBus to send message.
     QDBusMessage method = QDBusMessage::createMethodCall("org.freedesktop.Notifications","/org/freedesktop/Notifications", "org.freedesktop.Notifications", "Notify");
     QVariantList args;
-    args << QCoreApplication::applicationName() << quint32(0) << "shadowsocks-qt5" << "Shadowsocks-Qt5" << msg << QStringList () << QVariantMap() << qint32(-1);
+    args << QCoreApplication::applicationName() << quint32(0) << "trojan-qt5" << "Trojan-Qt5" << msg << QStringList () << QVariantMap() << qint32(-1);
     method.setArguments(args);
     QDBusConnection::sessionBus().asyncCall(method);
 #else

@@ -20,11 +20,11 @@
 #include <QCloseEvent>
 #include <QLocalSocket>
 
-MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow),
-      configHelper(confHelper),
-      instanceRunning(false)
+MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow),
+    configHelper(confHelper),
+    instanceRunning(false)
 {
     Q_ASSERT(configHelper);
 
@@ -94,10 +94,15 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent)
     connect(ui->actionShare, &QAction::triggered, this, &MainWindow::onShare);
     connect(ui->actionConnect, &QAction::triggered,
             this, &MainWindow::onConnect);
+    connect(ui->actionForceConnect, &QAction::triggered,
+            this, &MainWindow::onForceConnect);
     connect(ui->actionDisconnect, &QAction::triggered,
             this, &MainWindow::onDisconnect);
     connect(ui->actionTestLatency, &QAction::triggered,
             this, &MainWindow::onLatencyTest);
+    connect(ui->actionMoveUp, &QAction::triggered, this, &MainWindow::onMoveUp);
+    connect(ui->actionMoveDown, &QAction::triggered,
+            this, &MainWindow::onMoveDown);
     connect(ui->actionGeneralSettings, &QAction::triggered,
             this, &MainWindow::onGeneralSettings);
     connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::onAbout);
@@ -125,6 +130,8 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent)
 
     /* set custom context menu */
     ui->connectionView->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(ui->connectionView, &QTableView::customContextMenuRequested,
+            this, &MainWindow::onCustomContextMenuRequested);
 
     checkCurrentIndex();
 
@@ -302,7 +309,7 @@ void MainWindow::onForceConnect()
     if (con->isValid()) {
         model->disconnectConnectionsAt(con->getProfile().localAddress,
                                        con->getProfile().localPort);
-        //con->start();
+        con->start();
     } else {
         QMessageBox::critical(this, tr("Invalid"),
                               tr("The connection's profile is invalid!"));
@@ -312,7 +319,7 @@ void MainWindow::onForceConnect()
 void MainWindow::onDisconnect()
 {
     int row = proxyModel->mapToSource(ui->connectionView->currentIndex()).row();
-    model->getItem(row)->getConnection()->start();
+    model->getItem(row)->getConnection()->stop();
 }
 
 void MainWindow::onConnectionStatusChanged(const int row, const bool running)
@@ -408,8 +415,8 @@ void MainWindow::checkCurrentIndex(const QModelIndex &_index)
                                    false);
 
     if (valid) {
-        const bool &running = true;
-                //model->getItem(index.row())->getConnection()->isRunning();
+        const bool &running =
+                model->getItem(index.row())->getConnection()->isRunning();
         ui->actionConnect->setEnabled(!running);
         ui->actionForceConnect->setEnabled(!running);
         ui->actionDisconnect->setEnabled(running);
@@ -476,6 +483,29 @@ void MainWindow::onQRCodeCapturerResultFound(const QString &uri)
     newProfile(newCon);
 }
 
+void MainWindow::hideEvent(QHideEvent *e)
+{
+    QMainWindow::hideEvent(e);
+    notifier->onWindowVisibleChanged(false);
+}
+
+void MainWindow::showEvent(QShowEvent *e)
+{
+    QMainWindow::showEvent(e);
+    notifier->onWindowVisibleChanged(true);
+    this->setFocus();
+}
+
+void MainWindow::closeEvent(QCloseEvent *e)
+{
+    if (e->spontaneous()) {
+        e->ignore();
+        hide();
+    } else {
+        QMainWindow::closeEvent(e);
+    }
+}
+
 void MainWindow::setupActionIcon()
 {
     ui->actionConnect->setIcon(QIcon::fromTheme("network-connect",
@@ -518,7 +548,7 @@ void MainWindow::initSingleInstance()
     if (socket.waitForConnected(500)) {
         instanceRunning = true;
         if (configHelper->isOnlyOneInstance()) {
-            qWarning() << "An instance of ss-qt5 is already running";
+            qWarning() << "An instance of trojan-qt5 is already running";
         }
         QByteArray username = qgetenv("USER");
         if (username.isEmpty()) {
@@ -562,7 +592,7 @@ void MainWindow::onSingleInstanceConnect()
             // Only show the window if it's the same user
             show();
         } else {
-            qWarning("Another user is trying to run another instance of ss-qt5");
+            qWarning("Another user is trying to run another instance of trojan-qt5");
         }
     }
     socket->deleteLater();

@@ -26,6 +26,11 @@ Connection::Connection(QString uri, QObject *parent) :
     profile = TQProfile(uri);
 }
 
+Connection::~Connection()
+{
+    stop();
+}
+
 const TQProfile& Connection::getProfile() const
 {
     return profile;
@@ -50,6 +55,11 @@ bool Connection::isValid() const
     else {
         return true;
     }
+}
+
+const bool &Connection::isRunning() const
+{
+    return running;
 }
 
 void Connection::latencyTest()
@@ -81,18 +91,22 @@ void Connection::start()
     service->config().load(file.toStdString());
     running = true;
     service->start();
+    emit stateChanged(running);
 }
 
 void Connection::stop()
 {
     if (running) {
         service->stop();
+        running = false;
+        emit stateChanged(running);
     }
 }
 
 void Connection::onStartFailed()
 {
     running = false;
+    emit stateChanged(running);
     emit startFailed();
 }
 

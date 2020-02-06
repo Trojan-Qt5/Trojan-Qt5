@@ -41,7 +41,8 @@ QVariant ConnectionItem::data(int column, int role) const
         case 1://server
             return QVariant(con->profile.serverAddress);
         case 2://status
-            return QVariant(tr("Connected"));
+            return con->isRunning() ? QVariant(tr("Connected"))
+                                    : QVariant(tr("Disconnected"));
         case 3://latency
             if (role == Qt::DisplayRole) {
                 return QVariant(convertLatencyToString(con->profile.latency));
@@ -79,7 +80,7 @@ QVariant ConnectionItem::data(int column, int role) const
         }
     } else if (role == Qt::FontRole) {
         QFont font;
-        //font.setBold(con->isRunning());
+        font.setBold(con->isRunning());
         return QVariant(font);
     }
 

@@ -34,6 +34,7 @@ install:
       git clone https://github.com/benlau/qtci.git >/dev/null 2>&1;
       source qtci/path.env;
       install-qt 5.13.2 >/dev/null 2>&1;
+      echo "Installig ZBar 0.10..."
       wget -O zbar-0.10.tar.gz https://sourceforge.net/projects/zbar/files/zbar/0.10/zbar-0.10.tar.gz/download;
       tar -xf zbar-0.10.tar.gz;
       cd zbar-0.10;
@@ -41,6 +42,7 @@ install:
       make -j$(nproc) >/dev/null 2>&1;
       make install >/dev/null 2>&1;
       cd ..;
+      echo "Installig libqrencode..."
       git clone https://github.com/fukuchi/libqrencode.git;
       cd libqrencode;
       ./autogen.sh >/dev/null 2>&1;
@@ -48,6 +50,7 @@ install:
       make -j$(nproc) >/dev/null 2>&1;
       make install >/dev/null 2>&1;
       cd ..;
+      echo "Installig openssl 1.1.1d..."
       wget https://www.openssl.org/source/openssl-1.1.1d.tar.gz;
       tar -xf openssl-1.1.1d.tar.gz;
       cd openssl-1.1.1d;
@@ -55,11 +58,12 @@ install:
       make -j$(nproc) >/dev/null 2>&1;
       make install >/dev/null 2>&1;
       cd ..;
+      echo "Installig boost 1_72_0..."
       wget -O boost_1_72_0.tar.gz https://sourceforge.net/projects/boost/files/boost/1.72.0/boost_1_72_0.tar.gz/download;
       tar xzvf boost_1_72_0.tar.gz;
       cd boost_1_72_0/;
       ./bootstrap.sh --prefix=/usr/local/boost >/dev/null 2>&1;
-      ./b2 >/dev/null 2>&1;
+      ./b2;
       ./b2 install >/dev/null 2>&1;
       cd ..;
     fi
@@ -77,7 +81,7 @@ script:
   - if [ "$BADGE" = "osx" ]; then
       qmake ../;
       make -j$(nproc);
-      macdeployqt trojan-qt5.app -dmg
+      macdeployqt trojan-qt5.app -dmg;
     fi
   - if [ "$BADGE" = "linux" ]; then
       wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage";
@@ -89,7 +93,6 @@ script:
     fi
 
 defore_deploy:
-  - ls
   - cd ..
 
 deploy:
