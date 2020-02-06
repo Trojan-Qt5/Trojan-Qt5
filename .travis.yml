@@ -89,10 +89,13 @@ script:
       qmake CONFIG+=release .. PREFIX=/usr;
       make -j$(nproc);
       make INSTALL_ROOT=appdir -j$(nproc) install ; find appdir/;
-      ./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -appimage;
     fi
 
 defore_deploy:
+  - if [ "$BADGE" = "linux" ]; then
+      export LD_LIBRARY_PATH=/usr/local/zbar/lib/:$LD_LIBRARY_PATH;
+      ./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -appimage;
+    fi
   - cd ..
 
 deploy:
