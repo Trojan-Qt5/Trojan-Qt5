@@ -2,6 +2,7 @@
 #include "connection.h"
 #include "confighelper.h"
 #include "servicethread.h"
+#include "systemproxyhelper.h"
 #include <QCoreApplication>
 #include <QDir>
 #include <QHostInfo>
@@ -93,6 +94,7 @@ void Connection::start()
     running = true;
     service->start();
     emit stateChanged(running);
+    SystemProxyHelper::setSystemProxy(profile, running);
 }
 
 void Connection::stop()
@@ -101,6 +103,7 @@ void Connection::stop()
         service->stop();
         running = false;
         emit stateChanged(running);
+        SystemProxyHelper::setSystemProxy(profile, running);
     }
 }
 

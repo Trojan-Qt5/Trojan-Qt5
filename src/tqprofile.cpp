@@ -33,10 +33,10 @@ TQProfile TQProfile::fromUri(const std::string& trojanUri) const
     TQProfile result;
     //remove the prefix "trojan://" from uri
     std::string uri(trojanUri.data() + 9, trojanUri.length() - 9);
-    size_t hashPos = uri.find_last_of('?');
+    size_t hashPos = uri.find_last_of('#');
     if (hashPos != std::string::npos) {
         // Get the name/remark
-        result.name = QString::fromStdString(uri.substr(hashPos + 6));
+        result.name = QString::fromStdString(uri.substr(hashPos + 1));
         uri.erase(hashPos);
     }
 
@@ -62,7 +62,7 @@ QString TQProfile::toUri() const
     QString trojanUri = password + "@" + serverAddress + ":" + QString::number(serverPort);
     QByteArray uri = QByteArray(trojanUri.toUtf8());
     uri.prepend("trojan://");
-    uri.append("?peer=");
+    uri.append("#");
     uri.append(name);
     return QString(uri);
 }

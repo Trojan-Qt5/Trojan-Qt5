@@ -2,9 +2,9 @@ image:
   - Visual Studio 2019
 
 install:
-  - set QTDIR=C:\Qt\5.14.0\msvc2017_64\bin
-  - curl -LO https://slproweb.com/download/Win64OpenSSL-1_1_1d.exe
-  - powershell ".\\Win64OpenSSL-1_1_1d.exe /silent /sp- /suppressmsgboxes /DIR='C:\\Libraries\\OpenSSL-Win64'"
+  - set QTDIR=C:\Qt\5.14.0\msvc2017\bin
+  - curl -LO https://slproweb.com/download/Win32OpenSSL-1_1_1d.exe
+  - powershell ".\\Win64OpenSSL-1_1_1d.exe /silent /sp- /suppressmsgboxes /DIR='C:\\Libraries\\OpenSSL-Win32'"
   - git clone https://github.com/TheWanderingCoel/ZBar.git C:\Libraries\ZBar
   - git clone https://github.com/TheWanderingCoel/QREncode.git C:\Libraries\QREncode
   - set PATH=%QTDIR%;%PATH%;
@@ -17,12 +17,14 @@ build_script:
   - mkdir build && cd build
   - qmake ../
   - nmake
-  - del *.o *.h *.cpp *.stash *.qrc Makefile
-  - zip -r Trojan-Qt5-windows.zip *
+  - windeployqt trojan-qt5.exe
+  - del *.o *.h *.cpp *.stash *.qrc *.obj Makefile
+  - rd /s /q bearer iconengines translations bearer styles platforms imageformats
+  - 7z a Trojan-Qt5-Windows.zip *
   - cd ..
 
 artifacts:
-- path: build\Trojan-Qt5-windows.zip
+- path: build\Trojan-Qt5-Windows.zip
   name: Trojan-Qt5
 
 deploy:

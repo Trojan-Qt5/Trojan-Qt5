@@ -104,7 +104,7 @@
       <item row="7" column="0">
        <widget class="QLabel" name="label">
         <property name="text">
-         <string>Tcp Fast Open</string>
+         <string>TCP Fast Open</string>
         </property>
        </widget>
       </item>
@@ -226,7 +226,4 @@
    </hints>
   </connection>
  </connections>
- <buttongroups>
-  <buttongroup name="buttonGroup"/>
- </buttongroups>
 </ui>

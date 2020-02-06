@@ -55,11 +55,11 @@ win32 {
     INCLUDEPATH += $$PWD\src\trojan\src
     INCLUDEPATH += C:\Libraries\ZBar\include
     INCLUDEPATH += C:\Libraries\boost_1_71_0
-    INCLUDEPATH += C:\Libraries\OpenSSL-Win64\include
+    INCLUDEPATH += C:\Libraries\OpenSSL-Win32\include
     INCLUDEPATH += C:\Libraries\QREncode\include
     LIBS += -LC:\Libraries\ZBar\lib -llibzbar-0
-    LIBS += -LC:\Libraries\OpenSSL-Win64\lib -llibcrypto -llibssl
-    LIBS += -LC:\Libraries\boost_1_71_0\lib64-msvc-14.2
+    LIBS += -LC:\Libraries\OpenSSL-Win32\lib -llibcrypto -llibssl
+    LIBS += -LC:\Libraries\boost_1_71_0\lib32-msvc-14.2
     LIBS += -LC:\Libraries\QREncode\lib -lqrcodelib
     LIBS += -lwsock32 -lws2_32
     LIBS += -lCrypt32
@@ -77,6 +77,8 @@ mac {
     LIBS += -L/usr/local/opt/openssl@1.1/lib -lcrypto -lssl
     LIBS += -L/usr/local/opt/boost/lib -lboost_system
     LIBS += -framework Security -framework Cocoa
+    # Otherwise lupdate will not work
+    TR_EXCLUDE = /usr/local/opt/boost/*
 }
 
 unix:!mac {
@@ -90,6 +92,8 @@ unix:!mac {
     LIBS += -L/usr/local/qrencode/lib -lqrencode
     LIBS += -L/usr/local/openssl/lib -lcrypto -lssl
     LIBS += -L/usr/local/boost/lib -lboost_system
+    # Otherwise lupdate will not work
+    TR_EXCLUDE = /usr/local/boost/*
 
     isEmpty(PREFIX) {
         PREFIX = /usr/local
@@ -123,6 +127,7 @@ SOURCES += \
     src/qrwidget.cpp \
     src/settingsdialog.cpp \
     src/sharedialog.cpp \
+    src/systemproxyhelper.cpp \
     src/tqprofile.cpp \
     src/statusnotifier.cpp \
     src/trojanvalidator.cpp \
@@ -160,6 +165,7 @@ HEADERS += \
     src/qrwidget.h \
     src/settingsdialog.h \
     src/sharedialog.h \
+    src/systemproxyhelper.h \
     src/tqprofile.h \
     src/statusnotifier.h \
     src/trojanvalidator.h \

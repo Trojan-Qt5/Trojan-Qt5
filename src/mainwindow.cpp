@@ -441,7 +441,7 @@ void MainWindow::onAbout()
             "<p>License: <a href='http://www.gnu.org/licenses/gpl.html'>"
             "GNU General Public License Version 3</a><br />"
             "Project Hosted at "
-            "<a href='https://github.com/TheWanderingCoel/trojan-qt5'>"
+            "<a href='https://github.com/TheWanderingCoel/Trojan-Qt5'>"
             "GitHub</a></p>")
             .arg(QStringLiteral(APP_VERSION))
             .arg(QString::fromStdString(Version::get_version()))

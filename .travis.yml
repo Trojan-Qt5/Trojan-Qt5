@@ -37,10 +37,10 @@ install:
       wget -O zbar-0.10.tar.gz https://sourceforge.net/projects/zbar/files/zbar/0.10/zbar-0.10.tar.gz/download;
       tar -xf zbar-0.10.tar.gz;
       cd zbar-0.10;
-      export CFLAGS=""
-      ./configure --prefix=/usr/local/zbar --disable-video --without-qt --without-gtk --without-python;
-      make -j$(nproc) ;
-      sudo make install;
+      export CFLAGS="";
+      ./configure --prefix=/usr/local/zbar --disable-video --without-qt --without-gtk --without-python >/dev/null 2>&1;
+      make -j$(nproc) >/dev/null 2>&1;
+      sudo make install >/dev/null 2>&1;
       cd ..;
       echo "Installig libqrencode...";
       git clone https://github.com/fukuchi/libqrencode.git;
