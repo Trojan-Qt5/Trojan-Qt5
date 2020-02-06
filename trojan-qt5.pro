@@ -54,12 +54,12 @@ DEFINES += ENABLE_TLS13_CIPHERSUITES
 win32 {
     INCLUDEPATH += $$PWD\src\trojan\src
     INCLUDEPATH += C:\Libraries\ZBar\include
-    INCLUDEPATH += C:\Libraries\boost_1_71_0\boost
+    INCLUDEPATH += C:\Libraries\boost_1_71_0
     INCLUDEPATH += C:\Libraries\OpenSSL-Win64\include
     INCLUDEPATH += C:\Libraries\QREncode\include
     LIBS += -LC:\Libraries\ZBar\lib -llibzbar-0
     LIBS += -LC:\Libraries\OpenSSL-Win64\lib -llibcrypto -llibssl
-    LIBS += -LC:\Libraries\boost_1_71_0\lib -lboost_system
+    LIBS += -LC:\Libraries\boost_1_71_0\lib64-msvc-14.2
     LIBS += -LC:\Libraries\QREncode\lib -lqrcodelib
     LIBS += -lwsock32 -lws2_32
     LIBS += -lCrypt32

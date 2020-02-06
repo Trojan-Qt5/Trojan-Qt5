@@ -14,7 +14,6 @@ init:
   - C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Community\VC\Auxiliary\Build\vcvarsall.bat x86_amd64
 
 build_script:
-  - dir C:\Libraries\boost_1_71_0\
   - mkdir build && cd build
   - qmake ../
   - nmake
