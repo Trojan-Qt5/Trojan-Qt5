@@ -4,7 +4,7 @@ image:
 install:
   - set QTDIR=C:\Qt\5.13\msvc2017_64\bin
   - curl -LO https://slproweb.com/download/Win64OpenSSL-1_1_1d.exe
-  - powershell ".\\Win64OpenSSL-1_1_1d.exe /silent /sp- /suppressmsgboxes /DIR='C:\\Libraries\\OpenSSL-Win64'"
+  - powershell ".\\Win64OpenSSL-1_1_1d.exe /silent /sp- /suppressmsgboxes /DIR='C:\\Libraries1\\OpenSSL-Win64'"
   - git clone https://github.com/TheWanderingCoel/ZBar.git C:\Libraries\ZBar
   - git clone https://github.com/TheWanderingCoel/QREncode.git C:\Libraries\QREncode
   - set PATH=%QTDIR%;%PATH%;
@@ -14,6 +14,7 @@ init:
   - C:\"Program Files (x86)"\"Microsoft Visual Studio"\2017\Community\VC\Auxiliary\Build\vcvarsall.bat x86_amd64
 
 build_script:
+  - dir C:\Libraries\boost_1_71_0\
   - mkdir build && cd build
   - qmake ../
   - nmake

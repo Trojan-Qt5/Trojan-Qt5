@@ -87,7 +87,9 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    w.show();
+    if (!conf.isHideWindowOnStartup()) {
+        w.show();
+    }
 
     return a.exec();
 }

@@ -27,8 +27,6 @@ TARGET = trojan-qt5
 
 CONFIG += c++11
 CONFIG += sdk_no_version_check
-CONFIG += lrelease
-CONFIG += embed_translations
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -56,7 +54,7 @@ DEFINES += ENABLE_TLS13_CIPHERSUITES
 win32 {
     INCLUDEPATH += $$PWD\src\trojan\src
     INCLUDEPATH += C:\Libraries\ZBar\include
-    INCLUDEPATH += C:\Libraries\boost_1_71_0\include\boost-1_71
+    INCLUDEPATH += C:\Libraries\boost_1_71_0\boost
     INCLUDEPATH += C:\Libraries\OpenSSL-Win64\include
     INCLUDEPATH += C:\Libraries\QREncode\include
     LIBS += -LC:\Libraries\ZBar\lib -llibzbar-0
@@ -146,7 +144,6 @@ SOURCES += \
     src/trojan/src/ssl/ssldefaults.cpp \
     src/trojan/src/ssl/sslsession.cpp
 
-
 HEADERS += \
     src/servicethread.h \
     src/addresstester.h \
@@ -191,7 +188,7 @@ FORMS += \
     ui/sharedialog.ui \
     ui/uriinputdialog.ui
 
-EXTRA_TRANSLATIONS += \
+TRANSLATIONS += \
     i18n/trojan-qt5_zh_CN.ts \
     i18n/trojan-qt5_zh_TW.ts
 
@@ -199,4 +196,5 @@ EXTRA_TRANSLATIONS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 
 RESOURCES += \
-    icons.qrc
+    icons.qrc \
+    translations.qrc
