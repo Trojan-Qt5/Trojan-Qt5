@@ -93,7 +93,7 @@ script:
 
 defore_deploy:
   - if [ "$BADGE" = "linux" ]; then
-      export LD_LIBRARY_PATH=/usr/local/zbar/lib/:$LD_LIBRARY_PATH;
+      export LD_LIBRARY_PATH=/usr/local/zbar/lib/:/usr/local/qrencode/lib/:/usr/local/boost/lib/:/usr/local/openssl/lib/:$LD_LIBRARY_PATH;
       ./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -appimage;
     fi
   - cd ..
