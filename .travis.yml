@@ -59,7 +59,7 @@ install:
       sudo make install >/dev/null 2>&1;
       cd ..;
       echo "Installig boost 1_72_0...";
-      wget -O boost_1_72_0.tar.gz https://sourceforge.net/projects/boost/files/boost/1.72.0/boost_1_72_0.tar.gz/download;
+      wget -O boost_1_72_0.tar.gz https://sourceforge.net/projects/boost/files/boost/1.72.0/boost_1_72_0.tar.gz/download >/dev/null 2>&1;
       tar -xf boost_1_72_0.tar.gz;
       cd boost_1_72_0/;
       ./bootstrap.sh --prefix=/usr/local/boost >/dev/null 2>&1;
@@ -95,6 +95,7 @@ defore_deploy:
   - if [ "$BADGE" = "linux" ]; then
       export LD_LIBRARY_PATH=/usr/local/zbar/lib/:/usr/local/qrencode/lib/:/usr/local/boost/lib/:/usr/local/openssl/lib/:$LD_LIBRARY_PATH;
       ./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -appimage;
+      mv Trojan-Qt5*.AppImage Trojan-Qt5.AppImage;
     fi
   - cd ..
 
@@ -102,7 +103,7 @@ deploy:
   provider: release
   file: 
     - build/trojan-qt5.dmg
-    - build/*.AppImage
+    - build/Trojan-Qt5.AppImage
   api_key: $GIT_REPO_TOKEN
   skip_cleanup: true
   overwrite: true
