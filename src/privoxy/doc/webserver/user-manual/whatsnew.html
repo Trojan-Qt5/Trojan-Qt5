@@ -1,0 +1,444 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>What's New in this Release</title>
+  <meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.79">
+  <link rel="HOME" title="Privoxy 3.0.28 User Manual" href="index.html">
+  <link rel="PREVIOUS" title="Installation" href="installation.html">
+  <link rel="NEXT" title="Quickstart to Using Privoxy" href="quickstart.html">
+  <link rel="STYLESHEET" type="text/css" href="../p_doc.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <link rel="STYLESHEET" type="text/css" href="p_doc.css">
+</head>
+<body class="SECT1" bgcolor="#EEEEEE" text="#000000" link="#0000FF" vlink="#840084" alink="#0000FF">
+  <div class="NAVHEADER">
+    <table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <th colspan="3" align="center">Privoxy 3.0.28 User Manual</th>
+      </tr>
+      <tr>
+        <td width="10%" align="left" valign="bottom"><a href="installation.html" accesskey="P">Prev</a></td>
+        <td width="80%" align="center" valign="bottom"></td>
+        <td width="10%" align="right" valign="bottom"><a href="quickstart.html" accesskey="N">Next</a></td>
+      </tr>
+    </table>
+    <hr align="left" width="100%">
+  </div>
+  <div class="SECT1">
+    <h1 class="SECT1"><a name="WHATSNEW" id="WHATSNEW">3. What's New in this Release</a></h1>
+    <p><span class="APPLICATION">Privoxy 3.0.27</span> stable scales better in multi-user environments and brings a
+    couple of tuning directives. <span class="APPLICATION">Privoxy 3.0.28</span> stable fixes two regressions
+    introduced in 3.0.27.</p>
+    <p>Changes in <span class="APPLICATION">Privoxy 3.0.28</span> stable:</p>
+    <ul>
+      <li>
+        <p>Bug fixes for regressions in 3.0.27:</p>
+        <ul>
+          <li>
+            <p>Fixed misplaced parentheses. Reported by David Binderman.</p>
+          </li>
+          <li>
+            <p>Changed two regression tests to depend on config directive enable-remote-toggle instead of
+            FEATURE_TOGGLE.</p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <p>Changes in <span class="APPLICATION">Privoxy 3.0.27</span> stable:</p>
+    <ul>
+      <li>
+        <p>General improvements:</p>
+        <ul>
+          <li>
+            <p>Add a receive-buffer-size directive which can be used to set the size of the previously statically
+            allocated buffer in handle_established_connection(). Increasing the buffer size increases Privoxy's memory
+            usage but can lower the number of context switches and thereby reduce the CPU usage and potentially
+            increase the throughput. This is mostly relevant for fast network connections and large downloads that
+            don't require filtering. Sponsored by: Robert Klemme</p>
+          </li>
+          <li>
+            <p>Add a listen-backlog directive which specifies the backlog value passed to listen(). Sponsored by:
+            Robert Klemme</p>
+          </li>
+          <li>
+            <p>Add an enable-accept-filter directive which allows to toggle accept filter support at run time when
+            compiled with FEATURE_ACCEPT_FILTER support. It makes testing more convenient and now that it's optional we
+            can emit an error message if enabling the accept filter fails. Sponsored by: Robert Klemme</p>
+          </li>
+          <li>
+            <p>Add a delay-response{} action. This is useful to tar pit JavaScript requests that are endlessly retried
+            in case of blocks. It can also be used to simulate a slow Internet connection. Sponsored by: Robert
+            Klemme</p>
+          </li>
+          <li>
+            <p>Add a 'trusted-cgi-referrer' directive. It allows to configure another page or site that can be used to
+            reach sensitive CGI resources. Sponsored by: Robert Klemme</p>
+          </li>
+          <li>
+            <p>Add a --fuzz mode which exposes Privoxy internals to input from files or stdout. Mainly tested with
+            American Fuzzy Lop. For details see: https://www.fabiankeil.de/talks/fuzzing-on-freebsd/ This work was
+            partially funded with donations and done as part of the Privoxy month in 2015.</p>
+          </li>
+          <li>
+            <p>Consistently use the U(ngreedy) flag in the 'img-reorder' filter.</p>
+          </li>
+          <li>
+            <p>listen_loop(): Reuse a single thread attribute object The object doesn't change and creating a new one
+            for every thread is a waste of (CPU) time. Sponsored by: Robert Klemme</p>
+          </li>
+          <li>
+            <p>Free csp resources in the thread that belongs to the csp instead of the main thread which has enough on
+            its plate already. Sponsored by: Robert Klemme</p>
+          </li>
+          <li>
+            <p>Improve 'socket timeout reached' message. Log the timeout that was triggered and downgrade the log level
+            to LOG_LEVEL_CONNECT to reduce the log noise with common debug settings. The timeout isn't necessary the
+            result of an error and usually merely indicates that Privoxy's socket timeout is lower than the relevant
+            timeouts used by client and server. Sponsored by: Robert Klemme</p>
+          </li>
+          <li>
+            <p>Explicitly taint the server socket in case of CONNECT requests. This doesn't fix any known problems, but
+            makes some log messages less confusing.</p>
+          </li>
+          <li>
+            <p>Let write_pid_file() terminate if the pid file can't be opened. Logging the issue at info level is
+            unlikely to help.</p>
+          </li>
+          <li>
+            <p>log_error(): Reduce the mutex-protected area by not using a heap-allocated buffer that is shared between
+            all threads. This increases performance and reduces the latency with verbose debug settings and multiple
+            concurrent connections. Sponsored by: Robert Klemme</p>
+          </li>
+          <li>
+            <p>Let zalloc() use calloc() if it's available. In some situations using calloc() can be faster than
+            malloc() + memset() and it should never be slower. In the real world the impact of this change is not
+            expected to be noticeable. Sponsored by: Robert Klemme</p>
+          </li>
+          <li>
+            <p>Never use select() when poll() is available. On most platforms select() is limited by FD_SETSIZE while
+            poll() is not. This was a scaling issue for multi-user setups. Using poll() has no downside other than the
+            usual risk that code modifications may introduce new bugs that have yet to be found and fixed. At least in
+            theory this commit could also reduce the latency when there are lots of connections and select() would use
+            "bit fields in arrays of integers" to store file descriptors. Another side effect is that Privoxy no longer
+            has to stop monitoring the client sockets when pipelined requests are waiting but can't be read yet. This
+            code keeps the select()-based code behind ifdefs for now but hopefully it can be removed soonish to make
+            the code more readable. Sponsored by: Robert Klemme</p>
+          </li>
+          <li>
+            <p>Add a 'reproducible-tarball-dist' target. It's currently separate from the "tarball-dist" target because
+            it requires a tar implementation with mtree spec support. It's far from being perfect and does not enforce
+            a reproducible mode, but it's better than nothing.</p>
+          </li>
+          <li>
+            <p>Use arc4random() if it's available. While Privoxy doesn't need high quality pseudo-random numbers
+            there's no reason not to use them when we can and this silences a warning emitted by code checkers that
+            can't tell whether or not the quality matters.</p>
+          </li>
+          <li>
+            <p>Show the FEATURE_EXTERNAL_FILTERS status on the status page. Better late than never. Previously a couple
+            of tests weren't executed as Privoxy-Regression-Test couldn't detect that the FEATURE_EXTERNAL_FILTERS
+            dependency was satisfied.</p>
+          </li>
+          <li>
+            <p>Ditch FEATURE_IMAGE_DETECT_MSIE. It's an obsolete workaround we inherited from Junkbuster and was
+            already disabled by default. Users that feel the urge to work around issues with image requests coming from
+            an Internet Explorer version from more than 15 years ago can still do this using tags.</p>
+          </li>
+          <li>
+            <p>Consistently use strdup_or_die() instead of strdup() in cases where allocation failures aren't expected.
+            Using strdup_or_die() allows to remove a couple of explicit error checks which slightly reduces the size of
+            the binary.</p>
+          </li>
+          <li>
+            <p>Insert a refresh tag into the /client-tags CGI page when serving it while a client-specific tag is
+            temporarily enabled. This makes it less likely that the user ends up looking at tag state that is out of
+            date.</p>
+          </li>
+          <li>
+            <p>Use absolute URLs in the client-tag forms. It's more consistent with the rest of the CGI page URLs and
+            makes it more convenient to copy the forms to external pages.</p>
+          </li>
+          <li>
+            <p>cgi_error_disabled(): Use status code 403 and an appropriate response line</p>
+          </li>
+          <li>
+            <p>Use a dedicated CGI handler to deal with tag-toggle requests As a result the /client-tags page is now
+            safe to reach without trusted Referer header which makes bookmarking or linking to it more convenient.
+            Finally, refreshing the /client-tags page to show the current state can no longer unintentionally repeat
+            the previous toggle request.</p>
+          </li>
+          <li>
+            <p>Don't add a "Connection" header for CONNECT requests. Explicitly sending "Connection: close" is not
+            necessary and apparently it causes problems with some forwarding proxies that will close the connection
+            prematurely. Reported by Marc Thomas.</p>
+          </li>
+          <li>
+            <p>Fix compiler warnings.</p>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>Bug fixes:</p>
+        <ul>
+          <li>
+            <p>rfc2553_connect_to(): Properly detect and log when poll() reached the time out. Previously this was
+            logged as: Could not connect to [...]: No error: 0. which isn't very helpful. Sponsored by: Robert
+            Klemme</p>
+          </li>
+          <li>
+            <p>add_tag_for_client(): Set time_to_live properly. Previously the time_to_live was always set for the
+            first tag. Attempts to temporarily enable a tag would result in enabling it permanently unless no tag was
+            enabled already.</p>
+          </li>
+          <li>
+            <p>Revert r1.165 which didn't perform as advertised. While the idea was to use "https:// when creating
+            links for the user manual on the website", the actual effect was to use "https://" when Privoxy was
+            supposed to serve the user manual itself. Reported by Yossi Zahn on Privoxy-devel@.</p>
+          </li>
+          <li>
+            <p>socks5_connect(): Fail in case of unsupported address types. Previously they would not be detected right
+            away and Privoxy would fail later on with an error message that didn't make it obvious that the problem was
+            socks-related. So far, no such problems have actually been reported.</p>
+          </li>
+          <li>
+            <p>socks5_connect(): Properly deal with socks replies that contain IPv6 addresses. Previously parts of the
+            reply were left unread and later on treated as invalid HTTP response data. Fixes #904 reported by Danny
+            Goossen who also provided the initial version of this patch.</p>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>Action file improvements:</p>
+        <ul>
+          <li>
+            <p>Unblock 'msdn.microsoft.com/'. It (presumably) isn't used to serve the kind of ads Privoxy should block
+            by default but happens to serve lots of pages with URLs that are likely to result in false positives.
+            Reported by bugreporter1694 in AF#939.</p>
+          </li>
+          <li>
+            <p>Disable gif deanimation for requests tagged with CSS-REQUEST. The action will ignore content that isn't
+            considered text anyway and explicitly disabling it makes this more obvious if "action" debugging (debug
+            65536) is enabled while "gif deanimation" debugging (debug 256) isn't.</p>
+          </li>
+          <li>
+            <p>Explicitly disable HTML filters for requests with CSS-REQUEST tag. The filters are unlikely to break CSS
+            files but executing them without (intentionally) getting any hits is a waste of cpu time and makes the log
+            more noisy when running with "debug 64".</p>
+          </li>
+          <li>
+            <p>Unblock 'adventofcode.com/'. Reported by Clint Adams in Debian bug #848211. Fixes Roland's AF#937.</p>
+          </li>
+          <li>
+            <p>Unblock 'adlibris.com'. Reported by Wyrex in #935</p>
+          </li>
+          <li>
+            <p>Unblock .golang.org/</p>
+          </li>
+          <li>
+            <p>Add fast-redirects exception for '.youtube.com/.*origin=http'</p>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>Privoxy-Log-Parser:</p>
+        <ul>
+          <li>
+            <p>Don't gather host and resource statistics if they aren't requested. While the performance impact seems
+            negligible this significantly reduces the memory usage if there are lots of requests.</p>
+          </li>
+          <li>
+            <p>Bump version as the behaviour (slightly) changed.</p>
+          </li>
+          <li>
+            <p>Count connection failures as well in statistics mode. Sponsored by: Robert Klemme</p>
+          </li>
+          <li>
+            <p>Count connection timeouts as well in statistics mode. Sponsored by: Robert Klemme</p>
+          </li>
+          <li>
+            <p>Fix an 'uninitialized value' warning when generating statistics for a log file without response headers.
+            While privoxy-log-parser was supposed to detect this already, the check was flawed and the message the user
+            didn't see was somewhat confusing anyway. Now the message is less confusing, more helpful and actually
+            printed. Reported by: Robert Klemme</p>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>Documentation improvements:</p>
+        <ul>
+          <li>
+            <p>Refer to the git sources instead of CVS.</p>
+          </li>
+          <li>
+            <p>Use GNU/Linux when referring to the OS instead of the kernel.</p>
+          </li>
+          <li>
+            <p>Add FAQ entry for what to do if editing the config file is access denied.</p>
+          </li>
+          <li>
+            <p>Add brief HTTP/2 FAQ.</p>
+          </li>
+          <li>
+            <p>Add a small fuzzing section to the developer documentation.</p>
+          </li>
+          <li>
+            <p>Add a client-header-tagger{client-ip-address} example.</p>
+          </li>
+          <li>
+            <p>Stop suggesting that Privoxy is an anonymizing proxy. The term could lead to Privoxy users
+            overestimating what it can do on its own (without Tor).</p>
+          </li>
+          <li>
+            <p>Make it more obvious that SPI accepts Paypal, too. Currently most donations are made through the Paypal
+            account managed by Zwiebelfreunde e.V. and a more even distribution would be useful.</p>
+          </li>
+          <li>
+            <p>Suggest to log applying actions as well when reproducing problems.</p>
+          </li>
+          <li>
+            <p>Explicitly mention that Privoxy binaries are built by individuals on their own systems. Buyer
+            beware!</p>
+          </li>
+          <li>
+            <p>Mention the release feed on the homepage.</p>
+          </li>
+          <li>
+            <p>Remove a mysterious comment with a GNU FDL link as it isn't useful and could confuse license scanners.
+            In May 2002 it was briefly claimed that "this document" was covered by the GNU FDL. The commit message
+            (r1.5) doesn't explain the motivation or whether all copyright holders were actually asked and agreed to
+            the declared license change. It's thus hard to tell whether or not the license change was legit, but
+            luckily two days later the "doc license" was "put" "back to GPL" anyway (r1.6). At the same time the
+            offending comment with a link to the FDL (not the GPL) was added for no obvious reason. Now it's gone
+            again.</p>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>Regression tests:</p>
+        <ul>
+          <li>
+            <p>Bump for-privoxy-version to 3.0.27 as we now rely on untrusted CGI request being rejected with status
+            code 403 (instead of 200).</p>
+          </li>
+          <li>
+            <p>Update test for /send-stylesheet and add another one</p>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>Templates:</p>
+        <ul>
+          <li>
+            <p>Consistently use https:// when linking to the Privoxy website.</p>
+          </li>
+          <li>
+            <p>Remove SourceForge references in Copyright header.</p>
+          </li>
+          <li>
+            <p>Remove a couple of SourceForge references in a comment. While at it, fix the grammar.</p>
+          </li>
+          <li>
+            <p>Move the site-specific documentation block before the generic one. While most Privoxy installations
+            don't have a site-specific documentation block, in cases were it exists it's likely to be more relevant
+            than the generic one. Showing it first makes it less likely that users stop reading before they reach it,
+            especially on pages that don't fit on the screen.</p>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>Build system improvements:</p>
+        <ul>
+          <li>
+            <p>Prefer openjade to jade. On some systems Jade produces HTML with unescaped ampersands in URLs.</p>
+          </li>
+          <li>
+            <p>Prefer OpenSP to SP to be consistent.</p>
+          </li>
+          <li>
+            <p>Have Docbook generated HTML files be straight ASCII. Dealing with a mixture of ISO-8859 and UTF-8 files
+            is problematic.</p>
+          </li>
+          <li>
+            <p>Echo the filename to stderr for 'make dok-tidy'. Make it a bit easier to find errors in docbook
+            generated HTML.</p>
+          </li>
+          <li>
+            <p>Warn when still using select().</p>
+          </li>
+          <li>
+            <p>Warn when compiling without calloc().</p>
+          </li>
+          <li>
+            <p>Make it more obvious that the --with-fdsetsize configure switch is pointless if poll() is available.</p>
+          </li>
+          <li>
+            <p>Remove support for AmigaOS.</p>
+          </li>
+          <li>
+            <p>Update windows build system to use supported software. The cygwin gcc -mno-cygwin option is no longer
+            supported, so convert the windows build system to use the cygwin cross-compiler to build "native" code.</p>
+          </li>
+          <li>
+            <p>Add --enable-static-linking option for configure does the same thing as LDFLAGS=-static; ./configure but
+            nicer than mixing evars and configure options.</p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <div class="SECT2">
+      <h2 class="SECT2"><a name="UPGRADERSNOTE" id="UPGRADERSNOTE">3.1. Note to Upgraders</a></h2>
+      <p>A quick list of things to be aware of before upgrading from earlier versions of <span class=
+      "APPLICATION">Privoxy</span>:</p>
+      <ul>
+        <li>
+          <p>The recommended way to upgrade <span class="APPLICATION">Privoxy</span> is to backup your old
+          configuration files, install the new ones, verify that <span class="APPLICATION">Privoxy</span> is working
+          correctly and finally merge back your changes using <span class="APPLICATION">diff</span> and maybe
+          <span class="APPLICATION">patch</span>.</p>
+          <p>There are a number of new features in each <span class="APPLICATION">Privoxy</span> release and most of
+          them have to be explicitly enabled in the configuration files. Old configuration files obviously don't do
+          that and due to syntax changes using old configuration files with a new <span class=
+          "APPLICATION">Privoxy</span> isn't always possible anyway.</p>
+        </li>
+        <li>
+          <p>Note that some installers remove earlier versions completely, including configuration files, therefore you
+          should really save any important configuration files!</p>
+        </li>
+        <li>
+          <p>On the other hand, other installers don't overwrite existing configuration files, thinking you will want
+          to do that yourself.</p>
+        </li>
+        <li>
+          <p>In the default configuration only fatal errors are logged now. You can change that in the <a href=
+          "config.html#DEBUG">debug section</a> of the configuration file. You may also want to enable more verbose
+          logging until you verified that the new <span class="APPLICATION">Privoxy</span> version is working as
+          expected.</p>
+        </li>
+        <li>
+          <p>Three other config file settings are now off by default: <a href=
+          "config.html#ENABLE-REMOTE-TOGGLE">enable-remote-toggle</a>, <a href=
+          "config.html#ENABLE-REMOTE-HTTP-TOGGLE">enable-remote-http-toggle</a>, and <a href=
+          "config.html#ENABLE-EDIT-ACTIONS">enable-edit-actions</a>. If you use or want these, you will need to
+          explicitly enable them, and be aware of the security issues involved.</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="NAVFOOTER">
+    <hr align="left" width="100%">
+    <table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="33%" align="left" valign="top"><a href="installation.html" accesskey="P">Prev</a></td>
+        <td width="34%" align="center" valign="top"><a href="index.html" accesskey="H">Home</a></td>
+        <td width="33%" align="right" valign="top"><a href="quickstart.html" accesskey="N">Next</a></td>
+      </tr>
+      <tr>
+        <td width="33%" align="left" valign="top">Installation</td>
+        <td width="34%" align="center" valign="top">&nbsp;</td>
+        <td width="33%" align="right" valign="top">Quickstart to Using Privoxy</td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>

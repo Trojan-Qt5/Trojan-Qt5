@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Privoxy Man page</title>
+  <link rel="stylesheet" type="text/css" href="../p_web.css">
+</head>
+<body>
+  <h2>NAME</h2>
+  <pre>
+<!-- Manpage converted by man2html 3.0.1 -->
+
+</pre>
+  <h2>SYNOPSIS</h2>
+  <pre>
+       <b>privoxy</b> [<b>--chroot</b> ] [<b>--config-test</b> ] [<b>--help</b> ] [<b>--no-daemon</b> ]
+       [<b>--pidfile</b> <i>pidfile</i> ] [<b>--pre-chroot-nslookup</b> <i>hostname</i> ] [<b>--user</b>
+       <i>user[.group]</i> ] [<b>--version</b> ] [<i>configfile</i> ]
+
+
+
+</pre>
+  <h2>OPTIONS</h2>
+  <pre>
+       <b>Privoxy</b> may be invoked with the following command line options:
+
+       <b>--chroot</b>
+              Before changing to the user ID given in the --user option,
+              chroot to that user's home directory, i.e. make the kernel
+              pretend to the <b>Privoxy</b> process that the directory tree starts
+              there. If set up carefully, this can limit the impact of
+              possible vulnerabilities in <b>Privoxy</b> to the files contained in
+              that hierarchy.
+
+       <b>--config-test</b>
+              Exit after loading the configuration files before binding to the
+              listen address. The exit code signals whether or not the
+              configuration files have been successfully loaded.
+
+              If the exit code is 1, at least one of the configuration files
+              is invalid, if it is 0, all the configuration files have been
+              successfully loaded (but may still contain errors that can
+              currently only be detected at run time).
+
+              This option doesn't affect the log setting, combination with
+              "--no-daemon" is recommended if a configured log file shouldn't
+              be used.
+
+       <b>--help</b> Print brief usage info and exit.
+
+       <b>--no-daemon</b>
+              Don't  become  a daemon, i.e. don't fork and become process
+              group leader, don't detach from controlling tty, and do all
+              logging there.
+
+       <b>--pidfile</b> <i>pidfile</i>
+              On startup, write the process ID to <i>pidfile</i>.  Delete the <i>pidfile</i>
+              on exit.  Failure to create or delete the <i>pidfile</i> is non-fatal.
+              If no <b>--pidfile</b> option is given, no PID file will be used.
+
+       <b>--pre-chroot-nslookup</b> <i>hostname</i>
+              Initialize the resolver library using <i>hostname</i> before
+              chroot'ing. On some systems this reduces the number of files
+              that must be copied into the chroot tree.
+
+       <b>--user</b> <i>user[.group]</i>
+              After (optionally) writing the PID file, assume the user ID of
+              <i>user</i> and the GID of <i>group</i>, or, if the optional <i>group</i> was not
+              given, the default group of <i>user</i>. Exit if the privileges are not
+
+       individual needs and tastes.  It has application for both stand-alone
+       systems and multi-user networks.
+
+       Privoxy is Free Software and licensed under the GNU GPLv2.
+
+       Privoxy is an associated project of Software in the Public Interest
+       (SPI).
+
+       Helping hands and donations are welcome:
+
+       â&euro;¢ https://www.privoxy.org/faq/general.html#PARTICIPATE
+
+       â&euro;¢ https://www.privoxy.org/faq/general.html#DONATE
+
+
+</pre>
+  <h2>INSTALLATION AND USAGE</h2>
+  <pre>
+       Browsers can either be individually configured to use <b>Privoxy</b> as a HTTP
+       proxy (recommended), or <b>Privoxy</b> can be combined with a packet filter to
+       build an intercepting proxy (see <i>config</i>).  The default setting is  for
+       localhost,  on port  8118 (configurable in the main config file).  To
+       set the HTTP proxy in Firefox, go through: <b>Tools</b>; <b>Options</b>; <b>General</b>;
+       <b>Connection</b> <b>Settings</b>; <b>Manual</b> <b>Proxy</b> <b>Configuration</b>.
+
+       For Internet Explorer, go through: <b>Tools</b>; <b>Internet</b> <b>Properties</b>;
+       <b>Connections</b>; <b>LAN</b> <b>Settings</b>.
+
+       The Secure (SSL) Proxy should also be set to the same values, otherwise
+       https: URLs will not be proxied. Note: <b>Privoxy</b> can only proxy HTTP and
+       HTTPS traffic. Do not try it with FTP or other protocols.  HTTPS
+       presents some limitations, and not all features will work with HTTPS
+       connections.
+
+       For other browsers, check the documentation.
+
+
+</pre>
+  <h2>CONFIGURATION</h2>
+  <pre>
+       <b>Privoxy</b> can be configured with the various configuration files. The
+       default configuration files are: <i>config</i>, <i>default.filter</i>, <i>default.action</i>
+       and <i>default.action</i>. <i>user.action</i> should be used for locally defined
+       exceptions to the default rules in <i>match-all.action</i> and <i>default.action</i>,
+       and <i>user.filter</i> for locally defined filters. These are well commented.
+       On Unix and Unix-like systems, these are located in <i>/etc/privoxy/</i> by
+       default.
+
+       <b>Privoxy</b> uses the concept of <b>actions</b> in order to manipulate the data
+       stream between the browser and remote sites.  There are various actions
+       available with specific functions for such things as blocking web
+       sites, managing cookies, etc. These actions can be invoked individually
+       or combined, and used against individual URLs, or groups of URLs that
+       can be defined using wildcards and regular expressions. The result is
+       that the user has greatly enhanced control and freedom.
+
+       The actions list (ad blocks, etc) can also be configured with your web
+       browser at http://config.privoxy.org/ (assuming the configuration
+        <i>/etc/privoxy/user.filter</i>
+        <i>/etc/privoxy/trust</i>
+        <i>/etc/privoxy/templates/*</i>
+        <i>/var/log/privoxy/logfile</i>
+
+       Various other files should be included, but may vary depending on
+       platform and build configuration. Additional documentation should be
+       included in the local documentation directory.
+
+
+</pre>
+  <h2>SIGNALS</h2>
+  <pre>
+       <b>Privoxy</b> terminates on the <b>SIGINT</b> and <b>SIGTERM</b> signals. Log rotation
+       scripts may cause a re-opening of the logfile by sending a <b>SIGHUP</b> to
+       <b>Privoxy</b>. Note that unlike other daemons,  <b>Privoxy</b> does not need to be
+       made aware of config file changes by <b>SIGHUP</b> -- it will detect them
+       automatically. Signals other than the ones listed above aren't
+       explicitly handled and result in the default action defined by the
+       operating system.
+
+
+</pre>
+  <h2>NOTES</h2>
+  <pre>
+       Please see the <i>User</i> <i>Manual</i> on how to contact the developers, for
+       feature requests, reporting problems, and other questions.
+
+
+</pre>
+  <h2>SEE ALSO</h2>
+  <pre>
+       Other references and sites of interest to <b>Privoxy</b> users:
+
+       https://www.privoxy.org/, the <b>Privoxy</b> Home page.
+
+       https://www.privoxy.org/faq/, the <b>Privoxy</b> FAQ.
+
+       https://www.privoxy.org/developer-manual/, the <b>Privoxy</b> developer
+       manual.
+
+       https://sourceforge.net/projects/ijbswa/, the Project Page for <b>Privoxy</b>
+       on SourceForge.
+
+       http://config.privoxy.org/, the web-based user interface. <b>Privoxy</b> must
+       be running for this to work. Shortcut: http://p.p/
+
+       https://sourceforge.net/tracker/?group_id=11118&amp;atid=460288, to submit
+       ``misses'' and other configuration related suggestions to the
+       developers.
+
+
+</pre>
+  <h2>DEVELOPMENT TEAM</h2>
+  <pre>
+        Fabian Keil, lead developer
+        David Schmidt
+        Lee Rian
+        Roland Rosenfeld
+        Ian Silvester
+
+
+</pre>
+  <h2>COPYRIGHT AND LICENSE</h2>
+  <pre>
+   <b>COPYRIGHT</b>
+       Copyright (C) 2001-2018 by Privoxy Developers &lt;privoxy-
+
+
+
+Privoxy 3.0.28                 30 December 2018                     <b>PRIVOXY(1)</b>
+</pre>
+</body>
+</html>

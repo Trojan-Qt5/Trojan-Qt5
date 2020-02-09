@@ -1,0 +1,219 @@
+<!--
+ File        :  doc/source/p-authors.sgml
+
+ Purpose     :  Entity included in other project documents.
+
+ Copyright (C) 2001-2018 Privoxy Developers https://www.privoxy.org/
+ See LICENSE.
+
+ ======================================================================
+  This file used for inclusion with other documents only.
+ ======================================================================
+
+ If you make changes to this file, please verify the finished
+ docs all display as intended.
+
+ This file is included into:
+
+  privoxy.1
+  privoxy-man-page
+  AUTHORS
+  user-manual
+
+-->
+<![%p-authors-formal;[
+<para>
+Current Privoxy Team:
+</para>
+]]>
+
+<literallayout>
+ Fabian Keil, lead developer
+ David Schmidt
+ Lee Rian
+ Roland Rosenfeld
+ Ian Silvester
+<![%p-authors-formal;[
+</literallayout>
+
+<para>
+ Former Privoxy Team Members:
+</para>
+
+<literallayout>
+ Johny Agotnes
+ Rodrigo Barbosa
+ Moritz Barsnick
+ Hal Burgiss
+ Ian Cummings
+ Brian Dessent
+ Jon Foster
+ Karsten Hopp
+ Alexander Lazic
+ Daniel Leite
+ G&aacute;bor Lipt&aacute;k
+ Adam Lock
+ Guy Laroche
+ Justin McMurtry
+ Mark Miller
+ Gerry Murphy
+ Andreas Oesterhelt
+ Haroon Rafique
+ Georg Sauthoff
+ Thomas Steudten
+ J&ouml;rg Strohmayer
+ Rodney Stromlund
+ Sviatoslav Sviridov
+ Sarantis Paskalis
+ Stefan Waldherr
+]]>
+</literallayout>
+<![%p-authors-formal;[
+<para>
+ Thanks to the many people who have tested Privoxy, reported bugs, provided
+ patches, made suggestions, donated or contributed in some other way.
+ These include (in alphabetical order):
+</para>
+<literallayout>
+ Rustam Abdullaev
+ Clint Adams
+ Anatoly Arzhnikov
+ Ken Arromdee
+ Natxo Asenjo
+ Devin Bayer
+ Havard Berland
+ David Binderman
+ David Bo
+ Gergely Bor
+ Francois Botha
+ Reiner Buehl
+ Andrew J. Caines
+ Clifford Caoile
+ Edward Carrel
+ Pak Chan
+ Wan-Teh Chang
+ Sam Chen
+ Ramkumar Chinchani
+ Billy Crook
+ Fr&eacute;d&eacute;ric Crozat
+ Matthew Daley
+ Michael T. Davis
+ Markus Dittrich
+ Mattes Dolak
+ Matthias Drochner
+ Peter E.
+ Florian Effenberger
+ Markus Elfring
+ Ryan Farmer
+ Matthew Fischer
+ Dean Gaudet
+ Stephen Gildea
+ John McGowan
+ Danny Goossen
+ Lizik Grelier
+ Daniel Griscom
+ Felix Gr&ouml;bert
+ Bernard Guillot
+ Jeff H.
+ Tim H.
+ Aaron Hamid
+ Darel Henman
+ Magnus Holmgren
+ Eric M. Hopper
+ Ralf Horstmann
+ Stefan Huehner
+ Basil Hussain
+ Peter Hyman
+ Derek Jennings
+ Andrew Jones
+ Julien Joubert
+ Ralf Jungblut
+ Petr Kadlec
+ Robert Klemme
+ Steven Kolins
+ Korda
+ Stefan Kurtz
+ Zeno Kugy
+ David Laight
+ Bert van Leeuwen
+ Don Libes
+ Paul Lieverse
+ Han Liu
+ Toby Lyward
+ Wil Mahan
+ Jindrich Makovicka
+ Raphael Marichez
+ Francois Marier
+ Angelina Matson
+ Jonathan McKenzie
+ David Mediavilla
+ Raphael Moll
+ J. Momberger
+ Mathew Murphy
+ Amuro Namie
+ Mark Nelson
+ Tobias Netzel
+ Adam Piggott
+ Petr P&iacute;sar
+ Dan Price
+ Roberto Ragusa
+ F&eacute;lix Rauch
+ Kai Raven
+ Marvin Renich
+ Chris John Riley
+ Maynard Riley
+ Andreas Rutkauskas
+ Bart Schelstraete
+ Gregory Seidman
+ Atman Sense
+ Chung-chieh Shan
+ Johan Sintorn
+ Benjamin C. Wiley Sittler
+ Simon South
+ Dan Stahlke
+ Oliver Stoeneberg
+ Rick Sykes
+ Spinor S.
+ Peter Thoenen
+ Marc Thomas
+ Martin Thomas
+ Reuben Thomas
+ Guybrush Threepwood
+ Joel Verhagen
+ Bobby G. Vinyard
+ Jochen Voss
+ David Wagner
+ Glenn Washburn
+ Song Weijia
+ J&ouml;rg Weinmann
+ Darren Wiebe
+ Anduin Withers
+ Eduard Wulff
+ Yang Xia
+ Jarry Xu
+ Oliver Yeoh
+ Yossi Zahn
+ Jamie Zawinski
+</literallayout>
+
+<para>
+ Privoxy is based in part on code originally developed by
+ Junkbusters Corp. and Anonymous Coders.
+</para>
+
+<para>
+ Privoxy heavily relies on Philip Hazel's PCRE.
+</para>
+
+<para>
+ The code to filter compressed content makes use of zlib
+ which is written by Jean-loup Gailly and Mark Adler.
+</para>
+
+<para>
+ On systems that lack snprintf(), Privoxy is using a version
+ written by Mark Martinec. On systems that lack strptime(),
+ Privoxy is using the one from the GNU C Library written
+ by Ulrich Drepper.
+</para>
+]]>

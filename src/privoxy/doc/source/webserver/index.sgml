@@ -1,0 +1,215 @@
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook V3.1//EN" [
+<!entity % dummy "IGNORE"> 
+<!entity p-intro SYSTEM "privoxy.sgml">
+<!entity contacting SYSTEM "contacting.sgml">
+<!entity history SYSTEM "history.sgml">
+<!entity copyright SYSTEM "copyright.sgml">
+<!entity license SYSTEM "license.sgml">
+<!entity p-version "3.0.28">
+<!entity p-status "stable">
+<!entity % p-not-stable "IGNORE">
+<!entity % p-stable "INCLUDE">
+<!entity  my-copy "&copy;">        <!-- kludge for docbook2man            -->
+<!entity % p-homepage "IGNORE">    <!-- toggle for webserver index.html   -->
+<!entity % p-index "IGNORE">       <!-- toggle for local doc index        -->
+]>
+<!--
+ File        :  doc/source/webserver/index.sgml
+
+ Purpose     :  Index file of the project's homepage and also documentation index
+                
+ Copyright (C) 2001-2018 Privoxy developers <privoxy-devel@lists.privoxy.org>
+ See LICENSE.
+
+ ========================================================================
+ NOTE: Please read developer-manual/documentation.html before touching 
+ anything in this, or other Privoxy documentation. 
+ ========================================================================
+
+ Note: This is the Privoxy home page *and* builds a page that can be 
+ used with local documentation as a focal point for docs or other points
+ of interest. The Makefile is adding additional meta data and content via
+ perl.
+
+ Generates: index.html, for webserver home page.
+            privoxy-index.html, for packaging with docs
+ 
+-->
+
+<article id="index">
+<artheader>
+ <title>Privoxy - <![%p-homepage;[Home Page]]><![%p-index;[The Privacy Enhancing Proxy]]></title>
+ <![%p-index;[<subtitle>Project Index Page v&p-version;</subtitle>]]>
+
+<!-- copyright is at bottom of page -->
+
+ <abstract>
+
+<![%dummy;[
+  <para>
+   <comment>
+    This is here to keep vim syntax file from breaking :/
+    If I knew enough to fix it, I would.
+    PLEASE DO NOT REMOVE! HB: hal@foobox.net
+   </comment>
+  </para>
+]]>
+
+<!-- Include privoxy.sgml boilerplate: -->
+  &p-intro;
+<!-- end boilerplate -->
+
+<![%p-homepage;[
+  <para>
+   The most recent release is <ulink url="announce.txt">&p-version; (&p-status;)</ulink>. 
+  </para>
+]]>
+
+ </abstract>
+</artheader>
+
+<!--   ~~~~~       New section      ~~~~~     -->
+
+
+<sect1 renderas="sect2" id="download" label=""><title>Download</title>
+<para>
+ You can <ulink url="/sf-download-mirror/">download Privoxy here</ulink>,
+ from <ulink url="https://www.silvester.org.uk/privoxy/">this mirror</ulink>,
+ or from <ulink url="https://sourceforge.net/projects/ijbswa/files/">SourceForge</ulink>.
+</para>
+<para>
+ Note that the Privoxy project currently has no trusted build infrastructure.
+ Binary packages are built and uploaded by individual members of the Privoxy
+ project or external contributors. For details check the signatures.
+</para>
+<para>
+ Subscribe to the <ulink url="/feeds/privoxy-releases.xml">release feed</ulink>
+ to get informed when new releases are available.
+</para>
+</sect1>
+
+<sect1 renderas="sect2" id="docs" label=""><title>Documentation</title>
+<para>
+ <itemizedlist>
+  <listitem>
+   <para>
+    <ulink url="user-manual/quickstart.html">Quickstart after installation</ulink>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <ulink url="user-manual/index.html">User manual</ulink>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <ulink url="faq/index.html">Frequently Asked Questions</ulink>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <ulink url="developer-manual/index.html">Developer Manual</ulink>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <ulink url="man-page/privoxy-man-page.html">Classic Man Page</ulink>
+   </para>
+  </listitem>
+ </itemizedlist>
+</para>
+</sect1>
+
+<sect1 renderas="sect2" id="moreinfo" label=""><title>More information</title>
+<para>
+ <itemizedlist>
+  <listitem>
+   <para>
+    <ulink url="user-manual/contact.html">Support &amp; Service</ulink>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <ulink url="user-manual/copyright.html">Copyright, License, History & Authors</ulink>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <ulink url="user-manual/introduction.html#FEATURES">List of (new) Features</ulink>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <!-- please leave this link absolute so this file can be bundled with -->
+    <!-- documentation and still used locally -->
+    <ulink url="https://www.privoxy.org/team/index.html">Pictures of the Privoxy Team</ulink>
+   </para>
+  </listitem>
+ </itemizedlist>
+</para>
+</sect1>
+
+<![%p-homepage;[
+<!--   ~~~~~       New section      ~~~~~     -->
+<sect1 label="">
+<!-- dummy section, for spacing -->
+<title></title>
+<para>
+ <subscript>
+   The Privoxy website is also available as
+   <ulink url="http://jvauzb4sb3bwlsnc.onion/">Tor onion service</ulink>.
+ </subscript>
+</para>
+]]>
+
+<![%p-index;[
+<sect1 label=""><title></title>
+<!-- dummy section for layout and spacing -->
+]]>
+
+<!-- Formal copyright markup does not work here. HB. -->
+<!-- NOTE: I could not get docbook to completely ignore &copy; -->
+<!-- GNUMakefile is inserting this now -->
+<para>
+ <subscript>
+  Copyright __copy 2001-2017 by Privoxy Developers
+ </subscript>
+</para>
+
+<![%p-homepage;[
+<para>
+ <subscript>
+   Hosting and development is funded in part by sponsors:
+ </subscript>
+</para>
+<para>
+ <subscript>
+  <ulink url="/faq/general.html#SPONSOR">Become a sponsor</ulink>
+ </subscript>
+</para>
+]]>
+
+</sect1>
+ 
+ <!--
+
+ This program is free software; you can redistribute it 
+ and/or modify it under the terms of the GNU General
+ Public License as published by the Free Software
+ Foundation; either version 2 of the License, or (at
+ your option) any later version.
+
+ This program is distributed in the hope that it will
+ be useful, but WITHOUT ANY WARRANTY; without even the
+ implied warranty of MERCHANTABILITY or FITNESS FOR A
+ PARTICULAR PURPOSE.  See the GNU General Public
+ License for more details.
+
+ The GNU General Public License should be included with
+ this file.  If not, you can view it at
+ http://www.gnu.org/copyleft/gpl.html
+ or write to the Free Software Foundation, Inc., 59
+ Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ -->
+
+</article>

@@ -1,8 +1,6 @@
 #include "addresstester.h"
 #include "connection.h"
 #include "confighelper.h"
-#include "servicethread.h"
-#include "systemproxyhelper.h"
 #include <QCoreApplication>
 #include <QDir>
 #include <QHostInfo>
@@ -11,7 +9,8 @@
 Connection::Connection(QObject *parent) :
     QObject(parent),
     running(false),
-    service(new ServiceThread(this))
+    service(new ServiceThread(this)),
+    privoxy(new PrivoxyThread(this))
 {
     connect(service, &ServiceThread::startFailed, this, &Connection::onStartFailed);
 }
@@ -83,6 +82,7 @@ void Connection::start()
     }
 
     ConfigHelper::connectionToJson(profile);
+    ConfigHelper::generatePrivoxyConf(profile);
 
 #ifdef Q_OS_WIN
     QString file = QCoreApplication::applicationDirPath() + "/config.json";
@@ -91,10 +91,14 @@ void Connection::start()
     QString file = configDir.absolutePath() + "/config.json";
 #endif
     service->config().load(file.toStdString());
+
     running = true;
     service->start();
+    if (profile.dualMode) {
+        privoxy->start();
+    }
     emit stateChanged(running);
-    SystemProxyHelper::setSystemProxy(profile, running);
+    //SystemProxyHelper::setEnable(profile);
 }
 
 void Connection::stop()
@@ -103,13 +107,14 @@ void Connection::stop()
         service->stop();
         running = false;
         emit stateChanged(running);
-        SystemProxyHelper::setSystemProxy(profile, running);
+        //SystemProxyHelper::setDisable();
     }
 }
 
 void Connection::onStartFailed()
 {
     running = false;
+    //SystemProxyHelper::setDisable();
     emit stateChanged(running);
     emit startFailed();
 }

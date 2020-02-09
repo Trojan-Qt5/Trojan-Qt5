@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Privoxy's Template Files</title>
+  <meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.79">
+  <link rel="HOME" title="Privoxy 3.0.28 User Manual" href="index.html">
+  <link rel="PREVIOUS" title="Filter Files" href="filter-file.html">
+  <link rel="NEXT" title="Contacting the Developers, Bug Reporting and Feature Requests" href="contact.html">
+  <link rel="STYLESHEET" type="text/css" href="../p_doc.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <link rel="STYLESHEET" type="text/css" href="p_doc.css">
+</head>
+<body class="SECT1" bgcolor="#EEEEEE" text="#000000" link="#0000FF" vlink="#840084" alink="#0000FF">
+  <div class="NAVHEADER">
+    <table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <th colspan="3" align="center">Privoxy 3.0.28 User Manual</th>
+      </tr>
+      <tr>
+        <td width="10%" align="left" valign="bottom"><a href="filter-file.html" accesskey="P">Prev</a></td>
+        <td width="80%" align="center" valign="bottom"></td>
+        <td width="10%" align="right" valign="bottom"><a href="contact.html" accesskey="N">Next</a></td>
+      </tr>
+    </table>
+    <hr align="left" width="100%">
+  </div>
+  <div class="SECT1">
+    <h1 class="SECT1"><a name="TEMPLATES" id="TEMPLATES">10. Privoxy's Template Files</a></h1>
+    <p>All <span class="APPLICATION">Privoxy</span> built-in pages, i.e. error pages such as the <a href=
+    "http://show-the-404-error.page" target="_top"><span class="QUOTE">"404 - No Such Domain"</span> error page</a>,
+    the <a href="http://ads.bannerserver.example.com/nasty-ads/sponsor.html" target="_top"><span class=
+    "QUOTE">"BLOCKED"</span> page</a> and all pages of its <a href="http://config.privoxy.org/" target="_top">web-based
+    user interface</a>, are generated from <span class="emphasis"><i class="EMPHASIS">templates</i></span>.
+    (<span class="APPLICATION">Privoxy</span> must be running for the above links to work as intended.)</p>
+    <p>These templates are stored in a subdirectory of the <a href="config.html#CONFDIR">configuration directory</a>
+    called <tt class="FILENAME">templates</tt>. On Unixish platforms, this is typically <a href=
+    "file:///etc/privoxy/templates/" target="_top"><tt class="FILENAME">/etc/privoxy/templates/</tt></a>.</p>
+    <p>The templates are basically normal HTML files, but with place-holders (called symbols or exports), which
+    <span class="APPLICATION">Privoxy</span> fills at run time. It is possible to edit the templates with a normal text
+    editor, should you want to customize them. (<span class="emphasis"><i class="EMPHASIS">Not recommended for the
+    casual user</i></span>). Should you create your own custom templates, you should use the <tt class=
+    "FILENAME">config</tt> setting <a href="config.html#TEMPLDIR">templdir</a> to specify an alternate location, so
+    your templates do not get overwritten during upgrades.</p>
+    <p>Note that just like in configuration files, lines starting with <tt class="LITERAL">#</tt> are ignored when the
+    templates are filled in.</p>
+    <p>The place-holders are of the form <tt class="LITERAL">@name@</tt>, and you will find a list of available
+    symbols, which vary from template to template, in the comments at the start of each file. Note that these comments
+    are not always accurate, and that it's probably best to look at the existing HTML code to find out which symbols
+    are supported and what they are filled in with.</p>
+    <p>A special application of this substitution mechanism is to make whole blocks of HTML code disappear when a
+    specific symbol is set. We use this for many purposes, one of them being to include the beta warning in all our
+    user interface (CGI) pages when <span class="APPLICATION">Privoxy</span> is in an alpha or beta development
+    stage:</p>
+    <table border="0" bgcolor="#E0E0E0" width="100%">
+      <tr>
+        <td>
+          <pre class="SCREEN">&lt;!-- @if-unstable-start --&gt;
+
+  ... beta warning HTML code goes here ...
+
+&lt;!-- if-unstable-end@ --&gt;</pre>
+        </td>
+      </tr>
+    </table>
+    <p>If the "unstable" symbol is set, everything in between and including <tt class="LITERAL">@if-unstable-start</tt>
+    and <tt class="LITERAL">if-unstable-end@</tt> will disappear, leaving nothing but an empty comment:</p>
+    <table border="0" bgcolor="#E0E0E0" width="100%">
+      <tr>
+        <td>
+          <pre class="SCREEN">&lt;!--  --&gt;</pre>
+        </td>
+      </tr>
+    </table>
+    <p>There's also an if-then-else construct and an <tt class="LITERAL">#include</tt> mechanism, but you'll sure find
+    out if you are inclined to edit the templates ;-)</p>
+    <p>All templates refer to a style located at <a href="http://config.privoxy.org/send-stylesheet" target=
+    "_top"><tt class="LITERAL">http://config.privoxy.org/send-stylesheet</tt></a>. This is, of course, locally served
+    by <span class="APPLICATION">Privoxy</span> and the source for it can be found and edited in the <tt class=
+    "FILENAME">cgi-style.css</tt> template.</p>
+  </div>
+  <div class="NAVFOOTER">
+    <hr align="left" width="100%">
+    <table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="33%" align="left" valign="top"><a href="filter-file.html" accesskey="P">Prev</a></td>
+        <td width="34%" align="center" valign="top"><a href="index.html" accesskey="H">Home</a></td>
+        <td width="33%" align="right" valign="top"><a href="contact.html" accesskey="N">Next</a></td>
+      </tr>
+      <tr>
+        <td width="33%" align="left" valign="top">Filter Files</td>
+        <td width="34%" align="center" valign="top">&nbsp;</td>
+        <td width="33%" align="right" valign="top">Contacting the Developers, Bug Reporting and Feature Requests</td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>

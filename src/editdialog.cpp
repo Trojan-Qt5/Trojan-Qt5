@@ -26,6 +26,8 @@ EditDialog::EditDialog(Connection *_connection, QWidget *parent) :
     ui->pwdEdit->setText(connection->profile.password);
     ui->localAddrEdit->setText(connection->profile.localAddress);
     ui->localPortEdit->setText(QString::number(connection->profile.localPort));
+    ui->localHttpPortEdit->setText(QString::number(connection->profile.localHttpPort));
+    ui->dualRadioButton->setChecked(connection->profile.dualMode);
     ui->tcpFastOpenCheckBox->setChecked(connection->profile.tcpFastOpen);
     ui->resetDateEdit->setDate(connection->profile.nextResetDate);
     ui->resetDateEdit->setMinimumDate(QDate::currentDate());
@@ -49,6 +51,8 @@ void EditDialog::save()
     connection->profile.verifyCertificate = ui->verifyCertificateCheckBox->isChecked();
     connection->profile.localAddress = ui->localAddrEdit->text();
     connection->profile.localPort = ui->localPortEdit->text().toUShort();
+    connection->profile.localHttpPort = ui->localHttpPortEdit->text().toUShort();
+    connection->profile.dualMode = ui->dualRadioButton->isChecked();
     connection->profile.tcpFastOpen = ui->tcpFastOpenCheckBox->isChecked();
     connection->profile.password = ui->pwdEdit->text();
     connection->profile.nextResetDate = ui->resetDateEdit->date();

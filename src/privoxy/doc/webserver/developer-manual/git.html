@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>The Git Repository</title>
+  <meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.79">
+  <link rel="HOME" title="Privoxy Developer Manual" href="index.html">
+  <link rel="PREVIOUS" title="Introduction" href="introduction.html">
+  <link rel="NEXT" title="Documentation Guidelines" href="documentation.html">
+  <link rel="STYLESHEET" type="text/css" href="../p_doc.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+<body class="SECT1" bgcolor="#EEEEEE" text="#000000" link="#0000FF" vlink="#840084" alink="#0000FF">
+  <div class="NAVHEADER">
+    <table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <th colspan="3" align="center">Privoxy Developer Manual</th>
+      </tr>
+      <tr>
+        <td width="10%" align="left" valign="bottom"><a href="introduction.html" accesskey="P">Prev</a></td>
+        <td width="80%" align="center" valign="bottom"></td>
+        <td width="10%" align="right" valign="bottom"><a href="documentation.html" accesskey="N">Next</a></td>
+      </tr>
+    </table>
+    <hr align="left" width="100%">
+  </div>
+  <div class="SECT1">
+    <h1 class="SECT1"><a name="GIT" id="GIT">2. The Git Repository</a></h1>
+    <p>If you become part of the active development team, you will eventually need write access to our holy grail, the
+    Git repository. One of the team members will need to set this up for you. Please read this chapter completely
+    before accessing via Git.</p>
+    <div class="SECT2">
+      <h2 class="SECT2"><a name="GITACCESS" id="GITACCESS">2.1. Access to Git</a></h2>
+      <p>The project's Git repository is hosted at the <a href="https://privoxy.org/" target="_top">Privoxy site.</a>
+      The Git repository URL is <tt class="LITERAL">ssh://git@git.privoxy.org:23/git/privoxy.git</tt>, the central
+      repository is called <tt class="LITERAL">privoxy</tt>, and the source branch is called <tt class=
+      "LITERAL">master</tt>. Subfolders exist within the project for target-dependent build and packaging tools, each
+      including the name of the target operating system in their name (e.g. Windows, OSXPackageBuilder, debian). There
+      is a webview of the Git hierarchy at <a href="https://www.privoxy.org/gitweb/?p=privoxy.git;a=tree" target=
+      "_top">https://www.privoxy.org/gitweb/?p=privoxy.git;a=tree</a>, which might help with visualizing how these
+      pieces fit together.</p>
+    </div>
+    <div class="SECT2">
+      <h2 class="SECT2"><a name="GITBRANCHES" id="GITBRANCHES">2.2. Branches</a></h2>
+      <p>Whilst the central repository contains only the master branch, developers are of course free to create
+      branches in their local repositories as they develop features, fixes, or update the target-dependent tools. Only
+      once such changes are fully tested ought they be pushed back to the central repository master branch.</p>
+      <p>At one time there were two distinct branches: stable and unstable. The more drastic changes were to be in the
+      unstable branch. These branches have now been merged to minimize time and effort of maintaining two branches.</p>
+    </div>
+    <div class="SECT2">
+      <h2 class="SECT2"><a name="GITCOMMIT" id="GITCOMMIT">2.3. Git Commit Guidelines</a></h2>
+      <p>The source tree is the heart of every software project. Every effort must be made to ensure that it is
+      readable, compilable and consistent at all times. We expect anyone with Git access to strictly adhere to the
+      following guidelines:</p>
+      <p>Basic Guidelines, for all branches:</p>
+      <ul>
+        <li>
+          <p>Please don't commit even a small change without testing it thoroughly first. When we're close to a public
+          release, ask a fellow developer to review your changes.</p>
+        </li>
+        <li>
+          <p>Your commit message should give a concise overview of <span class="emphasis"><i class="EMPHASIS">what you
+          changed</i></span> (no big details) and <span class="emphasis"><i class="EMPHASIS">why you changed
+          it</i></span> Just check previous messages for good examples.</p>
+        </li>
+        <li>
+          <p>Don't use the same message on multiple files, unless it equally applies to all those files.</p>
+        </li>
+        <li>
+          <p>If your changes span multiple files, and the code won't recompile unless all changes are committed (e.g.
+          when changing the signature of a function), then commit all files one after another, without long delays in
+          between. If necessary, prepare the commit messages in advance.</p>
+        </li>
+        <li>
+          <p>Before changing things on Git, make sure that your changes are in line with the team's general consensus
+          on what should be done.</p>
+        </li>
+        <li>
+          <p>Note that near a major public release, we get more cautious. There is always the possibility to submit a
+          patch to the <a href="https://sourceforge.net/tracker/?atid=311118&#38;group_id=11118&#38;func=browse"
+          target="_top">patch tracker</a> instead.</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="NAVFOOTER">
+    <hr align="left" width="100%">
+    <table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="33%" align="left" valign="top"><a href="introduction.html" accesskey="P">Prev</a></td>
+        <td width="34%" align="center" valign="top"><a href="index.html" accesskey="H">Home</a></td>
+        <td width="33%" align="right" valign="top"><a href="documentation.html" accesskey="N">Next</a></td>
+      </tr>
+      <tr>
+        <td width="33%" align="left" valign="top">Introduction</td>
+        <td width="34%" align="center" valign="top">&nbsp;</td>
+        <td width="33%" align="right" valign="top">Documentation Guidelines</td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>

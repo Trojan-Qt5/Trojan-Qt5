@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Testing Guidelines</title>
+  <meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.79">
+  <link rel="HOME" title="Privoxy Developer Manual" href="index.html">
+  <link rel="PREVIOUS" title="Coding Guidelines" href="coding.html">
+  <link rel="NEXT" title="Releasing a New Version" href="newrelease.html">
+  <link rel="STYLESHEET" type="text/css" href="../p_doc.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+<body class="SECT1" bgcolor="#EEEEEE" text="#000000" link="#0000FF" vlink="#840084" alink="#0000FF">
+  <div class="NAVHEADER">
+    <table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <th colspan="3" align="center">Privoxy Developer Manual</th>
+      </tr>
+      <tr>
+        <td width="10%" align="left" valign="bottom"><a href="coding.html" accesskey="P">Prev</a></td>
+        <td width="80%" align="center" valign="bottom"></td>
+        <td width="10%" align="right" valign="bottom"><a href="newrelease.html" accesskey="N">Next</a></td>
+      </tr>
+    </table>
+    <hr align="left" width="100%">
+  </div>
+  <div class="SECT1">
+    <h1 class="SECT1"><a name="TESTING" id="TESTING">5. Testing Guidelines</a></h1>
+    <p>To be filled.</p>
+    <div class="SECT2">
+      <h2 class="SECT2"><a name="TESTING-PLAN" id="TESTING-PLAN">5.1. Testplan for releases</a></h2>
+      <p>Explain release numbers. major, minor. developer releases. etc.</p>
+      <ol type="1">
+        <li>
+          <p>Remove any existing rpm with rpm -e</p>
+        </li>
+        <li>
+          <p>Remove any file that was left over. This includes (but is not limited to)</p>
+          <ul>
+            <li>
+              <p>/var/log/privoxy</p>
+            </li>
+            <li>
+              <p>/etc/privoxy</p>
+            </li>
+            <li>
+              <p>/usr/sbin/privoxy</p>
+            </li>
+            <li>
+              <p>/etc/init.d/privoxy</p>
+            </li>
+            <li>
+              <p>/usr/doc/privoxy*</p>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <p>Install the rpm. Any error messages?</p>
+        </li>
+        <li>
+          <p>start,stop,status <span class="APPLICATION">Privoxy</span> with the specific script (e.g.
+          /etc/rc.d/init/privoxy stop). Reboot your machine. Does autostart work?</p>
+        </li>
+        <li>
+          <p>Start browsing. Does <span class="APPLICATION">Privoxy</span> work? Logfile written?</p>
+        </li>
+        <li>
+          <p>Remove the rpm. Any error messages? All files removed?</p>
+        </li>
+      </ol>
+    </div>
+    <div class="SECT2">
+      <h2 class="SECT2"><a name="FUZZING" id="FUZZING">5.2. Fuzzing Privoxy</a></h2>
+      <p>To make fuzzing more convenient, Privoxy can be configured with --enable-fuzz which will result in the --fuzz
+      option becoming available.</p>
+      <p>Example (tested on ElectroBSD):</p>
+      <table border="0" bgcolor="#E0E0E0" width="100%">
+        <tr>
+          <td>
+            <pre class="PROGRAMLISTING"># Compile Privoxy with instrumentation for afl
+$ export CC=afl-clang
+$ export CFLAGS="-fsanitize=address -ggdb"
+$ export CPPFLAGS=-I/usr/local/include/
+$ export LDFLAGS="-fsanitize=address -L/usr/local/lib"
+$ export AFL_USE_ASAN=1
+$ export AFL_HARDEN=1
+$ ./configure --with-debug --enable-extended-host-patterns --enable-accept-filter --enable-no-gifs --enable-compression --enable-strptime-sanity-checks --enable-external-filters --enable-fuzz
+
+$ ./privoxy --fuzz
+Privoxy version 3.0.24 (http://www.privoxy.org/)
+Usage: ./privoxy [--config-test] [--chroot] [--help] [--no-daemon] [--pidfile pidfile] [--pre-chroot-nslookup hostname] [--user user[.group]] [--version] [configfile]
+       ./privoxy --fuzz fuzz-mode ./path/to/fuzzed/input [--stfu]
+
+Supported fuzz modes and the expected input:
+ action: Text to parse as action file.
+ client-request: Client request to parse. Currently incomplete
+ client-header: Client header to parse.
+ chunked-transfer-encoding: Chunk-encoded data to dechunk.
+ deflate: deflate-compressed data to decompress.
+ filter: Text to parse as filter file.
+ gif: gif to deanimate.
+ gzip: gzip-compressed data to decompress.
+ pcrs-substitute: A pcrs-substitute to compile. Not a whole pcrs job! Example: Bla $1 bla C $3 blah.
+ server-header: Server header to parse.
+ server-response: Server response to parse.
+
+The following fuzz modes read data from stdin if the 'file' is '-'
+ client-request
+ client-header
+ chunked-transfer-encoding
+ deflate
+ gif
+ gzip
+ pcrs-substitute
+ server-header
+ server-response
+
+Aborting
+
+$ export ASAN_OPTIONS='abort_on_error=1'
+$ mkdir input output
+$ echo '$1 bla fasel $2' &#62; input/pcrs
+$ afl-fuzz -i input -o output -m none ~/git/privoxy/privoxy --fuzz pcrs-substitute - --stfu
+
+$ cat &#62;input/pcrs.txt
+FILTER: bla fasel
+s@(.{1})[432](\d+)@$1$2$hostname@UgisT
+
+$ afl-fuzz -i input/ -o output/ -f bla.filter -m none privoxy --fuzz filter bla.filter --stfu</pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="NAVFOOTER">
+    <hr align="left" width="100%">
+    <table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="33%" align="left" valign="top"><a href="coding.html" accesskey="P">Prev</a></td>
+        <td width="34%" align="center" valign="top"><a href="index.html" accesskey="H">Home</a></td>
+        <td width="33%" align="right" valign="top"><a href="newrelease.html" accesskey="N">Next</a></td>
+      </tr>
+      <tr>
+        <td width="33%" align="left" valign="top">Coding Guidelines</td>
+        <td width="34%" align="center" valign="top">&nbsp;</td>
+        <td width="33%" align="right" valign="top">Releasing a New Version</td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>

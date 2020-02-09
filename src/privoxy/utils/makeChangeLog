@@ -1,0 +1,27 @@
+#!/usr/bin/awk -f
+# take output from
+#   git log [last release tag]..HEAD
+# and reformat as a ChangeLog
+#
+# License: GNU GENERAL PUBLIC LICENSE
+#          Version 2, June 1991
+#
+BEGIN {
+   print "--------------------------------------------------------------------"
+   print "ChangeLog for Privoxy"
+   print "--------------------------------------------------------------------"
+   print "*** Version X.Y.ZZ stable unstable***\n"
+}
+/^commit /  { new = 1; next }
+/^Merge: /  { next }
+/^Author: / { next }
+/^Date: /   { next }
+/^  *$/     { next } # ignore blank lines
+/^ / {
+    if ( new ) {
+        new = 0
+        sub("^   ", "  -", $0); # 1st line of a change
+    }
+    print $0
+}
+

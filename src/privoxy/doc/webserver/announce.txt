@@ -1,0 +1,368 @@
+               Announcing Privoxy 3.0.28 stable
+--------------------------------------------------------------------
+
+Privoxy 3.0.27 stable scales better in multi-user environments
+and brings a couple of tuning directives.
+
+Privoxy 3.0.28 stable fixes two regressions introduced in 3.0.27.
+
+--------------------------------------------------------------------
+ChangeLog for Privoxy 3.0.28
+--------------------------------------------------------------------
+- Bug fixes for regressions in 3.0.27:
+  - Fixed misplaced parentheses.
+    Reported by David Binderman.
+  - Changed two regression tests to depend on config directive
+    enable-remote-toggle instead of FEATURE_TOGGLE.
+
+--------------------------------------------------------------------
+ChangeLog for Privoxy 3.0.27
+--------------------------------------------------------------------
+- General improvements:
+  - Add a receive-buffer-size directive which can be used to
+    set the size of the previously statically allocated buffer
+    in handle_established_connection().
+    Increasing the buffer size increases Privoxy's memory usage but
+    can lower the number of context switches and thereby reduce the
+    CPU usage and potentially increase the throughput.
+    This is mostly relevant for fast network connections and
+    large downloads that don't require filtering.
+    Sponsored by: Robert Klemme
+  - Add a listen-backlog directive which specifies the backlog
+    value passed to listen().
+    Sponsored by: Robert Klemme
+  - Add an enable-accept-filter directive which allows to
+    toggle accept filter support at run time when compiled
+    with FEATURE_ACCEPT_FILTER support.
+    It makes testing more convenient and now that it's
+    optional we can emit an error message if enabling
+    the accept filter fails.
+    Sponsored by: Robert Klemme
+  - Add a delay-response{} action.
+    This is useful to tar pit JavaScript requests that
+    are endlessly retried in case of blocks. It can also
+    be used to simulate a slow Internet connection.
+    Sponsored by: Robert Klemme
+  - Add a 'trusted-cgi-referrer' directive.
+    It allows to configure another page or site that can be used
+    to reach sensitive CGI resources.
+    Sponsored by: Robert Klemme
+  - Add a --fuzz mode which exposes Privoxy internals to input
+    from files or stdout.
+    Mainly tested with American Fuzzy Lop. For details see:
+    https://www.fabiankeil.de/talks/fuzzing-on-freebsd/
+    This work was partially funded with donations and done
+    as part of the Privoxy month in 2015.
+  - Consistently use the U(ngreedy) flag in the 'img-reorder' filter.
+  - listen_loop(): Reuse a single thread attribute object
+    The object doesn't change and creating a new one for
+    every thread is a waste of (CPU) time.
+    Sponsored by: Robert Klemme
+  - Free csp resources in the thread that belongs to the csp instead
+    of the main thread which has enough on its plate already.
+    Sponsored by: Robert Klemme
+  - Improve 'socket timeout reached' message.
+    Log the timeout that was triggered and downgrade the
+    log level to LOG_LEVEL_CONNECT to reduce the log noise
+    with common debug settings.
+    The timeout isn't necessary the result of an error and
+    usually merely indicates that Privoxy's socket timeout
+    is lower than the relevant timeouts used by client and
+    server.
+    Sponsored by: Robert Klemme
+  - Explicitly taint the server socket in case of CONNECT requests.
+    This doesn't fix any known problems, but makes
+    some log messages less confusing.
+  - Let write_pid_file() terminate if the pid file can't be opened.
+    Logging the issue at info level is unlikely to help.
+  - log_error(): Reduce the mutex-protected area by not using a
+    heap-allocated buffer that is shared between all threads.
+    This increases performance and reduces the latency with
+    verbose debug settings and multiple concurrent connections.
+    Sponsored by: Robert Klemme
+  - Let zalloc() use calloc() if it's available.
+    In some situations using calloc() can be faster than
+    malloc() + memset() and it should never be slower.
+    In the real world the impact of this change is not
+    expected to be noticeable.
+    Sponsored by: Robert Klemme
+  - Never use select() when poll() is available.
+    On most platforms select() is limited by FD_SETSIZE while
+    poll() is not. This was a scaling issue for multi-user setups.
+    Using poll() has no downside other than the usual risk
+    that code modifications may introduce new bugs that have
+    yet to be found and fixed.
+    At least in theory this commit could also reduce the latency
+    when there are lots of connections and select() would use
+    "bit fields in arrays of integers" to store file descriptors.
+    Another side effect is that Privoxy no longer has to stop
+    monitoring the client sockets when pipelined requests are
+    waiting but can't be read yet.
+    This code keeps the select()-based code behind ifdefs for
+    now but hopefully it can be removed soonish to make the
+    code more readable.
+    Sponsored by: Robert Klemme
+  - Add a 'reproducible-tarball-dist' target.
+    It's currently separate from the "tarball-dist" target
+    because it requires a tar implementation with mtree spec
+    support.
+    It's far from being perfect and does not enforce a
+    reproducible mode, but it's better than nothing.
+  - Use arc4random() if it's available.
+    While Privoxy doesn't need high quality pseudo-random numbers
+    there's no reason not to use them when we can and this silences
+    a warning emitted by code checkers that can't tell whether or not
+    the quality matters.
+  - Show the FEATURE_EXTERNAL_FILTERS status on the status page.
+    Better late than never. Previously a couple of tests weren't
+    executed as Privoxy-Regression-Test couldn't detect that the
+    FEATURE_EXTERNAL_FILTERS dependency was satisfied.
+  - Ditch FEATURE_IMAGE_DETECT_MSIE.
+    It's an obsolete workaround we inherited from Junkbuster
+    and was already disabled by default.
+    Users that feel the urge to work around issues with
+    image requests coming from an Internet Explorer version
+    from more than 15 years ago can still do this using tags.
+  - Consistently use strdup_or_die() instead of strdup() in
+    cases where allocation failures aren't expected.
+    Using strdup_or_die() allows to remove a couple of explicit
+    error checks which slightly reduces the size of the binary.
+  - Insert a refresh tag into the /client-tags CGI page when
+    serving it while a client-specific tag is temporarily enabled.
+    This makes it less likely that the user ends up
+    looking at tag state that is out of date.
+  - Use absolute URLs in the client-tag forms.
+    It's more consistent with the rest of the CGI page
+    URLs and makes it more convenient to copy the forms
+    to external pages.
+  - cgi_error_disabled(): Use status code 403 and an appropriate response line
+  - Use a dedicated CGI handler to deal with tag-toggle requests
+    As a result the /client-tags page is now safe to reach without
+    trusted Referer header which makes bookmarking or linking to
+    it more convenient.
+    Finally, refreshing the /client-tags page to show the
+    current state can no longer unintentionally repeat the
+    previous toggle request.
+  - Don't add a "Connection" header for CONNECT requests.
+    Explicitly sending "Connection: close" is not necessary and
+    apparently it causes problems with some forwarding proxies
+    that will close the connection prematurely.
+    Reported by Marc Thomas.
+  - Fix compiler warnings.
+
+- Bug fixes:
+  - rfc2553_connect_to(): Properly detect and log when poll()
+    reached the time out. Previously this was logged as:
+    Could not connect to [...]: No error: 0.
+    which isn't very helpful.
+    Sponsored by: Robert Klemme
+  - add_tag_for_client(): Set time_to_live properly.
+    Previously the time_to_live was always set for the first tag.
+    Attempts to temporarily enable a tag would result in enabling
+    it permanently unless no tag was enabled already.
+  - Revert r1.165 which didn't perform as advertised.
+    While the idea was to use "https:// when creating links
+    for the user manual on the website", the actual effect
+    was to use "https://" when Privoxy was supposed to serve
+    the user manual itself.
+    Reported by Yossi Zahn on Privoxy-devel@.
+  - socks5_connect(): Fail in case of unsupported address types.
+    Previously they would not be detected right away and
+    Privoxy would fail later on with an error message that
+    didn't make it obvious that the problem was socks-related.
+    So far, no such problems have actually been reported.
+  - socks5_connect(): Properly deal with socks replies that
+    contain IPv6 addresses.
+    Previously parts of the reply were left unread and
+    later on treated as invalid HTTP response data.
+    Fixes #904 reported by Danny Goossen who also provided
+    the initial version of this patch.
+
+- Action file improvements:
+  - Unblock 'msdn.microsoft.com/'.
+    It (presumably) isn't used to serve the kind of ads Privoxy should
+    block by default but happens to serve lots of pages with URLs that
+    are likely to result in false positives.
+    Reported by bugreporter1694 in AF#939.
+  - Disable gif deanimation for requests tagged with CSS-REQUEST.
+    The action will ignore content that isn't considered text
+    anyway and explicitly disabling it makes this more obvious
+    if "action" debugging (debug 65536) is enabled while
+    "gif deanimation" debugging (debug 256) isn't.
+  - Explicitly disable HTML filters for requests with CSS-REQUEST tag.
+    The filters are unlikely to break CSS files but executing
+    them without (intentionally) getting any hits is a waste of
+    cpu time and makes the log more noisy when running with
+    "debug 64".
+  - Unblock 'adventofcode.com/'.
+    Reported by Clint Adams in Debian bug #848211.
+    Fixes Roland's AF#937.
+  - Unblock 'adlibris.com'.
+    Reported by Wyrex in #935
+  - Unblock .golang.org/
+  - Add fast-redirects exception for '.youtube.com/.*origin=http'
+
+- Privoxy-Log-Parser:
+  - Don't gather host and resource statistics if they aren't requested.
+    While the performance impact seems negligible this significantly
+    reduces the memory usage if there are lots of requests.
+  - Bump version as the behaviour (slightly) changed.
+  - Count connection failures as well in statistics mode.
+    Sponsored by: Robert Klemme
+  - Count connection timeouts as well in statistics mode.
+    Sponsored by: Robert Klemme
+  - Fix an 'uninitialized value' warning when generating
+    statistics for a log file without response headers.
+    While privoxy-log-parser was supposed to detect this already,
+    the check was flawed and the message the user didn't see was
+    somewhat confusing anyway.
+    Now the message is less confusing, more helpful and actually printed.
+    Reported by: Robert Klemme
+
+- Documentation improvements:
+  - Refer to the git sources instead of CVS.
+  - Use GNU/Linux when referring to the OS instead of the kernel.
+  - Add FAQ entry for what to do if editing the config file is access denied.
+  - Add brief HTTP/2 FAQ.
+  - Add a small fuzzing section to the developer documentation.
+  - Add a client-header-tagger{client-ip-address} example.
+  - Stop suggesting that Privoxy is an anonymizing proxy.
+    The term could lead to Privoxy users overestimating
+    what it can do on its own (without Tor).
+  - Make it more obvious that SPI accepts Paypal, too.
+    Currently most donations are made through the Paypal account
+    managed by Zwiebelfreunde e.V. and a more even distribution
+    would be useful.
+  - Suggest to log applying actions as well when reproducing problems.
+  - Explicitly mention that Privoxy binaries are built by individuals
+    on their own systems. Buyer beware!
+  - Mention the release feed on the homepage.
+  - Remove a mysterious comment with a GNU FDL link as it isn't
+    useful and could confuse license scanners.
+    In May 2002 it was briefly claimed that "this document" was covered
+    by the GNU FDL. The commit message (r1.5) doesn't explain the motivation
+    or whether all copyright holders were actually asked and agreed to the
+    declared license change.
+    It's thus hard to tell whether or not the license change was legit,
+    but luckily two days later the "doc license" was "put" "back to GPL"
+    anyway (r1.6).
+    At the same time the offending comment with a link to the FDL
+    (not the GPL) was added for no obvious reason.
+    Now it's gone again.
+
+- Regression tests:
+  - Bump for-privoxy-version to 3.0.27 as we now rely on untrusted
+    CGI request being rejected with status code 403 (instead of 200).
+  - Update test for /send-stylesheet and add another one
+
+- Templates:
+  - Consistently use https:// when linking to the Privoxy website.
+  - Remove SourceForge references in Copyright header.
+  - Remove a couple of SourceForge references in a comment.
+    While at it, fix the grammar.
+  - Move the site-specific documentation block before the generic one.
+    While most Privoxy installations don't have a site-specific
+    documentation block, in cases were it exists it's likely to
+    be more relevant than the generic one.
+    Showing it first makes it less likely that users stop reading
+    before they reach it, especially on pages that don't fit on
+    the screen.
+
+- Build system improvements:
+  - Prefer openjade to jade. On some systems Jade produces
+    HTML with unescaped ampersands in URLs.
+  - Prefer OpenSP to SP to be consistent.
+  - Have Docbook generated HTML files be straight ASCII.
+    Dealing with a mixture of ISO-8859 and UTF-8 files is problematic.
+  - Echo the filename to stderr for 'make dok-tidy'.
+    Make it a bit easier to find errors in docbook generated HTML.
+  - Warn when still using select().
+  - Warn when compiling without calloc().
+  - Make it more obvious that the --with-fdsetsize configure switch
+    is pointless if poll() is available.
+  - Remove support for AmigaOS.
+  - Update windows build system to use supported software.
+    The cygwin gcc -mno-cygwin option is no longer supported, so
+    convert the windows build system to use the cygwin cross-compiler
+    to build "native" code.
+  - Add --enable-static-linking option for configure
+    does the same thing as LDFLAGS=-static; ./configure
+    but nicer than mixing evars and configure options.
+
+-----------------------------------------------------------------
+About Privoxy:
+-----------------------------------------------------------------
+
+Privoxy is a non-caching web proxy with advanced filtering capabilities for
+enhancing privacy, modifying web page data and HTTP headers, controlling
+access, and removing ads and other obnoxious Internet junk. Privoxy has a
+flexible configuration and can be customized to suit individual needs and
+tastes. It has application for both stand-alone systems and multi-user
+networks.
+
+Privoxy is Free Software and licensed under the GNU GPLv2.
+
+Our TODO list is rather long. Helping hands and donations are welcome:
+
+  * https://www.privoxy.org/faq/general.html#PARTICIPATE
+
+  * https://www.privoxy.org/faq/general.html#DONATE
+
+At present, Privoxy is known to run on Windows 95 and later versions
+(98, ME, 2000, XP, Vista, Windows 7 etc.), GNU/Linux (RedHat, SuSE,
+Debian, Fedora, Gentoo, Slackware and others), Mac OS X (10.4 and
+upwards on PPC and Intel processors), OS/2, Haiku, DragonFly, ElectroBSD,
+FreeBSD, NetBSD, OpenBSD, Solaris, and various other flavors of Unix.
+
+In addition to the core features of ad blocking and cookie management,
+Privoxy provides many supplemental features, that give the end-user
+more control, more privacy and more freedom:
+
+  *  Supports "Connection: keep-alive". Outgoing connections can be kept
+     alive independently from the client. Currently not available on all
+     platforms.
+
+  *  Supports IPv6, provided the operating system does so too,
+     and the configure script detects it.
+
+  *  Supports tagging which allows to change the behaviour based on client
+     and server headers.
+
+  *  Can be run as an "intercepting" proxy, which obviates the need to
+     configure browsers individually.
+
+  *  Sophisticated actions and filters for manipulating both server and
+     client headers.
+
+  *  Can be chained with other proxies.
+
+  *  Integrated browser based configuration and control utility at
+     http://config.privoxy.org/ (shortcut: http://p.p/). Browser-based
+     tracing of rule and filter effects. Remote toggling.
+
+  *  Web page filtering (text replacements, removes banners based on size,
+     invisible "web-bugs" and HTML annoyances, etc.)
+
+  *  Modularized configuration that allows for standard settings and user
+     settings to reside in separate files, so that installing updated actions
+     files won't overwrite individual user settings.
+
+  *  Support for Perl Compatible Regular Expressions in the configuration
+     files, and a more sophisticated and flexible configuration syntax.
+
+  *  GIF de-animation.
+
+  *  Bypass many click-tracking scripts (avoids script redirection).
+
+  *  User-customizable HTML templates for most proxy-generated pages (e.g.
+     "blocked" page).
+
+  *  Auto-detection and re-reading of config file changes.
+    
+  *  Most features are controllable on a per-site or per-location basis.
+
+
+Home Page: 
+   https://www.privoxy.org/
+
+  - Privoxy Developers <privoxy-devel@lists.privoxy.org>

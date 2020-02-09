@@ -234,6 +234,38 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
 
 }
 
+void ConfigHelper::generatePrivoxyConf(TQProfile &profile)
+{
+    QString filecontent = QString("listen-address [%1]:%2\n"
+                                  "toggle 0\n"
+                                  "show-on-task-bar 0\n"
+                                  "activity-animation 0\n"
+                                  "forward-socks5 / [%3]:%4 .\n"
+                                  "hide-console\n")
+                                  .arg(profile.localAddress)
+                                  .arg(QString::number(profile.localHttpPort))
+                                  .arg(profile.localAddress)
+                                  .arg(QString::number(profile.localPort));
+#ifdef Q_OS_WIN
+        QString file = QCoreApplication::applicationDirPath() + "/privoxy.conf";
+#else
+        QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
+        QString file = configDir.absolutePath() + "/privoxy.conf";
+#endif
+    QFile privoxyConf(file);
+    privoxyConf.open(QIODevice::WriteOnly | QIODevice::Text |QIODevice::Truncate);
+    if (!privoxyConf.isOpen()) {
+        qCritical() << "Error: cannot open " << file;
+        return;
+    }
+    if(!privoxyConf.isWritable()) {
+        qCritical() << "Error: cannot write into " << file;
+        return;
+    }
+    privoxyConf.write(filecontent.toUtf8());
+    privoxyConf.close();
+}
+
 int ConfigHelper::getToolbarStyle() const
 {
     return toolbarStyle;

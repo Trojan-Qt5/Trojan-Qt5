@@ -1,0 +1,522 @@
+Some Privoxy-related tasks, sorted by the time they
+have been added, not by priority.
+
+The latest version should be available at:
+https://www.privoxy.org/gitweb/?p=privoxy.git;a=blob_plain;f=TODO;hb=HEAD
+
+There's work in progress to fund development on these items using
+donations. If you want to donate, please have a look at:
+https://www.privoxy.org/faq/general.html#DONATE
+
+1)  Add more regression tests. Filters should be tested automatically
+    (variables too). Could probably reuse large parts of Privoxy-Filter-Test.
+    Note that there is currently work in progress to leverage curl's
+    test suite, patches have been submitted upstream:
+    http://curl.haxx.se/mail/lib-2014-06/0070.html
+
+3)  Fix some more XXX: comments.
+
+6)  Remove actions that aren't needed anymore:
+
+    content-type-overwrite should probably stay as it's also
+    used by some of the CGI pages (XXX: name them).
+
+    crunch-client-header and crunch-server-header should probably
+    go, their only advantage is that their search strings can be
+    controlled through the CGI pages, other than that they only
+    have disadvantages.
+
+    crunch-if-none-match can be replaced with a header filter.
+
+    prevent-compression has a misleading name and could
+    be replaced with a header filter.
+
+7)  force-text-mode has a stupid name and should probably
+    be renamed to force-filter-mode.
+
+8)  handle-as-empty-document and handle-as-image should
+    be merged to something like handle-as{something} to
+    prevent them from being activated at the same time.
+
+10) There's a bug in the CGI editor that turns the
+    first section's "Insert new section below" into
+    a "Insert new section above" button.
+
+11) CGI templates should use semantically-correct HTML
+    and scale properly.
+
+    Work in progress.
+
+12) Support pipelining for outgoing connections.
+
+14) Allow to filter POST parameters.
+
+16) Filter SSL encrypted content as well.
+
+    At the beginning we could use a unencrypted connection between
+    client and Privoxy, and use an encrypted connection between
+    Privoxy and the server.
+
+    This should be good enough for most of the content the
+    user would want to filter.
+
+    Interested donors: 2.
+
+19) enable-forward-fallback. Syntax? Suggested by K.R.
+
+21) User Manual delivery doesn't accept multiple slashes. Should it?
+
+22) Verify action files properly (Including arguments) and
+    act accordingly (should probably intercept all requests
+    with a "Invalid option foo detected" CGI page).
+
+23) Do the same in case of syntax errors in the configuration file,
+    instead of just exiting or ignoring the problem.
+
+25) Handle multiple filters with the same name better. Reject them?
+
+26) Let show-url-info detect clearly invalid URLs.
+
+27) Make errno logging less thread-unsafe.
+    Verify that it's really an improvement.
+
+28) Don't take default ports in case of invalid forwarding ports.
+
+31) If a string action foo is disabled csp->action->string[ACTION_STRING_FOO]
+    doesn't necessarily contain NULL, but may contain the string of an
+    enabled foo action in an overruled section. Is it a bug? Does it matter?
+
+32) In case of forwarding failures with socks port == 9050,
+    show extra info about Tor (the whole FAQ entry?).
+
+36) Unload unused action files directly, even if they are
+    disabled without replacement.
+
+38) In the final results, explicitly list disabled multi actions
+    with their parameters. Not as trivial as it sounds.
+
+40) When running in daemon mode, Privoxy's working directory is '/'
+    which means it may not have permissions to dump core when necessary.
+    Figure out a way to solve this. Introduce a cwd config option?
+
+41) Change documentation framework to one that works cross-platform.
+    Evaluate WML and txt2tags.
+
+42) Add a DTrace USDT provider. Now that FreeBSD has userland DTrace
+    support there's no longer any reason not to.
+
+43) Write a tool to check URL patterns against URLs in the log file.
+    This could be included in Privoxy-Regression-Test.
+
+44) Privoxy-Log-Parser: Consider highlighting "Connection" in:
+    23:13:03.506 283b6100 Header: Replaced: 'Connection: Keep-Alive' with 'Connection: close'
+
+50) Investigate possible PCRS template speedup when searching
+    macros with strstr() before compiling pcrs commands.
+    Investigated, needs some restructuring but is probably worth it.
+
+51) Make user-manual directive more generic to allow serving the FAQ
+    and files from user-specified directories. Consider changing the
+    port for "same origin policy" issues.
+
+53) Find a more reliable hoster. Involves finding out what our
+    requirements are and which SF alternatives fulfil them.
+    It would probably also make sense to look into what other
+    projects did when migrating away from SF.
+
+    2014-05: Work in progress. Hosting wish list at the end
+             of this file. Looks like most of the other projects
+             that left SF had lower standards and moved to hosters
+             that don't come close to sattisfying the requirements.
+    2016-03: The website has been moved away from SF infrastructure
+             and is also available through https:// now.
+    2016-04: Server rent for a year has been sponsored by ChameleonJohn.
+    2016-04: The SF mailing lists have been deprecated, the new ones
+             are available at: https://lists.privoxy.org/
+
+    Interested donors: 1.
+
+54) Move away from CVS to a more modern revision control system.
+    The move to git is work in progress:
+    https://sourceforge.net/p/ijbswa/mailman/message/34994343/
+
+58) Move more template strings from the code into the actual templates.
+
+59) Import the German template translation.
+
+60) Ask the Russian translators for input on how to make their
+    life easier.
+
+61) Consider (optionally?) skipping the hostname comparison when
+    checking if a connections that goes to a HTTP proxy can be reused.
+    Do all HTTP proxy support that? Is it worth it?
+
+63) Reject clearly too large requests earlier?
+
+64) Use proper copyright attribution. "Privoxy Developers"
+    is no legal entity.
+
+65) Polish Website. Probably involves ditching the Docbook
+    mess. There are already several threads in the mailinglist
+    archives about this. See also #41.
+
+66) Stop hard-coding the number of action and filter files.
+
+67) Clean up source code directory layout. Depends on 54 so
+    we don't lose the revision history.
+
+68) Use standard make syntax so we don't depend on GNU make.
+
+69) Update autoconf setup (or move away from it).
+    Unfortunately the autoconf files can't be simply updated
+    due to license issues:
+    https://lists.privoxy.org/pipermail/privoxy-devel/2016-April/000008.html
+
+70) If the server connection is reset but the headers are
+    received, consider passing the mess to the client instead
+    of showing the connect-failed template. Relates to #2698674.
+
+74) Let Privoxy-Regression-Test optionally check that action
+    sections which disable actions actually are preceded by
+    sections that enable said actions.
+
+75) Create a tool that creates Privoxy action (and filter?) files
+    out of adblock files. Could be implemented as option for
+    url-pattern-translator.pl.
+
+76) Cache DNS responses. Note that this has been requested
+    several times by users, but is not a developer priority.
+    If you care about this, feel free to submit patches.
+
+77) Allow to configure the IP address used in outgoing connections.
+
+78) Allow to optionally use pcre's DFA algorithm.
+
+79) Evaluate pcre alternatives.
+
+80) Change FEATURE_EXTENDED_HOST_PATTERNS to support both
+    extended and vanilla host patterns at the same time.
+
+    Note that the requirement is to allow the user to decide
+    if the domain pattern should be interpreted as regex or
+    traditional host pattern and if it's not obvious that the
+    user made any decision, default to the latter.
+
+    Possible solutions would be:
+
+    1. An always-use-regex-domain-patterns config option
+    2. An enable-regex-domain-patterns-for-this-action-file option
+    3. An enable-regex-domain-patterns-for-this-action-file-until-the-user-says-otherwise option
+    4. A treat-the-domain-pattern-in-this-line-as-regex(-or-not) option
+    5. Combinations of the options above
+
+    With 2+4, 3+4 or 2+3+4 being the preferences until
+    further discussion.
+
+82) Detect if the system time goes back in time let the user
+    know if it caused any connections to get closed.
+
+85) Once #51 is done, write a script that populates a directory with
+    various common third-party icons (stumbleupon.png, facebook.png ...)
+    and redirect requests for them to Privoxy.
+
+86) Add a server-body-tagger action. This is trivial as as all the
+    functionality required to do it already exists.
+
+87) Add a client-body-tagger action. This is less trivial as we currently
+    don't buffer client bodies. After 14) is implemented it would be
+    trivial, though.
+
+88) Investigate if there's a Perl module that Privoxy-Regression-Test
+    could optionally use to keep connections alive, preferably while
+    requiring less forks at the same time.
+
+89) When multiple block actions apply, consider showing all the block
+    reasons on the blocked page that haven't been overruled, not just
+    the last one.
+
+91) Add an optional limit for internal redirects. It would probably
+    be reasonable to default to a limit of one and showing an error
+    message if the request for the redirect URL would be redirected
+    again.
+
+92) The statistics currently aren't calculated correctly by Privoxy
+    as each thread is only counted as one request which is no longer
+    correct. This should be fixed, or the statistic code removed.
+    Privoxy-Log-Parser's provides more detailed statistics, anyway.
+
+93) Add a config directive to let Privoxy explicitly request either
+    IPv4 (or IPv6) addresses, even if the system supports both.
+    Could be useful as a workaround for misconfigured setups where the
+    libc returns IPv6 addresses even if there's no IPv6 connectivity.
+
+94) Add a config directive to let Privoxy prefer either IPv4 (or IPv6)
+    addresses, instead of trusting the libc to return them in an order
+    that makes sense. Like #93, this could be useful as a workaround
+    for misconfigured setups.
+
+95) Support a non-standard client header in CONNECT requests that
+    contains the URL of the requested resource, which is then treated
+    like the request URL.
+
+    This way the client could opt-in for path-based blocking of https
+    requests. Given that the headers from the CONNECT request aren't
+    forwarded to the destination server, an unencrypted URL should be
+    acceptable if the client and Privoxy are running on the same system
+    or in a trusted environment.
+
+96) Filters should be easier to look up. Currently get_filter() has to
+    go through all filters and skip the filter types the caller isn't
+    interested in.
+
+98) When showing action section on the CGI pages, properly escape
+    line breaks so they can be copy&pasted into action files without
+    adjustments.
+
+99) Figure out a mechanism through which a user can easily enable
+    site-specific action sections that are too aggressive to be
+    enabled by default. This could be similar to the presettings
+    in default.action, but could also be just another action file
+    that isn't used by default.
+
+100) Create a cross-platform Privoxy control program and retire
+     the win32 GUI. Integrate support for Privoxy-Regression-Test,
+     Privoxy-Log-Parser, Privoxy-Filter-Test, uagen and similar tools.
+     Interested donors: 1.
+
+102) Add an include directive to split the config file into several parts.
+
+103) Potential performance improvement for large action files:
+     when figuring out which actions apply, check the action bit mask
+     before pattern matching and skip section that wouldn't modify the
+     actions already set. To increase the impact the sections would have
+     to be applied in reverse.
+
+104) The code to modify global_toggle_state should be factored out into
+     a separate function. Currently we mess with it in three different
+     files, but only in w32log.c the tray icon is explicitly set.
+     The logging is inconsistent as well. For details see #3525694.
+
+105) Add support for socks authentication.
+
+106) actionlist.h should be embedded in a way that causes less text
+     segment bloat.
+
+107) Support more pcrs variables, for example $destination-ip-address
+     and $source-ip-address.
+
+108) Allow to use a somewhat random string instead of PRIVOXY-FORCE.
+
+109) Let log_error() support the format specifier %S which should
+     work like %s but escape new lines like %N. This would be useful
+     to log the result of header filters which may inject new lines.
+
+110) Add a global-buffer-limit directive that roughly limits how
+     much malloc'ed memory Privoxy will use and can potentially
+     be smaller than (buffer-limit * max-client-connections).
+
+111) Reject requests if hosts and ports in request line and Host
+     header don't match (before filters have been applied).
+
+112) If a header filter is used to inject another header by inserting
+     a \r\n (undocumented feature), detect it and split the headers so
+     following header actions do not treat them as a single string.
+     Alternatively add another header injection mechanism.
+
+113) Log statistics upon receiving a certain signal (SIGINFO or SIGUSR1).
+
+114) Properly deal with status code 100. The current "Continue hack"
+     can cause problems for gpg when uploading keys through Privoxy.
+
+115) Add ICAP (RFC 3507) support. FR #3615158.
+
+116) Due to the use of sscanf(), Privoxy currently will fail to properly
+     parse chunks whose size can't be represented with 32 bit. This is
+     unlikely to cause problems in the real world, but should eventually
+     be fixed anyway. See also:
+     https://bugzilla.mozilla.org/show_bug.cgi?id=959100
+
+118) There should be "escaped" dynamic variables that are guaranteed
+     not to break filters.
+
+119) Evaluate using pcre's jit mode.
+
+120) Add an option to limit pcre's recursion limit below the default.
+     On some platforms the recursion limit doesn't prevent pcre from
+     running out of stack space, causing the kernel to kill Privoxy
+     ungracefully.
+
+121) Add HTTP/2 support. As a first step, incoming HTTP/1.x requests
+     should be translated to outgoing HTTP/2 requests where possible
+     (and if desired by the user).
+     Interested donors: 1.
+
+122) Allow customized log messages.
+
+123) Evaluate if the voluntarily-disclose-session-keys option in Firefox
+     (and other browsers) can be leveraged. Probably depends on #16.
+
+124) Add support for the "lightweight OS capability and sandbox framework"
+     Capsicum. http://www.cl.cam.ac.uk/research/security/capsicum/
+     Interested donors: 1.
+
+125) Allow clients to HTTPS-encrypt the proxy connection.
+     Interested donors: 1.
+
+126) Run the Co-Advisor HTTP compliance tests, evaluate the results,
+     fix the compliance issues that aren't by design and document
+     the rest.
+     Note that Privoxy developers qualify for free account upgrades:
+     http://coad.measurement-factory.com/details.html#pricing
+
+127) Add "real" CGI support (serve program output instead of forwarding
+     the request). The work is mostly done due to +external-filter{}.
+
+128) Add a config directive to control the stack limit.
+
+129) Completely implement RFC 7230 4.1 (Chunked Transfer Coding).
+     Currently Privoxy doesn't properly deal with trailers which
+     are rarely used in the real world but should be supported anyway.
+
+130) Move header_tagger() out of the parser structs and let it execute
+     taggers one-by-one against all headers so the header order has less
+     influence on the tagging result. As a bonus, dynamic taggers would
+     have to be compiled less often.
+
+131) The handle-as-empty-doc-returns-ok directive should be replaced with
+     an action so the behaviour can be enabled on a per-request basis.
+     Interested donors: 1.
+
+133) Consider allowing bitcoin donations.
+     Interested donors: 2.
+
+134) Track the total number of bytes written to and received from a socket.
+
+135) Add OpenBSM audit support.
+
+136) Make builds reproducible.
+
+137) Add a (preferably vector-based) logo.
+
+138) Bring back the scripts to provide actions file feedback.
+
+     Once upon a time (~2003) there were scripts on the webserver
+     to make reporting action file feedback more convenient for the
+     user and the actual reports more useful for the developers.
+     They have been unusable for years and have thus been disabled,
+     but making the reporting mechanism available again would be a
+     good idea.
+
+140) Toggling Privoxy off currently also disables stuff that
+     probably shouldn't be affected (such as actions like
+     forward-override). Investigate and fix or document.
+
+141) Port Privoxy to CloudABI, which, despite the name, is actually
+     rather neat. https://github.com/NuxiNL/cloudlibc
+
+142) Remove or update the "internal" pcre version.
+
+143) Add support for OpenBSD's pledge feature once it's stablelized.
+     This should be a lot less work then #124.
+
+146) Allow to save the internal client tag state to disk and
+     load it after restarts.
+
+147) Improve "Building from Source" section in the user manual.
+     A common problem seems to be that it's not obvious to non-technical
+     users how the listed dependencies can be installed on the commonly
+     used platforms. Adding a couple of examples should also be useful for
+     technical users (like Privoxy developers) who want to install or test
+     Privoxy on platforms they are not familiar with.
+
+148) Add a config directive to change the CGI_SITE_2_HOST
+     (default: config.privoxy.org).
+
+     If Privoxy is used as reverse proxy or intercepting proxy without
+     getting intercepted requests, error pages created from default templates
+     currently can result in client requests to config.privoxy.org on the
+     Internet which may not be desirable.
+
+150) Add blacklistd support.
+
+151) Let the dok-tidy target work cross-platform without introducing
+     a ton of white-space changes that hide the content changes.
+
+152) Fix CSS references in the website documentation.
+     For many pages p_doc.css is specified twice using different paths.
+     Usually at least one works, but not all of them do and the
+     duplicated requests are pointless even if they don't end up with
+     a 404.
+
+153) Catch SIGINT and use it to close the listen socket, serve
+     remaining connections and shut down. This would allow higher
+     uptime and make testing more convenient.
+
+154) Underline links in docs and cgi pages. More precisely,
+     don't mess with the browser defaults for link underlining.
+
+155) The sig_handler() shouldn't call log_error().
+     While it isn't known to cause actual problems in normal operation,
+     it's technically incorrect and causes crashes when running in
+     valgrind.
+
+156) Reject socks requests with an explicit error message similar
+     to the one used for ftp. Motivation:
+     https://lists.privoxy.org/pipermail/privoxy-users/2017-March/000195.html
+
+158) Use a single thread to wait for new requests on reused client connections.
+     Currently the thread that handles the first request on a connection
+     stays responsible for the client connect until it gets closed.
+     In case of lots of idle connections lots of waiting threads are used.
+     While it's conceivable that this ineffiency is irrelevant from a
+     performance point of view, using a single thread should reduce Privoxy's
+     memory footprint a bit which may be noticeable in case of multi-user setups
+     with hundreds of idle connections.
+##########################################################################
+
+Hosting wish list (relevant for #53)
+
+What we need:
+
+- Bug tracker
+- Mailinglists (Mailman with public archives preferred)
+- Webspace (on a Unix-like OS that works with the webserver targets
+  in GNUMakefile)
+- Source code repositories (currently CVS, but migrating away
+  from it is TODO #54 anyway and shouldn't be too much trouble)
+- Commit mails (preferably with unified diffs)
+
+(Unsorted) details to look at when evaluating hosters:
+
+1. Preferably no third-party ads and trackers.
+   External images, CSS and JavaScript may count as trackers
+   but texts like "supported by company XYZ" may be acceptable.
+
+2. JavaScript should be optional or not used at all.
+
+3. Services we don't need shouldn't be enabled anyway.
+   (We currently don't use Web forums, wikis, surveys etc.)
+
+4. It would be preferable if the hoster didn't have a bad track
+   record as far as user experience, security and privacy are
+   concerned and if the terms of service are "reasonable" and
+   haven't changed too often in the past. Updates in the past
+   should have been improvements and not regressions.
+
+5. It would be preferable if most of the server administration
+   is done by a trusted third-party (or at least not a lot of work
+   for us).
+
+6. The server(s) should be located in a country with laws we can
+   understand and follow (or at least not unintentionally violate).
+
+7. A server location in a country with some kind of due process
+   and strong data protection laws (at least on paper) would be
+   preferable.
+
+8. Given that Privoxy is a free software project it would be
+   preferable if the hoster would use free software where possible.
+
+9. Migrating away from the hoster in the future without losing
+   any important data should be possible without writing web
+   scrapers first.

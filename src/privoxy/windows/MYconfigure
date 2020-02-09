@@ -1,0 +1,123 @@
+#!/bin/sh
+# run the configure script for a native Windows build
+
+if [ -f ../configure.in ]; then
+   #  we're in the windows directory, so we need to go up a level
+   cd ..
+fi
+
+if [ ! -f configure ]; then
+   autoheader
+   #   creates config.h.in
+   autoconf
+   #   creates configure
+fi
+
+####### configure options:
+# --help                          Show configure options and a short description
+#
+# --host=i686-w64-mingw32         Use the mingw cross-compiler to build a 'native' windows binary
+# --enable-mingw32                Use mingw32 for a Windows GUI
+# --enable-static-linking         Use static linking instead of dynamic linking (and not have
+#                                 to put all the .DLLs in the path or the same dir as Privoxy)
+# --disable-pthread               Use native threads instead of POSIX pthreads library
+# --disable-dynamic-pcre          Use the built-in, static pcre, even if libpcre is available
+# --with-docbook=yes              Enable docbook documentation creation
+
+
+export CFLAGS="-O2"
+# note: configure.in line 155
+#         if test "X$CFLAGS" = "X "; then # if CFLAGS were unset (see above)
+#   In other words, if you set CFLAGS you need to include -O2 if you want optimization
+#   assume I'll set cflags below, so set O2 now
+
+export LDFLAGS=""
+# start with initially empty flags
+
+
+### CFLAGS="${CFLAGS} -fstack-protector-strong"
+### LDFLAGS="${LDFLAGS} -fstack-protector-strong"
+# enable stack checking.  NOTE: need to specify when compiling _and_ linking
+# stack-protector-strong: better balance between security and performance.
+#   This flag protects more kinds of vulnerable functions than -fstack-protector does,
+#   but not every function, providing better performance than -fstack-protector-all.
+# see : https://en.wikipedia.org/wiki/Buffer_overflow_protection
+# NOTE: needs static linking or the following in the path:
+#         /usr/i686-w64-mingw32/sys-root/mingw/bin/libssp-0.dll
+
+### CFLAGS="${CFLAGS} -march=native"
+# -march=cpu-type
+#   Generate instructions for the machine type cpu-type.  In contrast to -mtune=cpu-type, which merely tunes the
+#   generated code for the specified cpu-type, -march=cpu-type allows GCC to generate code that may not run at all on
+#   processors other than the one indicated.
+#   Specifying -march=cpu-type implies -mtune=cpu-type.
+#
+# -march=native
+#   This selects the CPU to generate code for at compilation time by determining the processor type of the compiling
+#   machine.  Using -march=native enables all instruction subsets supported by the local machine (hence the result
+#   might not run on different machines).  Using -mtune=native produces code optimized for the local machine under
+#   the constraints of the selected instruction set.
+
+LDFLAGS="${LDFLAGS} -Wl,--nxcompat"
+# https://en.wikipedia.org/wiki/Data_Execution_Prevention
+#   Enable DEP with -Wl,--nxcompat
+
+LDFLAGS="${LDFLAGS} -Wl,--dynamicbase,--export-all-symbols"
+# https://en.wikipedia.org/wiki/Address_space_layout_randomization
+# https://stackoverflow.com/questions/24283918/how-can-i-enable-aslr-dep-and-safeseh-on-an-exe-in-codeblocks-using-mingw
+#   ASLR with gcc has a problem: -Wl,--dynamicbase doesn't emit the necessary relocation table.
+#   As a workaround, you can pass -Wl,--dynamicbase,--export-all-symbols
+#   NOTE: you can't have both this and profiling (cflags='-pg') enabled!
+
+#CFLAGS="${CFLAGS} -pg"
+#LDFLAGS="${LDFLAGS} -pg"
+# Generate extra code to write profile information suitable for the analysis program gprof.
+# Use this option when compiling the source files you want data about, and you must also use it when linking.
+# -- creates a "gmon.out" profile file when the program exits
+# -- then do 'gprof -b privoxy.exe gmon.out'
+#  ??? WHY ???  profiling doesn't work if ASLR is enabled
+
+
+### CFLAGS="${CFLAGS} -Wall"
+# see: http://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html
+# -Wall   doesn't actually turn on all warnings, so add  -Wextra
+#    but then plenty too many complaints by
+#      -Wmissing-field-initializers
+#      -Wsign-compare
+#      -Wtype-limits
+### CFLAGS="${CFLAGS} -Wextra -Wno-missing-field-initializers -Wno-sign-compare -Wno-type-limits"
+
+# CFLAGS="${CFLAGS} -Wconversion"
+#   way too many warnings for things that don't look like a problem
+
+### CFLAGS="${CFLAGS} -Wformat-security"
+# If -Wformat is specified, also warn about uses of format functions that represent possible security problems.
+
+### CFLAGS="${CFLAGS} -Wlogical-op"
+# Warn about suspicious uses of logical operators in expressions.
+
+CFLAGS="${CFLAGS} -Wshadow"
+# Warn whenever a local variable or type declaration shadows
+# another variable or whenever a built-in function is shadowed.
+
+# CFLAGS="${CFLAGS} -Wwrite-strings"
+# These warnings help you find at compile time code that can try to write
+# into a string constant, but only if you have been very careful about
+# using const in declarations and prototypes.
+# >>> Otherwise, it is just a nuisance. <<<  -- this, very much this
+
+echo "CFLAGS=${CFLAGS}"
+echo "LDFLAGS=${LDFLAGS}"
+
+# ./configure cross-compilation options:
+#    --build: the system on which the program will be built.
+#    --host:  the system on which the generated program will run.
+#    --target: only used to build a cross-compiling toolchain.
+
+./configure  --host=i686-w64-mingw32  --enable-mingw32  --enable-zlib \
+             --enable-static-linking \
+             --enable-strptime-sanity-checks \
+             --disable-pthread  --disable-dynamic-pcre \
+             --with-docbook=yes
+
+#  -- done --

@@ -1,0 +1,223 @@
+/*********************************************************************
+ *
+ * File        :  $Source: /cvsroot/ijbswa/current/w32.rc,v $
+ *
+ * Purpose     :  Windows GUI resource script.
+ *
+ * Copyright   :  Written by and Copyright (C) 2001-2009 members of
+ *                the Privoxy team.  http://www.privoxy.org/
+ *
+ *                Based on the Internet Junkbuster originally written
+ *                by and Copyright (C) 1997 Anonymous Coders and
+ *                Junkbusters Corporation.  http://www.junkbusters.com
+ *
+ *                This program is free software; you can redistribute it
+ *                and/or modify it under the terms of the GNU General
+ *                Public License as published by the Free Software
+ *                Foundation; either version 2 of the License, or (at
+ *                your option) any later version.
+ *
+ *                This program is distributed in the hope that it will
+ *                be useful, but WITHOUT ANY WARRANTY; without even the
+ *                implied warranty of MERCHANTABILITY or FITNESS FOR A
+ *                PARTICULAR PURPOSE.  See the GNU General Public
+ *                License for more details.
+ *
+ *                The GNU General Public License should be included with
+ *                this file.  If not, you can view it at
+ *                http://www.gnu.org/copyleft/gpl.html
+ *                or write to the Free Software Foundation, Inc., 59
+ *                Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ *********************************************************************/
+
+#include "config.h"
+
+#ifndef STRICT
+#define STRICT
+#endif
+#include <windows.h>
+
+#include "w32res.h"
+
+#ifdef __MINGW32__
+#include "cygwin.h"
+#endif
+
+/****************************************************************************
+ *  Language-neutral resources
+ ****************************************************************************/
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+#ifdef _WIN32
+/* LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL */
+#pragma code_page(1252)
+#endif /* _WIN32 */
+
+/*
+ * Icons
+ *
+ * Icon with lowest ID value placed first to ensure application icon
+ * remains consistent on all systems.
+ */
+IDI_MAINICON            ICON    DISCARDABLE     "icons/privoxy.ico"
+IDI_ANIMATED1           ICON    DISCARDABLE     "icons/radar-01.ico"
+IDI_ANIMATED2           ICON    DISCARDABLE     "icons/radar-02.ico"
+IDI_ANIMATED3           ICON    DISCARDABLE     "icons/radar-03.ico"
+IDI_ANIMATED4           ICON    DISCARDABLE     "icons/radar-04.ico"
+IDI_ANIMATED5           ICON    DISCARDABLE     "icons/radar-05.ico"
+IDI_ANIMATED6           ICON    DISCARDABLE     "icons/radar-06.ico"
+IDI_ANIMATED7           ICON    DISCARDABLE     "icons/radar-07.ico"
+IDI_ANIMATED8           ICON    DISCARDABLE     "icons/radar-08.ico"
+IDI_IDLE                ICON    DISCARDABLE     "icons/privoxy.ico"
+IDI_OFF                 ICON    DISCARDABLE     "icons/off.ico"
+
+#endif /* Neutral resources */
+
+
+/****************************************************************************
+ *  English (U.S.) resources
+ ****************************************************************************/
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+/* LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US */
+#pragma code_page(1252)
+#endif /* def _WIN32 */
+
+/*
+ * File Version
+ */
+#ifndef _MAC
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION VERSION_MAJOR,VERSION_MINOR,VERSION_POINT,0
+ PRODUCTVERSION VERSION_MAJOR,VERSION_MINOR,VERSION_POINT,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "The Privoxy team - www.privoxy.org\0"
+            VALUE "FileDescription", "Privoxy\0"
+            VALUE "FileVersion", VERSION "\0"
+            VALUE "InternalName", "Privoxy\0"
+            VALUE "LegalCopyright", "Distributed under the GNU GPL\0"
+            VALUE "OriginalFilename", "privoxy.exe\0"
+            VALUE "ProductName", "Privoxy\0"
+            VALUE "ProductVersion", VERSION "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif /* ndef _MAC */
+
+
+/*
+ * Menus
+ */
+
+IDR_TRAYMENU MENU DISCARDABLE
+BEGIN
+    POPUP "Popup"
+    BEGIN
+        MENUITEM "E&xit Privoxy",      ID_FILE_EXIT
+        MENUITEM                       SEPARATOR
+        POPUP "E&dit.."
+        BEGIN
+            MENUITEM "&Main Configuration",           ID_TOOLS_EDITCONFIG
+            MENUITEM "&Default Actions",              ID_TOOLS_EDITDEFAULTACTIONS
+            MENUITEM "&User Actions",                 ID_TOOLS_EDITUSERACTIONS
+            MENUITEM "Default &Filters",              ID_TOOLS_EDITDEFAULTFILTERS
+            MENUITEM "U&ser Filters",                 ID_TOOLS_EDITUSERFILTERS
+#ifdef FEATURE_TRUST
+            MENUITEM "&Trust list",                   ID_TOOLS_EDITTRUST
+#endif /* def FEATURE_TRUST */
+        END
+        MENUITEM                              SEPARATOR
+#ifdef FEATURE_TOGGLE
+        MENUITEM "&Enable",                   ID_TOGGLE_ENABLED, CHECKED
+#endif /* def FEATURE_TOGGLE */
+        MENUITEM "Show Privoxy &Window",      ID_TOGGLE_SHOWWINDOW, CHECKED
+    END
+END
+
+IDR_LOGVIEW MENU DISCARDABLE
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "E&xit",                       ID_FILE_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "Copy",                        ID_EDIT_COPY
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Clear Log\tCtrl+D",          ID_VIEW_CLEARLOG
+        MENUITEM                                SEPARATOR
+        MENUITEM "&Log Messages",               ID_VIEW_LOGMESSAGES, CHECKED
+        MENUITEM "Message &Highlighting",       ID_VIEW_MESSAGEHIGHLIGHTING, CHECKED
+        MENUITEM "Limit &Buffer Size",          ID_VIEW_LIMITBUFFERSIZE, CHECKED
+        MENUITEM "&Activity Animation",         ID_VIEW_ACTIVITYANIMATION, CHECKED
+    END
+    POPUP "&Options"
+    BEGIN
+#ifdef FEATURE_TOGGLE
+        MENUITEM "&Enable",                     ID_TOGGLE_ENABLED, CHECKED
+        MENUITEM                                SEPARATOR
+#endif /* def FEATURE_TOGGLE */
+        MENUITEM "Edit Main &Configuration",      ID_TOOLS_EDITCONFIG
+        MENUITEM "Edit &Default Actions",         ID_TOOLS_EDITDEFAULTACTIONS
+        MENUITEM "Edit &User Actions",            ID_TOOLS_EDITUSERACTIONS
+        MENUITEM "Edit Default &Filters",         ID_TOOLS_EDITDEFAULTFILTERS
+        MENUITEM "Edit U&ser Filters",            ID_TOOLS_EDITUSERFILTERS
+#ifdef FEATURE_TRUST
+        MENUITEM "Edit &Trust list",              ID_TOOLS_EDITTRUST
+#endif /* def FEATURE_TRUST */
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "Privoxy &FAQ",                ID_HELP_FAQ
+        MENUITEM "Privoxy &Manual",             ID_HELP_MANUAL
+        MENUITEM "GNU &General Public Licence", ID_HELP_GPL
+        MENUITEM                                SEPARATOR
+        MENUITEM "Privoxy Status...",           ID_HELP_STATUS
+        MENUITEM                                SEPARATOR
+        MENUITEM "About Privoxy...",            ID_HELP_ABOUT
+    END
+END
+
+IDR_POPUP_SELECTION MENU DISCARDABLE
+BEGIN
+    POPUP "Popup"
+    BEGIN
+        MENUITEM "&Copy",                       ID_EDIT_COPY
+    END
+END
+
+
+/*
+ * Accelerators
+ */
+
+IDR_ACCELERATOR ACCELERATORS DISCARDABLE
+BEGIN
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    "D",            ID_VIEW_CLEARLOG,       VIRTKEY, CONTROL, NOINVERT
+END
+
+#endif /* English (U.S.) resources */

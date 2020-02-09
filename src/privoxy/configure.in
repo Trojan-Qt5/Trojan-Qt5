@@ -1,0 +1,1145 @@
+dnl Process this file with autoconf to produce a configure script.
+dnl
+dnl Written by and Copyright (C) 2001-2018 the
+dnl Privoxy team. https://www.privoxy.org/
+dnl
+dnl Based on the Internet Junkbuster originally written
+dnl by and Copyright (C) 1997 Anonymous Coders and
+dnl Junkbusters Corporation.  http://www.junkbusters.com
+dnl
+dnl This program is free software; you can redistribute it
+dnl and/or modify it under the terms of the GNU General
+dnl Public License as published by the Free Software
+dnl Foundation; either version 2 of the License, or (at
+dnl your option) any later version.
+dnl
+dnl This program is distributed in the hope that it will
+dnl be useful, but WITHOUT ANY WARRANTY; without even the
+dnl implied warranty of MERCHANTABILITY or FITNESS FOR A
+dnl PARTICULAR PURPOSE.  See the GNU General Public
+dnl License for more details.
+dnl
+dnl The GNU General Public License should be included with
+dnl this file.  If not, you can view it at
+dnl http://www.gnu.org/copyleft/gpl.html
+dnl or write to the Free Software Foundation, Inc., 59
+dnl Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+dnl
+
+dnl =================================================================
+dnl AutoConf Initialization
+dnl =================================================================
+
+AC_REVISION($Revision: 1.213 $)
+AC_INIT(jcc.c)
+
+if test ! -f config.h.in; then
+   echo "You need to run autoheader first. "
+   echo -n "Shall I do this for you now? (y/n) "
+   read answer
+   if test "$answer" != "y"; then
+      exit 1
+   else
+      autoheader
+  fi
+fi
+
+AC_CONFIG_HEADER([config.h])
+AC_CANONICAL_HOST
+
+dodk=auto
+DKPREFIX=none
+AC_ARG_WITH(docbook, dnl
+  --with-docbook=[[yes|no|directory]]
+                           Enable docbook documentation creation
+			   (default = yes, for gnu and linux),[dnl
+case "$with_docbook" in
+yes) dodk=yes;;
+no) dodk=no;;
+*)
+	dodk=yes
+	DKPREFIX=$withval
+	;;
+esac
+])
+DB2HTML=false
+AC_ARG_WITH(db2html, dnl
+  --with-db2html=<path/executable>
+                          Set the location of the docbook to html converter
+                          (default = search),[dnl
+DB2HTML=$withval
+])
+
+dnl =================================================================
+dnl Application version number
+dnl =================================================================
+
+VERSION_MAJOR=3
+VERSION_MINOR=0
+VERSION_POINT=28
+CODE_STATUS="stable"
+
+dnl Timestamp (date +%s) used by the mtree-spec target.
+dnl Should be updated before releases but forgetting it isn't critical.
+SOURCE_DATE_EPOCH=1545411710
+
+dnl CODE_STATUS can be "alpha", "beta", "stable" or "UNRELEASED",
+dnl and will be used for CGI output. Increment version number and
+dnl set status to "UNRELEASED" whenever CVS differs from the last
+dnl release and no new release is near.
+
+dnl =================================================================
+dnl Substitute the version numbers
+dnl =================================================================
+
+AC_SUBST(VERSION_MAJOR)
+AC_SUBST(VERSION_MINOR)
+AC_SUBST(VERSION_POINT)
+AC_SUBST(CODE_STATUS)
+AC_SUBST(SOURCE_DATE_EPOCH)
+
+dnl
+AC_DEFINE_UNQUOTED(VERSION_MAJOR,${VERSION_MAJOR})
+AC_DEFINE_UNQUOTED(VERSION_MINOR,${VERSION_MINOR})
+AC_DEFINE_UNQUOTED(VERSION_POINT,${VERSION_POINT})
+AC_DEFINE_UNQUOTED(VERSION,"${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_POINT}")
+AC_DEFINE_UNQUOTED(CODE_STATUS,"${CODE_STATUS}")
+
+dnl =================================================================
+dnl Checks for programs needed to build.
+dnl =================================================================
+
+dnl Keep AC_PROG_CC from setting its own defaults:
+if test "X$CFLAGS" = "X"; then
+   CFLAGS=" "
+fi
+
+AC_PROG_CC
+AC_PROG_CPP
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AC_PROG_MAKE_SET
+AC_PROG_AWK
+
+AC_CHECK_PROG(GDB,gdb,yes,no)
+AC_PATH_PROG(BGROUPS,groups,no,$PATH:/bin:/usr/bin:/usr/local/bin)
+AC_PATH_PROG(ID,id,no,$PATH:/bin:/usr/bin:/usr/local/bin)
+AC_SUBST(ID)
+AC_SUBST(BGROUPS)
+
+dnl =================================================================
+dnl debug, gcc and gdb support
+dnl =================================================================
+
+AC_ARG_WITH(debug,
+        [  --with-debug            Enable debug mode],
+        [
+                if test "x$withval" != "xno" ; then
+                    if test $ac_cv_prog_cc_g = yes; then
+                      if test "$GCC" = yes; then
+                        if test "$GDB"; then
+                          CFLAGS="$CFLAGS -ggdb"
+                        else
+                          CFLAGS="$CFLAGS -g"
+                        fi
+                        CFLAGS="$CFLAGS -Wshadow  -Wconversion"
+                      else
+                        CFLAGS="$CFLAGS -g"
+                      fi
+                   fi
+                fi
+        ],
+        [
+            if test "X$CFLAGS" = "X "; then # if CFLAGS were unset (see above)
+              if test "$GCC" = yes; then
+                CFLAGS="-O2"
+              fi
+            fi
+        ]
+)
+
+dnl =================================================================
+dnl Check for user and group validity
+dnl =================================================================
+
+
+if test "$EMXOS2" = yes || test "$host_os" = haiku; then
+  echo "Skipping user and group validity stuff.";
+
+else
+
+  $ID privoxy >/dev/null 2>/dev/null
+  if test $? -ne 0 ; then
+   AC_MSG_WARN(There is no user 'privoxy' on this system)
+  fi
+  AC_MSG_CHECKING([for user])
+  AC_ARG_WITH(user,
+        [  --with-user=privoxy          Set user under which privoxy will run],
+        [
+                if test "x$withval" != "xyes"; then
+                  if test $ID = no ; then
+                    AC_MSG_ERROR(There is no 'id' program on this system)
+                  else
+                    AC_MSG_RESULT($with_user)
+                    $ID $with_user 2>/dev/null >/dev/null
+                    if test $? -eq 0 ; then
+                      USER=$with_user;
+                    else
+                      AC_MSG_ERROR(There is no user '$with_user' on this system)
+                    fi
+                  fi
+                  else
+                   AC_MSG_ERROR(We need a user if you give me this parameter)
+                fi
+        ],
+        [
+          if test $ID = no ; then
+            AC_MSG_ERROR(There is no 'id' programm on this system)
+          else
+            AC_MSG_RESULT(none specified)
+            USER=$with_user
+          fi
+        ]
+  )
+  AC_SUBST(USER)
+
+  AC_MSG_CHECKING([for group])
+  AC_ARG_WITH(group,
+        [  --with-group=privoxy         Set group for privoxy],
+        [
+                if test "x$withval" != "xyes"; then
+                  if test $BGROUPS = no ; then
+                    AC_MSG_ERROR(There is no 'groups' program on this system)
+                  else
+                    AC_MSG_RESULT($with_group)
+                    $BGROUPS $USER >/dev/null
+                    if test $? -eq 0 ; then
+                      for i in `$BGROUPS $USER | sed 's/.*: //' 2>/dev/null`; do
+                        if test "x$i" = "x$with_group" ; then
+                          GROUP=$with_group
+                          break
+                        fi
+                      done
+                      if test "x$GROUP" != "x$with_group" ; then
+                        AC_MSG_ERROR(The given value '$withval' does not match group entry)
+                      fi
+                    else
+                      AC_MSG_ERROR(There is no group entry for user '$USER')
+                    fi
+                  fi
+                else
+                   AC_MSG_ERROR(We need a group if you give me this parameter)
+                fi
+        ],
+        [
+          if test $BGROUPS = no ; then
+            AC_MSG_ERROR(There is no 'groups' programm on this system)
+          else
+            AC_MSG_RESULT(none specified)
+            GROUP=$with_group;
+          fi
+        ]
+  )
+  AC_SUBST(GROUP)
+
+fi
+
+dnl =================================================================
+dnl additional gcc flags
+dnl =================================================================
+dnl
+if test "$GCC"; then
+  if test "$host" != "powerpc-unknown-amigaos"; then
+    CFLAGS="-pipe $CFLAGS"
+  fi
+fi
+
+
+dnl =================================================================
+dnl Build type
+dnl =================================================================
+dnl
+dnl Must do this first.
+dnl
+dnl Reason: This sets CFLAGS in order to switch the Cygwin compiler
+dnl into Cygwin or MinGW32 modes.  Depending on the mode selected,
+dnl the compiler will use completely different sets of library
+dnl and include files.
+dnl
+dnl =================================================================
+
+AC_MINGW32
+AC_CYGWIN
+
+if test "$MINGW32" = "yes"; then
+  target_type=mingw
+else
+  if test "$CYGWIN" = "yes"; then
+    target_type=cygwin
+  else
+    target_type=unix
+  fi
+fi
+
+if test $dodk = auto; then
+	dodk=no
+	if test $target_type = unix; then
+		case "$host_os" in
+		linux* | gnu* | *bsd*)
+			dodk=yes
+		;;
+		esac
+	fi
+fi
+
+dnl Decide what to do based on target_type
+dnl Note: PTHREAD_LIB is always set, even if pthread is disabled.
+dnl This is because we don't know yet whether pthread is enabled.
+
+AC_ARG_ENABLE(mingw32,
+[  --enable-mingw32                Use mingw32 for a Windows GUI],
+[if test $enableval = yes; then
+  target_type=mingw
+fi])
+
+if test $target_type = mingw; then
+  WIN_ONLY=
+  CFLAGS="$CFLAGS -DWINVER=0x501"
+  SPECIAL_CFLAGS="-mwindows"
+dnl from the cygwin FAQ: The regular setup allows you to use the -mwindows option
+dnl to include a set of the basic libraries user32, gdi32 and comdlg32.
+dnl (and also make your program a GUI program instead of a console program)
+  PTHREAD_LIB=-lpthread
+  echo "Using mingw32 (Win32 GUI)"
+else
+  WIN_ONLY=#
+  if test $target_type = cygwin; then
+    SPECIAL_CFLAGS="-mno-win32"
+    PTHREAD_LIB=
+    echo "Using Cygnus (Win32 command line)"
+  else
+    SPECIAL_CFLAGS=
+    PTHREAD_LIB=-lpthread
+  fi
+fi
+AC_SUBST(WIN_ONLY)
+
+if test $dodk != no; then
+	AC_CHECK_PROGS(W3M, w3m, false)
+	if test "$W3M" = false; then
+		AC_MSG_WARN(You need w3m to build text documentation.)
+	fi
+	if test $DB2HTML = false; then
+		dnl We need to clean the variable, otherwise AC_CHECK_PROGS
+		dnl will fail
+		DB2HTML=""
+		AC_CHECK_PROGS(DB2HTML,db2html docbook2html,false)
+	fi
+fi
+AC_SUBST(W3M)
+AC_SUBST(DB2HTML)
+
+dnl If we use rpm, we need to check where %_topdir is
+AC_CHECK_PROGS(RPMBIN,rpm,false)
+if test $RPMBIN != false; then
+		RPM_BASE=`rpm --eval "%{_topdir}"`
+		if test "$RPM_BASE" = ""; then
+			RPM_BASE=/usr/src/redhat
+		fi
+fi
+AC_SUBST(RPM_BASE)
+
+dnl prefer openjade to jade
+dnl Check for jade, so we can build the documentation
+AC_CHECK_PROGS(JADEBIN,openjade jade,false)
+AC_SUBST(JADEBIN)
+
+dnl Prefer OpenSP to SP
+dnl   ref: https://lists.privoxy.org/pipermail/privoxy-devel/2018-November/000293.html
+AC_CHECK_PROGS(NSGMLS,onsgmls nsgmls,false)
+AC_SUBST(NSGMLS)
+
+dnl Check for man2html for docs.
+AC_CHECK_PROGS(MAN2HTML,man2html,false)
+AC_SUBST(MAN2HTML)
+
+dnl Set doc status flag for conditional content inclusions
+DOC_STATUS=p-not-stable
+if  test $CODE_STATUS = stable; then
+     DOC_STATUS="p-stable"
+fi
+AC_SUBST(DOC_STATUS)
+
+dnl Checking for the docbook.dsl stylesheet file
+dnl It is still not portable (directory slash)
+JADECAT=""
+if test $dodk = yes; then
+  if test $DKPREFIX = none; then
+    for i in /usr/share/sgml/docbook/dsssl-stylesheets \
+             /usr/share/sgml/docbkdsl /usr/share/sgml/docbook-dsssl \
+             /usr/local/share/sgml/docbook/dsssl/modular \
+             /usr/share/sgml/docbook/stylesheet/dsssl/modular/ \
+             ; do
+dnl  echo -n does not fly with /bin/sh.
+dnl      echo -n "checking for $i/html/docbook.dsl..."
+      AC_MSG_CHECKING([for $i])
+      if test -f $i/html/docbook.dsl; then
+        echo "yes"
+        DKPREFIX=$i
+        break
+      else
+        echo "no"
+      fi
+    done
+# where are the catalogs?
+    for i in /usr/share/sgml/CATALOG.docbk30 \
+             /usr/share/sgml/CATALOG.docbk31 \
+             /usr/share/sgml/CATALOG.docbk31 \
+             /usr/local/share/sgml/docbook/2.4.1/docbook.cat \
+             /usr/local/share/sgml/docbook/3.0/docbook.cat \
+             /usr/local/share/sgml/docbook/3.1/docbook.cat \
+             /usr/share/sgml/docbook/dtd/3.1/docbook.cat \
+             ; do
+dnl     echo -n "checking for $i..."
+      AC_MSG_CHECKING([for $i])
+      if test -f $i; then
+        echo "yes"
+        JADECAT="$JADECAT -c $i"
+      else
+        echo "no"
+      fi
+    done
+  fi
+fi
+AC_SUBST(JADECAT)
+AC_SUBST(DKPREFIX)
+
+AC_ARG_ENABLE(large-file-support,
+[  --enable-large-file-support     Define _LARGE_FILES and friends.
+                                  Required by some systems to support files larger then 2GB.],
+[if test $enableval = yes; then
+    CFLAGS="$CFLAGS -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES -D_LARGEFILE_SOURCE=1"
+fi])
+
+AC_ARG_ENABLE(static-linking,
+[  --enable-static-linking         Use static linking instead of dynamic linking (ie. LDFLAGS=-static)],
+[ if test $enableval = yes; then LDFLAGS="$LDFLAGS -static"; fi ])
+
+dnl Save old CFLAGS so we can restore them later, then add SPECIAL_CFLAGS
+old_CFLAGS_nospecial=$CFLAGS
+CFLAGS="$CFLAGS $SPECIAL_CFLAGS"
+
+# Hack to force AutoConf to use the CFLAGS we just set
+dnl Warning: This may break with a future version of Autoconf
+dnl          Tested with autoconf 2.13
+ac_cpp='$CPP $CPPFLAGS $SPECIAL_CFLAGS'
+ac_compile='${CC-cc} -c $CFLAGS $CPPFLAGS conftest.$ac_ext 1>&5'
+ac_link='${CC-cc} -o conftest${ac_exeext} $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS 1>&5'
+
+
+dnl =================================================================
+dnl Thread support
+dnl =================================================================
+
+AC_CHECK_HEADER(pthread.h, [have_pthread=yes], [have_pthread=no])
+
+AC_ARG_ENABLE(pthread,
+[  --disable-pthread               Don't use POSIX threads (pthreads)],
+[if test $enableval = no; then
+  # Disable pthreads
+  if test $have_pthread = yes; then
+     AC_MSG_WARN([pthreads seem to be available but you are using --disable-pthread.])
+     AC_MSG_WARN([This is almost always a mistake and can render Privoxy unacceptable slow.])
+  fi
+  have_pthread=no
+fi])
+
+if test $have_pthread = yes; then
+  PTHREAD_ONLY=
+  AC_DEFINE(FEATURE_PTHREAD)
+  echo Using POSIX threads
+  if test "$GCC" = "yes"; then
+    # Set a GCC specific switch:
+    if test "$target_type" = "unix"; then
+      ac_jgf_save_CFLAGS=$CFLAGS
+      CFLAGS="$CFLAGS -pthread"
+      AC_TRY_LINK([#include <pthread.h>],
+        [void *p = pthread_create;],
+        [
+          # This compiler switch makes GCC on Linux thread-safe
+          # However, it's not supported on most other OS.
+          PTHREAD_LIB=
+          SPECIAL_CFLAGS="-pthread"
+        ])
+      CFLAGS=$ac_jgf_save_CFLAGS
+    fi
+  fi
+else
+  PTHREAD_ONLY=#
+  echo Using native threads
+fi
+
+AC_SUBST(PTHREAD_ONLY)
+
+dnl =================================================================
+dnl On most platforms select() does not support fd numbers above
+dnl FD_SETSIZE, as a result Privoxy can't handle more than
+dnl approximately FD_SETSIZE/2 client connections.
+dnl On some platforms the value can be changed at compile time,
+dnl on others it's hardcoded and requires recompilation of the OS.
+dnl Only relevant if select() is actually being used.
+dnl =================================================================
+AC_ARG_WITH(fdsetsize,
+ [  --with-fdsetsize=n  Optimistically redefine FD_SETSIZE with the intend to change the number of connections Privoxy can handle. Dangerous if the platform doesn't support this. Pointless if Privoxy can use poll() instead of select().],
+ [
+   if test "x$withval" != "xyes"; then
+     AC_DEFINE_UNQUOTED(FD_SETSIZE,$with_fdsetsize,[Relevant for select(). Not honoured by all OS.])
+     echo "Redefining FD_SETSIZE to $with_fdsetsize."
+     AC_MSG_WARN(On platforms that don't support FD_SETSIZE redefinition it may cause memory corruption.)
+   else
+     AC_MSG_ERROR(--with-fdsetsize used without value)
+   fi
+   ]
+)
+
+dnl =================================================================
+dnl Support for thread-safe versions of gethostbyaddr, gethostbyname,
+dnl gmtime and localtime
+dnl =================================================================
+
+dnl Next line needed to find the gethost*_r functions on Solaris
+AC_CHECK_LIB(nsl, gethostbyname)
+
+AC_CHECK_FUNC(gethostbyaddr_r, [
+  AC_MSG_CHECKING([signature of gethostbyaddr_r])
+  AC_TRY_COMPILE([
+#   include <netdb.h>
+  ], [
+    struct hostent *h, *hp;
+    char *a, *b;
+    int l, bl, t, e;
+    (void) gethostbyaddr_r(a, l, t, h, b, bl, &hp, &e)
+  ], [
+    AC_DEFINE(HAVE_GETHOSTBYADDR_R_8_ARGS)
+    AC_MSG_RESULT([8 args])
+  ], [
+    AC_TRY_COMPILE([
+#     include <netdb.h>
+    ], [
+      struct hostent *h;
+      char *a, *b;
+      int l, bl, t, e;
+      (void) gethostbyaddr_r(a, l, t, h, b, bl, &e)
+    ], [
+      AC_DEFINE(HAVE_GETHOSTBYADDR_R_7_ARGS)
+      AC_MSG_RESULT([7 args])
+    ], [
+      AC_TRY_COMPILE([
+#       include <netdb.h>
+      ], [
+        struct hostent_data *d;
+        struct hostent *h;
+        char a,
+        int l, t;
+        (void) gethostbyaddr_r(a, l, t, h, d)
+      ], [
+        AC_DEFINE(HAVE_GETHOSTBYADDR_R_5_ARGS)
+        AC_MSG_RESULT([5 args])
+      ], [
+        AC_MSG_RESULT(unrecognised)
+      ])
+    ])
+  ])
+], [
+  AC_MSG_RESULT(no)
+])
+
+AC_CHECK_FUNC(gethostbyname_r, [
+  AC_MSG_CHECKING([signature of gethostbyname_r])
+  AC_TRY_COMPILE([
+#   include <netdb.h>
+  ], [
+    struct hostent *h, *r;
+    char *n, *b;
+    int bl, e;
+    (void) gethostbyname_r(n, h, b, bl, &r, &e)
+  ], [
+    AC_DEFINE(HAVE_GETHOSTBYNAME_R_6_ARGS)
+    AC_MSG_RESULT([6 args])
+  ], [
+    AC_TRY_COMPILE([
+#     include <netdb.h>
+    ], [
+      struct hostent *h;
+      char *n, *b;
+      int bl, e;
+      (void) gethostbyname_r(n, h, b, bl, &e)
+    ], [
+      AC_DEFINE(HAVE_GETHOSTBYNAME_R_5_ARGS)
+      AC_MSG_RESULT([5 args])
+    ], [
+      AC_TRY_COMPILE([
+#       include <netdb.h>
+      ], [
+        struct hostent_data *d;
+        struct hostent *h;
+        char *n,
+        (void) gethostbyname_r(n, h, d)
+      ], [
+        AC_DEFINE(HAVE_GETHOSTBYNAME_R_3_ARGS)
+        AC_MSG_RESULT([3 args])
+      ], [
+        AC_MSG_RESULT(unrecognised)
+      ])
+    ])
+  ])
+], [
+  AC_MSG_RESULT(no)
+])
+
+AC_CHECK_FUNC(gmtime_r, [
+  AC_MSG_CHECKING([signature of gmtime_r])
+  AC_TRY_COMPILE([
+#   include <time.h>
+  ], [
+    struct time *t;
+    struct tm *tm;
+    (void) gmtime_r(t, tm)
+  ], [
+    AC_MSG_RESULT(ok)
+    AC_DEFINE(HAVE_GMTIME_R)
+  ], [
+    AC_MSG_RESULT(unrecognised)
+  ])
+], [
+  AC_MSG_RESULT(no)
+])
+
+AC_CHECK_FUNC(localtime_r, [
+  AC_MSG_CHECKING([signature of localtime_r])
+  AC_TRY_COMPILE([
+#   include <time.h>
+  ], [
+    struct time *t;
+    struct tm *tm;
+    (void) localtime_r(t, tm)
+  ], [
+    AC_MSG_RESULT(ok)
+    AC_DEFINE(HAVE_LOCALTIME_R)
+  ], [
+    AC_MSG_RESULT(unrecognised)
+  ])
+], [
+  AC_MSG_RESULT(no)
+])
+
+dnl =================================================================
+dnl Solaris specific
+dnl FIXME: Not tested on Solaris yet...
+dnl ISFIXED: Have tested it on Solaris, but there are other ways to
+dnl 	make these checks generic, e.g.:
+dnl AC_CHECK_FUNC(getsockopt, , AC_CHECK_LIB(socket, getsockopt))
+dnl	(Moritz Barsnick <moritz@barsnick.net>)
+dnl =================================================================
+
+
+SOCKET_LIB=
+
+case "$host" in
+*-solaris*) SOCKET_LIB="-lsocket -lnsl"
+            AC_DEFINE(__EXTENSIONS__)
+            if test "$GCC" = "yes"; then
+              # Set a GCC specific switch:
+              # This compiler switch makes Solaris thread-safe
+              PTHREAD_LIB=
+              SPECIAL_CFLAGS="-pthreads"
+            else
+              # What do we do without GCC? Guess this:
+              SPECIAL_CFLAGS="-D_REENTRANT"
+            fi
+;;
+esac
+
+AC_SUBST(SOCKET_LIB)
+
+dnl =================================================================
+dnl Solaris problem, and others perhaps (socklen_t is undefined)
+dnl =================================================================
+
+if test $target_type != mingw; then
+# i686-w64-mingw32-gcc gets socklen_t define from ws2tcpip.h
+
+AC_MSG_CHECKING([for socklen_t])
+AC_EGREP_HEADER(socklen_t, sys/socket.h, AC_MSG_RESULT([yes]),
+	AC_MSG_RESULT([no])
+	AC_DEFINE(socklen_t,int,
+		[ Define to 'int' if <sys/socket.h> doesn't have it. ]))
+
+fi
+
+dnl =================================================================
+dnl OS/2 specific
+dnl =================================================================
+
+case "$host" in
+*-os2-emx*) SOCKET_LIB=-lsocket
+;;
+esac
+
+AC_SUBST(SOCKET_LIB)
+
+dnl =================================================================
+dnl Mac OSX specific
+dnl =================================================================
+
+case "$host" in
+*-apple-darwin*) SPECIAL_CFLAGS="-Dunix"
+;;
+esac
+
+dnl =================================================================
+dnl OpenBSD specific
+dnl =================================================================
+
+case "$host" in
+*-openbsd*) SPECIAL_CFLAGS="$SPECIAL_CFLAGS -Dunix"
+;;
+esac
+
+dnl =================================================================
+dnl Haiku specific
+dnl =================================================================
+
+if test "$host_os" = haiku; then
+  # Omit the "-pthread" flag to gcc, even when building with gcc 2.95
+  SPECIAL_CFLAGS=
+
+  # Haiku's pthreads implementation exists in its system library,
+  # libroot, not in a separate pthreads library
+  PTHREAD_LIB=
+
+  # Networking code exists in libnetwork
+  SOCKET_LIB=-lnetwork
+
+  # Search Haiku's common-library folder to find its pcre and
+  # pcreposix libraries
+  LIBS="-L/boot/common/lib $LIBS"
+fi
+
+dnl =================================================================
+dnl Check for standard compiler stuff
+dnl =================================================================
+
+AC_EXEEXT
+AC_OBJEXT
+AC_HEADER_STDC
+AC_HEADER_DIRENT
+AC_C_CONST
+AC_TYPE_SIZE_T
+AC_TYPE_PID_T
+AC_HEADER_TIME
+AC_STRUCT_TM
+AC_CHECK_SIZEOF(int, 4)
+AC_CHECK_SIZEOF(char *, 4)
+AC_CHECK_SIZEOF(long, 4)
+AC_CHECK_SIZEOF(long long, 8)
+AC_CHECK_SIZEOF(size_t, 4)
+AC_CHECK_SIZEOF(time_t, 8)
+
+dnl Checks for header files.
+AC_CHECK_HEADERS([ \
+ OS.h \
+ arpa/inet.h \
+ errno.h \
+ fcntl.h \
+ limits.h \
+ locale.h \
+ netdb.h \
+ netinet/in.h \
+ stddef.h \
+ stdlib.h \
+ string.h \
+ sys/ioctl.h \
+ sys/socket.h \
+ sys/time.h \
+ sys/timeb.h \
+ sys/wait.h \
+ unistd.h \
+])
+
+dnl Checks for library functions.
+dnl bcopy is for PCRE
+AC_CHECK_FUNCS([bcopy])
+AC_PROG_GCC_TRADITIONAL
+AC_TYPE_SIGNAL
+AC_CHECK_FUNCS([ \
+ access \
+ arc4random \
+ atexit \
+ calloc \
+ getcwd \
+ gethostbyaddr \
+ gethostbyaddr_r \
+ gethostbyname \
+ gethostbyname_r \
+ gettimeofday \
+ inet_ntoa \
+ memchr \
+ memmove \
+ memset \
+ nanosleep \
+ poll \
+ putenv \
+ random \
+ regcomp \
+ select \
+ setlocale \
+ shutdown \
+ snprintf \
+ socket \
+ strchr \
+ strdup \
+ strerror \
+ strftime \
+ strlcat \
+ strlcpy \
+ strptime \
+ strtoul \
+ timegm \
+ tzset \
+])
+
+dnl Checks for RFC 2553 resolver and socket functions
+AC_ARG_ENABLE(ipv6-support,
+[  --disable-ipv6-support          Disable IPv6 support and other RFC-2554-related improvements],
+[if test $enableval = yes; then
+  enable_ipv6_support=yes
+fi], enable_ipv6_support=yes)
+
+if test $enable_ipv6_support != yes; then
+  AC_MSG_WARN([Skipping checks for IPv6 support and other RFC-2554-related improvements.
+    Due to lock contention, this may result in slower DNS resolution for IPv4 setups, too.])
+elif test $target_type = mingw; then
+  AC_CHECK_LIB(ws2_32, main)
+
+  AC_MSG_CHECKING(getaddrinfo in ws2_32)
+  AC_TRY_LINK(
+    [
+      #include<winsock2.h>
+      #include<windows.h>
+      #include<ws2tcpip.h>
+    ],
+    [getaddrinfo(0,0,0,0)],
+    have_ws2_32_getaddrinfo=yes
+  )
+  AC_MSG_RESULT($have_ws2_32_getaddrinfo)
+
+  AC_MSG_CHECKING(getnameinfo in ws2_32)
+  AC_TRY_LINK(
+    [
+      #include<winsock2.h>
+      #include<windows.h>
+      #include<ws2tcpip.h>
+    ],
+    [getnameinfo(0,0,0,0,0,0,0)],
+    have_ws2_32_getnameinfo=yes
+  )
+  AC_MSG_RESULT($have_ws2_32_getnameinfo)
+
+  if test $have_ws2_32_getaddrinfo ; then
+    if test $have_ws2_32_getnameinfo ; then
+      AC_DEFINE([HAVE_RFC2553], [1],
+        [Define if RFC 2553 resolver functions like getaddrinfo(3) and
+         getnameinfo(3) present])
+    fi
+  fi
+else
+  AC_CHECK_FUNC([getaddrinfo],
+     [AC_CHECK_FUNC([getnameinfo],
+        [AC_DEFINE([HAVE_RFC2553], [1],
+           [Define if RFC 2553 resolver functions like getaddrinfo(3) and
+            getnameinfo(3) present])
+        ])
+  ])
+fi
+
+dnl =================================================================
+dnl Checks for libraries.
+dnl =================================================================
+dnl Note: Some systems may have the library but not the system header
+dnl       file, so we must check for both.
+dnl       Also check for correct version
+AC_CHECK_LIB(pcre, pcre_compile, [
+   AC_CHECK_HEADER(pcre.h, [
+      AC_EGREP_HEADER(pcre_fullinfo, pcre.h, [have_pcre=yes], [AC_MSG_WARN([[pcre old version installed]]); have_pcre=no])
+   ], [
+      AC_CHECK_HEADER(pcre/pcre.h, [
+         AC_EGREP_HEADER(pcre_fullinfo, pcre/pcre.h, [have_pcre=yes]; [AC_DEFINE(PCRE_H_IN_SUBDIR)], [AC_MSG_WARN([[pcre old version installed]]); have_pcre=no])
+      ], [have_pcre=no])
+   ])
+], [have_pcre=no])
+
+AC_CHECK_LIB(pcreposix, regcomp, [
+   AC_CHECK_HEADER(pcreposix.h, [
+      AC_EGREP_HEADER(pcreposix_regerror, pcreposix.h, [AC_MSG_WARN([[pcreposix old version installed]]); have_pcreposix=no], [have_pcreposix=yes])
+   ], [
+      AC_CHECK_HEADER(pcre/pcreposix.h, [
+         AC_EGREP_HEADER(pcreposix_regerror, pcre/pcreposix.h, [AC_MSG_WARN([[pcreposix old version installed]]); have_pcreposix=no], [have_pcreposix=yes]; [AC_DEFINE(PCREPOSIX_H_IN_SUBDIR)])
+      ], [have_pcreposix=no])
+   ])
+], [have_pcreposix=no], -lpcre)
+
+dnl ================================================================
+dnl libpcrs is temporarily disabled.
+dnl
+dnl Privoxy's own pcrs version fixes some problems that
+dnl are present in libpcrs 0.3, the last pcrs release we
+dnl know of, and as libpcrs seems to be currently unmaintained
+dnl we can't send these fixes upstream.
+dnl ================================================================
+dnl
+dnl AC_CHECK_LIB(pcrs, pcrs_compile, [AC_CHECK_HEADER(pcrs.h, [have_pcrs=yes], [have_pcrs=no])], [have_pcrs=no], -lpcre)
+
+dnl =================================================================
+dnl Always defined
+dnl =================================================================
+
+AC_DEFINE(__MT__)
+
+dnl =================================================================
+dnl Features
+dnl =================================================================
+
+AC_ARG_ENABLE(toggle,
+[  --disable-toggle                Don't support temporary disable],
+[if test $enableval = yes; then
+  AC_DEFINE(FEATURE_TOGGLE)
+fi],AC_DEFINE(FEATURE_TOGGLE))
+
+AC_ARG_ENABLE(force,
+[  --disable-force                 Don't allow single-page disable],
+[if test $enableval = yes; then
+  AC_DEFINE(FEATURE_FORCE_LOAD)
+fi],AC_DEFINE(FEATURE_FORCE_LOAD))
+
+AC_ARG_ENABLE(fast-redirects,
+[  --disable-fast-redirects        Don't support fast redirects],
+[if test $enableval = yes; then
+  AC_DEFINE(FEATURE_FAST_REDIRECTS)
+fi], AC_DEFINE(FEATURE_FAST_REDIRECTS))
+
+AC_ARG_ENABLE(stats,
+[  --disable-stats                 Don't keep statistics],
+[if test $enableval = yes; then
+  AC_DEFINE(FEATURE_STATISTICS)
+fi],AC_DEFINE(FEATURE_STATISTICS))
+
+AC_ARG_ENABLE(image-blocking,
+[  --disable-image-blocking        Don't try to figure out whether a request is
+                                  for an image or HTML - assume HTML.],
+[if test $enableval = yes; then
+  AC_DEFINE(FEATURE_IMAGE_BLOCKING)
+fi],
+AC_DEFINE(FEATURE_IMAGE_BLOCKING))
+
+AC_ARG_ENABLE(acl-support,
+[  --disable-acl-support           Prevents the use of ACLs to control access to
+                                  Privoxy by IP address.],
+[if test $enableval = yes; then
+  AC_DEFINE(FEATURE_ACL)
+fi],
+AC_DEFINE(FEATURE_ACL))
+
+AC_ARG_ENABLE(trust-files,
+[  --disable-trust-files           Prevents the use of trust files.],
+[if test $enableval = yes; then
+  AC_DEFINE(FEATURE_TRUST)
+fi],
+AC_DEFINE(FEATURE_TRUST))
+
+AC_ARG_ENABLE(editor,
+[  --disable-editor                Prevents the use of the web-based actions file
+                                  editor and web-based temporary disable setting.],
+[if test $enableval = yes; then
+  AC_DEFINE(FEATURE_CGI_EDIT_ACTIONS)
+fi],
+AC_DEFINE(FEATURE_CGI_EDIT_ACTIONS))
+
+AC_ARG_ENABLE(no-gifs,
+[  --enable-no-gifs                Use politically correct PNG format instead of GIF
+                                  for built-in images. May not work with all browsers.],
+[if test $enableval = yes; then
+  AC_DEFINE(FEATURE_NO_GIFS)
+fi])
+
+AC_ARG_ENABLE(graceful-termination,
+[  --enable-graceful-termination   Allow to shutdown Privoxy through the webinterface.],
+[if test $enableval = yes; then
+  AC_DEFINE(FEATURE_GRACEFUL_TERMINATION)
+fi])
+
+AC_ARG_ENABLE(extended-host-patterns,
+[  --enable-extended-host-patterns Enable and require PCRE syntax in host patterns. This feature hasn't
+                                  been announced yet and it's not clear if it's a good idea. It's expected
+                                  to work, but undocumented. You should only enable it if you know what
+                                  PCRE is and are sure that you need it for your host patterns. You can
+                                  use tools/url-pattern-translator.pl to convert existing action files to
+                                  use PCRE host patterns. Please don't enable this option when creating
+                                  packages for others that may not be expecting it.],
+[if test $enableval = yes; then
+  AC_DEFINE(FEATURE_EXTENDED_HOST_PATTERNS)
+fi])
+
+AC_ARG_ENABLE(external-filters,
+[  --enable-external-filters       Allow to filter content with scripts and programs. Experimental.],
+[if test $enableval = yes; then
+  AC_DEFINE(FEATURE_EXTERNAL_FILTERS,1,[Define to 1 to allow to filter content with scripts and programs.])
+fi])
+
+AC_ARG_ENABLE(accept-filter,
+[  --enable-accept-filter          Try to use accf_http(9) if supported.],
+[if test $enableval = yes; then
+  AC_DEFINE(FEATURE_ACCEPT_FILTER)
+fi])
+
+AC_ARG_ENABLE(strptime-sanity-checks,
+[  --enable-strptime-sanity-checks Only trust strptime() results if an additional strftime()/strptime()
+                                  conversion doesn't change the result. Can be useful if strptime() is
+                                  known or suspected to be broken.],
+[if test $enableval = yes; then
+  AC_DEFINE(FEATURE_STRPTIME_SANITY_CHECKS)
+fi])
+
+AC_ARG_ENABLE(client-tags,
+[  --disable-client-tags           Disable support for client-specific tags],
+[ if test $enableval = "no"; then have_client_tags=no; fi ])
+if test "${have_client_tags}" = "no"; then
+  echo "Disabling support for client-specific tags."
+  FEATURE_CLIENT_TAGS_ONLY="#"
+else
+  echo "Enabling support for client-specific tags."
+  AC_DEFINE(FEATURE_CLIENT_TAGS,1,[Define to enable support for client-specific tags.])
+  FEATURE_CLIENT_TAGS_ONLY=""
+fi
+AC_SUBST(FEATURE_CLIENT_TAGS_ONLY)
+
+FUZZ_ONLY="#"
+AC_ARG_ENABLE(fuzz,
+[  --enable-fuzz                Enable code that makes fuzzing more convenient],
+[if test $enableval = yes; then
+  FUZZ_ONLY=""
+  AC_DEFINE(FUZZ,1,[Define to make fuzzing more convenient.])
+fi])
+AC_SUBST(FUZZ_ONLY)
+
+dnl pcre/pcrs is needed for CGI anyway, so
+dnl the choice is only between static and
+dnl dynamic:
+
+AC_ARG_ENABLE(dynamic-pcre,
+[  --disable-dynamic-pcre          Use the built-in, static pcre, even if libpcre is available],
+[ if test $enableval = "no"; then have_pcre=no; fi ])
+
+dnl =================================================
+dnl libpcrs is temporarily disabled,
+dnl see comment above for the reason.
+dnl =================================================
+dnl AC_ARG_ENABLE(dynamic-pcrs,
+dnl [  --disable-dynamic-pcrs          Use the built-in, static pcrs, even if libpcrs is available],
+dnl [ if test $enableval = "no"; then have_pcrs=no; fi ])
+
+
+dnl ====================================================
+dnl This check is incomplete. For mingw32 zlib is found
+dnl by configure, but not necessarily by the compiler.
+dnl ====================================================
+AC_ARG_ENABLE(zlib,
+[  --disable-zlib                  Don't use zlib to decompress data before filtering.],
+[enableval2=$enableval],
+[enableval2=yes])
+if test $enableval2 = yes; then
+  AC_CHECK_LIB(z, zlibVersion, [have_zlib="yes"], [have_zlib="no"])
+  if test $have_zlib = "yes"; then
+    LIBS="$LIBS -lz"
+    AC_DEFINE(FEATURE_ZLIB,1,[Define to 1 to use zlib to decompress data before filtering.])
+  else
+   AC_MSG_WARN([No zlib found.
+   Privoxy will not be able to filter compressed content.
+   This may become a fatal error in the future.])
+  fi
+fi
+
+AC_ARG_ENABLE(compression,
+[  --enable-compression            Allow Privoxy to compress buffered content if the client supports it. Requires zlib support.],
+[enableval2=$enableval],
+[enableval2=no])
+if test $enableval2 = yes; then
+  if test $have_zlib = "yes"; then
+    echo Enabling compression support.
+    AC_DEFINE(FEATURE_COMPRESSION,1,[Define to 1 to use compression through the zlib library.])
+  else
+   AC_MSG_WARN([No zlib found. Privoxy will not be able to (re-)compressed buffered content.])
+  fi
+fi
+
+
+# If we have libpcre and either we also have pcreposix or
+# we don't need pcreposix, then link pcre dynamically; else
+# build it and link statically
+#
+if test $have_pcre = "yes"; then
+  echo "using libpcre"
+  pcre_dyn=yes
+  AC_DEFINE(FEATURE_DYNAMIC_PCRE,1,[Define to dynamically link to pcre.])
+  STATIC_PCRE_ONLY=#
+  LIBS="$LIBS -lpcre -lpcreposix"
+else
+  AC_MSG_WARN([You are using the static PCRE code which is out of date and scheduled for removal, for details see:
+    http://sourceforge.net/mailarchive/forum.php?thread_name=20080511195555.2dc6cfdc%40fabiankeil.de&forum_name=ijbswa-developers])
+  pcre_dyn=no
+  # STATIC_PCRE is a name pcre needs to statically link on Windows.
+  # Privoxy itself no longer uses it.
+  AC_DEFINE(STATIC_PCRE,1,[Define to statically link to internal outdated pcre on Windows.])
+  STATIC_PCRE_ONLY=
+fi
+
+AC_DEFINE(FEATURE_CONNECTION_KEEP_ALIVE)
+
+if test $have_pthread = "yes" -o $target_type = "mingw"; then
+  echo Enabling connection-sharing support.
+  AC_DEFINE(FEATURE_CONNECTION_SHARING)
+fi
+
+dnl =================================================
+dnl libpcrs is temporarily disabled,
+dnl see comment above for the reason.
+dnl =================================================
+dnl # If we have libpcrs and pcre is linked dynamically
+dnl # then also link pcrs dynamically, else build and link
+dnl # pcrs statically
+dnl
+dnl if test $have_pcrs = "yes" -a $pcre_dyn = "yes"; then
+dnl  echo "using libpcrs"
+dnl  STATIC_PCRS_ONLY=#
+dnl  LIBS="$LIBS -lpcrs"
+dnl else
+dnl  echo "using built-in static pcrs"
+  AC_DEFINE(STATIC_PCRS)
+  STATIC_PCRS_ONLY=
+dnl fi
+
+AC_SUBST(STATIC_PCRE_ONLY)
+AC_SUBST(STATIC_PCRS_ONLY)
+
+dnl =================================================================
+dnl Final cleanup and output
+dnl =================================================================
+
+dnl Remove the SPECIAL_CFLAGS stuff from CFLAGS, and add it separately
+dnl in the Makefile
+CFLAGS=$old_CFLAGS_nospecial
+AC_SUBST(SPECIAL_CFLAGS)
+
+AC_SUBST(PTHREAD_LIB)
+
+AC_OUTPUT(GNUmakefile doc/source/ldp.dsl)

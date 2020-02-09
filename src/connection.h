@@ -23,7 +23,9 @@
 #include <QHostInfo>
 #include <QHostAddress>
 #include <memory>
+#include "privoxythread.h"
 #include "servicethread.h"
+#include "systemproxyhelper.h"
 #include "tqprofile.h"
 
 class Connection : public QObject
@@ -58,6 +60,7 @@ public slots:
     void onStartFailed();
 
 private:
+    PrivoxyThread *privoxy;
     ServiceThread *service;
     TQProfile profile;
     bool running;

@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Privoxy Developer Manual</title>
+  <meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.79">
+  <link rel="NEXT" title="Introduction" href="introduction.html">
+  <link rel="STYLESHEET" type="text/css" href="../p_doc.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+<body class="ARTICLE" bgcolor="#EEEEEE" text="#000000" link="#0000FF" vlink="#840084" alink="#0000FF">
+  <div class="ARTICLE">
+    <div class="TITLEPAGE">
+      <h1 class="TITLE"><a name="AEN2" id="AEN2">Privoxy Developer Manual</a></h1>
+      <p class="PUBDATE"><sub><a href="https://www.privoxy.org/user-manual/copyright.html" target="_top">Copyright</a>
+      &copy; 2001-2018 by <a href="https://www.privoxy.org/" target="_top">Privoxy Developers</a></sub><br></p>
+      <div>
+        <div class="ABSTRACT">
+          <a name="AEN8" id="AEN8"></a>
+          <p>The developer manual provides guidance on coding, testing, packaging, documentation and other issues of
+          importance to those involved with <span class="APPLICATION">Privoxy</span> development. It is mandatory (and
+          helpful!) reading for anyone who wants to join the team. Note that it's currently out of date and may not be
+          entirely correct. As always, patches are welcome.</p>
+          <p>Please note that this document is constantly evolving. This copy represents the state at the release of
+          version 3.0.28. You can find the latest version of the this manual at <a href=
+          "https://www.privoxy.org/developer-manual/" target="_top">https://www.privoxy.org/developer-manual/</a>.
+          Please have a look at the <a href="https://www.privoxy.org/user-manual/contact.html" target="_top">contact
+          section in the user manual</a> if you are interested in contacting the developers.</p>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <div class="TOC">
+      <dl>
+        <dt><b>Table of Contents</b></dt>
+        <dt>1. <a href="introduction.html">Introduction</a></dt>
+        <dd>
+          <dl>
+            <dt>1.1. <a href="introduction.html#QUICKSTART">Quickstart to Privoxy Development</a></dt>
+          </dl>
+        </dd>
+        <dt>2. <a href="git.html">The Git Repository</a></dt>
+        <dd>
+          <dl>
+            <dt>2.1. <a href="git.html#GITACCESS">Access to Git</a></dt>
+            <dt>2.2. <a href="git.html#GITBRANCHES">Branches</a></dt>
+            <dt>2.3. <a href="git.html#GITCOMMIT">Git Commit Guidelines</a></dt>
+          </dl>
+        </dd>
+        <dt>3. <a href="documentation.html">Documentation Guidelines</a></dt>
+        <dd>
+          <dl>
+            <dt>3.1. <a href="documentation.html#SGML">Quickstart to Docbook and SGML</a></dt>
+            <dt>3.2. <a href="documentation.html#DOCSTYLE"><span class="APPLICATION">Privoxy</span> Documentation
+            Style</a></dt>
+            <dt>3.3. <a href="documentation.html#AEN203">Privoxy Custom Entities</a></dt>
+          </dl>
+        </dd>
+        <dt>4. <a href="coding.html">Coding Guidelines</a></dt>
+        <dd>
+          <dl>
+            <dt>4.1. <a href="coding.html#S1">Introduction</a></dt>
+            <dt>4.2. <a href="coding.html#S2">Using Comments</a></dt>
+            <dd>
+              <dl>
+                <dt>4.2.1. <a href="coding.html#S3">Comment, Comment, Comment</a></dt>
+                <dt>4.2.2. <a href="coding.html#S4">Use blocks for comments</a></dt>
+                <dt>4.2.3. <a href="coding.html#S5">Keep Comments on their own line</a></dt>
+                <dt>4.2.4. <a href="coding.html#S6">Comment each logical step</a></dt>
+                <dt>4.2.5. <a href="coding.html#S7">Comment All Functions Thoroughly</a></dt>
+                <dt>4.2.6. <a href="coding.html#S8">Comment at the end of braces if the content is more than one screen
+                length</a></dt>
+              </dl>
+            </dd>
+            <dt>4.3. <a href="coding.html#S9">Naming Conventions</a></dt>
+            <dd>
+              <dl>
+                <dt>4.3.1. <a href="coding.html#S10">Variable Names</a></dt>
+                <dt>4.3.2. <a href="coding.html#S11">Function Names</a></dt>
+                <dt>4.3.3. <a href="coding.html#S12">Header file prototypes</a></dt>
+                <dt>4.3.4. <a href="coding.html#S13">Enumerations, and #defines</a></dt>
+                <dt>4.3.5. <a href="coding.html#S14">Constants</a></dt>
+              </dl>
+            </dd>
+            <dt>4.4. <a href="coding.html#S15">Using Space</a></dt>
+            <dd>
+              <dl>
+                <dt>4.4.1. <a href="coding.html#S16">Put braces on a line by themselves.</a></dt>
+                <dt>4.4.2. <a href="coding.html#S17">ALL control statements should have a block</a></dt>
+                <dt>4.4.3. <a href="coding.html#S18">Do not belabor/blow-up boolean expressions</a></dt>
+                <dt>4.4.4. <a href="coding.html#S19">Use white space freely because it is free</a></dt>
+                <dt>4.4.5. <a href="coding.html#S20">Don't use white space around structure operators</a></dt>
+                <dt>4.4.6. <a href="coding.html#S21">Make the last brace of a function stand out</a></dt>
+                <dt>4.4.7. <a href="coding.html#S22">Use 3 character indentions</a></dt>
+              </dl>
+            </dd>
+            <dt>4.5. <a href="coding.html#S23">Initializing</a></dt>
+            <dd>
+              <dl>
+                <dt>4.5.1. <a href="coding.html#S24">Initialize all variables</a></dt>
+              </dl>
+            </dd>
+            <dt>4.6. <a href="coding.html#S25">Functions</a></dt>
+            <dd>
+              <dl>
+                <dt>4.6.1. <a href="coding.html#S26">Name functions that return a boolean as a question.</a></dt>
+                <dt>4.6.2. <a href="coding.html#S27">Always specify a return type for a function.</a></dt>
+                <dt>4.6.3. <a href="coding.html#S28">Minimize function calls when iterating by using variables</a></dt>
+                <dt>4.6.4. <a href="coding.html#S29">Pass and Return by Const Reference</a></dt>
+                <dt>4.6.5. <a href="coding.html#S30">Pass and Return by Value</a></dt>
+                <dt>4.6.6. <a href="coding.html#S31">Names of include files</a></dt>
+                <dt>4.6.7. <a href="coding.html#S32">Provide multiple inclusion protection</a></dt>
+                <dt>4.6.8. <a href="coding.html#S33">Use `extern "C"` when appropriate</a></dt>
+                <dt>4.6.9. <a href="coding.html#S34">Where Possible, Use Forward Struct Declaration Instead of
+                Includes</a></dt>
+              </dl>
+            </dd>
+            <dt>4.7. <a href="coding.html#S35">General Coding Practices</a></dt>
+            <dd>
+              <dl>
+                <dt>4.7.1. <a href="coding.html#S36">Turn on warnings</a></dt>
+                <dt>4.7.2. <a href="coding.html#S37">Provide a default case for all switch statements</a></dt>
+                <dt>4.7.3. <a href="coding.html#S38">Try to avoid falling through cases in a switch statement.</a></dt>
+                <dt>4.7.4. <a href="coding.html#S40">Don't mix size_t and other types</a></dt>
+                <dt>4.7.5. <a href="coding.html#S41">Declare each variable and struct on its own line.</a></dt>
+                <dt>4.7.6. <a href="coding.html#S42">Use malloc/zalloc sparingly</a></dt>
+                <dt>4.7.7. <a href="coding.html#S43">The Programmer Who Uses 'malloc' is Responsible for Ensuring
+                'free'</a></dt>
+                <dt>4.7.8. <a href="coding.html#S44">Add loaders to the `file_list' structure and in order</a></dt>
+                <dt>4.7.9. <a href="coding.html#S45">"Uncertain" new code and/or changes to existing code, use
+                XXX</a></dt>
+              </dl>
+            </dd>
+            <dt>4.8. <a href="coding.html#S46">Addendum: Template for files and function comment blocks:</a></dt>
+          </dl>
+        </dd>
+        <dt>5. <a href="testing.html">Testing Guidelines</a></dt>
+        <dd>
+          <dl>
+            <dt>5.1. <a href="testing.html#TESTING-PLAN">Testplan for releases</a></dt>
+            <dt>5.2. <a href="testing.html#FUZZING">Fuzzing Privoxy</a></dt>
+          </dl>
+        </dd>
+        <dt>6. <a href="newrelease.html">Releasing a New Version</a></dt>
+        <dd>
+          <dl>
+            <dt>6.1. <a href="newrelease.html#VERSIONNUMBERS">Version numbers</a></dt>
+            <dt>6.2. <a href="newrelease.html#BEFORERELEASE">Before the Release</a></dt>
+            <dt>6.3. <a href="newrelease.html#THERELEASE">Building and Releasing the Packages</a></dt>
+            <dd>
+              <dl>
+                <dt>6.3.1. <a href="newrelease.html#PACK-GUIDELINES">Note on Privoxy Packaging</a></dt>
+                <dt>6.3.2. <a href="newrelease.html#NEWRELEASE-TARBALL">Source Tarball</a></dt>
+                <dt>6.3.3. <a href="newrelease.html#NEWRELEASE-RPM">SuSE, Conectiva or Red Hat RPM</a></dt>
+                <dt>6.3.4. <a href="newrelease.html#NEWRELEASE-OS2">OS/2</a></dt>
+                <dt>6.3.5. <a href="newrelease.html#NEWRELEASE-SOLARIS">Solaris</a></dt>
+                <dt>6.3.6. <a href="newrelease.html#NEWRELEASE-WINDOWS">Windows</a></dt>
+                <dt>6.3.7. <a href="newrelease.html#NEWRELEASE-DEBIAN">Debian</a></dt>
+                <dt>6.3.8. <a href="newrelease.html#NEWRELEASE-MACOSX">Mac OS X</a></dt>
+                <dt>6.3.9. <a href="newrelease.html#NEWRELEASE-FREEBSD">FreeBSD</a></dt>
+              </dl>
+            </dd>
+            <dt>6.4. <a href="newrelease.html#RELEASING">Uploading and Releasing Your Package</a></dt>
+            <dt>6.5. <a href="newrelease.html#AFTERRELEASE">After the Release</a></dt>
+          </dl>
+        </dd>
+        <dt>7. <a href="webserver-update.html">Update the Webserver</a></dt>
+      </dl>
+    </div>
+  </div>
+  <div class="NAVFOOTER">
+    <hr align="left" width="100%">
+    <table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="33%" align="left" valign="top">&nbsp;</td>
+        <td width="34%" align="center" valign="top">&nbsp;</td>
+        <td width="33%" align="right" valign="top"><a href="introduction.html" accesskey="N">Next</a></td>
+      </tr>
+      <tr>
+        <td width="33%" align="left" valign="top">&nbsp;</td>
+        <td width="34%" align="center" valign="top">&nbsp;</td>
+        <td width="33%" align="right" valign="top">Introduction</td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>

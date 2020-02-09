@@ -1,0 +1,54 @@
+##############################################################################
+#
+# File        :  $Source: /cvsroot/ijbswa/current/templates/edit-actions-list-url,v $
+#
+# Purpose     :  Template which forms part of edit-actions-list
+#
+#
+# Copyright   :  Written by and Copyright (C) 2001 members of the
+#                Privoxy team. https://www.privoxy.org/
+#
+#                Original Author: Copyright (C) 2001 Jonathan Foster
+#                http://www.jon-foster.co.uk/
+#
+#                This program is free software; you can redistribute it
+#                and/or modify it under the terms of the GNU General
+#                Public License as published by the Free Software
+#                Foundation; either version 2 of the License, or (at
+#                your option) any later version.
+#
+#                This program is distributed in the hope that it will
+#                be useful, but WITHOUT ANY WARRANTY; without even the
+#                implied warranty of MERCHANTABILITY or FITNESS FOR A
+#                PARTICULAR PURPOSE.  See the GNU General Public
+#                License for more details.
+#
+#                The GNU General Public License should be included with
+#                this file.  If not, you can view it at
+#                http://www.gnu.org/copyleft/gpl.html
+#                or write to the Free Software Foundation, Inc., 59
+#                Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#
+#############################################################################
+#
+# Available variables include:
+#
+# filename
+# ver
+# sectionid
+# urls
+#
+#############################################################################
+#
+# ** Important note: **
+#
+# It is *extremely* important to keep this file small.  That's why all the
+# identifiers in the HTML are short and cryptic.  Currently, the main
+# edit-actions page is ~300k.  Before it was optimized, it was ~550k.
+#
+#############################################################################
+<tr class="url" valign="top">
+<td class="indentbuttons"><a name="l@p@"
+href="ear?f=@f@&amp;v=@v@&amp;p=@p@" onclick="return rm_p(this, @p@,'@url@');">Remove</a>&nbsp;&nbsp;&nbsp;<a
+href="eau?f=@f@&amp;v=@v@&amp;p=@p@" onclick="return  e_p(this, @p@,'@url@');">Edit</a>&nbsp; @url-html@</td>
+</tr>

@@ -1,0 +1,311 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Privoxy Frequently Asked Questions</title>
+  <meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.79">
+  <link rel="NEXT" title="General Information" href="general.html">
+  <link rel="STYLESHEET" type="text/css" href="../p_doc.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+<body class="ARTICLE" bgcolor="#EEEEEE" text="#000000" link="#0000FF" vlink="#840084" alink="#0000FF">
+  <div class="ARTICLE">
+    <div class="TITLEPAGE">
+      <h1 class="TITLE"><a name="AEN2" id="AEN2">Privoxy Frequently Asked Questions</a></h1>
+      <p class="PUBDATE"><sub><a href="copyright.html">Copyright</a> &copy; 2001-2018 by <a href=
+      "https://www.privoxy.org/" target="_top">Privoxy Developers</a></sub><br></p>
+      <div>
+        <div class="ABSTRACT">
+          <a name="AEN8" id="AEN8"></a>
+          <p>This FAQ gives quick answers to frequently asked questions about <a href="https://www.privoxy.org/"
+          target="_top">Privoxy</a>. It is not a substitute for the <a href="../user-manual/index.html" target=
+          "_top"><i class="CITETITLE">Privoxy User Manual</i></a>.</p>
+          <p>What is Privoxy?</p>
+          <p>Privoxy is a non-caching web proxy with advanced filtering capabilities for enhancing privacy, modifying
+          web page data and HTTP headers, controlling access, and removing ads and other obnoxious Internet junk.
+          Privoxy has a flexible configuration and can be customized to suit individual needs and tastes. It has
+          application for both stand-alone systems and multi-user networks.</p>
+          <p>Privoxy is Free Software and licensed under the GNU GPLv2.</p>
+          <p>Privoxy is an associated project of Software in the Public Interest (SPI).</p>
+          <p>Helping hands and donations are welcome:</p>
+          <ul>
+            <li>
+              <p><a href="https://www.privoxy.org/faq/general.html#PARTICIPATE" target=
+              "_top">https://www.privoxy.org/faq/general.html#PARTICIPATE</a></p>
+            </li>
+            <li>
+              <p><a href="https://www.privoxy.org/faq/general.html#DONATE" target=
+              "_top">https://www.privoxy.org/faq/general.html#DONATE</a></p>
+            </li>
+          </ul>
+          <p>Please note that this document is a work in progress. This copy represents the state at the release of
+          version 3.0.28. You can find the latest version of the document at <a href="https://www.privoxy.org/faq/"
+          target="_top">https://www.privoxy.org/faq/</a>. Please see the <a href="contact.html">Contact section</a> if
+          you want to contact the developers.</p>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <div class="TOC">
+      <dl>
+        <dt><b>Table of Contents</b></dt>
+        <dt>1. <a href="general.html">General Information</a></dt>
+        <dd>
+          <dl>
+            <dt>1.1. <a href="general.html#WHO-USES">Who should give <span class="APPLICATION">Privoxy</span> a
+            try?</a></dt>
+            <dt>1.2. <a href="general.html#BESTCHOICE">Is Privoxy the best choice for me?</a></dt>
+            <dt>1.3. <a href="general.html#PROXYMORON">What is a <span class="QUOTE">"proxy"</span>? How does Privoxy
+            work?</a></dt>
+            <dt>1.4. <a href="general.html#OTHERSTUFF">Does Privoxy do anything more than ad blocking?</a></dt>
+            <dt>1.5. <a href="general.html#NEWJB">What is this new version of <span class=
+            "QUOTE">"Junkbuster"</span>?</a></dt>
+            <dt>1.6. <a href="general.html#WHYPRIVOXY">Why <span class="QUOTE">"Privoxy"</span>? Why change the name
+            from Junkbuster at all?</a></dt>
+            <dt>1.7. <a href="general.html#DIFFERS">How does Privoxy differ from the old Junkbuster?</a></dt>
+            <dt>1.8. <a href="general.html#WHATSANAD">How does Privoxy know what is an ad, and what is not?</a></dt>
+            <dt>1.9. <a href="general.html#MISTAKES">Can Privoxy make mistakes? This does not sound very
+            scientific.</a></dt>
+            <dt>1.10. <a href="general.html#CONFIGORNOT">Will I have to configure Privoxy before I can use it?</a></dt>
+            <dt>1.11. <a href="general.html#LAN">Can Privoxy run as a server on a network?</a></dt>
+            <dt>1.12. <a href="general.html#BROWSERS2">My browser does the same things as Privoxy. Why should I use
+            Privoxy at all?</a></dt>
+            <dt>1.13. <a href="general.html#WHYTRUST">Why should I trust Privoxy?</a></dt>
+            <dt>1.14. <a href="general.html#LICENSE">Is there is a license or fee? What about a warranty?
+            Registration?</a></dt>
+            <dt>1.15. <a href="general.html#SPYWARE">Can Privoxy remove spyware? Adware? Viruses?</a></dt>
+            <dt>1.16. <a href="general.html#OTHERADS">Can I use Privoxy with other ad-blocking software?</a></dt>
+            <dt>1.17. <a href="general.html#HELP-THE-DEVELOPERS">I would like to help you, what can I do?</a></dt>
+            <dd>
+              <dl>
+                <dt>1.17.1. <a href="general.html#PARTICIPATE">Would you like to participate?</a></dt>
+                <dt>1.17.2. <a href="general.html#DONATE">Would you like to donate?</a></dt>
+              </dl>
+            </dd>
+            <dt>1.18. <a href="general.html#SPONSOR">How can I become a sponsor and get my logo or link on
+            privoxy.org?</a></dt>
+          </dl>
+        </dd>
+        <dt>2. <a href="installation.html">Installation</a></dt>
+        <dd>
+          <dl>
+            <dt>2.1. <a href="installation.html#WHICHBROWSERS">Which browsers are supported by Privoxy?</a></dt>
+            <dt>2.2. <a href="installation.html#WHICHOS">Which operating systems are supported?</a></dt>
+            <dt>2.3. <a href="installation.html#EMAIL-CLIENT">Can I use Privoxy with my email client?</a></dt>
+            <dt>2.4. <a href="installation.html#FIRSTSTEP">I just installed Privoxy. Is there anything special I have
+            to do now?</a></dt>
+            <dt>2.5. <a href="installation.html#LOCALHOST">What is the proxy address of Privoxy?</a></dt>
+            <dt>2.6. <a href="installation.html#NOTHING">I just installed Privoxy, and nothing is happening. All the
+            ads are there. What's wrong?</a></dt>
+            <dt>2.7. <a href="installation.html#NOTUSED">I get a <span class="QUOTE">"Privoxy is not being used"</span>
+            dummy page although Privoxy is running and being used.</a></dt>
+          </dl>
+        </dd>
+        <dt>3. <a href="configuration.html">Configuration</a></dt>
+        <dd>
+          <dl>
+            <dt>3.1. <a href="configuration.html#ACTIONSFILE">What exactly is an <span class="QUOTE">"actions"</span>
+            file?</a></dt>
+            <dt>3.2. <a href="configuration.html#ACTIONSS">The <span class="QUOTE">"actions"</span> concept confuses
+            me. Please list some of these <span class="QUOTE">"actions"</span>.</a></dt>
+            <dt>3.3. <a href="configuration.html#ACTCONFIG">How are actions files configured? What is the easiest way
+            to do this?</a></dt>
+            <dt>3.4. <a href="configuration.html#AEN417">There are several different <span class=
+            "QUOTE">"actions"</span> files. What are the differences?</a></dt>
+            <dt>3.5. <a href="configuration.html#GETUPDATES">Where can I get updated Actions Files?</a></dt>
+            <dt>3.6. <a href="configuration.html#NEWCONFIG">Can I use my old config files?</a></dt>
+            <dt>3.7. <a href="configuration.html#DIFFICULT">Why is the configuration so complicated?</a></dt>
+            <dt>3.8. <a href="configuration.html#YAHOO">How can I make my Yahoo/Hotmail/Gmail account work?</a></dt>
+            <dt>3.9. <a href="configuration.html#CONFIGFILES">What's the difference between the <span class=
+            "QUOTE">"Cautious"</span>, <span class="QUOTE">"Medium"</span> and <span class="QUOTE">"Advanced"</span>
+            defaults?</a></dt>
+            <dt>3.10. <a href="configuration.html#BROWSECONFIG">Why can I change the configuration with a browser? Does
+            that not raise security issues?</a></dt>
+            <dt>3.11. <a href="configuration.html#FILTERFILE">What is the <tt class="FILENAME">default.filter</tt>
+            file? What is a <span class="QUOTE">"filter"</span>?</a></dt>
+            <dt>3.12. <a href="configuration.html#LANCONFIG">How can I set up Privoxy to act as a proxy for my
+            LAN?</a></dt>
+            <dt>3.13. <a href="configuration.html#NOSEEUM">Instead of ads, now I get a checkerboard pattern. I don't
+            want to see anything.</a></dt>
+            <dt>3.14. <a href="configuration.html#WHYSEEUM">Why would anybody want to see a checkerboard
+            pattern?</a></dt>
+            <dt>3.15. <a href="configuration.html#BLOCKEDBYTEXT">I see some images being replaced with text instead of
+            the checkerboard image. Why and how do I get rid of this?</a></dt>
+            <dt>3.16. <a href="configuration.html#SRVANY">Can Privoxy run as a service on Win2K/NT/XP?</a></dt>
+            <dt>3.17. <a href="configuration.html#OTHERPROXY">How can I make Privoxy work with other proxies?</a></dt>
+            <dt>3.18. <a href="configuration.html#PORT-80">Can I just set Privoxy to use port 80 and thus avoid
+            individual browser configuration?</a></dt>
+            <dt>3.19. <a href="configuration.html#TRANSPARENT">Can Privoxy run as a <span class=
+            "QUOTE">"transparent"</span> proxy?</a></dt>
+            <dt>3.20. <a href="configuration.html#INTERCEPTING">Can Privoxy run as a <span class=
+            "QUOTE">"intercepting"</span> proxy?</a></dt>
+            <dt>3.21. <a href="configuration.html#OUTLOOK">How can I configure Privoxy for use with Outlook?</a></dt>
+            <dt>3.22. <a href="configuration.html#OUTLOOK-MORE">How can I have separate rules just for HTML
+            mail?</a></dt>
+            <dt>3.23. <a href="configuration.html#SNEAKY-COOKIES">I sometimes notice cookies sneaking through.
+            How?</a></dt>
+            <dt>3.24. <a href="configuration.html#EVIL-COOKIES">Are all cookies bad? Why?</a></dt>
+            <dt>3.25. <a href="configuration.html#ALLOW-COOKIES">How can I allow permanent cookies for my trusted
+            sites?</a></dt>
+            <dt>3.26. <a href="configuration.html#MULTIPLES">Can I have separate configurations for different
+            users?</a></dt>
+            <dt>3.27. <a href="configuration.html#WHITELISTS">Can I set-up Privoxy as a whitelist of <span class=
+            "QUOTE">"good"</span> sites?</a></dt>
+            <dt>3.28. <a href="configuration.html#NO-ADBLOCK">How can I turn off ad-blocking?</a></dt>
+            <dt>3.29. <a href="configuration.html#TEMPLATES">How can I have custom template pages, like the
+            <span class="emphasis"><i class="EMPHASIS">BLOCKED</i></span> page?</a></dt>
+            <dt>3.30. <a href="configuration.html#BLOCKALL">How can I remove the <span class="QUOTE">"Go There
+            Anyway"</span> link from the <span class="emphasis"><i class="EMPHASIS">BLOCKED</i></span> page?</a></dt>
+          </dl>
+        </dd>
+        <dt>4. <a href="misc.html">Miscellaneous</a></dt>
+        <dd>
+          <dl>
+            <dt>4.1. <a href="misc.html#SLOWSME">How much does Privoxy slow my browsing down? This has to add extra
+            time to browsing.</a></dt>
+            <dt>4.2. <a href="misc.html#LOADINGTIMES">I notice considerable delays in page requests. What's
+            wrong?</a></dt>
+            <dt>4.3. <a href="misc.html#CONFIGURL">What are "http://config.privoxy.org/" and "http://p.p/"?</a></dt>
+            <dt>4.4. <a href="misc.html#NEWADS">How can I submit new ads, or report problems?</a></dt>
+            <dt>4.5. <a href="misc.html#NEWADS2">If I do submit missed ads, will they be included in future
+            updates?</a></dt>
+            <dt>4.6. <a href="misc.html#NOONECARES">Why doesn't anyone answer my support request?</a></dt>
+            <dt>4.7. <a href="misc.html#IP">How can I hide my IP address?</a></dt>
+            <dt>4.8. <a href="misc.html#ANONFORSURE">Can Privoxy guarantee I am anonymous?</a></dt>
+            <dt>4.9. <a href="misc.html#PROXYTEST">A test site says I am not using a Proxy.</a></dt>
+            <dt>4.10. <a href="misc.html#TOR">How do I use Privoxy together with Tor?</a></dt>
+            <dt>4.11. <a href="misc.html#SITEBREAK">Might some things break because header information or content is
+            being altered?</a></dt>
+            <dt>4.12. <a href="misc.html#CACHING">Can Privoxy act as a <span class="QUOTE">"caching"</span> proxy to
+            speed up web browsing?</a></dt>
+            <dt>4.13. <a href="misc.html#FIREWALL">What about as a firewall? Can Privoxy protect me?</a></dt>
+            <dt>4.14. <a href="misc.html#WASTED">I have large empty spaces / a checkerboard pattern now where ads used
+            to be. Why?</a></dt>
+            <dt>4.15. <a href="misc.html#SSL">How can Privoxy filter Secure (HTTPS) URLs?</a></dt>
+            <dt>4.16. <a href="misc.html#HTTP2">Does Privoxy support HTTP/2?</a></dt>
+            <dt>4.17. <a href="misc.html#SECURE">Privoxy runs as a <span class="QUOTE">"server"</span>. How secure is
+            it? Do I need to take any special precautions?</a></dt>
+            <dt>4.18. <a href="misc.html#TURNOFF">Can I temporarily disable Privoxy?</a></dt>
+            <dt>4.19. <a href="misc.html#REALLYOFF">When <span class="QUOTE">"disabled"</span> is Privoxy totally out
+            of the picture?</a></dt>
+            <dt>4.20. <a href="misc.html#TURNOFF2">How can I tell Privoxy to totally ignore certain sites?</a></dt>
+            <dt>4.21. <a href="misc.html#CRUNCH">My logs show Privoxy <span class="QUOTE">"crunches"</span> ads, but
+            also its own internal CGI pages. What is a <span class="QUOTE">"crunch"</span>?</a></dt>
+            <dt>4.22. <a href="misc.html#DOWNLOADS">Can Privoxy affect files that I download from a webserver? FTP
+            server?</a></dt>
+            <dt>4.23. <a href="misc.html#DOWNLOADS2">I just downloaded a Perl script, and Privoxy altered it! Yikes,
+            what is wrong!</a></dt>
+            <dt>4.24. <a href="misc.html#HOSTSFILE">Should I continue to use a <span class="QUOTE">"HOSTS"</span> file
+            for ad-blocking?</a></dt>
+            <dt>4.25. <a href="misc.html#SEEALSO">Where can I find more information about Privoxy and related
+            issues?</a></dt>
+            <dt>4.26. <a href="misc.html#MICROSUCK">I've noticed that Privoxy changes <span class=
+            "QUOTE">"Microsoft"</span> to <span class="QUOTE">"MicroSuck"</span>! Why are you manipulating my
+            browsing?</a></dt>
+            <dt>4.27. <a href="misc.html#VALID">Does Privoxy produce <span class="QUOTE">"valid"</span> HTML (or
+            XHTML)?</a></dt>
+            <dt>4.28. <a href="misc.html#SURPRISE-PRIVOXY">How did you manage to get Privoxy on my computer without my
+            consent?</a></dt>
+          </dl>
+        </dd>
+        <dt>5. <a href="trouble.html">Troubleshooting</a></dt>
+        <dd>
+          <dl>
+            <dt>5.1. <a href="trouble.html#REFUSED">I cannot connect to any websites. Or, I am getting <span class=
+            "QUOTE">"connection refused"</span> message with every web page. Why?</a></dt>
+            <dt>5.2. <a href="trouble.html#ERROR503">Why am I getting a 503 Error (WSAECONNREFUSED) on every
+            page?</a></dt>
+            <dt>5.3. <a href="trouble.html#FLUSHIT">I just added a new rule, but the steenkin ad is still getting
+            through. How?</a></dt>
+            <dt>5.4. <a href="trouble.html#BADSITE">One of my favorite sites does not work with Privoxy. What can I
+            do?</a></dt>
+            <dt>5.5. <a href="trouble.html#DUN">After installing Privoxy, I have to log in every time I start IE. What
+            gives?</a></dt>
+            <dt>5.6. <a href="trouble.html#FTP">I cannot connect to any FTP sites. Privoxy is blocking me.</a></dt>
+            <dt>5.7. <a href="trouble.html#MACOSXIE">In Mac OS X, I can't configure Microsoft Internet Explorer to use
+            Privoxy as the HTTP proxy.</a></dt>
+            <dt>5.8. <a href="trouble.html#MACOSXUNINSTALL">In Mac OS X, I dragged the Privoxy folder to the trash in
+            order to uninstall it. Now the finder tells me I don't have sufficient privileges to empty the
+            trash.</a></dt>
+            <dt>5.9. <a href="trouble.html#MACOSXIMAGES">In Mac OS X Panther (10.3), images often fail to load and/or I
+            experience random delays in page loading. I'm using <tt class="LITERAL">localhost</tt> as my browser's
+            proxy setting.</a></dt>
+            <dt>5.10. <a href="trouble.html#MACOSXACCOUNTDELETION">I just upgraded to Mac OS X 10.9 (Mavericks) and now
+            <span class="APPLICATION">Privoxy</span> has stopped working.</a></dt>
+            <dt>5.11. <a href="trouble.html#NOHOSTNAME">My logs show many <span class="QUOTE">"Unable to get my own
+            hostname"</span> lines. Why?</a></dt>
+            <dt>5.12. <a href="trouble.html#INUSE">When I try to launch Privoxy, I get an error message <span class=
+            "QUOTE">"port 8118 is already in use"</span> (or similar wording). Why?</a></dt>
+            <dt>5.13. <a href="trouble.html#DEMORONIZER">Pages with UTF-8 fonts are garbled.</a></dt>
+            <dt>5.14. <a href="trouble.html#DEMORONIZER2">Why are binary files (such as images) corrupted when Privoxy
+            is used?</a></dt>
+            <dt>5.15. <a href="trouble.html#DEMORONIZER3">What is the <span class="QUOTE">"demoronizer"</span> and why
+            is it there?</a></dt>
+            <dt>5.16. <a href="trouble.html#WINDOWOPEN">Why do I keep seeing <span class=
+            "QUOTE">"PrivoxyWindowOpen()"</span> in raw source code?</a></dt>
+            <dt>5.17. <a href="trouble.html#DNSERRORS">I am getting too many DNS errors like <span class="QUOTE">"404
+            No Such Domain"</span>. Why can't Privoxy do this better?</a></dt>
+            <dt>5.18. <a href="trouble.html#ALLCPU">At one site Privoxy just hangs, and starts taking all CPU. Why is
+            this?</a></dt>
+            <dt>5.19. <a href="trouble.html#SLOWCRAWL">I just installed Privoxy, and all my browsing has slowed to a
+            crawl. What gives?</a></dt>
+            <dt>5.20. <a href="trouble.html#PREVENTCOMP">Why do my filters work on some sites but not on
+            others?</a></dt>
+            <dt>5.21. <a href="trouble.html#SSL-WARNINGS">On some HTTPS sites my browser warns me about unauthenticated
+            content, the URL bar doesn't get highlighted and the lock symbol appears to be broken. What's going
+            on?</a></dt>
+            <dt>5.22. <a href="trouble.html#SE-LINUX">I get selinux error messages. How can I fix this?</a></dt>
+            <dt>5.23. <a href="trouble.html#GENTOO-RICERS">I compiled <span class="APPLICATION">Privoxy</span> with
+            Gentoo's portage and it appears to be very slow. Why?</a></dt>
+            <dt>5.24. <a href="trouble.html#TAINTED-SOCKETS">What are tainted sockets and how do I prevent
+            them?</a></dt>
+            <dt>5.25. <a href="trouble.html#PCRE-STACK-LIMIT">After adding my custom filters, <span class=
+            "APPLICATION">Privoxy</span> crashes when visitting certain websites</a></dt>
+            <dt>5.26. <a href="trouble.html#FILE-PERMISSIONS">What to do if editing the config file of privoxy is
+            access denied?</a></dt>
+          </dl>
+        </dd>
+        <dt>6. <a href="contact.html">Contacting the developers, Bug Reporting and Feature Requests</a></dt>
+        <dd>
+          <dl>
+            <dt>6.1. <a href="contact.html#SUFFICIENT-INFORMATION">Please provide sufficient information</a></dt>
+            <dt>6.2. <a href="contact.html#CONTACT-SUPPORT">Get Support</a></dt>
+            <dt>6.3. <a href="contact.html#REPORTING">Reporting Problems</a></dt>
+            <dd>
+              <dl>
+                <dt>6.3.1. <a href="contact.html#CONTACT-ADS">Reporting Ads or Other Configuration Problems</a></dt>
+                <dt>6.3.2. <a href="contact.html#CONTACT-BUGS">Reporting Bugs</a></dt>
+              </dl>
+            </dd>
+            <dt>6.4. <a href="contact.html#SECURITY-CONTACT">Reporting security problems</a></dt>
+            <dt>6.5. <a href="contact.html#MAILING-LISTS">Mailing Lists</a></dt>
+            <dt>6.6. <a href="contact.html#SF-TRACKERS">SourceForge support trackers</a></dt>
+          </dl>
+        </dd>
+        <dt>7. <a href="copyright.html">Privoxy Copyright, License and History</a></dt>
+        <dd>
+          <dl>
+            <dt>7.1. <a href="copyright.html#AEN1499">License</a></dt>
+            <dt>7.2. <a href="copyright.html#AEN1508">History</a></dt>
+          </dl>
+        </dd>
+      </dl>
+    </div>
+  </div>
+  <div class="NAVFOOTER">
+    <hr align="left" width="100%">
+    <table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="33%" align="left" valign="top">&nbsp;</td>
+        <td width="34%" align="center" valign="top">&nbsp;</td>
+        <td width="33%" align="right" valign="top"><a href="general.html" accesskey="N">Next</a></td>
+      </tr>
+      <tr>
+        <td width="33%" align="left" valign="top">&nbsp;</td>
+        <td width="34%" align="center" valign="top">&nbsp;</td>
+        <td width="33%" align="right" valign="top">General Information</td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>

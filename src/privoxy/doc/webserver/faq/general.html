@@ -1,0 +1,392 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>General Information</title>
+  <meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.79">
+  <link rel="HOME" title="Privoxy Frequently Asked Questions" href="index.html">
+  <link rel="PREVIOUS" title="Privoxy Frequently Asked Questions" href="index.html">
+  <link rel="NEXT" title="Installation" href="installation.html">
+  <link rel="STYLESHEET" type="text/css" href="../p_doc.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+<body class="SECT1" bgcolor="#EEEEEE" text="#000000" link="#0000FF" vlink="#840084" alink="#0000FF">
+  <div class="NAVHEADER">
+    <table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <th colspan="3" align="center">Privoxy Frequently Asked Questions</th>
+      </tr>
+      <tr>
+        <td width="10%" align="left" valign="bottom"><a href="index.html" accesskey="P">Prev</a></td>
+        <td width="80%" align="center" valign="bottom"></td>
+        <td width="10%" align="right" valign="bottom"><a href="installation.html" accesskey="N">Next</a></td>
+      </tr>
+    </table>
+    <hr align="left" width="100%">
+  </div>
+  <div class="SECT1">
+    <h1 class="SECT1"><a name="GENERAL" id="GENERAL">1. General Information</a></h1>
+    <div class="SECT2">
+      <h3 class="SECT2"><a name="WHO-USES" id="WHO-USES">1.1. Who should give <span class="APPLICATION">Privoxy</span>
+      a try?</a></h3>
+      <p>Anyone who is interested in security, privacy, or in finer-grained control over their web and Internet
+      experience.</p>
+    </div>
+    <div class="SECT2">
+      <h3 class="SECT2"><a name="BESTCHOICE" id="BESTCHOICE">1.2. Is Privoxy the best choice for me?</a></h3>
+      <p><span class="APPLICATION">Privoxy</span> is certainly a good choice, especially for those who want more
+      control and security. Those with the willingness to read the documentation and the ability to fine-tune their
+      installation will benefit the most.</p>
+      <p>One of <span class="APPLICATION">Privoxy's</span> strengths is that it is highly configurable giving you the
+      ability to completely personalize your installation. Being familiar with, or at least having an interest in
+      learning about <a href="http://en.wikipedia.org/wiki/Http" target="_top">HTTP</a> and other networking protocols,
+      <a href="http://en.wikipedia.org/wiki/Html" target="_top">HTML</a>, and <a href=
+      "http://en.wikipedia.org/wiki/Regular_expressions" target="_top"><span class="QUOTE">"Regular
+      Expressions"</span></a> will be a big plus and will help you get the most out of <span class=
+      "APPLICATION">Privoxy</span>. A new installation just includes a very basic configuration. The user should take
+      this as a starting point only, and enhance it as he or she sees fit. In fact, the user is encouraged, and
+      expected to, fine-tune the configuration.</p>
+      <p>Much of <span class="APPLICATION">Privoxy's</span> configuration can be done with a <a href=
+      "http://en.wikipedia.org/wiki/Web_browser" target="_top">Web browser</a>. But there are areas where configuration
+      is done using a <a href="http://en.wikipedia.org/wiki/Text_editors" target="_top">text editor</a> to edit
+      configuration files. Also note that the web-based action editor doesn't use authentication and should only be
+      enabled in environments where all clients with access to <span class="APPLICATION">Privoxy</span> listening port
+      can be trusted.</p>
+    </div>
+    <div class="SECT2">
+      <h3 class="SECT2"><a name="PROXYMORON" id="PROXYMORON">1.3. What is a <span class="QUOTE">"proxy"</span>? How
+      does Privoxy work?</a></h3>
+      <p>A <a href="http://en.wikipedia.org/wiki/Proxy_server" target="_top">web proxy</a> is a service, based on a
+      software such as <span class="APPLICATION">Privoxy</span>, that clients (i.e. browsers) can use instead of
+      connecting to web servers directly. The clients then ask the proxy to request objects (web pages, images, movies
+      etc) on their behalf and to forward the data to the clients. It is a <span class="QUOTE">"go-between"</span>. For
+      details, see <a href="http://en.wikipedia.org/wiki/Proxy_server" target="_top">Wikipedia's proxy
+      definition</a>.</p>
+      <p>There are many reasons to use web proxies, such as security (firewalling), efficiency (caching) and others,
+      and there are any number of proxies to accommodate those needs.</p>
+      <p><span class="APPLICATION">Privoxy</span> is a proxy that is primarily focused on privacy enhancement, ad and
+      junk elimination and freeing the user from restrictions placed on his activities. Sitting between your browser(s)
+      and the Internet, it is in a perfect position to filter outbound personal information that your browser is
+      leaking, as well as inbound junk. It uses a variety of techniques to do this, all of which are under your
+      complete control via the various configuration files and options. Being a proxy also makes it easier to share
+      configurations among multiple browsers and/or users.</p>
+    </div>
+    <div class="SECT2">
+      <h3 class="SECT2"><a name="OTHERSTUFF" id="OTHERSTUFF">1.4. Does Privoxy do anything more than ad
+      blocking?</a></h3>
+      <p>Yes, ad blocking is but one possible use. There are many, many ways <span class="APPLICATION">Privoxy</span>
+      can be used to sanitize and customize web browsing.</p>
+    </div>
+    <div class="SECT2">
+      <h3 class="SECT2"><a name="NEWJB" id="NEWJB">1.5. What is this new version of <span class=
+      "QUOTE">"Junkbuster"</span>?</a></h3>
+      <p>A long time ago, there was the <span class="APPLICATION">Internet Junkbuster</span>, by Anonymous Coders and
+      Junkbusters Corporation. This saved many users a lot of pain in the early days of web advertising and user
+      tracking.</p>
+      <p>But the web, its protocols and standards, and with it, the techniques for forcing ads on users, give up
+      autonomy over their browsing, and for tracking them, keeps evolving. Unfortunately, the <span class=
+      "APPLICATION">Internet Junkbuster</span> did not. Version 2.0.2, published in 1998, was the last official
+      release, available from Junkbusters Corporation. Fortunately, it had been released under the GNU <a href=
+      "http://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="_top">GPL</a>, which allowed further development
+      by others.</p>
+      <p>So Stefan Waldherr started maintaining an improved version of the software, to which eventually a number of
+      people contributed patches. It could already replace banners with a transparent image, and had a first version of
+      pop-up killing, but it was still very closely based on the original, with all its limitations, such as the lack
+      of HTTP/1.1 support, flexible per-site configuration, or content modification. The last release from this effort
+      was version 2.0.2-10, published in 2000.</p>
+      <p>Then, some <a href="https://www.privoxy.org/user-manual/copyright.html#AUTHORS" target="_top">developers</a>
+      picked up the thread, and started turning the software inside out, upside down, and then reassembled it, adding
+      many <a href="https://www.privoxy.org/user-manual/introduction.html#FEATURES" target="_top">new features</a>
+      along the way.</p>
+      <p>The result of this is <span class="APPLICATION">Privoxy</span>, whose first stable version, 3.0, was released
+      August, 2002.</p>
+      <p>As of 2012 the Junkbusters Corporation's website (http://www.junkbusters.com/) has been shut down, but Privoxy
+      is still actively maintained.</p>
+    </div>
+    <div class="SECT2">
+      <h3 class="SECT2"><a name="WHYPRIVOXY" id="WHYPRIVOXY">1.6. Why <span class="QUOTE">"Privoxy"</span>? Why change
+      the name from Junkbuster at all?</a></h3>
+      <p>Though outdated, Junkbusters Corporation continued to offer their original version of the <span class=
+      "APPLICATION">Internet Junkbuster</span> for a while, so publishing our <span class=
+      "APPLICATION">Junkbuster</span>-derived software under the same name would have led to confusion.</p>
+      <p>There were also potential legal reasons not to use the <span class="APPLICATION">Junkbuster</span> name, as it
+      was (and maybe still is) a registered trademark of Junkbusters Corporation. There were, however, no objections
+      from Junkbusters Corporation to the <span class="APPLICATION">Privoxy</span> project itself, and they, in fact,
+      shared our ideals and goals.</p>
+      <p>The Privoxy developers also believed that there were so many improvements over the original code, that it was
+      time to make a clean break from the past and make a name in their own right.</p>
+      <p><span class="APPLICATION">Privoxy</span> is the <span class="QUOTE">"<span class="emphasis"><i class=
+      "EMPHASIS">Privacy Enhancing Proxy</i></span>"</span>. Also, its content modification and junk suppression gives
+      <span class="emphasis"><i class="EMPHASIS">you</i></span>, the user, more control, more freedom, and allows you
+      to browse your personal and <span class="QUOTE">"<span class="emphasis"><i class="EMPHASIS">private</i></span>
+      edition"</span> of the web.</p>
+    </div>
+    <div class="SECT2">
+      <h3 class="SECT2"><a name="DIFFERS" id="DIFFERS">1.7. How does Privoxy differ from the old Junkbuster?</a></h3>
+      <p><span class="APPLICATION">Privoxy</span> picks up where <span class="APPLICATION">Junkbuster</span> left off.
+      <span class="APPLICATION">Privoxy</span> still blocks ads and banners, still manages <a href=
+      "http://en.wikipedia.org/wiki/Browser_cookie" target="_top">cookies</a>, and still helps protect your privacy.
+      But, most of these features have been enhanced, and many new ones have been added, all in the same vein.</p>
+      <p><span class="APPLICATION">Privoxy</span>'s new features include:</p>
+      <ul>
+        <li>
+          <p>Supports "Connection: keep-alive". Outgoing connections can be kept alive independently from the
+          client.</p>
+        </li>
+        <li>
+          <p>Supports IPv6, provided the operating system does so too, and the configure script detects it.</p>
+        </li>
+        <li>
+          <p>Supports tagging which allows to change the behaviour based on client and server headers.</p>
+        </li>
+        <li>
+          <p>Can be run as an "intercepting" proxy, which obviates the need to configure browsers individually.</p>
+        </li>
+        <li>
+          <p>Sophisticated actions and filters for manipulating both server and client headers.</p>
+        </li>
+        <li>
+          <p>Can be chained with other proxies.</p>
+        </li>
+        <li>
+          <p>Integrated browser-based configuration and control utility at <a href="http://config.privoxy.org/" target=
+          "_top">http://config.privoxy.org/</a> (shortcut: <a href="http://p.p/" target="_top">http://p.p/</a>).
+          Browser-based tracing of rule and filter effects. Remote toggling.</p>
+        </li>
+        <li>
+          <p>Web page filtering (text replacements, removes banners based on size, invisible <span class=
+          "QUOTE">"web-bugs"</span> and HTML annoyances, etc.)</p>
+        </li>
+        <li>
+          <p>Modularized configuration that allows for standard settings and user settings to reside in separate files,
+          so that installing updated actions files won't overwrite individual user settings.</p>
+        </li>
+        <li>
+          <p>Support for Perl Compatible Regular Expressions in the configuration files, and a more sophisticated and
+          flexible configuration syntax.</p>
+        </li>
+        <li>
+          <p>GIF de-animation.</p>
+        </li>
+        <li>
+          <p>Bypass many click-tracking scripts (avoids script redirection).</p>
+        </li>
+        <li>
+          <p>User-customizable HTML templates for most proxy-generated pages (e.g. "blocked" page).</p>
+        </li>
+        <li>
+          <p>Auto-detection and re-reading of config file changes.</p>
+        </li>
+        <li>
+          <p>Most features are controllable on a per-site or per-location basis.</p>
+        </li>
+        <li>
+          <p>Many smaller new features added, limitations and bugs removed.</p>
+        </li>
+      </ul>
+    </div>
+    <div class="SECT2">
+      <h3 class="SECT2"><a name="WHATSANAD" id="WHATSANAD">1.8. How does Privoxy know what is an ad, and what is
+      not?</a></h3>
+      <p><span class="APPLICATION">Privoxy</span>'s approach to blocking ads is twofold:</p>
+      <p>First, there are certain patterns in the <span class="emphasis"><i class="EMPHASIS">locations</i></span>
+      (URLs) of banner images. This applies to both the path (you wouldn't guess how many web sites serve their banners
+      from a directory called <span class="QUOTE">"banners"</span>!) and the host (blocking the big banner hosting
+      services like doublecklick.net already helps a lot). <span class="APPLICATION">Privoxy</span> takes advantage of
+      this fact by using <a href="../user-manual/actions-file.html#AF-PATTERNS" target="_top">URL patterns</a> to sort
+      out and block the requests for things that sound like they would be ads or banners.</p>
+      <p>Second, banners tend to come in certain <span class="emphasis"><i class="EMPHASIS">sizes</i></span>. But you
+      can't tell the size of an image by its URL without downloading it, and if you do, it's too late to save
+      bandwidth. Therefore, <span class="APPLICATION">Privoxy</span> also inspects the HTML sources of web pages while
+      they are loaded, and replaces references to images with standard banner sizes by dummy references, so that your
+      browser doesn't request them anymore in the first place.</p>
+      <p>Both of this involves a certain amount of guesswork and is, of course, freely and readily configurable.</p>
+    </div>
+    <div class="SECT2">
+      <h3 class="SECT2"><a name="MISTAKES" id="MISTAKES">1.9. Can Privoxy make mistakes? This does not sound very
+      scientific.</a></h3>
+      <p>Actually, it's a black art ;-) And yes, it is always possible to have a broad rule accidentally block or
+      change something by mistake. You will almost surely run into such situations at some point. It is tricky writing
+      rules to cover every conceivable possibility, and not occasionally get false positives.</p>
+      <p>But this should not be a big concern since the <span class="APPLICATION">Privoxy</span> configuration is very
+      flexible, and includes tools to help identify these types of situations so they can be addressed as needed,
+      allowing you to customize your installation. (<a href="trouble.html#BADSITE">See the Troubleshooting section
+      below</a>.)</p>
+    </div>
+    <div class="SECT2">
+      <h3 class="SECT2"><a name="CONFIGORNOT" id="CONFIGORNOT">1.10. Will I have to configure Privoxy before I can use
+      it?</a></h3>
+      <p>That depends on your expectations. The default installation should give you a good starting point, and block
+      <span class="emphasis"><i class="EMPHASIS">most</i></span> ads and unwanted content, but many of the more
+      advanced features are off by default, and require you to activate them.</p>
+      <p>You do have to set up your browser to use <span class="APPLICATION">Privoxy</span> (see the <a href=
+      "installation.html#FIRSTSTEP">Installation section below</a>).</p>
+      <p>And you will certainly run into situations where there are false positives, or ads not being blocked that you
+      may not want to see. In these cases, you would certainly benefit by customizing <span class=
+      "APPLICATION">Privoxy's</span> configuration to more closely match your individual situation. And we encourage
+      you to do this. This is where the real power of <span class="APPLICATION">Privoxy</span> lies!</p>
+    </div>
+    <div class="SECT2">
+      <h3 class="SECT2"><a name="LAN" id="LAN">1.11. Can Privoxy run as a server on a network?</a></h3>
+      <p>Yes, <span class="APPLICATION">Privoxy</span> runs as a server already, and can easily be configured to
+      <span class="QUOTE">"serve"</span> more than one client. See <a href="configuration.html#LANCONFIG">How can I set
+      up Privoxy to act as a proxy for my LAN</a> below.</p>
+    </div>
+    <div class="SECT2">
+      <h3 class="SECT2"><a name="BROWSERS2" id="BROWSERS2">1.12. My browser does the same things as Privoxy. Why should
+      I use Privoxy at all?</a></h3>
+      <p>Modern browsers do indeed have <span class="emphasis"><i class="EMPHASIS">some</i></span> of the same
+      functionality as <span class="APPLICATION">Privoxy</span>. Maybe this is adequate for you. But <span class=
+      "APPLICATION">Privoxy</span> is very versatile and powerful, and can probably do a number of things your browser
+      just can't.</p>
+      <p>In addition, a proxy is good choice if you use multiple browsers, or have a LAN with multiple computers since
+      <span class="APPLICATION">Privoxy</span> can run as a server application. This way all the configuration is in
+      one place, and you don't have to maintain a similar configuration for possibly many browsers or users.</p>
+      <p>Note, however, that it's recommended to leverage both your browser's and <span class=
+      "APPLICATION">Privoxy's</span> privacy enhancing features at the same time. While your browser probably lacks
+      some features <span class="APPLICATION">Privoxy</span> offers, it should also be able to do some things more
+      reliably, for example restricting and suppressing JavaScript.</p>
+    </div>
+    <div class="SECT2">
+      <h3 class="SECT2"><a name="WHYTRUST" id="WHYTRUST">1.13. Why should I trust Privoxy?</a></h3>
+      <p>The most important reason is because you have access to <span class="emphasis"><i class=
+      "EMPHASIS">everything</i></span>, and you can control everything. You can check every line of every configuration
+      file yourself. You can check every last bit of source code should you desire. And even if you can't read code,
+      there should be some comfort in knowing that other people can, and do read it. You can build the software from
+      scratch, if you want, so that you know the executable is clean, and that it is <span class="emphasis"><i class=
+      "EMPHASIS">yours</i></span>. In fact, we encourage this level of scrutiny. It is one reason we use <span class=
+      "APPLICATION">Privoxy</span> ourselves.</p>
+    </div>
+    <div class="SECT2">
+      <h3 class="SECT2"><a name="LICENSE" id="LICENSE">1.14. Is there is a license or fee? What about a warranty?
+      Registration?</a></h3>
+      <p><span class="APPLICATION">Privoxy</span> is free software and licensed under the <a href=
+      "http://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="_top">GNU General Public License (GPL) version
+      2</a>. It is free to use, copy, modify or distribute as you wish under the terms of this license. Please see the
+      <a href="copyright.html">Copyright</a> section for more information on the license and copyright. Or the
+      <tt class="FILENAME">LICENSE</tt> file that should be included.</p>
+      <p>There is <span class="emphasis"><i class="EMPHASIS">no warranty</i></span> of any kind, expressed, implied or
+      otherwise. That is something that would cost real money ;-) There is no registration either.</p>
+    </div>
+    <div class="SECT2">
+      <h3 class="SECT2"><a name="SPYWARE" id="SPYWARE">1.15. Can Privoxy remove spyware? Adware? Viruses?</a></h3>
+      <p>No, at least not reliably enough to trust it. <span class="APPLICATION">Privoxy</span> is not designed to be a
+      malware removal tool and the default configuration doesn't even try to filter out any malware.</p>
+      <p><span class="APPLICATION">Privoxy</span> could help prevent contact from (known) sites that use such tactics
+      with appropriate configuration rules, and thus could conceivably prevent contamination from such sites. However,
+      keeping such a configuration up to date would require a lot of time and effort that would be better spend on
+      keeping your software itself up to date so it doesn't have known vulnerabilities.</p>
+    </div>
+    <div class="SECT2">
+      <h3 class="SECT2"><a name="OTHERADS" id="OTHERADS">1.16. Can I use Privoxy with other ad-blocking
+      software?</a></h3>
+      <p><span class="APPLICATION">Privoxy</span> should work fine with other proxies and other software in
+      general.</p>
+      <p>But it is probably not necessary to use <span class="APPLICATION">Privoxy</span> in conjunction with other
+      ad-blocking products, and this could conceivably cause undesirable results. It might be better to choose one
+      software or the other and work a little to tweak its configuration to your liking.</p>
+      <p>Note that this is an advice specific to ad blocking.</p>
+    </div>
+    <div class="SECT2">
+      <h3 class="SECT2"><a name="HELP-THE-DEVELOPERS" id="HELP-THE-DEVELOPERS">1.17. I would like to help you, what can
+      I do?</a></h3>
+      <div class="SECT3">
+        <h4 class="SECT3"><a name="PARTICIPATE" id="PARTICIPATE">1.17.1. Would you like to participate?</a></h4>
+        <p>Well, we <span class="emphasis"><i class="EMPHASIS">always</i></span> need help. There is something for
+        everybody who wants to help us. We welcome new developers, packagers, testers, documentation writers or really
+        anyone with a desire to help in any way. You <span class="emphasis"><i class="EMPHASIS">DO NOT</i></span> need
+        to be a <span class="QUOTE">"programmer"</span>. There are many other tasks available. In fact, the programmers
+        often can't spend as much time programming because of some of the other, more mundane things that need to be
+        done, like checking the Tracker feedback sections or responding to user questions on the mailing lists.</p>
+        <p>So first thing, subscribe to the <a href="https://lists.privoxy.org/mailman/listinfo/privoxy-users" target=
+        "_top">Privoxy Users</a> or the <a href="https://lists.privoxy.org/mailman/listinfo/privoxy-devel" target=
+        "_top">Privoxy Developers</a> mailing list, join the discussion, help out other users, provide general feedback
+        or report problems you noticed.</p>
+        <p>If you intend to help out with the trackers, you also might want to <a href=
+        "https://sourceforge.net/user/registration" target="_top">get an account on SourceForge.net</a> so we don't
+        confuse you with the other name-less users.</p>
+        <p>We also have a <a href="../developer-manual/index.html" target="_top">Developer's Manual</a>. While it is
+        partly out of date, it's still worth reading.</p>
+        <p>Our <a href="https://www.privoxy.org/gitweb/?p=privoxy.git;a=blob_plain;f=TODO;hb=HEAD" target="_top">TODO
+        list</a> may be of interest to you as well. Please let us know if you want to work on one of the items
+        listed.</p>
+      </div>
+      <div class="SECT3">
+        <h4 class="SECT3"><a name="DONATE" id="DONATE">1.17.2. Would you like to donate?</a></h4>
+        <p>Donations are welcome. Our <a href=
+        "https://www.privoxy.org/gitweb/?p=privoxy.git;a=blob_plain;f=TODO;hb=HEAD" target="_top">TODO list</a> is
+        rather long and being able to pay one (or more) developers to work on Privoxy would make a huge difference,
+        even if it was only for a couple of weeks. Donations may also be used for Privoxy-related travel expenses (for
+        example to attend conferences), for hardware used for Privoxy development and for hosting expenses etc.</p>
+        <p><span class="APPLICATION">Privoxy</span> is an associated project of <a href="https://www.spi-inc.org/"
+        target="_top">Software in the Public Interest (SPI)</a>, which allows us to receive tax-deductible donations in
+        the United States. You can <a href="https://www.spi-inc.org/projects/privoxy/" target="_top">donate via
+        Paypal</a> and <a href="https://co.clickandpledge.com/advanced/default.aspx?wid=34115" target="_top">Click
+        &#38; Pledge</a>. For details, please have a look at <a href="https://www.spi-inc.org/donations" target=
+        "_top">SPI's general donation page</a>.</p>
+        <p>You can also donate to Privoxy using a bank account or a "Paypal" address:</p>
+        <p class="LITERALLAYOUT">&nbsp;Name&nbsp;on&nbsp;account:&nbsp;<a href="https://www.zwiebelfreunde.de/" target=
+        "_top">Zwiebelfreunde e.V.</a><br>
+        &nbsp;IBAN:&nbsp;DE95430609671126825604<br>
+        &nbsp;BIC:&nbsp;GENODEM1GLS<br>
+        &nbsp;Bank:&nbsp;GLS&nbsp;Bank</p>
+        <p class="LITERALLAYOUT">&nbsp;"Paypal"&nbsp;address:&nbsp;privoxy@zwiebelfreunde.de</p>
+        <p>Donations made through Zwiebelfreunde e.V. are tax-deductible in Germany and other countries that recognize
+        German charitable clubs. Feel free to use the Subject field to provide a name to be credited and a list of TODO
+        list items you are interested in the most. For example: Max Mustermann: #16, #1, #14.</p>
+        <p>Note that donations made through Zwiebelfreunde e.V. currently can't be checked automatically so you may not
+        get credited right away. The credits currently reflect donations received before 2016-01-14.</p>
+        <p>If you have any questions regarding donations please mail to either the public user mailing list or, if it's
+        a private matter, to <a href="mailto:fk@fabiankeil.de" target="_top">Fabian Keil</a> (Privoxy's SPI liaison)
+        directly.</p>
+      </div>
+    </div>
+    <div class="SECT2">
+      <h2 class="SECT2"><a name="SPONSOR" id="SPONSOR">1.18. How can I become a sponsor and get my logo or link on
+      privoxy.org?</a></h2>
+      <p>We are currently offering the following sponsor levels as an experiment:</p>
+      <div class="VARIABLELIST">
+        <dl>
+          <dt>Gold (10000 EUR/year)</dt>
+          <dd>
+            <p>Logo shown at the bottom of the <a href="https://www.privoxy.org/" target="_top">Privoxy homepage</a>.
+            Logo, link and self description on the <a href="https://www.privoxy.org/sponsors/" target="_top">sponsor
+            page</a>.</p>
+          </dd>
+          <dt>Silver (1000 EUR/year)</dt>
+          <dd>
+            <p>Logo shown randomly at the bottom of the <a href="https://www.privoxy.org/" target="_top">Privoxy
+            homepage</a>. Logo, link and self description on the <a href="https://www.privoxy.org/sponsors/" target=
+            "_top">sponsor page</a>.</p>
+          </dd>
+          <dt>Bronze (500 EUR/year)</dt>
+          <dd>
+            <p>Logo and link on the <a href="https://www.privoxy.org/sponsors/" target="_top">sponsor page</a>.</p>
+          </dd>
+        </dl>
+      </div>
+      <p>The logo sizes depend on the sponsor level. Logos are served from our server, no requests are made to the
+      sponsor website unless the links are being used.</p>
+      <p>The details may change over time but changes will only affect new sponsors (or existing sponsors that
+      explicitly agreed to the changes).</p>
+      <p>If you want to become a sponsor, please contact <a href="mailto:fk@fabiankeil.de" target="_top">Fabian
+      Keil</a>. New sponsors are only accepted if no developer objects.</p>
+    </div>
+  </div>
+  <div class="NAVFOOTER">
+    <hr align="left" width="100%">
+    <table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="33%" align="left" valign="top"><a href="index.html" accesskey="P">Prev</a></td>
+        <td width="34%" align="center" valign="top"><a href="index.html" accesskey="H">Home</a></td>
+        <td width="33%" align="right" valign="top"><a href="installation.html" accesskey="N">Next</a></td>
+      </tr>
+      <tr>
+        <td width="33%" align="left" valign="top">Privoxy Frequently Asked Questions</td>
+        <td width="34%" align="center" valign="top">&nbsp;</td>
+        <td width="33%" align="right" valign="top">Installation</td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>

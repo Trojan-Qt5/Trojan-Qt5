@@ -1,0 +1,325 @@
+<!--
+ File        :  doc/source/contacting.sgml
+
+ Purpose     :  Entity included in other project documents.
+
+ Copyright (C) 2001-2018 Privoxy Developers https://www.privoxy.org/
+ See LICENSE.
+
+ ======================================================================
+  This file used for inclusion with other documents only.
+ ======================================================================
+
+ This file is included into:
+
+  faq
+  developer-manual
+  README
+  user-manual
+  webserver/index.sgml
+  announce.sgml
+
+-->
+
+<!-- READ: -->
+<!-- Careful of the literallayout tags and finished formatting -->
+
+<para>
+ We value your feedback. In fact, we rely on it to improve
+ <application>Privoxy</application> and its configuration.
+ However, please note the following hints, so we can
+ provide you with the best support.
+</para>
+
+<sect2 id="sufficient-information"><title>Please provide sufficient information</title>
+<para>
+ A lot of support requests don't contain enough information and can't
+ be solved without a lot of back and forth which causes unnecessary
+ delays. Reading this section should help to prevent that.
+</para>
+<para>
+  Before contacting us to report a problem, please try to verify that it is a
+  <application>Privoxy</application> problem, and not a browser or site problem
+  or documented behaviour that just happens to be different than what you expected.
+  If unsure,
+  try <ulink url="http://config.privoxy.org/toggle?set=disable">toggling
+  off</ulink> <application>Privoxy</application>, and see if the problem persists.
+</para>
+
+<para>
+  If you are using your own custom configuration, please try the default
+  configuration to see if the problem is configuration related.
+  If you're having problems with a feature that is disabled by default,
+  please ask around on the mailing list if others can reproduce the problem.
+</para>
+
+<para>
+  If you aren't using the latest Privoxy version, the problem may have been found
+  and fixed in the meantime. We would appreciate if you could take the time
+  to <ulink url="https://www.privoxy.org/user-manual/installation.html">upgrade
+  to the latest version</ulink> and verify that the problem still exists.
+</para>
+<para>
+  Please be sure to provide the following information when reporting problems
+  or requesting support:
+</para>
+ <itemizedlist>
+
+  <listitem>
+   <para>
+    The exact <application>Privoxy</application> version you are using.
+   </para>
+  </listitem>
+
+  <listitem>
+   <para>
+    The operating system and versions you run
+    <application>Privoxy</application> on, e.g. <application>Windows
+    XP SP2</application>.
+   </para>
+  </listitem>
+
+  <listitem>
+   <para>
+    The name, platform, and version of the <application>browser</application>
+    you were using (e.g. <application>Internet Explorer v5.5</application> for Mac).
+   </para>
+  </listitem>
+
+  <listitem>
+   <para>
+    The URL where the problem occurred, or some way for us to duplicate the
+    problem (e.g. <literal>http://somesite.example.com/?somethingelse=123</literal>).
+   </para>
+  </listitem>
+
+  <listitem>
+   <para>
+    Whether your version of <application>Privoxy</application> is one supplied
+    by the <application>Privoxy</application> developers via SourceForge,
+    or if you got your copy somewhere else.
+   </para>
+  </listitem>
+
+  <listitem>
+   <para>
+    Whether you are using <application>Privoxy</application> together with
+    another proxy such as <application>Tor</application>. If so, please
+    temporary disable the other proxy to see if the symptoms change.
+   </para>
+  </listitem>
+
+  <listitem>
+   <para>
+    Whether you are using a personal firewall product. If so, does
+    <application>Privoxy</application> work without it?
+   </para>
+  </listitem>
+
+  <listitem>
+   <para>
+    Any other pertinent information to help identify the problem such as config
+    or log file excerpts (yes, you should have log file entries for each
+    action taken). To get a meaningful logfile, please make sure that the
+    <ulink url="../user-manual/config.html#LOGFILE">logfile directive</ulink>
+    is being used and the following <ulink
+    url="../user-manual/config.html#DEBUG">debug options</ulink> are enabled
+    (all of them):
+   </para>
+    <literallayout>debug     1 # Log the destination for each request Privoxy let through.
+            #   See also debug 1024.
+debug     2 # show each connection status
+debug     4 # show I/O status
+debug     8 # show header parsing
+debug   128 # debug redirects
+debug   256 # debug GIF de-animation
+debug   512 # Common Log Format
+debug  1024 # Log the destination for requests Privoxy didn't let through,
+            #   and the reason why.
+debug  4096 # Startup banner and warnings.
+debug  8192 # Non-fatal errors
+debug 65536 # Log applying actions</literallayout>
+   <para>
+    If you are having trouble with a filter, please additionally enable
+   </para>
+    <literallayout>debug    64 # debug regular expression filters</literallayout>
+   <para>
+    If you suspect that Privoxy interprets the request or the response
+    incorrectly, please enable
+   </para>
+    <literallayout>debug 32768 # log all data read from the network</literallayout>
+   <para>
+    It's easy for us to ignore log messages that aren't relevant but missing
+    log messages may make it impossible to investigate a problem. If you aren't
+    sure which of the debug directives are relevant, please just enable all of them
+    and let us worry about it.
+   </para>
+   <para>
+    Note that Privoxy log files may contain sensitive information so please don't
+    submit any logfiles you didn't read first. You can mask sensitive information
+    as long as it's clear that you removed something.
+   </para>
+  </listitem>
+
+</itemizedlist>
+
+<para>
+ You don't have to tell us your actual name when filing a problem
+ report, but if you don't, please use a nickname so we can differentiate
+ between your messages and the ones entered by other "anonymous" users that
+ may respond to your request if they have the same problem or already
+ found a solution. Note that due to spam the trackers may not always
+ allow to post without being logged into SourceForge. If that's the
+ case, you are still free to create a login that isn't directly linked
+ to your name, though.
+</para>
+
+<para>
+ Please also check the status of your request a few days after submitting
+ it, as we may request additional information. If you use a SF id,
+ you should automatically get a mail when someone responds to your request.
+ Please don't bother to add an email address when using the tracker.
+ If you prefer to communicate through email, just use one of the mailing
+ lists directly.
+</para>
+
+<para>
+ If you are new to reporting problems, you might be interested in
+  <ulink url="http://www.chiark.greenend.org.uk/~sgtatham/bugs.html"
+  >How to Report Bugs Effectively</ulink>.
+</para>
+
+<para>
+  The <ulink url="https://www.privoxy.org/user-manual/appendix.html#ACTIONSANAT">appendix
+  of the Privoxy User Manual</ulink> also has helpful information
+  on understanding <literal>actions</literal>, and <literal>action</literal> debugging.
+</para>
+</sect2>
+<sect2 id="contact-support"><title>Get Support</title>
+<para>
+ All users are welcome to discuss their issues on the <ulink
+ url="https://lists.privoxy.org/mailman/listinfo/privoxy-users">users
+ mailing list</ulink>, where the developers also hang around.
+</para>
+
+<para>
+ Please don't send private support requests to individual Privoxy
+ developers, either use the mailing lists or the support trackers.
+</para>
+
+<para>
+ If you have to contact a Privoxy developer directly for other reasons,
+ please send a real mail and do not bother with SourceForge's messaging
+ system. Answers to SourceForge messages are usually bounced by SourceForge's
+ mail server in which case the developer wasted time writing a response you
+ don't get. From your point of view it will look like your message has
+ been completely ignored, so this is frustrating for all parties involved.
+</para>
+
+<para>
+ Note that the Privoxy mailing lists are moderated. Posts from unsubscribed
+ addresses have to be accepted manually by a moderator. This may cause a
+ delay of several days and if you use a subject that doesn't clearly
+ mention Privoxy or one of its features, your message may be accidentally
+ discarded as spam.
+</para>
+
+<para>
+ If you aren't subscribed, you should therefore spend a few seconds
+ to come up with a proper subject. Additionally you should make it clear
+ that you want to get CC'd. Otherwise some responses will be directed to
+ the mailing list only, and you won't see them.
+</para>
+
+</sect2>
+
+<sect2 id="reporting"><title>Reporting Problems</title>
+<para>
+<quote>Problems</quote> for our purposes, come in two forms:
+</para>
+ <itemizedlist>
+
+  <listitem>
+   <para>
+    Configuration issues, such as ads that slip through, or sites that
+    don't function properly due to one <application>Privoxy</application>
+    <quote>action</quote> or another being turned <quote>on</quote>.
+   </para>
+  </listitem>
+
+  <listitem>
+   <para>
+    <quote>Bugs</quote> in the programming code that makes up
+    <application>Privoxy</application>, such as that might cause a crash.
+    Documentation issues, for example spelling errors and unclear descriptions,
+    are bugs, too.
+   </para>
+  </listitem>
+</itemizedlist>
+
+
+<sect3 id="contact-ads"><title>Reporting Ads or Other Configuration Problems</title>
+<para>
+ Please send feedback on ads that slipped through, innocent images that were
+ blocked, sites that don't work properly, and other configuration related problem of
+ <filename>default.action</filename> file, to
+ <ulink url="https://sourceforge.net/tracker/?group_id=11118&amp;atid=460288">
+ https://sourceforge.net/tracker/?group_id=11118&amp;atid=460288</ulink>,
+ the Actions File Tracker.
+</para>
+
+</sect3>
+
+
+<sect3 id="contact-bugs"><title>Reporting Bugs</title>
+
+<para>
+  Before reporting bugs, please make sure that the bug has <emphasis>not already been submitted</emphasis>
+  and observe the additional hints at the top of the <ulink
+  url="https://sourceforge.net/tracker/?func=add&amp;group_id=11118&amp;atid=111118">submit
+  form</ulink>. If already submitted, please feel free to add any info to the
+  original report that might help to solve the issue.
+</para>
+</sect3>
+</sect2>
+
+<sect2 id="security-contact"><title>Reporting security problems</title>
+<para>
+ If you discovered a security problem or merely suspect that a bug might
+ be a security issue, please mail Fabian Keil &lt;fk@fabiankeil.de>
+ (OpenPGP fingerprint: 4F36 C17F 3816 9136 54A1 E850 6918 2291 8BA2 371C).
+</para>
+<para>
+ Usually you should get a response within a day, otherwise it's
+ likely that either your mail or the response didn't make it.
+ If that happens, please mail to the developer list to request a
+ status update.
+</para>
+</sect2>
+
+<sect2 id="mailing-lists"><title>Mailing Lists</title>
+<para>
+If you prefer to communicate through email, instead of using a web interface,
+feel free to use one of the mailing lists.
+To discuss issues that haven't been completely diagnosed yet, please use the Privoxy
+users list. Technically interested users and people who wish to contribute to
+the project are always welcome on the developers list.
+You can find an overview of all <application>Privoxy</application>-related mailing lists,
+including list archives, at:
+<ulink url="https://lists.privoxy.org/mailman/listinfo">https://lists.privoxy.org/mailman/listinfo</ulink>.
+The lists hosted on privoxy.org have been created in 2016, the previously-used
+lists hosted at SourceForge are deprecated but the archives may still be useful:
+<ulink url="https://sourceforge.net/mail/?group_id=11118">https://sourceforge.net/mail/?group_id=11118</ulink>.
+</para>
+</sect2>
+
+<sect2 id="sf-trackers"><title>SourceForge support trackers</title>
+<para>
+ The
+ <ulink url="https://sourceforge.net/tracker/?group_id=11118&#38;atid=211118">SourceForge support trackers</ulink>
+ may be used as well, but have various technical problems that are unlikely to
+ be fixed anytime soon. If you don't get a timely response, please try the
+ mailing list as well.
+</para>
+
+</sect2>

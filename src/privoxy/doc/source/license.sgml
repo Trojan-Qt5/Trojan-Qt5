@@ -1,0 +1,41 @@
+<!--
+ File        :  doc/source/license.sgml
+
+ Purpose     :  Entity included in other project documents.
+
+ Copyright (C) 2001-2018 the Privoxy Developers https://www.privoxy.org/
+ See LICENSE.
+
+ ======================================================================
+  This file used for inclusion with other documents only.
+ ======================================================================
+
+ If you make changes to this file, please verify the finished
+ docs all display as intended.
+
+ This file is included into:
+
+  privoxy-man-page
+  user-manual
+  developer-manual
+  faq
+  webserver/index.sgml
+
+-->
+
+<para>
+ <application>Privoxy</application> is free software; you can
+ redistribute it and/or modify it under the terms of the
+ <citetitle>GNU General Public License</citetitle>, version 2,
+ as published by the Free Software Foundation.
+</para>
+
+<para>
+ <application>Privoxy</application> is distributed in the hope that
+ it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ See the <ulink
+ url="https://www.privoxy.org/user-manual/copyright.html#LICENSE">
+ <citetitle>license</citetitle></ulink> for details.
+</para>
+

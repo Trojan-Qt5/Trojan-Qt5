@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Contacting the developers, Bug Reporting and Feature Requests</title>
+  <meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.79">
+  <link rel="HOME" title="Privoxy Frequently Asked Questions" href="index.html">
+  <link rel="PREVIOUS" title="Troubleshooting" href="trouble.html">
+  <link rel="NEXT" title="Privoxy Copyright, License and History" href="copyright.html">
+  <link rel="STYLESHEET" type="text/css" href="../p_doc.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+<body class="SECT1" bgcolor="#EEEEEE" text="#000000" link="#0000FF" vlink="#840084" alink="#0000FF">
+  <div class="NAVHEADER">
+    <table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <th colspan="3" align="center">Privoxy Frequently Asked Questions</th>
+      </tr>
+      <tr>
+        <td width="10%" align="left" valign="bottom"><a href="trouble.html" accesskey="P">Prev</a></td>
+        <td width="80%" align="center" valign="bottom"></td>
+        <td width="10%" align="right" valign="bottom"><a href="copyright.html" accesskey="N">Next</a></td>
+      </tr>
+    </table>
+    <hr align="left" width="100%">
+  </div>
+  <div class="SECT1">
+    <h1 class="SECT1"><a name="CONTACT" id="CONTACT">6. Contacting the developers, Bug Reporting and Feature
+    Requests</a></h1>
+    <p>We value your feedback. In fact, we rely on it to improve <span class="APPLICATION">Privoxy</span> and its
+    configuration. However, please note the following hints, so we can provide you with the best support.</p>
+    <div class="SECT2">
+      <h2 class="SECT2"><a name="SUFFICIENT-INFORMATION" id="SUFFICIENT-INFORMATION">6.1. Please provide sufficient
+      information</a></h2>
+      <p>A lot of support requests don't contain enough information and can't be solved without a lot of back and forth
+      which causes unnecessary delays. Reading this section should help to prevent that.</p>
+      <p>Before contacting us to report a problem, please try to verify that it is a <span class=
+      "APPLICATION">Privoxy</span> problem, and not a browser or site problem or documented behaviour that just happens
+      to be different than what you expected. If unsure, try <a href="http://config.privoxy.org/toggle?set=disable"
+      target="_top">toggling off</a> <span class="APPLICATION">Privoxy</span>, and see if the problem persists.</p>
+      <p>If you are using your own custom configuration, please try the default configuration to see if the problem is
+      configuration related. If you're having problems with a feature that is disabled by default, please ask around on
+      the mailing list if others can reproduce the problem.</p>
+      <p>If you aren't using the latest Privoxy version, the problem may have been found and fixed in the meantime. We
+      would appreciate if you could take the time to <a href="https://www.privoxy.org/user-manual/installation.html"
+      target="_top">upgrade to the latest version</a> and verify that the problem still exists.</p>
+      <p>Please be sure to provide the following information when reporting problems or requesting support:</p>
+      <ul>
+        <li>
+          <p>The exact <span class="APPLICATION">Privoxy</span> version you are using.</p>
+        </li>
+        <li>
+          <p>The operating system and versions you run <span class="APPLICATION">Privoxy</span> on, e.g. <span class=
+          "APPLICATION">Windows XP SP2</span>.</p>
+        </li>
+        <li>
+          <p>The name, platform, and version of the <span class="APPLICATION">browser</span> you were using (e.g.
+          <span class="APPLICATION">Internet Explorer v5.5</span> for Mac).</p>
+        </li>
+        <li>
+          <p>The URL where the problem occurred, or some way for us to duplicate the problem (e.g. <tt class=
+          "LITERAL">http://somesite.example.com/?somethingelse=123</tt>).</p>
+        </li>
+        <li>
+          <p>Whether your version of <span class="APPLICATION">Privoxy</span> is one supplied by the <span class=
+          "APPLICATION">Privoxy</span> developers via SourceForge, or if you got your copy somewhere else.</p>
+        </li>
+        <li>
+          <p>Whether you are using <span class="APPLICATION">Privoxy</span> together with another proxy such as
+          <span class="APPLICATION">Tor</span>. If so, please temporary disable the other proxy to see if the symptoms
+          change.</p>
+        </li>
+        <li>
+          <p>Whether you are using a personal firewall product. If so, does <span class="APPLICATION">Privoxy</span>
+          work without it?</p>
+        </li>
+        <li>
+          <p>Any other pertinent information to help identify the problem such as config or log file excerpts (yes, you
+          should have log file entries for each action taken). To get a meaningful logfile, please make sure that the
+          <a href="../user-manual/config.html#LOGFILE" target="_top">logfile directive</a> is being used and the
+          following <a href="../user-manual/config.html#DEBUG" target="_top">debug options</a> are enabled (all of
+          them):</p>
+          <p class="LITERALLAYOUT">
+          debug&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;#&nbsp;Log&nbsp;the&nbsp;destination&nbsp;for&nbsp;each&nbsp;request&nbsp;Privoxy&nbsp;let&nbsp;through.<br>
+
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;&nbsp;&nbsp;See&nbsp;also&nbsp;debug&nbsp;1024.<br>
+
+          debug&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;#&nbsp;show&nbsp;each&nbsp;connection&nbsp;status<br>
+          debug&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;#&nbsp;show&nbsp;I/O&nbsp;status<br>
+          debug&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;#&nbsp;show&nbsp;header&nbsp;parsing<br>
+          debug&nbsp;&nbsp;&nbsp;128&nbsp;#&nbsp;debug&nbsp;redirects<br>
+          debug&nbsp;&nbsp;&nbsp;256&nbsp;#&nbsp;debug&nbsp;GIF&nbsp;de-animation<br>
+          debug&nbsp;&nbsp;&nbsp;512&nbsp;#&nbsp;Common&nbsp;Log&nbsp;Format<br>
+          debug&nbsp;&nbsp;1024&nbsp;#&nbsp;Log&nbsp;the&nbsp;destination&nbsp;for&nbsp;requests&nbsp;Privoxy&nbsp;didn't&nbsp;let&nbsp;through,<br>
+
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;&nbsp;&nbsp;and&nbsp;the&nbsp;reason&nbsp;why.<br>
+
+          debug&nbsp;&nbsp;4096&nbsp;#&nbsp;Startup&nbsp;banner&nbsp;and&nbsp;warnings.<br>
+          debug&nbsp;&nbsp;8192&nbsp;#&nbsp;Non-fatal&nbsp;errors<br>
+          debug&nbsp;65536&nbsp;#&nbsp;Log&nbsp;applying&nbsp;actions</p>
+          <p>If you are having trouble with a filter, please additionally enable</p>
+          <p class="LITERALLAYOUT">
+          debug&nbsp;&nbsp;&nbsp;&nbsp;64&nbsp;#&nbsp;debug&nbsp;regular&nbsp;expression&nbsp;filters</p>
+          <p>If you suspect that Privoxy interprets the request or the response incorrectly, please enable</p>
+          <p class="LITERALLAYOUT">
+          debug&nbsp;32768&nbsp;#&nbsp;log&nbsp;all&nbsp;data&nbsp;read&nbsp;from&nbsp;the&nbsp;network</p>
+          <p>It's easy for us to ignore log messages that aren't relevant but missing log messages may make it
+          impossible to investigate a problem. If you aren't sure which of the debug directives are relevant, please
+          just enable all of them and let us worry about it.</p>
+          <p>Note that Privoxy log files may contain sensitive information so please don't submit any logfiles you
+          didn't read first. You can mask sensitive information as long as it's clear that you removed something.</p>
+        </li>
+      </ul>
+      <p>You don't have to tell us your actual name when filing a problem report, but if you don't, please use a
+      nickname so we can differentiate between your messages and the ones entered by other "anonymous" users that may
+      respond to your request if they have the same problem or already found a solution. Note that due to spam the
+      trackers may not always allow to post without being logged into SourceForge. If that's the case, you are still
+      free to create a login that isn't directly linked to your name, though.</p>
+      <p>Please also check the status of your request a few days after submitting it, as we may request additional
+      information. If you use a SF id, you should automatically get a mail when someone responds to your request.
+      Please don't bother to add an email address when using the tracker. If you prefer to communicate through email,
+      just use one of the mailing lists directly.</p>
+      <p>If you are new to reporting problems, you might be interested in <a href=
+      "http://www.chiark.greenend.org.uk/~sgtatham/bugs.html" target="_top">How to Report Bugs Effectively</a>.</p>
+      <p>The <a href="https://www.privoxy.org/user-manual/appendix.html#ACTIONSANAT" target="_top">appendix of the
+      Privoxy User Manual</a> also has helpful information on understanding <tt class="LITERAL">actions</tt>, and
+      <tt class="LITERAL">action</tt> debugging.</p>
+    </div>
+    <div class="SECT2">
+      <h2 class="SECT2"><a name="CONTACT-SUPPORT" id="CONTACT-SUPPORT">6.2. Get Support</a></h2>
+      <p>All users are welcome to discuss their issues on the <a href=
+      "https://lists.privoxy.org/mailman/listinfo/privoxy-users" target="_top">users mailing list</a>, where the
+      developers also hang around.</p>
+      <p>Please don't send private support requests to individual Privoxy developers, either use the mailing lists or
+      the support trackers.</p>
+      <p>If you have to contact a Privoxy developer directly for other reasons, please send a real mail and do not
+      bother with SourceForge's messaging system. Answers to SourceForge messages are usually bounced by SourceForge's
+      mail server in which case the developer wasted time writing a response you don't get. From your point of view it
+      will look like your message has been completely ignored, so this is frustrating for all parties involved.</p>
+      <p>Note that the Privoxy mailing lists are moderated. Posts from unsubscribed addresses have to be accepted
+      manually by a moderator. This may cause a delay of several days and if you use a subject that doesn't clearly
+      mention Privoxy or one of its features, your message may be accidentally discarded as spam.</p>
+      <p>If you aren't subscribed, you should therefore spend a few seconds to come up with a proper subject.
+      Additionally you should make it clear that you want to get CC'd. Otherwise some responses will be directed to the
+      mailing list only, and you won't see them.</p>
+    </div>
+    <div class="SECT2">
+      <h2 class="SECT2"><a name="REPORTING" id="REPORTING">6.3. Reporting Problems</a></h2>
+      <p><span class="QUOTE">"Problems"</span> for our purposes, come in two forms:</p>
+      <ul>
+        <li>
+          <p>Configuration issues, such as ads that slip through, or sites that don't function properly due to one
+          <span class="APPLICATION">Privoxy</span> <span class="QUOTE">"action"</span> or another being turned
+          <span class="QUOTE">"on"</span>.</p>
+        </li>
+        <li>
+          <p><span class="QUOTE">"Bugs"</span> in the programming code that makes up <span class=
+          "APPLICATION">Privoxy</span>, such as that might cause a crash. Documentation issues, for example spelling
+          errors and unclear descriptions, are bugs, too.</p>
+        </li>
+      </ul>
+      <div class="SECT3">
+        <h3 class="SECT3"><a name="CONTACT-ADS" id="CONTACT-ADS">6.3.1. Reporting Ads or Other Configuration
+        Problems</a></h3>
+        <p>Please send feedback on ads that slipped through, innocent images that were blocked, sites that don't work
+        properly, and other configuration related problem of <tt class="FILENAME">default.action</tt> file, to <a href=
+        "https://sourceforge.net/tracker/?group_id=11118&#38;atid=460288" target=
+        "_top">https://sourceforge.net/tracker/?group_id=11118&amp;atid=460288</a>, the Actions File Tracker.</p>
+      </div>
+      <div class="SECT3">
+        <h3 class="SECT3"><a name="CONTACT-BUGS" id="CONTACT-BUGS">6.3.2. Reporting Bugs</a></h3>
+        <p>Before reporting bugs, please make sure that the bug has <span class="emphasis"><i class="EMPHASIS">not
+        already been submitted</i></span> and observe the additional hints at the top of the <a href=
+        "https://sourceforge.net/tracker/?func=add&#38;group_id=11118&#38;atid=111118" target="_top">submit form</a>.
+        If already submitted, please feel free to add any info to the original report that might help to solve the
+        issue.</p>
+      </div>
+    </div>
+    <div class="SECT2">
+      <h2 class="SECT2"><a name="SECURITY-CONTACT" id="SECURITY-CONTACT">6.4. Reporting security problems</a></h2>
+      <p>If you discovered a security problem or merely suspect that a bug might be a security issue, please mail
+      Fabian Keil &lt;fk@fabiankeil.de&#62; (OpenPGP fingerprint: 4F36 C17F 3816 9136 54A1 E850 6918 2291 8BA2
+      371C).</p>
+      <p>Usually you should get a response within a day, otherwise it's likely that either your mail or the response
+      didn't make it. If that happens, please mail to the developer list to request a status update.</p>
+    </div>
+    <div class="SECT2">
+      <h2 class="SECT2"><a name="MAILING-LISTS" id="MAILING-LISTS">6.5. Mailing Lists</a></h2>
+      <p>If you prefer to communicate through email, instead of using a web interface, feel free to use one of the
+      mailing lists. To discuss issues that haven't been completely diagnosed yet, please use the Privoxy users list.
+      Technically interested users and people who wish to contribute to the project are always welcome on the
+      developers list. You can find an overview of all <span class="APPLICATION">Privoxy</span>-related mailing lists,
+      including list archives, at: <a href="https://lists.privoxy.org/mailman/listinfo" target=
+      "_top">https://lists.privoxy.org/mailman/listinfo</a>. The lists hosted on privoxy.org have been created in 2016,
+      the previously-used lists hosted at SourceForge are deprecated but the archives may still be useful: <a href=
+      "https://sourceforge.net/mail/?group_id=11118" target=
+      "_top">https://sourceforge.net/mail/?group_id=11118</a>.</p>
+    </div>
+    <div class="SECT2">
+      <h2 class="SECT2"><a name="SF-TRACKERS" id="SF-TRACKERS">6.6. SourceForge support trackers</a></h2>
+      <p>The <a href="https://sourceforge.net/tracker/?group_id=11118&#38;atid=211118" target="_top">SourceForge
+      support trackers</a> may be used as well, but have various technical problems that are unlikely to be fixed
+      anytime soon. If you don't get a timely response, please try the mailing list as well.</p>
+    </div>
+  </div>
+  <div class="NAVFOOTER">
+    <hr align="left" width="100%">
+    <table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="33%" align="left" valign="top"><a href="trouble.html" accesskey="P">Prev</a></td>
+        <td width="34%" align="center" valign="top"><a href="index.html" accesskey="H">Home</a></td>
+        <td width="33%" align="right" valign="top"><a href="copyright.html" accesskey="N">Next</a></td>
+      </tr>
+      <tr>
+        <td width="33%" align="left" valign="top">Troubleshooting</td>
+        <td width="34%" align="center" valign="top">&nbsp;</td>
+        <td width="33%" align="right" valign="top">Privoxy Copyright, License and History</td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>

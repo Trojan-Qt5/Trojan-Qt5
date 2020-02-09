@@ -1,0 +1,133 @@
+#!/bin/sh
+
+###########################################################################
+#
+#  File        :  $Source: /cvsroot/ijbswa/current/privoxy-generic.init,v $
+#
+#  Purpose     :  This script takes care of starting and stopping privoxy.
+#                 It is supposed to work cross-platform and thus doesn't
+#                 do too much. When packaging Privoxy it's recommended to
+#                 write a platform-specific start script instead of using
+#                 this one.
+#
+#  Copyright   :  Written by and Copyright (C) 2001,2002 the
+#                 Privoxy team. http://www.privoxy.org/
+#
+#                 This program is free software; you can redistribute it
+#                 and/or modify it under the terms of the GNU General
+#                 Public License as published by the Free Software
+#                 Foundation; either version 2 of the License, or (at
+#                 your option) any later version.
+#
+#                 This program is distributed in the hope that it will
+#                 be useful, but WITHOUT ANY WARRANTY; without even the
+#                 implied warranty of MERCHANTABILITY or FITNESS FOR A
+#                 PARTICULAR PURPOSE.  See the GNU General Public
+#                 License for more details.
+#
+#                 The GNU General Public License should be included with
+#                 this file.  If not, you can view it at
+#                 http://www.gnu.org/copyleft/gpl.html
+#                 or write to the Free Software Foundation, Inc., 59
+#                 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#
+###########################################################################
+
+### BEGIN INIT INFO
+# Provides:          privoxy
+# Required-Start:
+# Required-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start privoxy at boot time
+# Description:       Start and stop the privacy-enhancing HTTP proxy privoxy.
+### END INIT INFO
+
+# NOTE: This script may require editing to ensure proper location of
+# config file, and the privoxy executable. Care should be taken to ensure
+# logfile is writable by $P_USER (logfile is defined in config), and that
+# there is suitable write access for $P_PIDFILE.
+
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/xpg4/bin:/usr/bin:/sbin:/bin
+P_NAME=Privoxy
+# Path to executable.
+P_DAEMON=privoxy
+# Full path to location of Privoxy config file.
+P_CONF_FILE=/usr/local/etc/privoxy/config
+# Full path to PID file location. Location must be writable by
+# whoever runs this script and by Privoxy itself.
+P_PIDFILE=/var/run/privoxy.pid
+# If uncommented, this script will try to run as USER=privoxy, which
+# may require special handling of config, *.action, trust, logfile,
+# jarfile, and pidfile.
+P_USER=privoxy
+
+# If a privoxy user is specified, lets try that. /bin/sh does not seem to
+# know about $UID.
+if [ 0 = `id -u` ]; then
+  if [ -n "$P_USER" ]; then
+    id $P_USER 2>/dev/null >/dev/null
+    if [ $? -eq 0 ]; then
+      P_USER_SETTINGS="--user $P_USER"
+    else
+      echo "User $P_USER doesn't exist, exiting."
+      exit 1
+    fi
+  else
+    # The user has sufficient rights, but $P_USER isn't set
+    echo "Running Privoxy as root is not recommended!"
+    P_USER_SETTINGS=""
+  fi
+else
+  # The user has insufficient rights to run Privoxy as $P_USER
+  # and may not be able to write or delete the PID file.
+  echo "You aren't root, expect trouble!"
+  P_USER_SETTINGS=""
+fi
+
+if [ ! -f $P_CONF_FILE ]; then
+  echo "Can't find $P_CONF_FILE, exiting."
+  exit 1
+fi
+
+case "$1" in
+
+ start)
+     if [ -f $P_PIDFILE ]; then
+       if kill -0 `cat $P_PIDFILE`; then
+         echo "Error: $P_NAME is already running, exiting."
+         exit 1
+       else
+         rm -f $P_PIDFILE
+       fi
+     fi
+
+	$P_DAEMON --pidfile $P_PIDFILE $P_USER_SETTINGS $P_CONF_FILE 2>/dev/null
+
+     if [ $? -eq 0 ]; then
+       echo "Starting $P_NAME, OK."
+     else
+       echo "Starting $P_NAME, Failed."
+       rm -f $P_PIDFILE
+     fi
+     ;;
+
+ restart)
+     $0 stop
+     $0 start
+     ;;
+
+ stop)
+     test ! -f $P_PIDFILE && echo "No $P_PIDFILE file found, exiting." && exit 1
+     kill `cat $P_PIDFILE` && rm -f $P_PIDFILE && \
+     echo "Stopping $P_NAME, OK." || echo "Stopping $P_NAME, failed."
+     ;;
+
+ *)
+     echo "Usage: $0 {start|stop|restart}"
+     exit 1
+     ;;
+
+esac
+
+exit 0

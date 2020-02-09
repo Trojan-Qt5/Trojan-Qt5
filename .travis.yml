@@ -33,7 +33,23 @@ install:
       git clone https://github.com/benlau/qtci.git;
       source qtci/path.env;
       install-qt 5.13.2;
-      echo "Installig ZBar 0.10...";
+      echo "Installing Zlib 1.2.11...";
+      wget https://www.zlib.net/zlib-1.2.11.tar.gz;
+      tar -xf zlib-1.2.11.tar.gz;
+      cd zlib-1.2.11;
+      ./configure --prefix=/usr/local/zlib >/dev/null 2>&1;
+      make -j$(nproc) >/dev/null 2>&1;
+      sudo make install >/dev/null 2>&1;
+      cd ..;
+      echo "Installing Pcre 8.43...";
+      wget https://ftp.pcre.org/pub/pcre/pcre-8.43.tar.gz;
+      tar -xf pcre-8.43.tar.gz;
+      cd pcre-8.43;
+      ./configure --prefix=/usr/local/pcre >/dev/null 2>&1;
+      make -j$(nproc) >/dev/null 2>&1;
+      sudo make install >/dev/null 2>&1;
+      cd ..;
+      echo "Installing ZBar 0.10...";
       wget -O zbar-0.10.tar.gz https://sourceforge.net/projects/zbar/files/zbar/0.10/zbar-0.10.tar.gz/download;
       tar -xf zbar-0.10.tar.gz;
       cd zbar-0.10;
@@ -42,7 +58,7 @@ install:
       make -j$(nproc) >/dev/null 2>&1;
       sudo make install >/dev/null 2>&1;
       cd ..;
-      echo "Installig libqrencode...";
+      echo "Installing libqrencode...";
       git clone https://github.com/fukuchi/libqrencode.git;
       cd libqrencode;
       ./autogen.sh >/dev/null 2>&1;
@@ -50,7 +66,7 @@ install:
       make -j$(nproc) >/dev/null 2>&1;
       sudo make install >/dev/null 2>&1;
       cd ..;
-      echo "Installig openssl 1.1.1d...";
+      echo "Installing openssl 1.1.1d...";
       wget https://www.openssl.org/source/openssl-1.1.1d.tar.gz;
       tar -xf openssl-1.1.1d.tar.gz;
       cd openssl-1.1.1d;
@@ -58,7 +74,7 @@ install:
       make -j$(nproc) >/dev/null 2>&1;
       sudo make install >/dev/null 2>&1;
       cd ..;
-      echo "Installig boost 1_72_0...";
+      echo "Installing boost 1_72_0...";
       wget -O boost_1_72_0.tar.gz https://sourceforge.net/projects/boost/files/boost/1.72.0/boost_1_72_0.tar.gz/download >/dev/null 2>&1;
       tar -xf boost_1_72_0.tar.gz;
       cd boost_1_72_0/;
@@ -68,7 +84,7 @@ install:
       cd ..;
     fi
   - if [ "$BADGE" = "osx" ]; then    
-      brew install zbar qrencode boost openssl@1.1;
+      brew install zbar qrencode boost openssl@1.1 zlib pcre;
       brew reinstall https://raw.githubusercontent.com/Homebrew/homebrew-core/89bf3a54383d884f8b8511c6237325dd5b5ae6ba/Formula/qt.rb --verbose;
     fi
 
@@ -81,7 +97,6 @@ script:
   - if [ "$BADGE" = "osx" ]; then
       qmake ../;
       make -j$(nproc);
-      macdeployqt trojan-qt5.app -dmg;
     fi
   - if [ "$BADGE" = "linux" ]; then
       wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage";
@@ -92,18 +107,22 @@ script:
     fi
 
 defore_deploy:
+  - if [ "$BADGE" = "osx" ]; then
+      macdeployqt trojan-qt5.app -dmg;
+      mv trojan-qt5.dmg Trojan-Qt5-macOS.dmg;
+    fi
   - if [ "$BADGE" = "linux" ]; then
-      export LD_LIBRARY_PATH=/usr/local/zbar/lib/:/usr/local/qrencode/lib/:/usr/local/boost/lib/:/usr/local/openssl/lib/:$LD_LIBRARY_PATH;
+      export LD_LIBRARY_PATH=/usr/loal/zlib/lib:/usr/local/pcre/lib:/usr/local/zbar/lib/:/usr/local/qrencode/lib/:/usr/local/boost/lib/:/usr/local/openssl/lib/:$LD_LIBRARY_PATH;
       ./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -appimage;
-      mv Trojan-Qt5*.AppImage Trojan-Qt5.AppImage;
+      mv Trojan-Qt5*.AppImage Trojan-Qt5-Linux.AppImage;
     fi
   - cd ..
 
 deploy:
   provider: release
   file: 
-    - build/trojan-qt5.dmg
-    - build/Trojan-Qt5.AppImage
+    - build/Trojan-Qt5-macOS.dmg
+    - build/Trojan-Qt5-Linux.AppImage
   api_key: $GIT_REPO_TOKEN
   skip_cleanup: true
   overwrite: true

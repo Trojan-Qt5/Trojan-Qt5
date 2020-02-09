@@ -1,0 +1,333 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Privoxy 3.0.28 User Manual</title>
+  <meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.79">
+  <link rel="NEXT" title="Introduction" href="introduction.html">
+  <link rel="STYLESHEET" type="text/css" href="../p_doc.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <link rel="STYLESHEET" type="text/css" href="p_doc.css">
+</head>
+<body class="ARTICLE" bgcolor="#EEEEEE" text="#000000" link="#0000FF" vlink="#840084" alink="#0000FF">
+  <div class="ARTICLE">
+    <div class="TITLEPAGE">
+      <h1 class="TITLE"><a name="AEN2" id="AEN2">Privoxy 3.0.28 User Manual</a></h1>
+      <p class="PUBDATE"><sub><a href="copyright.html">Copyright</a> &copy; 2001-2018 by <a href=
+      "https://www.privoxy.org/" target="_top">Privoxy Developers</a></sub><br></p>
+      <div>
+        <div class="ABSTRACT">
+          <a name="AEN8" id="AEN8"></a>
+          <p>The <i class="CITETITLE">Privoxy User Manual</i> gives users information on how to install, configure and
+          use <a href="https://www.privoxy.org/" target="_top">Privoxy</a>.</p>
+          <p>Privoxy is a non-caching web proxy with advanced filtering capabilities for enhancing privacy, modifying
+          web page data and HTTP headers, controlling access, and removing ads and other obnoxious Internet junk.
+          Privoxy has a flexible configuration and can be customized to suit individual needs and tastes. It has
+          application for both stand-alone systems and multi-user networks.</p>
+          <p>Privoxy is Free Software and licensed under the GNU GPLv2.</p>
+          <p>Privoxy is an associated project of Software in the Public Interest (SPI).</p>
+          <p>Helping hands and donations are welcome:</p>
+          <ul>
+            <li>
+              <p><a href="https://www.privoxy.org/faq/general.html#PARTICIPATE" target=
+              "_top">https://www.privoxy.org/faq/general.html#PARTICIPATE</a></p>
+            </li>
+            <li>
+              <p><a href="https://www.privoxy.org/faq/general.html#DONATE" target=
+              "_top">https://www.privoxy.org/faq/general.html#DONATE</a></p>
+            </li>
+          </ul>
+          <p>You can find the latest version of the <i class="CITETITLE">Privoxy User Manual</i> at <a href=
+          "https://www.privoxy.org/user-manual/" target="_top">https://www.privoxy.org/user-manual/</a>. Please see the
+          <a href="contact.html">Contact section</a> on how to contact the developers.</p>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <div class="TOC">
+      <dl>
+        <dt><b>Table of Contents</b></dt>
+        <dt>1. <a href="introduction.html">Introduction</a></dt>
+        <dd>
+          <dl>
+            <dt>1.1. <a href="introduction.html#FEATURES">Features</a></dt>
+          </dl>
+        </dd>
+        <dt>2. <a href="installation.html">Installation</a></dt>
+        <dd>
+          <dl>
+            <dt>2.1. <a href="installation.html#INSTALLATION-PACKAGES">Binary Packages</a></dt>
+            <dd>
+              <dl>
+                <dt>2.1.1. <a href="installation.html#INSTALLATION-DEB">Debian and Ubuntu</a></dt>
+                <dt>2.1.2. <a href="installation.html#INSTALLATION-PACK-WIN">Windows</a></dt>
+                <dt>2.1.3. <a href="installation.html#INSTALLATION-OS2">OS/2</a></dt>
+                <dt>2.1.4. <a href="installation.html#INSTALLATION-MAC">Mac OS X</a></dt>
+                <dt>2.1.5. <a href="installation.html#OS-X-INSTALL-FROM-PACKAGE">Installation from ready-built
+                package</a></dt>
+                <dt>2.1.6. <a href="installation.html#OS-X-INSTALL-FROM-SOURCE">Installation from source</a></dt>
+                <dt>2.1.7. <a href="installation.html#INSTALLATION-FREEBSD">FreeBSD</a></dt>
+              </dl>
+            </dd>
+            <dt>2.2. <a href="installation.html#INSTALLATION-SOURCE">Building from Source</a></dt>
+            <dd>
+              <dl>
+                <dt>2.2.1. <a href="installation.html#WINBUILD-CYGWIN">Windows</a></dt>
+              </dl>
+            </dd>
+            <dt>2.3. <a href="installation.html#INSTALLATION-KEEPUPDATED">Keeping your Installation Up-to-Date</a></dt>
+          </dl>
+        </dd>
+        <dt>3. <a href="whatsnew.html">What's New in this Release</a></dt>
+        <dd>
+          <dl>
+            <dt>3.1. <a href="whatsnew.html#UPGRADERSNOTE">Note to Upgraders</a></dt>
+          </dl>
+        </dd>
+        <dt>4. <a href="quickstart.html">Quickstart to Using Privoxy</a></dt>
+        <dd>
+          <dl>
+            <dt>4.1. <a href="quickstart.html#QUICKSTART-AD-BLOCKING">Quickstart to Ad Blocking</a></dt>
+          </dl>
+        </dd>
+        <dt>5. <a href="startup.html">Starting Privoxy</a></dt>
+        <dd>
+          <dl>
+            <dt>5.1. <a href="startup.html#START-DEBIAN">Debian</a></dt>
+            <dt>5.2. <a href="startup.html#START-FREEBSD">FreeBSD and ElectroBSD</a></dt>
+            <dt>5.3. <a href="startup.html#START-WINDOWS">Windows</a></dt>
+            <dt>5.4. <a href="startup.html#START-UNICES">Generic instructions for Unix derivates (Solaris, NetBSD,
+            HP-UX etc.)</a></dt>
+            <dt>5.5. <a href="startup.html#START-OS2">OS/2</a></dt>
+            <dt>5.6. <a href="startup.html#START-MACOSX">Mac OS X</a></dt>
+            <dt>5.7. <a href="startup.html#CMDOPTIONS">Command Line Options</a></dt>
+          </dl>
+        </dd>
+        <dt>6. <a href="configuration.html">Privoxy Configuration</a></dt>
+        <dd>
+          <dl>
+            <dt>6.1. <a href="configuration.html#CONTROL-WITH-WEBBROWSER">Controlling Privoxy with Your Web
+            Browser</a></dt>
+            <dt>6.2. <a href="configuration.html#CONFOVERVIEW">Configuration Files Overview</a></dt>
+          </dl>
+        </dd>
+        <dt>7. <a href="config.html">The Main Configuration File</a></dt>
+        <dd>
+          <dl>
+            <dt>7.1. <a href="config.html#LOCAL-SET-UP">Local Set-up Documentation</a></dt>
+            <dd>
+              <dl>
+                <dt>7.1.1. <a href="config.html#USER-MANUAL">user-manual</a></dt>
+                <dt>7.1.2. <a href="config.html#TRUST-INFO-URL">trust-info-url</a></dt>
+                <dt>7.1.3. <a href="config.html#ADMIN-ADDRESS">admin-address</a></dt>
+                <dt>7.1.4. <a href="config.html#PROXY-INFO-URL">proxy-info-url</a></dt>
+              </dl>
+            </dd>
+            <dt>7.2. <a href="config.html#CONF-LOG-LOC">Configuration and Log File Locations</a></dt>
+            <dd>
+              <dl>
+                <dt>7.2.1. <a href="config.html#CONFDIR">confdir</a></dt>
+                <dt>7.2.2. <a href="config.html#TEMPLDIR">templdir</a></dt>
+                <dt>7.2.3. <a href="config.html#TEMPORARY-DIRECTORY">temporary-directory</a></dt>
+                <dt>7.2.4. <a href="config.html#LOGDIR">logdir</a></dt>
+                <dt>7.2.5. <a href="config.html#ACTIONSFILE">actionsfile</a></dt>
+                <dt>7.2.6. <a href="config.html#FILTERFILE">filterfile</a></dt>
+                <dt>7.2.7. <a href="config.html#LOGFILE">logfile</a></dt>
+                <dt>7.2.8. <a href="config.html#TRUSTFILE">trustfile</a></dt>
+              </dl>
+            </dd>
+            <dt>7.3. <a href="config.html#DEBUGGING">Debugging</a></dt>
+            <dd>
+              <dl>
+                <dt>7.3.1. <a href="config.html#DEBUG">debug</a></dt>
+                <dt>7.3.2. <a href="config.html#SINGLE-THREADED">single-threaded</a></dt>
+                <dt>7.3.3. <a href="config.html#HOSTNAME">hostname</a></dt>
+              </dl>
+            </dd>
+            <dt>7.4. <a href="config.html#ACCESS-CONTROL">Access Control and Security</a></dt>
+            <dd>
+              <dl>
+                <dt>7.4.1. <a href="config.html#LISTEN-ADDRESS">listen-address</a></dt>
+                <dt>7.4.2. <a href="config.html#TOGGLE">toggle</a></dt>
+                <dt>7.4.3. <a href="config.html#ENABLE-REMOTE-TOGGLE">enable-remote-toggle</a></dt>
+                <dt>7.4.4. <a href="config.html#ENABLE-REMOTE-HTTP-TOGGLE">enable-remote-http-toggle</a></dt>
+                <dt>7.4.5. <a href="config.html#ENABLE-EDIT-ACTIONS">enable-edit-actions</a></dt>
+                <dt>7.4.6. <a href="config.html#ENFORCE-BLOCKS">enforce-blocks</a></dt>
+                <dt>7.4.7. <a href="config.html#ACLS">ACLs: permit-access and deny-access</a></dt>
+                <dt>7.4.8. <a href="config.html#BUFFER-LIMIT">buffer-limit</a></dt>
+                <dt>7.4.9. <a href=
+                "config.html#ENABLE-PROXY-AUTHENTICATION-FORWARDING">enable-proxy-authentication-forwarding</a></dt>
+                <dt>7.4.10. <a href="config.html#TRUSTED-CGI-REFERER">trusted-cgi-referer</a></dt>
+              </dl>
+            </dd>
+            <dt>7.5. <a href="config.html#FORWARDING">Forwarding</a></dt>
+            <dd>
+              <dl>
+                <dt>7.5.1. <a href="config.html#FORWARD">forward</a></dt>
+                <dt>7.5.2. <a href="config.html#SOCKS">forward-socks4, forward-socks4a, forward-socks5 and
+                forward-socks5t</a></dt>
+                <dt>7.5.3. <a href="config.html#ADVANCED-FORWARDING-EXAMPLES">Advanced Forwarding Examples</a></dt>
+                <dt>7.5.4. <a href="config.html#FORWARDED-CONNECT-RETRIES">forwarded-connect-retries</a></dt>
+              </dl>
+            </dd>
+            <dt>7.6. <a href="config.html#MISC">Miscellaneous</a></dt>
+            <dd>
+              <dl>
+                <dt>7.6.1. <a href="config.html#ACCEPT-INTERCEPTED-REQUESTS">accept-intercepted-requests</a></dt>
+                <dt>7.6.2. <a href="config.html#ALLOW-CGI-REQUEST-CRUNCHING">allow-cgi-request-crunching</a></dt>
+                <dt>7.6.3. <a href="config.html#SPLIT-LARGE-FORMS">split-large-forms</a></dt>
+                <dt>7.6.4. <a href="config.html#KEEP-ALIVE-TIMEOUT">keep-alive-timeout</a></dt>
+                <dt>7.6.5. <a href="config.html#TOLERATE-PIPELINING">tolerate-pipelining</a></dt>
+                <dt>7.6.6. <a href="config.html#DEFAULT-SERVER-TIMEOUT">default-server-timeout</a></dt>
+                <dt>7.6.7. <a href="config.html#CONNECTION-SHARING">connection-sharing</a></dt>
+                <dt>7.6.8. <a href="config.html#SOCKET-TIMEOUT">socket-timeout</a></dt>
+                <dt>7.6.9. <a href="config.html#MAX-CLIENT-CONNECTIONS">max-client-connections</a></dt>
+                <dt>7.6.10. <a href="config.html#LISTEN-BACKLOG">listen-backlog</a></dt>
+                <dt>7.6.11. <a href="config.html#ENABLE-ACCEPT-FILTER">enable-accept-filter</a></dt>
+                <dt>7.6.12. <a href=
+                "config.html#HANDLE-AS-EMPTY-DOC-RETURNS-OK">handle-as-empty-doc-returns-ok</a></dt>
+                <dt>7.6.13. <a href="config.html#ENABLE-COMPRESSION">enable-compression</a></dt>
+                <dt>7.6.14. <a href="config.html#COMPRESSION-LEVEL">compression-level</a></dt>
+                <dt>7.6.15. <a href="config.html#CLIENT-HEADER-ORDER">client-header-order</a></dt>
+                <dt>7.6.16. <a href="config.html#CLIENT-SPECIFIC-TAG">client-specific-tag</a></dt>
+                <dt>7.6.17. <a href="config.html#CLIENT-TAG-LIFETIME">client-tag-lifetime</a></dt>
+                <dt>7.6.18. <a href="config.html#TRUST-X-FORWARDED-FOR">trust-x-forwarded-for</a></dt>
+                <dt>7.6.19. <a href="config.html#RECEIVE-BUFFER-SIZE">receive-buffer-size</a></dt>
+              </dl>
+            </dd>
+            <dt>7.7. <a href="config.html#WINDOWS-GUI">Windows GUI Options</a></dt>
+          </dl>
+        </dd>
+        <dt>8. <a href="actions-file.html">Actions Files</a></dt>
+        <dd>
+          <dl>
+            <dt>8.1. <a href="actions-file.html#RIGHT-MIX">Finding the Right Mix</a></dt>
+            <dt>8.2. <a href="actions-file.html#HOW-TO-EDIT">How to Edit</a></dt>
+            <dt>8.3. <a href="actions-file.html#ACTIONS-APPLY">How Actions are Applied to Requests</a></dt>
+            <dt>8.4. <a href="actions-file.html#AF-PATTERNS">Patterns</a></dt>
+            <dd>
+              <dl>
+                <dt>8.4.1. <a href="actions-file.html#HOST-PATTERN">The Host Pattern</a></dt>
+                <dt>8.4.2. <a href="actions-file.html#PATH-PATTERN">The Path Pattern</a></dt>
+                <dt>8.4.3. <a href="actions-file.html#TAG-PATTERN">The Request Tag Pattern</a></dt>
+                <dt>8.4.4. <a href="actions-file.html#NEGATIVE-TAG-PATTERNS">The Negative Request Tag Patterns</a></dt>
+                <dt>8.4.5. <a href="actions-file.html#CLIENT-TAG-PATTERN">The Client Tag Pattern</a></dt>
+              </dl>
+            </dd>
+            <dt>8.5. <a href="actions-file.html#ACTIONS">Actions</a></dt>
+            <dd>
+              <dl>
+                <dt>8.5.1. <a href="actions-file.html#ADD-HEADER">add-header</a></dt>
+                <dt>8.5.2. <a href="actions-file.html#BLOCK">block</a></dt>
+                <dt>8.5.3. <a href="actions-file.html#CHANGE-X-FORWARDED-FOR">change-x-forwarded-for</a></dt>
+                <dt>8.5.4. <a href="actions-file.html#CLIENT-HEADER-FILTER">client-header-filter</a></dt>
+                <dt>8.5.5. <a href="actions-file.html#CLIENT-HEADER-TAGGER">client-header-tagger</a></dt>
+                <dt>8.5.6. <a href="actions-file.html#CONTENT-TYPE-OVERWRITE">content-type-overwrite</a></dt>
+                <dt>8.5.7. <a href="actions-file.html#CRUNCH-CLIENT-HEADER">crunch-client-header</a></dt>
+                <dt>8.5.8. <a href="actions-file.html#CRUNCH-IF-NONE-MATCH">crunch-if-none-match</a></dt>
+                <dt>8.5.9. <a href="actions-file.html#CRUNCH-INCOMING-COOKIES">crunch-incoming-cookies</a></dt>
+                <dt>8.5.10. <a href="actions-file.html#CRUNCH-SERVER-HEADER">crunch-server-header</a></dt>
+                <dt>8.5.11. <a href="actions-file.html#CRUNCH-OUTGOING-COOKIES">crunch-outgoing-cookies</a></dt>
+                <dt>8.5.12. <a href="actions-file.html#DEANIMATE-GIFS">deanimate-gifs</a></dt>
+                <dt>8.5.13. <a href="actions-file.html#DELAY-RESPONSE">delay-response</a></dt>
+                <dt>8.5.14. <a href="actions-file.html#DOWNGRADE-HTTP-VERSION">downgrade-http-version</a></dt>
+                <dt>8.5.15. <a href="actions-file.html#EXTERNAL-FILTER">external-filter</a></dt>
+                <dt>8.5.16. <a href="actions-file.html#FAST-REDIRECTS">fast-redirects</a></dt>
+                <dt>8.5.17. <a href="actions-file.html#FILTER">filter</a></dt>
+                <dt>8.5.18. <a href="actions-file.html#FORCE-TEXT-MODE">force-text-mode</a></dt>
+                <dt>8.5.19. <a href="actions-file.html#FORWARD-OVERRIDE">forward-override</a></dt>
+                <dt>8.5.20. <a href="actions-file.html#HANDLE-AS-EMPTY-DOCUMENT">handle-as-empty-document</a></dt>
+                <dt>8.5.21. <a href="actions-file.html#HANDLE-AS-IMAGE">handle-as-image</a></dt>
+                <dt>8.5.22. <a href="actions-file.html#HIDE-ACCEPT-LANGUAGE">hide-accept-language</a></dt>
+                <dt>8.5.23. <a href="actions-file.html#HIDE-CONTENT-DISPOSITION">hide-content-disposition</a></dt>
+                <dt>8.5.24. <a href="actions-file.html#HIDE-IF-MODIFIED-SINCE">hide-if-modified-since</a></dt>
+                <dt>8.5.25. <a href="actions-file.html#HIDE-FROM-HEADER">hide-from-header</a></dt>
+                <dt>8.5.26. <a href="actions-file.html#HIDE-REFERRER">hide-referrer</a></dt>
+                <dt>8.5.27. <a href="actions-file.html#HIDE-USER-AGENT">hide-user-agent</a></dt>
+                <dt>8.5.28. <a href="actions-file.html#LIMIT-CONNECT">limit-connect</a></dt>
+                <dt>8.5.29. <a href="actions-file.html#LIMIT-COOKIE-LIFETIME">limit-cookie-lifetime</a></dt>
+                <dt>8.5.30. <a href="actions-file.html#PREVENT-COMPRESSION">prevent-compression</a></dt>
+                <dt>8.5.31. <a href="actions-file.html#OVERWRITE-LAST-MODIFIED">overwrite-last-modified</a></dt>
+                <dt>8.5.32. <a href="actions-file.html#REDIRECT">redirect</a></dt>
+                <dt>8.5.33. <a href="actions-file.html#SERVER-HEADER-FILTER">server-header-filter</a></dt>
+                <dt>8.5.34. <a href="actions-file.html#SERVER-HEADER-TAGGER">server-header-tagger</a></dt>
+                <dt>8.5.35. <a href="actions-file.html#SESSION-COOKIES-ONLY">session-cookies-only</a></dt>
+                <dt>8.5.36. <a href="actions-file.html#SET-IMAGE-BLOCKER">set-image-blocker</a></dt>
+                <dt>8.5.37. <a href="actions-file.html#SUMMARY">Summary</a></dt>
+              </dl>
+            </dd>
+            <dt>8.6. <a href="actions-file.html#ALIASES">Aliases</a></dt>
+            <dt>8.7. <a href="actions-file.html#ACT-EXAMPLES">Actions Files Tutorial</a></dt>
+            <dd>
+              <dl>
+                <dt>8.7.1. <a href="actions-file.html#MATCH-ALL">match-all.action</a></dt>
+                <dt>8.7.2. <a href="actions-file.html#DEFAULT-ACTION">default.action</a></dt>
+                <dt>8.7.3. <a href="actions-file.html#USER-ACTION">user.action</a></dt>
+              </dl>
+            </dd>
+          </dl>
+        </dd>
+        <dt>9. <a href="filter-file.html">Filter Files</a></dt>
+        <dd>
+          <dl>
+            <dt>9.1. <a href="filter-file.html#FILTER-FILE-TUT">Filter File Tutorial</a></dt>
+            <dt>9.2. <a href="filter-file.html#PREDEFINED-FILTERS">The Pre-defined Filters</a></dt>
+            <dt>9.3. <a href="filter-file.html#EXTERNAL-FILTER-SYNTAX">External filter syntax</a></dt>
+          </dl>
+        </dd>
+        <dt>10. <a href="templates.html">Privoxy's Template Files</a></dt>
+        <dt>11. <a href="contact.html">Contacting the Developers, Bug Reporting and Feature Requests</a></dt>
+        <dd>
+          <dl>
+            <dt>11.1. <a href="contact.html#SUFFICIENT-INFORMATION">Please provide sufficient information</a></dt>
+            <dt>11.2. <a href="contact.html#CONTACT-SUPPORT">Get Support</a></dt>
+            <dt>11.3. <a href="contact.html#REPORTING">Reporting Problems</a></dt>
+            <dd>
+              <dl>
+                <dt>11.3.1. <a href="contact.html#CONTACT-ADS">Reporting Ads or Other Configuration Problems</a></dt>
+                <dt>11.3.2. <a href="contact.html#CONTACT-BUGS">Reporting Bugs</a></dt>
+              </dl>
+            </dd>
+            <dt>11.4. <a href="contact.html#SECURITY-CONTACT">Reporting security problems</a></dt>
+            <dt>11.5. <a href="contact.html#MAILING-LISTS">Mailing Lists</a></dt>
+            <dt>11.6. <a href="contact.html#SF-TRACKERS">SourceForge support trackers</a></dt>
+          </dl>
+        </dd>
+        <dt>12. <a href="copyright.html">Privoxy Copyright, License and History</a></dt>
+        <dd>
+          <dl>
+            <dt>12.1. <a href="copyright.html#LICENSE">License</a></dt>
+            <dt>12.2. <a href="copyright.html#HISTORY">History</a></dt>
+            <dt>12.3. <a href="copyright.html#AUTHORS">Authors</a></dt>
+          </dl>
+        </dd>
+        <dt>13. <a href="seealso.html">See Also</a></dt>
+        <dt>14. <a href="appendix.html">Appendix</a></dt>
+        <dd>
+          <dl>
+            <dt>14.1. <a href="appendix.html#REGEX">Regular Expressions</a></dt>
+            <dt>14.2. <a href="appendix.html#INTERNAL-PAGES">Privoxy's Internal Pages</a></dt>
+            <dt>14.3. <a href="appendix.html#CHAIN">Chain of Events</a></dt>
+            <dt>14.4. <a href="appendix.html#ACTIONSANAT">Troubleshooting: Anatomy of an Action</a></dt>
+          </dl>
+        </dd>
+      </dl>
+    </div>
+  </div>
+  <div class="NAVFOOTER">
+    <hr align="left" width="100%">
+    <table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="33%" align="left" valign="top">&nbsp;</td>
+        <td width="34%" align="center" valign="top">&nbsp;</td>
+        <td width="33%" align="right" valign="top"><a href="introduction.html" accesskey="N">Next</a></td>
+      </tr>
+      <tr>
+        <td width="33%" align="left" valign="top">&nbsp;</td>
+        <td width="34%" align="center" valign="top">&nbsp;</td>
+        <td width="33%" align="right" valign="top">Introduction</td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>

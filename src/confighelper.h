@@ -58,6 +58,8 @@ public:
 
     static void connectionToJson(TQProfile &profile);
 
+    static void generatePrivoxyConf(TQProfile &profile);
+
     //start those connections marked as auto-start
     void startAllAutoStart(const ConnectionTableModel& model);
 

@@ -35,7 +35,7 @@ CONFIG += sdk_no_version_check
 #DEFINES += QT_DEPRECATED_WARNINGS
 
 # Define App Version
-DEFINES += "APP_VERSION=\"\\\"0.0.1\\\"\""
+DEFINES += "APP_VERSION=\"\\\"0.0.2\\\"\""
 
 # Trojan
 #DEFINES += ENABLE_MYSQL
@@ -53,17 +53,20 @@ DEFINES += ENABLE_TLS13_CIPHERSUITES
 
 win32 {
     INCLUDEPATH += $$PWD\src\trojan\src
-    INCLUDEPATH += C:\Libraries\ZBar\include
-    INCLUDEPATH += C:\Libraries\boost_1_71_0
-    INCLUDEPATH += C:\Libraries\OpenSSL-Win32\include
-    INCLUDEPATH += C:\Libraries\QREncode\include
-    LIBS += -LC:\Libraries\ZBar\lib -llibzbar-0
-    LIBS += -LC:\Libraries\OpenSSL-Win32\lib -llibcrypto -llibssl
-    LIBS += -LC:\Libraries\boost_1_71_0\lib32-msvc-14.2
-    LIBS += -LC:\Libraries\QREncode\lib -lqrcodelib
+    INCLUDEPATH += C:\TQLibraries\ZBar\include
+    INCLUDEPATH += C:\TQLibraries\boost_1_72_0
+    INCLUDEPATH += C:\TQLibraries\OpenSSL-Win32\include
+    INCLUDEPATH += C:\TQLibraries\QREncode\include
+    INCLUDEPATH += C:\TQLibraries\Privoxy\include
+    LIBS += -LC:\TQLibraries\ZBar\lib -llibzbar-0
+    LIBS += -LC:\TQLibraries\OpenSSL-Win32\lib -llibcrypto -llibssl
+    LIBS += -LC:\TQLibraries\boost_1_72_0\lib32-msvc-14.1
+    LIBS += -LC:\TQLibraries\QREncode\lib -lqrcodelib
+    LIBS += -LC:\TQLibraries\Privoxy\lib -lLibPrivoxy
     LIBS += -lwsock32 -lws2_32
     LIBS += -lCrypt32
     DEFINES += WIN32_LEAN_AND_MEAN
+
 }
 
 mac {
@@ -72,10 +75,14 @@ mac {
     INCLUDEPATH += /usr/local/opt/qrencode/include
     INCLUDEPATH += /usr/local/opt/openssl@1.1/include
     INCLUDEPATH += /usr/local/opt/boost/include
+    INCLUDEPATH += /usr/local/opt/pcre/include
+    INCLUDEPATH += /usr/local/opt/zlib/include
     LIBS += -L/usr/local/opt/zbar/lib -lzbar
     LIBS += -L/usr/local/opt/qrencode/lib -lqrencode
     LIBS += -L/usr/local/opt/openssl@1.1/lib -lcrypto -lssl
     LIBS += -L/usr/local/opt/boost/lib -lboost_system
+    LIBS += -L/usr/local/opt/zlib/lib -lz
+    LIBS += -L/usr/local/opt/pcre/lib -lpcre
     LIBS += -framework Security -framework Cocoa
     # Otherwise lupdate will not work
     TR_EXCLUDE = /usr/local/opt/boost/*
@@ -88,10 +95,14 @@ unix:!mac {
     INCLUDEPATH += /usr/local/qrencode/include
     INCLUDEPATH += /usr/local/openssl/include
     INCLUDEPATH += /usr/local/boost/include
+    INCLUDEPATH += /usr/local/pcre/include
+    INCLUDEPATH += /usr/local/zlib/include
     LIBS += -L/usr/local/zbar/lib -lzbar
     LIBS += -L/usr/local/qrencode/lib -lqrencode
     LIBS += -L/usr/local/openssl/lib -lcrypto -lssl
     LIBS += -L/usr/local/boost/lib -lboost_system
+    LIBS += -L/usr/local/zlib/lib -lz
+    LIBS += -L/usr/local/pcre/lib -lpcre
     # Otherwise lupdate will not work
     TR_EXCLUDE = /usr/local/boost/*
 
@@ -109,9 +120,63 @@ unix:!mac {
     INSTALLS += data
 }
 
+unix {
+    SOURCES += \
+        src/privoxy/list.c \
+        src/privoxy/pcrs.c \
+        src/privoxy/miscutil.c \
+        src/privoxy/fuzz.c \
+        src/privoxy/parsers.c \
+        src/privoxy/loadcfg.c \
+        src/privoxy/filters.c \
+        src/privoxy/cgi.c \
+        src/privoxy/loaders.c \
+        src/privoxy/encode.c \
+        src/privoxy/errlog.c \
+        src/privoxy/gateway.c \
+        src/privoxy/actions.c \
+        src/privoxy/urlmatch.c \
+        src/privoxy/jcc.c \
+        src/privoxy/deanimate.c \
+        src/privoxy/cgisimple.c \
+        src/privoxy/cgiedit.c \
+        src/privoxy/client-tags.c \
+        src/privoxy/jbsockets.c \
+        src/privoxy/ssplit.c
+
+    HEADERS += \
+        src/privoxy/actionlist.h \
+        src/privoxy/urlmatch.h \
+        src/privoxy/jcc.h \
+        src/privoxy/actions.h \
+        src/privoxy/gateway.h \
+        src/privoxy/acconfig.h \
+        src/privoxy/cygwin.h \
+        src/privoxy/strptime.h \
+        src/privoxy/deanimate.h \
+        src/privoxy/client-tags.h \
+        src/privoxy/jbsockets.h \
+        src/privoxy/ssplit.h \
+        src/privoxy/cgiedit.h \
+        src/privoxy/cgisimple.h \
+        src/privoxy/pcrs.h \
+        src/privoxy/list.h \
+        src/privoxy/miscutil.h \
+        src/privoxy/project.h \
+        src/privoxy/parsers.h \
+        src/privoxy/errlog.h \
+        src/privoxy/encode.h \
+        src/privoxy/loaders.h \
+        src/privoxy/cgi.h \
+        src/privoxy/filters.h \
+        src/privoxy/loadcfg.h \
+        src/privoxy/config.h
+}
+
 !isEmpty(target.path): INSTALLS += target
 
 SOURCES += \
+    src/privoxythread.cpp \
     src/servicethread.cpp \
     src/addresstester.cpp \
     src/confighelper.cpp \
@@ -148,9 +213,10 @@ SOURCES += \
     src/trojan/src/session/session.cpp \
     src/trojan/src/session/udpforwardsession.cpp \
     src/trojan/src/ssl/ssldefaults.cpp \
-    src/trojan/src/ssl/sslsession.cpp
+    src/trojan/src/ssl/sslsession.cpp \
 
 HEADERS += \
+    src/privoxythread.h \
     src/servicethread.h \
     src/addresstester.h \
     src/confighelper.h \

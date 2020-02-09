@@ -1,0 +1,279 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Quickstart to Using Privoxy</title>
+  <meta name="GENERATOR" content="Modular DocBook HTML Stylesheet Version 1.79">
+  <link rel="HOME" title="Privoxy 3.0.28 User Manual" href="index.html">
+  <link rel="PREVIOUS" title="What's New in this Release" href="whatsnew.html">
+  <link rel="NEXT" title="Starting Privoxy" href="startup.html">
+  <link rel="STYLESHEET" type="text/css" href="../p_doc.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <link rel="STYLESHEET" type="text/css" href="p_doc.css">
+</head>
+<body class="SECT1" bgcolor="#EEEEEE" text="#000000" link="#0000FF" vlink="#840084" alink="#0000FF">
+  <div class="NAVHEADER">
+    <table summary="Header navigation table" width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <th colspan="3" align="center">Privoxy 3.0.28 User Manual</th>
+      </tr>
+      <tr>
+        <td width="10%" align="left" valign="bottom"><a href="whatsnew.html" accesskey="P">Prev</a></td>
+        <td width="80%" align="center" valign="bottom"></td>
+        <td width="10%" align="right" valign="bottom"><a href="startup.html" accesskey="N">Next</a></td>
+      </tr>
+    </table>
+    <hr align="left" width="100%">
+  </div>
+  <div class="SECT1">
+    <h1 class="SECT1"><a name="QUICKSTART" id="QUICKSTART">4. Quickstart to Using Privoxy</a></h1>
+    <ul>
+      <li>
+        <p>Install <span class="APPLICATION">Privoxy</span>. See the <a href="installation.html">Installation
+        Section</a> below for platform specific information.</p>
+      </li>
+      <li>
+        <p>Advanced users and those who want to offer <span class="APPLICATION">Privoxy</span> service to more than
+        just their local machine should check the <a href="config.html">main config file</a>, especially the <a href=
+        "config.html#ACCESS-CONTROL">security-relevant</a> options. These are off by default.</p>
+      </li>
+      <li>
+        <p>Start <span class="APPLICATION">Privoxy</span>, if the installation program has not done this already (may
+        vary according to platform). See the section <a href="startup.html">Starting <span class=
+        "APPLICATION">Privoxy</span></a>.</p>
+      </li>
+      <li>
+        <p>Set your browser to use <span class="APPLICATION">Privoxy</span> as HTTP and HTTPS (SSL) <a href=
+        "http://en.wikipedia.org/wiki/Proxy_server" target="_top">proxy</a> by setting the proxy configuration for
+        address of <tt class="LITERAL">127.0.0.1</tt> and port <tt class="LITERAL">8118</tt>. <span class=
+        "emphasis"><i class="EMPHASIS">DO NOT</i></span> activate proxying for <tt class="LITERAL">FTP</tt> or any
+        protocols besides HTTP and HTTPS (SSL) unless you intend to prevent your browser from using these
+        protocols.</p>
+      </li>
+      <li>
+        <p>Flush your browser's disk and memory caches, to remove any cached ad images. If using <span class=
+        "APPLICATION">Privoxy</span> to manage <a href="http://en.wikipedia.org/wiki/Browser_cookie" target=
+        "_top">cookies</a>, you should remove any currently stored cookies too.</p>
+      </li>
+      <li>
+        <p>A default installation should provide a reasonable starting point for most. There will undoubtedly be
+        occasions where you will want to adjust the configuration, but that can be dealt with as the need arises.
+        Little to no initial configuration is required in most cases, you may want to enable the <a href=
+        "config.html#ENABLE-EDIT-ACTIONS" target="_top">web-based action editor</a> though. Be sure to read the
+        warnings first.</p>
+        <p>See the <a href="configuration.html">Configuration section</a> for more configuration options, and how to
+        customize your installation. You might also want to look at the <a href=
+        "quickstart.html#QUICKSTART-AD-BLOCKING">next section</a> for a quick introduction to how <span class=
+        "APPLICATION">Privoxy</span> blocks ads and banners.</p>
+      </li>
+      <li>
+        <p>If you experience ads that slip through, innocent images that are blocked, or otherwise feel the need to
+        fine-tune <span class="APPLICATION">Privoxy's</span> behavior, take a look at the <a href=
+        "actions-file.html">actions files</a>. As a quick start, you might find the <a href=
+        "actions-file.html#ACT-EXAMPLES">richly commented examples</a> helpful. You can also view and edit the actions
+        files through the <a href="http://config.privoxy.org" target="_top">web-based user interface</a>. The Appendix
+        <span class="QUOTE">"<a href="appendix.html#ACTIONSANAT">Troubleshooting: Anatomy of an Action</a>"</span> has
+        hints on how to understand and debug actions that <span class="QUOTE">"misbehave"</span>.</p>
+      </li>
+      <li>
+        <p>Please see the section <a href="contact.html">Contacting the Developers</a> on how to report bugs, problems
+        with websites or to get help.</p>
+      </li>
+      <li>
+        <p>Now enjoy surfing with enhanced control, comfort and privacy!</p>
+      </li>
+    </ul>
+    <div class="SECT2">
+      <h2 class="SECT2"><a name="QUICKSTART-AD-BLOCKING" id="QUICKSTART-AD-BLOCKING">4.1. Quickstart to Ad
+      Blocking</a></h2>
+      <p>Ad blocking is but one of <span class="APPLICATION">Privoxy's</span> array of features. Many of these features
+      are for the technically minded advanced user. But, ad and banner blocking is surely common ground for
+      everybody.</p>
+      <p>This section will provide a quick summary of ad blocking so you can get up to speed quickly without having to
+      read the more extensive information provided below, though this is highly recommended.</p>
+      <p>First a bit of a warning ... blocking ads is much like blocking SPAM: the more aggressive you are about it,
+      the more likely you are to block things that were not intended. And the more likely that some things may not work
+      as intended. So there is a trade off here. If you want extreme ad free browsing, be prepared to deal with more
+      <span class="QUOTE">"problem"</span> sites, and to spend more time adjusting the configuration to solve these
+      unintended consequences. In short, there is not an easy way to eliminate <span class="emphasis"><i class=
+      "EMPHASIS">all</i></span> ads. Either take the easy way and settle for <span class="emphasis"><i class=
+      "EMPHASIS">most</i></span> ads blocked with the default configuration, or jump in and tweak it for your personal
+      surfing habits and preferences.</p>
+      <p>Secondly, a brief explanation of <span class="APPLICATION">Privoxy's</span> <span class=
+      "QUOTE">"actions"</span>. <span class="QUOTE">"Actions"</span> in this context, are the directives we use to tell
+      <span class="APPLICATION">Privoxy</span> to perform some task relating to HTTP transactions (i.e. web browsing).
+      We tell <span class="APPLICATION">Privoxy</span> to take some <span class="QUOTE">"action"</span>. Each action
+      has a unique name and function. While there are many potential <span class="APPLICATION">actions</span> in
+      <span class="APPLICATION">Privoxy's</span> arsenal, only a few are used for ad blocking. <a href=
+      "actions-file.html#ACTIONS">Actions</a>, and <a href="actions-file.html">action configuration files</a>, are
+      explained in depth below.</p>
+      <p>Actions are specified in <span class="APPLICATION">Privoxy's</span> configuration, followed by one or more
+      URLs to which the action should apply. URLs can actually be URL type <a href=
+      "actions-file.html#AF-PATTERNS">patterns</a> that use wildcards so they can apply potentially to a range of
+      similar URLs. The actions, together with the URL patterns are called a section.</p>
+      <p>When you connect to a website, the full URL will either match one or more of the sections as defined in
+      <span class="APPLICATION">Privoxy's</span> configuration, or not. If so, then <span class=
+      "APPLICATION">Privoxy</span> will perform the respective actions. If not, then nothing special happens.
+      Furthermore, web pages may contain embedded, secondary URLs that your web browser will use to load additional
+      components of the page, as it parses the original page's HTML content. An ad image for instance, is just an URL
+      embedded in the page somewhere. The image itself may be on the same server, or a server somewhere else on the
+      Internet. Complex web pages will have many such embedded URLs. <span class="APPLICATION">Privoxy</span> can deal
+      with each URL individually, so, for instance, the main page text is not touched, but images from such-and-such
+      server are blocked.</p>
+      <p>The most important actions for basic ad blocking are: <tt class="LITERAL"><a href=
+      "actions-file.html#BLOCK">block</a></tt>, <tt class="LITERAL"><a href=
+      "actions-file.html#HANDLE-AS-IMAGE">handle-as-image</a></tt>, <tt class="LITERAL"><a href=
+      "actions-file.html#HANDLE-AS-EMPTY-DOCUMENT">handle-as-empty-document</a></tt>,and <tt class="LITERAL"><a href=
+      "actions-file.html#SET-IMAGE-BLOCKER">set-image-blocker</a></tt>:</p>
+      <ul>
+        <li>
+          <p><tt class="LITERAL"><a href="actions-file.html#BLOCK">block</a></tt> - this is perhaps the single most
+          used action, and is particularly important for ad blocking. This action stops any contact between your
+          browser and any URL patterns that match this action's configuration. It can be used for blocking ads, but
+          also anything that is determined to be unwanted. By itself, it simply stops any communication with the remote
+          server and sends <span class="APPLICATION">Privoxy</span>'s own built-in BLOCKED page instead to let you now
+          what has happened (with some exceptions, see below).</p>
+        </li>
+        <li>
+          <p><tt class="LITERAL"><a href="actions-file.html#HANDLE-AS-IMAGE">handle-as-image</a></tt> - tells
+          <span class="APPLICATION">Privoxy</span> to treat this URL as an image. <span class=
+          "APPLICATION">Privoxy</span>'s default configuration already does this for all common image types (e.g. GIF),
+          but there are many situations where this is not so easy to determine. So we'll force it in these cases. This
+          is particularly important for ad blocking, since only if we know that it's an image of some kind, can we
+          replace it with an image of our choosing, instead of the <span class="APPLICATION">Privoxy</span> BLOCKED
+          page (which would only result in a <span class="QUOTE">"broken image"</span> icon). There are some
+          limitations to this though. For instance, you can't just brute-force an image substitution for an entire HTML
+          page in most situations.</p>
+        </li>
+        <li>
+          <p><tt class="LITERAL"><a href="actions-file.html#HANDLE-AS-EMPTY-DOCUMENT">handle-as-empty-document</a></tt>
+          - sends an empty document instead of <span class="APPLICATION">Privoxy's</span> normal BLOCKED HTML page.
+          This is useful for file types that are neither HTML nor images, such as blocking JavaScript files.</p>
+        </li>
+        <li>
+          <p><tt class="LITERAL"><a href="actions-file.html#SET-IMAGE-BLOCKER">set-image-blocker</a></tt> - tells
+          <span class="APPLICATION">Privoxy</span> what to display in place of an ad image that has hit a block rule.
+          For this to come into play, the URL must match a <tt class="LITERAL"><a href=
+          "actions-file.html#BLOCK">block</a></tt> action somewhere in the configuration, <span class=
+          "emphasis"><i class="EMPHASIS">and</i></span>, it must also match an <tt class="LITERAL"><a href=
+          "actions-file.html#HANDLE-AS-IMAGE">handle-as-image</a></tt> action.</p>
+          <p>The configuration options on what to display instead of the ad are:</p>
+          <table border="0">
+            <tbody>
+              <tr>
+                <td>&nbsp;&nbsp;&nbsp;<span class="emphasis"><i class="EMPHASIS">pattern</i></span> - a checkerboard
+                pattern, so that an ad replacement is obvious. This is the default.</td>
+              </tr>
+            </tbody>
+          </table>
+          <table border="0">
+            <tbody>
+              <tr>
+                <td>&nbsp;&nbsp;&nbsp;<span class="emphasis"><i class="EMPHASIS">blank</i></span> - A very small empty
+                GIF image is displayed. This is the so-called <span class="QUOTE">"invisible"</span> configuration
+                option.</td>
+              </tr>
+            </tbody>
+          </table>
+          <table border="0">
+            <tbody>
+              <tr>
+                <td>&nbsp;&nbsp;&nbsp;<span class="emphasis"><i class="EMPHASIS">http://&lt;URL&gt;</i></span> - A
+                redirect to any image anywhere of the user's choosing (advanced usage).</td>
+              </tr>
+            </tbody>
+          </table>
+        </li>
+      </ul>
+      <p>Advanced users will eventually want to explore <span class="APPLICATION">Privoxy</span> <tt class=
+      "LITERAL"><a href="actions-file.html#FILTER">filters</a></tt> as well. Filters are very different from <tt class=
+      "LITERAL"><a href="actions-file.html#BLOCK">blocks</a></tt>. A <span class="QUOTE">"block"</span> blocks a site,
+      page, or unwanted contented. Filters are a way of filtering or modifying what is actually on the page. An example
+      filter usage: a text replacement of <span class="QUOTE">"no-no"</span> for <span class=
+      "QUOTE">"nasty-word"</span>. That is a very simple example. This process can be used for ad blocking, but it is
+      more in the realm of advanced usage and has some pitfalls to be wary off.</p>
+      <p>The quickest way to adjust any of these settings is with your browser through the special <span class=
+      "APPLICATION">Privoxy</span> editor at <a href="http://config.privoxy.org/show-status" target=
+      "_top">http://config.privoxy.org/show-status</a> (shortcut: <a href="http://p.p/" target=
+      "_top">http://p.p/show-status</a>). This is an internal page, and does not require Internet access.</p>
+      <p>Note that as of <span class="APPLICATION">Privoxy</span> 3.0.7 beta the action editor is disabled by default.
+      Check the <a href="config.html#ENABLE-EDIT-ACTIONS" target="_top">enable-edit-actions section in the
+      configuration file</a> to learn why and in which cases it's safe to enable again.</p>
+      <p>If you decided to enable the action editor, select the appropriate <span class="QUOTE">"actions"</span> file,
+      and click <span class="QUOTE">"<span class="GUIBUTTON">Edit</span>"</span>. It is best to put personal or local
+      preferences in <tt class="FILENAME">user.action</tt> since this is not meant to be overwritten during upgrades,
+      and will over-ride the settings in other files. Here you can insert new <span class="QUOTE">"actions"</span>, and
+      URLs for ad blocking or other purposes, and make other adjustments to the configuration. <span class=
+      "APPLICATION">Privoxy</span> will detect these changes automatically.</p>
+      <p>A quick and simple step by step example:</p>
+      <ul>
+        <li>
+          <p>Right click on the ad image to be blocked, then select <span class="QUOTE">"<span class="GUIMENUITEM">Copy
+          Link Location</span>"</span> from the pop-up menu.</p>
+        </li>
+        <li>
+          <p>Set your browser to <a href="http://config.privoxy.org/show-status" target=
+          "_top">http://config.privoxy.org/show-status</a></p>
+        </li>
+        <li>
+          <p>Find <tt class="FILENAME">user.action</tt> in the top section, and click on <span class=
+          "QUOTE">"<span class="GUIBUTTON">Edit</span>"</span>:</p>
+          <div class="FIGURE">
+            <a name="AEN671" id="AEN671"></a>
+            <p><b>Figure 1. Actions Files in Use</b></p>
+            <div class="MEDIAOBJECT">
+              <p><img src="files-in-use.jpg"></p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <p>You should have a section with only <tt class="LITERAL"><a href="actions-file.html#BLOCK">block</a></tt>
+          listed under <span class="QUOTE">"Actions:"</span>. If not, click a <span class="QUOTE">"<span class=
+          "GUIBUTTON">Insert new section below</span>"</span> button, and in the new section that just appeared, click
+          the <span class="GUIBUTTON">Edit</span> button right under the word <span class="QUOTE">"Actions:"</span>.
+          This will bring up a list of all actions. Find <tt class="LITERAL"><a href=
+          "actions-file.html#BLOCK">block</a></tt> near the top, and click in the <span class="QUOTE">"Enabled"</span>
+          column, then <span class="QUOTE">"<span class="GUIBUTTON">Submit</span>"</span> just below the list.</p>
+        </li>
+        <li>
+          <p>Now, in the <tt class="LITERAL"><a href="actions-file.html#BLOCK">block</a></tt> actions section, click
+          the <span class="QUOTE">"<span class="GUIBUTTON">Add</span>"</span> button, and paste the URL the browser got
+          from <span class="QUOTE">"<span class="GUIMENUITEM">Copy Link Location</span>"</span>. Remove the <tt class=
+          "LITERAL">http://</tt> at the beginning of the URL. Then, click <span class="QUOTE">"<span class=
+          "GUIBUTTON">Submit</span>"</span> (or <span class="QUOTE">"<span class="GUIBUTTON">OK</span>"</span> if in a
+          pop-up window).</p>
+        </li>
+        <li>
+          <p>Now go back to the original page, and press <b class="KEYCAP">SHIFT-Reload</b> (or flush all browser
+          caches). The image should be gone now.</p>
+        </li>
+      </ul>
+      <p>This is a very crude and simple example. There might be good reasons to use a wildcard pattern match to
+      include potentially similar images from the same site. For a more extensive explanation of <span class=
+      "QUOTE">"patterns"</span>, and the entire actions concept, see <a href="actions-file.html">the Actions
+      section</a>.</p>
+      <p>For advanced users who want to hand edit their config files, you might want to now go to the <a href=
+      "actions-file.html#ACT-EXAMPLES">Actions Files Tutorial</a>. The ideas explained therein also apply to the
+      web-based editor.</p>
+      <p>There are also various <a href="actions-file.html#FILTER">filters</a> that can be used for ad blocking
+      (filters are a special subset of actions). These fall into the <span class="QUOTE">"advanced"</span> usage
+      category, and are explained in depth in later sections.</p>
+    </div>
+  </div>
+  <div class="NAVFOOTER">
+    <hr align="left" width="100%">
+    <table summary="Footer navigation table" width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="33%" align="left" valign="top"><a href="whatsnew.html" accesskey="P">Prev</a></td>
+        <td width="34%" align="center" valign="top"><a href="index.html" accesskey="H">Home</a></td>
+        <td width="33%" align="right" valign="top"><a href="startup.html" accesskey="N">Next</a></td>
+      </tr>
+      <tr>
+        <td width="33%" align="left" valign="top">What's New in this Release</td>
+        <td width="34%" align="center" valign="top">&nbsp;</td>
+        <td width="33%" align="right" valign="top">Starting Privoxy</td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>

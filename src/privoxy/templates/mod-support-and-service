@@ -1,0 +1,33 @@
+##############################################################################
+#
+# File        :  $Source: /cvsroot/ijbswa/current/templates/mod-support-and-service,v $
+#
+# Purpose     :  Template that is included from most of Privoxy's CGI pages
+#                to show the user how to get help or report problems.
+#
+#
+# Copyright   :  Written by and Copyright (C) 2002-2009 members of
+#                the Privoxy team. https://www.privoxy.org/
+#
+#                This template is free software; you can redistribute it
+#                and/or modify it under the terms of the GNU General
+#                Public License as published by the Free Software
+#                Foundation; either version 2 of the License, or (at
+#                your option) any later version.
+#
+##############################################################################
+# This template should be kept in sync with the "blocked" template
+# whose JavaScript version duplicates the content.
+       <h2>Support and Service:</h2>
+        <p>
+          The Privoxy Team values your feedback.
+        </p>
+        <p>
+          Please have a look at the User Manual to learn how to
+          <a title="Privoxy User Manual: Contacting the developers, Bug Reporting and Feature Requests"
+           href="@user-manual@contact.html">get support or report problems</a>.
+        <p>
+          If you want to support the Privoxy Team, you can
+          <a href="https://www.privoxy.org/faq/general.html#PARTICIPATE">participate</a>
+          or <a href="https://www.privoxy.org/faq/general.html#DONATE">donate</a>.
+        </p>
