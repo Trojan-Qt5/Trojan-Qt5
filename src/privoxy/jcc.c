@@ -3677,34 +3677,6 @@ int start_privoxy(char *conf_path)
 
 /*********************************************************************
  *
- * Function    :  main
- *
- * Description :  Load the config file and start the listen loop.
- *                This function is a lot more *sane* with the `load_config'
- *                and `listen_loop' functions; although it stills does
- *                a *little* too much for my taste.
- *
- * Parameters  :
- *          1  :  argc = Number of parameters (including $0).
- *          2  :  argv = Array of (char *)'s to the parameters.
- *
- * Returns     :  1 if : can't open config file, unrecognized directive,
- *                stats requested in multi-thread mode, can't open the
- *                log file, can't open the jar file, listen port is invalid,
- *                any load fails, and can't bind port.
- *
- *                Else main never returns, the process must be signaled
- *                to terminate execution.  Or, on Windows, use the
- *                "File", "Exit" menu option.
- *
- *********************************************************************/
-void stop_privoxy()
-{
-    close_ports_helper(bfds);
-}
-
-/*********************************************************************
- *
  * Function    :  bind_port_helper
  *
  * Description :  Bind the listen port.  Handles logging, and aborts

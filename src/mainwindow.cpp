@@ -12,8 +12,9 @@
 #include <boost/version.hpp>
 #include <openssl/opensslv.h>
 #include "core/version.h"
+#include "qrencode.h"
 #if defined (Q_OS_WIN)
-#include "WinPrivoxy/config.h"
+#define VERSION "3.0.28 Binary"
 #else
 #include "privoxy/config.h"
 #endif
@@ -434,9 +435,10 @@ void MainWindow::checkCurrentIndex(const QModelIndex &_index)
 
 void MainWindow::onAbout()
 {
-    QString text = QString("<h1>Trojan-Qt5</h1><p><b>Version %1</b><br />"
+    QString text = QString("<h1>Trojan-Qt5</h1><p><b>Version %1</b><br/>"
             "Using trojan %2, Privoxy %3<br>"
-            "Boost %4, %5</p>"
+            "Boost %4, %5<br>"
+            "LibQREncode %6</p>"
             "<p>Copyright © 2014-2018 Symeon Huang "
             "(<a href='https://twitter.com/librehat'>"
             "@librehat</a>)</p>"
@@ -452,7 +454,8 @@ void MainWindow::onAbout()
             .arg(QString::fromStdString(Version::get_version()))
             .arg(QStringLiteral(VERSION))
             .arg(QStringLiteral(BOOST_LIB_VERSION))
-            .arg(QStringLiteral(OPENSSL_VERSION_TEXT));
+            .arg(QStringLiteral(OPENSSL_VERSION_TEXT))
+            .arg(QRcode_APIVersionString());
     QMessageBox::about(this, tr("About"), text);
 }
 

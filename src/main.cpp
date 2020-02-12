@@ -9,6 +9,7 @@
 #include <signal.h>
 #include "mainwindow.h"
 #include "confighelper.h"
+#include "resourcehelper.h"
 
 MainWindow *mainWindow = nullptr;
 
@@ -69,6 +70,7 @@ int main(int argc, char *argv[])
     QString configFile = parser.value(configFileOption);
     if (configFile.isEmpty()) {
 #ifdef Q_OS_WIN
+        ResourceHelper::initPrivoxy();
         configFile = a.applicationDirPath() + "/config.ini";
 #else
         QDir configDir = QDir::homePath() + "/.config/trojan-qt5";

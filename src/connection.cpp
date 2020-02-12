@@ -106,6 +106,9 @@ void Connection::stop()
     if (running) {
         service->stop();
         running = false;
+        if (profile.dualMode) {
+            privoxy->stop();
+        }
         emit stateChanged(running);
         //SystemProxyHelper::setDisable();
     }

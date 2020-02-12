@@ -21,6 +21,7 @@ QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+RC_ICONS = $$PWD/icons/trojan-qt5.ico
 ICON = $$PWD/icons/trojan-qt5.icns
 
 TARGET = trojan-qt5
@@ -57,12 +58,10 @@ win32 {
     INCLUDEPATH += C:\TQLibraries\boost_1_72_0
     INCLUDEPATH += C:\TQLibraries\OpenSSL-Win32\include
     INCLUDEPATH += C:\TQLibraries\QREncode\include
-    INCLUDEPATH += C:\TQLibraries\Privoxy\include
     LIBS += -LC:\TQLibraries\ZBar\lib -llibzbar-0
     LIBS += -LC:\TQLibraries\OpenSSL-Win32\lib -llibcrypto -llibssl
     LIBS += -LC:\TQLibraries\boost_1_72_0\lib32-msvc-14.1
     LIBS += -LC:\TQLibraries\QREncode\lib -lqrcodelib
-    LIBS += -LC:\TQLibraries\Privoxy\lib -lLibPrivoxy
     LIBS += -lwsock32 -lws2_32
     LIBS += -lCrypt32
     DEFINES += WIN32_LEAN_AND_MEAN
@@ -177,6 +176,7 @@ unix {
 
 SOURCES += \
     src/privoxythread.cpp \
+    src/resourcehelper.cpp \
     src/servicethread.cpp \
     src/addresstester.cpp \
     src/confighelper.cpp \
@@ -217,6 +217,7 @@ SOURCES += \
 
 HEADERS += \
     src/privoxythread.h \
+    src/resourcehelper.h \
     src/servicethread.h \
     src/addresstester.h \
     src/confighelper.h \
@@ -269,5 +270,6 @@ TRANSLATIONS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 
 RESOURCES += \
+    bin.qrc \
     icons.qrc \
     translations.qrc

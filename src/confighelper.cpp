@@ -247,7 +247,7 @@ void ConfigHelper::generatePrivoxyConf(TQProfile &profile)
                                   .arg(profile.localAddress)
                                   .arg(QString::number(profile.localPort));
 #ifdef Q_OS_WIN
-        QString file = QCoreApplication::applicationDirPath() + "/privoxy.conf";
+        QString file = QCoreApplication::applicationDirPath() + "/privoxy/privoxy.conf";
 #else
         QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
         QString file = configDir.absolutePath() + "/privoxy.conf";

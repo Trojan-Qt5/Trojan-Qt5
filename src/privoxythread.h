@@ -2,6 +2,9 @@
 #define PRIVOXYTHREAD_H
 
 #include <QThread>
+#if defined(Q_OS_WIN)
+#include <Windows.h>
+#endif
 
 class PrivoxyThread : public QThread
 {
@@ -9,6 +12,12 @@ class PrivoxyThread : public QThread
 public:
   PrivoxyThread(QObject *parent = 0);
   //~ServiceThread();
+
+private:
+#if defined (Q_OS_WIN)
+  STARTUPINFO siStartupInfo;
+  PROCESS_INFORMATION piProcessInfo;
+#endif
 
 protected:
   void run();
