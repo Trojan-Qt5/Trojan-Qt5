@@ -53,6 +53,10 @@ DEFINES += ENABLE_TLS13_CIPHERSUITES
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 win32 {
+    SOURCES += \
+        src/sysproxy/windows.c
+    HEADERS += \
+        src/sysproxy/windows.h
     INCLUDEPATH += $$PWD\src\trojan\src
     INCLUDEPATH += C:\TQLibraries\ZBar\include
     INCLUDEPATH += C:\TQLibraries\boost_1_72_0

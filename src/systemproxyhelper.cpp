@@ -1,4 +1,8 @@
 #include "systemproxyhelper.h"
+#if defined (Q_OS_WIN)
+#include <Windows.h>
+#include "sysproxy/windows.h"
+#endif
 
 SystemProxyHelper::SystemProxyHelper()
 {
@@ -8,10 +12,21 @@ SystemProxyHelper::SystemProxyHelper()
 void SystemProxyHelper::setSystemProxy(TQProfile profile, bool enable)
 {
 #if defined(Q_OS_WIN)
+    if (enable) {
+        QString server = profile.localAddress + ":" + QString::number(profile.localHttpPort);
+        LPTSTR serverString = (LPTSTR) server.utf16();
+        int status = setProxy(true, serverString);
+    } else {
+        int status = setProxy(false, NULL);
+    }
 #elif defined (Q_OS_MAC)
-    if (enable == true) {
+    if (enable) {
+        system(QString("networksetup -setwebproxy \"Wi-Fi\" %1 %2").arg(profile.localAddress).arg(QString::number(profile.localHttpPort)));
+        system(QString("networksetup -setsecurewebproxy \"Wi-Fi\" %1 %2").arg(profile.localAddress).arg(QString::number(profile.localHttpPort)));
         system(QString("networksetup -setsocksfirewallproxy \"Wi-Fi\" %1 %2").arg(profile.localAddress).arg(QString::number(profile.localPort)).toStdString().c_str());
     } else {
+        system("networksetup -setwebproxystate \"Wi-Fi\" off");
+        system("networksetup -setsecurewebproxystate \"Wi-Fi\" off");
         system("networksetup -setsocksfirewallproxystate \"Wi-Fi\" off");
     }
 #elif defined (Q_OS_LINUX)

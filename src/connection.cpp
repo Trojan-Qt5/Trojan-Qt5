@@ -98,7 +98,7 @@ void Connection::start()
         privoxy->start();
     }
     emit stateChanged(running);
-    //SystemProxyHelper::setEnable(profile);
+    SystemProxyHelper::setSystemProxy(profile, true);
 }
 
 void Connection::stop()
