@@ -120,8 +120,14 @@
         <translation>設定檔編輯器</translation>
     </message>
     <message>
+        <location filename="../ui/editdialog.ui" line="175"/>
+        <source>Local HTTP Port</source>
+        <translation>本機HTTP埠</translation>
+    </message>
+    <message>
+        <location filename="../ui/editdialog.ui" line="185"/>
         <source>Local Server Type</source>
-        <translation type="vanished">本機伺服器型別</translation>
+        <translation>本機伺服器型別</translation>
     </message>
     <message>
         <source>Timeout</source>
@@ -195,6 +201,16 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../ui/editdialog.ui" line="194"/>
+        <source>SOCKS5</source>
+        <translation>SOCKS5</translation>
+    </message>
+    <message>
+        <location filename="../ui/editdialog.ui" line="204"/>
+        <source>SOCKS5 + HTTP</source>
+        <translation>SOCKS5 + HTTP</translation>
+    </message>
+    <message>
         <source>Debug</source>
         <translation type="vanished">偵錯</translation>
     </message>
@@ -239,51 +255,51 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="450"/>
+        <location filename="../src/mainwindow.cpp" line="459"/>
         <source>About</source>
         <translation>關於</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="165"/>
+        <location filename="../src/mainwindow.cpp" line="171"/>
         <source>Import Connections from gui-config.json</source>
         <translation>自 gui-config.json 匯入連線</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="177"/>
+        <location filename="../src/mainwindow.cpp" line="183"/>
         <source>Export Connections as gui-config.json</source>
         <translation>匯出連線為 gui-config.json</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="202"/>
-        <location filename="../src/mainwindow.cpp" line="234"/>
+        <location filename="../src/mainwindow.cpp" line="208"/>
+        <location filename="../src/mainwindow.cpp" line="240"/>
         <source>QR Code Not Found</source>
         <translation>找不到 QR 碼</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="203"/>
-        <location filename="../src/mainwindow.cpp" line="235"/>
+        <location filename="../src/mainwindow.cpp" line="209"/>
+        <location filename="../src/mainwindow.cpp" line="241"/>
         <source>Can&apos;t find any QR code image that contains valid URI on your screen(s).</source>
         <translation>在你的螢幕上無法找到任何包含有效 URI 的 QR 碼圖片。</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="226"/>
+        <location filename="../src/mainwindow.cpp" line="232"/>
         <source>Open QR Code Image File</source>
         <translation>開啟 QR 碼圖檔</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="258"/>
+        <location filename="../src/mainwindow.cpp" line="264"/>
         <source>Open config.json</source>
         <translation>開啟 config.json</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="300"/>
-        <location filename="../src/mainwindow.cpp" line="314"/>
+        <location filename="../src/mainwindow.cpp" line="306"/>
+        <location filename="../src/mainwindow.cpp" line="320"/>
         <source>Invalid</source>
         <translation>無效</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="301"/>
-        <location filename="../src/mainwindow.cpp" line="315"/>
+        <location filename="../src/mainwindow.cpp" line="307"/>
+        <location filename="../src/mainwindow.cpp" line="321"/>
         <source>The connection&apos;s profile is invalid!</source>
         <translation>此連線的設定檔無效！</translation>
     </message>
@@ -530,7 +546,7 @@
         <translation type="vanished">另一個 Shadowsocks-Qt5 (PID: %1) 的執行個體已在執行。</translation>
     </message>
     <message>
-        <location filename="../src/tqprofile.cpp" line="11"/>
+        <location filename="../src/tqprofile.cpp" line="12"/>
         <source>Unnamed Profile</source>
         <translation>未命名的設定檔</translation>
     </message>

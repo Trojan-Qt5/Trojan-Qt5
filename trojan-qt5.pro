@@ -69,7 +69,8 @@ win32 {
     LIBS += -lwsock32 -lws2_32
     LIBS += -lCrypt32
     DEFINES += WIN32_LEAN_AND_MEAN
-
+    # Otherwise lupdate will not work
+    TR_EXCLUDE += C:\TQLibraries\boost_1_72_0\*
 }
 
 mac {
@@ -88,7 +89,7 @@ mac {
     LIBS += -L/usr/local/opt/pcre/lib -lpcre
     LIBS += -framework Security -framework Cocoa
     # Otherwise lupdate will not work
-    TR_EXCLUDE = /usr/local/opt/boost/*
+    TR_EXCLUDE += /usr/local/opt/boost/*
 }
 
 unix:!mac {
@@ -107,7 +108,7 @@ unix:!mac {
     LIBS += -L/usr/local/zlib/lib -lz
     LIBS += -L/usr/local/pcre/lib -lpcre
     # Otherwise lupdate will not work
-    TR_EXCLUDE = /usr/local/boost/*
+    TR_EXCLUDE += /usr/local/boost/*
 
     isEmpty(PREFIX) {
         PREFIX = /usr/local

@@ -12,7 +12,7 @@ SystemProxyHelper::SystemProxyHelper()
 void SystemProxyHelper::setSystemProxy(TQProfile profile, bool enable)
 {
 #if defined(Q_OS_WIN)
-    if (enable) {
+    if (enable && profile.dualMode) {
         QString server = profile.localAddress + ":" + QString::number(profile.localHttpPort);
         LPTSTR serverString = (LPTSTR) server.utf16();
         int status = setProxy(true, serverString);
@@ -20,9 +20,11 @@ void SystemProxyHelper::setSystemProxy(TQProfile profile, bool enable)
         int status = setProxy(false, NULL);
     }
 #elif defined (Q_OS_MAC)
-    if (enable) {
-        system(QString("networksetup -setwebproxy \"Wi-Fi\" %1 %2").arg(profile.localAddress).arg(QString::number(profile.localHttpPort)));
-        system(QString("networksetup -setsecurewebproxy \"Wi-Fi\" %1 %2").arg(profile.localAddress).arg(QString::number(profile.localHttpPort)));
+    if (enable && profile.dualMode) {
+        system(QString("networksetup -setwebproxy \"Wi-Fi\" %1 %2").arg(profile.localAddress).arg(QString::number(profile.localHttpPort)).toStdString().c_str());
+        system(QString("networksetup -setsecurewebproxy \"Wi-Fi\" %1 %2").arg(profile.localAddress).arg(QString::number(profile.localHttpPort)).toStdString().c_str());
+        system(QString("networksetup -setsocksfirewallproxy \"Wi-Fi\" %1 %2").arg(profile.localAddress).arg(QString::number(profile.localPort)).toStdString().c_str());
+    } else if (enable) {
         system(QString("networksetup -setsocksfirewallproxy \"Wi-Fi\" %1 %2").arg(profile.localAddress).arg(QString::number(profile.localPort)).toStdString().c_str());
     } else {
         system("networksetup -setwebproxystate \"Wi-Fi\" off");

@@ -142,6 +142,7 @@ void ConnectionTableModel::onConnectionStateChanged(bool running)
     emit dataChanged(this->index(row, 0),
                      this->index(row, ConnectionItem::columnCount() - 1));
     emit rowStatusChanged(row, running);
+    emit changeIcon(running);
 }
 
 void ConnectionTableModel::onConnectionLatencyChanged()

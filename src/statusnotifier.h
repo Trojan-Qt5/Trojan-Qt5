@@ -34,6 +34,7 @@ public:
 public slots:
     void activate();
     void showNotification(const QString &);
+    void changeIcon(bool started);
     void onWindowVisibleChanged(bool visible);
 
 private:

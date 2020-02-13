@@ -24,5 +24,6 @@
         <file alias="actions/view-list-text.png">icons/Breeze/actions/view-list-text.png</file>
         <file alias="index.theme">icons/Breeze/index.theme</file>
         <file>icons/trojan-qt5.png</file>
+        <file>icons/trojan-qt5-2.png</file>
     </qresource>
 </RCC>

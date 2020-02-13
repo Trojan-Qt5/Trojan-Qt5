@@ -11,7 +11,7 @@ StatusNotifier::StatusNotifier(MainWindow *w, bool startHiden, QObject *parent) 
     QObject(parent),
     window(w)
 {
-    systray.setIcon(QIcon(":/icons/icons/trojan-qt5.png"));
+    systray.setIcon(QIcon(":/icons/icons/trojan-qt5-2.png"));
     systray.setToolTip(QString("Trojan-Qt5"));
     connect(&systray, &QSystemTrayIcon::activated, [this](QSystemTrayIcon::ActivationReason r) {
         if (r != QSystemTrayIcon::Context) {
@@ -49,6 +49,15 @@ void StatusNotifier::showNotification(const QString &msg)
 #else
     systray.showMessage("Trojan-Qt5", msg);
 #endif
+}
+
+void StatusNotifier::changeIcon(bool started)
+{
+    if (started) {
+        systray.setIcon(QIcon(":/icons/icons/trojan-qt5.png"));
+    } else {
+        systray.setIcon(QIcon(":/icons/icons/trojan-qt5-2.png"));
+    }
 }
 
 void StatusNotifier::onWindowVisibleChanged(bool visible)

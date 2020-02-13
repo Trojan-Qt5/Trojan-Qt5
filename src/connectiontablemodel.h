@@ -50,6 +50,7 @@ public slots:
 signals:
     void message(const QString &);
     void rowStatusChanged(int row, bool running);
+    void changeIcon(bool started);
 
 private:
     QList<ConnectionItem*> items;

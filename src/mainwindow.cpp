@@ -63,6 +63,8 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
             notifier, &StatusNotifier::showNotification);
     connect(model, &ConnectionTableModel::rowStatusChanged,
             this, &MainWindow::onConnectionStatusChanged);
+    connect(model, &ConnectionTableModel::changeIcon,
+            notifier, &StatusNotifier::changeIcon);
     connect(ui->actionSaveManually, &QAction::triggered,
             this, &MainWindow::onSaveManually);
     connect(ui->actionTestAllLatency, &QAction::triggered,

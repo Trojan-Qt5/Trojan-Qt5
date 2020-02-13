@@ -98,7 +98,7 @@ void Connection::start()
         privoxy->start();
     }
     emit stateChanged(running);
-    SystemProxyHelper::setSystemProxy(profile, true);
+    SystemProxyHelper::setSystemProxy(profile, running);
 }
 
 void Connection::stop()
@@ -110,16 +110,16 @@ void Connection::stop()
             privoxy->stop();
         }
         emit stateChanged(running);
-        //SystemProxyHelper::setDisable();
+        SystemProxyHelper::setSystemProxy(profile, running);
     }
 }
 
 void Connection::onStartFailed()
 {
     running = false;
-    //SystemProxyHelper::setDisable();
     emit stateChanged(running);
     emit startFailed();
+    SystemProxyHelper::setSystemProxy(profile, running);
 }
 
 void Connection::testAddressLatency(const QHostAddress &addr)
