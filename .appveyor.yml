@@ -5,7 +5,7 @@ install:
   - set QTDIR=C:\Qt\5.14.0\msvc2017\bin
   - git clone https://github.com/TheWanderingCoel/Trojan-Qt5-Libraries.git C:\TQLibraries
   - curl -Lo boost_1_72_0-msvc-14.2-32.exe https://sourceforge.net/projects/boost/files/boost-binaries/1.72.0/boost_1_72_0-msvc-14.2-32.exe/download
-  - powershell ".\\boost_1_72_0-msvc-14.2-32.exe /slient /sp- /suppressmsgboxes /DIR='C:\TQLibraries\boost_1_72_0'"
+  - powershell ".\\boost_1_72_0-msvc-14.2-32.exe /SILENT /SP- /SUPPRESSMSGBOXES /DIR='C:\TQLibraries\boost_1_72_0'"
   - set PATH=%QTDIR%;%PATH%;
   - git submodule update --init
 

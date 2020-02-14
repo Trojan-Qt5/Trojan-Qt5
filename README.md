@@ -17,6 +17,68 @@ A cross-platform trojan GUI client
 
 You can download from [release](https://github.com/TheWanderingCoel/Trojan-Qt5/releases) page
 
+## Compiling
+
+### 1.Windows
+- 1. Initialize the Environment
+```
+C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Community\VC\Auxiliary\Build\vcvarsall.bat x86
+```
+- 2. Clone Libraries
+```
+git clone https://github.com/TheWanderingCoel/Trojan-Qt5-Libraries.git C:\TQLibraries
+```
+- 3. Install Boost Library Manually
+```
+curl -Lo boost_1_72_0-msvc-14.2-32.exe https://sourceforge.net/projects/boost/files/boost-binaries/1.72.0/boost_1_72_0-msvc-14.2-32.exe/download
+powershell ".\\boost_1_72_0-msvc-14.2-32.exe /SILENT /SP- /SUPPRESSMSGBOXES /DIR='C:\TQLibraries\boost_1_72_0'"
+```
+- 4. Run Build
+```
+mkdir build && cd build
+qmake ..
+nmake
+```
+
+### 2.macOS
+- 1. Install HomeBrew
+```
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+- 2. Install Dependencies
+```
+brew install zbar qrencode boost openssl@1.1 zlib pcre
+```
+- 3. Run Build
+```
+mkdir build && cd build
+qmake ..
+make -j$(nproc)
+```
+
+### 3.Linux
+
+- 1. Install Dependencies
+```
+sudo apt-get install libgl-dev git build-essential g++ python-dev autotools-dev libicu-dev libbz2-dev checkinstall zlib1g-dev -y;
+```
+- 2. Compile Dependencies
+```
+sudo bash scripts/linux_compile.sh
+```
+- 3. Configure Privoxy
+```
+cd src/privoxy
+autoheader && autoconf && ./configure
+cd ../..
+```
+- 4. Run Build
+```
+mkdir build && cd build
+qmake ..
+make -j$(nproc)
+```
+
 ## Special Thanks
 
 This project is based on:

@@ -29,10 +29,10 @@ before_install:
 
 install:
   - if [ "$BADGE" = "linux" ]; then    
-      sudo apt-get install libgl-dev git build-essential g++ python-dev autotools-dev libicu-dev libbz2-dev checkinstall zlib1g-dev -y;
+      sudo apt-get install libgl-dev git build-essential g++ python-dev autoconf autotools-dev libicu-dev libbz2-dev checkinstall zlib1g zlib1g-dev -y;
       git clone https://github.com/benlau/qtci.git;
       source qtci/path.env;
-      install-qt 5.13.2;
+      install-qt 5.13.2 >/dev/null 2>&1;
       echo "Installing Zlib 1.2.11...";
       wget https://www.zlib.net/zlib-1.2.11.tar.gz;
       tar -xf zlib-1.2.11.tar.gz;
@@ -93,12 +93,16 @@ before_script:
 
 script:
   - git submodule update --init
-  - mkdir build && cd ./build
   - if [ "$BADGE" = "osx" ]; then
+      mkdir build && cd ./build;
       qmake ../;
       make -j$(nproc);
     fi
   - if [ "$BADGE" = "linux" ]; then
+      cd src/privoxy;
+      autoheader && autoconf && ./configure;
+      cd ../..;
+      mkdir build && cd ./build;
       wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage";
       chmod a+x linuxdeployqt-continuous-x86_64.AppImage;
       qmake CONFIG+=release .. PREFIX=/usr;
