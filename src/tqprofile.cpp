@@ -12,6 +12,7 @@ TQProfile::TQProfile()
     name = QObject::tr("Unnamed Profile");
     localAddress = QString("127.0.0.1");
     verifyCertificate = true;
+    verifyHostname = true;
     tcpFastOpen = false;
     latency = LATENCY_UNKNOWN;
     currentUsage = 0;
@@ -70,12 +71,12 @@ QString TQProfile::toUri() const
 
 QDataStream& operator << (QDataStream &out, const TQProfile &p)
 {
-    out << p.autoStart << p.serverPort << p.localPort << p.localHttpPort << p.dualMode << p.name << p.serverAddress << p.localAddress << p.verifyCertificate << p.password << p.tcpFastOpen << p.latency << p.currentUsage << p.totalUsage << p.lastTime << p.nextResetDate;
+    out << p.autoStart << p.serverPort << p.localPort << p.localHttpPort << p.dualMode << p.name << p.serverAddress << p.localAddress << p.verifyCertificate << p.verifyHostname << p.password << p.tcpFastOpen << p.latency << p.currentUsage << p.totalUsage << p.lastTime << p.nextResetDate;
     return out;
 }
 
 QDataStream& operator >> (QDataStream &in, TQProfile &p)
 {
-    in >> p.autoStart >> p.serverPort >> p.localPort >> p.localHttpPort >> p.dualMode >> p.name >> p.serverAddress >> p.localAddress >> p.verifyCertificate >> p.password >> p.tcpFastOpen >> p.latency >> p.currentUsage >> p.totalUsage >> p.lastTime >> p.nextResetDate;
+    in >> p.autoStart >> p.serverPort >> p.localPort >> p.localHttpPort >> p.dualMode >> p.name >> p.serverAddress >> p.localAddress >> p.verifyCertificate >> p.verifyHostname >> p.password >> p.tcpFastOpen >> p.latency >> p.currentUsage >> p.totalUsage >> p.lastTime >> p.nextResetDate;
     return in;
 }

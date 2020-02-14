@@ -16,5 +16,5 @@ void ResourceHelper::initPrivoxy()
     }
 
     QString privoxy = QCoreApplication::applicationDirPath() + "/privoxy/privoxy.exe";
-    QFile::copy(":/executables/privoxy.exe", privoxy);
+    QFile::copy(":/bin/privoxy.exe", privoxy);
 }

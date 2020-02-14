@@ -23,6 +23,7 @@ EditDialog::EditDialog(Connection *_connection, QWidget *parent) :
     ui->serverAddrEdit->setText(connection->profile.serverAddress);
     ui->serverPortEdit->setText(QString::number(connection->profile.serverPort));
     ui->verifyCertificateCheckBox->setChecked(connection->profile.verifyCertificate);
+    ui->verifyHostnameCheckBox->setChecked(connection->profile.verifyHostname);
     ui->pwdEdit->setText(connection->profile.password);
     ui->localAddrEdit->setText(connection->profile.localAddress);
     ui->localPortEdit->setText(QString::number(connection->profile.localPort));
@@ -49,6 +50,7 @@ void EditDialog::save()
     connection->profile.serverAddress = ui->serverAddrEdit->text().trimmed();
     connection->profile.serverPort = ui->serverPortEdit->text().toUShort();
     connection->profile.verifyCertificate = ui->verifyCertificateCheckBox->isChecked();
+    connection->profile.verifyHostname = ui->verifyHostnameCheckBox->isChecked();
     connection->profile.localAddress = ui->localAddrEdit->text();
     connection->profile.localPort = ui->localPortEdit->text().toUShort();
     connection->profile.localHttpPort = ui->localHttpPortEdit->text().toUShort();

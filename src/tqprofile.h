@@ -41,6 +41,7 @@ struct TQProfile
     QString localAddress;
     QString password;
     bool verifyCertificate;
+    bool verifyHostname;
     bool tcpFastOpen;
     int latency;
     quint64 currentUsage;

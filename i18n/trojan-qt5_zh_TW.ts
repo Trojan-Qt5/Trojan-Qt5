@@ -120,12 +120,17 @@
         <translation>設定檔編輯器</translation>
     </message>
     <message>
-        <location filename="../ui/editdialog.ui" line="175"/>
+        <location filename="../ui/editdialog.ui" line="80"/>
+        <source>Verify Hostname</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/editdialog.ui" line="135"/>
         <source>Local HTTP Port</source>
         <translation>本機HTTP埠</translation>
     </message>
     <message>
-        <location filename="../ui/editdialog.ui" line="185"/>
+        <location filename="../ui/editdialog.ui" line="145"/>
         <source>Local Server Type</source>
         <translation>本機伺服器型別</translation>
     </message>
@@ -150,17 +155,17 @@
         <translation type="vanished">加密方法</translation>
     </message>
     <message>
-        <location filename="../ui/editdialog.ui" line="93"/>
+        <location filename="../ui/editdialog.ui" line="121"/>
         <source>Local Port</source>
         <translation>本機埠</translation>
     </message>
     <message>
-        <location filename="../ui/editdialog.ui" line="83"/>
+        <location filename="../ui/editdialog.ui" line="111"/>
         <source>Local Address</source>
         <translation>本機位址</translation>
     </message>
     <message>
-        <location filename="../ui/editdialog.ui" line="66"/>
+        <location filename="../ui/editdialog.ui" line="94"/>
         <source>Password</source>
         <translation>密碼</translation>
     </message>
@@ -180,33 +185,34 @@
         <translation>設定檔名稱</translation>
     </message>
     <message>
-        <location filename="../ui/editdialog.ui" line="107"/>
+        <location filename="../ui/editdialog.ui" line="176"/>
         <source>TCP Fast Open</source>
         <translation>TCP快速打開</translation>
     </message>
     <message>
-        <location filename="../ui/editdialog.ui" line="114"/>
-        <location filename="../ui/editdialog.ui" line="168"/>
+        <location filename="../ui/editdialog.ui" line="73"/>
+        <location filename="../ui/editdialog.ui" line="87"/>
+        <location filename="../ui/editdialog.ui" line="183"/>
         <source>Enable</source>
         <translation>開啟</translation>
     </message>
     <message>
-        <location filename="../ui/editdialog.ui" line="154"/>
+        <location filename="../ui/editdialog.ui" line="223"/>
         <source>Auto connect on application start</source>
         <translation>程式啟動時自動連線</translation>
     </message>
     <message>
-        <location filename="../ui/editdialog.ui" line="161"/>
+        <location filename="../ui/editdialog.ui" line="66"/>
         <source>Verify Certficate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/editdialog.ui" line="194"/>
+        <location filename="../ui/editdialog.ui" line="154"/>
         <source>SOCKS5</source>
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../ui/editdialog.ui" line="204"/>
+        <location filename="../ui/editdialog.ui" line="164"/>
         <source>SOCKS5 + HTTP</source>
         <translation>SOCKS5 + HTTP</translation>
     </message>
@@ -219,12 +225,12 @@
         <translation type="vanished">記錄檔等級</translation>
     </message>
     <message>
-        <location filename="../ui/editdialog.ui" line="141"/>
+        <location filename="../ui/editdialog.ui" line="210"/>
         <source>Automation</source>
         <translation>自動化</translation>
     </message>
     <message>
-        <location filename="../ui/editdialog.ui" line="121"/>
+        <location filename="../ui/editdialog.ui" line="190"/>
         <source>Reset Data Usage after</source>
         <translation>重設資料使用量之後</translation>
     </message>
@@ -255,51 +261,51 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="459"/>
+        <location filename="../src/mainwindow.cpp" line="461"/>
         <source>About</source>
         <translation>關於</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="171"/>
+        <location filename="../src/mainwindow.cpp" line="173"/>
         <source>Import Connections from gui-config.json</source>
         <translation>自 gui-config.json 匯入連線</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="183"/>
+        <location filename="../src/mainwindow.cpp" line="185"/>
         <source>Export Connections as gui-config.json</source>
         <translation>匯出連線為 gui-config.json</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="208"/>
-        <location filename="../src/mainwindow.cpp" line="240"/>
+        <location filename="../src/mainwindow.cpp" line="210"/>
+        <location filename="../src/mainwindow.cpp" line="242"/>
         <source>QR Code Not Found</source>
         <translation>找不到 QR 碼</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="209"/>
-        <location filename="../src/mainwindow.cpp" line="241"/>
+        <location filename="../src/mainwindow.cpp" line="211"/>
+        <location filename="../src/mainwindow.cpp" line="243"/>
         <source>Can&apos;t find any QR code image that contains valid URI on your screen(s).</source>
         <translation>在你的螢幕上無法找到任何包含有效 URI 的 QR 碼圖片。</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="232"/>
+        <location filename="../src/mainwindow.cpp" line="234"/>
         <source>Open QR Code Image File</source>
         <translation>開啟 QR 碼圖檔</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="264"/>
+        <location filename="../src/mainwindow.cpp" line="266"/>
         <source>Open config.json</source>
         <translation>開啟 config.json</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="306"/>
-        <location filename="../src/mainwindow.cpp" line="320"/>
+        <location filename="../src/mainwindow.cpp" line="308"/>
+        <location filename="../src/mainwindow.cpp" line="322"/>
         <source>Invalid</source>
         <translation>無效</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="307"/>
-        <location filename="../src/mainwindow.cpp" line="321"/>
+        <location filename="../src/mainwindow.cpp" line="309"/>
+        <location filename="../src/mainwindow.cpp" line="323"/>
         <source>The connection&apos;s profile is invalid!</source>
         <translation>此連線的設定檔無效！</translation>
     </message>
@@ -656,7 +662,7 @@
     <name>StatusNotifier</name>
     <message>
         <location filename="../src/statusnotifier.cpp" line="21"/>
-        <location filename="../src/statusnotifier.cpp" line="56"/>
+        <location filename="../src/statusnotifier.cpp" line="65"/>
         <source>Minimise</source>
         <translation>最小化</translation>
     </message>
@@ -667,7 +673,7 @@
     </message>
     <message>
         <location filename="../src/statusnotifier.cpp" line="21"/>
-        <location filename="../src/statusnotifier.cpp" line="56"/>
+        <location filename="../src/statusnotifier.cpp" line="65"/>
         <source>Restore</source>
         <translation>還原</translation>
     </message>
