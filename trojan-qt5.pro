@@ -64,7 +64,8 @@ win32 {
     INCLUDEPATH += C:\TQLibraries\QREncode\include
     LIBS += -LC:\TQLibraries\ZBar\lib -llibzbar-0
     LIBS += -LC:\TQLibraries\OpenSSL-Win32\lib -llibcrypto -llibssl
-    LIBS += -LC:\TQLibraries\boost_1_72_0\lib32-msvc-14.1
+    # Change 14.2 to 14.1 if you are using Visual Studio 2017
+    LIBS += -LC:\TQLibraries\boost_1_72_0\lib32-msvc-14.2
     LIBS += -LC:\TQLibraries\QREncode\lib -lqrcodelib
     LIBS += -lwsock32 -lws2_32
     LIBS += -lCrypt32
