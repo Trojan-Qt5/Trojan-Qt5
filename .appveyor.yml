@@ -23,7 +23,7 @@ build_script:
   - curl -LO https://github.com/TheWanderingCoel/Trojan-Qt5-DLL/raw/master/libzbar-0.dll
   - curl -LO https://github.com/TheWanderingCoel/Trojan-Qt5-DLL/raw/master/libssl-1_1.dll
   - curl -LO https://github.com/TheWanderingCoel/Trojan-Qt5-DLL/raw/master/libcrypto-1_1.dll
-  - del /f /s /q vc_redist.x86.exe opengl32sw.dll d3dcompiler_47.dll libGLESV2.dll libEGL.dll Qt5Svg.dll imageformats\qgif.dll iconengines\qsvgicon.dll imageformats\qtga.dll imageformats\qtiff.dll imageformats\qwbmp.dll imageformats\qwebp.dll imageformats\qjpeg.dll imageformats\qsvg.dll iconengies bearer vc_redist.x86.exe
+  - del /f /s /q vc_redist.x86.exe opengl32sw.dll d3dcompiler_47.dll libGLESV2.dll libEGL.dll Qt5Svg.dll imageformats\qgif.dll iconengines\qsvgicon.dll imageformats\qtga.dll imageformats\qtiff.dll imageformats\qwbmp.dll imageformats\qwebp.dll imageformats\qjpeg.dll imageformats\qsvg.dll iconengines bearer vc_redist.x86.exe
   - rmdir iconengines bearer
   - 7z a Trojan-Qt5-Windows.zip *
   - cd ..
