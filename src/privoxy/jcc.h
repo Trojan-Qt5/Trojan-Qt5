@@ -114,6 +114,7 @@ int real_main(int argc, char **argv);
 extern "C" {
 #endif
 int start_privoxy(char *conf_path);
+int stop_privoxy();
 #ifdef __cplusplus
 }
 #endif

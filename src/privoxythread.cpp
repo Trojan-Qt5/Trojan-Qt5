@@ -13,6 +13,8 @@ PrivoxyThread::PrivoxyThread(QObject *parent)
 void PrivoxyThread::stop() {
 #if defined (Q_OS_WIN)
     TerminateProcess(piProcessInfo.hProcess, 0);
+#else
+    stop_privoxy();
 #endif
 }
 
