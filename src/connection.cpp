@@ -9,9 +9,15 @@
 Connection::Connection(QObject *parent) :
     QObject(parent),
     running(false),
-    service(new ServiceThread(this)),
-    privoxy(new PrivoxyThread(this))
+    service(new ServiceThread(this))
 {
+#ifdef Q_OS_WIN
+    configFile = a.applicationDirPath() + "/config.ini";
+#else
+    QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
+    configFile = configDir.absolutePath() + "/config.ini";
+#endif
+    //ConfigHelper *conf = new ConfigHelper(configFile);
     connect(service, &ServiceThread::startFailed, this, &Connection::onStartFailed);
 }
 
@@ -81,6 +87,12 @@ void Connection::start()
         latencyTest();
     }
 
+    // MUST initial there otherwise privoxy will not listen port
+    privoxy = new PrivoxyThread(this);
+
+    ConfigHelper *conf = new ConfigHelper(configFile);
+
+    // Generate Config File that trojan and privoxy will use
     ConfigHelper::connectionToJson(profile);
     ConfigHelper::generatePrivoxyConf(profile);
 
@@ -98,19 +110,24 @@ void Connection::start()
         privoxy->start();
     }
     emit stateChanged(running);
-    SystemProxyHelper::setSystemProxy(profile, running);
+    if (conf->isAutoSetSystemProxy()) {
+        SystemProxyHelper::setSystemProxy(profile, running);
+    }
 }
 
 void Connection::stop()
 {
+    ConfigHelper *conf = new ConfigHelper(configFile);
     if (running) {
-        service->stop();
         running = false;
+        service->stop();
         if (profile.dualMode) {
             privoxy->stop();
         }
         emit stateChanged(running);
-        SystemProxyHelper::setSystemProxy(profile, running);
+        if (conf->isAutoSetSystemProxy()) {
+            SystemProxyHelper::setSystemProxy(profile, running);
+        }
     }
 }
 

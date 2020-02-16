@@ -10,6 +10,7 @@ SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
     ui->setupUi(this);
 
     ui->toolbarStyleComboBox->setCurrentIndex(helper->getToolbarStyle());
+    ui->autoSetSystemProxyCheckBox->setChecked(helper->isAutoSetSystemProxy());
     ui->hideCheckBox->setChecked(helper->isHideWindowOnStartup());
     ui->startAtLoginCheckbox->setChecked(helper->isStartAtLogin());
     ui->oneInstanceCheckBox->setChecked(helper->isOnlyOneInstance());
@@ -17,6 +18,7 @@ SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
 
     connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &SettingsDialog::onAccepted);
     connect(ui->toolbarStyleComboBox, &QComboBox::currentTextChanged, this, &SettingsDialog::onChanged);
+    connect(ui->autoSetSystemProxyCheckBox, &QCheckBox::stateChanged, this, &SettingsDialog::onChanged);
     connect(ui->hideCheckBox, &QCheckBox::stateChanged, this, &SettingsDialog::onChanged);
     connect(ui->startAtLoginCheckbox, &QCheckBox::stateChanged, this, &SettingsDialog::onChanged);
     connect(ui->oneInstanceCheckBox, &QCheckBox::stateChanged, this, &SettingsDialog::onChanged);
@@ -35,6 +37,7 @@ SettingsDialog::~SettingsDialog()
 void SettingsDialog::onAccepted()
 {
     helper->setGeneralSettings(ui->toolbarStyleComboBox->currentIndex(),
+                               ui->autoSetSystemProxyCheckBox->isChecked(),
                                ui->hideCheckBox->isChecked(),
                                ui->startAtLoginCheckbox->isChecked(),
                                ui->oneInstanceCheckBox->isChecked(),

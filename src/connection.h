@@ -60,6 +60,7 @@ public slots:
     void onStartFailed();
 
 private:
+    QString configFile;
     PrivoxyThread *privoxy;
     ServiceThread *service;
     TQProfile profile;

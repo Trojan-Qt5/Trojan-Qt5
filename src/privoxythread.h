@@ -10,8 +10,8 @@ class PrivoxyThread : public QThread
 {
 
 public:
-  PrivoxyThread(QObject *parent = 0);
-  //~ServiceThread();
+  PrivoxyThread(QObject *parent = nullptr);
+  ~PrivoxyThread();
 
 private:
 #if defined (Q_OS_WIN)

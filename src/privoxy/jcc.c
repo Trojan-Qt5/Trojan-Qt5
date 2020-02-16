@@ -3653,6 +3653,7 @@ int real_main(int argc, char **argv)
 int start_privoxy(char *conf_path)
 #endif
 {
+
     unsigned int random_seed;
 
     configfile = conf_path;
@@ -3674,37 +3675,8 @@ int start_privoxy(char *conf_path)
 
     listen_loop();
 
-    return 0;
-}
-
-/*********************************************************************
- *
- * Function    :  stop_privoxy
- *
- * Description :  Load the config file and start the listen loop.
- *                This function is a lot more *sane* with the `load_config'
- *                and `listen_loop' functions; although it stills does
- *                a *little* too much for my taste.
- *
- * Parameters  :
- *          1  :  argc = Number of parameters (including $0).
- *          2  :  argv = Array of (char *)'s to the parameters.
- *
- * Returns     :  1 if : can't open config file, unrecognized directive,
- *                stats requested in multi-thread mode, can't open the
- *                log file, can't open the jar file, listen port is invalid,
- *                any load fails, and can't bind port.
- *
- *                Else main never returns, the process must be signaled
- *                to terminate execution.  Or, on Windows, use the
- *                "File", "Exit" menu option.
- *
- *********************************************************************/
-int stop_privoxy()
-{
-    close_ports_helper(bfds);
-
-    return 0;
+   /* NOTREACHED */
+   return(-1);
 }
 
 /*********************************************************************
@@ -3862,6 +3834,10 @@ static void close_ports_helper(jb_socket sockets[])
    }
 }
 
+void close_privoxy_listening_socket()
+{
+    close_ports_helper(bfds);
+}
 
 #ifdef _WIN32
 /* Without this simple workaround we get this compiler warning from _beginthread
@@ -4196,6 +4172,7 @@ static void listen_loop(void)
 
    log_error(LOG_LEVEL_ERROR, "Graceful termination requested");
 
+   close_ports_helper(bfds);
    unload_current_config_file();
    unload_current_actions_file();
    unload_current_re_filterfile();

@@ -38,10 +38,12 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
 
     ui->setupUi(this);
 
+    //setup Settings menu
 #ifndef Q_OS_DARWIN
     ui->menuSettings->addAction(ui->toolBar->toggleViewAction());
 #endif
 
+    //initialisation
     model = new ConnectionTableModel(this);
     configHelper->read(model);
     proxyModel = new QSortFilterProxyModel(this);
@@ -255,8 +257,8 @@ void MainWindow::onAddFromURI()
     connect(inputDlg, &URIInputDialog::finished,
             inputDlg, &URIInputDialog::deleteLater);
     connect(inputDlg, &URIInputDialog::acceptedURI, [&](const QString &uri){
-            Connection *newCon = new Connection(uri, this);
-            newProfile(newCon);
+        Connection *newCon = new Connection(uri, this);
+        newProfile(newCon);
     });
     inputDlg->exec();
 }

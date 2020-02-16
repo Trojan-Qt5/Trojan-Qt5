@@ -47,6 +47,9 @@ DEFINES += ENABLE_SSL_KEYLOG
 DEFINES += ENABLE_TLS13_CIPHERSUITES
 #DEFINES += ENABLE_REUSE_PORT
 
+# Privoxy
+DEFINES += FEATURE_GRACEFUL_TERMINATION
+
 # You can also make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
 # You can also select to disable deprecated APIs only up to a certain version of Qt.

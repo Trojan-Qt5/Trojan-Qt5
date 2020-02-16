@@ -7,14 +7,22 @@
 #include "privoxy/jcc.h"
 #endif
 
-PrivoxyThread::PrivoxyThread(QObject *parent)
+PrivoxyThread::PrivoxyThread(QObject *parent) :
+  QThread(parent)
 {}
+
+PrivoxyThread::~PrivoxyThread()
+{
+
+}
 
 void PrivoxyThread::stop() {
 #if defined (Q_OS_WIN)
     TerminateProcess(piProcessInfo.hProcess, 0);
 #else
-    stop_privoxy();
+    g_terminate = 1;
+
+    close_privoxy_listening_socket();
 #endif
 }
 
@@ -41,6 +49,9 @@ void PrivoxyThread::run() {
 #else
     QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
     QString file = configDir.absolutePath() + "/privoxy.conf";
+
+    g_terminate = 0;
+
     start_privoxy(file.toLocal8Bit().data());
 #endif
 }

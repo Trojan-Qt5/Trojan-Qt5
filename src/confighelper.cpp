@@ -31,6 +31,7 @@ void ConfigHelper::save(const ConnectionTableModel &model)
     settings->endArray();
 
     settings->setValue("ToolbarStyle", QVariant(toolbarStyle));
+    settings->setValue("AutoSetSystemProxy", QVariant(autoSetSystemProxy));
     settings->setValue("HideWindowOnStartup", QVariant(hideWindowOnStartup));
     settings->setValue("StartAtLogin", QVariant(startAtLogin));
     settings->setValue("OnlyOneInstance", QVariant(onlyOneInstace));
@@ -236,11 +237,11 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
 
 void ConfigHelper::generatePrivoxyConf(TQProfile &profile)
 {
-    QString filecontent = QString("listen-address [%1]:%2\n"
+    QString filecontent = QString("listen-address %1:%2\n"
                                   "toggle 0\n"
                                   "show-on-task-bar 0\n"
                                   "activity-animation 0\n"
-                                  "forward-socks5 / [%3]:%4 .\n"
+                                  "forward-socks5 / %3:%4 .\n"
                                   "hide-console\n")
                                   .arg(profile.localAddress)
                                   .arg(QString::number(profile.localHttpPort))
@@ -269,6 +270,11 @@ void ConfigHelper::generatePrivoxyConf(TQProfile &profile)
 int ConfigHelper::getToolbarStyle() const
 {
     return toolbarStyle;
+}
+
+bool ConfigHelper::isAutoSetSystemProxy() const
+{
+    return autoSetSystemProxy;
 }
 
 bool ConfigHelper::isHideWindowOnStartup() const
@@ -301,12 +307,13 @@ bool ConfigHelper::isNativeMenuBar() const
     return nativeMenuBar;
 }
 
-void ConfigHelper::setGeneralSettings(int ts, bool hide, bool sal, bool oneInstance, bool nativeMB)
+void ConfigHelper::setGeneralSettings(int ts, bool assp, bool hide, bool sal, bool oneInstance, bool nativeMB)
 {
     if (toolbarStyle != ts) {
         emit toolbarStyleChanged(static_cast<Qt::ToolButtonStyle>(ts));
     }
     toolbarStyle = ts;
+    autoSetSystemProxy = assp;
     hideWindowOnStartup = hide;
     startAtLogin = sal;
     onlyOneInstace = oneInstance;
@@ -343,6 +350,7 @@ void ConfigHelper::readGeneralSettings()
 {
     toolbarStyle = settings->value("ToolbarStyle", QVariant(4)).toInt();
     startAtLogin = settings->value("StartAtLogin").toBool();
+    autoSetSystemProxy = settings->value("AutoSetSystemProxy", QVariant(true)).toBool();
     hideWindowOnStartup = settings->value("HideWindowOnStartup").toBool();
     onlyOneInstace = settings->value("OnlyOneInstance", QVariant(true)).toBool();
     showToolbar = settings->value("ShowToolbar", QVariant(true)).toBool();

@@ -68,13 +68,14 @@ public:
 
     /* some functions used to communicate with SettingsDialog */
     int  getToolbarStyle() const;
+    bool isAutoSetSystemProxy() const;
     bool isHideWindowOnStartup() const;
     bool isStartAtLogin() const;
     bool isOnlyOneInstance() const;
     bool isShowToolbar() const;
     bool isShowFilterBar() const;
     bool isNativeMenuBar() const;
-    void setGeneralSettings(int ts, bool hide, bool automaticStartUp, bool oneInstance, bool nativeMB);
+    void setGeneralSettings(int ts, bool assp, bool hide, bool automaticStartUp, bool oneInstance, bool nativeMB);
     void setMainWindowGeometry(const QByteArray &geometry);
     void setMainWindowState(const QByteArray &state);
     void setTableGeometry(const QByteArray &geometry);
@@ -94,6 +95,7 @@ signals:
 
 private:
     int toolbarStyle;
+    bool autoSetSystemProxy;
     bool hideWindowOnStartup;
     bool startAtLogin;
     bool onlyOneInstace;
