@@ -12,12 +12,11 @@ Connection::Connection(QObject *parent) :
     service(new ServiceThread(this))
 {
 #ifdef Q_OS_WIN
-    configFile = a.applicationDirPath() + "/config.ini";
+    configFile = QCoreApplication::applicationDirPath() + "/config.ini";
 #else
     QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
     configFile = configDir.absolutePath() + "/config.ini";
 #endif
-    //ConfigHelper *conf = new ConfigHelper(configFile);
     connect(service, &ServiceThread::startFailed, this, &Connection::onStartFailed);
 }
 

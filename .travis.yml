@@ -29,7 +29,7 @@ before_install:
 
 install:
   - if [ "$BADGE" = "linux" ]; then    
-      sudo apt-get install libgl-dev git build-essential g++ python-dev autoconf autotools-dev libicu-dev libbz2-dev checkinstall zlib1g zlib1g-dev -y;
+      sudo apt-get install libgl-dev git build-essential g++ python-dev autoconf autotools-dev libicu-dev libbz2-dev checkinstall zlib1g zlib1g-dev python3.6 -y;
       git clone https://github.com/benlau/qtci.git;
       source qtci/path.env;
       install-qt 5.13.2 >/dev/null 2>&1;
@@ -114,11 +114,13 @@ defore_deploy:
   - if [ "$BADGE" = "osx" ]; then
       macdeployqt trojan-qt5.app -dmg;
       mv trojan-qt5.dmg Trojan-Qt5-macOS.dmg;
+      python3 ../scripts/md5.py Trojan-Qt5-macOS.dmg Trojan-Qt5-macOS.md5;
     fi
   - if [ "$BADGE" = "linux" ]; then
       export LD_LIBRARY_PATH=/usr/loal/zlib/lib:/usr/local/pcre/lib:/usr/local/zbar/lib/:/usr/local/qrencode/lib/:/usr/local/boost/lib/:/usr/local/openssl/lib/:$LD_LIBRARY_PATH;
       ./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -appimage;
       mv Trojan-Qt5*.AppImage Trojan-Qt5-Linux.AppImage;
+      python3 ../scripts/md5.py Trojan-Qt5-Linux.AppImage Trojan-Qt5-Linux.md5;
     fi
   - cd ..
 
@@ -126,7 +128,9 @@ deploy:
   provider: release
   file: 
     - build/Trojan-Qt5-macOS.dmg
+    - build/Trojan-Qt5-macOS.md5
     - build/Trojan-Qt5-Linux.AppImage
+    - build/Trojan-Qt5-Linux.md5
   api_key: $GIT_REPO_TOKEN
   skip_cleanup: true
   overwrite: true

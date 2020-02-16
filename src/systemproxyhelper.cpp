@@ -1,4 +1,6 @@
 #include "systemproxyhelper.h"
+#include <stdio.h>
+#include <QDebug>
 #if defined (Q_OS_WIN)
 #include <Windows.h>
 #include "sysproxy/windows.h"
@@ -21,20 +23,21 @@ void SystemProxyHelper::setSystemProxy(TQProfile profile, bool enable)
     }
 #elif defined (Q_OS_MAC)
     if (enable && profile.dualMode) {
-        system(QString("networksetup -setwebproxy \"Wi-Fi\" %1 %2").arg(profile.localAddress).arg(QString::number(profile.localHttpPort)).toStdString().c_str());
-        system(QString("networksetup -setsecurewebproxy \"Wi-Fi\" %1 %2").arg(profile.localAddress).arg(QString::number(profile.localHttpPort)).toStdString().c_str());
-        system(QString("networksetup -setsocksfirewallproxy \"Wi-Fi\" %1 %2").arg(profile.localAddress).arg(QString::number(profile.localPort)).toStdString().c_str());
+        qDebug() << enable;
+        popen(QString("networksetup -setwebproxy \"Wi-Fi\" %1 %2").arg(profile.localAddress).arg(QString::number(profile.localHttpPort)).toStdString().c_str(), "r");
+        popen(QString("networksetup -setsecurewebproxy \"Wi-Fi\" %1 %2").arg(profile.localAddress).arg(QString::number(profile.localHttpPort)).toStdString().c_str(), "r");
+        popen(QString("networksetup -setsocksfirewallproxy \"Wi-Fi\" %1 %2").arg(profile.localAddress).arg(QString::number(profile.localPort)).toStdString().c_str(), "r");
     } else if (enable) {
-        system(QString("networksetup -setsocksfirewallproxy \"Wi-Fi\" %1 %2").arg(profile.localAddress).arg(QString::number(profile.localPort)).toStdString().c_str());
+        popen(QString("networksetup -setsocksfirewallproxy \"Wi-Fi\" %1 %2").arg(profile.localAddress).arg(QString::number(profile.localPort)).toStdString().c_str(), "r");
     } else {
-        system("networksetup -setwebproxystate \"Wi-Fi\" off");
-        system("networksetup -setsecurewebproxystate \"Wi-Fi\" off");
-        system("networksetup -setsocksfirewallproxystate \"Wi-Fi\" off");
+        popen("networksetup -setwebproxystate \"Wi-Fi\" off", "r");
+        popen("networksetup -setsecurewebproxystate \"Wi-Fi\" off", "r");
+        popen("networksetup -setsocksfirewallproxystate \"Wi-Fi\" off", "r");
     }
 #elif defined (Q_OS_LINUX)
     if (system("gsettings --version > /dev/null") == 0) {
-        system(QString("gsettings set org.gnome.system.proxy.socks host %1").arg(profile.serverAddress).toStdString().c_str());
-        system(QString("gsettings set org.gnome.system.proxy.socks port %1").arg(QString::number(profile.serverPort)).toStdString().c_str());
+        popen(QString("gsettings set org.gnome.system.proxy.socks host %1").arg(profile.serverAddress).toStdString().c_str(), "r");
+        popen(QString("gsettings set org.gnome.system.proxy.socks port %1").arg(QString::number(profile.serverPort)).toStdString().c_str(), "r");
     }
 #endif
 }

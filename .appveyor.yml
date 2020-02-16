@@ -26,11 +26,12 @@ build_script:
   - del /f /s /q vc_redist.x86.exe opengl32sw.dll d3dcompiler_47.dll libGLESV2.dll libEGL.dll Qt5Svg.dll imageformats\qgif.dll iconengines\qsvgicon.dll imageformats\qtga.dll imageformats\qtiff.dll imageformats\qwbmp.dll imageformats\qwebp.dll imageformats\qjpeg.dll imageformats\qsvg.dll iconengines bearer vc_redist.x86.exe
   - rmdir iconengines bearer
   - 7z a Trojan-Qt5-Windows.zip *
+  - python ..\..\scripts\md5.py Trojan-Qt5-Windows.zip Trojan-Qt5-Windows.md5
   - cd ..
   - cd ..
 
 artifacts:
-- path: build\release\Trojan-Qt5-Windows.zip
+- path: 'build\release\Trojan-Qt5-Windows.*'
   name: Trojan-Qt5
 
 deploy:

@@ -79,6 +79,29 @@ qmake ..
 make -j$(nproc)
 ```
 
+## Frequent Ask Question (FAQ)
+
+### 1. What is the relation of values in profile editor to trojan config?
+![Profile Editor](https://i.imgur.com/xA58JNG.png)
+
+### 2. Junkware detected, 360 detected as a virus?
+- [VirusTotal](https://www.virustotal.com/gui/file/247faa5d67592af7583a7ebd53654383d25e258de329ee145f7d8abbf2ba7034/detection)  
+- Also do not forget to the the md5 checksum
+
+### 3. How to check md5 checksum?
+#### 1. Windows
+```
+certutil -hashfile Trojan-Qt5-Windows.zip MD5
+```
+#### 2. macOS
+```
+md5 -r Trojan-Qt5-macOS.dmg
+```
+#### 3. Linux
+```
+md5sum Trojan-Qt5-Linux.AppImage
+```
+
 ## Special Thanks
 
 This project is based on:
