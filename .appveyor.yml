@@ -28,6 +28,7 @@ build_script:
   - rmdir iconengines bearer
   - 7z a Trojan-Qt5-Windows.zip *
   - python ..\..\scripts\md5.py Trojan-Qt5-Windows.zip Trojan-Qt5-Windows.md5
+  - python ..\..\scripts\sha1.py Trojan-Qt5-Windows.zip Trojan-Qt5-Windows.sha1
   - cd ..
   - cd ..
 

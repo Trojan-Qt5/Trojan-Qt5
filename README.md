@@ -86,7 +86,7 @@ make -j$(nproc)
 
 ### 2. Junkware detected, 360 detected as a virus?
 - [VirusTotal](https://www.virustotal.com/gui/file/247faa5d67592af7583a7ebd53654383d25e258de329ee145f7d8abbf2ba7034/detection)  
-- Also do not forget to the the md5 checksum
+- Also do not forget to the the md5 checksum and sha1 checksum
 
 ### 3. How to check md5 checksum?
 #### 1. Windows
@@ -102,6 +102,19 @@ md5 -r Trojan-Qt5-macOS.dmg
 md5sum Trojan-Qt5-Linux.AppImage
 ```
 
+### 4. How to check SHA1 checksum?
+#### 1. Windows
+```
+certutil -hashfile Trojan-Qt5-Windows.zip SHA1
+```
+#### 2. macOS
+```
+shasum Trojan-Qt5-macOS.dmg
+```
+#### 3. Linux
+```
+sha1sum Trojan-Qt5-Linux.AppImage
+```
 ## Special Thanks
 
 This project is based on:
