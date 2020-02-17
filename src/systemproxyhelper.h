@@ -26,6 +26,7 @@ class SystemProxyHelper
 {
 public:
     SystemProxyHelper();
+    ~SystemProxyHelper();
     static void setSystemProxy(TQProfile profile, bool enable);
 };
 

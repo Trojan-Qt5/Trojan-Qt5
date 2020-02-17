@@ -86,7 +86,7 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
             this, &MainWindow::onImportGuiJson);
     connect(ui->actionExportGUIJson, &QAction::triggered,
             this, &MainWindow::onExportGuiJson);
-    connect(ui->actionQuit, &QAction::triggered, qApp, &QApplication::exit);
+    connect(ui->actionQuit, &QAction::triggered, qApp, &QApplication::quit);
     connect(ui->actionManually, &QAction::triggered,
             this, &MainWindow::onAddManually);
     connect(ui->actionQRCode, &QAction::triggered,

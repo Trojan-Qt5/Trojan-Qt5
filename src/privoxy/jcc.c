@@ -3662,7 +3662,7 @@ int start_privoxy(char *conf_path)
     initialize_mutexes();
 
     /* Enable logging until further notice. */
-    init_log_module();
+    //init_log_module();
 
     files->next = NULL;
     clients->next = NULL;
@@ -3676,7 +3676,7 @@ int start_privoxy(char *conf_path)
     listen_loop();
 
    /* NOTREACHED */
-   return(-1);
+    return(-1);
 }
 
 /*********************************************************************

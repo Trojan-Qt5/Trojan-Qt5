@@ -13,7 +13,7 @@ PrivoxyThread::PrivoxyThread(QObject *parent) :
 
 PrivoxyThread::~PrivoxyThread()
 {
-
+    stop();
 }
 
 void PrivoxyThread::stop() {

@@ -87,7 +87,7 @@ void Connection::start()
     }
 
     // MUST initial there otherwise privoxy will not listen port
-    privoxy = new PrivoxyThread(this);
+    privoxy = new PrivoxyThread();
 
     ConfigHelper *conf = new ConfigHelper(configFile);
 
