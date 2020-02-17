@@ -114,6 +114,7 @@ defore_deploy:
   - if [ "$BADGE" = "osx" ]; then
       macdeployqt trojan-qt5.app -dmg;
       mv trojan-qt5.dmg Trojan-Qt5-macOS.dmg;
+      brew link --overwrite python;
       python3 ../scripts/md5.py Trojan-Qt5-macOS.dmg Trojan-Qt5-macOS.md5;
       python3 ../scripts/sha1.py Trojan-Qt5-macOS.dmg Trojan-Qt5-macOS.sha1;
     fi
