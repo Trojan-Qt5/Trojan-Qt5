@@ -32,6 +32,7 @@ void ConfigHelper::save(const ConnectionTableModel &model)
 
     settings->setValue("ToolbarStyle", QVariant(toolbarStyle));
     settings->setValue("AutoSetSystemProxy", QVariant(autoSetSystemProxy));
+    settings->setValue("EnablePACMode", QVariant(enablePACMode));
     settings->setValue("HideWindowOnStartup", QVariant(hideWindowOnStartup));
     settings->setValue("StartAtLogin", QVariant(startAtLogin));
     settings->setValue("OnlyOneInstance", QVariant(onlyOneInstace));
@@ -277,6 +278,11 @@ bool ConfigHelper::isAutoSetSystemProxy() const
     return autoSetSystemProxy;
 }
 
+bool ConfigHelper::isEnablePACMode() const
+{
+    return enablePACMode;
+}
+
 bool ConfigHelper::isHideWindowOnStartup() const
 {
     return hideWindowOnStartup;
@@ -307,13 +313,14 @@ bool ConfigHelper::isNativeMenuBar() const
     return nativeMenuBar;
 }
 
-void ConfigHelper::setGeneralSettings(int ts, bool assp, bool hide, bool sal, bool oneInstance, bool nativeMB)
+void ConfigHelper::setGeneralSettings(int ts, bool assp, bool pac, bool hide, bool sal, bool oneInstance, bool nativeMB)
 {
     if (toolbarStyle != ts) {
         emit toolbarStyleChanged(static_cast<Qt::ToolButtonStyle>(ts));
     }
     toolbarStyle = ts;
     autoSetSystemProxy = assp;
+    enablePACMode = pac;
     hideWindowOnStartup = hide;
     startAtLogin = sal;
     onlyOneInstace = oneInstance;
@@ -351,6 +358,7 @@ void ConfigHelper::readGeneralSettings()
     toolbarStyle = settings->value("ToolbarStyle", QVariant(4)).toInt();
     startAtLogin = settings->value("StartAtLogin").toBool();
     autoSetSystemProxy = settings->value("AutoSetSystemProxy", QVariant(true)).toBool();
+    enablePACMode = settings->value("EnablePACMode", QVariant(true)).toBool();
     hideWindowOnStartup = settings->value("HideWindowOnStartup").toBool();
     onlyOneInstace = settings->value("OnlyOneInstance", QVariant(true)).toBool();
     showToolbar = settings->value("ShowToolbar", QVariant(true)).toBool();

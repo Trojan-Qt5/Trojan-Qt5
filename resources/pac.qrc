@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>pac/proxy.pac</file>
+    </qresource>
+</RCC>

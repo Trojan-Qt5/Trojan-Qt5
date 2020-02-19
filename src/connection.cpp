@@ -1,6 +1,7 @@
 #include "addresstester.h"
 #include "connection.h"
 #include "confighelper.h"
+#include "pacserver.h"
 #include <QCoreApplication>
 #include <QDir>
 #include <QHostInfo>
@@ -86,8 +87,11 @@ void Connection::start()
         latencyTest();
     }
 
-    // MUST initial there otherwise privoxy will not listen port
+    /** MUST initial there otherwise privoxy will not listen port. */
     privoxy = new PrivoxyThread();
+
+    /** Inital PAC class there. */
+    PACServer *pac = new PACServer();
 
     ConfigHelper *conf = new ConfigHelper(configFile);
 
@@ -101,16 +105,32 @@ void Connection::start()
     QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
     QString file = configDir.absolutePath() + "/config.json";
 #endif
+    /** load service config first. */
     service->config().load(file.toStdString());
 
+    /** Set running status to true before we start trojan. */
     running = true;
     service->start();
+
+    /** Start privoxy if profile is configured to do so. */
     if (profile.dualMode) {
         privoxy->start();
     }
+
+    /** Modify PAC File if user have enabled PAC Mode. */
+    if (conf->isEnablePACMode()) {
+        pac->modify(profile);
+    }
+
     emit stateChanged(running);
+
+    /** Set proxy settings after emit the signal. */
     if (conf->isAutoSetSystemProxy()) {
-        SystemProxyHelper::setSystemProxy(profile, running);
+        if (conf->isEnablePACMode()) {
+            SystemProxyHelper::setSystemProxy(profile, 2);
+        } else {
+            SystemProxyHelper::setSystemProxy(profile, 1);
+        }
     }
 }
 
@@ -118,14 +138,20 @@ void Connection::stop()
 {
     ConfigHelper *conf = new ConfigHelper(configFile);
     if (running) {
+        /** Set the running status to false first. */
         running = false;
         service->stop();
+
+        /** If we have started privoxy, stop it. */
         if (profile.dualMode) {
             privoxy->stop();
         }
+
         emit stateChanged(running);
+
+        /** Set proxy settings after emit the signal. */
         if (conf->isAutoSetSystemProxy()) {
-            SystemProxyHelper::setSystemProxy(profile, running);
+            SystemProxyHelper::setSystemProxy(profile, 0);
         }
     }
 }

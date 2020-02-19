@@ -27,7 +27,8 @@ class SystemProxyHelper
 public:
     SystemProxyHelper();
     ~SystemProxyHelper();
-    static void setSystemProxy(TQProfile profile, bool enable);
+    static std::string runShell(QString cmd);
+    static void setSystemProxy(TQProfile profile, int method);
 };
 
 #endif // SYSTEMPROXYHELPER_H

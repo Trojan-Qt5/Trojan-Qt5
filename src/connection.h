@@ -23,6 +23,7 @@
 #include <QHostInfo>
 #include <QHostAddress>
 #include <memory>
+#include "pacserver.h"
 #include "privoxythread.h"
 #include "servicethread.h"
 #include "systemproxyhelper.h"

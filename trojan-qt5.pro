@@ -17,12 +17,14 @@
 # <http://www.gnu.org/licenses/>.
 #
 
-QT       += core gui network
+requires(qtHaveModule(httpserver))
+
+QT       += core gui network httpserver
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-RC_ICONS = $$PWD/icons/trojan-qt5.ico
-ICON = $$PWD/icons/trojan-qt5.icns
+RC_ICONS = $$PWD/resources/icons/trojan-qt5.ico
+ICON = $$PWD/resources/icons/trojan-qt5.icns
 
 TARGET = trojan-qt5
 
@@ -36,7 +38,7 @@ CONFIG += sdk_no_version_check
 #DEFINES += QT_DEPRECATED_WARNINGS
 
 # Define App Version
-DEFINES += "APP_VERSION=\"\\\"0.0.2\\\"\""
+DEFINES += "APP_VERSION=\"\\\"0.0.3\\\"\""
 
 # Trojan
 #DEFINES += ENABLE_MYSQL
@@ -184,6 +186,7 @@ unix {
 !isEmpty(target.path): INSTALLS += target
 
 SOURCES += \
+    src/pacserver.cpp \
     src/privoxythread.cpp \
     src/resourcehelper.cpp \
     src/servicethread.cpp \
@@ -222,9 +225,10 @@ SOURCES += \
     src/trojan/src/session/session.cpp \
     src/trojan/src/session/udpforwardsession.cpp \
     src/trojan/src/ssl/ssldefaults.cpp \
-    src/trojan/src/ssl/sslsession.cpp \
+    src/trojan/src/ssl/sslsession.cpp
 
 HEADERS += \
+    src/pacserver.h \
     src/privoxythread.h \
     src/resourcehelper.h \
     src/servicethread.h \
@@ -262,7 +266,7 @@ HEADERS += \
     src/trojan/src/session/session.h \
     src/trojan/src/session/udpforwardsession.h \
     src/trojan/src/ssl/ssldefaults.h \
-    src/trojan/src/ssl/sslsession.h
+    src/trojan/src/ssl/sslsession.h \
 
 FORMS += \
     ui/editdialog.ui \
@@ -279,6 +283,7 @@ TRANSLATIONS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 
 RESOURCES += \
-    bin.qrc \
-    icons.qrc \
-    translations.qrc
+    resources/bin.qrc \
+    resources/icons.qrc \
+    resources/pac.qrc \
+    resources/translations.qrc

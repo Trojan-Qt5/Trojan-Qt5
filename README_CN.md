@@ -5,7 +5,7 @@
   <br>
 </h1>
 
-A cross-platform Trojan GUI client
+一个跨平台的Trojan图形客户端
 
 [![Build status](https://travis-ci.com/TheWanderingCoel/Trojan-Qt5.svg?branch=master)](https://travis-ci.com/TheWanderingCoel/Trojan-Qt5)
 [![Build status](https://ci.appveyor.com/api/projects/status/shjhg9mlvc3c74ek?svg=true)](https://ci.appveyor.com/project/CoelWu/trojan-qt5)
@@ -13,40 +13,40 @@ A cross-platform Trojan GUI client
 [![Download status](https://img.shields.io/github/downloads/TheWanderingCoel/Trojan-Qt5/total.svg)](https://github.com/TheWanderingCoel/Trojan-Qt5/releases)
 [![License](https://img.shields.io/badge/license-GPL%20V3-blue.svg?longCache=true)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
-## Install
+## 安装
 
-You can download from [release](https://github.com/TheWanderingCoel/Trojan-Qt5/releases) page
+你可以在 [release](https://github.com/TheWanderingCoel/Trojan-Qt5/releases) 页面下载到编译好的二进制程序
 
-## Compiling
+## 编译
 
-### 0.Requirement
+### 0.前置依赖
 - Windows, macOS, Linux
-- c++ compiler(cl, clang, gcc)
+- c++ 编译器(cl, clang, gcc)
 - Qt 5.13.0 +
-- QHttpServer(follow the instruction below to install)
+- QHttpServer(根据下面的方法来安装)
 ```
 git clone https://github.com/qt-labs/qthttpserver.git
 cd qthttpserver
 qmake
-make -j$(nproc) // nmake on Windows
-make install // nmake install on Windows
+make -j$(nproc) // Windows上是nmake
+make install // Windows上是nmake install
 ```
 
 ### 1.Windows
-- 1. Initialize the Environment
+- 1. 初始化环境
 ```
 C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Community\VC\Auxiliary\Build\vcvarsall.bat x86
 ```
-- 2. Clone Libraries
+- 2. 克隆需要的库
 ```
 git clone https://github.com/TheWanderingCoel/Trojan-Qt5-Libraries.git C:\TQLibraries
 ```
-- 3. Install Boost Library Manually
+- 3. 手动安装Boost库(在大陆很慢)
 ```
 curl -Lo boost_1_72_0-msvc-14.2-32.exe https://sourceforge.net/projects/boost/files/boost-binaries/1.72.0/boost_1_72_0-msvc-14.2-32.exe/download
 powershell ".\\boost_1_72_0-msvc-14.2-32.exe /SILENT /SP- /SUPPRESSMSGBOXES /DIR='C:\TQLibraries\boost_1_72_0'"
 ```
-- 4. Run Build
+- 4. 进行构建
 ```
 mkdir build && cd build
 qmake ..
@@ -54,15 +54,15 @@ nmake
 ```
 
 ### 2.macOS
-- 1. Install HomeBrew
+- 1. 安装HomeBrew包管理器
 ```
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
-- 2. Install Dependencies
+- 2. 安装依赖
 ```
 brew install zbar qrencode boost openssl@1.1 zlib pcre
 ```
-- 3. Run Build
+- 3. 进行构建
 ```
 mkdir build && cd build
 qmake ..
@@ -71,39 +71,38 @@ make -j$(nproc)
 
 ### 3.Linux
 
-- 1. Install Dependencies
+- 1. 下载安装依赖
 ```
 sudo apt-get install libgl-dev git build-essential g++ python-dev autotools-dev libicu-dev libbz2-dev checkinstall zlib1g-dev -y
 ```
-- 2. Compile Dependencies
+- 2. 编译依赖
 ```
 sudo bash scripts/linux_compile.sh
 ```
-- 3. Configure Privoxy
+- 3. 配置Privoxy
 ```
 cd src/privoxy
 autoheader && autoconf && ./configure
 cd ../..
 ```
-- 4. Run Build
+- 4. 进行构建
 ```
 mkdir build && cd build
 qmake ..
 make -j$(nproc)
 ```
 
-## Frequent Ask Question (FAQ)
+## 常见问题 (FAQ)
 
-### 1. What is the relation of values in profile editor to trojan config?
+### 1. 配置文件编辑器里的东西和Trojan配置文件有什么关系?
 ![Profile Editor](https://i.imgur.com/xA58JNG.png)
 
-### 2. Junkware detected, 360 detected as a virus?
-- v0.0.1 [VirusTotal](https://www.virustotal.com/gui/file/247faa5d67592af7583a7ebd53654383d25e258de329ee145f7d8abbf2ba7034/detection)  
-- v0.0.2 [VirusTotal](https://www.virustotal.com/gui/file/4f73d88689b13d46f087bccb6ed7da3935917e1980e80e8c92de64e081b6a537/detection)
-- Also do not forget to the the md5 checksum and sha1 checksum
-- If you want to see aboard, do not use any 360 software!
+### 2. Defender报垃圾软件, 360报毒?
+- [VirusTotal](https://www.virustotal.com/gui/file/247faa5d67592af7583a7ebd53654383d25e258de329ee145f7d8abbf2ba7034/detection)  
+- 下载后请检查md5和sha1 hash是否一致
+- 如果你要去那宽阔的世界看看，请不要使用360全家桶
 
-### 3. How to check md5 checksum?
+### 3. 如何计算文件的md5 hash?
 #### 1. Windows
 ```
 certutil -hashfile Trojan-Qt5-Windows.zip MD5
@@ -117,7 +116,7 @@ md5 -r Trojan-Qt5-macOS.dmg
 md5sum Trojan-Qt5-Linux.AppImage
 ```
 
-### 4. How to check SHA1 checksum?
+### 4. 如何计算文件的sha1 hash?
 #### 1. Windows
 ```
 certutil -hashfile Trojan-Qt5-Windows.zip SHA1
@@ -130,9 +129,9 @@ shasum Trojan-Qt5-macOS.dmg
 ```
 sha1sum Trojan-Qt5-Linux.AppImage
 ```
-## Special Thanks
+## 特别感谢
 
-This project is based on:
+这个项目基于以下几个项目:
 
 - [libQtShadowsocks](https://github.com/shadowsocks/libQtShadowsocks) LGPL-3.0
 - [Shadowsocks-qt](https://github.com/trojan-gfw/trojan-qt) LGPL-3.0

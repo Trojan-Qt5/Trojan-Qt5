@@ -261,51 +261,51 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="461"/>
+        <location filename="../src/mainwindow.cpp" line="463"/>
         <source>About</source>
         <translation>關於</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="173"/>
+        <location filename="../src/mainwindow.cpp" line="175"/>
         <source>Import Connections from gui-config.json</source>
         <translation>自 gui-config.json 匯入連線</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="185"/>
+        <location filename="../src/mainwindow.cpp" line="187"/>
         <source>Export Connections as gui-config.json</source>
         <translation>匯出連線為 gui-config.json</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="210"/>
-        <location filename="../src/mainwindow.cpp" line="242"/>
+        <location filename="../src/mainwindow.cpp" line="212"/>
+        <location filename="../src/mainwindow.cpp" line="244"/>
         <source>QR Code Not Found</source>
         <translation>找不到 QR 碼</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="211"/>
-        <location filename="../src/mainwindow.cpp" line="243"/>
+        <location filename="../src/mainwindow.cpp" line="213"/>
+        <location filename="../src/mainwindow.cpp" line="245"/>
         <source>Can&apos;t find any QR code image that contains valid URI on your screen(s).</source>
         <translation>在你的螢幕上無法找到任何包含有效 URI 的 QR 碼圖片。</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="234"/>
+        <location filename="../src/mainwindow.cpp" line="236"/>
         <source>Open QR Code Image File</source>
         <translation>開啟 QR 碼圖檔</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="266"/>
+        <location filename="../src/mainwindow.cpp" line="268"/>
         <source>Open config.json</source>
         <translation>開啟 config.json</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="308"/>
-        <location filename="../src/mainwindow.cpp" line="322"/>
+        <location filename="../src/mainwindow.cpp" line="310"/>
+        <location filename="../src/mainwindow.cpp" line="324"/>
         <source>Invalid</source>
         <translation>無效</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="309"/>
-        <location filename="../src/mainwindow.cpp" line="323"/>
+        <location filename="../src/mainwindow.cpp" line="311"/>
+        <location filename="../src/mainwindow.cpp" line="325"/>
         <source>The connection&apos;s profile is invalid!</source>
         <translation>此連線的設定檔無效！</translation>
     </message>
@@ -616,26 +616,31 @@
     </message>
     <message>
         <location filename="../ui/settingsdialog.ui" line="72"/>
+        <source>Auto set system proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="79"/>
         <source>Allow only one instance running</source>
         <translation>僅允許一個執行個體執行</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="79"/>
+        <location filename="../ui/settingsdialog.ui" line="86"/>
         <source>Hide window on startup</source>
         <translation>啟動時隱藏視窗</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="86"/>
+        <location filename="../ui/settingsdialog.ui" line="93"/>
         <source>Need to restart the application for this change to take effect</source>
         <translation>需要重新啟動程式方能使此變更生效</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="89"/>
+        <location filename="../ui/settingsdialog.ui" line="96"/>
         <source>Use native menu bar</source>
         <translation>使用原生選單列</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="96"/>
+        <location filename="../ui/settingsdialog.ui" line="103"/>
         <source>Start at login</source>
         <translation type="unfinished"></translation>
     </message>

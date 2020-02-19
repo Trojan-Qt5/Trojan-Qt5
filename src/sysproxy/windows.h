@@ -5,7 +5,7 @@ extern "C"
 {
 #endif
 
-int setProxy(bool enabled, LPTSTR server);
+int setProxy(int method, LPTSTR server);
 
 #ifdef __cplusplus
 }

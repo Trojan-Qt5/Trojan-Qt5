@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file>i18n/trojan-qt5_zh_TW.qm</file>
         <file>i18n/trojan-qt5_zh_CN.qm</file>
+        <file>i18n/trojan-qt5_zh_TW.qm</file>
     </qresource>
 </RCC>

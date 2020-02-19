@@ -6,6 +6,7 @@
 #include <QDebug>
 #include <QDir>
 #include <QCommandLineParser>
+#include <QHttpServer>
 #include <signal.h>
 #include "mainwindow.h"
 #include "confighelper.h"
@@ -80,6 +81,14 @@ int main(int argc, char *argv[])
         }
 #endif
     }
+
+    /** We have to start QHttpServer in main otherwise it will not listen. */
+    QHttpServer server;
+    server.route("/<arg>", [](const QUrl &url) {
+        return QHttpServerResponse::fromFile(QStringLiteral(":/pac/%1").arg(url.path()));
+    });
+    server.listen(QHostAddress::Any, 8070);
+
     ConfigHelper conf(configFile);
 
     MainWindow w(&conf);

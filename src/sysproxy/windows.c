@@ -161,15 +161,21 @@ int apply(INTERNET_PER_CONN_OPTION_LIST* options)
 }
 
 
-int setProxy(bool enabled, LPTSTR server)
+/**
+ * Set the server proxy in Windows.
+ *
+ * @param method 0: off 1: global 2: pac
+ * @param server a LPTSTR value which contain the server address
+ */
+int setProxy(int method, LPTSTR server)
 {
     INTERNET_PER_CONN_OPTION_LIST options;
-    if (!enabled) {
+    if (method == 0) {
         initialize(&options, 1);
 
         options.pOptions[0].Value.dwValue = PROXY_TYPE_AUTO_DETECT | PROXY_TYPE_DIRECT;
 
-    } else {
+    } else if (method == 1) {
 
         initialize(&options, 3);
 
@@ -180,6 +186,14 @@ int setProxy(bool enabled, LPTSTR server)
 
         options.pOptions[2].dwOption = INTERNET_PER_CONN_PROXY_BYPASS;
         options.pOptions[2].Value.pszValue = _T("localhost;127.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*;192.168.*");
+
+    } else if (method == 2) {
+        initstate(&options, 2);
+
+        options.pOptions[0].Value.dwValue = PROXY_TYPE_AUTO_PROXY_URL | PROXY_TYPE_DIRECT;
+
+        options.pOptions[1].dwOption = INTERNET_PER_CONN_AUTOCONFIG_URL;
+        options.pOptions[1].Value.pszValue = server;
     }
 
     int ret = apply(&options);
