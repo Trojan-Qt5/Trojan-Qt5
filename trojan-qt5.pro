@@ -28,6 +28,9 @@ ICON = $$PWD/resources/icons/trojan-qt5.icns
 
 TARGET = trojan-qt5
 
+# Use OpenSource Version of Qt5
+QT_EDITION = OpenSource
+
 CONFIG += c++11
 CONFIG += sdk_no_version_check
 

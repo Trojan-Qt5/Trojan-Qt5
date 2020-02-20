@@ -2,6 +2,7 @@
 #include "connection.h"
 #include "confighelper.h"
 #include "pacserver.h"
+#include "portvalidator.h"
 #include <QCoreApplication>
 #include <QDir>
 #include <QHostInfo>
@@ -108,6 +109,14 @@ void Connection::start()
     /** load service config first. */
     service->config().load(file.toStdString());
 
+    /** Wait, let's check if port is in use. */
+    PortValidator *pv = new PortValidator();
+    if (pv->isInUse(profile.localPort) || pv->isInUse(profile.localHttpPort)) {
+        qCritical() << QString("There is some thing listening on port %1 or %2").arg(QString::number(profile.localPort)).arg(QString::number(profile.localHttpPort));
+        emit stateChanged(false);
+        return;
+    }
+
     /** Set running status to true before we start trojan. */
     running = true;
     service->start();
@@ -137,6 +146,7 @@ void Connection::start()
 void Connection::stop()
 {
     ConfigHelper *conf = new ConfigHelper(configFile);
+
     if (running) {
         /** Set the running status to false first. */
         running = false;

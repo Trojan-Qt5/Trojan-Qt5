@@ -1,3 +1,6 @@
 [submodule "src/trojan"]
 	path = src/trojan
 	url = https://github.com/trojan-gfw/trojan.git
+[submodule "3rd/qthttpserver"]
+	path = 3rd/qthttpserver
+	url = https://github.com/qt-labs/qthttpserver.git

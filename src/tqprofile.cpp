@@ -59,6 +59,10 @@ TQProfile TQProfile::fromUri(const std::string& trojanUri) const
     return result;
 }
 
+/**
+ * @brief TQProfile::toUri
+ * @return QString uri of trojan server
+ */
 QString TQProfile::toUri() const
 {
     QString trojanUri = password + "@" + serverAddress + ":" + QString::number(serverPort);

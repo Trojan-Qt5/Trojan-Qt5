@@ -120,9 +120,9 @@ void SystemProxyHelper::setSystemProxy(TQProfile profile, int method)
         }
     } else if (system("kwriteconfig5 --help > /dev/null") == 0) {
         if (method == 1 && profile.dualMode) {
-            runShell("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key ProxyType 1")
-            runShell(QStirng("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key httpProxy \"%1:%2\"").arg(profile.localAddress).arg(profile.localHttpPort));
-            runShell(QStirng("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key httpsProxy \"%1:%2\"").arg(profile.localAddress).arg(profile.localHttpPort));
+            runShell("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key ProxyType 1");
+            runShell(QString("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key httpProxy \"%1:%2\"").arg(profile.localAddress).arg(profile.localHttpPort));
+            runShell(QString("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key httpsProxy \"%1:%2\"").arg(profile.localAddress).arg(profile.localHttpPort));
             runShell(QString("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key socksProxy \"%1:%2\"").arg(profile.localAddress).arg(profile.localPort));
         } else if (method == 1) {
             runShell("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key ProxyType 1");
@@ -132,10 +132,10 @@ void SystemProxyHelper::setSystemProxy(TQProfile profile, int method)
             runShell("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key 'Proxy Config Script' \"http://127.0.0.1:8070/proxy.pac\"");
         } else if (method == 0) {
             runShell("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key ProxyType 0");
-            runShell("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key 'Proxy Config Script' \"\""));
-            runShell("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key httpProxy \"\""));
-            runShell("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key httpsProxy \"\""));
-            runShell("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key socksProxy \"\""));
+            runShell("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key 'Proxy Config Script' \"\"");
+            runShell("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key httpProxy \"\"");
+            runShell("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key httpsProxy \"\"");
+            runShell("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key socksProxy \"\"");
         }
 
         /** We have to tell KIO after we have modified the kioslaverc. */

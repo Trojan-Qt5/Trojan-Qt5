@@ -85,20 +85,17 @@ install:
     fi
   - if [ "$BADGE" = "osx" ]; then    
       brew install zbar qrencode boost openssl@1.1 zlib pcre python3;
-      brew reinstall https://raw.githubusercontent.com/Homebrew/homebrew-core/89bf3a54383d884f8b8511c6237325dd5b5ae6ba/Formula/qt.rb --verbose;
+      brew upgrade qt;
     fi
-  - git clone --recursive https://github.com/qt-labs/qthttpserver.git
-  - cd qthttpserver
-  - qmake
-  - make -j$(nproc)
-  - make install
-  - cd ..
 
 before_script:
   - if [ "$BADGE" = "osx" ];   then    export PATH="/usr/local/Cellar/qt/5.13.1/bin:$PATH"; fi
 
 script:
-  - git submodule update --init
+  - git submodule update --init --recursive
+  - cd 3rd/qthttpserver
+  - qmake && make -j$(nproc) && make install
+  - cd ../..
   - if [ "$BADGE" = "osx" ]; then
       mkdir build && cd ./build;
       qmake ../;
