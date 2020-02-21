@@ -51,6 +51,7 @@ std::string SystemProxyHelper::runShell(QString cmd)
  * @param method 0: off 1: global 2: pac
  * @ref https://github.com/j1ml/proxydriver/blob/master/proxydriver.sh
  * @ref https://github.com/trojan-gfw/trojan-qt/blob/master/src/AppManager.cpp
+ * @ref https://github.com/shadowsocks/ShadowsocksX-NG/blob/develop/proxy_conf_helper/main.m
  */
 void SystemProxyHelper::setSystemProxy(TQProfile profile, int method)
 {
@@ -75,7 +76,10 @@ void SystemProxyHelper::setSystemProxy(TQProfile profile, int method)
     while(std::getline(s, portName))
     {
         if(std::regex_match(portName, all))
-            hardwarePorts.push_back(std::regex_replace(portName, prefix, ""));
+            if (std::regex_replace(portName, prefix, "") == "AirPort"
+             || std::regex_replace(portName, prefix, "") == "Wi-Fi"
+             || std::regex_replace(portName, prefix, "") == "Ethernet")
+                hardwarePorts.push_back(std::regex_replace(portName, prefix, ""));
     }
 
     for (auto &i : hardwarePorts) {
