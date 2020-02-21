@@ -60,6 +60,9 @@ DEFINES += FEATURE_GRACEFUL_TERMINATION
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+# 3rdParty Headers
+INCLUDEPATH += $$PWD/src/plog/include
+
 win32 {
     SOURCES += \
         src/sysproxy/windows.c
@@ -189,6 +192,7 @@ unix {
 !isEmpty(target.path): INSTALLS += target
 
 SOURCES += \
+    src/logger.cpp \
     src/pacserver.cpp \
     src/privoxythread.cpp \
     src/resourcehelper.cpp \
@@ -231,6 +235,7 @@ SOURCES += \
     src/trojan/src/ssl/sslsession.cpp
 
 HEADERS += \
+    src/logger.h \
     src/pacserver.h \
     src/privoxythread.h \
     src/resourcehelper.h \

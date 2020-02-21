@@ -8,6 +8,8 @@
 #include <QHostInfo>
 #include <QHostAddress>
 
+#include "logger.h"
+
 Connection::Connection(QObject *parent) :
     QObject(parent),
     running(false),
@@ -113,6 +115,7 @@ void Connection::start()
     PortValidator *pv = new PortValidator();
     if (pv->isInUse(profile.localPort) || pv->isInUse(profile.localHttpPort)) {
         qCritical() << QString("There is some thing listening on port %1 or %2").arg(QString::number(profile.localPort)).arg(QString::number(profile.localHttpPort));
+        Logger::error(QString("There is some thing listening on port %1 or %2").arg(QString::number(profile.localPort)).arg(QString::number(profile.localHttpPort)));
         emit stateChanged(false);
         return;
     }
@@ -168,10 +171,16 @@ void Connection::stop()
 
 void Connection::onStartFailed()
 {
+    ConfigHelper *conf = new ConfigHelper(configFile);
+
     running = false;
     emit stateChanged(running);
     emit startFailed();
-    SystemProxyHelper::setSystemProxy(profile, running);
+
+    /** Set proxy settings if the setting is configured to do so. */
+    if (conf->isAutoSetSystemProxy()) {
+        SystemProxyHelper::setSystemProxy(profile, 0);
+    }
 }
 
 void Connection::testAddressLatency(const QHostAddress &addr)

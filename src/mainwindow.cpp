@@ -18,6 +18,8 @@
 #else
 #include "privoxy/config.h"
 #endif
+#include "core/log.h"
+#include "logger.h"
 
 #include <QDesktopServices>
 #include <QDesktopWidget>
@@ -25,6 +27,8 @@
 #include <QMessageBox>
 #include <QCloseEvent>
 #include <QLocalSocket>
+#include <QStandardPaths>
+#include <QUrl>
 
 MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
     QMainWindow(parent),
@@ -33,6 +37,9 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
     instanceRunning(false)
 {
     Q_ASSERT(configHelper);
+
+    /** Initialize Trojan Logger. */
+    initLog();
 
     initSingleInstance();
 
@@ -118,6 +125,10 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
     connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::onAbout);
     connect(ui->actionAboutQt, &QAction::triggered,
             qApp, &QApplication::aboutQt);
+    connect(ui->actionGuiLog, &QAction::triggered,
+            this, &MainWindow::onGuiLog);
+    connect(ui->actionTrojanLog, &QAction::triggered,
+            this, &MainWindow::onTrojanLog);
     connect(ui->actionReportBug, &QAction::triggered,
             this, &MainWindow::onReportBug);
     connect(ui->actionShowFilterBar, &QAction::toggled,
@@ -150,6 +161,7 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
     restoreState(configHelper->getMainWindowState());
     ui->connectionView->horizontalHeader()->restoreGeometry(configHelper->getTableGeometry());
     ui->connectionView->horizontalHeader()->restoreState(configHelper->getTableState());
+
 }
 
 MainWindow::~MainWindow()
@@ -212,6 +224,7 @@ void MainWindow::onAddScreenQRCode()
                     tr("QR Code Not Found"),
                     tr("Can't find any QR code image that contains "
                        "valid URI on your screen(s)."));
+        Logger::warning("Can't find any QR code image that contains valid URI on your screen");
     } else {
         Connection *newCon = new Connection(uri, this);
         newProfile(newCon);
@@ -244,6 +257,7 @@ void MainWindow::onAddQRCodeFile()
                                   tr("QR Code Not Found"),
                                   tr("Can't find any QR code image that "
                                      "contains valid URI on your screen(s)."));
+            Logger::warning("Can't find any QR code image that contains valid URI on your screen");
         } else {
             Connection *newCon = new Connection(uri, this);
             newProfile(newCon);
@@ -309,6 +323,7 @@ void MainWindow::onConnect()
     } else {
         QMessageBox::critical(this, tr("Invalid"),
                               tr("The connection's profile is invalid!"));
+        Logger::error(QString("Can't start server %1 because the profile is invalid").arg(con->getName()));
     }
 }
 
@@ -323,6 +338,7 @@ void MainWindow::onForceConnect()
     } else {
         QMessageBox::critical(this, tr("Invalid"),
                               tr("The connection's profile is invalid!"));
+        Logger::error(QString("Can't start server %1 because the profile is invalid").arg(con->getName()));
     }
 }
 
@@ -463,6 +479,20 @@ void MainWindow::onAbout()
     QMessageBox::about(this, tr("About"), text);
 }
 
+void MainWindow::onGuiLog()
+{
+    QDir path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Library/Logs/Trojan-Qt5";
+    QString guiLog = "file://" + path.path() + "/gui.log";
+    QDesktopServices::openUrl(QUrl(guiLog));
+}
+
+void MainWindow::onTrojanLog()
+{
+    QDir path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Library/Logs/Trojan-Qt5";
+    QString trojanLog = "file://" + path.path() + "/trojan.log";
+    QDesktopServices::openUrl(QUrl(trojanLog));
+}
+
 void MainWindow::onReportBug()
 {
     QDesktopServices::openUrl(issueUrl);
@@ -544,6 +574,10 @@ void MainWindow::setupActionIcon()
     ui->actionScanQRCodeCapturer->setIcon(ui->actionQRCode->icon());
     ui->actionGeneralSettings->setIcon(QIcon::fromTheme("configure",
                                        QIcon::fromTheme("preferences-desktop")));
+    ui->actionGuiLog->setIcon(QIcon::fromTheme("view-list-text",
+                              QIcon::fromTheme("text-x-preview")));
+    ui->actionTrojanLog->setIcon(QIcon::fromTheme("view-list-text",
+                                 QIcon::fromTheme("text-x-preview")));
     ui->actionReportBug->setIcon(QIcon::fromTheme("tools-report-bug",
                                  QIcon::fromTheme("help-faq")));
 }
@@ -551,6 +585,23 @@ void MainWindow::setupActionIcon()
 bool MainWindow::isInstanceRunning() const
 {
     return instanceRunning;
+}
+
+void MainWindow::initLog()
+{
+    QDir path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Library/Logs/Trojan-Qt5";
+    if (!path.exists()) {
+        path.mkpath(".");
+    }
+    QString guiLog = path.path() + "/gui.log";
+    QString trojanLog = path.path() + "/trojan.log";
+
+    /** Initialize the gui's log. */
+    Logger::init(guiLog);
+
+    /** Redirect Trojan's log to our logfile. */
+    Log::redirect(trojanLog.toStdString());
+
 }
 
 void MainWindow::initSingleInstance()
@@ -562,6 +613,7 @@ void MainWindow::initSingleInstance()
         instanceRunning = true;
         if (configHelper->isOnlyOneInstance()) {
             qWarning() << "An instance of trojan-qt5 is already running";
+            Logger::warning("An instance of trojan-qt5 is already running");
         }
         QByteArray username = qgetenv("USER");
         if (username.isEmpty()) {
@@ -606,6 +658,7 @@ void MainWindow::onSingleInstanceConnect()
             show();
         } else {
             qWarning("Another user is trying to run another instance of trojan-qt5");
+            Logger::warning("Another user is trying to run another instance of trojan-qt5");
         }
     }
     socket->deleteLater();

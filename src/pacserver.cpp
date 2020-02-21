@@ -1,5 +1,7 @@
 #include "pacserver.h"
 
+#include <QCoreApplication>
+
 PACServer::PACServer()
 {
 #ifdef Q_OS_WIN
@@ -18,7 +20,6 @@ PACServer::PACServer()
 PACServer::~PACServer()
 {
 }
-
 
 /**
  * Modify the proxy.pac file

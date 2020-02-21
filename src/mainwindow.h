@@ -50,6 +50,7 @@ private:
 
     QLocalServer* instanceServer;
     bool instanceRunning;
+    void initLog();
     void initSingleInstance();
 
     void newProfile(Connection *);
@@ -83,6 +84,8 @@ private slots:
     void onGeneralSettings();
     void checkCurrentIndex(const QModelIndex &index);
     void onAbout();
+    void onGuiLog();
+    void onTrojanLog();
     void onReportBug();
     void onCustomContextMenuRequested(const QPoint &pos);
     void onFilterToggled(bool);

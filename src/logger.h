@@ -3,11 +3,15 @@
 
 #include <QObject>
 
-class logger
+class Logger: public QObject
 {
     Q_OBJECT
 public:
-    logger();
+    static void init(const QString &msg);
+    static void debug(const QString &msg);
+    static void info(const QString &msg);
+    static void warning(const QString &msg);
+    static void error(const QString &msg);
 };
 
 #endif // LOGGER_H

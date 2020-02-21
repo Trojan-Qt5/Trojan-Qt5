@@ -8,20 +8,16 @@ install:
   - curl -Lo boost_1_72_0-msvc-14.2-32.exe https://sourceforge.net/projects/boost/files/boost-binaries/1.72.0/boost_1_72_0-msvc-14.2-32.exe/download
   - powershell ".\\boost_1_72_0-msvc-14.2-32.exe /SILENT /SP- /SUPPRESSMSGBOXES /DIR='C:\TQLibraries\boost_1_72_0'"
   - set PATH=%QTDIR%;%PYDIR%;%PATH%;
-  - git submodule update --init
-  - git clone --recursive https://github.com/qt-labs/qthttpserver.git
-  - cd qthttpserver
-  - qmake
-  - nmake
-  - nmake install
-  - cd ..
+  - git submodule update --init --recursive
+  - cd 3rd\qthttpserver && qmake && nmake && nmake install
+  - cd ..\..
 
 init:
   - C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Community\VC\Auxiliary\Build\vcvarsall.bat x86
 
 build_script:
   - mkdir build && cd build
-  - qmake ../
+  - qmake ..
   - nmake
   - cd release
   - windeployqt trojan-qt5.exe

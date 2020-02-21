@@ -26,6 +26,8 @@
 
 #include "addresstester.h"
 
+#include <QNetworkProxyFactory>
+
 AddressTester::AddressTester(const QHostAddress &_address,
                              const uint16_t &_port,
                              QObject *parent) :
@@ -33,6 +35,9 @@ AddressTester::AddressTester(const QHostAddress &_address,
     m_address(_address),
     m_port(_port)
 {
+    /** Fix when connected to server there is only one 1ms. */
+    QNetworkProxyFactory::setUseSystemConfiguration(false);
+
     m_timer.setSingleShot(true);
     m_time = QTime::currentTime();
     m_socket.setSocketOption(QAbstractSocket::LowDelayOption, 1);

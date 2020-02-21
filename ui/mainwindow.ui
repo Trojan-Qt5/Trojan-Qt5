@@ -20,7 +20,7 @@
    <string>Connection Manager</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="icons.qrc">
+   <iconset resource="../resources/icons.qrc">
     <normaloff>:/icons/icons/trojan-qt5.png</normaloff>:/icons/icons/trojan-qt5.png</iconset>
   </property>
   <property name="toolButtonStyle">
@@ -110,7 +110,7 @@
      <x>0</x>
      <y>0</y>
      <width>480</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuConnection">
@@ -171,6 +171,9 @@
     </property>
     <addaction name="actionAbout"/>
     <addaction name="actionAboutQt"/>
+    <addaction name="separator"/>
+    <addaction name="actionGuiLog"/>
+    <addaction name="actionTrojanLog"/>
     <addaction name="separator"/>
     <addaction name="actionReportBug"/>
    </widget>
@@ -372,10 +375,20 @@
     <string>Connect to this connection and disconnect any connections currently using  the same local port</string>
    </property>
   </action>
+  <action name="actionTrojanLog">
+   <property name="text">
+    <string>Trojan Log</string>
+   </property>
+  </action>
+  <action name="actionGuiLog">
+   <property name="text">
+    <string>Gui Log</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="icons.qrc"/>
+  <include location="../resources/icons.qrc"/>
  </resources>
  <connections>
   <connection>

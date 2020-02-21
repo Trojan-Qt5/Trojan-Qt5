@@ -82,13 +82,6 @@ int main(int argc, char *argv[])
 #endif
     }
 
-    /** We have to start QHttpServer in main otherwise it will not listen. */
-    QHttpServer server;
-    server.route("/<arg>", [](const QUrl &url) {
-        return QHttpServerResponse::fromFile(QStringLiteral(":/pac/%1").arg(url.path()));
-    });
-    server.listen(QHostAddress::Any, 8070);
-
     ConfigHelper conf(configFile);
 
     MainWindow w(&conf);
@@ -97,6 +90,13 @@ int main(int argc, char *argv[])
     if (conf.isOnlyOneInstance() && w.isInstanceRunning()) {
         return -1;
     }
+
+    /** We have to start QHttpServer in main otherwise it will not listen. */
+    QHttpServer server;
+    server.route("/<arg>", [](const QUrl &url) {
+        return QHttpServerResponse::fromFile(QStringLiteral(":/pac/%1").arg(url.path()));
+    });
+    server.listen(QHostAddress::Any, 8070);
 
     if (!conf.isHideWindowOnStartup()) {
         w.show();
