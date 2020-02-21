@@ -284,8 +284,8 @@ FORMS += \
     ui/uriinputdialog.ui
 
 TRANSLATIONS += \
-    i18n/trojan-qt5_zh_CN.ts \
-    i18n/trojan-qt5_zh_TW.ts
+    resources/i18n/trojan-qt5_zh_CN.ts \
+    resources/i18n/trojan-qt5_zh_TW.ts
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

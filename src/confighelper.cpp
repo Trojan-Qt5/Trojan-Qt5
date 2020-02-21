@@ -390,7 +390,7 @@ void ConfigHelper::startAllAutoStart(const ConnectionTableModel& model)
     for (int i = 0; i < size; ++i) {
         Connection *con = model.getItem(i)->getConnection();
         if (con->profile.autoStart) {
-            //con->start();
+            con->start();
         }
     }
 }

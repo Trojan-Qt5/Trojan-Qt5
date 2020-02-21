@@ -178,7 +178,7 @@ MainWindow::~MainWindow()
 }
 
 const QUrl MainWindow::issueUrl =
-        QUrl("https://github.com/TheWanderingCoel/trojan-qt5/issues");
+        QUrl("https://github.com/TheWanderingCoel/Trojan-Qt5/issues");
 
 void MainWindow::onImportGuiJson()
 {

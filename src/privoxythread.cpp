@@ -29,7 +29,7 @@ void PrivoxyThread::stop() {
 void PrivoxyThread::run() {
 #ifdef Q_OS_WIN
     QString dir = QCoreApplication::applicationDirPath() + "/privoxy/privoxy.exe";
-    QString file = "privoxy.exe " + QCoreApplication::applicationDirPath() + "/privoxy/privoxy.conf";
+    QString file = "privoxy.exe \"" + QCoreApplication::applicationDirPath() + "/privoxy/privoxy.conf\"";
 
     LPTSTR application = (LPTSTR) dir.utf16();
     LPTSTR arg = (LPTSTR) file.utf16();

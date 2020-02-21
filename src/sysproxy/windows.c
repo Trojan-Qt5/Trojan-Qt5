@@ -188,7 +188,7 @@ int setProxy(int method, LPTSTR server)
         options.pOptions[2].Value.pszValue = _T("localhost;127.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*;192.168.*");
 
     } else if (method == 2) {
-        initstate(&options, 2);
+        initialize(&options, 2);
 
         options.pOptions[0].Value.dwValue = PROXY_TYPE_AUTO_PROXY_URL | PROXY_TYPE_DIRECT;
 
