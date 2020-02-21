@@ -482,15 +482,15 @@ void MainWindow::onAbout()
 void MainWindow::onGuiLog()
 {
     QDir path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Library/Logs/Trojan-Qt5";
-    QString guiLog = "file://" + path.path() + "/gui.log";
-    QDesktopServices::openUrl(QUrl(guiLog));
+    QString guiLog = path.path() + "/gui.log";
+    QDesktopServices::openUrl(QUrl::fromLocalFile(guiLog));
 }
 
 void MainWindow::onTrojanLog()
 {
     QDir path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Library/Logs/Trojan-Qt5";
-    QString trojanLog = "file://" + path.path() + "/trojan.log";
-    QDesktopServices::openUrl(QUrl(trojanLog));
+    QString trojanLog = path.path() + "/trojan.log";
+    QDesktopServices::openUrl(QUrl::fromLocalFile(trojanLog));
 }
 
 void MainWindow::onReportBug()
