@@ -4,3 +4,6 @@
 [submodule "3rd/qthttpserver"]
 	path = 3rd/qthttpserver
 	url = https://github.com/qt-labs/qthttpserver.git
+[submodule "src/plog"]
+	path = src/plog
+	url = https://github.com/SergiusTheBest/plog.git
