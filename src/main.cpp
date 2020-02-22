@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
     QHttpServer server;
 #if defined(Q_OS_WIN)
     server.route("/<arg>", [](const QUrl &url) {
-        QString dir = QApplication::applicationDirPath() + "/pac";
+        QDir dir = QApplication::applicationDirPath() + "/pac";
         return QHttpServerResponse::fromFile(dir.path() + QString("/%1").arg(url.path()));
     });
 #else

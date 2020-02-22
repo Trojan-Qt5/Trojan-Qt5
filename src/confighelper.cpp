@@ -402,7 +402,7 @@ void ConfigHelper::setStartAtLogin()
 #if defined(Q_OS_WIN)
     QSettings settings("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
 #elif defined(Q_OS_LINUX)
-    QFile file(QDir::homePath() + "/.config/autostart/shadowsocks-qt5.desktop");
+    QFile file(QDir::homePath() + "/.config/autostart/trojan-qt5.desktop");
     QString fileContent(
             "[Desktop Entry]\n"
             "Name=%1\n"
@@ -411,7 +411,7 @@ void ConfigHelper::setStartAtLogin()
             "Terminal=false\n"
             "X-GNOME-Autostart-enabled=true\n");
 #elif defined(Q_OS_MAC)
-    QFile file(QDir::homePath() + "/Library/LaunchAgents/org.shadowsocks.shadowsocks-qt5.launcher.plist");
+    QFile file(QDir::homePath() + "/Library/LaunchAgents/org.trojan.trojan-qt5.launcher.plist");
     QString fileContent(
             "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
             "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n"

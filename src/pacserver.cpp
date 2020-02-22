@@ -5,14 +5,14 @@
 PACServer::PACServer()
 {
 #ifdef Q_OS_WIN
-    configDir = QCoreApplication::applicationDirPath() + "/pac";
+    configDir = QDir::toNativeSeparators(QCoreApplication::applicationDirPath()) + "\\pac";
 #else
     configDir = QDir::homePath() + "/.config/trojan-qt5/pac";
+#endif
 
     if (!configDir.exists()) {
         configDir.mkpath(configDir.absolutePath());
     }
-#endif
 
     pac = configDir.path() + "/proxy.pac";
 }
@@ -42,6 +42,7 @@ void PACServer::modify(TQProfile profile)
     QString text(fileData); // add to text string for easy string replace
     text.replace(QString("SOCKS5 127.0.0.1:1080"), QString("SOCKS5 %1:%2").arg(profile.localAddress).arg(profile.localPort));
     text.replace(QString("SOCKS 127.0.0.1:1080"), QString("SOCKS %1:%2").arg(profile.localAddress).arg(profile.localPort));
+    text.replace(QString("PROXY 127.0.0.1:1081"), QString("PROXY %1:%2").arg(profile.localAddress).arg(profile.localHttpPort));
     file.seek(0); // go to the beginning of the file
     file.write(text.toUtf8()); // write the new text back to the file
     file.close(); // close the file handle.

@@ -109,7 +109,7 @@ void Connection::start()
     QString file = configDir.absolutePath() + "/config.json";
 #endif
     /** load service config first. */
-    service->config().load(file.toStdString());
+    service->config().load(file.toLocal8Bit().data());
 
     /** Wait, let's check if port is in use. */
     PortValidator *pv = new PortValidator();
