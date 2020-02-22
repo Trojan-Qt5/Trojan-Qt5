@@ -93,9 +93,17 @@ int main(int argc, char *argv[])
 
     /** We have to start QHttpServer in main otherwise it will not listen. */
     QHttpServer server;
+#if defined(Q_OS_WIN)
     server.route("/<arg>", [](const QUrl &url) {
-        return QHttpServerResponse::fromFile(QStringLiteral(":/pac/%1").arg(url.path()));
+        QString dir = QApplication::applicationDirPath() + "/pac";
+        return QHttpServerResponse::fromFile(dir.path() + QString("/%1").arg(url.path()));
     });
+#else
+    server.route("/<arg>", [](const QUrl &url) {
+        QDir configDir = QDir::homePath() + "/.config/trojan-qt5/pac";
+        return QHttpServerResponse::fromFile(configDir.path() + QString("/%1").arg(url.path()));
+    });
+#endif
     server.listen(QHostAddress::Any, 8070);
 
     if (!conf.isHideWindowOnStartup()) {
