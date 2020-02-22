@@ -1,7 +1,7 @@
 #include "portvalidator.h"
 #include "trojanvalidator.h"
 
-#include <QTcpSocket>
+#include <QTcpServer>
 
 PortValidator::PortValidator(QObject *parent)
     : QValidator(parent)
@@ -18,12 +18,16 @@ QValidator::State PortValidator::validate(QString &input, int &) const
 
 bool PortValidator::isInUse(int port)
 {
-    /** Use TcpSocket to connect to the port. */
-    QTcpSocket *socket = new QTcpSocket();
-    socket->connectToHost("127.0.0.1", port);
-    if (!socket->waitForConnected(300)) {
+    /** Use TcpServer to listen to the port specified. */
+    QTcpServer *server = new QTcpServer();
+    bool status = server->listen(QHostAddress::LocalHost, port);
+    if (status) {
+        server->close();
+        server->deleteLater();
         return false;
     } else {
+        server->close();
+        server->deleteLater();
         return true;
     }
 }
