@@ -10,7 +10,8 @@ A cross-platform Trojan GUI client
 [![Build status](https://travis-ci.com/TheWanderingCoel/Trojan-Qt5.svg?branch=master)](https://travis-ci.com/TheWanderingCoel/Trojan-Qt5)
 [![Build status](https://ci.appveyor.com/api/projects/status/shjhg9mlvc3c74ek?svg=true)](https://ci.appveyor.com/project/CoelWu/trojan-qt5)
 [![HitCount](http://hits.dwyl.io/TheWanderingCoel/Trojan-Qt5.svg)](http://hits.dwyl.io/TheWanderingCoel/Trojan-Qt5)
-[![Download status](https://img.shields.io/github/downloads/TheWanderingCoel/Trojan-Qt5/total.svg)](https://github.com/TheWanderingCoel/Trojan-Qt5/releases)
+![GitHub Releases](https://img.shields.io/github/downloads/TheWanderingCoel/Trojan-Qt5/latest/total?style=flat-square&logo=github)
+![GitHub All Releases](https://img.shields.io/github/downloads/TheWanderingCoel/Trojan-Qt5/total?label=downloads-total&logo=github&style=flat-square)
 [![License](https://img.shields.io/badge/license-GPL%20V3-blue.svg?longCache=true)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 ## Install
@@ -130,6 +131,12 @@ shasum Trojan-Qt5-macOS.dmg
 ```
 sha1sum Trojan-Qt5-Linux.AppImage
 ```
+
+## Warning
+Note: Trojan-Qt5 can ONLY be used for learning related technologies such as Qt/C++/Linux/CI/automation and use within the scope permitted by law. Any individual or group MAY NOT use Trojan-Qt5 for any violation of relevant laws and regulations.
+
+Any attempt to download of any branch or distribution of Trojan-Qt5 constitutes your agreement that the author of the project will not be liable for any legal liability arising from your breach of the above guidelines.
+
 ## Special Thanks
 
 This project is based on:

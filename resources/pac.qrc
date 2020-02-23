@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/">
-        <file>pac/proxy.pac</file>
+        <file>pac/user-rule.txt</file>
+        <file>pac/gfwlist.txt</file>
+        <file>pac/abp.js</file>
     </qresource>
 </RCC>

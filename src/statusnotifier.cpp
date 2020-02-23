@@ -1,6 +1,9 @@
 #include "statusnotifier.h"
 #include "mainwindow.h"
 #include <QApplication>
+#ifdef Q_OS_MAC
+#include <Cocoa/Cocoa.h>
+#endif
 #ifdef Q_OS_LINUX
 #include <QDBusMessage>
 #include <QDBusConnection>

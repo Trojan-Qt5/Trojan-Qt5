@@ -65,7 +65,8 @@ INCLUDEPATH += $$PWD/src/plog/include
 
 win32 {
     SOURCES += \
-        src/sysproxy/windows.c
+        src/sysproxy/windows.c \
+        src/statusnotifier.cpp \
     HEADERS += \
         src/sysproxy/windows.h
     INCLUDEPATH += $$PWD\src\trojan\src
@@ -86,6 +87,8 @@ win32 {
 }
 
 mac {
+    SOURCES += \
+        src/statusnotifier.mm
     INCLUDEPATH += $$PWD/src/trojan/src
     INCLUDEPATH += /usr/local/opt/zbar/include
     INCLUDEPATH += /usr/local/opt/qrencode/include
@@ -100,12 +103,30 @@ mac {
     LIBS += -L/usr/local/opt/zlib/lib -lz
     LIBS += -L/usr/local/opt/pcre/lib -lpcre
     LIBS += -framework Security -framework Cocoa
+    # For Sparkle Usage
+    SOURCES += \
+        src/sparkle/AutoUpdater.cpp \
+        src/sparkle/CocoaInitializer.mm \
+        src/sparkle/SparkleAutoUpdater.mm
+    HEADERS += \
+        src/sparkle/AutoUpdater.h \
+        src/sparkle/CocoaInitializer.h \
+        src/sparkle/SparkleAutoUpdater.h
+    QMAKE_LFLAGS += -Wl,-rpath,@loader_path/../Frameworks
+    LIBS += -framework AppKit
+    LIBS += -framework Carbon
+    LIBS += -framework Foundation
+    LIBS += -framework ApplicationServices
+    LIBS += -framework Sparkle
+    QMAKE_INFO_PLIST = $PWD/resources/Info.plist
     # Otherwise lupdate will not work
     TR_EXCLUDE += /usr/local/opt/boost/*
 }
 
 unix:!mac {
     QT += dbus
+    SOURCES += \
+        src/statusnotifier.cpp
     INCLUDEPATH += $$PWD/src/trojan/src
     INCLUDEPATH += /usr/local/zbar/include
     INCLUDEPATH += /usr/local/qrencode/include
@@ -213,7 +234,6 @@ SOURCES += \
     src/sharedialog.cpp \
     src/systemproxyhelper.cpp \
     src/tqprofile.cpp \
-    src/statusnotifier.cpp \
     src/trojanvalidator.cpp \
     src/urihelper.cpp \
     src/uriinputdialog.cpp \
@@ -232,7 +252,8 @@ SOURCES += \
     src/trojan/src/session/session.cpp \
     src/trojan/src/session/udpforwardsession.cpp \
     src/trojan/src/ssl/ssldefaults.cpp \
-    src/trojan/src/ssl/sslsession.cpp
+    src/trojan/src/ssl/sslsession.cpp \
+    src/userrules.cpp
 
 HEADERS += \
     src/logger.h \
@@ -274,14 +295,16 @@ HEADERS += \
     src/trojan/src/session/session.h \
     src/trojan/src/session/udpforwardsession.h \
     src/trojan/src/ssl/ssldefaults.h \
-    src/trojan/src/ssl/sslsession.h \
+    src/trojan/src/ssl/sslsession.h \ \
+    src/userrules.h
 
 FORMS += \
     ui/editdialog.ui \
     ui/mainwindow.ui \
     ui/settingsdialog.ui \
     ui/sharedialog.ui \
-    ui/uriinputdialog.ui
+    ui/uriinputdialog.ui \
+    ui/userrules.ui
 
 TRANSLATIONS += \
     resources/i18n/trojan-qt5_zh_CN.ts \

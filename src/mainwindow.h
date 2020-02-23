@@ -38,6 +38,7 @@ public:
     explicit MainWindow(ConfigHelper *confHelper, QWidget *parent = 0);
     ~MainWindow();
 
+    void startAutoStartConnections();
     bool isInstanceRunning() const;
 
 private:
@@ -82,6 +83,7 @@ private slots:
     void onMoveUp();
     void onMoveDown();
     void onGeneralSettings();
+    void onUserRuleSettings();
     void checkCurrentIndex(const QModelIndex &index);
     void onAbout();
     void onGuiLog();

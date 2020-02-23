@@ -162,6 +162,7 @@
      <string>Settin&amp;gs</string>
     </property>
     <addaction name="actionGeneralSettings"/>
+    <addaction name="actionUserRuleSerttings"/>
     <addaction name="separator"/>
     <addaction name="actionShowFilterBar"/>
    </widget>
@@ -268,6 +269,9 @@
   <action name="actionGeneralSettings">
    <property name="text">
     <string>&amp;General Settings</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+,</string>
    </property>
   </action>
   <action name="actionShare">
@@ -383,6 +387,11 @@
   <action name="actionGuiLog">
    <property name="text">
     <string>Gui Log</string>
+   </property>
+  </action>
+  <action name="actionUserRuleSerttings">
+   <property name="text">
+    <string>User Rule Settings</string>
    </property>
   </action>
  </widget>

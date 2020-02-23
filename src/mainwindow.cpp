@@ -5,6 +5,7 @@
 #include "editdialog.h"
 #include "urihelper.h"
 #include "uriinputdialog.h"
+#include "userrules.h"
 #include "sharedialog.h"
 #include "settingsdialog.h"
 #include "qrcodecapturer.h"
@@ -122,6 +123,8 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
             this, &MainWindow::onMoveDown);
     connect(ui->actionGeneralSettings, &QAction::triggered,
             this, &MainWindow::onGeneralSettings);
+    connect(ui->actionUserRuleSerttings, &QAction::triggered,
+            this, &MainWindow::onUserRuleSettings);
     connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::onAbout);
     connect(ui->actionAboutQt, &QAction::triggered,
             qApp, &QApplication::aboutQt);
@@ -179,6 +182,11 @@ MainWindow::~MainWindow()
 
 const QUrl MainWindow::issueUrl =
         QUrl("https://github.com/TheWanderingCoel/Trojan-Qt5/issues");
+
+void MainWindow::startAutoStartConnections()
+{
+    configHelper->startAllAutoStart(*model);
+}
 
 void MainWindow::onImportGuiJson()
 {
@@ -400,6 +408,14 @@ void MainWindow::onGeneralSettings()
     }
 }
 
+void MainWindow::onUserRuleSettings()
+{
+    UserRules *userRule = new UserRules(this);
+    connect(userRule, &UserRules::finished,
+            userRule, &UserRules::deleteLater);
+    userRule->exec();
+}
+
 void MainWindow::newProfile(Connection *newCon)
 {
     EditDialog *editDlg = new EditDialog(newCon, this);
@@ -574,6 +590,8 @@ void MainWindow::setupActionIcon()
     ui->actionScanQRCodeCapturer->setIcon(ui->actionQRCode->icon());
     ui->actionGeneralSettings->setIcon(QIcon::fromTheme("configure",
                                        QIcon::fromTheme("preferences-desktop")));
+    ui->actionUserRuleSerttings->setIcon(QIcon::fromTheme("configure",
+                                         QIcon::fromTheme("preferences-desktop")));
     ui->actionGuiLog->setIcon(QIcon::fromTheme("view-list-text",
                               QIcon::fromTheme("text-x-preview")));
     ui->actionTrojanLog->setIcon(QIcon::fromTheme("view-list-text",
