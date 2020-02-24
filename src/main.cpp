@@ -12,11 +12,6 @@
 #include "confighelper.h"
 #include "resourcehelper.h"
 
-#if defined (Q_OS_MAC)
-#include "sparkle/CocoaInitializer.h"
-#include "sparkle/SparkleAutoUpdater.h"
-#endif
-
 MainWindow *mainWindow = nullptr;
 
 static void onSignalRecv(int sig)
@@ -110,14 +105,6 @@ int main(int argc, char *argv[])
     });
 #endif
     server.listen(QHostAddress::Any, 8070);
-
-    /** Initalized Sparkle on macOS. */
-#if defined (Q_OS_MAC)
-    AutoUpdater* updater;
-    CocoaInitializer initializer;
-    //updater = new SparkleAutoUpdater("https://raw.githubusercontent.com/TheWanderingCoel/Trojan-Qt5/master/Appcast_macOS.xml");
-    //updater->checkForUpdates();
-#endif
 
     /** Start all servers which were configured to start at startup. */
     w.startAutoStartConnections();

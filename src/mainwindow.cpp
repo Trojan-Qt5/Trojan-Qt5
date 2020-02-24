@@ -107,6 +107,8 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
             this, &MainWindow::onAddFromURI);
     connect(ui->actionFromConfigJson, &QAction::triggered,
             this, &MainWindow::onAddFromConfigJSON);
+    connect(ui->actionFromShadowrocketJson, &QAction::triggered,
+            this, &MainWindow::onAddFromShadowrocketJSON);
     connect(ui->actionDelete, &QAction::triggered, this, &MainWindow::onDelete);
     connect(ui->actionEdit, &QAction::triggered, this, &MainWindow::onEdit);
     connect(ui->actionShare, &QAction::triggered, this, &MainWindow::onShare);
@@ -278,9 +280,11 @@ void MainWindow::onAddFromURI()
     URIInputDialog *inputDlg = new URIInputDialog(this);
     connect(inputDlg, &URIInputDialog::finished,
             inputDlg, &URIInputDialog::deleteLater);
-    connect(inputDlg, &URIInputDialog::acceptedURI, [&](const QString &uri){
-        Connection *newCon = new Connection(uri, this);
-        newProfile(newCon);
+    connect(inputDlg, &URIInputDialog::acceptedURI, [&](const QString &uris){
+        for (QString uri : uris.split("\\r\\n")) {
+            Connection *newCon = new Connection(uri, this);
+            newProfile(newCon);
+        }
     });
     inputDlg->exec();
 }
@@ -294,6 +298,15 @@ void MainWindow::onAddFromConfigJSON()
         if (con) {
             newProfile(con);
         }
+    }
+}
+
+void MainWindow::onAddFromShadowrocketJSON()
+{
+    QString file = QFileDialog::getOpenFileName(this, tr("Open shadowrocket.json"),
+                                                QString(), "JSON (*.json)");
+    if (!file.isNull()) {
+        configHelper->importShadowrocketJson(model, file);
     }
 }
 
@@ -605,6 +618,23 @@ bool MainWindow::isInstanceRunning() const
     return instanceRunning;
 }
 
+/*
+void MainWindow::initSparkle()
+{
+#if defined (Q_OS_WIN)
+    win_sparkle_set_appcast_url("https://winsparkle.org/example/appcast.xml");
+    win_sparkle_set_app_details(L"winsparkle.org", L"WinSparkle Qt Example", L"1.0");
+    win_sparkle_set_dsa_pub_pem(reinterpret_cast<const char *>(QResource(":/pem/dsa_pub.pem").data()));
+    win_sparkle_init();
+#elif defined (Q_OS_MAC)
+    AutoUpdater* updater;
+    CocoaInitializer initializer;
+    updater = new SparkleAutoUpdater("https://raw.githubusercontent.com/TheWanderingCoel/Trojan-Qt5/master/Appcast_macOS.xml");
+    updater->checkForUpdates();
+#endif
+}
+*/
+
 void MainWindow::initLog()
 {
     QDir path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Library/Logs/Trojan-Qt5";
@@ -618,7 +648,7 @@ void MainWindow::initLog()
     Logger::init(guiLog);
 
     /** Redirect Trojan's log to our logfile. */
-    Log::redirect(trojanLog.toStdString());
+    Log::redirect(trojanLog.toLocal8Bit().data());
 
 }
 

@@ -54,6 +54,8 @@ public:
     //the format is only compatible with shadowsocks-csharp (shadowsocks-windows)
     void exportGuiConfigJson(const ConnectionTableModel& model, const QString &file);
 
+    void importShadowrocketJson(ConnectionTableModel *model, const QString &file);
+
     Connection* configJsonToConnection(const QString &file);
 
     static void connectionToJson(TQProfile &profile);

@@ -86,6 +86,7 @@ install:
   - if [ "$BADGE" = "osx" ]; then    
       brew install zbar qrencode boost openssl@1.1 zlib pcre python3;
       brew reinstall https://raw.githubusercontent.com/Homebrew/homebrew-core/89bf3a54383d884f8b8511c6237325dd5b5ae6ba/Formula/qt.rb --verbose;
+      cp -r framework/Sparkle.framework /usr/local/Cellar/qt/5.13.1/clang_64/lib;
     fi
 
 before_script:

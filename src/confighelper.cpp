@@ -8,6 +8,8 @@
 #include <QJsonObject>
 #include <QDebug>
 
+#include "logger.h"
+
 ConfigHelper::ConfigHelper(const QString &configuration, QObject *parent) :
     QObject(parent),
     configFile(configuration)
@@ -48,10 +50,12 @@ void ConfigHelper::importGuiConfigJson(ConnectionTableModel *model, const QStrin
     JSONFile.open(QIODevice::ReadOnly | QIODevice::Text);
     if (!JSONFile.isOpen()) {
         qCritical() << "Error: cannot open " << file;
+        Logger::error(QString("cannot open %1").arg(file));
         return;
     }
     if(!JSONFile.isReadable()) {
         qCritical() << "Error: cannot read " << file;
+        Logger::error(QString("cannot read %1").arg(file));
         return;
     }
 
@@ -60,6 +64,7 @@ void ConfigHelper::importGuiConfigJson(ConnectionTableModel *model, const QStrin
     JSONFile.close();
     if (pe.error != QJsonParseError::NoError) {
         qCritical() << pe.errorString();
+        Logger::error(pe.errorString());
     }
     if (JSONDoc.isEmpty()) {
         qCritical() << "JSON Document" << file << "is empty!";
@@ -90,14 +95,6 @@ void ConfigHelper::importGuiConfigJson(ConnectionTableModel *model, const QStrin
                  */
                 p.localAddress = QString("0.0.0.0");
             }
-        } else {
-            /*
-             * Otherwise, the gui-config is from legacy shadowsocks-qt5 (v0.x)
-             */
-            p.name = json["profile"].toString();
-            p.serverPort = json["server_port"].toString().toUShort();
-            p.localAddress = json["local_address"].toString();
-            p.localPort = json["local_port"].toString().toUShort();
         }
         p.serverAddress = json["server"].toString();
         p.password = json["password"].toString();
@@ -142,6 +139,47 @@ void ConfigHelper::exportGuiConfigJson(const ConnectionTableModel &model, const 
 
     JSONFile.write(JSONDoc.toJson());
     JSONFile.close();
+}
+
+void ConfigHelper::importShadowrocketJson(ConnectionTableModel *model, const QString &file)
+{
+    QFile JSONFile(file);
+    JSONFile.open(QIODevice::ReadOnly | QIODevice::Text);
+    if (!JSONFile.isOpen()) {
+        qCritical() << "Error: cannot open " << file;
+        return;
+    }
+    if(!JSONFile.isReadable()) {
+        qCritical() << "Error: cannot read " << file;
+        return;
+    }
+
+    QJsonParseError pe;
+    QJsonDocument JSONDoc = QJsonDocument::fromJson(JSONFile.readAll(), &pe);
+    JSONFile.close();
+    if (pe.error != QJsonParseError::NoError) {
+        qCritical() << pe.errorString();
+        Logger::error(pe.errorString());
+    }
+    if (JSONDoc.isEmpty()) {
+        qCritical() << "JSON Document" << file << "is empty!";
+        return;
+    }
+
+    QJsonArray CONFArray = JSONDoc.array();
+    for (QJsonArray::iterator it = CONFArray.begin(); it != CONFArray.end(); ++it) {
+        QJsonObject json = (*it).toObject();
+        TQProfile p;
+        if (json["type"].toString() == "Trojan") {
+            p.serverAddress = json["host"].toString();
+            p.serverPort = json["port"].toInt();
+            p.password = json["password"].toString();
+            p.name = json["title"].toString();
+        }
+        Connection *con = new Connection(p, this);
+        model->appendConnection(con);
+    }
+
 }
 
 Connection* ConfigHelper::configJsonToConnection(const QString &file)

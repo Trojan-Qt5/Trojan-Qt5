@@ -66,7 +66,7 @@ INCLUDEPATH += $$PWD/src/plog/include
 win32 {
     SOURCES += \
         src/sysproxy/windows.c \
-        src/statusnotifier.cpp \
+        src/statusnotifier.cpp
     HEADERS += \
         src/sysproxy/windows.h
     INCLUDEPATH += $$PWD\src\trojan\src
@@ -118,7 +118,7 @@ mac {
     LIBS += -framework Foundation
     LIBS += -framework ApplicationServices
     LIBS += -framework Sparkle
-    QMAKE_INFO_PLIST = $PWD/resources/Info.plist
+    QMAKE_INFO_PLIST = resources/Info.plist
     # Otherwise lupdate will not work
     TR_EXCLUDE += /usr/local/opt/boost/*
 }
@@ -237,6 +237,7 @@ SOURCES += \
     src/trojanvalidator.cpp \
     src/urihelper.cpp \
     src/uriinputdialog.cpp \
+    src/userrules.cpp \
     src/trojan/src/core/authenticator.cpp \
     src/trojan/src/core/config.cpp \
     src/trojan/src/core/log.cpp \
@@ -252,8 +253,7 @@ SOURCES += \
     src/trojan/src/session/session.cpp \
     src/trojan/src/session/udpforwardsession.cpp \
     src/trojan/src/ssl/ssldefaults.cpp \
-    src/trojan/src/ssl/sslsession.cpp \
-    src/userrules.cpp
+    src/trojan/src/ssl/sslsession.cpp
 
 HEADERS += \
     src/logger.h \
@@ -280,6 +280,7 @@ HEADERS += \
     src/trojanvalidator.h \
     src/urihelper.h \
     src/uriinputdialog.h \
+    src/userrules.h \
     src/trojan/src/core/authenticator.h \
     src/trojan/src/core/config.h \
     src/trojan/src/core/log.h \
@@ -295,8 +296,7 @@ HEADERS += \
     src/trojan/src/session/session.h \
     src/trojan/src/session/udpforwardsession.h \
     src/trojan/src/ssl/ssldefaults.h \
-    src/trojan/src/ssl/sslsession.h \ \
-    src/userrules.h
+    src/trojan/src/ssl/sslsession.h
 
 FORMS += \
     ui/editdialog.ui \

@@ -131,6 +131,7 @@
      <addaction name="actionQRCode"/>
      <addaction name="actionScanQRCodeCapturer"/>
      <addaction name="actionFromConfigJson"/>
+     <addaction name="actionFromShadowrocketJson"/>
     </widget>
     <addaction name="menuAdd"/>
     <addaction name="actionEdit"/>
@@ -392,6 +393,15 @@
   <action name="actionUserRuleSerttings">
    <property name="text">
     <string>User Rule Settings</string>
+   </property>
+  </action>
+  <action name="actionFromShadowrocketJson">
+   <property name="icon">
+    <iconset theme="ui" resource="../resources/icons.qrc">
+     <normaloff>:/icons/actions/document-open.png</normaloff>:/icons/actions/document-open.png</iconset>
+   </property>
+   <property name="text">
+    <string>From shadowrocket.json</string>
    </property>
   </action>
  </widget>

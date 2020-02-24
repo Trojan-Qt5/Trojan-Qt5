@@ -147,3 +147,5 @@ This project is based on:
 - [trojan-qt](https://github.com/trojan-gfw/trojan-qt) GPL-3.0
 - [Privoxy](https://www.privoxy.org) GPL-2.0
 - [sysproxy](https://github.com/Noisyfox/sysproxy/) Apache-2.0
+
+Thanks for @eejworks 's Fantastic UI Design(working in progress)

@@ -26,6 +26,16 @@
 #include "confighelper.h"
 #include "statusnotifier.h"
 
+/*
+#if defined (Q_OS_WIN)
+#include "winsparkle.h"
+#endif
+#if defined (Q_OS_MAC)
+#include "sparkle/CocoaInitializer.h"
+#include "sparkle/SparkleAutoUpdater.h"
+#endif
+*/
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -72,6 +82,7 @@ private slots:
     void onAddQRCodeFile();
     void onAddFromURI();
     void onAddFromConfigJSON();
+    void onAddFromShadowrocketJSON();
     void onDelete();
     void onEdit();
     void onShare();
@@ -92,7 +103,7 @@ private slots:
     void onCustomContextMenuRequested(const QPoint &pos);
     void onFilterToggled(bool);
     void onFilterTextChanged(const QString &text);
-    void onQRCodeCapturerResultFound(const QString &uri);
+    void onQRCodeCapturerResultFound(const QString &uris);
     void onSingleInstanceConnect();
 
 protected slots:

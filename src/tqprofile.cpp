@@ -28,8 +28,15 @@ TQProfile::TQProfile(const QString &uri)
 
 TQProfile TQProfile::fromUri(const std::string& trojanUri) const
 {
+    std::string prefix = "trojan://";
+
     if (trojanUri.length() < 9) {
         throw std::invalid_argument("Trojan URI is too short");
+    }
+
+    /** Prevent line separator casuing wrong password. */
+    if (!QString::fromStdString(trojanUri).startsWith("trojan://")) {
+         throw std::invalid_argument("Invalid Trojan URI");
     }
 
     TQProfile result;
