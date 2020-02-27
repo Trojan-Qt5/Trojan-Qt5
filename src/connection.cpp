@@ -113,12 +113,12 @@ void Connection::start()
 
     /** Wait, let's check if port is in use. */
     PortValidator *pv = new PortValidator();
-    if (pv->isInUse(profile.localPort)) {
+    if (pv->isInUse(conf->getSocks5Port())) {
         qCritical() << QString("Socks5 port %1 is being used").arg(QString::number(profile.localPort));
         Logger::error(QString("Socks5 port %1 is being used").arg(QString::number(profile.localPort)));
         return;
     }
-    if (pv->isInUse(profile.localHttpPort)) {
+    if (pv->isInUse(conf->getHttpPort())) {
         qCritical() << QString("Http port %1 is being used").arg(QString::number(profile.localHttpPort));
         Logger::error(QString("Http port %1 is being used").arg(QString::number(profile.localHttpPort)));
         return;

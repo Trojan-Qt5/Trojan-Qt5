@@ -47,7 +47,7 @@ void setupApplication(QApplication &a)
 #endif
 
     QTranslator *trojanqt5t = new QTranslator(&a);
-    trojanqt5t->load(QLocale::system(), "trojan-qt5", "_", ":/i18n");
+    trojanqt5t->load(QString(":/i18n/trojan-qt5_%1").arg(QLocale::system().name()));
     a.installTranslator(trojanqt5t);
 }
 
@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
         return QHttpServerResponse::fromFile(configDir.path() + QString("/%1").arg(url.path()));
     });
 #endif
-    server.listen(QHostAddress::Any, 8070);
+    server.listen(QHostAddress(conf.getPACAddress()), conf.getPACPort());
 
     /** Start all servers which were configured to start at startup. */
     w.startAutoStartConnections();

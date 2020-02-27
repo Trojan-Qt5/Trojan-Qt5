@@ -7,3 +7,6 @@
 [submodule "src/plog"]
 	path = src/plog
 	url = https://github.com/SergiusTheBest/plog.git
+[submodule "src/QtAwesome"]
+	path = src/QtAwesome
+	url = https://github.com/TheWanderingCoel/QtAwesome.git

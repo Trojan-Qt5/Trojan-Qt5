@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include "advancesettingsdialog.h"
 #include "connection.h"
 #include "editdialog.h"
 #include "urihelper.h"
@@ -21,6 +22,7 @@
 #endif
 #include "core/log.h"
 #include "logger.h"
+#include "QtAwesome.h"
 
 #include <QDesktopServices>
 #include <QDesktopWidget>
@@ -44,6 +46,9 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
 
     initSingleInstance();
 
+    /** initalize Sparkle Updater. */
+    initSparkle();
+
     ui->setupUi(this);
 
     //setup Settings menu
@@ -65,7 +70,8 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
 
     setupActionIcon();
 
-    notifier = new StatusNotifier(this, configHelper->isHideWindowOnStartup(), this);
+
+    notifier = new StatusNotifier(this, configHelper, this);
 
     connect(configHelper, &ConfigHelper::toolbarStyleChanged,
             ui->toolBar, &QToolBar::setToolButtonStyle);
@@ -84,6 +90,8 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
     ui->toolBar->setVisible(configHelper->isShowToolbar());
     ui->actionShowFilterBar->setChecked(configHelper->isShowFilterBar());
     ui->menuBar->setNativeMenuBar(configHelper->isNativeMenuBar());
+
+    ui->toolBar->setFixedHeight(92);
 
     //Move to the center of the screen
     this->move(QApplication::desktop()->screen()->rect().center() -
@@ -125,11 +133,15 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
             this, &MainWindow::onMoveDown);
     connect(ui->actionGeneralSettings, &QAction::triggered,
             this, &MainWindow::onGeneralSettings);
+    connect(ui->actionAdvanceSettings, &QAction::triggered,
+            this, &MainWindow::onAdvanceSettings);
     connect(ui->actionUserRuleSerttings, &QAction::triggered,
             this, &MainWindow::onUserRuleSettings);
     connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::onAbout);
     connect(ui->actionAboutQt, &QAction::triggered,
             qApp, &QApplication::aboutQt);
+    connect(ui->actionCheckUpdate, &QAction::triggered,
+            this, &MainWindow::onCheckUpdate);
     connect(ui->actionGuiLog, &QAction::triggered,
             this, &MainWindow::onGuiLog);
     connect(ui->actionTrojanLog, &QAction::triggered,
@@ -177,6 +189,10 @@ MainWindow::~MainWindow()
     configHelper->setMainWindowGeometry(saveGeometry());
     configHelper->setMainWindowState(saveState());
 
+#if defined (Q_OS_WIN)
+    win_sparkle_cleanup();
+#endif
+
     // delete ui after everything in case it's deleted while still needed for
     // the functions written above
     delete ui;
@@ -199,6 +215,7 @@ void MainWindow::onImportGuiJson()
                    "GUI Configuration (gui-config.json)");
     if (!file.isNull()) {
         configHelper->importGuiConfigJson(model, file);
+        configHelper->save(*model);
     }
 }
 
@@ -340,6 +357,8 @@ void MainWindow::onConnect()
     int row = proxyModel->mapToSource(ui->connectionView->currentIndex()).row();
     Connection *con = model->getItem(row)->getConnection();
     if (con->isValid()) {
+        model->disconnectConnectionsAt(con->getProfile().localAddress,
+                                       con->getProfile().localPort);
         con->start();
     } else {
         QMessageBox::critical(this, tr("Invalid"),
@@ -375,6 +394,7 @@ void MainWindow::onConnectionStatusChanged(const int row, const bool running)
                 ui->connectionView->currentIndex()).row() == row) {
         ui->actionConnect->setEnabled(!running);
         ui->actionDisconnect->setEnabled(running);
+        ui->actionDelete->setEnabled(!running);
     }
 }
 
@@ -418,6 +438,16 @@ void MainWindow::onGeneralSettings()
     if (sDlg->exec()) {
         configHelper->save(*model);
         configHelper->setStartAtLogin();
+    }
+}
+
+void MainWindow::onAdvanceSettings()
+{
+    AdvanceSettingsDialog *sDlg = new AdvanceSettingsDialog(configHelper, this);
+    connect(sDlg, &AdvanceSettingsDialog::finished,
+            sDlg, &AdvanceSettingsDialog::deleteLater);
+    if (sDlg->exec()) {
+        configHelper->save(*model);
     }
 }
 
@@ -475,6 +505,7 @@ void MainWindow::checkCurrentIndex(const QModelIndex &_index)
         ui->actionConnect->setEnabled(!running);
         ui->actionForceConnect->setEnabled(!running);
         ui->actionDisconnect->setEnabled(running);
+        ui->actionDelete->setEnabled(!running);
     } else {
         ui->actionConnect->setEnabled(false);
         ui->actionForceConnect->setEnabled(false);
@@ -555,6 +586,16 @@ void MainWindow::onQRCodeCapturerResultFound(const QString &uri)
     newProfile(newCon);
 }
 
+void MainWindow::onCheckUpdate()
+{
+#if defined (Q_OS_WIN)
+    win_sparkle_check_update_with_ui();
+#elif defined (Q_OS_MAC)
+    updater->checkForUpdates();
+#endif
+
+}
+
 void MainWindow::hideEvent(QHideEvent *e)
 {
     QMainWindow::hideEvent(e);
@@ -580,16 +621,18 @@ void MainWindow::closeEvent(QCloseEvent *e)
 
 void MainWindow::setupActionIcon()
 {
-    ui->actionConnect->setIcon(QIcon::fromTheme("network-connect",
-                               QIcon::fromTheme("network-vpn")));
-    ui->actionDisconnect->setIcon(QIcon::fromTheme("network-disconnect",
-                                  QIcon::fromTheme("network-offline")));
-    ui->actionEdit->setIcon(QIcon::fromTheme("document-edit",
-                            QIcon::fromTheme("accessories-text-editor")));
-    ui->actionShare->setIcon(QIcon::fromTheme("document-share",
-                             QIcon::fromTheme("preferences-system-sharing")));
-    ui->actionTestLatency->setIcon(QIcon::fromTheme("flag",
-                                   QIcon::fromTheme("starred")));
+
+    QtAwesome* awesome = new QtAwesome(this);
+    awesome->initFontAwesome();
+
+    ui->actionConnect->setIcon(awesome->icon(fas::link));
+    ui->actionDisconnect->setIcon(awesome->icon(fas::unlink));
+    ui->actionEdit->setIcon(awesome->icon(fas::edit));
+    ui->actionShare->setIcon(awesome->icon(fas::share));
+    ui->actionTestLatency->setIcon(awesome->icon(fas::tachometer));
+    ui->actionDelete->setIcon(awesome->icon(fas::trash));
+    ui->actionMoveUp->setIcon(awesome->icon(fas::up));
+    ui->actionMoveDown->setIcon(awesome->icon(fas::down));
     ui->actionImportGUIJson->setIcon(QIcon::fromTheme("document-import",
                                      QIcon::fromTheme("insert-text")));
     ui->actionExportGUIJson->setIcon(QIcon::fromTheme("document-export",
@@ -602,6 +645,8 @@ void MainWindow::setupActionIcon()
                               QIcon::fromTheme("insert-image")));
     ui->actionScanQRCodeCapturer->setIcon(ui->actionQRCode->icon());
     ui->actionGeneralSettings->setIcon(QIcon::fromTheme("configure",
+                                       QIcon::fromTheme("preferences-desktop")));
+    ui->actionAdvanceSettings->setIcon(QIcon::fromTheme("configure",
                                        QIcon::fromTheme("preferences-desktop")));
     ui->actionUserRuleSerttings->setIcon(QIcon::fromTheme("configure",
                                          QIcon::fromTheme("preferences-desktop")));
@@ -618,22 +663,20 @@ bool MainWindow::isInstanceRunning() const
     return instanceRunning;
 }
 
-/*
 void MainWindow::initSparkle()
 {
 #if defined (Q_OS_WIN)
-    win_sparkle_set_appcast_url("https://winsparkle.org/example/appcast.xml");
-    win_sparkle_set_app_details(L"winsparkle.org", L"WinSparkle Qt Example", L"1.0");
+    win_sparkle_set_appcast_url("https://raw.githubusercontent.com");
+    win_sparkle_set_app_details(reinterpret_cast<const wchar_t *>(QCoreApplication::organizationName().utf16()),
+                                reinterpret_cast<const wchar_t *>(QCoreApplication::applicationName().utf16()),
+                                reinterpret_cast<const wchar_t *>(QStringLiteral(VERSION).utf16()));
     win_sparkle_set_dsa_pub_pem(reinterpret_cast<const char *>(QResource(":/pem/dsa_pub.pem").data()));
     win_sparkle_init();
 #elif defined (Q_OS_MAC)
-    AutoUpdater* updater;
     CocoaInitializer initializer;
-    updater = new SparkleAutoUpdater("https://raw.githubusercontent.com/TheWanderingCoel/Trojan-Qt5/master/Appcast_macOS.xml");
-    updater->checkForUpdates();
+    updater = new SparkleAutoUpdater("https://raw.githubusercontent.com/TheWanderingCoel/Trojan-Qt5/master/resources/Appcast_macOS.xml");
 #endif
 }
-*/
 
 void MainWindow::initLog()
 {

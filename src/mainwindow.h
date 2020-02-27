@@ -26,7 +26,6 @@
 #include "confighelper.h"
 #include "statusnotifier.h"
 
-/*
 #if defined (Q_OS_WIN)
 #include "winsparkle.h"
 #endif
@@ -34,7 +33,7 @@
 #include "sparkle/CocoaInitializer.h"
 #include "sparkle/SparkleAutoUpdater.h"
 #endif
-*/
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -58,10 +57,14 @@ private:
     QSortFilterProxyModel *proxyModel;
     ConfigHelper *configHelper;
     StatusNotifier *notifier;
+#if defined (Q_OS_MAC)
+    AutoUpdater* updater;
+#endif
 
     QLocalServer* instanceServer;
     bool instanceRunning;
     void initLog();
+    void initSparkle();
     void initSingleInstance();
 
     void newProfile(Connection *);
@@ -94,6 +97,7 @@ private slots:
     void onMoveUp();
     void onMoveDown();
     void onGeneralSettings();
+    void onAdvanceSettings();
     void onUserRuleSettings();
     void checkCurrentIndex(const QModelIndex &index);
     void onAbout();
@@ -104,6 +108,7 @@ private slots:
     void onFilterToggled(bool);
     void onFilterTextChanged(const QString &text);
     void onQRCodeCapturerResultFound(const QString &uris);
+    void onCheckUpdate();
     void onSingleInstanceConnect();
 
 protected slots:

@@ -16,6 +16,7 @@ ConfigHelper::ConfigHelper(const QString &configuration, QObject *parent) :
 {
     settings = new QSettings(configFile, QSettings::IniFormat, this);
     readGeneralSettings();
+    readAdvanceSettings();
 }
 
 const QString ConfigHelper::profilePrefix = "Profile";
@@ -32,6 +33,12 @@ void ConfigHelper::save(const ConnectionTableModel &model)
     }
     settings->endArray();
 
+    settings->setValue("Socks5LocalAddress", QVariant(socks5LocalAddress));
+    settings->setValue("Socks5LocalPort", QVariant(socks5LocalPort));
+    settings->setValue("HttpLocalAddress", QVariant(httpLocalAddress));
+    settings->setValue("HttpLocalPort", QVariant(httpLocalPort));
+    settings->setValue("PACLocalAddress", QVariant(pacLocalAddress));
+    settings->setValue("PACLocalPort", QVariant(pacLocalPort));
     settings->setValue("ToolbarStyle", QVariant(toolbarStyle));
     settings->setValue("AutoSetSystemProxy", QVariant(autoSetSystemProxy));
     settings->setValue("EnablePACMode", QVariant(enablePACMode));
@@ -68,39 +75,40 @@ void ConfigHelper::importGuiConfigJson(ConnectionTableModel *model, const QStrin
     }
     if (JSONDoc.isEmpty()) {
         qCritical() << "JSON Document" << file << "is empty!";
+        Logger::error(QString("JSON Document %1 is empty!").arg(file));
         return;
     }
     QJsonObject JSONObj = JSONDoc.object();
     QJsonArray CONFArray = JSONObj["configs"].toArray();
     if (CONFArray.isEmpty()) {
         qWarning() << "configs in " << file << " is empty.";
+        Logger::error(QString("configs in %1 is empty!").arg(file));
         return;
     }
 
     for (QJsonArray::iterator it = CONFArray.begin(); it != CONFArray.end(); ++it) {
         QJsonObject json = (*it).toObject();
         TQProfile p;
-        if (!json["server_port"].isString()) {
-            /*
-             * shadowsocks-csharp uses integers to store ports directly.
-             */
-            p.name = json["remarks"].toString();
-            p.serverPort = json["server_port"].toInt();
-            //shadowsocks-csharp has only global local port (all profiles use the same port)
-            p.localPort = JSONObj["localPort"].toInt();
-            if (JSONObj["shareOverLan"].toBool()) {
-                /*
-                 * it can only configure share over LAN or not (also a global value)
-                 * which is basically 0.0.0.0 or 127.0.0.1 (which is the default)
-                 */
-                p.localAddress = QString("0.0.0.0");
-            }
-        }
+        p.name = json["remarks"].toString();
+        p.serverPort = json["server_port"].toInt();
         p.serverAddress = json["server"].toString();
+        p.verifyCertificate = json["verify_certificate"].toBool();
+        p.verifyHostname = json["verify_hostname"].toBool();
         p.password = json["password"].toString();
+        p.dualMode = json["dual_mode"].toBool();
+        p.tcpFastOpen = json["tcp_fast_open"].toBool();
         Connection *con = new Connection(p, this);
         model->appendConnection(con);
     }
+
+    /** Setup Advance Settings. */
+    QJsonObject advanceObject = JSONDoc.object();
+    setAdvanceSettings(advanceObject["socks5_address"].toString(),
+                       advanceObject["socks5_port"].toInt(),
+                       advanceObject["http_address"].toString(),
+                       advanceObject["http_port"].toInt(),
+                       advanceObject["pac_address"].toString(),
+                       advanceObject["pac_port"].toInt());
 }
 
 void ConfigHelper::exportGuiConfigJson(const ConnectionTableModel &model, const QString &file)
@@ -113,16 +121,22 @@ void ConfigHelper::exportGuiConfigJson(const ConnectionTableModel &model, const 
         json["remarks"] = QJsonValue(con->profile.name);
         json["server"] = QJsonValue(con->profile.serverAddress);
         json["server_port"] = QJsonValue(con->profile.serverPort);
-        json["verify"] = QJsonValue(con->profile.verifyCertificate);
+        json["verify_certificate"] = QJsonValue(con->profile.verifyCertificate);
+        json["verify_hostname"] = QJsonValue(con->profile.verifyHostname);
         json["password"] = QJsonValue(con->profile.password);
+        json["dual_mode"] = QJsonValue(con->profile.dualMode);
         json["tcp_fast_open"] = QJsonValue(con->profile.tcpFastOpen);
         confArray.append(QJsonValue(json));
     }
 
     QJsonObject JSONObj;
     JSONObj["configs"] = QJsonValue(confArray);
-    JSONObj["localPort"] = QJsonValue(1080);
-    JSONObj["shareOverLan"] = QJsonValue(false);
+    JSONObj["socks5_address"] = QJsonValue(socks5LocalAddress);
+    JSONObj["socks5_port"] = QJsonValue(socks5LocalPort);
+    JSONObj["http_address"] = QJsonValue(httpLocalAddress);
+    JSONObj["http_port"] = QJsonValue(httpLocalPort);
+    JSONObj["pac_address"] = QJsonValue(pacLocalAddress);
+    JSONObj["pac_port"] = QJsonValue(pacLocalPort);
 
     QJsonDocument JSONDoc(JSONObj);
 
@@ -147,10 +161,12 @@ void ConfigHelper::importShadowrocketJson(ConnectionTableModel *model, const QSt
     JSONFile.open(QIODevice::ReadOnly | QIODevice::Text);
     if (!JSONFile.isOpen()) {
         qCritical() << "Error: cannot open " << file;
+        Logger::error(QString("cannot open %1").arg(file));
         return;
     }
     if(!JSONFile.isReadable()) {
         qCritical() << "Error: cannot read " << file;
+        Logger::error(QString("cannot read %1").arg(file));
         return;
     }
 
@@ -188,9 +204,11 @@ Connection* ConfigHelper::configJsonToConnection(const QString &file)
     JSONFile.open(QIODevice::ReadOnly | QIODevice::Text);
     if (!JSONFile.isOpen()) {
         qCritical() << "Error: cannot open " << file;
+        Logger::error(QString("cannot open %1").arg(file));
     }
     if(!JSONFile.isReadable()) {
         qCritical() << "Error: cannot read " << file;
+        Logger::error(QString("cannot read %1").arg(file));
     }
 
     QJsonParseError pe;
@@ -201,6 +219,7 @@ Connection* ConfigHelper::configJsonToConnection(const QString &file)
     }
     if (JSONDoc.isEmpty()) {
         qCritical() << "JSON Document" << file << "is empty!";
+        Logger::error(QString("JSON Document %1 is empty!").arg(file));
         return nullptr;
     }
     QJsonObject configObj = JSONDoc.object();
@@ -262,10 +281,12 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
     JSONFile.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate);
     if (!JSONFile.isOpen()) {
         qCritical() << "Error: cannot open " << file;
+        Logger::error(QString("cannot open %1").arg(file));
         return;
     }
     if(!JSONFile.isWritable()) {
         qCritical() << "Error: cannot write into " << file;
+        Logger::error(QString("cannot write into %1").arg(file));
         return;
     }
 
@@ -296,10 +317,12 @@ void ConfigHelper::generatePrivoxyConf(TQProfile &profile)
     privoxyConf.open(QIODevice::WriteOnly | QIODevice::Text |QIODevice::Truncate);
     if (!privoxyConf.isOpen()) {
         qCritical() << "Error: cannot open " << file;
+        Logger::error(QString("cannot open %1").arg(file));
         return;
     }
     if(!privoxyConf.isWritable()) {
         qCritical() << "Error: cannot write into " << file;
+        Logger::error(QString("cannot write into %1").arg(file));
         return;
     }
     privoxyConf.write(filecontent.toUtf8());
@@ -309,6 +332,36 @@ void ConfigHelper::generatePrivoxyConf(TQProfile &profile)
 int ConfigHelper::getToolbarStyle() const
 {
     return toolbarStyle;
+}
+
+QString ConfigHelper::getSocks5Address() const
+{
+    return socks5LocalAddress;
+}
+
+int ConfigHelper::getSocks5Port() const
+{
+    return socks5LocalPort;
+}
+
+QString ConfigHelper::getHttpAddress() const
+{
+    return httpLocalAddress;
+}
+
+int ConfigHelper::getHttpPort() const
+{
+    return httpLocalPort;
+}
+
+QString ConfigHelper::getPACAddress() const
+{
+    return pacLocalAddress;
+}
+
+int ConfigHelper::getPACPort() const
+{
+    return pacLocalPort;
 }
 
 bool ConfigHelper::isAutoSetSystemProxy() const
@@ -351,6 +404,12 @@ bool ConfigHelper::isNativeMenuBar() const
     return nativeMenuBar;
 }
 
+void ConfigHelper::setProxyMode(bool assp, bool pac)
+{
+    autoSetSystemProxy = assp;
+    enablePACMode = pac;
+}
+
 void ConfigHelper::setGeneralSettings(int ts, bool assp, bool pac, bool hide, bool sal, bool oneInstance, bool nativeMB)
 {
     if (toolbarStyle != ts) {
@@ -363,6 +422,16 @@ void ConfigHelper::setGeneralSettings(int ts, bool assp, bool pac, bool hide, bo
     startAtLogin = sal;
     onlyOneInstace = oneInstance;
     nativeMenuBar = nativeMB;
+}
+
+void ConfigHelper::setAdvanceSettings(QString sa, int sp, QString ha, int hp, QString pa, int pp)
+{
+    socks5LocalAddress = sa;
+    socks5LocalPort = sp;
+    httpLocalAddress = ha;
+    httpLocalPort = hp;
+    pacLocalAddress = pa;
+    pacLocalPort = pp;
 }
 
 void ConfigHelper::setShowToolbar(bool show)
@@ -402,6 +471,16 @@ void ConfigHelper::readGeneralSettings()
     showToolbar = settings->value("ShowToolbar", QVariant(true)).toBool();
     showFilterBar = settings->value("ShowFilterBar", QVariant(true)).toBool();
     nativeMenuBar = settings->value("NativeMenuBar", QVariant(false)).toBool();
+}
+
+void ConfigHelper::readAdvanceSettings()
+{
+    socks5LocalAddress = settings->value("Socks5LocalAddress", QVariant("127.0.0.1")).toString();
+    socks5LocalPort = settings->value("Socks5LocalPort", QVariant(1080)).toInt();
+    httpLocalAddress = settings->value("HttpLocalAddress", QVariant("127.0.0.1")).toString();
+    httpLocalPort = settings->value("HttpLocalPort", QVariant(1081)).toInt();
+    pacLocalAddress = settings->value("PACLocalAddress", QVariant("127.0.0.1")).toString();
+    pacLocalPort = settings->value("PACLocalPort", QVariant(8070)).toInt();
 }
 
 void ConfigHelper::checkProfileDataUsageReset(TQProfile &profile)
@@ -456,7 +535,7 @@ void ConfigHelper::setStartAtLogin()
             "<plist version=\"1.0\">\n"
             "<dict>\n"
             "  <key>Label</key>\n"
-            "  <string>org.shadowsocks.shadowsocks-qt5.launcher</string>\n"
+            "  <string>org.trojan.trojan-qt5.launcher</string>\n"
             "  <key>LimitLoadToSessionType</key>\n"
             "  <string>Aqua</string>\n"
             "  <key>ProgramArguments</key>\n"

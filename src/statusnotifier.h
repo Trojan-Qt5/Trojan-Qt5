@@ -19,6 +19,8 @@
 #ifndef STATUSNOTIFIER_H
 #define STATUSNOTIFIER_H
 
+#include "confighelper.h"
+
 #include <QObject>
 #include <QSystemTrayIcon>
 #include <QMenu>
@@ -29,18 +31,28 @@ class StatusNotifier : public QObject
 {
     Q_OBJECT
 public:
-    StatusNotifier(MainWindow *w, bool startHiden, QObject *parent = 0);
+    StatusNotifier(MainWindow *w, ConfigHelper *confHelper, QObject *parent = 0);
+
+    void initActions();
 
 public slots:
     void activate();
     void showNotification(const QString &);
     void changeIcon(bool started);
     void onWindowVisibleChanged(bool visible);
+    void toggleProxyMode(QAction *action);
 
 private:
     QMenu systrayMenu;
+    QAction *trojanQt5Action;
+    /** Proxy Mode Actions. */
+    QActionGroup *proxyModeActionGroup;
+    QAction *pacAction;
+    QAction *globalAction;
+    QAction *manualAction;
     QAction *minimiseRestoreAction;
     QSystemTrayIcon systray;
+    ConfigHelper *configHelper;
     MainWindow *window;
 };
 

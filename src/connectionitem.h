@@ -19,6 +19,7 @@
 #ifndef CONNECTIONITEM_H
 #define CONNECTIONITEM_H
 
+#include <QColor>
 #include <QObject>
 #include <QStringList>
 #include "connection.h"
@@ -45,6 +46,8 @@ signals:
 private:
     Connection *con;
 
+    static QColor convertStatusToColor(const bool isRunning);
+    static QColor convertLatencyToColor(const int latency);
     static QString convertLatencyToString(const int latency);
     static QString convertBytesToHumanReadable(quint64 bytes);
     static const QStringList bytesUnits;

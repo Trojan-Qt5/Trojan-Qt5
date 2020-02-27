@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>480</width>
-    <height>480</height>
+    <width>540</width>
+    <height>540</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -15,6 +15,70 @@
     <width>400</width>
     <height>400</height>
    </size>
+  </property>
+  <property name="palette">
+   <palette>
+    <active>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>247</red>
+        <green>247</green>
+        <blue>247</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </active>
+    <inactive>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>247</red>
+        <green>247</green>
+        <blue>247</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </inactive>
+    <disabled>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>247</red>
+        <green>247</green>
+        <blue>247</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>247</red>
+        <green>247</green>
+        <blue>247</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </disabled>
+   </palette>
   </property>
   <property name="windowTitle">
    <string>Connection Manager</string>
@@ -30,6 +94,24 @@
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="QLineEdit" name="filterLineEdit">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>36</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit[text=&quot;&quot;]
+{ 
+color: rgb(181,181,181); 
+}</string>
+      </property>
       <property name="placeholderText">
        <string>Input to filter</string>
       </property>
@@ -40,6 +122,20 @@
     </item>
     <item>
      <widget class="QTableView" name="connectionView">
+      <property name="styleSheet">
+       <string notr="true">QTableView
+{
+selection-background-color: rgb(0,147,255);
+}
+
+QHeaderView::section
+{
+background-color: white;
+border: 1px solid white;
+color: rgb(112,112,112);
+text-align: left;
+}</string>
+      </property>
       <property name="editTriggers">
        <set>QAbstractItemView::NoEditTriggers</set>
       </property>
@@ -75,6 +171,11 @@
    <property name="windowTitle">
     <string>Show Toolbar</string>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background : rgb(255, 255, 255);
+border: none;
+spacing: 35px;</string>
+   </property>
    <property name="movable">
     <bool>false</bool>
    </property>
@@ -93,14 +194,13 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="Placeholder"/>
    <addaction name="actionConnect"/>
    <addaction name="actionDisconnect"/>
    <addaction name="actionTestLatency"/>
-   <addaction name="separator"/>
    <addaction name="actionEdit"/>
    <addaction name="actionDelete"/>
    <addaction name="actionShare"/>
-   <addaction name="separator"/>
    <addaction name="actionMoveUp"/>
    <addaction name="actionMoveDown"/>
   </widget>
@@ -109,11 +209,37 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>480</width>
-     <height>22</height>
+     <width>540</width>
+     <height>40</height>
     </rect>
    </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>40</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QMenuBar
+{
+     background: rgb(247,247,247);
+}
+
+QMenuBar::item::pressed
+{
+	background : rgb(64,155,255);
+}
+
+QMenu::item:selected { 
+    color: rgb(255,255,255);
+}</string>
+   </property>
    <widget class="QMenu" name="menuConnection">
+    <property name="font">
+     <font>
+      <family>Arial</family>
+     </font>
+    </property>
     <property name="title">
      <string>&amp;Connection</string>
     </property>
@@ -149,6 +275,11 @@
     <addaction name="actionMoveDown"/>
    </widget>
    <widget class="QMenu" name="menuFile">
+    <property name="font">
+     <font>
+      <family>Arial</family>
+     </font>
+    </property>
     <property name="title">
      <string>Fi&amp;le</string>
     </property>
@@ -159,20 +290,33 @@
     <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuSettings">
+    <property name="font">
+     <font>
+      <family>Arial</family>
+     </font>
+    </property>
     <property name="title">
      <string>Settin&amp;gs</string>
     </property>
     <addaction name="actionGeneralSettings"/>
+    <addaction name="actionAdvanceSettings"/>
     <addaction name="actionUserRuleSerttings"/>
     <addaction name="separator"/>
     <addaction name="actionShowFilterBar"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
+    <property name="font">
+     <font>
+      <family>Arial</family>
+     </font>
+    </property>
     <property name="title">
      <string>&amp;Help</string>
     </property>
     <addaction name="actionAbout"/>
     <addaction name="actionAboutQt"/>
+    <addaction name="separator"/>
+    <addaction name="actionCheckUpdate"/>
     <addaction name="separator"/>
     <addaction name="actionGuiLog"/>
     <addaction name="actionTrojanLog"/>
@@ -231,14 +375,31 @@
     <string>&amp;Edit</string>
    </property>
   </action>
+  <action name="Placeholder">
+   <property name="text">
+    <string/>
+   </property>
+   <property name="iconText">
+    <string/>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
+   </property>
+  </action>
   <action name="actionConnect">
    <property name="text">
     <string>&amp;Connect</string>
+   </property>
+   <property name="shortcut">
+    <string>Return</string>
    </property>
   </action>
   <action name="actionDisconnect">
    <property name="text">
     <string>D&amp;isconnect</string>
+   </property>
+   <property name="shortcut">
+    <string>Return</string>
    </property>
   </action>
   <action name="actionQuit">
@@ -248,6 +409,11 @@
    </property>
    <property name="text">
     <string>&amp;Quit</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>.AppleSystemUIFont</family>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
@@ -273,6 +439,11 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+,</string>
+   </property>
+  </action>
+  <action name="actionAdvanceSettings">
+   <property name="text">
+    <string>&amp;Advance Settings</string>
    </property>
   </action>
   <action name="actionShare">
@@ -378,6 +549,11 @@
    </property>
    <property name="toolTip">
     <string>Connect to this connection and disconnect any connections currently using  the same local port</string>
+   </property>
+  </action>
+  <action name="actionCheckUpdate">
+   <property name="text">
+    <string>Check Update</string>
    </property>
   </action>
   <action name="actionTrojanLog">

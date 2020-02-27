@@ -41,7 +41,7 @@ CONFIG += sdk_no_version_check
 #DEFINES += QT_DEPRECATED_WARNINGS
 
 # Define App Version
-DEFINES += "APP_VERSION=\"\\\"0.0.3\\\"\""
+DEFINES += "APP_VERSION=\"\\\"0.0.4\\\"\""
 
 # Trojan
 #DEFINES += ENABLE_MYSQL
@@ -63,6 +63,9 @@ DEFINES += FEATURE_GRACEFUL_TERMINATION
 # 3rdParty Headers
 INCLUDEPATH += $$PWD/src/plog/include
 
+# QtAwesome
+include($$PWD/src/QtAwesome/QtAwesome/QtAwesome.pri)
+
 win32 {
     SOURCES += \
         src/sysproxy/windows.c \
@@ -74,11 +77,13 @@ win32 {
     INCLUDEPATH += C:\TQLibraries\boost_1_72_0
     INCLUDEPATH += C:\TQLibraries\OpenSSL-Win32\include
     INCLUDEPATH += C:\TQLibraries\QREncode\include
+    INCLUDEPATH += C:\TQLibraries\WinSparkle\include
     LIBS += -LC:\TQLibraries\ZBar\lib -llibzbar-0
     LIBS += -LC:\TQLibraries\OpenSSL-Win32\lib -llibcrypto -llibssl
     LIBS += -LC:\TQLibraries\boost_1_72_0\lib32-msvc-14.1
     LIBS += -LC:\TQLibraries\boost_1_72_0\lib32-msvc-14.2
     LIBS += -LC:\TQLibraries\QREncode\lib -lqrcodelib
+    LIBS += -LC:\TQLibraries\WinSparkle\lib
     LIBS += -lwsock32 -lws2_32
     LIBS += -lCrypt32
     DEFINES += WIN32_LEAN_AND_MEAN
@@ -87,6 +92,7 @@ win32 {
 }
 
 mac {
+    HEADERS +=
     SOURCES += \
         src/statusnotifier.mm
     INCLUDEPATH += $$PWD/src/trojan/src
@@ -238,6 +244,7 @@ SOURCES += \
     src/urihelper.cpp \
     src/uriinputdialog.cpp \
     src/userrules.cpp \
+    src/advancesettingsdialog.cpp \
     src/trojan/src/core/authenticator.cpp \
     src/trojan/src/core/config.cpp \
     src/trojan/src/core/log.cpp \
@@ -281,6 +288,7 @@ HEADERS += \
     src/urihelper.h \
     src/uriinputdialog.h \
     src/userrules.h \
+    src/advancesettingsdialog.h \
     src/trojan/src/core/authenticator.h \
     src/trojan/src/core/config.h \
     src/trojan/src/core/log.h \
@@ -299,6 +307,7 @@ HEADERS += \
     src/trojan/src/ssl/sslsession.h
 
 FORMS += \
+    ui/advancesettingsdialog.ui \
     ui/editdialog.ui \
     ui/mainwindow.ui \
     ui/settingsdialog.ui \
@@ -317,4 +326,5 @@ RESOURCES += \
     resources/bin.qrc \
     resources/icons.qrc \
     resources/pac.qrc \
+    resources/pem.qrc \
     resources/translations.qrc

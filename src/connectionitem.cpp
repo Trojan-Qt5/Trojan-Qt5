@@ -25,7 +25,7 @@ const QStringList ConnectionItem::bytesUnits = QStringList()
 
 int ConnectionItem::columnCount()
 {
-    return 9;
+    return 8;
 }
 
 QVariant ConnectionItem::data(int column, int role) const
@@ -34,42 +34,45 @@ QVariant ConnectionItem::data(int column, int role) const
         return QVariant();
     }
 
-    if (role == Qt::DisplayRole || role == Qt::EditRole) {
+    if ((role == Qt::DisplayRole || role == Qt::EditRole) || role == Qt::ForegroundRole) {
         switch (column) {
         case 0://name
             return QVariant(con->profile.name);
         case 1://server
             return QVariant(con->profile.serverAddress);
         case 2://status
+            if (role == Qt::ForegroundRole) {
+                return QVariant(convertStatusToColor(con->isRunning()));
+            }
             return con->isRunning() ? QVariant(tr("Connected"))
                                     : QVariant(tr("Disconnected"));
         case 3://latency
-            if (role == Qt::DisplayRole) {
+            if (role == Qt::ForegroundRole) {
+                return QVariant(convertLatencyToColor(con->profile.latency));
+            } else if (role == Qt::DisplayRole) {
                 return QVariant(convertLatencyToString(con->profile.latency));
             } else {
                 return QVariant(con->profile.latency);
             }
-        case 4://local port
-            return QVariant(con->profile.localPort);
-        case 5://data usage (term)
+        case 4://data usage (term)
             if (role == Qt::DisplayRole) {
                 return QVariant(convertBytesToHumanReadable(con->profile.currentUsage));
             } else {
                 return QVariant(con->profile.currentUsage);
             }
-        case 6://data usage (total)
+        case 5://data usage (total)
             if (role == Qt::DisplayRole) {
                 return QVariant(convertBytesToHumanReadable(con->profile.totalUsage));
             } else {
                 return QVariant(con->profile.totalUsage);
             }
-        case 7://reset date
+        case 6://reset date
             if (role == Qt::DisplayRole) {
                 return QVariant(con->profile.nextResetDate.toString(Qt::SystemLocaleShortDate));
             } else {
                 return QVariant(con->profile.nextResetDate);
             }
-        case 8://last used
+        case 7://last used
             if (role == Qt::DisplayRole) {
                 return QVariant(con->profile.lastTime.toString(Qt::SystemLocaleShortDate));
             } else {
@@ -85,6 +88,37 @@ QVariant ConnectionItem::data(int column, int role) const
     }
 
     return QVariant();
+}
+
+QColor ConnectionItem::convertStatusToColor(const bool isRunning)
+{
+    if (isRunning) {
+        return QColor::fromRgb(11, 155, 28);
+    } else {
+        return QColor::fromRgb(181, 181, 181);
+    }
+}
+
+QColor ConnectionItem::convertLatencyToColor(const int latency)
+{
+    switch (latency) {
+        case TQProfile::LATENCY_TIMEOUT:
+            return QColor(Qt::red);
+        case TQProfile::LATENCY_ERROR:
+            return QColor(Qt::red);
+        case TQProfile::LATENCY_UNKNOWN:
+            return QColor(Qt::red);
+        default:
+            if (latency < 100) {
+                /** RGB come from @eejworks. */
+                return QColor::fromRgb(11, 155, 28, 255);
+            } else if (latency > 100 && latency < 200) {
+                /** RGB come from @eejworks. */
+                return QColor::fromRgb(4, 156, 213, 255);
+            } else if (latency > 200) {
+                return QColor(Qt::yellow);
+            }
+    }
 }
 
 QString ConnectionItem::convertLatencyToString(const int latency)
@@ -105,7 +139,7 @@ QString ConnectionItem::convertLatencyToString(const int latency)
             latencyStr = QString::number(static_cast<double>(latency) / 1000.0)
                        + QStringLiteral(" ") + tr("s");
         } else {
-            latencyStr = QString::number(latency) + QStringLiteral(" ") + tr("ms");
+            latencyStr = QString::number(latency) + QStringLiteral(" ") + "ms";
         }
     }
     return latencyStr;

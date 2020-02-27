@@ -78,7 +78,8 @@ void SystemProxyHelper::setSystemProxy(TQProfile profile, int method)
         if(std::regex_match(portName, all))
             if (std::regex_replace(portName, prefix, "") == "AirPort"
              || std::regex_replace(portName, prefix, "") == "Wi-Fi"
-             || std::regex_replace(portName, prefix, "") == "Ethernet")
+             || std::regex_replace(portName, prefix, "") == "Ethernet"
+             || std::regex_replace(portName, prefix, "") == "USB 10/100/100 LAN")
                 hardwarePorts.push_back(std::regex_replace(portName, prefix, ""));
     }
 

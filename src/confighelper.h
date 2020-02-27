@@ -47,6 +47,8 @@ public:
      */
     void readGeneralSettings();
 
+    void readAdvanceSettings();
+
     void save(const ConnectionTableModel &model);
 
     void importGuiConfigJson(ConnectionTableModel *model, const QString &file);
@@ -70,6 +72,12 @@ public:
 
     /* some functions used to communicate with SettingsDialog */
     int  getToolbarStyle() const;
+    QString getSocks5Address() const;
+    int getSocks5Port() const;
+    QString getHttpAddress() const;
+    int getHttpPort() const;
+    QString getPACAddress() const;
+    int getPACPort() const;
     bool isAutoSetSystemProxy() const;
     bool isEnablePACMode() const;
     bool isHideWindowOnStartup() const;
@@ -78,7 +86,9 @@ public:
     bool isShowToolbar() const;
     bool isShowFilterBar() const;
     bool isNativeMenuBar() const;
+    void setProxyMode(bool assp, bool pac);
     void setGeneralSettings(int ts, bool assp, bool pac, bool hide, bool automaticStartUp, bool oneInstance, bool nativeMB);
+    void setAdvanceSettings(QString sa, int sp, QString ha, int hp, QString pa, int pp);
     void setMainWindowGeometry(const QByteArray &geometry);
     void setMainWindowState(const QByteArray &state);
     void setTableGeometry(const QByteArray &geometry);
@@ -98,6 +108,13 @@ signals:
 
 private:
     int toolbarStyle;
+    /** Port Settings. */
+    QString socks5LocalAddress;
+    int socks5LocalPort;
+    QString httpLocalAddress;
+    int httpLocalPort;
+    QString pacLocalAddress;
+    int pacLocalPort;
     bool autoSetSystemProxy;
     bool enablePACMode;
     bool hideWindowOnStartup;

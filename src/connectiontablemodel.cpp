@@ -48,14 +48,12 @@ QVariant ConnectionTableModel::headerData(int section, Qt::Orientation orientati
     case 3:
         return QVariant(tr("Latency"));
     case 4:
-        return QVariant(tr("Local Port"));
-    case 5:
         return QVariant(tr("Term Usage"));
-    case 6:
+    case 5:
         return QVariant(tr("Total Usage"));
-    case 7:
+    case 6:
         return QVariant(tr("Reset Date"));
-    case 8:
+    case 7:
         return QVariant(tr("Last Used"));
     default:
         return QVariant();
