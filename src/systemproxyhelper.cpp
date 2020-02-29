@@ -141,8 +141,8 @@ void SystemProxyHelper::setSystemProxy(TQProfile profile, int method)
     } else if (system("kwriteconfig5 --help > /dev/null") == 0) {
         if (method == 1 && profile.dualMode) {
             runShell("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key ProxyType 1");
-            runShell(QString("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key httpProxy \"%1:%2\"").arg(profile.localAddress).arg(conf->getHttpPort()));
-            runShell(QString("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key httpsProxy \"%1:%2\"").arg(profile.localAddress).arg(conf->getHttpPort()));
+            runShell(QString("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key httpProxy \"%1:%2\"").arg(conf->getHttpAddress()).arg(conf->getHttpPort()));
+            runShell(QString("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key httpsProxy \"%1:%2\"").arg(conf->getHttpAddress()).arg(conf->getHttpPort()));
             runShell(QString("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key socksProxy \"%1:%2\"").arg(conf->getSocks5Address()).arg(conf->getSocks5Port()));
         } else if (method == 1) {
             runShell("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key ProxyType 1");
