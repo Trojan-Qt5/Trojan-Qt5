@@ -11,7 +11,7 @@
 	<key>CFBundleGetInfoString</key>
 	<string>Trojan-Qt5</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.thewanderingcoe.trojan-qt5</string>
+	<string>com.thewanderingcoel.trojan-qt5</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -25,6 +25,8 @@
 	<key>CFBundleVersion</key>
 	<string>0.0.4</string>
 	<key>CSResourcesFileMapped</key>
+	<true/>
+	<key>NSRequiresAquaSystemAppearance</key>
 	<true/>
 	<key>SUPublicEDKey</key>
 	<string>bmzcQnOMLLTdjgdXSyEpSDAw1Gv5wRraInICUMNOMkE=</string>

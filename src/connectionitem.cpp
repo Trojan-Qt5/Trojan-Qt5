@@ -135,7 +135,7 @@ QColor ConnectionItem::convertLatencyToColor(const int latency)
                 /** RGB come from @eejworks. */
                 return QColor::fromRgb(4, 156, 213, 255);
             } else if (latency > 200) {
-                return QColor(Qt::yellow);
+                return QColor::fromRgb(255, 148, 0);
             }
     }
 }

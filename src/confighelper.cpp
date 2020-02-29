@@ -105,14 +105,6 @@ void ConfigHelper::importGuiConfigJson(ConnectionTableModel *model, const QStrin
         model->appendConnection(con);
     }
 
-    /** Setup Advance Settings. */
-    QJsonObject advanceObject = JSONDoc.object();
-    setAdvanceSettings(advanceObject["socks5_address"].toString(),
-                       advanceObject["socks5_port"].toInt(),
-                       advanceObject["http_address"].toString(),
-                       advanceObject["http_port"].toInt(),
-                       advanceObject["pac_address"].toString(),
-                       advanceObject["pac_port"].toInt());
 }
 
 void ConfigHelper::exportGuiConfigJson(const ConnectionTableModel &model, const QString &file)
@@ -138,12 +130,6 @@ void ConfigHelper::exportGuiConfigJson(const ConnectionTableModel &model, const 
 
     QJsonObject JSONObj;
     JSONObj["configs"] = QJsonValue(confArray);
-    JSONObj["socks5_address"] = QJsonValue(socks5LocalAddress);
-    JSONObj["socks5_port"] = QJsonValue(socks5LocalPort);
-    JSONObj["http_address"] = QJsonValue(httpLocalAddress);
-    JSONObj["http_port"] = QJsonValue(httpLocalPort);
-    JSONObj["pac_address"] = QJsonValue(pacLocalAddress);
-    JSONObj["pac_port"] = QJsonValue(pacLocalPort);
 
     QJsonDocument JSONDoc(JSONObj);
 
