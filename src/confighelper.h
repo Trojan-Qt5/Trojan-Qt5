@@ -53,16 +53,17 @@ public:
 
     void importGuiConfigJson(ConnectionTableModel *model, const QString &file);
 
-    //the format is only compatible with shadowsocks-csharp (shadowsocks-windows)
     void exportGuiConfigJson(const ConnectionTableModel& model, const QString &file);
 
     void importShadowrocketJson(ConnectionTableModel *model, const QString &file);
 
+    void exportShadowrocketJson(const ConnectionTableModel &model, const QString &file);
+
     Connection* configJsonToConnection(const QString &file);
 
-    static void connectionToJson(TQProfile &profile);
+    void connectionToJson(TQProfile &profile);
 
-    static void generatePrivoxyConf(TQProfile &profile);
+    void generatePrivoxyConf();
 
     //start those connections marked as auto-start
     void startAllAutoStart(const ConnectionTableModel& model);
@@ -83,11 +84,12 @@ public:
     bool isHideWindowOnStartup() const;
     bool isStartAtLogin() const;
     bool isOnlyOneInstance() const;
+    bool isCheckPortAvailability() const;
     bool isShowToolbar() const;
     bool isShowFilterBar() const;
     bool isNativeMenuBar() const;
     void setProxyMode(bool assp, bool pac);
-    void setGeneralSettings(int ts, bool assp, bool pac, bool hide, bool automaticStartUp, bool oneInstance, bool nativeMB);
+    void setGeneralSettings(int ts, bool assp, bool pac, bool hide, bool sal, bool oneInstance, bool cpa, bool nativeMB);
     void setAdvanceSettings(QString sa, int sp, QString ha, int hp, QString pa, int pp);
     void setMainWindowGeometry(const QByteArray &geometry);
     void setMainWindowState(const QByteArray &state);
@@ -120,6 +122,7 @@ private:
     bool hideWindowOnStartup;
     bool startAtLogin;
     bool onlyOneInstace;
+    bool checkPortAvailability;
     bool showToolbar;
     bool showFilterBar;
     bool nativeMenuBar;

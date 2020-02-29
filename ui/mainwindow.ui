@@ -210,7 +210,7 @@ spacing: 35px;</string>
      <x>0</x>
      <y>0</y>
      <width>540</width>
-     <height>40</height>
+     <height>41</height>
     </rect>
    </property>
    <property name="minimumSize">
@@ -219,18 +219,36 @@ spacing: 35px;</string>
      <height>40</height>
     </size>
    </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>14</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
    <property name="styleSheet">
     <string notr="true">QMenuBar
 {
      background: rgb(247,247,247);
 }
 
+QMenuBar::item
+{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
 QMenuBar::item::pressed
 {
 	background : rgb(64,155,255);
+	color: rgb(255,255,255);
 }
 
 QMenu::item:selected { 
+	background : rgba(64,155,255,76%);
     color: rgb(255,255,255);
 }</string>
    </property>
@@ -270,7 +288,6 @@ QMenu::item:selected {
     <addaction name="actionTestLatency"/>
     <addaction name="actionTestAllLatency"/>
     <addaction name="separator"/>
-    <addaction name="separator"/>
     <addaction name="actionMoveUp"/>
     <addaction name="actionMoveDown"/>
    </widget>
@@ -278,6 +295,8 @@ QMenu::item:selected {
     <property name="font">
      <font>
       <family>Arial</family>
+      <weight>50</weight>
+      <bold>false</bold>
      </font>
     </property>
     <property name="title">
@@ -285,6 +304,7 @@ QMenu::item:selected {
     </property>
     <addaction name="actionImportGUIJson"/>
     <addaction name="actionExportGUIJson"/>
+    <addaction name="actionExportShadowrocketJson"/>
     <addaction name="actionSaveManually"/>
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
@@ -335,10 +355,20 @@ QMenu::item:selected {
    <property name="toolTip">
     <string>Add connection manually</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
+   </property>
   </action>
   <action name="actionQRCode">
    <property name="text">
     <string>&amp;Scan QR Code on Screen</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
    </property>
   </action>
   <action name="actionQRCodeFromFile">
@@ -352,6 +382,11 @@ QMenu::item:selected {
    <property name="toolTip">
     <string>From QR code image file</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
+   </property>
   </action>
   <action name="actionURI">
    <property name="text">
@@ -359,6 +394,11 @@ QMenu::item:selected {
    </property>
    <property name="toolTip">
     <string>Add connection from URI</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
    </property>
   </action>
   <action name="actionDelete">
@@ -369,10 +409,20 @@ QMenu::item:selected {
    <property name="text">
     <string>&amp;Delete</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
+   </property>
   </action>
   <action name="actionEdit">
    <property name="text">
     <string>&amp;Edit</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
    </property>
   </action>
   <action name="Placeholder">
@@ -390,6 +440,11 @@ QMenu::item:selected {
    <property name="text">
     <string>&amp;Connect</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
+   </property>
    <property name="shortcut">
     <string>Return</string>
    </property>
@@ -397,6 +452,11 @@ QMenu::item:selected {
   <action name="actionDisconnect">
    <property name="text">
     <string>D&amp;isconnect</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
    </property>
    <property name="shortcut">
     <string>Return</string>
@@ -412,7 +472,7 @@ QMenu::item:selected {
    </property>
    <property name="font">
     <font>
-     <family>.AppleSystemUIFont</family>
+     <family>Arial</family>
     </font>
    </property>
    <property name="shortcut">
@@ -427,15 +487,30 @@ QMenu::item:selected {
    <property name="text">
     <string>&amp;About</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
+   </property>
   </action>
   <action name="actionAboutQt">
    <property name="text">
     <string>About &amp;Qt</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
+   </property>
   </action>
   <action name="actionGeneralSettings">
    <property name="text">
     <string>&amp;General Settings</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+,</string>
@@ -445,15 +520,30 @@ QMenu::item:selected {
    <property name="text">
     <string>&amp;Advance Settings</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
+   </property>
   </action>
   <action name="actionShare">
    <property name="text">
     <string>&amp;Share</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
+   </property>
   </action>
   <action name="actionReportBug">
    <property name="text">
     <string>&amp;Report Bug</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
    </property>
   </action>
   <action name="actionTestLatency">
@@ -463,10 +553,20 @@ QMenu::item:selected {
    <property name="toolTip">
     <string>Test the latency of selected connection</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
+   </property>
   </action>
   <action name="actionTestAllLatency">
    <property name="text">
     <string>Test All C&amp;onnections Latency</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
    </property>
   </action>
   <action name="actionImportGUIJson">
@@ -475,6 +575,11 @@ QMenu::item:selected {
    </property>
    <property name="toolTip">
     <string>Import connections from old version configuration file</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
    </property>
   </action>
   <action name="actionFromConfigJson">
@@ -485,6 +590,11 @@ QMenu::item:selected {
    <property name="text">
     <string>From &amp;config.json</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
+   </property>
   </action>
   <action name="actionSaveManually">
    <property name="icon">
@@ -493,6 +603,11 @@ QMenu::item:selected {
    </property>
    <property name="text">
     <string>&amp;Save Manually</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+S</string>
@@ -506,6 +621,11 @@ QMenu::item:selected {
    <property name="text">
     <string>&amp;Move Up</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
+   </property>
   </action>
   <action name="actionMoveDown">
    <property name="icon">
@@ -514,6 +634,11 @@ QMenu::item:selected {
    </property>
    <property name="text">
     <string>Mo&amp;ve Down</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
    </property>
   </action>
   <action name="actionShowFilterBar">
@@ -526,6 +651,11 @@ QMenu::item:selected {
    <property name="text">
     <string>&amp;Show Filter Bar</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
+   </property>
    <property name="shortcut">
     <string>Ctrl+F</string>
    </property>
@@ -533,6 +663,21 @@ QMenu::item:selected {
   <action name="actionExportGUIJson">
    <property name="text">
     <string>&amp;Export as gui-config.json</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
+   </property>
+  </action>
+  <action name="actionExportShadowrocketJson">
+   <property name="text">
+    <string>&amp;Export as shadowrocket.json</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
    </property>
   </action>
   <action name="actionScanQRCodeCapturer">
@@ -542,6 +687,11 @@ QMenu::item:selected {
    <property name="toolTip">
     <string>Scan QR Code using Capturer</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
+   </property>
   </action>
   <action name="actionForceConnect">
    <property name="text">
@@ -550,25 +700,50 @@ QMenu::item:selected {
    <property name="toolTip">
     <string>Connect to this connection and disconnect any connections currently using  the same local port</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
+   </property>
   </action>
   <action name="actionCheckUpdate">
    <property name="text">
     <string>Check Update</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
    </property>
   </action>
   <action name="actionTrojanLog">
    <property name="text">
     <string>Trojan Log</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
+   </property>
   </action>
   <action name="actionGuiLog">
    <property name="text">
     <string>Gui Log</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
+   </property>
   </action>
   <action name="actionUserRuleSerttings">
    <property name="text">
     <string>User Rule Settings</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
    </property>
   </action>
   <action name="actionFromShadowrocketJson">
@@ -578,6 +753,11 @@ QMenu::item:selected {
    </property>
    <property name="text">
     <string>From shadowrocket.json</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
    </property>
   </action>
  </widget>

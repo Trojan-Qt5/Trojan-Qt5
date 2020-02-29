@@ -32,9 +32,9 @@ void StatusNotifier::initActions()
     trojanQt5Action->setEnabled(false);
     proxyModeActionGroup = new QActionGroup(this);
     proxyModeActionGroup->setExclusive(true);
-    pacAction = new QAction("PAC Mode", proxyModeActionGroup);
-    globalAction = new QAction("Global Mode", proxyModeActionGroup);
-    manualAction = new QAction("Manually Mode", proxyModeActionGroup);
+    pacAction = new QAction(tr("PAC Mode"), proxyModeActionGroup);
+    globalAction = new QAction(tr("Global Mode"), proxyModeActionGroup);
+    manualAction = new QAction(tr("Manually Mode"), proxyModeActionGroup);
     pacAction->setCheckable(true);
     globalAction->setCheckable(true);
     manualAction->setCheckable(true);

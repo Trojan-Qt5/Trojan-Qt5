@@ -1,15 +1,18 @@
+#include "confighelper.h"
 #include "systemproxyhelper.h"
 #include <array>
 #include <stdio.h>
 #include <sstream>
 #include <regex>
+#include <QCoreApplication>
 #if defined (Q_OS_WIN)
 #include <Windows.h>
 #include "sysproxy/windows.h"
 #endif
 
 SystemProxyHelper::SystemProxyHelper()
-{}
+{
+}
 
 /**
  * set system proxy to none after deconstruct
@@ -55,13 +58,21 @@ std::string SystemProxyHelper::runShell(QString cmd)
  */
 void SystemProxyHelper::setSystemProxy(TQProfile profile, int method)
 {
+#ifdef Q_OS_WIN
+    QString configFile = QCoreApplication::applicationDirPath() + "/config.ini";
+#else
+    QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
+    QString configFile = configDir.absolutePath() + "/config.ini";
+#endif
+    ConfigHelper *conf = new ConfigHelper(configFile);
+
 #if defined(Q_OS_WIN)
     if (method == 1 && profile.dualMode) {
-        QString server = profile.localAddress + ":" + QString::number(profile.localHttpPort);
+        QString server = conf->getHttpAddress() + ":" + QString::number(conf->getHttpPort());
         LPTSTR serverString = (LPTSTR) server.utf16();
         int status = setProxy(1, serverString);
     } else if (method == 2) {
-        QString pac = "http://127.0.0.1:8070/proxy.pac";
+        QString pac = QString("http://%1:%2/proxy.pac").arg(conf->getPACAddress()).arg(QString::number(conf->getPACPort()));
         LPTSTR pacString = (LPTSTR) pac.utf16();
         int status = setProxy(2, pacString);
     } else if (method == 0) {
@@ -85,13 +96,13 @@ void SystemProxyHelper::setSystemProxy(TQProfile profile, int method)
 
     for (auto &i : hardwarePorts) {
         if (method == 1 && profile.dualMode) {
-            runShell(QString("networksetup -setwebproxy \"%1\" %2 %3").arg(QString::fromStdString(i)).arg(profile.localAddress).arg(QString::number(profile.localHttpPort)));
-            runShell(QString("networksetup -setsecurewebproxy \"%1\" %2 %3").arg(QString::fromStdString(i)).arg(profile.localAddress).arg(QString::number(profile.localHttpPort)));
-            runShell(QString("networksetup -setsocksfirewallproxy \"%1\" %2 %3").arg(QString::fromStdString(i)).arg(profile.localAddress).arg(QString::number(profile.localPort)));
+            runShell(QString("networksetup -setwebproxy \"%1\" %2 %3").arg(QString::fromStdString(i)).arg(conf->getHttpAddress()).arg(QString::number(conf->getHttpPort())));
+            runShell(QString("networksetup -setsecurewebproxy \"%1\" %2 %3").arg(QString::fromStdString(i)).arg(conf->getHttpAddress()).arg(QString::number(conf->getHttpPort())));
+            runShell(QString("networksetup -setsocksfirewallproxy \"%1\" %2 %3").arg(QString::fromStdString(i)).arg(conf->getSocks5Address()).arg(QString::number(conf->getSocks5Port())));
         } else if (method == 1) {
-            runShell(QString("networksetup -setsocksfirewallproxy \"%1\" %2 %3").arg(QString::fromStdString(i)).arg(profile.localAddress).arg(QString::number(profile.localPort)));
+            runShell(QString("networksetup -setsocksfirewallproxy \"%1\" %2 %3").arg(QString::fromStdString(i)).arg(conf->getSocks5Address()).arg(QString::number(conf->getSocks5Port())));
         } else if (method == 2) {
-            runShell(QString("networksetup -setautoproxyurl \"%1\" http://127.0.0.1:8070/proxy.pac").arg(QString::fromStdString(i)));
+            runShell(QString("networksetup -setautoproxyurl \"%1\" http://%2:%3/proxy.pac").arg(QString::fromStdString(i)).arg(conf->getPACAddress()).arg(QString::number(conf->getPACPort())));
         } else if (method == 0) {
             runShell(QString("networksetup -setautoproxystate \"%1\" off").arg(QString::fromStdString(i)));
             runShell(QString("networksetup -setwebproxystate \"%1\" off").arg(QString::fromStdString(i)));
@@ -104,19 +115,19 @@ void SystemProxyHelper::setSystemProxy(TQProfile profile, int method)
     if (system("gsettings --version > /dev/null") == 0) {
         if (method == 1 && profile.dualMode) {
             runShell(QString("gsettings set org.gnome.system.proxy mode manual"));
-            runShell(QString("gsettings set org.gnome.system.proxy.http host %1").arg(profile.localAddress));
-            runShell(QString("gsettings set org.gnome.system.proxy.http port %1").arg(QString::number(profile.localHttpPort)));
-            runShell(QString("gsettings set org.gnome.system.proxy.https host %1").arg(profile.localAddress));
-            runShell(QString("gsettings set org.gnome.system.proxy.https port %1").arg(QString::number(profile.localHttpPort)));
-            runShell(QString("gsettings set org.gnome.system.proxy.socks host %1").arg(profile.localAddress));
-            runShell(QString("gsettings set org.gnome.system.proxy.socks port %1").arg(QString::number(profile.localPort)));
+            runShell(QString("gsettings set org.gnome.system.proxy.http host %1").arg(conf->getHttpAddress()));
+            runShell(QString("gsettings set org.gnome.system.proxy.http port %1").arg(QString::number(conf->getHttpPort())));
+            runShell(QString("gsettings set org.gnome.system.proxy.https host %1").arg(conf->getHttpAddress()));
+            runShell(QString("gsettings set org.gnome.system.proxy.https port %1").arg(QString::number(conf->getHttpPort())));
+            runShell(QString("gsettings set org.gnome.system.proxy.socks host %1").arg(conf->getSocks5Address()));
+            runShell(QString("gsettings set org.gnome.system.proxy.socks port %1").arg(QString::number(conf->getSocks5Port())));
         } else if (method == 1) {
             runShell(QString("gsettings set org.gnome.system.proxy mode manual"));
-            runShell(QString("gsettings set org.gnome.system.proxy.socks host %1").arg(profile.localAddress));
-            runShell(QString("gsettings set org.gnome.system.proxy.socks port %1").arg(QString::number(profile.localPort)));
+            runShell(QString("gsettings set org.gnome.system.proxy.socks host %1").arg(conf->getSocks5Address()));
+            runShell(QString("gsettings set org.gnome.system.proxy.socks port %1").arg(QString::number(conf->getSocks5Port())));
         } else if (method == 2) {
             runShell(QString("gsettings set org.gnome.system.proxy mode auto"));
-            runShell(QString("gsettings set org.gnome.system.proxy autoconfig-url http://127.0.0.1:8070/proxy.pac"));
+            runShell(QString("gsettings set org.gnome.system.proxy autoconfig-url http://%1:%2/proxy.pac").arg(conf->getPACAddress()).arg(QString::number(conf->getPACPort())));
         } else if (method == 0) {
             runShell("gsettings set org.gnome.system.proxy.mode none");
             runShell("gsettings set org.gnome.system.proxy.autoconfig ''");
@@ -130,15 +141,15 @@ void SystemProxyHelper::setSystemProxy(TQProfile profile, int method)
     } else if (system("kwriteconfig5 --help > /dev/null") == 0) {
         if (method == 1 && profile.dualMode) {
             runShell("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key ProxyType 1");
-            runShell(QString("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key httpProxy \"%1:%2\"").arg(profile.localAddress).arg(profile.localHttpPort));
-            runShell(QString("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key httpsProxy \"%1:%2\"").arg(profile.localAddress).arg(profile.localHttpPort));
-            runShell(QString("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key socksProxy \"%1:%2\"").arg(profile.localAddress).arg(profile.localPort));
+            runShell(QString("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key httpProxy \"%1:%2\"").arg(profile.localAddress).arg(conf->getHttpPort()));
+            runShell(QString("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key httpsProxy \"%1:%2\"").arg(profile.localAddress).arg(conf->getHttpPort()));
+            runShell(QString("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key socksProxy \"%1:%2\"").arg(conf->getSocks5Address()).arg(conf->getSocks5Port()));
         } else if (method == 1) {
             runShell("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key ProxyType 1");
-            runShell(QString("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key socksProxy \"%1:%2\"").arg(profile.localAddress).arg(profile.localPort));
+            runShell(QString("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key socksProxy \"%1:%2\"").arg(conf->getSocks5Address()).arg(conf->getSocks5Port()));
         } else if (method == 2) {
             runShell("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key ProxyType 2");
-            runShell("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key 'Proxy Config Script' \"http://127.0.0.1:8070/proxy.pac\"");
+            runShell(QString("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key 'Proxy Config Script' \"http://%1:%2/proxy.pac\"").arg(conf->getPACAddress()).arg(QString::number(conf->getPACPort())));
         } else if (method == 0) {
             runShell("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key ProxyType 0");
             runShell("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key 'Proxy Config Script' \"\"");

@@ -5,8 +5,6 @@
 #include <QDir>
 #include <QHttpServer>
 
-#include "tqprofile.h"
-
 class PACServer: public QObject
 {
     Q_OBJECT
@@ -15,10 +13,11 @@ public:
     ~PACServer();
 
     QJsonDocument loadRules();
-    void modify(TQProfile profile);
+    void modify();
 
 private:
     QDir configDir;
+    QString configFile;
     QString gfwList;
     QString userRule;
     QString pac;

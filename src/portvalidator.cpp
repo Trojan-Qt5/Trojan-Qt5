@@ -1,5 +1,6 @@
 #include "portvalidator.h"
 #include "trojanvalidator.h"
+#include "logger.h"
 
 #include <QTcpServer>
 
@@ -25,9 +26,11 @@ bool PortValidator::isInUse(int port)
         server->close();
         server->deleteLater();
         return false;
+    /** There is something listening on it or error encourted. */
     } else {
         server->close();
         server->deleteLater();
+        Logger::error(server->errorString());
         return true;
     }
 }

@@ -45,6 +45,7 @@ void ConfigHelper::save(const ConnectionTableModel &model)
     settings->setValue("HideWindowOnStartup", QVariant(hideWindowOnStartup));
     settings->setValue("StartAtLogin", QVariant(startAtLogin));
     settings->setValue("OnlyOneInstance", QVariant(onlyOneInstace));
+    settings->setValue("CheckPortAvailability", QVariant(checkPortAvailability));
     settings->setValue("ShowToolbar", QVariant(showToolbar));
     settings->setValue("ShowFilterBar", QVariant(showFilterBar));
     settings->setValue("NativeMenuBar", QVariant(nativeMenuBar));
@@ -96,6 +97,9 @@ void ConfigHelper::importGuiConfigJson(ConnectionTableModel *model, const QStrin
         p.verifyHostname = json["verify_hostname"].toBool();
         p.password = json["password"].toString();
         p.dualMode = json["dual_mode"].toBool();
+        p.reuseSession = json["reuse_session"].toBool();
+        p.sessionTicket = json["session_ticket"].toBool();
+        p.reusePort = json["reuse_port"].toBool();
         p.tcpFastOpen = json["tcp_fast_open"].toBool();
         Connection *con = new Connection(p, this);
         model->appendConnection(con);
@@ -125,6 +129,9 @@ void ConfigHelper::exportGuiConfigJson(const ConnectionTableModel &model, const 
         json["verify_hostname"] = QJsonValue(con->profile.verifyHostname);
         json["password"] = QJsonValue(con->profile.password);
         json["dual_mode"] = QJsonValue(con->profile.dualMode);
+        json["reuse_session"] = QJsonValue(con->profile.reuseSession);
+        json["session_ticket"] = QJsonValue(con->profile.sessionTicket);
+        json["reuse_port"] = QJsonValue(con->profile.reusePort);
         json["tcp_fast_open"] = QJsonValue(con->profile.tcpFastOpen);
         confArray.append(QJsonValue(json));
     }
@@ -144,10 +151,12 @@ void ConfigHelper::exportGuiConfigJson(const ConnectionTableModel &model, const 
     JSONFile.open(QIODevice::WriteOnly | QIODevice::Text);
     if (!JSONFile.isOpen()) {
         qCritical() << "Error: cannot open " << file;
+        Logger::error(QString("cannot open %1").arg(file));
         return;
     }
     if(!JSONFile.isWritable()) {
         qCritical() << "Error: cannot write into " << file;
+        Logger::error(QString("cannot write into %1").arg(file));
         return;
     }
 
@@ -179,6 +188,7 @@ void ConfigHelper::importShadowrocketJson(ConnectionTableModel *model, const QSt
     }
     if (JSONDoc.isEmpty()) {
         qCritical() << "JSON Document" << file << "is empty!";
+        Logger::error(QString("JSON Document %1 is empty!").arg(file));
         return;
     }
 
@@ -196,6 +206,40 @@ void ConfigHelper::importShadowrocketJson(ConnectionTableModel *model, const QSt
         model->appendConnection(con);
     }
 
+}
+
+void ConfigHelper::exportShadowrocketJson(const ConnectionTableModel &model, const QString &file)
+{
+    QJsonArray confArray;
+    int size = model.rowCount();
+    for (int i = 0; i < size; ++i) {
+        Connection *con = model.getItem(i)->getConnection();
+        QJsonObject json;
+        json["type"] = "Trojan";
+        json["title"] = QJsonValue(con->profile.name);
+        json["host"] = QJsonValue(con->profile.serverAddress);
+        json["port"] = QJsonValue(con->profile.serverPort);
+        json["password"] = QJsonValue(con->profile.password);
+        confArray.append(QJsonValue(json));
+    }
+
+    QJsonDocument JSONDoc(confArray);
+
+    QFile JSONFile(file);
+    JSONFile.open(QIODevice::WriteOnly | QIODevice::Text);
+    if (!JSONFile.isOpen()) {
+        qCritical() << "Error: cannot open " << file;
+        Logger::error(QString("cannot open %1").arg(file));
+        return;
+    }
+    if(!JSONFile.isWritable()) {
+        qCritical() << "Error: cannot write into " << file;
+        Logger::error(QString("cannot write into %1").arg(file));
+        return;
+    }
+
+    JSONFile.write(JSONDoc.toJson());
+    JSONFile.close();
 }
 
 Connection* ConfigHelper::configJsonToConnection(const QString &file)
@@ -226,8 +270,6 @@ Connection* ConfigHelper::configJsonToConnection(const QString &file)
     TQProfile p;
     p.serverAddress = configObj["server"].toString();
     p.serverPort = configObj["server_port"].toInt();
-    p.localAddress = configObj["local_address"].toString();
-    p.localPort = configObj["local_port"].toInt();
     p.password = configObj["password"].toString();
     Connection *con = new Connection(p, this);
     return con;
@@ -237,8 +279,8 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
 {
     QJsonObject configObj;
     configObj["run_type"] = "client";
-    configObj["local_addr"] = profile.localAddress;
-    configObj["local_port"] = profile.localPort;
+    configObj["local_addr"] = socks5LocalAddress;
+    configObj["local_port"] = socks5LocalPort;
     configObj["remote_addr"] = profile.serverAddress;
     configObj["remote_port"] = profile.serverPort;
     QJsonArray passwordArray;
@@ -256,14 +298,14 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
     alpnArray.append("h2");
     alpnArray.append("http/1.1");
     ssl["alpn"] = QJsonValue(alpnArray);
-    ssl["reuse_session"] = true;
-    ssl["session_ticket"] = false;
+    ssl["reuse_session"] = profile.reuseSession;
+    ssl["session_ticket"] = profile.sessionTicket;
     ssl["curves"] = "";
     configObj["ssl"] = QJsonValue(ssl);
     QJsonObject tcp;
     tcp["no_delay"] = true;
     tcp["keep_alive"] = true;
-    tcp["reuse_port"] = false;
+    tcp["reuse_port"] = profile.reusePort;
     tcp["fast_open"] = profile.tcpFastOpen;
     tcp["fast_open_qlen"] = 20;
     configObj["tcp"] = QJsonValue(tcp);
@@ -295,7 +337,7 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
 
 }
 
-void ConfigHelper::generatePrivoxyConf(TQProfile &profile)
+void ConfigHelper::generatePrivoxyConf()
 {
     QString filecontent = QString("listen-address %1:%2\n"
                                   "toggle 0\n"
@@ -303,10 +345,10 @@ void ConfigHelper::generatePrivoxyConf(TQProfile &profile)
                                   "activity-animation 0\n"
                                   "forward-socks5 / %3:%4 .\n"
                                   "hide-console\n")
-                                  .arg(profile.localAddress)
-                                  .arg(QString::number(profile.localHttpPort))
-                                  .arg(profile.localAddress)
-                                  .arg(QString::number(profile.localPort));
+                                  .arg(httpLocalAddress)
+                                  .arg(QString::number(httpLocalPort))
+                                  .arg(socks5LocalAddress)
+                                  .arg(QString::number(socks5LocalPort));
 #ifdef Q_OS_WIN
         QString file = QCoreApplication::applicationDirPath() + "/privoxy/privoxy.conf";
 #else
@@ -389,6 +431,11 @@ bool ConfigHelper::isOnlyOneInstance() const
     return onlyOneInstace;
 }
 
+bool ConfigHelper::isCheckPortAvailability() const
+{
+    return checkPortAvailability;
+}
+
 bool ConfigHelper::isShowToolbar() const
 {
     return showToolbar;
@@ -410,7 +457,7 @@ void ConfigHelper::setProxyMode(bool assp, bool pac)
     enablePACMode = pac;
 }
 
-void ConfigHelper::setGeneralSettings(int ts, bool assp, bool pac, bool hide, bool sal, bool oneInstance, bool nativeMB)
+void ConfigHelper::setGeneralSettings(int ts, bool assp, bool pac, bool hide, bool sal, bool oneInstance, bool cpa, bool nativeMB)
 {
     if (toolbarStyle != ts) {
         emit toolbarStyleChanged(static_cast<Qt::ToolButtonStyle>(ts));
@@ -421,6 +468,7 @@ void ConfigHelper::setGeneralSettings(int ts, bool assp, bool pac, bool hide, bo
     hideWindowOnStartup = hide;
     startAtLogin = sal;
     onlyOneInstace = oneInstance;
+    checkPortAvailability = cpa;
     nativeMenuBar = nativeMB;
 }
 
@@ -462,12 +510,13 @@ void ConfigHelper::read(ConnectionTableModel *model)
 
 void ConfigHelper::readGeneralSettings()
 {
-    toolbarStyle = settings->value("ToolbarStyle", QVariant(4)).toInt();
+    toolbarStyle = settings->value("ToolbarStyle", QVariant(3)).toInt();
     startAtLogin = settings->value("StartAtLogin").toBool();
     autoSetSystemProxy = settings->value("AutoSetSystemProxy", QVariant(true)).toBool();
     enablePACMode = settings->value("EnablePACMode", QVariant(true)).toBool();
     hideWindowOnStartup = settings->value("HideWindowOnStartup").toBool();
     onlyOneInstace = settings->value("OnlyOneInstance", QVariant(true)).toBool();
+    checkPortAvailability = settings->value("CheckPortAvailability", QVariant(true)).toBool();
     showToolbar = settings->value("ShowToolbar", QVariant(true)).toBool();
     showFilterBar = settings->value("ShowFilterBar", QVariant(true)).toBool();
     nativeMenuBar = settings->value("NativeMenuBar", QVariant(false)).toBool();

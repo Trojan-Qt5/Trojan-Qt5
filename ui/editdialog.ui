@@ -106,47 +106,13 @@
        </widget>
       </item>
       <item row="6" column="0">
-       <widget class="QLabel" name="localAddrLabel">
-        <property name="text">
-         <string>Local Address</string>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="1">
-       <widget class="QLineEdit" name="localAddrEdit"/>
-      </item>
-      <item row="7" column="0">
-       <widget class="QLabel" name="localPortLabel">
-        <property name="text">
-         <string>Local Port</string>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="1">
-       <widget class="QLineEdit" name="localPortEdit">
-        <property name="inputMethodHints">
-         <set>Qt::ImhDigitsOnly|Qt::ImhPreferNumbers</set>
-        </property>
-       </widget>
-      </item>
-      <item row="8" column="0">
-       <widget class="QLabel" name="LocalHttpPortLabel">
-        <property name="text">
-         <string>Local HTTP Port</string>
-        </property>
-       </widget>
-      </item>
-      <item row="8" column="1">
-       <widget class="QLineEdit" name="localHttpPortEdit"/>
-      </item>
-      <item row="9" column="0">
        <widget class="QLabel" name="localServerTypeLabel">
         <property name="text">
          <string>Local Server Type</string>
         </property>
        </widget>
       </item>
-      <item row="9" column="1">
+      <item row="6" column="1">
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
          <widget class="QRadioButton" name="socks5RadioButton">
@@ -224,6 +190,48 @@
         </property>
        </widget>
       </item>
+      <item row="9" column="0">
+       <widget class="QLabel" name="reusePortLabel">
+        <property name="text">
+         <string>Reuse Port</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="1">
+       <widget class="QCheckBox" name="reusePortCheckBox">
+        <property name="text">
+         <string>Enable</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0">
+       <widget class="QLabel" name="reuseSessionLabel">
+        <property name="text">
+         <string>Reuse Session</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1">
+       <widget class="QCheckBox" name="reuseSessionCheckBox">
+        <property name="text">
+         <string>Enable</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="0">
+       <widget class="QLabel" name="sessionTicketLabel">
+        <property name="text">
+         <string>Session Ticket</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="1">
+       <widget class="QCheckBox" name="sessionTicketCheckBox">
+        <property name="text">
+         <string>Enable</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
@@ -257,8 +265,6 @@
   <tabstop>serverAddrEdit</tabstop>
   <tabstop>serverPortEdit</tabstop>
   <tabstop>pwdEdit</tabstop>
-  <tabstop>localAddrEdit</tabstop>
-  <tabstop>localPortEdit</tabstop>
   <tabstop>resetDateEdit</tabstop>
   <tabstop>autoStartCheckBox</tabstop>
  </tabstops>

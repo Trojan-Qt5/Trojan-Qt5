@@ -111,17 +111,12 @@ bool ConnectionTableModel::appendConnection(Connection *con, const QModelIndex &
     return true;
 }
 
-void ConnectionTableModel::disconnectConnectionsAt(const QString &addr, quint16 port)
+void ConnectionTableModel::disconnectConnections()
 {
-    bool anyAddr = (addr.compare("0.0.0.0") == 0);
     for (auto &i : items) {
         Connection *con = i->getConnection();
-        if (con->isRunning() && con->getProfile().localPort == port) {
-            if ((con->getProfile().localAddress == addr) ||
-                (con->getProfile().localAddress.compare("0.0.0.0") == 0) ||
-                anyAddr) {
-                con->stop();
-            }
+        if (con->isRunning()) {
+            con->stop();
         }
     }
 }
@@ -154,5 +149,5 @@ void ConnectionTableModel::onConnectionDataUsageChanged()
 {
     ConnectionItem *item = qobject_cast<ConnectionItem*>(sender());
     int row = items.indexOf(item);
-    emit dataChanged(this->index(row, 5), this->index(row, 6));
+    emit dataChanged(this->index(row, 4), this->index(row, 5));
 }

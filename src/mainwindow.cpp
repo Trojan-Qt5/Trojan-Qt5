@@ -32,6 +32,7 @@
 #include <QLocalSocket>
 #include <QStandardPaths>
 #include <QUrl>
+#include <QResource>
 
 MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
     QMainWindow(parent),
@@ -93,6 +94,17 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
 
     ui->toolBar->setFixedHeight(92);
 
+    // set the minimum size
+    this->setMinimumSize(825, 562);
+
+    /** Reset the font. */
+#if !defined(Q_OS_MAC)
+    QFont font;
+    font.setPixelSize(14);
+    font.setBold(true);
+    ui->menuBar->setFont(font);
+#endif
+
     //Move to the center of the screen
     this->move(QApplication::desktop()->screen()->rect().center() -
                this->rect().center());
@@ -102,6 +114,8 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
             this, &MainWindow::onImportGuiJson);
     connect(ui->actionExportGUIJson, &QAction::triggered,
             this, &MainWindow::onExportGuiJson);
+    connect(ui->actionExportShadowrocketJson, &QAction::triggered,
+            this, &MainWindow::onExportShadowrocketJson);
     connect(ui->actionQuit, &QAction::triggered, qApp, &QApplication::quit);
     connect(ui->actionManually, &QAction::triggered,
             this, &MainWindow::onAddManually);
@@ -231,6 +245,18 @@ void MainWindow::onExportGuiJson()
     }
 }
 
+void MainWindow::onExportShadowrocketJson()
+{
+    QString file = QFileDialog::getSaveFileName(
+                   this,
+                   tr("Export Connections as shadowrocket.json"),
+                   QString("shadowrocket.json"),
+                   "Shadowrocket Configuration (shadowrocket.json)");
+    if (!file.isNull()) {
+        configHelper->exportShadowrocketJson(*model, file);
+    }
+}
+
 void MainWindow::onSaveManually()
 {
     configHelper->save(*model);
@@ -357,8 +383,7 @@ void MainWindow::onConnect()
     int row = proxyModel->mapToSource(ui->connectionView->currentIndex()).row();
     Connection *con = model->getItem(row)->getConnection();
     if (con->isValid()) {
-        model->disconnectConnectionsAt(con->getProfile().localAddress,
-                                       con->getProfile().localPort);
+        model->disconnectConnections();
         con->start();
     } else {
         QMessageBox::critical(this, tr("Invalid"),
@@ -372,8 +397,7 @@ void MainWindow::onForceConnect()
     int row = proxyModel->mapToSource(ui->connectionView->currentIndex()).row();
     Connection *con = model->getItem(row)->getConnection();
     if (con->isValid()) {
-        model->disconnectConnectionsAt(con->getProfile().localAddress,
-                                       con->getProfile().localPort);
+        model->disconnectConnections();
         con->start();
     } else {
         QMessageBox::critical(this, tr("Invalid"),
@@ -637,6 +661,8 @@ void MainWindow::setupActionIcon()
                                      QIcon::fromTheme("insert-text")));
     ui->actionExportGUIJson->setIcon(QIcon::fromTheme("document-export",
                                      QIcon::fromTheme("document-save-as")));
+    ui->actionExportShadowrocketJson->setIcon(QIcon::fromTheme("document-export",
+                                              QIcon::fromTheme("document-save-as")));
     ui->actionManually->setIcon(QIcon::fromTheme("edit-guides",
                                 QIcon::fromTheme("accessories-text-editor")));
     ui->actionURI->setIcon(QIcon::fromTheme("text-field",
@@ -666,7 +692,7 @@ bool MainWindow::isInstanceRunning() const
 void MainWindow::initSparkle()
 {
 #if defined (Q_OS_WIN)
-    win_sparkle_set_appcast_url("https://raw.githubusercontent.com");
+    win_sparkle_set_appcast_url("https://raw.githubusercontent.com/TheWanderingCoel/Trojan-Qt5/master/resources/Appcast_Windows.xml");
     win_sparkle_set_app_details(reinterpret_cast<const wchar_t *>(QCoreApplication::organizationName().utf16()),
                                 reinterpret_cast<const wchar_t *>(QCoreApplication::applicationName().utf16()),
                                 reinterpret_cast<const wchar_t *>(QStringLiteral(VERSION).utf16()));

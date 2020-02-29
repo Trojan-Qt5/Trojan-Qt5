@@ -12,12 +12,8 @@ EditDialog::EditDialog(Connection *_connection, QWidget *parent) :
     ui->setupUi(this);
 
     /* initialisation and validator setup */
-    IP4Validator *addrValidator = new IP4Validator(this);
     PortValidator *portValidator = new PortValidator(this);
     ui->serverPortEdit->setValidator(portValidator);
-    ui->localPortEdit->setValidator(portValidator);
-    //Maybe we shouldn't validate local address using IPv4 format?
-    ui->localAddrEdit->setValidator(addrValidator);
 
     ui->nameEdit->setText(connection->profile.name);
     ui->serverAddrEdit->setText(connection->profile.serverAddress);
@@ -25,10 +21,10 @@ EditDialog::EditDialog(Connection *_connection, QWidget *parent) :
     ui->verifyCertificateCheckBox->setChecked(connection->profile.verifyCertificate);
     ui->verifyHostnameCheckBox->setChecked(connection->profile.verifyHostname);
     ui->pwdEdit->setText(connection->profile.password);
-    ui->localAddrEdit->setText(connection->profile.localAddress);
-    ui->localPortEdit->setText(QString::number(connection->profile.localPort));
-    ui->localHttpPortEdit->setText(QString::number(connection->profile.localHttpPort));
     ui->dualRadioButton->setChecked(connection->profile.dualMode);
+    ui->reuseSessionCheckBox->setChecked(connection->profile.reuseSession);
+    ui->sessionTicketCheckBox->setChecked(connection->profile.sessionTicket);
+    ui->reusePortCheckBox->setChecked(connection->profile.reusePort);
     ui->tcpFastOpenCheckBox->setChecked(connection->profile.tcpFastOpen);
     ui->resetDateEdit->setDate(connection->profile.nextResetDate);
     ui->resetDateEdit->setMinimumDate(QDate::currentDate());
@@ -51,10 +47,10 @@ void EditDialog::save()
     connection->profile.serverPort = ui->serverPortEdit->text().toUShort();
     connection->profile.verifyCertificate = ui->verifyCertificateCheckBox->isChecked();
     connection->profile.verifyHostname = ui->verifyHostnameCheckBox->isChecked();
-    connection->profile.localAddress = ui->localAddrEdit->text();
-    connection->profile.localPort = ui->localPortEdit->text().toUShort();
-    connection->profile.localHttpPort = ui->localHttpPortEdit->text().toUShort();
     connection->profile.dualMode = ui->dualRadioButton->isChecked();
+    connection->profile.reuseSession = ui->reuseSessionCheckBox->isChecked();
+    connection->profile.sessionTicket = ui->sessionTicketCheckBox->isChecked();
+    connection->profile.reusePort = ui->reusePortCheckBox->isChecked();
     connection->profile.tcpFastOpen = ui->tcpFastOpenCheckBox->isChecked();
     connection->profile.password = ui->pwdEdit->text();
     connection->profile.nextResetDate = ui->resetDateEdit->date();

@@ -78,6 +78,7 @@ private:
 private slots:
     void onImportGuiJson();
     void onExportGuiJson();
+    void onExportShadowrocketJson();
     void onSaveManually();
     void onAddManually();
     void onAddScreenQRCode();

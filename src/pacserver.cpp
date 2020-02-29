@@ -1,3 +1,4 @@
+#include "confighelper.h"
 #include "pacserver.h"
 
 #include <QCoreApplication>
@@ -8,8 +9,10 @@ PACServer::PACServer()
 {
 #ifdef Q_OS_WIN
     configDir = QDir::toNativeSeparators(QCoreApplication::applicationDirPath()) + "\\pac";
+    configFile = QCoreApplication::applicationDirPath() + "/config.ini";
 #else
     configDir = QDir::homePath() + "/.config/trojan-qt5/pac";
+    configFile = QDir::homePath() + "/.config/trojan-qt5/config.ini";
 #endif
 
     if (!configDir.exists()) {
@@ -66,8 +69,9 @@ QJsonDocument PACServer::loadRules()
  * @param profile the Sever TQProfile
  * @ref https://stackoverflow.com/questions/17919778/qt-finding-and-replacing-text-in-a-file
  */
-void PACServer::modify(TQProfile profile)
+void PACServer::modify()
 {
+    ConfigHelper *conf = new ConfigHelper(configFile);
     if (QFile::exists(pac)) {
         QFile::remove(pac);
     }
@@ -78,8 +82,8 @@ void PACServer::modify(TQProfile profile)
     file.open(QIODevice::ReadWrite); // open for read and write
     fileData = file.readAll(); // read all the data into the byte array
     QString text(fileData); // add to text string for easy string replace
-    text.replace(QString("__SOCKS5ADDR__:__SOCKS5PORT__"), QString("%1:%2").arg(profile.localAddress).arg(profile.localPort));
-    text.replace(QString("__PROXYADDR__:__PROXYPORT__"), QString("%1:%2").arg(profile.localAddress).arg(profile.localHttpPort));
+    text.replace(QString("__SOCKS5ADDR__:__SOCKS5PORT__"), QString("%1:%2").arg(conf->getSocks5Address()).arg(QString::number(conf->getSocks5Port())));
+    text.replace(QString("__PROXYADDR__:__PROXYPORT__"), QString("%1:%2").arg(conf->getHttpAddress()).arg(QString::number(conf->getHttpPort())));
     text.replace(QString("__RULES__"), loadRules().toJson());
     file.seek(0); // go to the beginning of the file
     file.write(text.toUtf8()); // write the new text back to the file

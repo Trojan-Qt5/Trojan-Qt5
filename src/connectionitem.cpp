@@ -37,15 +37,21 @@ QVariant ConnectionItem::data(int column, int role) const
     if ((role == Qt::DisplayRole || role == Qt::EditRole) || role == Qt::ForegroundRole) {
         switch (column) {
         case 0://name
+            if (role == Qt::ForegroundRole) {
+                return QVariant(QColor::fromRgb(112, 112, 112));
+            }
             return QVariant(con->profile.name);
         case 1://server
+            if (role == Qt::ForegroundRole) {
+                return QVariant(QColor::fromRgb(112, 112, 112));
+            }
             return QVariant(con->profile.serverAddress);
         case 2://status
             if (role == Qt::ForegroundRole) {
                 return QVariant(convertStatusToColor(con->isRunning()));
             }
-            return con->isRunning() ? QVariant(tr("Connected"))
-                                    : QVariant(tr("Disconnected"));
+            return con->isRunning() ? QVariant("Connected")
+                                    : QVariant("Disconnected");
         case 3://latency
             if (role == Qt::ForegroundRole) {
                 return QVariant(convertLatencyToColor(con->profile.latency));
@@ -55,25 +61,33 @@ QVariant ConnectionItem::data(int column, int role) const
                 return QVariant(con->profile.latency);
             }
         case 4://data usage (term)
-            if (role == Qt::DisplayRole) {
+            if (role == Qt::ForegroundRole) {
+                return QVariant(QColor::fromRgb(112, 112, 112));
+            } else if (role == Qt::DisplayRole) {
                 return QVariant(convertBytesToHumanReadable(con->profile.currentUsage));
             } else {
                 return QVariant(con->profile.currentUsage);
             }
         case 5://data usage (total)
-            if (role == Qt::DisplayRole) {
+            if (role == Qt::ForegroundRole) {
+                return QVariant(QColor::fromRgb(112, 112, 112));
+            } else if (role == Qt::DisplayRole) {
                 return QVariant(convertBytesToHumanReadable(con->profile.totalUsage));
             } else {
                 return QVariant(con->profile.totalUsage);
             }
         case 6://reset date
-            if (role == Qt::DisplayRole) {
+            if (role == Qt::ForegroundRole) {
+                return QVariant(QColor::fromRgb(112, 112, 112));
+            } else if (role == Qt::DisplayRole) {
                 return QVariant(con->profile.nextResetDate.toString(Qt::SystemLocaleShortDate));
             } else {
                 return QVariant(con->profile.nextResetDate);
             }
         case 7://last used
-            if (role == Qt::DisplayRole) {
+            if (role == Qt::ForegroundRole) {
+                return QVariant(QColor::fromRgb(112, 112, 112));
+            } else if (role == Qt::DisplayRole) {
                 return QVariant(con->profile.lastTime.toString(Qt::SystemLocaleShortDate));
             } else {
                 return QVariant(con->profile.lastTime);
@@ -85,6 +99,11 @@ QVariant ConnectionItem::data(int column, int role) const
         QFont font;
         font.setBold(con->isRunning());
         return QVariant(font);
+    } else if (role == Qt::BackgroundRole) {
+        if (con->isRunning())
+            return QVariant(QColor::fromRgba(qRgba(0, 117, 219, 26)));
+        else
+            return QVariant(QColor::fromRgb(255, 255, 255));
     }
 
     return QVariant();
@@ -162,7 +181,6 @@ void ConnectionItem::testLatency()
 {
     con->latencyTest();
 }
-
 
 Connection* ConnectionItem::getConnection()
 {

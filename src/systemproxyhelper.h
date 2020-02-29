@@ -19,10 +19,12 @@
 #ifndef SYSTEMPROXYHELPER_H
 #define SYSTEMPROXYHELPER_H
 
+#include <QDir>
 #include <QObject>
+
 #include "tqprofile.h"
 
-class SystemProxyHelper
+class SystemProxyHelper: public QObject
 {
 public:
     SystemProxyHelper();

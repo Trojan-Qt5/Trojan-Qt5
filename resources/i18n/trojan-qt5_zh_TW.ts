@@ -42,62 +42,59 @@
 <context>
     <name>ConnectionItem</name>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="47"/>
         <source>Connected</source>
-        <translation>已連線</translation>
+        <translation type="vanished">已連線</translation>
     </message>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="48"/>
         <source>Disconnected</source>
-        <translation>已斷線</translation>
+        <translation type="vanished">已斷線</translation>
     </message>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="131"/>
+        <location filename="../../src/connectionitem.cpp" line="148"/>
         <source>Timeout</source>
         <translation>逾時</translation>
     </message>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="134"/>
+        <location filename="../../src/connectionitem.cpp" line="151"/>
         <source>Error</source>
         <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="137"/>
+        <location filename="../../src/connectionitem.cpp" line="154"/>
         <source>Unknown</source>
         <translation>不明</translation>
     </message>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="142"/>
+        <location filename="../../src/connectionitem.cpp" line="159"/>
         <source>s</source>
         <translation>秒</translation>
     </message>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="144"/>
         <source>ms</source>
-        <translation>毫秒</translation>
+        <translation type="vanished">毫秒</translation>
     </message>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="177"/>
+        <location filename="../../src/connectionitem.cpp" line="193"/>
         <source>connected</source>
         <translation>已連線</translation>
     </message>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="179"/>
+        <location filename="../../src/connectionitem.cpp" line="195"/>
         <source>disconnected</source>
         <translation>已斷線</translation>
     </message>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="186"/>
+        <location filename="../../src/connectionitem.cpp" line="202"/>
         <source>timed out</source>
         <translation>逾時</translation>
     </message>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="188"/>
+        <location filename="../../src/connectionitem.cpp" line="204"/>
         <source>latency test failed</source>
         <translation>延遲測試失敗</translation>
     </message>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="194"/>
+        <location filename="../../src/connectionitem.cpp" line="210"/>
         <source>Failed to start</source>
         <translation>啟動失敗</translation>
     </message>
@@ -125,27 +122,26 @@
         <translation>延遲</translation>
     </message>
     <message>
-        <location filename="../../src/connectiontablemodel.cpp" line="51"/>
         <source>Local Port</source>
-        <translation>本機埠</translation>
+        <translation type="vanished">本機埠</translation>
     </message>
     <message>
-        <location filename="../../src/connectiontablemodel.cpp" line="53"/>
+        <location filename="../../src/connectiontablemodel.cpp" line="51"/>
         <source>Term Usage</source>
         <translation>本期使用量</translation>
     </message>
     <message>
-        <location filename="../../src/connectiontablemodel.cpp" line="55"/>
+        <location filename="../../src/connectiontablemodel.cpp" line="53"/>
         <source>Total Usage</source>
         <translation>使用量總計</translation>
     </message>
     <message>
-        <location filename="../../src/connectiontablemodel.cpp" line="57"/>
+        <location filename="../../src/connectiontablemodel.cpp" line="55"/>
         <source>Reset Date</source>
         <translation>重設日期</translation>
     </message>
     <message>
-        <location filename="../../src/connectiontablemodel.cpp" line="59"/>
+        <location filename="../../src/connectiontablemodel.cpp" line="57"/>
         <source>Last Used</source>
         <translation>上次使用</translation>
     </message>
@@ -163,12 +159,11 @@
         <translation>驗證主機名</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="135"/>
         <source>Local HTTP Port</source>
-        <translation>本機HTTP埠</translation>
+        <translation type="vanished">本機HTTP埠</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="145"/>
+        <location filename="../../ui/editdialog.ui" line="111"/>
         <source>Local Server Type</source>
         <translation>本機伺服器型別</translation>
     </message>
@@ -193,14 +188,12 @@
         <translation type="vanished">加密方法</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="121"/>
         <source>Local Port</source>
-        <translation>本機埠</translation>
+        <translation type="vanished">本機埠</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="111"/>
         <source>Local Address</source>
-        <translation>本機位址</translation>
+        <translation type="vanished">本機位址</translation>
     </message>
     <message>
         <location filename="../../ui/editdialog.ui" line="94"/>
@@ -223,19 +216,22 @@
         <translation>設定檔名稱</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="176"/>
+        <location filename="../../ui/editdialog.ui" line="142"/>
         <source>TCP Fast Open</source>
         <translation>TCP快速打開</translation>
     </message>
     <message>
         <location filename="../../ui/editdialog.ui" line="73"/>
         <location filename="../../ui/editdialog.ui" line="87"/>
-        <location filename="../../ui/editdialog.ui" line="183"/>
+        <location filename="../../ui/editdialog.ui" line="149"/>
+        <location filename="../../ui/editdialog.ui" line="203"/>
+        <location filename="../../ui/editdialog.ui" line="217"/>
+        <location filename="../../ui/editdialog.ui" line="231"/>
         <source>Enable</source>
         <translation>開啟</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="223"/>
+        <location filename="../../ui/editdialog.ui" line="189"/>
         <source>Auto connect on application start</source>
         <translation>程式啟動時自動連線</translation>
     </message>
@@ -245,14 +241,29 @@
         <translation>驗證證書</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="154"/>
+        <location filename="../../ui/editdialog.ui" line="120"/>
         <source>SOCKS5</source>
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="164"/>
+        <location filename="../../ui/editdialog.ui" line="130"/>
         <source>SOCKS5 + HTTP</source>
         <translation>SOCKS5 + HTTP</translation>
+    </message>
+    <message>
+        <location filename="../../ui/editdialog.ui" line="196"/>
+        <source>Reuse Port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ui/editdialog.ui" line="210"/>
+        <source>Reuse Session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ui/editdialog.ui" line="224"/>
+        <source>Session Ticket</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Debug</source>
@@ -263,12 +274,12 @@
         <translation type="vanished">記錄檔等級</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="210"/>
+        <location filename="../../ui/editdialog.ui" line="176"/>
         <source>Automation</source>
         <translation>自動化</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="190"/>
+        <location filename="../../ui/editdialog.ui" line="156"/>
         <source>Reset Data Usage after</source>
         <translation>重設資料使用量之後</translation>
     </message>
@@ -299,56 +310,61 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="539"/>
+        <location filename="../../src/mainwindow.cpp" line="563"/>
         <source>About</source>
         <translation>關於</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="213"/>
+        <location filename="../../src/mainwindow.cpp" line="227"/>
         <source>Import Connections from gui-config.json</source>
         <translation>自 gui-config.json 匯入連線</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="226"/>
+        <location filename="../../src/mainwindow.cpp" line="240"/>
         <source>Export Connections as gui-config.json</source>
         <translation>匯出連線為 gui-config.json</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="251"/>
-        <location filename="../../src/mainwindow.cpp" line="284"/>
+        <location filename="../../src/mainwindow.cpp" line="252"/>
+        <source>Export Connections as shadowrocket.json</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindow.cpp" line="277"/>
+        <location filename="../../src/mainwindow.cpp" line="310"/>
         <source>QR Code Not Found</source>
         <translation>找不到 QR 碼</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="252"/>
-        <location filename="../../src/mainwindow.cpp" line="285"/>
+        <location filename="../../src/mainwindow.cpp" line="278"/>
+        <location filename="../../src/mainwindow.cpp" line="311"/>
         <source>Can&apos;t find any QR code image that contains valid URI on your screen(s).</source>
         <translation>在你的螢幕上無法找到任何包含有效 URI 的 QR 碼圖片。</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="276"/>
+        <location filename="../../src/mainwindow.cpp" line="302"/>
         <source>Open QR Code Image File</source>
         <translation>開啟 QR 碼圖檔</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="311"/>
+        <location filename="../../src/mainwindow.cpp" line="337"/>
         <source>Open config.json</source>
         <translation>開啟 config.json</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="323"/>
+        <location filename="../../src/mainwindow.cpp" line="349"/>
         <source>Open shadowrocket.json</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="364"/>
-        <location filename="../../src/mainwindow.cpp" line="379"/>
+        <location filename="../../src/mainwindow.cpp" line="389"/>
+        <location filename="../../src/mainwindow.cpp" line="403"/>
         <source>Invalid</source>
         <translation>無效</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="365"/>
-        <location filename="../../src/mainwindow.cpp" line="380"/>
+        <location filename="../../src/mainwindow.cpp" line="390"/>
+        <location filename="../../src/mainwindow.cpp" line="404"/>
         <source>The connection&apos;s profile is invalid!</source>
         <translation>此連線的設定檔無效！</translation>
     </message>
@@ -358,22 +374,22 @@
         <translation>連線管理員</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="244"/>
+        <location filename="../../ui/mainwindow.ui" line="262"/>
         <source>&amp;Connection</source>
         <translation>&amp;連線</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="248"/>
+        <location filename="../../ui/mainwindow.ui" line="266"/>
         <source>&amp;Add</source>
         <translation>&amp;新增</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="284"/>
+        <location filename="../../ui/mainwindow.ui" line="303"/>
         <source>Fi&amp;le</source>
         <translation>&amp;檔案</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="299"/>
+        <location filename="../../ui/mainwindow.ui" line="319"/>
         <source>Settin&amp;gs</source>
         <translation>&amp;設定</translation>
     </message>
@@ -382,22 +398,22 @@
         <translation type="vanished">說明</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="333"/>
+        <location filename="../../ui/mainwindow.ui" line="353"/>
         <source>&amp;Manually</source>
         <translation>&amp;手動</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="336"/>
+        <location filename="../../ui/mainwindow.ui" line="356"/>
         <source>Add connection manually</source>
         <translation>手動新增連線</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="350"/>
+        <location filename="../../ui/mainwindow.ui" line="380"/>
         <source>&amp;From QR Code Image File</source>
         <translation>&amp;來自 QR  碼圖檔</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="353"/>
+        <location filename="../../ui/mainwindow.ui" line="383"/>
         <source>From QR code image file</source>
         <translation>來自 QR 碼圖檔</translation>
     </message>
@@ -406,7 +422,7 @@
         <translation type="vanished">&amp;檢視記錄檔</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="341"/>
+        <location filename="../../ui/mainwindow.ui" line="366"/>
         <source>&amp;Scan QR Code on Screen</source>
         <translation>&amp;掃描螢幕上的 QR 碼</translation>
     </message>
@@ -421,153 +437,158 @@
         <translation>顯示工具列</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="314"/>
+        <location filename="../../ui/mainwindow.ui" line="334"/>
         <source>&amp;Help</source>
         <translation>說明(&amp;H)</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="358"/>
+        <location filename="../../ui/mainwindow.ui" line="393"/>
         <source>&amp;URI</source>
         <translation>&amp;URI</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="361"/>
+        <location filename="../../ui/mainwindow.ui" line="396"/>
         <source>Add connection from URI</source>
         <translation>自 URI 新增連線</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="370"/>
+        <location filename="../../ui/mainwindow.ui" line="410"/>
         <source>&amp;Delete</source>
         <translation>&amp;刪除</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="375"/>
+        <location filename="../../ui/mainwindow.ui" line="420"/>
         <source>&amp;Edit</source>
         <translation>&amp;編輯</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="391"/>
+        <location filename="../../ui/mainwindow.ui" line="441"/>
         <source>&amp;Connect</source>
         <translation>&amp;連線</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="394"/>
-        <location filename="../../ui/mainwindow.ui" line="402"/>
+        <location filename="../../ui/mainwindow.ui" line="449"/>
+        <location filename="../../ui/mainwindow.ui" line="462"/>
         <source>Return</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="399"/>
+        <location filename="../../ui/mainwindow.ui" line="454"/>
         <source>D&amp;isconnect</source>
         <translation>&amp;中斷連線</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="411"/>
+        <location filename="../../ui/mainwindow.ui" line="471"/>
         <source>&amp;Quit</source>
         <translation>&amp;結束</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="419"/>
+        <location filename="../../ui/mainwindow.ui" line="479"/>
         <source>Ctrl+Q</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="428"/>
+        <location filename="../../ui/mainwindow.ui" line="488"/>
         <source>&amp;About</source>
         <translation>&amp;關於</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="433"/>
+        <location filename="../../ui/mainwindow.ui" line="498"/>
         <source>About &amp;Qt</source>
         <translation>關於 &amp;Qt</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="438"/>
+        <location filename="../../ui/mainwindow.ui" line="508"/>
         <source>&amp;General Settings</source>
         <translation>&amp;一般設定</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="441"/>
+        <location filename="../../ui/mainwindow.ui" line="516"/>
         <source>Ctrl+,</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="446"/>
+        <location filename="../../ui/mainwindow.ui" line="521"/>
         <source>&amp;Advance Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="451"/>
+        <location filename="../../ui/mainwindow.ui" line="531"/>
         <source>&amp;Share</source>
         <translation>&amp;分享</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="456"/>
+        <location filename="../../ui/mainwindow.ui" line="541"/>
         <source>&amp;Report Bug</source>
         <translation>&amp;回報 Bug</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="464"/>
+        <location filename="../../ui/mainwindow.ui" line="554"/>
         <source>Test the latency of selected connection</source>
         <translation>測試已選連線的延遲</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="469"/>
+        <location filename="../../ui/mainwindow.ui" line="564"/>
         <source>Test All C&amp;onnections Latency</source>
         <translation>測試&amp;所有連線的延遲</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="527"/>
+        <location filename="../../ui/mainwindow.ui" line="652"/>
         <source>&amp;Show Filter Bar</source>
         <translation>&amp;顯示篩選列</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="530"/>
+        <location filename="../../ui/mainwindow.ui" line="660"/>
         <source>Ctrl+F</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="535"/>
+        <location filename="../../ui/mainwindow.ui" line="665"/>
         <source>&amp;Export as gui-config.json</source>
         <translation>&amp;匯出為 gui-config.json</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="540"/>
+        <location filename="../../ui/mainwindow.ui" line="675"/>
+        <source>&amp;Export as shadowrocket.json</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ui/mainwindow.ui" line="685"/>
         <source>Scan &amp;QR Code using Capturer</source>
         <translation>&amp;使用捕捉器掃描 QR 碼</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="543"/>
+        <location filename="../../ui/mainwindow.ui" line="688"/>
         <source>Scan QR Code using Capturer</source>
         <translation>使用捕捉器掃描 QR 碼</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="548"/>
+        <location filename="../../ui/mainwindow.ui" line="698"/>
         <source>&amp;Force Connect</source>
         <translation>強迫連線(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="556"/>
+        <location filename="../../ui/mainwindow.ui" line="711"/>
         <source>Check Update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="561"/>
+        <location filename="../../ui/mainwindow.ui" line="721"/>
         <source>Trojan Log</source>
         <translation>Trojan日誌</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="566"/>
+        <location filename="../../ui/mainwindow.ui" line="731"/>
         <source>Gui Log</source>
         <translation>Gui日誌</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="571"/>
+        <location filename="../../ui/mainwindow.ui" line="741"/>
         <source>User Rule Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="580"/>
+        <location filename="../../ui/mainwindow.ui" line="755"/>
         <source>From shadowrocket.json</source>
         <translation type="unfinished"></translation>
     </message>
@@ -576,47 +597,47 @@
         <translation type="vanished">強迫連線</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="551"/>
+        <location filename="../../ui/mainwindow.ui" line="701"/>
         <source>Connect to this connection and disconnect any connections currently using  the same local port</source>
         <translation>連線至此連線並且中斷使用了相同本機埠的連線</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="486"/>
+        <location filename="../../ui/mainwindow.ui" line="591"/>
         <source>From &amp;config.json</source>
         <translation>自 &amp;config.json</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="495"/>
+        <location filename="../../ui/mainwindow.ui" line="605"/>
         <source>&amp;Save Manually</source>
         <translation>&amp;手動儲存</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="498"/>
+        <location filename="../../ui/mainwindow.ui" line="613"/>
         <source>Ctrl+Shift+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="507"/>
+        <location filename="../../ui/mainwindow.ui" line="622"/>
         <source>&amp;Move Up</source>
         <translation>&amp;向上移動</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="516"/>
+        <location filename="../../ui/mainwindow.ui" line="636"/>
         <source>Mo&amp;ve Down</source>
         <translation>&amp;向下移動</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="474"/>
+        <location filename="../../ui/mainwindow.ui" line="574"/>
         <source>&amp;Import Connections from gui-config.json</source>
         <translation>&amp;自 gui-config.json 匯入連線</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="477"/>
+        <location filename="../../ui/mainwindow.ui" line="577"/>
         <source>Import connections from old version configuration file</source>
         <translation>自舊版設定檔匯入連線</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="461"/>
+        <location filename="../../ui/mainwindow.ui" line="551"/>
         <source>&amp;Test Latency</source>
         <translation>&amp;測試延遲</translation>
     </message>
@@ -636,7 +657,7 @@
         <translation type="vanished">另一個 Shadowsocks-Qt5 (PID: %1) 的執行個體已在執行。</translation>
     </message>
     <message>
-        <location filename="../../src/tqprofile.cpp" line="12"/>
+        <location filename="../../src/tqprofile.cpp" line="10"/>
         <source>Unnamed Profile</source>
         <translation>未命名的設定檔</translation>
     </message>
@@ -710,26 +731,31 @@
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="86"/>
+        <source>Check port availability</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ui/settingsdialog.ui" line="93"/>
         <source>Enable PAC mode</source>
         <translation>啟用PAC模式</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="100"/>
+        <location filename="../../ui/settingsdialog.ui" line="107"/>
         <source>Hide window on startup</source>
         <translation>啟動時隱藏視窗</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="107"/>
+        <location filename="../../ui/settingsdialog.ui" line="114"/>
         <source>Need to restart the application for this change to take effect</source>
         <translation>需要重新啟動程式方能使此變更生效</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="110"/>
+        <location filename="../../ui/settingsdialog.ui" line="117"/>
         <source>Use native menu bar</source>
         <translation>使用原生選單列</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="93"/>
+        <location filename="../../ui/settingsdialog.ui" line="100"/>
         <source>Start at login</source>
         <translation>從登錄開始</translation>
     </message>
@@ -775,6 +801,21 @@
         <location filename="../../src/statusnotifier.mm" line="111"/>
         <source>Restore</source>
         <translation>還原</translation>
+    </message>
+    <message>
+        <location filename="../../src/statusnotifier.mm" line="35"/>
+        <source>PAC Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/statusnotifier.mm" line="36"/>
+        <source>Global Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/statusnotifier.mm" line="37"/>
+        <source>Manually Mode</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

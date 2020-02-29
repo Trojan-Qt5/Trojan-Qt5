@@ -34,14 +34,14 @@ struct TQProfile
     bool autoStart;
     bool dualMode;
     quint16 serverPort;
-    quint16 localPort;
-    quint16 localHttpPort;
     QString name;
     QString serverAddress;
-    QString localAddress;
     QString password;
     bool verifyCertificate;
     bool verifyHostname;
+    bool reuseSession;
+    bool sessionTicket;
+    bool reusePort;
     bool tcpFastOpen;
     int latency;
     quint64 currentUsage;

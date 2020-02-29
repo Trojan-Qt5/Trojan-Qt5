@@ -10,6 +10,8 @@
 
 #include "logger.h"
 
+#include <boost/exception/all.hpp>
+
 Connection::Connection(QObject *parent) :
     QObject(parent),
     running(false),
@@ -59,7 +61,7 @@ QByteArray Connection::getURI() const
 
 bool Connection::isValid() const
 {
-    if (profile.serverAddress.isEmpty() || profile.password.isEmpty() || profile.localAddress.isEmpty()) {
+    if (profile.serverAddress.isEmpty() || profile.password.isEmpty()) {
         return false;
     }
     else {
@@ -99,8 +101,8 @@ void Connection::start()
     ConfigHelper *conf = new ConfigHelper(configFile);
 
     // Generate Config File that trojan and privoxy will use
-    ConfigHelper::connectionToJson(profile);
-    ConfigHelper::generatePrivoxyConf(profile);
+    conf->connectionToJson(profile);
+    conf->generatePrivoxyConf();
 
 #ifdef Q_OS_WIN
     QString file = QCoreApplication::applicationDirPath() + "/config.json";
@@ -109,19 +111,25 @@ void Connection::start()
     QString file = configDir.absolutePath() + "/config.json";
 #endif
     /** load service config first. */
-    service->config().load(file.toLocal8Bit().data());
+    try {
+        service->config().load(file.toLocal8Bit().data());
+    } catch (boost::exception &e) {
+        Logger::error(QString::fromStdString(boost::diagnostic_information(e)));
+    }
 
     /** Wait, let's check if port is in use. */
-    PortValidator *pv = new PortValidator();
-    if (pv->isInUse(conf->getSocks5Port())) {
-        qCritical() << QString("Socks5 port %1 is being used").arg(QString::number(profile.localPort));
-        Logger::error(QString("Socks5 port %1 is being used").arg(QString::number(profile.localPort)));
-        return;
-    }
-    if (pv->isInUse(conf->getHttpPort())) {
-        qCritical() << QString("Http port %1 is being used").arg(QString::number(profile.localHttpPort));
-        Logger::error(QString("Http port %1 is being used").arg(QString::number(profile.localHttpPort)));
-        return;
+    if (conf->isCheckPortAvailability()) {
+        PortValidator *pv = new PortValidator();
+        if (pv->isInUse(conf->getSocks5Port())) {
+            qCritical() << QString("Socks5 port %1 is being used").arg(QString::number(conf->getSocks5Port()));
+            Logger::error(QString("Socks5 port %1 is being used").arg(QString::number(conf->getSocks5Port())));
+            return;
+        }
+        if (pv->isInUse(conf->getHttpPort())) {
+            qCritical() << QString("Http port %1 is being used").arg(QString::number(conf->getHttpPort()));
+            Logger::error(QString("Http port %1 is being used").arg(QString::number(conf->getHttpPort())));
+            return;
+        }
     }
 
     /** Set running status to true before we start trojan. */
@@ -135,7 +143,7 @@ void Connection::start()
 
     /** Modify PAC File if user have enabled PAC Mode. */
     if (conf->isEnablePACMode()) {
-        pac->modify(profile);
+        pac->modify();
     }
 
     emit stateChanged(running);

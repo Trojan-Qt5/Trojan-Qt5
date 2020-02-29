@@ -15,6 +15,7 @@ SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
     ui->hideCheckBox->setChecked(helper->isHideWindowOnStartup());
     ui->startAtLoginCheckbox->setChecked(helper->isStartAtLogin());
     ui->oneInstanceCheckBox->setChecked(helper->isOnlyOneInstance());
+    ui->availabilityCheckBox->setChecked(helper->isCheckPortAvailability());
     ui->nativeMenuBarCheckBox->setChecked(helper->isNativeMenuBar());
 
     connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &SettingsDialog::onAccepted);
@@ -24,6 +25,7 @@ SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
     connect(ui->hideCheckBox, &QCheckBox::stateChanged, this, &SettingsDialog::onChanged);
     connect(ui->startAtLoginCheckbox, &QCheckBox::stateChanged, this, &SettingsDialog::onChanged);
     connect(ui->oneInstanceCheckBox, &QCheckBox::stateChanged, this, &SettingsDialog::onChanged);
+    connect(ui->availabilityCheckBox, &QCheckBox::stateChanged, this, &SettingsDialog::onChanged);
     connect(ui->nativeMenuBarCheckBox, &QCheckBox::stateChanged, this, &SettingsDialog::onChanged);
 
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
@@ -44,6 +46,7 @@ void SettingsDialog::onAccepted()
                                ui->hideCheckBox->isChecked(),
                                ui->startAtLoginCheckbox->isChecked(),
                                ui->oneInstanceCheckBox->isChecked(),
+                               ui->availabilityCheckBox->isChecked(),
                                ui->nativeMenuBarCheckBox->isChecked());
     this->accept();
 }
