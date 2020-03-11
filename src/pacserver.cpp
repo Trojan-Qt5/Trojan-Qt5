@@ -28,7 +28,7 @@ PACServer::PACServer()
     userRule = configDir.path() + "/user-rule.txt";
     pac = configDir.path() + "/proxy.pac";
 
-    /** Copy user-rule text to pac folder. */
+    //Copy user-rule text to pac folder.
     if (!QFile::exists(userRule)) {
         QFile::copy(":/pac/user-rule.txt", userRule);
      }
@@ -40,6 +40,10 @@ PACServer::PACServer()
     QFile::copy(":/pac/trojan_white_r.pac", configDir.path() + "/trojan_white_r.pac");
     QFile::copy(":/pac/trojan_cnip.pac", configDir.path() +"/trojan_cnip.pac");
     QFile::setPermissions(userRule, QFile::WriteOwner | QFile::ReadOwner | QFile::ReadGroup | QFile::ReadOther);
+
+    //Initalize when first startup
+    if (!QFile::exists(pac))
+        typeModify("GFWLIST");
 }
 
 PACServer::~PACServer()

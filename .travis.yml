@@ -122,7 +122,7 @@ defore_deploy:
       macdeployqt trojan-qt5.app -dmg;
       mv trojan-qt5.dmg Trojan-Qt5-macOS.dmg;
       brew link --overwrite python;
-      python3 ../scripts/checksum.py Trojan-Qt5-macOS.dmg Trojan-Qt5-macOS.hash;s
+      python3 ../scripts/checksum.py Trojan-Qt5-macOS.dmg Trojan-Qt5-macOS.hash;
     fi
   - if [ "$BADGE" = "linux" ]; then
       export LD_LIBRARY_PATH=/usr/loal/zlib/lib:/usr/local/pcre/lib:/usr/local/zbar/lib/:/usr/local/qrencode/lib/:/usr/local/boost/lib/:/usr/local/openssl/lib/:$LD_LIBRARY_PATH;

@@ -60,6 +60,7 @@ void setupApplication(QApplication &a)
     a.installTranslator(trojanqt5t);
 }
 
+#if defined (Q_OS_MAC)
 /**
  * @brief setupDockClickHandler
  * @ref https://stackoverflow.com/questions/15143369/qt-on-os-x-how-to-detect-clicking-the-app-dock-icon
@@ -100,6 +101,8 @@ bool dockClickHandler(id self,SEL _cmd,...)
     return false;
 }
 
+#endif
+
 int main(int argc, char *argv[])
 {
 
@@ -136,7 +139,9 @@ int main(int argc, char *argv[])
     MainWindow w(&conf);
     mainWindow = &w;
 
+#if defined (Q_OS_MAC)
     setupDockClickHandler();
+#endif
 
     if (conf.isOnlyOneInstance() && w.isInstanceRunning()) {
         return -1;

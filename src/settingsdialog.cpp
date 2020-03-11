@@ -9,6 +9,8 @@ SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
 {
     ui->setupUi(this);
 
+    helper->readGeneralSettings();
+
     ui->toolbarStyleComboBox->setCurrentIndex(helper->getToolbarStyle());
     ui->autoSetSystemProxyCheckBox->setChecked(helper->isAutoSetSystemProxy());
     ui->enablePACModeCheckBox->setChecked(helper->isEnablePACMode());

@@ -33,6 +33,7 @@ public:
 
     void initActions();
     void initConnections();
+    void updateMenu();
 
 signals:
     void toggleConnection(bool);

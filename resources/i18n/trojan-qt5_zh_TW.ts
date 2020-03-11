@@ -38,6 +38,16 @@
         <source>Local PAC Port</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../../ui/advancesettingsdialog.ui" line="113"/>
+        <source>Enable Http Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ui/advancesettingsdialog.ui" line="120"/>
+        <source>Enable</source>
+        <translation type="unfinished">開啟</translation>
+    </message>
 </context>
 <context>
     <name>ConnectionItem</name>
@@ -154,7 +164,7 @@
         <translation>設定檔編輯器</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="80"/>
+        <location filename="../../ui/editdialog.ui" line="83"/>
         <source>Verify Hostname</source>
         <translation>驗證主機名</translation>
     </message>
@@ -163,9 +173,8 @@
         <translation type="vanished">本機HTTP埠</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="111"/>
         <source>Local Server Type</source>
-        <translation>本機伺服器型別</translation>
+        <translation type="vanished">本機伺服器型別</translation>
     </message>
     <message>
         <source>Timeout</source>
@@ -196,72 +205,70 @@
         <translation type="vanished">本機位址</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="94"/>
+        <location filename="../../ui/editdialog.ui" line="97"/>
         <source>Password</source>
         <translation>密碼</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="52"/>
+        <location filename="../../ui/editdialog.ui" line="55"/>
         <source>Server Port</source>
         <translation>伺服器埠</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="42"/>
+        <location filename="../../ui/editdialog.ui" line="45"/>
         <source>Server Address</source>
         <translation>伺服器位址</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="32"/>
+        <location filename="../../ui/editdialog.ui" line="35"/>
         <source>Profile Name</source>
         <translation>設定檔名稱</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="142"/>
+        <location filename="../../ui/editdialog.ui" line="156"/>
         <source>TCP Fast Open</source>
         <translation>TCP快速打開</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="73"/>
-        <location filename="../../ui/editdialog.ui" line="87"/>
+        <location filename="../../ui/editdialog.ui" line="76"/>
+        <location filename="../../ui/editdialog.ui" line="90"/>
+        <location filename="../../ui/editdialog.ui" line="121"/>
+        <location filename="../../ui/editdialog.ui" line="135"/>
         <location filename="../../ui/editdialog.ui" line="149"/>
-        <location filename="../../ui/editdialog.ui" line="203"/>
-        <location filename="../../ui/editdialog.ui" line="217"/>
-        <location filename="../../ui/editdialog.ui" line="231"/>
+        <location filename="../../ui/editdialog.ui" line="163"/>
         <source>Enable</source>
         <translation>開啟</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="189"/>
+        <location filename="../../ui/editdialog.ui" line="203"/>
         <source>Auto connect on application start</source>
         <translation>程式啟動時自動連線</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="66"/>
+        <location filename="../../ui/editdialog.ui" line="69"/>
         <source>Verify Certificate</source>
         <translation>驗證證書</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="120"/>
         <source>SOCKS5</source>
-        <translation>SOCKS5</translation>
+        <translation type="vanished">SOCKS5</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="130"/>
         <source>SOCKS5 + HTTP</source>
-        <translation>SOCKS5 + HTTP</translation>
+        <translation type="vanished">SOCKS5 + HTTP</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="196"/>
+        <location filename="../../ui/editdialog.ui" line="142"/>
         <source>Reuse Port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="210"/>
+        <location filename="../../ui/editdialog.ui" line="114"/>
         <source>Reuse Session</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="224"/>
+        <location filename="../../ui/editdialog.ui" line="128"/>
         <source>Session Ticket</source>
         <translation type="unfinished"></translation>
     </message>
@@ -274,12 +281,12 @@
         <translation type="vanished">記錄檔等級</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="176"/>
+        <location filename="../../ui/editdialog.ui" line="190"/>
         <source>Automation</source>
         <translation>自動化</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="156"/>
+        <location filename="../../ui/editdialog.ui" line="170"/>
         <source>Reset Data Usage after</source>
         <translation>重設資料使用量之後</translation>
     </message>
@@ -781,110 +788,128 @@
 <context>
     <name>StatusNotifier</name>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="19"/>
-        <location filename="../../src/statusnotifier.cpp" line="90"/>
-        <location filename="../../src/statusnotifier.mm" line="19"/>
-        <location filename="../../src/statusnotifier.mm" line="169"/>
+        <location filename="../../src/statusnotifier.cpp" line="18"/>
+        <location filename="../../src/statusnotifier.cpp" line="185"/>
+        <location filename="../../src/statusnotifier.mm" line="15"/>
+        <location filename="../../src/statusnotifier.mm" line="202"/>
         <source>Minimise</source>
         <translation>最小化</translation>
     </message>
     <message>
         <location filename="../../src/statusnotifier.cpp" line="23"/>
-        <location filename="../../src/statusnotifier.mm" line="23"/>
+        <location filename="../../src/statusnotifier.mm" line="20"/>
         <source>Quit</source>
         <translation>結束</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="19"/>
-        <location filename="../../src/statusnotifier.cpp" line="90"/>
-        <location filename="../../src/statusnotifier.mm" line="19"/>
-        <location filename="../../src/statusnotifier.mm" line="169"/>
+        <location filename="../../src/statusnotifier.cpp" line="18"/>
+        <location filename="../../src/statusnotifier.cpp" line="185"/>
+        <location filename="../../src/statusnotifier.mm" line="15"/>
+        <location filename="../../src/statusnotifier.mm" line="202"/>
         <source>Restore</source>
         <translation>還原</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="31"/>
-        <location filename="../../src/statusnotifier.mm" line="66"/>
-        <location filename="../../src/statusnotifier.mm" line="161"/>
+        <location filename="../../src/statusnotifier.cpp" line="39"/>
+        <location filename="../../src/statusnotifier.cpp" line="177"/>
+        <location filename="../../src/statusnotifier.mm" line="36"/>
+        <location filename="../../src/statusnotifier.mm" line="194"/>
         <source>Trojan: Off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="33"/>
-        <location filename="../../src/statusnotifier.mm" line="68"/>
-        <location filename="../../src/statusnotifier.mm" line="162"/>
+        <location filename="../../src/statusnotifier.cpp" line="41"/>
+        <location filename="../../src/statusnotifier.cpp" line="178"/>
+        <location filename="../../src/statusnotifier.mm" line="38"/>
+        <location filename="../../src/statusnotifier.mm" line="195"/>
         <source>Turn On Trojan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.mm" line="72"/>
+        <location filename="../../src/statusnotifier.cpp" line="45"/>
+        <location filename="../../src/statusnotifier.mm" line="42"/>
         <source>Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.mm" line="75"/>
+        <location filename="../../src/statusnotifier.cpp" line="48"/>
+        <location filename="../../src/statusnotifier.mm" line="45"/>
         <source>Disable system proxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.mm" line="76"/>
-        <location filename="../../src/statusnotifier.mm" line="83"/>
+        <location filename="../../src/statusnotifier.cpp" line="49"/>
+        <location filename="../../src/statusnotifier.cpp" line="65"/>
+        <location filename="../../src/statusnotifier.mm" line="46"/>
+        <location filename="../../src/statusnotifier.mm" line="62"/>
         <source>PAC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.mm" line="77"/>
+        <location filename="../../src/statusnotifier.cpp" line="50"/>
+        <location filename="../../src/statusnotifier.mm" line="47"/>
         <source>Global</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.mm" line="84"/>
+        <location filename="../../src/statusnotifier.cpp" line="66"/>
+        <location filename="../../src/statusnotifier.mm" line="63"/>
         <source>Update local PAC from Lan IP list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.mm" line="85"/>
+        <location filename="../../src/statusnotifier.cpp" line="67"/>
+        <location filename="../../src/statusnotifier.mm" line="64"/>
         <source>Update local PAC from Chn White list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.mm" line="86"/>
+        <location filename="../../src/statusnotifier.cpp" line="68"/>
+        <location filename="../../src/statusnotifier.mm" line="65"/>
         <source>Update local PAC from Chn IP list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.mm" line="87"/>
+        <location filename="../../src/statusnotifier.cpp" line="69"/>
+        <location filename="../../src/statusnotifier.mm" line="66"/>
         <source>Update local PAC from GFWList</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.mm" line="88"/>
+        <location filename="../../src/statusnotifier.cpp" line="70"/>
+        <location filename="../../src/statusnotifier.mm" line="67"/>
         <source>Update local PAC from Chn Only list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.mm" line="89"/>
+        <location filename="../../src/statusnotifier.cpp" line="71"/>
+        <location filename="../../src/statusnotifier.mm" line="68"/>
         <source>Copy PAC URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.mm" line="90"/>
+        <location filename="../../src/statusnotifier.cpp" line="72"/>
+        <location filename="../../src/statusnotifier.mm" line="69"/>
         <source>Edit local PAC file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.mm" line="91"/>
+        <location filename="../../src/statusnotifier.cpp" line="73"/>
+        <location filename="../../src/statusnotifier.mm" line="70"/>
         <source>Edit user rule for GFWList</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.mm" line="117"/>
-        <location filename="../../src/statusnotifier.mm" line="158"/>
+        <location filename="../../src/statusnotifier.cpp" line="137"/>
+        <location filename="../../src/statusnotifier.cpp" line="174"/>
+        <location filename="../../src/statusnotifier.mm" line="152"/>
+        <location filename="../../src/statusnotifier.mm" line="191"/>
         <source>Turn Off Trojan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.mm" line="157"/>
+        <location filename="../../src/statusnotifier.cpp" line="173"/>
+        <location filename="../../src/statusnotifier.mm" line="190"/>
         <source>Trojan: On</source>
         <translation type="unfinished"></translation>
     </message>

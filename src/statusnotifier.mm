@@ -11,6 +11,7 @@ StatusNotifier::StatusNotifier(MainWindow *w, bool startHiden, QObject *parent) 
 {
     systray.setIcon(QIcon(":/icons/icons/trojan-qt5-2.png"));
     systray.setToolTip(QString("Trojan-Qt5"));
+    connect(&systray, &QSystemTrayIcon::activated, [=]() { updateMenu(); });
     minimiseRestoreAction = new QAction(startHiden ? tr("Restore") : tr("Minimise"), this);
     connect(minimiseRestoreAction, &QAction::triggered, this, &StatusNotifier::activate);
     initActions();
@@ -105,6 +106,24 @@ void StatusNotifier::initConnections()
     connect(editGFWListUserRule, &QAction::triggered, pacserver, [=]() { pacserver->editUserRule(); });
 }
 
+void StatusNotifier::updateMenu()
+{
+#ifdef Q_OS_WIN
+    QString configFile = QCoreApplication::applicationDirPath() + "/config.ini";
+#else
+    QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
+    QString configFile = configDir.absolutePath() + "/config.ini";
+#endif
+    ConfigHelper *conf = new ConfigHelper(configFile);
+
+    if (conf->isAutoSetSystemProxy() && conf->isEnablePACMode())
+        pacModeAction->setChecked(true);
+    else if (conf->isAutoSetSystemProxy())
+        globalModeAction->setChecked(true);
+    else
+        disableModeAction->setChecked(true);
+}
+
 void StatusNotifier::onToggleMode(QAction *action)
 {
 #ifdef Q_OS_WIN
@@ -130,12 +149,10 @@ void StatusNotifier::onToggleMode(QAction *action)
 
 void StatusNotifier::onToggleConnection()
 {
-    if (toggleTrojanAction->text() == tr("Turn Off Trojan")) {
+    if (toggleTrojanAction->text() == tr("Turn Off Trojan"))
         emit toggleConnection(false);
-    }
-    else {
+    else
         emit toggleConnection(true);
-    }
 }
 
 void StatusNotifier::activate()
