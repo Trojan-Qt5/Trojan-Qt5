@@ -19,8 +19,6 @@
 #ifndef STATUSNOTIFIER_H
 #define STATUSNOTIFIER_H
 
-#include "confighelper.h"
-
 #include <QObject>
 #include <QSystemTrayIcon>
 #include <QMenu>
@@ -31,28 +29,43 @@ class StatusNotifier : public QObject
 {
     Q_OBJECT
 public:
-    StatusNotifier(MainWindow *w, ConfigHelper *confHelper, QObject *parent = 0);
+    StatusNotifier(MainWindow *w, bool startHiden, QObject *parent = 0);
 
     void initActions();
+    void initConnections();
+
+signals:
+    void toggleConnection(bool);
 
 public slots:
     void activate();
+    void onToggleMode(QAction *action);
+    void onToggleConnection();
     void showNotification(const QString &);
     void changeIcon(bool started);
     void onWindowVisibleChanged(bool visible);
-    void toggleProxyMode(QAction *action);
 
 private:
     QMenu systrayMenu;
     QAction *trojanQt5Action;
-    /** Proxy Mode Actions. */
-    QActionGroup *proxyModeActionGroup;
-    QAction *pacAction;
-    QAction *globalAction;
-    QAction *manualAction;
+    QAction *toggleTrojanAction;
+    QMenu *ModeMenu;
+    QMenu *pacMenu;
+    QActionGroup *ModeGroup;
+    QAction *disableModeAction;
+    QAction *pacModeAction;
+    QAction *globalModeAction;
+    QAction *updatePACToBypassLAN;
+    QAction *updatePACToChnWhite;
+    QAction *updatePACToChnIP;
+    QAction *updatePACToGFWList;
+    QAction *updatePACToChnOnly;
+    QAction *copyPACUrl;
+    QAction *editLocalPACFile;
+    QAction *editGFWListUserRule;
+
     QAction *minimiseRestoreAction;
     QSystemTrayIcon systray;
-    ConfigHelper *configHelper;
     MainWindow *window;
 };
 

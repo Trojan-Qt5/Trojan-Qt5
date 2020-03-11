@@ -76,6 +76,7 @@ private:
     static const QUrl issueUrl;
 
 private slots:
+    void onToggleConnection(bool);
     void onImportGuiJson();
     void onExportGuiJson();
     void onExportShadowrocketJson();

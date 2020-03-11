@@ -42,12 +42,12 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
 {
     Q_ASSERT(configHelper);
 
-    /** Initialize Trojan Logger. */
+    //initialize Trojan Logger
     initLog();
 
     initSingleInstance();
 
-    /** initalize Sparkle Updater. */
+    //initalize Sparkle Updater
     initSparkle();
 
     ui->setupUi(this);
@@ -72,7 +72,7 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
     setupActionIcon();
 
 
-    notifier = new StatusNotifier(this, configHelper, this);
+    notifier = new StatusNotifier(this, configHelper->isHideWindowOnStartup(), this);
 
     connect(configHelper, &ConfigHelper::toolbarStyleChanged,
             ui->toolBar, &QToolBar::setToolButtonStyle);
@@ -86,6 +86,8 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
             this, &MainWindow::onSaveManually);
     connect(ui->actionTestAllLatency, &QAction::triggered,
             model, &ConnectionTableModel::testAllLatency);
+    connect(notifier, &StatusNotifier::toggleConnection,
+            this, &MainWindow::onToggleConnection);
 
     //some UI changes accoding to config
     ui->toolBar->setVisible(configHelper->isShowToolbar());
@@ -218,6 +220,22 @@ const QUrl MainWindow::issueUrl =
 void MainWindow::startAutoStartConnections()
 {
     configHelper->startAllAutoStart(*model);
+}
+
+void MainWindow::onToggleConnection(bool status)
+{
+    if (!status) {
+        model->disconnectConnections();
+    } else {
+        int row = proxyModel->mapToSource(ui->connectionView->currentIndex()).row();
+        if (row < 0)
+            return;
+        Connection *con = model->getItem(row)->getConnection();
+        if (con->isValid()) {
+            model->disconnectConnections();
+            con->start();
+        }
+    }
 }
 
 void MainWindow::onImportGuiJson()

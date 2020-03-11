@@ -41,7 +41,7 @@ CONFIG += sdk_no_version_check
 #DEFINES += QT_DEPRECATED_WARNINGS
 
 # Define App Version
-DEFINES += "APP_VERSION=\"\\\"0.0.4a\\\"\""
+DEFINES += "APP_VERSION=\"\\\"0.0.4b\\\"\""
 
 # Trojan
 #DEFINES += ENABLE_MYSQL
@@ -92,9 +92,11 @@ win32 {
 }
 
 mac {
-    HEADERS +=
+    HEADERS += \
+        src/LetsMove/PFMoveApplication.h
     SOURCES += \
-        src/statusnotifier.mm
+        src/statusnotifier.mm \
+        src/LetsMove/PFMoveApplication.m
     INCLUDEPATH += $$PWD/src/trojan/src
     INCLUDEPATH += /usr/local/opt/zbar/include
     INCLUDEPATH += /usr/local/opt/qrencode/include
@@ -119,11 +121,14 @@ mac {
         src/sparkle/CocoaInitializer.h \
         src/sparkle/SparkleAutoUpdater.h
     QMAKE_LFLAGS += -Wl,-rpath,@loader_path/../Frameworks
+    QMAKE_CXXFLAGS += -DOBJC_OLD_DISPATCH_PROTOTYPES=1 # Enable strict checking of objc_msgsend calls = NO
+    QMAKE_CXXFLAGS += -fno-objc-arc
     LIBS += -framework AppKit
     LIBS += -framework Carbon
     LIBS += -framework Foundation
     LIBS += -framework ApplicationServices
     LIBS += -framework Sparkle
+    LIBS += -framework LetsMove
     QMAKE_INFO_PLIST = resources/Info.plist
     # Otherwise lupdate will not work
     TR_EXCLUDE += /usr/local/opt/boost/*

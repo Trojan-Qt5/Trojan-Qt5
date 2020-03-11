@@ -136,6 +136,7 @@ sha1sum Trojan-Qt5-Linux.AppImage
 
 - [libQtShadowsocks](https://github.com/shadowsocks/libQtShadowsocks) LGPL-3.0
 - [Shadowsocks-qt](https://github.com/trojan-gfw/trojan-qt) LGPL-3.0
+- [Shadowsocks(RR)-Windows]() GPL-3.0
 - [trojan](https://github.com/trojan-gfw/trojan) GPL-3.0
 - [trojan-qt](https://github.com/trojan-gfw/trojan-qt) GPL-3.0
 - [Privoxy](https://www.privoxy.org) GPL-2.0

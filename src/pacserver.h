@@ -13,7 +13,14 @@ public:
     ~PACServer();
 
     QJsonDocument loadRules();
-    void modify();
+
+    void modify(QString filename);
+
+public slots:
+    void typeModify(QString type);
+    void copyPACUrl();
+    void editLocalPACFile();
+    void editUserRule();
 
 private:
     QDir configDir;

@@ -87,6 +87,7 @@ install:
       brew install zbar qrencode boost openssl@1.1 zlib pcre python3;
       brew reinstall https://raw.githubusercontent.com/Homebrew/homebrew-core/89bf3a54383d884f8b8511c6237325dd5b5ae6ba/Formula/qt.rb --verbose;
       cp -r framework/Sparkle.framework /usr/local/Cellar/qt/5.13.1/lib;
+      cp -r framework/LetsMove.framework /usr/local/Cellar/qt/5.13.1/lib;
     fi
 
 before_script:
@@ -116,18 +117,18 @@ script:
 
 defore_deploy:
   - if [ "$BADGE" = "osx" ]; then
+      xattr -c -r trojan-qt5.app;
+      xattr -d com.apple.quarantine trojan-qt5.app;
       macdeployqt trojan-qt5.app -dmg;
       mv trojan-qt5.dmg Trojan-Qt5-macOS.dmg;
       brew link --overwrite python;
-      python3 ../scripts/md5.py Trojan-Qt5-macOS.dmg Trojan-Qt5-macOS.md5;
-      python3 ../scripts/sha1.py Trojan-Qt5-macOS.dmg Trojan-Qt5-macOS.sha1;
+      python3 ../scripts/checksum.py Trojan-Qt5-macOS.dmg Trojan-Qt5-macOS.hash;s
     fi
   - if [ "$BADGE" = "linux" ]; then
       export LD_LIBRARY_PATH=/usr/loal/zlib/lib:/usr/local/pcre/lib:/usr/local/zbar/lib/:/usr/local/qrencode/lib/:/usr/local/boost/lib/:/usr/local/openssl/lib/:$LD_LIBRARY_PATH;
       ./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -appimage;
       mv Trojan-Qt5*.AppImage Trojan-Qt5-Linux.AppImage;
-      python3 ../scripts/md5.py Trojan-Qt5-Linux.AppImage Trojan-Qt5-Linux.md5;
-      python3 ../scripts/sha1.py Trojan-Qt5-Linux.AppImage Trojan-Qt5-Linux.sha1;
+      python3 ../scripts/checksum.py Trojan-Qt5-Linux.AppImage Trojan-Qt5-Linux.hash;
     fi
   - cd ..
 
@@ -135,11 +136,9 @@ deploy:
   provider: release
   file: 
     - build/Trojan-Qt5-macOS.dmg
-    - build/Trojan-Qt5-macOS.md5
-    - build/Trojan-Qt5-macOS.sha1
+    - build/Trojan-Qt5-macOS.hash
     - build/Trojan-Qt5-Linux.AppImage
-    - build/Trojan-Qt5-Linux.md5
-    - build/Trojan-Qt5-Linux.sha1
+    - build/Trojan-Qt5-Linux.hash
   api_key: $GIT_REPO_TOKEN
   skip_cleanup: true
   overwrite: true

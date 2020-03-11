@@ -1,9 +1,14 @@
-#include "confighelper.h"
 #include "pacserver.h"
 
+#include <QApplication>
 #include <QCoreApplication>
+#include <QDesktopServices>
 #include <QJsonArray>
 #include <QJsonDocument>
+#include <QClipboard>
+
+#include "confighelper.h"
+#include "userrules.h"
 
 PACServer::PACServer()
 {
@@ -24,15 +29,40 @@ PACServer::PACServer()
     pac = configDir.path() + "/proxy.pac";
 
     /** Copy user-rule text to pac folder. */
-    if (!QFile::exists(userRule))
+    if (!QFile::exists(userRule)) {
         QFile::copy(":/pac/user-rule.txt", userRule);
-        QFile::setPermissions(userRule, QFile::WriteOwner | QFile::ReadOwner | QFile::ReadGroup | QFile::ReadOther);
+     }
 
     QFile::copy(":/pac/gfwlist.txt", gfwList);
+    QFile::copy(":/pac/abp.js", configDir.path() + "/abp.js");
+    QFile::copy(":/pac/trojan_lanip.pac", configDir.path() + "/trojan_lanip.pac");
+    QFile::copy(":/pac/trojan_white.pac", configDir.path() + "/trojan_white.pac");
+    QFile::copy(":/pac/trojan_white_r.pac", configDir.path() + "/trojan_white_r.pac");
+    QFile::copy(":/pac/trojan_cnip.pac", configDir.path() +"/trojan_cnip.pac");
+    QFile::setPermissions(userRule, QFile::WriteOwner | QFile::ReadOwner | QFile::ReadGroup | QFile::ReadOther);
 }
 
 PACServer::~PACServer()
+{}
+
+void PACServer::copyPACUrl()
 {
+    ConfigHelper *conf = new ConfigHelper(configFile);
+    QClipboard *board = QApplication::clipboard();
+    board->setText(QString("http://%1:%2/proxy.pac").arg(conf->getPACAddress()).arg(conf->getPACPort()));
+}
+
+void PACServer::editLocalPACFile()
+{
+    QDesktopServices::openUrl(QUrl::fromLocalFile(pac));
+}
+
+void PACServer::editUserRule()
+{
+    UserRules *userRule = new UserRules();
+    connect(userRule, &UserRules::finished,
+            userRule, &UserRules::deleteLater);
+    userRule->exec();
 }
 
 QJsonDocument PACServer::loadRules()
@@ -62,6 +92,21 @@ QJsonDocument PACServer::loadRules()
     return data;
 }
 
+void PACServer::typeModify(QString type)
+{
+    if (type == "LAN") {
+        modify(configDir.path() + "/trojan_lanip.pac");
+    } else if (type == "WHITE") {
+        modify(configDir.path() + "/trojan_white.pac");
+    } else if (type == "WHITE_R") {
+        modify(configDir.path() + "/trojan_white_r.pac");
+    } else if (type == "CNIP") {
+        modify(configDir.path() + "/trojan_cnip.pac");
+    } else if (type == "GFWLIST") {
+        modify(configDir.path() + "/abp.js");
+    }
+}
+
 /**
  * Modify the proxy.pac file
  *
@@ -69,22 +114,23 @@ QJsonDocument PACServer::loadRules()
  * @param profile the Sever TQProfile
  * @ref https://stackoverflow.com/questions/17919778/qt-finding-and-replacing-text-in-a-file
  */
-void PACServer::modify()
+void PACServer::modify(QString filename)
 {
     ConfigHelper *conf = new ConfigHelper(configFile);
     if (QFile::exists(pac)) {
         QFile::remove(pac);
     }
-    QFile::copy(":/pac/abp.js", pac);
+    QFile::copy(filename, pac);
     QFile::setPermissions(pac, QFile::WriteOwner | QFile::ReadOwner | QFile::ReadGroup | QFile::ReadOther);
     QByteArray fileData;
     QFile file(pac);
     file.open(QIODevice::ReadWrite); // open for read and write
     fileData = file.readAll(); // read all the data into the byte array
     QString text(fileData); // add to text string for easy string replace
-    text.replace(QString("__SOCKS5ADDR__:__SOCKS5PORT__"), QString("%1:%2").arg(conf->getSocks5Address()).arg(QString::number(conf->getSocks5Port())));
-    text.replace(QString("__PROXYADDR__:__PROXYPORT__"), QString("%1:%2").arg(conf->getHttpAddress()).arg(QString::number(conf->getHttpPort())));
-    text.replace(QString("__RULES__"), loadRules().toJson());
+    text.replace(QString("__SOCKS5__"), QString("SOCKS5 %1:%2").arg(conf->getSocks5Address()).arg(QString::number(conf->getSocks5Port())));
+    text.replace(QString("__PROXY__"), QString("PROXY %1:%2").arg(conf->getHttpAddress()).arg(QString::number(conf->getHttpPort())));
+    if (filename == configDir.path() + "/abp.js")
+        text.replace(QString("__RULES__"), loadRules().toJson());
     file.seek(0); // go to the beginning of the file
     file.write(text.toUtf8()); // write the new text back to the file
     file.close(); // close the file handle.

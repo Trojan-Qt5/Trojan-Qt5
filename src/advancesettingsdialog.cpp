@@ -9,6 +9,7 @@ AdvanceSettingsDialog::AdvanceSettingsDialog(ConfigHelper *ch, QWidget *parent) 
 {
     ui->setupUi(this);
 
+    ui->httpModeCheckBox->setChecked(helper->isEnableHttpMode());
     ui->socks5Address->setText(helper->getSocks5Address());
     ui->socks5Port->setText(QString::number(helper->getSocks5Port()));
     ui->httpAddress->setText(helper->getHttpAddress());
@@ -17,6 +18,7 @@ AdvanceSettingsDialog::AdvanceSettingsDialog(ConfigHelper *ch, QWidget *parent) 
     ui->pacPort->setText(QString::number(helper->getPACPort()));
 
     connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &AdvanceSettingsDialog::onAccepted);
+    connect(ui->httpModeCheckBox, &QCheckBox::stateChanged, this, &AdvanceSettingsDialog::onChanged);
     connect(ui->socks5Address, &QLineEdit::textChanged, this, &AdvanceSettingsDialog::onChanged);
     connect(ui->socks5Port, &QLineEdit::textChanged, this, &AdvanceSettingsDialog::onChanged);
     connect(ui->httpAddress, &QLineEdit::textChanged, this, &AdvanceSettingsDialog::onChanged);
@@ -36,7 +38,8 @@ AdvanceSettingsDialog::~AdvanceSettingsDialog()
 
 void AdvanceSettingsDialog::onAccepted()
 {
-    helper->setAdvanceSettings(ui->socks5Address->text(),
+    helper->setAdvanceSettings(ui->httpModeCheckBox->isChecked(),
+                               ui->socks5Address->text(),
                                ui->socks5Port->text().toInt(),
                                ui->httpAddress->text(),
                                ui->httpPort->text().toInt(),

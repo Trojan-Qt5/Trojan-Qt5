@@ -21,7 +21,6 @@ EditDialog::EditDialog(Connection *_connection, QWidget *parent) :
     ui->verifyCertificateCheckBox->setChecked(connection->profile.verifyCertificate);
     ui->verifyHostnameCheckBox->setChecked(connection->profile.verifyHostname);
     ui->pwdEdit->setText(connection->profile.password);
-    ui->dualRadioButton->setChecked(connection->profile.dualMode);
     ui->reuseSessionCheckBox->setChecked(connection->profile.reuseSession);
     ui->sessionTicketCheckBox->setChecked(connection->profile.sessionTicket);
     ui->reusePortCheckBox->setChecked(connection->profile.reusePort);
@@ -47,7 +46,6 @@ void EditDialog::save()
     connection->profile.serverPort = ui->serverPortEdit->text().toUShort();
     connection->profile.verifyCertificate = ui->verifyCertificateCheckBox->isChecked();
     connection->profile.verifyHostname = ui->verifyHostnameCheckBox->isChecked();
-    connection->profile.dualMode = ui->dualRadioButton->isChecked();
     connection->profile.reuseSession = ui->reuseSessionCheckBox->isChecked();
     connection->profile.sessionTicket = ui->sessionTicketCheckBox->isChecked();
     connection->profile.reusePort = ui->reusePortCheckBox->isChecked();

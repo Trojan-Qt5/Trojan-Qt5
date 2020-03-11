@@ -92,15 +92,12 @@ void Connection::start()
         latencyTest();
     }
 
-    /** MUST initial there otherwise privoxy will not listen port. */
+    //MUST initial there otherwise privoxy will not listen port
     privoxy = new PrivoxyThread();
-
-    /** Inital PAC class there. */
-    PACServer *pac = new PACServer();
 
     ConfigHelper *conf = new ConfigHelper(configFile);
 
-    // Generate Config File that trojan and privoxy will use
+    //generate Config File that trojan and privoxy will use
     conf->connectionToJson(profile);
     conf->generatePrivoxyConf();
 
@@ -110,14 +107,15 @@ void Connection::start()
     QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
     QString file = configDir.absolutePath() + "/config.json";
 #endif
-    /** load service config first. */
+
+    //load service config first
     try {
         service->config().load(file.toLocal8Bit().data());
     } catch (boost::exception &e) {
         Logger::error(QString::fromStdString(boost::diagnostic_information(e)));
     }
 
-    /** Wait, let's check if port is in use. */
+    //wait, let's check if port is in use
     if (conf->isCheckPortAvailability()) {
         PortValidator *pv = new PortValidator();
         if (pv->isInUse(conf->getSocks5Port())) {
@@ -132,28 +130,23 @@ void Connection::start()
         }
     }
 
-    /** Set running status to true before we start trojan. */
+    //set running status to true before we start trojan
     running = true;
     service->start();
 
-    /** Start privoxy if profile is configured to do so. */
+    //start privoxy if profile is configured to do so
     if (profile.dualMode) {
         privoxy->start();
     }
 
-    /** Modify PAC File if user have enabled PAC Mode. */
-    if (conf->isEnablePACMode()) {
-        pac->modify();
-    }
-
     emit stateChanged(running);
 
-    /** Set proxy settings after emit the signal. */
+    //set proxy settings after emit the signal
     if (conf->isAutoSetSystemProxy()) {
         if (conf->isEnablePACMode()) {
-            SystemProxyHelper::setSystemProxy(profile, 2);
+            SystemProxyHelper::setSystemProxy(2);
         } else {
-            SystemProxyHelper::setSystemProxy(profile, 1);
+            SystemProxyHelper::setSystemProxy(1);
         }
     }
 }
@@ -163,20 +156,20 @@ void Connection::stop()
     ConfigHelper *conf = new ConfigHelper(configFile);
 
     if (running) {
-        /** Set the running status to false first. */
+        //set the running status to false first. */
         running = false;
         service->stop();
 
-        /** If we have started privoxy, stop it. */
+        //if we have started privoxy, stop it
         if (profile.dualMode) {
             privoxy->stop();
         }
 
         emit stateChanged(running);
 
-        /** Set proxy settings after emit the signal. */
+        //set proxy settings after emit the signal
         if (conf->isAutoSetSystemProxy()) {
-            SystemProxyHelper::setSystemProxy(profile, 0);
+            SystemProxyHelper::setSystemProxy(0);
         }
     }
 }
@@ -189,9 +182,9 @@ void Connection::onStartFailed()
     emit stateChanged(running);
     emit startFailed();
 
-    /** Set proxy settings if the setting is configured to do so. */
+    //set proxy settings if the setting is configured to do so
     if (conf->isAutoSetSystemProxy()) {
-        SystemProxyHelper::setSystemProxy(profile, 0);
+        SystemProxyHelper::setSystemProxy(0);
     }
 }
 

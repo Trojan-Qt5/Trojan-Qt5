@@ -3,7 +3,6 @@
 #include <QLibraryInfo>
 #include <QLocale>
 #include <QMessageBox>
-#include <QDebug>
 #include <QDir>
 #include <QCommandLineParser>
 #include <QHttpServer>
@@ -11,6 +10,16 @@
 #include "mainwindow.h"
 #include "confighelper.h"
 #include "resourcehelper.h"
+#include "logger.h"
+
+#include "LetsMove/PFMoveApplication.h"
+
+#ifdef Q_OS_MAC
+#include <objc/objc.h>
+#include <objc/message.h>
+void setupDockClickHandler();
+bool dockClickHandler(id self,SEL _cmd,...);
+#endif
 
 MainWindow *mainWindow = nullptr;
 
@@ -51,6 +60,46 @@ void setupApplication(QApplication &a)
     a.installTranslator(trojanqt5t);
 }
 
+/**
+ * @brief setupDockClickHandler
+ * @ref https://stackoverflow.com/questions/15143369/qt-on-os-x-how-to-detect-clicking-the-app-dock-icon
+ */
+void setupDockClickHandler() {
+    Class cls = objc_getClass("NSApplication");
+    objc_object *appInst = (objc_object*)objc_msgSend((id)cls, sel_registerName("sharedApplication"));
+
+    if(appInst != NULL) {
+        objc_object* delegate = (objc_object*)objc_msgSend((id)appInst, sel_registerName("delegate"));
+        Class delClass = (Class)objc_msgSend((id)delegate,  sel_registerName("class"));
+        SEL shouldHandle = sel_registerName("applicationShouldHandleReopen:hasVisibleWindows:");
+        if (class_getInstanceMethod(delClass, shouldHandle)) {
+            if (class_replaceMethod(delClass, shouldHandle, (IMP)dockClickHandler, "B@:"))
+                Logger::debug("Registered dock click handler (replaced original method");
+            else
+                Logger::warning("Failed to replace method for dock click handler");
+        }
+        else {
+            if (class_addMethod(delClass, shouldHandle, (IMP)dockClickHandler,"B@:"))
+                Logger::debug("Registered dock click handler");
+            else
+                Logger::warning("Failed to register dock click handler");
+        }
+    }
+}
+
+bool dockClickHandler(id self,SEL _cmd,...)
+{
+    Q_UNUSED(self);
+    Q_UNUSED(_cmd);
+
+    mainWindow->showNormal();
+    mainWindow->activateWindow();
+    mainWindow->raise();
+
+    // Return NO (false) to suppress the default OS X actions
+    return false;
+}
+
 int main(int argc, char *argv[])
 {
 
@@ -87,11 +136,13 @@ int main(int argc, char *argv[])
     MainWindow w(&conf);
     mainWindow = &w;
 
+    setupDockClickHandler();
+
     if (conf.isOnlyOneInstance() && w.isInstanceRunning()) {
         return -1;
     }
 
-    /** We have to start QHttpServer in main otherwise it will not listen. */
+    //we have to start QHttpServer in main otherwise it will not listen
     QHttpServer server;
 #if defined(Q_OS_WIN)
     server.route("/<arg>", [](const QUrl &url) {
@@ -106,12 +157,16 @@ int main(int argc, char *argv[])
 #endif
     server.listen(QHostAddress(conf.getPACAddress()), conf.getPACPort());
 
-    /** Start all servers which were configured to start at startup. */
+    //start all servers which were configured to start at startup
     w.startAutoStartConnections();
 
     if (!conf.isHideWindowOnStartup()) {
         w.show();
     }
+
+#if defined (Q_OS_MAC)
+    PFMoveToApplicationsFolderIfNecessary();
+#endif
 
     return a.exec();
 }

@@ -22,15 +22,13 @@
 #include <QDir>
 #include <QObject>
 
-#include "tqprofile.h"
-
 class SystemProxyHelper: public QObject
 {
 public:
     SystemProxyHelper();
     ~SystemProxyHelper();
     static std::string runShell(QString cmd);
-    static void setSystemProxy(TQProfile profile, int method);
+    static void setSystemProxy(int method);
 };
 
 #endif // SYSTEMPROXYHELPER_H

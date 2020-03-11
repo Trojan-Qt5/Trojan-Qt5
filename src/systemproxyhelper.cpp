@@ -11,8 +11,7 @@
 #endif
 
 SystemProxyHelper::SystemProxyHelper()
-{
-}
+{}
 
 /**
  * set system proxy to none after deconstruct
@@ -21,7 +20,7 @@ SystemProxyHelper::SystemProxyHelper()
  */
 SystemProxyHelper::~SystemProxyHelper()
 {
-    setSystemProxy(TQProfile(), false);
+    setSystemProxy(0);
 }
 
 /**
@@ -56,7 +55,7 @@ std::string SystemProxyHelper::runShell(QString cmd)
  * @ref https://github.com/trojan-gfw/trojan-qt/blob/master/src/AppManager.cpp
  * @ref https://github.com/shadowsocks/ShadowsocksX-NG/blob/develop/proxy_conf_helper/main.m
  */
-void SystemProxyHelper::setSystemProxy(TQProfile profile, int method)
+void SystemProxyHelper::setSystemProxy(int method)
 {
 #ifdef Q_OS_WIN
     QString configFile = QCoreApplication::applicationDirPath() + "/config.ini";
@@ -67,7 +66,7 @@ void SystemProxyHelper::setSystemProxy(TQProfile profile, int method)
     ConfigHelper *conf = new ConfigHelper(configFile);
 
 #if defined(Q_OS_WIN)
-    if (method == 1 && profile.dualMode) {
+    if (method == 1 && conf->isEnableHttpMode()) {
         QString server = conf->getHttpAddress() + ":" + QString::number(conf->getHttpPort());
         LPTSTR serverString = (LPTSTR) server.utf16();
         int status = setProxy(1, serverString);
@@ -86,21 +85,27 @@ void SystemProxyHelper::setSystemProxy(TQProfile profile, int method)
     std::regex prefix("\\((\\d)*\\)\\s", std::regex_constants::ECMAScript | std::regex_constants::icase);
     while(std::getline(s, portName))
     {
-        if(std::regex_match(portName, all))
-            if (std::regex_replace(portName, prefix, "") == "AirPort"
-             || std::regex_replace(portName, prefix, "") == "Wi-Fi"
-             || std::regex_replace(portName, prefix, "") == "Ethernet"
-             || std::regex_replace(portName, prefix, "") == "USB 10/100/100 LAN")
-                hardwarePorts.push_back(std::regex_replace(portName, prefix, ""));
+        if(std::regex_match(portName, all)) {
+            std::string name = std::regex_replace(portName, prefix, "");
+            if (name == "AirPort"
+              || name == "Wi-Fi"
+              || name == "Ethernet"
+              || name == "USB 10/100 LAN"
+              || name == "USB 10/100/1000 LAN"
+              || name == "802.11ac NIC")
+                hardwarePorts.push_back(name);
+        }
     }
 
     for (auto &i : hardwarePorts) {
-        if (method == 1 && profile.dualMode) {
+        if (method == 1 && conf->isEnableHttpMode()) {
             runShell(QString("networksetup -setwebproxy \"%1\" %2 %3").arg(QString::fromStdString(i)).arg(conf->getHttpAddress()).arg(QString::number(conf->getHttpPort())));
             runShell(QString("networksetup -setsecurewebproxy \"%1\" %2 %3").arg(QString::fromStdString(i)).arg(conf->getHttpAddress()).arg(QString::number(conf->getHttpPort())));
             runShell(QString("networksetup -setsocksfirewallproxy \"%1\" %2 %3").arg(QString::fromStdString(i)).arg(conf->getSocks5Address()).arg(QString::number(conf->getSocks5Port())));
+            runShell("networksetup -setproxybypassdomains 127.0.0.1 localhost");
         } else if (method == 1) {
             runShell(QString("networksetup -setsocksfirewallproxy \"%1\" %2 %3").arg(QString::fromStdString(i)).arg(conf->getSocks5Address()).arg(QString::number(conf->getSocks5Port())));
+            runShell("networksetup -setproxybypassdomains 127.0.0.1 localhost");
         } else if (method == 2) {
             runShell(QString("networksetup -setautoproxyurl \"%1\" http://%2:%3/proxy.pac").arg(QString::fromStdString(i)).arg(conf->getPACAddress()).arg(QString::number(conf->getPACPort())));
         } else if (method == 0) {
@@ -113,7 +118,7 @@ void SystemProxyHelper::setSystemProxy(TQProfile profile, int method)
 
 #elif defined (Q_OS_LINUX)
     if (system("gsettings --version > /dev/null") == 0) {
-        if (method == 1 && profile.dualMode) {
+        if (method == 1 && conf->isEnableHttpMode()) {
             runShell(QString("gsettings set org.gnome.system.proxy mode manual"));
             runShell(QString("gsettings set org.gnome.system.proxy.http host %1").arg(conf->getHttpAddress()));
             runShell(QString("gsettings set org.gnome.system.proxy.http port %1").arg(QString::number(conf->getHttpPort())));
@@ -139,7 +144,7 @@ void SystemProxyHelper::setSystemProxy(TQProfile profile, int method)
             runShell("gsettings set org.gnome.system.proxy.socks port 0");
         }
     } else if (system("kwriteconfig5 --help > /dev/null") == 0) {
-        if (method == 1 && profile.dualMode) {
+        if (method == 1 && conf->isEnableHttpMode()) {
             runShell("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key ProxyType 1");
             runShell(QString("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key httpProxy \"%1:%2\"").arg(conf->getHttpAddress()).arg(conf->getHttpPort()));
             runShell(QString("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key httpsProxy \"%1:%2\"").arg(conf->getHttpAddress()).arg(conf->getHttpPort()));

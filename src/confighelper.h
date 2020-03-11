@@ -80,6 +80,7 @@ public:
     QString getPACAddress() const;
     int getPACPort() const;
     bool isAutoSetSystemProxy() const;
+    bool isEnableHttpMode() const;
     bool isEnablePACMode() const;
     bool isHideWindowOnStartup() const;
     bool isStartAtLogin() const;
@@ -88,9 +89,9 @@ public:
     bool isShowToolbar() const;
     bool isShowFilterBar() const;
     bool isNativeMenuBar() const;
-    void setProxyMode(bool assp, bool pac);
     void setGeneralSettings(int ts, bool assp, bool pac, bool hide, bool sal, bool oneInstance, bool cpa, bool nativeMB);
-    void setAdvanceSettings(QString sa, int sp, QString ha, int hp, QString pa, int pp);
+    void setAdvanceSettings(bool hm, QString sa, int sp, QString ha, int hp, QString pa, int pp);
+    void setSystemProxySettings(bool pac, bool enable);
     void setMainWindowGeometry(const QByteArray &geometry);
     void setMainWindowState(const QByteArray &state);
     void setTableGeometry(const QByteArray &geometry);
@@ -111,6 +112,7 @@ signals:
 private:
     int toolbarStyle;
     /** Port Settings. */
+    bool enableHttpMode;
     QString socks5LocalAddress;
     int socks5LocalPort;
     QString httpLocalAddress;

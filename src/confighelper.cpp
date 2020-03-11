@@ -33,6 +33,7 @@ void ConfigHelper::save(const ConnectionTableModel &model)
     }
     settings->endArray();
 
+    settings->setValue("EnableHttpMode", QVariant(enableHttpMode));
     settings->setValue("Socks5LocalAddress", QVariant(socks5LocalAddress));
     settings->setValue("Socks5LocalPort", QVariant(socks5LocalPort));
     settings->setValue("HttpLocalAddress", QVariant(httpLocalAddress));
@@ -96,7 +97,6 @@ void ConfigHelper::importGuiConfigJson(ConnectionTableModel *model, const QStrin
         p.verifyCertificate = json["verify_certificate"].toBool();
         p.verifyHostname = json["verify_hostname"].toBool();
         p.password = json["password"].toString();
-        p.dualMode = json["dual_mode"].toBool();
         p.reuseSession = json["reuse_session"].toBool();
         p.sessionTicket = json["session_ticket"].toBool();
         p.reusePort = json["reuse_port"].toBool();
@@ -120,7 +120,6 @@ void ConfigHelper::exportGuiConfigJson(const ConnectionTableModel &model, const 
         json["verify_certificate"] = QJsonValue(con->profile.verifyCertificate);
         json["verify_hostname"] = QJsonValue(con->profile.verifyHostname);
         json["password"] = QJsonValue(con->profile.password);
-        json["dual_mode"] = QJsonValue(con->profile.dualMode);
         json["reuse_session"] = QJsonValue(con->profile.reuseSession);
         json["session_ticket"] = QJsonValue(con->profile.sessionTicket);
         json["reuse_port"] = QJsonValue(con->profile.reusePort);
@@ -397,6 +396,11 @@ bool ConfigHelper::isAutoSetSystemProxy() const
     return autoSetSystemProxy;
 }
 
+bool ConfigHelper::isEnableHttpMode() const
+{
+    return enableHttpMode;
+}
+
 bool ConfigHelper::isEnablePACMode() const
 {
     return enablePACMode;
@@ -437,12 +441,6 @@ bool ConfigHelper::isNativeMenuBar() const
     return nativeMenuBar;
 }
 
-void ConfigHelper::setProxyMode(bool assp, bool pac)
-{
-    autoSetSystemProxy = assp;
-    enablePACMode = pac;
-}
-
 void ConfigHelper::setGeneralSettings(int ts, bool assp, bool pac, bool hide, bool sal, bool oneInstance, bool cpa, bool nativeMB)
 {
     if (toolbarStyle != ts) {
@@ -458,14 +456,23 @@ void ConfigHelper::setGeneralSettings(int ts, bool assp, bool pac, bool hide, bo
     nativeMenuBar = nativeMB;
 }
 
-void ConfigHelper::setAdvanceSettings(QString sa, int sp, QString ha, int hp, QString pa, int pp)
+void ConfigHelper::setAdvanceSettings(bool hm, QString sa, int sp, QString ha, int hp, QString pa, int pp)
 {
+    enableHttpMode = hm;
     socks5LocalAddress = sa;
     socks5LocalPort = sp;
     httpLocalAddress = ha;
     httpLocalPort = hp;
     pacLocalAddress = pa;
     pacLocalPort = pp;
+}
+
+void ConfigHelper::setSystemProxySettings(bool pac, bool enable)
+{
+   enablePACMode = pac;
+   autoSetSystemProxy = enable;
+   settings->setValue("AutoSetSystemProxy", QVariant(autoSetSystemProxy));
+   settings->setValue("EnablePACMode", QVariant(enablePACMode));
 }
 
 void ConfigHelper::setShowToolbar(bool show)
@@ -492,6 +499,7 @@ void ConfigHelper::read(ConnectionTableModel *model)
     }
     settings->endArray();
     readGeneralSettings();
+    readAdvanceSettings();
 }
 
 void ConfigHelper::readGeneralSettings()
@@ -510,6 +518,7 @@ void ConfigHelper::readGeneralSettings()
 
 void ConfigHelper::readAdvanceSettings()
 {
+    enableHttpMode = settings->value("EnableHttpMode", QVariant(true)).toBool();
     socks5LocalAddress = settings->value("Socks5LocalAddress", QVariant("127.0.0.1")).toString();
     socks5LocalPort = settings->value("Socks5LocalPort", QVariant(1080)).toInt();
     httpLocalAddress = settings->value("HttpLocalAddress", QVariant("127.0.0.1")).toString();

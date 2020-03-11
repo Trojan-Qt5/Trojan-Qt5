@@ -310,61 +310,61 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="563"/>
+        <location filename="../../src/mainwindow.cpp" line="581"/>
         <source>About</source>
         <translation>關於</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="227"/>
+        <location filename="../../src/mainwindow.cpp" line="245"/>
         <source>Import Connections from gui-config.json</source>
         <translation>自 gui-config.json 匯入連線</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="240"/>
+        <location filename="../../src/mainwindow.cpp" line="258"/>
         <source>Export Connections as gui-config.json</source>
         <translation>匯出連線為 gui-config.json</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="252"/>
+        <location filename="../../src/mainwindow.cpp" line="270"/>
         <source>Export Connections as shadowrocket.json</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="277"/>
-        <location filename="../../src/mainwindow.cpp" line="310"/>
+        <location filename="../../src/mainwindow.cpp" line="295"/>
+        <location filename="../../src/mainwindow.cpp" line="328"/>
         <source>QR Code Not Found</source>
         <translation>找不到 QR 碼</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="278"/>
-        <location filename="../../src/mainwindow.cpp" line="311"/>
+        <location filename="../../src/mainwindow.cpp" line="296"/>
+        <location filename="../../src/mainwindow.cpp" line="329"/>
         <source>Can&apos;t find any QR code image that contains valid URI on your screen(s).</source>
         <translation>在你的螢幕上無法找到任何包含有效 URI 的 QR 碼圖片。</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="302"/>
+        <location filename="../../src/mainwindow.cpp" line="320"/>
         <source>Open QR Code Image File</source>
         <translation>開啟 QR 碼圖檔</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="337"/>
+        <location filename="../../src/mainwindow.cpp" line="355"/>
         <source>Open config.json</source>
         <translation>開啟 config.json</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="349"/>
+        <location filename="../../src/mainwindow.cpp" line="367"/>
         <source>Open shadowrocket.json</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="389"/>
-        <location filename="../../src/mainwindow.cpp" line="403"/>
+        <location filename="../../src/mainwindow.cpp" line="407"/>
+        <location filename="../../src/mainwindow.cpp" line="421"/>
         <source>Invalid</source>
         <translation>無效</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="390"/>
-        <location filename="../../src/mainwindow.cpp" line="404"/>
+        <location filename="../../src/mainwindow.cpp" line="408"/>
+        <location filename="../../src/mainwindow.cpp" line="422"/>
         <source>The connection&apos;s profile is invalid!</source>
         <translation>此連線的設定檔無效！</translation>
     </message>
@@ -781,40 +781,111 @@
 <context>
     <name>StatusNotifier</name>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="20"/>
-        <location filename="../../src/statusnotifier.cpp" line="107"/>
-        <location filename="../../src/statusnotifier.mm" line="20"/>
-        <location filename="../../src/statusnotifier.mm" line="111"/>
+        <location filename="../../src/statusnotifier.cpp" line="19"/>
+        <location filename="../../src/statusnotifier.cpp" line="90"/>
+        <location filename="../../src/statusnotifier.mm" line="19"/>
+        <location filename="../../src/statusnotifier.mm" line="169"/>
         <source>Minimise</source>
         <translation>最小化</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="24"/>
-        <location filename="../../src/statusnotifier.mm" line="24"/>
+        <location filename="../../src/statusnotifier.cpp" line="23"/>
+        <location filename="../../src/statusnotifier.mm" line="23"/>
         <source>Quit</source>
         <translation>結束</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="20"/>
-        <location filename="../../src/statusnotifier.cpp" line="107"/>
-        <location filename="../../src/statusnotifier.mm" line="20"/>
-        <location filename="../../src/statusnotifier.mm" line="111"/>
+        <location filename="../../src/statusnotifier.cpp" line="19"/>
+        <location filename="../../src/statusnotifier.cpp" line="90"/>
+        <location filename="../../src/statusnotifier.mm" line="19"/>
+        <location filename="../../src/statusnotifier.mm" line="169"/>
         <source>Restore</source>
         <translation>還原</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.mm" line="35"/>
-        <source>PAC Mode</source>
+        <location filename="../../src/statusnotifier.cpp" line="31"/>
+        <location filename="../../src/statusnotifier.mm" line="66"/>
+        <location filename="../../src/statusnotifier.mm" line="161"/>
+        <source>Trojan: Off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.mm" line="36"/>
-        <source>Global Mode</source>
+        <location filename="../../src/statusnotifier.cpp" line="33"/>
+        <location filename="../../src/statusnotifier.mm" line="68"/>
+        <location filename="../../src/statusnotifier.mm" line="162"/>
+        <source>Turn On Trojan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.mm" line="37"/>
-        <source>Manually Mode</source>
+        <location filename="../../src/statusnotifier.mm" line="72"/>
+        <source>Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/statusnotifier.mm" line="75"/>
+        <source>Disable system proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/statusnotifier.mm" line="76"/>
+        <location filename="../../src/statusnotifier.mm" line="83"/>
+        <source>PAC</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/statusnotifier.mm" line="77"/>
+        <source>Global</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/statusnotifier.mm" line="84"/>
+        <source>Update local PAC from Lan IP list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/statusnotifier.mm" line="85"/>
+        <source>Update local PAC from Chn White list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/statusnotifier.mm" line="86"/>
+        <source>Update local PAC from Chn IP list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/statusnotifier.mm" line="87"/>
+        <source>Update local PAC from GFWList</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/statusnotifier.mm" line="88"/>
+        <source>Update local PAC from Chn Only list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/statusnotifier.mm" line="89"/>
+        <source>Copy PAC URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/statusnotifier.mm" line="90"/>
+        <source>Edit local PAC file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/statusnotifier.mm" line="91"/>
+        <source>Edit user rule for GFWList</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/statusnotifier.mm" line="117"/>
+        <location filename="../../src/statusnotifier.mm" line="158"/>
+        <source>Turn Off Trojan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/statusnotifier.mm" line="157"/>
+        <source>Trojan: On</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
