@@ -1,8 +1,8 @@
 var direct = "__DIRECT__";
 if (direct == "__DIR" + "ECT__") direct = "DIRECT;";
 
-var wall_proxy = function(){ return "__SOCKS5__; __PROXY__"; };
-var wall_v6_proxy = function(){ return "__SOCKS5__; __PROXY__"; };
+var wall_proxy = function(){ return "__SOCKS5__; __SOCKS__; __PROXY__"; };
+var wall_v6_proxy = function(){ return "__SOCKS5__; __SOCKS__; __PROXY__"; };
 
 var nowall_proxy = function(){ return direct; };
 var ip_proxy = function(){ return wall_proxy(); };

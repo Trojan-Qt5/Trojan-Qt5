@@ -109,6 +109,10 @@ void PACServer::typeModify(QString type)
     } else if (type == "GFWLIST") {
         modify(configDir.path() + "/abp.js");
     }
+    //set System Proxy Again to force system reload pac file
+    SystemProxyHelper *sph = new SystemProxyHelper();
+    sph->setSystemProxy(0);
+    sph->setSystemProxy(2);
 }
 
 /**
@@ -132,6 +136,7 @@ void PACServer::modify(QString filename)
     fileData = file.readAll(); // read all the data into the byte array
     QString text(fileData); // add to text string for easy string replace
     text.replace(QString("__SOCKS5__"), QString("SOCKS5 %1:%2").arg(conf->getSocks5Address()).arg(QString::number(conf->getSocks5Port())));
+    text.replace(QString("__SOCKS__"), QString("SOCKS %1:%2").arg(conf->getSocks5Address()).arg(QString::number(conf->getSocks5Port())));
     text.replace(QString("__PROXY__"), QString("PROXY %1:%2").arg(conf->getHttpAddress()).arg(QString::number(conf->getHttpPort())));
     if (filename == configDir.path() + "/abp.js")
         text.replace(QString("__RULES__"), loadRules().toJson());

@@ -128,9 +128,8 @@ bool ConnectionTableModel::isDuplicate(Connection *newCon)
         if (con->getProfile().serverAddress == newCon->getProfile().serverAddress &&
             con->getProfile().serverPort == newCon->getProfile().serverPort)
             return true;
-        else
-            return false;
     }
+    return false;
 }
 
 void ConnectionTableModel::testAllLatency()

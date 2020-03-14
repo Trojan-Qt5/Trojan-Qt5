@@ -123,6 +123,9 @@ void Connection::start()
             Logger::error(QString("Socks5 port %1 is being used").arg(QString::number(conf->getSocks5Port())));
             return;
         }
+
+    //don't check http mode if httpMode is not enabled
+    if (conf->isEnableHttpMode())
         if (pv->isInUse(conf->getHttpPort())) {
             qCritical() << QString("Http port %1 is being used").arg(QString::number(conf->getHttpPort()));
             Logger::error(QString("Http port %1 is being used").arg(QString::number(conf->getHttpPort())));
@@ -161,7 +164,7 @@ void Connection::stop()
         service->stop();
 
         //if we have started privoxy, stop it
-        if (profile.dualMode) {
+        if (conf->isEnableHttpMode()) {
             privoxy->stop();
         }
 
