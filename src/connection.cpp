@@ -135,7 +135,7 @@ void Connection::start()
     service->start();
 
     //start privoxy if profile is configured to do so
-    if (profile.dualMode) {
+    if (conf->isEnableHttpMode()) {
         privoxy->start();
     }
 

@@ -22,6 +22,7 @@
 #include <QSettings>
 #include "connectiontablemodel.h"
 #include "connection.h"
+#include "tqsubscribe.h"
 
 class ConfigHelper : public QObject
 {
@@ -41,6 +42,8 @@ public:
      */
     void read(ConnectionTableModel *model);
 
+    QList<TQSubscribe> readSubscribes();
+
     /*
      * readGeneralSettings() only reads General settings and store them into
      * member variables.
@@ -50,6 +53,8 @@ public:
     void readAdvanceSettings();
 
     void save(const ConnectionTableModel &model);
+
+    void saveSubscribes(QList<TQSubscribe> subscribes);
 
     void importGuiConfigJson(ConnectionTableModel *model, const QString &file);
 
@@ -134,6 +139,8 @@ private:
     void checkProfileDataUsageReset(TQProfile &profile);
 
     static const QString profilePrefix;
+
+    static const QString subscribePrefix;
 };
 
 #endif // CONFIGHELPER_H

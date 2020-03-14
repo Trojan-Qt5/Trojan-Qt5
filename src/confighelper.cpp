@@ -21,6 +21,8 @@ ConfigHelper::ConfigHelper(const QString &configuration, QObject *parent) :
 
 const QString ConfigHelper::profilePrefix = "Profile";
 
+const QString ConfigHelper::subscribePrefix = "Subscribe";
+
 void ConfigHelper::save(const ConnectionTableModel &model)
 {
     int size = model.rowCount();
@@ -51,6 +53,18 @@ void ConfigHelper::save(const ConnectionTableModel &model)
     settings->setValue("ShowFilterBar", QVariant(showFilterBar));
     settings->setValue("NativeMenuBar", QVariant(nativeMenuBar));
     settings->setValue("ConfigVersion", QVariant(2.6));
+}
+
+void ConfigHelper::saveSubscribes(QList<TQSubscribe> subscribes)
+{
+    int size = subscribes.size();
+    settings->beginWriteArray(subscribePrefix);
+    for (int i = 0; i < size; ++i) {
+        settings->setArrayIndex(i);
+        QVariant value = QVariant::fromValue<TQSubscribe>(subscribes[i]);
+        settings->setValue("TQSubscribe", value);
+    }
+    settings->endArray();
 }
 
 void ConfigHelper::importGuiConfigJson(ConnectionTableModel *model, const QString &file)
@@ -500,6 +514,20 @@ void ConfigHelper::read(ConnectionTableModel *model)
     settings->endArray();
     readGeneralSettings();
     readAdvanceSettings();
+}
+
+QList<TQSubscribe> ConfigHelper::readSubscribes()
+{
+    int size = settings->beginReadArray(subscribePrefix);
+    QList<TQSubscribe> subscribes;
+    for (int i = 0; i < size; ++i) {
+        settings->setArrayIndex(i);
+        QVariant value = settings->value("TQSubscribe");
+        TQSubscribe subscribe = value.value<TQSubscribe>();
+        subscribes.append(subscribe);
+    }
+    settings->endArray();
+    return subscribes;
 }
 
 void ConfigHelper::readGeneralSettings()

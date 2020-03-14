@@ -121,6 +121,18 @@ void ConnectionTableModel::disconnectConnections()
     }
 }
 
+bool ConnectionTableModel::isDuplicate(Connection *newCon)
+{
+    for (auto &i : items) {
+        Connection *con = i->getConnection();
+        if (con->getProfile().serverAddress == newCon->getProfile().serverAddress &&
+            con->getProfile().serverPort == newCon->getProfile().serverPort)
+            return true;
+        else
+            return false;
+    }
+}
+
 void ConnectionTableModel::testAllLatency()
 {
     for (auto &i : items) {

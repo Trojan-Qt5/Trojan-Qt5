@@ -19,6 +19,8 @@
 #ifndef STATUSNOTIFIER_H
 #define STATUSNOTIFIER_H
 
+#include "subscribemanager.h"
+
 #include <QObject>
 #include <QSystemTrayIcon>
 #include <QMenu>
@@ -29,11 +31,13 @@ class StatusNotifier : public QObject
 {
     Q_OBJECT
 public:
-    StatusNotifier(MainWindow *w, bool startHiden, QObject *parent = 0);
+    StatusNotifier(MainWindow *w, ConfigHelper *ch, SubscribeManager *sm, QObject *parent = 0);
 
     void initActions();
     void initConnections();
     void updateMenu();
+    void onCopyTerminalProxy();
+    void onTrojanSubscribeSettings();
 
 signals:
     void toggleConnection(bool);
@@ -47,12 +51,13 @@ public slots:
     void onWindowVisibleChanged(bool visible);
 
 private:
+
     QMenu systrayMenu;
-    QAction *trojanQt5Action;
-    QAction *toggleTrojanAction;
     QMenu *ModeMenu;
     QMenu *pacMenu;
-    QActionGroup *ModeGroup;
+    QMenu *subscribeMenu;
+    QAction *trojanQt5Action;
+    QAction *toggleTrojanAction;
     QAction *disableModeAction;
     QAction *pacModeAction;
     QAction *globalModeAction;
@@ -64,10 +69,17 @@ private:
     QAction *copyPACUrl;
     QAction *editLocalPACFile;
     QAction *editGFWListUserRule;
+    QAction *subscribeSettings;
+    QAction *updateSubscribe;
+    QAction *updateSubscribeBypass;
+    QActionGroup *ModeGroup;
 
+    QAction *copyTerminalProxyCommand;
     QAction *minimiseRestoreAction;
     QSystemTrayIcon systray;
     MainWindow *window;
+    ConfigHelper *helper;
+    SubscribeManager *sbMgr;
 };
 
 #endif // STATUSNOTIFIER_H

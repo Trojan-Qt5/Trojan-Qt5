@@ -2,20 +2,26 @@
 #include "mainwindow.h"
 #include "pacserver.h"
 #include "systemproxyhelper.h"
+#include "subscribedialog.h"
+#include "subscribemanager.h"
 #include <QApplication>
+#include <QClipboard>
 #ifdef Q_OS_LINUX
 #include <QDBusMessage>
 #include <QDBusConnection>
 #include <QDBusPendingCall>
 #endif
 
-StatusNotifier::StatusNotifier(MainWindow *w, bool startHiden, QObject *parent) :
+StatusNotifier::StatusNotifier(MainWindow *w, ConfigHelper *ch, SubscribeManager *sm, QObject *parent) :
     QObject(parent),
-    window(w)
+    window(w),
+    helper(ch),
+    sbMgr(sm)
 {
     systray.setIcon(QIcon(":/icons/icons/trojan-qt5-2.png"));
     systray.setToolTip(QString("Trojan-Qt5"));
-    minimiseRestoreAction = new QAction(startHiden ? tr("Restore") : tr("Minimise"), this);
+    connect(&systray, &QSystemTrayIcon::activated, [=]() { updateMenu(); });
+    minimiseRestoreAction = new QAction(helper->isHideWindowOnStartup() ? tr("Restore") : tr("Minimise"), this);
     connect(minimiseRestoreAction, &QAction::triggered, this, &StatusNotifier::activate);
     initActions();
     initConnections();
@@ -27,14 +33,6 @@ StatusNotifier::StatusNotifier(MainWindow *w, bool startHiden, QObject *parent) 
 
 void StatusNotifier::initActions()
 {
-#ifdef Q_OS_WIN
-    QString configFile = QCoreApplication::applicationDirPath() + "/config.ini";
-#else
-    QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
-    QString configFile = configDir.absolutePath() + "/config.ini";
-#endif
-    ConfigHelper *conf = new ConfigHelper(configFile);
-
     //trojan Status and Toggle Action
     trojanQt5Action = new QAction(tr("Trojan: Off")); // for displaying the status
     trojanQt5Action->setEnabled(false);
@@ -54,9 +52,9 @@ void StatusNotifier::initActions()
     ModeMenu->addAction(disableModeAction);
     ModeMenu->addAction(pacModeAction);
     ModeMenu->addAction(globalModeAction);
-    if (conf->isEnablePACMode() && conf->isAutoSetSystemProxy())
+    if (helper->isEnablePACMode() && helper->isAutoSetSystemProxy())
         pacModeAction->setChecked(true);
-    else if (conf->isAutoSetSystemProxy())
+    else if (helper->isAutoSetSystemProxy())
         globalModeAction->setChecked(true);
     else
         disableModeAction->setChecked(true);
@@ -83,12 +81,25 @@ void StatusNotifier::initActions()
     pacMenu->addAction(editLocalPACFile);
     pacMenu->addAction(editGFWListUserRule);
 
+    //subscribe Menu
+    subscribeMenu = new QMenu(tr("Servers Subscribe"));
+    subscribeSettings = new QAction(tr("Subscribe setting"));
+    updateSubscribe = new QAction(tr("Update subscribe Trojan node"));
+    updateSubscribeBypass = new QAction(tr("Update subscribe Trojan node(bypass proxy)"));
+    subscribeMenu->addAction(subscribeSettings);
+    subscribeMenu->addAction(updateSubscribe);
+    subscribeMenu->addAction(updateSubscribeBypass);
+
+    copyTerminalProxyCommand = new QAction(tr("Copy terminal proxy command"));
+
     //setup systray Menu
     systrayMenu.addAction(trojanQt5Action);
     systrayMenu.addAction(toggleTrojanAction);
     systrayMenu.addSeparator();
     systrayMenu.addMenu(ModeMenu);
     systrayMenu.addMenu(pacMenu);
+    systrayMenu.addMenu(subscribeMenu);
+    systrayMenu.addAction(copyTerminalProxyCommand);
     systrayMenu.addSeparator();
 
     connect(toggleTrojanAction, &QAction::triggered, this, &StatusNotifier::onToggleConnection);
@@ -107,39 +118,60 @@ void StatusNotifier::initConnections()
     connect(copyPACUrl, &QAction::triggered, pacserver, [=]() { pacserver->copyPACUrl(); });
     connect(editLocalPACFile, &QAction::triggered, pacserver, [=]() { pacserver->editLocalPACFile(); });
     connect(editGFWListUserRule, &QAction::triggered, pacserver, [=]() { pacserver->editUserRule(); });
+    connect(subscribeSettings, &QAction::triggered, this, [this]() { onTrojanSubscribeSettings(); });
+    connect(updateSubscribe, &QAction::triggered, sbMgr, [=]() { sbMgr->updateAllSubscribes(true); });
+    connect(updateSubscribeBypass, &QAction::triggered, sbMgr, [=]() { sbMgr->updateAllSubscribes(false); });
+    connect(copyTerminalProxyCommand, &QAction::triggered, this, [this]() { onCopyTerminalProxy(); });
+}
+
+void StatusNotifier::updateMenu()
+{
+    if (helper->isAutoSetSystemProxy() && helper->isEnablePACMode())
+        pacModeAction->setChecked(true);
+    else if (helper->isAutoSetSystemProxy())
+        globalModeAction->setChecked(true);
+    else
+        disableModeAction->setChecked(true);
 }
 
 void StatusNotifier::onToggleMode(QAction *action)
 {
-#ifdef Q_OS_WIN
-    QString configFile = QCoreApplication::applicationDirPath() + "/config.ini";
-#else
-    QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
-    QString configFile = configDir.absolutePath() + "/config.ini";
-#endif
-    ConfigHelper *conf = new ConfigHelper(configFile);
-
     SystemProxyHelper *sph = new SystemProxyHelper();
     if (action == disableModeAction) {
         sph->setSystemProxy(0);
-        conf->setSystemProxySettings(false, false);
+        helper->setSystemProxySettings(false, false);
     } else if (action == pacModeAction) {
+        sph->setSystemProxy(0);
         sph->setSystemProxy(2);
-        conf->setSystemProxySettings(true, true);
+        helper->setSystemProxySettings(true, true);
     } else if (action == globalModeAction) {
+        sph->setSystemProxy(0);
         sph->setSystemProxy(1);
-        conf->setSystemProxySettings(false, true);
+        helper->setSystemProxySettings(false, true);
     }
 }
 
 void StatusNotifier::onToggleConnection()
 {
-    if (toggleTrojanAction->text() == tr("Turn Off Trojan")) {
+    if (toggleTrojanAction->text() == tr("Turn Off Trojan"))
         emit toggleConnection(false);
-    }
-    else {
+    else
         emit toggleConnection(true);
-    }
+}
+
+void StatusNotifier::onTrojanSubscribeSettings()
+{
+    SubscribeDialog *sbDig = new SubscribeDialog(helper);
+    sbDig->exec();
+}
+
+void StatusNotifier::onCopyTerminalProxy()
+{
+    QClipboard *board = QApplication::clipboard();
+    if (helper->isEnableHttpMode())
+        board->setText(QString("export HTTP_PROXY=http://%1:%2; export HTTPS_PROXY=http://%1:%2; export ALL_PROXY=socks5://%3:%4").arg(helper->getHttpAddress()).arg(helper->getHttpPort()).arg(helper->getSocks5Address()).arg(helper->getSocks5Port()));
+    else
+        board->setText(QString("export HTTP_PROXY=socks5://%1:%2; export HTTPS_PROXY=socks5://%1:%2; export ALL_PROXY=socks5://%1:%2").arg(helper->getSocks5Address()).arg(helper->getSocks5Port()));
 }
 
 void StatusNotifier::activate()

@@ -71,8 +71,8 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
 
     setupActionIcon();
 
-
-    notifier = new StatusNotifier(this, configHelper->isHideWindowOnStartup(), this);
+    sbMgr = new SubscribeManager(configHelper, this);
+    notifier = new StatusNotifier(this, configHelper, sbMgr, this);
 
     connect(configHelper, &ConfigHelper::toolbarStyleChanged,
             ui->toolBar, &QToolBar::setToolButtonStyle);
@@ -88,6 +88,10 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
             model, &ConnectionTableModel::testAllLatency);
     connect(notifier, &StatusNotifier::toggleConnection,
             this, &MainWindow::onToggleConnection);
+    connect(sbMgr, &SubscribeManager::addUri, this,
+            &MainWindow::onAddURIFromSubscribe);
+
+
 
     //some UI changes accoding to config
     ui->toolBar->setVisible(configHelper->isShowToolbar());
@@ -235,6 +239,15 @@ void MainWindow::onToggleConnection(bool status)
             model->disconnectConnections();
             con->start();
         }
+    }
+}
+
+void MainWindow::onAddURIFromSubscribe(QString uri)
+{
+    Connection *newCon = new Connection(uri, this);
+    if (!model->isDuplicate(newCon)) {
+        model->appendConnection(newCon);
+        configHelper->save(*model);
     }
 }
 

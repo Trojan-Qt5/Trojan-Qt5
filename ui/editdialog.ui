@@ -23,8 +23,14 @@
       <enum>QFrame::Raised</enum>
      </property>
      <layout class="QFormLayout" name="formLayout">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetMaximumSize</enum>
+      </property>
       <property name="fieldGrowthPolicy">
        <enum>QFormLayout::ExpandingFieldsGrow</enum>
+      </property>
+      <property name="rowWrapPolicy">
+       <enum>QFormLayout::WrapLongRows</enum>
       </property>
       <property name="labelAlignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>

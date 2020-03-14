@@ -25,7 +25,7 @@
 #include "connectiontablemodel.h"
 #include "confighelper.h"
 #include "statusnotifier.h"
-
+#include "subscribemanager.h"
 #if defined (Q_OS_WIN)
 #include "winsparkle.h"
 #endif
@@ -57,6 +57,7 @@ private:
     QSortFilterProxyModel *proxyModel;
     ConfigHelper *configHelper;
     StatusNotifier *notifier;
+    SubscribeManager *sbMgr;
 #if defined (Q_OS_MAC)
     AutoUpdater* updater;
 #endif
@@ -77,6 +78,7 @@ private:
 
 private slots:
     void onToggleConnection(bool);
+    void onAddURIFromSubscribe(QString);
     void onImportGuiJson();
     void onExportGuiJson();
     void onExportShadowrocketJson();

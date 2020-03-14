@@ -42,6 +42,8 @@ public:
 
     bool appendConnection(Connection *con, const QModelIndex &parent = QModelIndex());
 
+    bool isDuplicate(Connection *newCon);
+
     void disconnectConnections();
 
 public slots:

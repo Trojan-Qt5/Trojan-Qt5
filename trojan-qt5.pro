@@ -243,13 +243,16 @@ SOURCES += \
     src/qrwidget.cpp \
     src/settingsdialog.cpp \
     src/sharedialog.cpp \
+    src/subscribemanager.cpp \
     src/systemproxyhelper.cpp \
     src/tqprofile.cpp \
+    src/tqsubscribe.cpp \
     src/trojanvalidator.cpp \
     src/urihelper.cpp \
     src/uriinputdialog.cpp \
     src/userrules.cpp \
     src/advancesettingsdialog.cpp \
+    src/subscribedialog.cpp \
     src/trojan/src/core/authenticator.cpp \
     src/trojan/src/core/config.cpp \
     src/trojan/src/core/log.cpp \
@@ -286,14 +289,17 @@ HEADERS += \
     src/qrwidget.h \
     src/settingsdialog.h \
     src/sharedialog.h \
+    src/subscribemanager.h \
     src/systemproxyhelper.h \
     src/tqprofile.h \
     src/statusnotifier.h \
+    src/tqsubscribe.h \
     src/trojanvalidator.h \
     src/urihelper.h \
     src/uriinputdialog.h \
     src/userrules.h \
     src/advancesettingsdialog.h \
+    src/subscribedialog.h \
     src/trojan/src/core/authenticator.h \
     src/trojan/src/core/config.h \
     src/trojan/src/core/log.h \
@@ -317,6 +323,7 @@ FORMS += \
     ui/mainwindow.ui \
     ui/settingsdialog.ui \
     ui/sharedialog.ui \
+    ui/subscribedialog.ui \
     ui/uriinputdialog.ui \
     ui/userrules.ui
 
