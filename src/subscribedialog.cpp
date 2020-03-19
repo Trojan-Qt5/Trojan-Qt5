@@ -25,6 +25,18 @@ SubscribeDialog::SubscribeDialog(ConfigHelper *ch, QWidget *parent) :
     UpdateList();
     UpdateSelected(select_index);
     SetSelectIndex(select_index);
+<<<<<<< Updated upstream
+=======
+
+    if (subscribes.size() == 0)
+    {
+        ui->urlLineEdit->setDisabled(true);
+    }
+    else
+    {
+        ui->urlLineEdit->setEnabled(true);
+    }
+>>>>>>> Stashed changes
 }
 
 SubscribeDialog::~SubscribeDialog()
@@ -73,7 +85,13 @@ void SubscribeDialog::UpdateSelected(int index)
         _old_select_index = index;
         if (sb.lastUpdateTime != 0 )
         {
+<<<<<<< Updated upstream
             ui->recentUpdateLineEdit->setText("To be implemented");
+=======
+            QDateTime now;
+            now.setTime_t(sb.lastUpdateTime + QDateTime::fromString("1970-01-01T00:00:00").toTime_t());
+            ui->recentUpdateLineEdit->setText(now.toString(Qt::SystemLocaleShortDate));
+>>>>>>> Stashed changes
         }
         else
         {
@@ -92,6 +110,10 @@ void SubscribeDialog::SaveSelected(int index)
         {
             sb.url = ui->urlLineEdit->text();
             sb.groupName = "";
+<<<<<<< Updated upstream
+=======
+            sb.lastUpdateTime = 0;
+>>>>>>> Stashed changes
         }
         subscribes[index] = sb;
     }
@@ -130,7 +152,14 @@ void SubscribeDialog::onDelete()
         UpdateSelected(select_index);
         SetSelectIndex(select_index);
     }
+<<<<<<< Updated upstream
 
+=======
+    if (subscribes.size() == 0)
+    {
+        ui->urlLineEdit->setDisabled(true);
+    }
+>>>>>>> Stashed changes
 }
 
 void SubscribeDialog::onAccepted()

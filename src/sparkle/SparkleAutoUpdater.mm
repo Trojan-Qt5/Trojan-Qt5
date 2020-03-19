@@ -33,5 +33,10 @@ SparkleAutoUpdater::~SparkleAutoUpdater()
 
 void SparkleAutoUpdater::checkForUpdates()
 {
-	[d->updater checkForUpdatesInBackground];
+    [d->updater checkForUpdates:nil];
+}
+
+void SparkleAutoUpdater::checkForUpdatesInBackground()
+{
+    [d->updater checkForUpdatesInBackground];
 }

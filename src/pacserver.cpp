@@ -102,6 +102,11 @@ void PACServer::typeModify(QString type)
         modify(configDir.path() + "/trojan_lanip.pac");
     } else if (type == "WHITE") {
         modify(configDir.path() + "/trojan_white.pac");
+<<<<<<< Updated upstream
+=======
+    } else if (type == "WHITE_ADVANCED") {
+        modify(configDir.path() + "/trojan_white_advanced.pac");
+>>>>>>> Stashed changes
     } else if (type == "WHITE_R") {
         modify(configDir.path() + "/trojan_white_r.pac");
     } else if (type == "CNIP") {

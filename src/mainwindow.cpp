@@ -10,6 +10,7 @@
 #include "sharedialog.h"
 #include "settingsdialog.h"
 #include "qrcodecapturer.h"
+#include "trojanvalidator.h"
 
 #include <boost/version.hpp>
 #include <openssl/opensslv.h>
@@ -24,6 +25,7 @@
 #include "logger.h"
 #include "QtAwesome.h"
 
+#include <QClipboard>
 #include <QDesktopServices>
 #include <QDesktopWidget>
 #include <QFileDialog>
@@ -60,7 +62,7 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
     //initialisation
     model = new ConnectionTableModel(this);
     configHelper->read(model);
-    proxyModel = new QSortFilterProxyModel(this);
+    proxyModel = new ConnectionSortFilterProxyModel(this);
     proxyModel->setSourceModel(model);
     proxyModel->setSortRole(Qt::EditRole);
     proxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
@@ -133,6 +135,8 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
             this, &MainWindow::onAddQRCodeFile);
     connect(ui->actionURI, &QAction::triggered,
             this, &MainWindow::onAddFromURI);
+    connect(ui->actionPasteBoardURI, &QAction::triggered,
+            this, &MainWindow::onAddFromPasteBoardURI);
     connect(ui->actionFromConfigJson, &QAction::triggered,
             this, &MainWindow::onAddFromConfigJSON);
     connect(ui->actionFromShadowrocketJson, &QAction::triggered,
@@ -354,13 +358,32 @@ void MainWindow::onAddFromURI()
     URIInputDialog *inputDlg = new URIInputDialog(this);
     connect(inputDlg, &URIInputDialog::finished,
             inputDlg, &URIInputDialog::deleteLater);
+<<<<<<< Updated upstream
     connect(inputDlg, &URIInputDialog::acceptedURI, [&](const QString &uris){
         for (QString uri : uris.split("\\r\\n")) {
             Connection *newCon = new Connection(uri, this);
             newProfile(newCon);
         }
+=======
+    connect(inputDlg, &URIInputDialog::acceptedURI, [&](const QString &uri){
+            Connection *newCon = new Connection(uri, this);
+            newProfile(newCon);
+>>>>>>> Stashed changes
     });
     inputDlg->exec();
+}
+
+void MainWindow::onAddFromPasteBoardURI()
+{
+    QClipboard *board = QApplication::clipboard();
+    QString str = board->text();
+    for (QString uri: str.split("\\r\\n")) {
+        if (TrojanValidator::validate(uri)) {
+            Connection *newCon = new Connection(uri, this);
+            model->appendConnection(newCon);
+            configHelper->save(*model);
+         }
+     }
 }
 
 void MainWindow::onAddFromConfigJSON()
@@ -731,7 +754,11 @@ void MainWindow::initSparkle()
     win_sparkle_init();
 #elif defined (Q_OS_MAC)
     CocoaInitializer initializer;
+<<<<<<< Updated upstream
     updater = new SparkleAutoUpdater("https://raw.githubusercontent.com/TheWanderingCoel/Trojan-Qt5/master/resources/Appcast_macOS.xml");
+=======
+    updater = new SparkleAutoUpdater("https://www.crystalidea.com/update/fancontrol.xml.gz");
+>>>>>>> Stashed changes
 #endif
 }
 

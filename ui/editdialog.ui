@@ -114,6 +114,7 @@
         </property>
        </widget>
       </item>
+<<<<<<< Updated upstream
       <item row="6" column="0">
        <widget class="QLabel" name="reuseSessionLabel">
         <property name="text">
@@ -132,24 +133,41 @@
        <widget class="QLabel" name="sessionTicketLabel">
         <property name="text">
          <string>Session Ticket</string>
+=======
+      <item row="7" column="0">
+       <widget class="QLabel" name="reuseSessionLabel">
+        <property name="text">
+         <string>Reuse Session</string>
+>>>>>>> Stashed changes
         </property>
        </widget>
       </item>
       <item row="7" column="1">
+<<<<<<< Updated upstream
        <widget class="QCheckBox" name="sessionTicketCheckBox">
+=======
+       <widget class="QCheckBox" name="reuseSessionCheckBox">
+>>>>>>> Stashed changes
         <property name="text">
          <string>Enable</string>
         </property>
        </widget>
       </item>
       <item row="8" column="0">
+<<<<<<< Updated upstream
        <widget class="QLabel" name="reusePortLabel">
         <property name="text">
          <string>Reuse Port</string>
+=======
+       <widget class="QLabel" name="sessionTicketLabel">
+        <property name="text">
+         <string>Session Ticket</string>
+>>>>>>> Stashed changes
         </property>
        </widget>
       </item>
       <item row="8" column="1">
+<<<<<<< Updated upstream
        <widget class="QCheckBox" name="reusePortCheckBox">
         <property name="text">
          <string>Enable</string>
@@ -157,6 +175,29 @@
        </widget>
       </item>
       <item row="9" column="0">
+=======
+       <widget class="QCheckBox" name="sessionTicketCheckBox">
+        <property name="text">
+         <string>Enable</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="0">
+       <widget class="QLabel" name="reusePortLabel">
+        <property name="text">
+         <string>Reuse Port</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="1">
+       <widget class="QCheckBox" name="reusePortCheckBox">
+        <property name="text">
+         <string>Enable</string>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="0">
+>>>>>>> Stashed changes
        <widget class="QLabel" name="tcpFastOpenLabel">
         <property name="text">
          <string>TCP Fast Open</string>
@@ -209,6 +250,16 @@
          <string>Auto connect on application start</string>
         </property>
        </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="sniLabel">
+        <property name="text">
+         <string>SNI</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QLineEdit" name="sniEdit"/>
       </item>
      </layout>
     </widget>

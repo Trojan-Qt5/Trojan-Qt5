@@ -224,6 +224,7 @@ unix {
 !isEmpty(target.path): INSTALLS += target
 
 SOURCES += \
+    src/connectionsortfilterproxymodel.cpp \
     src/logger.cpp \
     src/pacserver.cpp \
     src/privoxythread.cpp \
@@ -271,6 +272,7 @@ SOURCES += \
     src/trojan/src/ssl/sslsession.cpp
 
 HEADERS += \
+    src/connectionsortfilterproxymodel.h \
     src/logger.h \
     src/pacserver.h \
     src/privoxythread.h \
@@ -340,3 +342,6 @@ RESOURCES += \
     resources/pac.qrc \
     resources/pem.qrc \
     resources/translations.qrc
+
+DISTFILES += \
+    src/sysproxy/macos.m

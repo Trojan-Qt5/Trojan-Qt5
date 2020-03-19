@@ -79,7 +79,15 @@
      <widget class="QLineEdit" name="urlLineEdit"/>
     </item>
     <item row="1" column="1">
+<<<<<<< Updated upstream
      <widget class="QLineEdit" name="groupNameLineEdit"/>
+=======
+     <widget class="QLineEdit" name="groupNameLineEdit">
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+>>>>>>> Stashed changes
     </item>
     <item row="2" column="0">
      <widget class="QLabel" name="label_3">

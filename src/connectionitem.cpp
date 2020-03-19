@@ -156,7 +156,7 @@ QString ConnectionItem::convertLatencyToString(const int latency)
     default:
         if (latency >= 1000) {
             latencyStr = QString::number(static_cast<double>(latency) / 1000.0)
-                       + QStringLiteral(" ") + tr("s");
+                       + QStringLiteral(" ") + "s";
         } else {
             latencyStr = QString::number(latency) + QStringLiteral(" ") + "ms";
         }

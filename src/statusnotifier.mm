@@ -7,6 +7,10 @@
 #include <QApplication>
 #include <QClipboard>
 #include <Cocoa/Cocoa.h>
+<<<<<<< Updated upstream
+=======
+#include <QDesktopServices>
+>>>>>>> Stashed changes
 
 StatusNotifier::StatusNotifier(MainWindow *w, ConfigHelper *ch, SubscribeManager *sm, QObject *parent) :
     QObject(parent),
@@ -59,6 +63,10 @@ void StatusNotifier::initActions()
     pacMenu = new QMenu(tr("PAC"));
     updatePACToBypassLAN = new QAction(tr("Update local PAC from Lan IP list"));
     updatePACToChnWhite = new QAction(tr("Update local PAC from Chn White list"));
+<<<<<<< Updated upstream
+=======
+    updatePACToChnWhiteAdvanced = new QAction(tr("Update local from Chn Advance White list")); //Advance White list by @zoeysama
+>>>>>>> Stashed changes
     updatePACToChnIP = new QAction(tr("Update local PAC from Chn IP list"));
     updatePACToGFWList = new QAction(tr("Update local PAC from GFWList"));
     updatePACToChnOnly = new QAction(tr("Update local PAC from Chn Only list"));
@@ -68,6 +76,10 @@ void StatusNotifier::initActions()
     pacMenu->addAction(updatePACToBypassLAN);
     pacMenu->addSeparator();
     pacMenu->addAction(updatePACToChnWhite);
+<<<<<<< Updated upstream
+=======
+    pacMenu->addAction(updatePACToChnWhiteAdvanced);
+>>>>>>> Stashed changes
     pacMenu->addAction(updatePACToChnIP);
     pacMenu->addAction(updatePACToGFWList);
     pacMenu->addSeparator();
@@ -87,6 +99,10 @@ void StatusNotifier::initActions()
     subscribeMenu->addAction(updateSubscribeBypass);
 
     copyTerminalProxyCommand = new QAction(tr("Copy terminal proxy command"));
+<<<<<<< Updated upstream
+=======
+    setProxyToTelegram = new QAction(tr("Set Proxy to Telegram"));
+>>>>>>> Stashed changes
 
     //setup systray Menu
     systrayMenu.addAction(trojanQt5Action);
@@ -96,6 +112,10 @@ void StatusNotifier::initActions()
     systrayMenu.addMenu(pacMenu);
     systrayMenu.addMenu(subscribeMenu);
     systrayMenu.addAction(copyTerminalProxyCommand);
+<<<<<<< Updated upstream
+=======
+    systrayMenu.addAction(setProxyToTelegram);
+>>>>>>> Stashed changes
     systrayMenu.addSeparator();
 
     connect(toggleTrojanAction, &QAction::triggered, this, &StatusNotifier::onToggleConnection);
@@ -108,6 +128,10 @@ void StatusNotifier::initConnections()
     PACServer *pacserver = new PACServer();
     connect(updatePACToBypassLAN, &QAction::triggered, pacserver, [=]() { pacserver->typeModify("LAN"); });
     connect(updatePACToChnWhite, &QAction::triggered, pacserver, [=]() { pacserver->typeModify("WHITE"); });
+<<<<<<< Updated upstream
+=======
+    connect(updatePACToChnWhiteAdvanced, &QAction::triggered, pacserver, [=]() { pacserver->typeModify("WHITE_ADVANCED"); });
+>>>>>>> Stashed changes
     connect(updatePACToChnIP, &QAction::triggered, pacserver, [=]() { pacserver->typeModify("CNIP"); });
     connect(updatePACToGFWList, &QAction::triggered, pacserver, [=]() { pacserver->typeModify("GFWLIST"); });
     connect(updatePACToChnOnly, &QAction::triggered, pacserver, [=]() { pacserver->typeModify("WHITE_R"); });
@@ -118,6 +142,10 @@ void StatusNotifier::initConnections()
     connect(updateSubscribe, &QAction::triggered, sbMgr, [=]() { sbMgr->updateAllSubscribes(true); });
     connect(updateSubscribeBypass, &QAction::triggered, sbMgr, [=]() { sbMgr->updateAllSubscribes(false); });
     connect(copyTerminalProxyCommand, &QAction::triggered, this, [this]() { onCopyTerminalProxy(); });
+<<<<<<< Updated upstream
+=======
+    connect(setProxyToTelegram, &QAction::triggered, this, [this]() { onSetProxyToTelegram(); });
+>>>>>>> Stashed changes
 }
 
 void StatusNotifier::updateMenu()
@@ -170,6 +198,14 @@ void StatusNotifier::onCopyTerminalProxy()
         board->setText(QString("export HTTP_PROXY=socks5://%1:%2; export HTTPS_PROXY=socks5://%1:%2; export ALL_PROXY=socks5://%1:%2").arg(helper->getSocks5Address()).arg(helper->getSocks5Port()));
 }
 
+<<<<<<< Updated upstream
+=======
+void StatusNotifier::onSetProxyToTelegram()
+{
+    QDesktopServices::openUrl(QString("tg://socks?server=%1&port=%2").arg(helper->getSocks5Address()).arg(helper->getSocks5Port()));
+}
+
+>>>>>>> Stashed changes
 void StatusNotifier::activate()
 {
     if (!window->isVisible() || window->isMinimized()) {

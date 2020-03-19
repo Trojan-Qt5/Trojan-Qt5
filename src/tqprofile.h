@@ -37,6 +37,7 @@ struct TQProfile
     QString name;
     QString serverAddress;
     QString password;
+    QString sni;
     bool verifyCertificate;
     bool verifyHostname;
     bool reuseSession;

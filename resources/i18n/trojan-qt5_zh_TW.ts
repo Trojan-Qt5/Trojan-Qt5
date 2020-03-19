@@ -75,9 +75,12 @@
         <translation>不明</translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/connectionitem.cpp" line="159"/>
+=======
+>>>>>>> Stashed changes
         <source>s</source>
-        <translation>秒</translation>
+        <translation type="vanished">秒</translation>
     </message>
     <message>
         <source>ms</source>
@@ -164,11 +167,23 @@
         <translation>設定檔編輯器</translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../ui/editdialog.ui" line="83"/>
+=======
+        <location filename="../../ui/editdialog.ui" line="89"/>
+>>>>>>> Stashed changes
         <source>Verify Hostname</source>
         <translation>驗證主機名</translation>
     </message>
     <message>
+<<<<<<< Updated upstream
+=======
+        <location filename="../../ui/editdialog.ui" line="216"/>
+        <source>SNI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+>>>>>>> Stashed changes
         <source>Local HTTP Port</source>
         <translation type="vanished">本機HTTP埠</translation>
     </message>
@@ -205,47 +220,84 @@
         <translation type="vanished">本機位址</translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../ui/editdialog.ui" line="97"/>
+=======
+        <location filename="../../ui/editdialog.ui" line="103"/>
+>>>>>>> Stashed changes
         <source>Password</source>
         <translation>密碼</translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../ui/editdialog.ui" line="55"/>
+=======
+        <location filename="../../ui/editdialog.ui" line="61"/>
+>>>>>>> Stashed changes
         <source>Server Port</source>
         <translation>伺服器埠</translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../ui/editdialog.ui" line="45"/>
+=======
+        <location filename="../../ui/editdialog.ui" line="51"/>
+>>>>>>> Stashed changes
         <source>Server Address</source>
         <translation>伺服器位址</translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../ui/editdialog.ui" line="35"/>
+=======
+        <location filename="../../ui/editdialog.ui" line="41"/>
+>>>>>>> Stashed changes
         <source>Profile Name</source>
         <translation>設定檔名稱</translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../ui/editdialog.ui" line="156"/>
+=======
+        <location filename="../../ui/editdialog.ui" line="162"/>
+>>>>>>> Stashed changes
         <source>TCP Fast Open</source>
         <translation>TCP快速打開</translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../ui/editdialog.ui" line="76"/>
         <location filename="../../ui/editdialog.ui" line="90"/>
         <location filename="../../ui/editdialog.ui" line="121"/>
         <location filename="../../ui/editdialog.ui" line="135"/>
         <location filename="../../ui/editdialog.ui" line="149"/>
         <location filename="../../ui/editdialog.ui" line="163"/>
+=======
+        <location filename="../../ui/editdialog.ui" line="82"/>
+        <location filename="../../ui/editdialog.ui" line="96"/>
+        <location filename="../../ui/editdialog.ui" line="127"/>
+        <location filename="../../ui/editdialog.ui" line="141"/>
+        <location filename="../../ui/editdialog.ui" line="155"/>
+        <location filename="../../ui/editdialog.ui" line="169"/>
+>>>>>>> Stashed changes
         <source>Enable</source>
         <translation>開啟</translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../ui/editdialog.ui" line="203"/>
+=======
+        <location filename="../../ui/editdialog.ui" line="209"/>
+>>>>>>> Stashed changes
         <source>Auto connect on application start</source>
         <translation>程式啟動時自動連線</translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../ui/editdialog.ui" line="69"/>
+=======
+        <location filename="../../ui/editdialog.ui" line="75"/>
+>>>>>>> Stashed changes
         <source>Verify Certificate</source>
         <translation>驗證證書</translation>
     </message>
@@ -258,17 +310,29 @@
         <translation type="vanished">SOCKS5 + HTTP</translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../ui/editdialog.ui" line="142"/>
+=======
+        <location filename="../../ui/editdialog.ui" line="148"/>
+>>>>>>> Stashed changes
         <source>Reuse Port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../ui/editdialog.ui" line="114"/>
+=======
+        <location filename="../../ui/editdialog.ui" line="120"/>
+>>>>>>> Stashed changes
         <source>Reuse Session</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../ui/editdialog.ui" line="128"/>
+=======
+        <location filename="../../ui/editdialog.ui" line="134"/>
+>>>>>>> Stashed changes
         <source>Session Ticket</source>
         <translation type="unfinished"></translation>
     </message>
@@ -281,12 +345,20 @@
         <translation type="vanished">記錄檔等級</translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../ui/editdialog.ui" line="190"/>
+=======
+        <location filename="../../ui/editdialog.ui" line="196"/>
+>>>>>>> Stashed changes
         <source>Automation</source>
         <translation>自動化</translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../ui/editdialog.ui" line="170"/>
+=======
+        <location filename="../../ui/editdialog.ui" line="176"/>
+>>>>>>> Stashed changes
         <source>Reset Data Usage after</source>
         <translation>重設資料使用量之後</translation>
     </message>
@@ -317,61 +389,109 @@
 <context>
     <name>MainWindow</name>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/mainwindow.cpp" line="581"/>
+=======
+        <location filename="../../src/mainwindow.cpp" line="594"/>
+>>>>>>> Stashed changes
         <source>About</source>
         <translation>關於</translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/mainwindow.cpp" line="245"/>
+=======
+        <location filename="../../src/mainwindow.cpp" line="258"/>
+>>>>>>> Stashed changes
         <source>Import Connections from gui-config.json</source>
         <translation>自 gui-config.json 匯入連線</translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/mainwindow.cpp" line="258"/>
+=======
+        <location filename="../../src/mainwindow.cpp" line="271"/>
+>>>>>>> Stashed changes
         <source>Export Connections as gui-config.json</source>
         <translation>匯出連線為 gui-config.json</translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/mainwindow.cpp" line="270"/>
+=======
+        <location filename="../../src/mainwindow.cpp" line="283"/>
+>>>>>>> Stashed changes
         <source>Export Connections as shadowrocket.json</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/mainwindow.cpp" line="295"/>
         <location filename="../../src/mainwindow.cpp" line="328"/>
+=======
+        <location filename="../../src/mainwindow.cpp" line="308"/>
+        <location filename="../../src/mainwindow.cpp" line="341"/>
+>>>>>>> Stashed changes
         <source>QR Code Not Found</source>
         <translation>找不到 QR 碼</translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/mainwindow.cpp" line="296"/>
         <location filename="../../src/mainwindow.cpp" line="329"/>
+=======
+        <location filename="../../src/mainwindow.cpp" line="309"/>
+        <location filename="../../src/mainwindow.cpp" line="342"/>
+>>>>>>> Stashed changes
         <source>Can&apos;t find any QR code image that contains valid URI on your screen(s).</source>
         <translation>在你的螢幕上無法找到任何包含有效 URI 的 QR 碼圖片。</translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/mainwindow.cpp" line="320"/>
+=======
+        <location filename="../../src/mainwindow.cpp" line="333"/>
+>>>>>>> Stashed changes
         <source>Open QR Code Image File</source>
         <translation>開啟 QR 碼圖檔</translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/mainwindow.cpp" line="355"/>
+=======
+        <location filename="../../src/mainwindow.cpp" line="368"/>
+>>>>>>> Stashed changes
         <source>Open config.json</source>
         <translation>開啟 config.json</translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/mainwindow.cpp" line="367"/>
+=======
+        <location filename="../../src/mainwindow.cpp" line="380"/>
+>>>>>>> Stashed changes
         <source>Open shadowrocket.json</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/mainwindow.cpp" line="407"/>
         <location filename="../../src/mainwindow.cpp" line="421"/>
+=======
+        <location filename="../../src/mainwindow.cpp" line="420"/>
+        <location filename="../../src/mainwindow.cpp" line="434"/>
+>>>>>>> Stashed changes
         <source>Invalid</source>
         <translation>無效</translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/mainwindow.cpp" line="408"/>
         <location filename="../../src/mainwindow.cpp" line="422"/>
+=======
+        <location filename="../../src/mainwindow.cpp" line="421"/>
+        <location filename="../../src/mainwindow.cpp" line="435"/>
+>>>>>>> Stashed changes
         <source>The connection&apos;s profile is invalid!</source>
         <translation>此連線的設定檔無效！</translation>
     </message>
@@ -788,156 +908,345 @@
 <context>
     <name>StatusNotifier</name>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/statusnotifier.cpp" line="19"/>
         <location filename="../../src/statusnotifier.cpp" line="204"/>
         <location filename="../../src/statusnotifier.mm" line="15"/>
         <location filename="../../src/statusnotifier.mm" line="218"/>
+=======
+        <location filename="../../src/statusnotifier.cpp" line="25"/>
+        <location filename="../../src/statusnotifier.cpp" line="226"/>
+        <location filename="../../src/statusnotifier.mm" line="21"/>
+        <location filename="../../src/statusnotifier.mm" line="219"/>
+>>>>>>> Stashed changes
         <source>Minimise</source>
         <translation>最小化</translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/statusnotifier.cpp" line="24"/>
         <location filename="../../src/statusnotifier.mm" line="20"/>
+=======
+        <location filename="../../src/statusnotifier.cpp" line="30"/>
+        <location filename="../../src/statusnotifier.mm" line="26"/>
+>>>>>>> Stashed changes
         <source>Quit</source>
         <translation>結束</translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/statusnotifier.cpp" line="19"/>
         <location filename="../../src/statusnotifier.cpp" line="204"/>
         <location filename="../../src/statusnotifier.mm" line="15"/>
         <location filename="../../src/statusnotifier.mm" line="218"/>
+=======
+        <location filename="../../src/statusnotifier.cpp" line="25"/>
+        <location filename="../../src/statusnotifier.cpp" line="226"/>
+        <location filename="../../src/statusnotifier.mm" line="21"/>
+        <location filename="../../src/statusnotifier.mm" line="219"/>
+>>>>>>> Stashed changes
         <source>Restore</source>
         <translation>還原</translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/statusnotifier.cpp" line="40"/>
         <location filename="../../src/statusnotifier.cpp" line="196"/>
         <location filename="../../src/statusnotifier.mm" line="36"/>
         <location filename="../../src/statusnotifier.mm" line="210"/>
+=======
+        <location filename="../../src/statusnotifier.cpp" line="38"/>
+        <location filename="../../src/statusnotifier.cpp" line="218"/>
+        <location filename="../../src/statusnotifier.mm" line="34"/>
+        <location filename="../../src/statusnotifier.mm" line="211"/>
+>>>>>>> Stashed changes
         <source>Trojan: Off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/statusnotifier.cpp" line="42"/>
         <location filename="../../src/statusnotifier.cpp" line="197"/>
         <location filename="../../src/statusnotifier.mm" line="38"/>
         <location filename="../../src/statusnotifier.mm" line="211"/>
+=======
+        <location filename="../../src/statusnotifier.cpp" line="40"/>
+        <location filename="../../src/statusnotifier.cpp" line="219"/>
+        <location filename="../../src/statusnotifier.mm" line="36"/>
+        <location filename="../../src/statusnotifier.mm" line="212"/>
+>>>>>>> Stashed changes
         <source>Turn On Trojan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/statusnotifier.cpp" line="46"/>
         <location filename="../../src/statusnotifier.mm" line="42"/>
+=======
+        <location filename="../../src/statusnotifier.cpp" line="44"/>
+        <location filename="../../src/statusnotifier.mm" line="40"/>
+>>>>>>> Stashed changes
         <source>Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/statusnotifier.cpp" line="49"/>
         <location filename="../../src/statusnotifier.mm" line="45"/>
+=======
+        <location filename="../../src/statusnotifier.cpp" line="47"/>
+        <location filename="../../src/statusnotifier.mm" line="43"/>
+>>>>>>> Stashed changes
         <source>Disable system proxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/statusnotifier.cpp" line="50"/>
         <location filename="../../src/statusnotifier.cpp" line="66"/>
         <location filename="../../src/statusnotifier.mm" line="46"/>
         <location filename="../../src/statusnotifier.mm" line="62"/>
+=======
+        <location filename="../../src/statusnotifier.cpp" line="48"/>
+        <location filename="../../src/statusnotifier.cpp" line="64"/>
+        <location filename="../../src/statusnotifier.mm" line="44"/>
+        <location filename="../../src/statusnotifier.mm" line="60"/>
+>>>>>>> Stashed changes
         <source>PAC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/statusnotifier.cpp" line="51"/>
         <location filename="../../src/statusnotifier.mm" line="47"/>
+=======
+        <location filename="../../src/statusnotifier.cpp" line="49"/>
+        <location filename="../../src/statusnotifier.mm" line="45"/>
+>>>>>>> Stashed changes
         <source>Global</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/statusnotifier.cpp" line="67"/>
         <location filename="../../src/statusnotifier.mm" line="63"/>
+=======
+        <location filename="../../src/statusnotifier.cpp" line="65"/>
+        <location filename="../../src/statusnotifier.mm" line="61"/>
+>>>>>>> Stashed changes
         <source>Update local PAC from Lan IP list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/statusnotifier.cpp" line="68"/>
         <location filename="../../src/statusnotifier.mm" line="64"/>
+=======
+        <location filename="../../src/statusnotifier.cpp" line="66"/>
+        <location filename="../../src/statusnotifier.mm" line="62"/>
+>>>>>>> Stashed changes
         <source>Update local PAC from Chn White list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/statusnotifier.cpp" line="69"/>
         <location filename="../../src/statusnotifier.mm" line="65"/>
+=======
+        <location filename="../../src/statusnotifier.cpp" line="67"/>
+        <location filename="../../src/statusnotifier.mm" line="64"/>
+>>>>>>> Stashed changes
         <source>Update local PAC from Chn IP list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/statusnotifier.cpp" line="70"/>
         <location filename="../../src/statusnotifier.mm" line="66"/>
+=======
+        <location filename="../../src/statusnotifier.cpp" line="68"/>
+        <location filename="../../src/statusnotifier.mm" line="65"/>
+>>>>>>> Stashed changes
         <source>Update local PAC from GFWList</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/statusnotifier.cpp" line="71"/>
         <location filename="../../src/statusnotifier.mm" line="67"/>
+=======
+        <location filename="../../src/statusnotifier.cpp" line="69"/>
+        <location filename="../../src/statusnotifier.mm" line="66"/>
+>>>>>>> Stashed changes
         <source>Update local PAC from Chn Only list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/statusnotifier.cpp" line="72"/>
         <location filename="../../src/statusnotifier.mm" line="68"/>
+=======
+        <location filename="../../src/statusnotifier.cpp" line="70"/>
+        <location filename="../../src/statusnotifier.mm" line="67"/>
+>>>>>>> Stashed changes
         <source>Copy PAC URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/statusnotifier.cpp" line="73"/>
         <location filename="../../src/statusnotifier.mm" line="69"/>
+=======
+        <location filename="../../src/statusnotifier.cpp" line="71"/>
+        <location filename="../../src/statusnotifier.mm" line="68"/>
+>>>>>>> Stashed changes
         <source>Edit local PAC file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/statusnotifier.cpp" line="74"/>
         <location filename="../../src/statusnotifier.mm" line="70"/>
+=======
+        <location filename="../../src/statusnotifier.cpp" line="72"/>
+        <location filename="../../src/statusnotifier.mm" line="69"/>
+>>>>>>> Stashed changes
         <source>Edit user rule for GFWList</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/statusnotifier.cpp" line="156"/>
         <location filename="../../src/statusnotifier.cpp" line="193"/>
         <location filename="../../src/statusnotifier.mm" line="168"/>
         <location filename="../../src/statusnotifier.mm" line="207"/>
+=======
+        <location filename="../../src/statusnotifier.cpp" line="160"/>
+        <location filename="../../src/statusnotifier.cpp" line="215"/>
+        <location filename="../../src/statusnotifier.mm" line="158"/>
+        <location filename="../../src/statusnotifier.mm" line="208"/>
+>>>>>>> Stashed changes
         <source>Turn Off Trojan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/statusnotifier.cpp" line="192"/>
         <location filename="../../src/statusnotifier.mm" line="206"/>
+=======
+        <location filename="../../src/statusnotifier.cpp" line="214"/>
+        <location filename="../../src/statusnotifier.mm" line="207"/>
+>>>>>>> Stashed changes
         <source>Trojan: On</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/statusnotifier.mm" line="85"/>
+=======
+        <location filename="../../src/statusnotifier.cpp" line="86"/>
+        <location filename="../../src/statusnotifier.mm" line="84"/>
+>>>>>>> Stashed changes
         <source>Servers Subscribe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/statusnotifier.mm" line="86"/>
+=======
+        <location filename="../../src/statusnotifier.cpp" line="87"/>
+        <location filename="../../src/statusnotifier.mm" line="85"/>
+>>>>>>> Stashed changes
         <source>Subscribe setting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/statusnotifier.mm" line="87"/>
+=======
+        <location filename="../../src/statusnotifier.cpp" line="88"/>
+        <location filename="../../src/statusnotifier.mm" line="86"/>
+>>>>>>> Stashed changes
         <source>Update subscribe Trojan node</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/statusnotifier.mm" line="88"/>
+=======
+        <location filename="../../src/statusnotifier.cpp" line="89"/>
+        <location filename="../../src/statusnotifier.mm" line="87"/>
+>>>>>>> Stashed changes
         <source>Update subscribe Trojan node(bypass proxy)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< Updated upstream
         <location filename="../../src/statusnotifier.mm" line="93"/>
         <source>Copy terminal proxy command</source>
         <translation type="unfinished"></translation>
     </message>
+=======
+        <location filename="../../src/statusnotifier.cpp" line="94"/>
+        <location filename="../../src/statusnotifier.mm" line="92"/>
+        <source>Copy terminal proxy command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/statusnotifier.cpp" line="95"/>
+        <location filename="../../src/statusnotifier.mm" line="93"/>
+        <source>Set Proxy to Telegram</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/statusnotifier.mm" line="63"/>
+        <source>Update local from Chn Advance White list</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SubscribeDialog</name>
+    <message>
+        <location filename="../../ui/subscribedialog.ui" line="14"/>
+        <source>Subscribe Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ui/subscribedialog.ui" line="26"/>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ui/subscribedialog.ui" line="39"/>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ui/subscribedialog.ui" line="67"/>
+        <source>Url</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ui/subscribedialog.ui" line="74"/>
+        <source>Group Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ui/subscribedialog.ui" line="87"/>
+        <source>Recent Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ui/subscribedialog.ui" line="110"/>
+        <source>Ok</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ui/subscribedialog.ui" line="123"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+>>>>>>> Stashed changes
 </context>
 <context>
     <name>URIInputDialog</name>

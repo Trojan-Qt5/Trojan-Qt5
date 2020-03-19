@@ -6,6 +6,10 @@
 #include "subscribemanager.h"
 #include <QApplication>
 #include <QClipboard>
+<<<<<<< Updated upstream
+=======
+#include <QDesktopServices>
+>>>>>>> Stashed changes
 #ifdef Q_OS_LINUX
 #include <QDBusMessage>
 #include <QDBusConnection>
@@ -91,6 +95,10 @@ void StatusNotifier::initActions()
     subscribeMenu->addAction(updateSubscribeBypass);
 
     copyTerminalProxyCommand = new QAction(tr("Copy terminal proxy command"));
+<<<<<<< Updated upstream
+=======
+    setProxyToTelegram = new QAction(tr("Set Proxy to Telegram"));
+>>>>>>> Stashed changes
 
     //setup systray Menu
     systrayMenu.addAction(trojanQt5Action);
@@ -100,6 +108,10 @@ void StatusNotifier::initActions()
     systrayMenu.addMenu(pacMenu);
     systrayMenu.addMenu(subscribeMenu);
     systrayMenu.addAction(copyTerminalProxyCommand);
+<<<<<<< Updated upstream
+=======
+    systrayMenu.addAction(setProxyToTelegram);
+>>>>>>> Stashed changes
     systrayMenu.addSeparator();
 
     connect(toggleTrojanAction, &QAction::triggered, this, &StatusNotifier::onToggleConnection);
@@ -122,6 +134,10 @@ void StatusNotifier::initConnections()
     connect(updateSubscribe, &QAction::triggered, sbMgr, [=]() { sbMgr->updateAllSubscribes(true); });
     connect(updateSubscribeBypass, &QAction::triggered, sbMgr, [=]() { sbMgr->updateAllSubscribes(false); });
     connect(copyTerminalProxyCommand, &QAction::triggered, this, [this]() { onCopyTerminalProxy(); });
+<<<<<<< Updated upstream
+=======
+    connect(setProxyToTelegram, &QAction::triggered, this, [this]() { onSetProxyToTelegram(); });
+>>>>>>> Stashed changes
 }
 
 void StatusNotifier::updateMenu()
@@ -174,6 +190,14 @@ void StatusNotifier::onCopyTerminalProxy()
         board->setText(QString("export HTTP_PROXY=socks5://%1:%2; export HTTPS_PROXY=socks5://%1:%2; export ALL_PROXY=socks5://%1:%2").arg(helper->getSocks5Address()).arg(helper->getSocks5Port()));
 }
 
+<<<<<<< Updated upstream
+=======
+void StatusNotifier::onSetProxyToTelegram()
+{
+    QDesktopServices::openUrl(QString("tg://socks?server=%1&port=%2").arg(helper->getSocks5Address()).arg(helper->getSocks5Port()));
+}
+
+>>>>>>> Stashed changes
 void StatusNotifier::activate()
 {
     if (!window->isVisible() || window->isMinimized()) {

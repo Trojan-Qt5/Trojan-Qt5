@@ -20,9 +20,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QSortFilterProxyModel>
 #include <QLocalServer>
 #include "connectiontablemodel.h"
+#include "connectionsortfilterproxymodel.h"
 #include "confighelper.h"
 #include "statusnotifier.h"
 #include "subscribemanager.h"
@@ -54,7 +54,7 @@ private:
     Ui::MainWindow *ui;
 
     ConnectionTableModel *model;
-    QSortFilterProxyModel *proxyModel;
+    ConnectionSortFilterProxyModel *proxyModel;
     ConfigHelper *configHelper;
     StatusNotifier *notifier;
     SubscribeManager *sbMgr;
@@ -88,6 +88,7 @@ private slots:
     void onAddScreenQRCodeCapturer();
     void onAddQRCodeFile();
     void onAddFromURI();
+    void onAddFromPasteBoardURI();
     void onAddFromConfigJSON();
     void onAddFromShadowrocketJSON();
     void onDelete();

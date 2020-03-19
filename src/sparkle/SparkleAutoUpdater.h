@@ -16,6 +16,7 @@ class SparkleAutoUpdater : public AutoUpdater
 		~SparkleAutoUpdater();
 
 		void checkForUpdates();
+        void checkForUpdatesInBackground();
 	
 	private:
 		class Private;
