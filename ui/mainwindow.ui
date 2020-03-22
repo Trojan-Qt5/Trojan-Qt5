@@ -760,14 +760,11 @@ QMenu::item:selected {
      <family>Arial</family>
     </font>
    </property>
-<<<<<<< Updated upstream
-=======
   </action>
   <action name="actionPasteBoardURI">
    <property name="text">
     <string>PasteBoardURI</string>
    </property>
->>>>>>> Stashed changes
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

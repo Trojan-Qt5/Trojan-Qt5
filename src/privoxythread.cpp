@@ -20,8 +20,6 @@ void PrivoxyThread::stop() {
 #if defined (Q_OS_WIN)
     TerminateProcess(piProcessInfo.hProcess, 0);
 #else
-    g_terminate = 1;
-
     close_privoxy_listening_socket();
 #endif
 }
@@ -49,8 +47,6 @@ void PrivoxyThread::run() {
 #else
     QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
     QString file = configDir.absolutePath() + "/privoxy.conf";
-
-    g_terminate = 0;
 
     start_privoxy(file.toLocal8Bit().data());
 #endif

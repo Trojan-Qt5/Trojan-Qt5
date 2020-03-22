@@ -54,13 +54,7 @@ extern const char *pidfile;
 extern int daemon_mode;
 
 #ifdef FEATURE_GRACEFUL_TERMINATION
-#ifdef __cplusplus
-extern "C" {
-#endif
 extern int g_terminate;
-#ifdef __cplusplus
-}
-#endif
 #endif
 
 #if defined(FEATURE_PTHREAD) || defined(_WIN32)

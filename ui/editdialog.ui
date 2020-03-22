@@ -35,76 +35,76 @@
       <property name="labelAlignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
-      <item row="0" column="0">
+      <item row="1" column="0">
        <widget class="QLabel" name="nameLabel">
         <property name="text">
          <string>Profile Name</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="1">
+      <item row="1" column="1">
        <widget class="QLineEdit" name="nameEdit"/>
       </item>
-      <item row="1" column="0">
+      <item row="2" column="0">
        <widget class="QLabel" name="serverAddrLabel">
         <property name="text">
          <string>Server Address</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="1">
+      <item row="2" column="1">
        <widget class="QLineEdit" name="serverAddrEdit"/>
       </item>
-      <item row="2" column="0">
+      <item row="3" column="0">
        <widget class="QLabel" name="serverPortLabel">
         <property name="text">
          <string>Server Port</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="1">
+      <item row="3" column="1">
        <widget class="QLineEdit" name="serverPortEdit">
         <property name="inputMethodHints">
          <set>Qt::ImhDigitsOnly|Qt::ImhPreferNumbers</set>
         </property>
        </widget>
       </item>
-      <item row="3" column="0">
+      <item row="4" column="0">
        <widget class="QLabel" name="verifyCertificateLabel">
         <property name="text">
          <string>Verify Certificate</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="1">
+      <item row="4" column="1">
        <widget class="QCheckBox" name="verifyCertificateCheckBox">
         <property name="text">
          <string>Enable</string>
         </property>
        </widget>
       </item>
-      <item row="4" column="0">
+      <item row="5" column="0">
        <widget class="QLabel" name="verifyHostname">
         <property name="text">
          <string>Verify Hostname</string>
         </property>
        </widget>
       </item>
-      <item row="4" column="1">
+      <item row="5" column="1">
        <widget class="QCheckBox" name="verifyHostnameCheckBox">
         <property name="text">
          <string>Enable</string>
         </property>
        </widget>
       </item>
-      <item row="5" column="0">
+      <item row="6" column="0">
        <widget class="QLabel" name="pwdLabel">
         <property name="text">
          <string>Password</string>
         </property>
        </widget>
       </item>
-      <item row="5" column="1">
+      <item row="6" column="1">
        <widget class="QLineEdit" name="pwdEdit">
         <property name="inputMethodHints">
          <set>Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData</set>
@@ -114,111 +114,49 @@
         </property>
        </widget>
       </item>
-<<<<<<< Updated upstream
-      <item row="6" column="0">
-       <widget class="QLabel" name="reuseSessionLabel">
-        <property name="text">
-         <string>Reuse Session</string>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="1">
-       <widget class="QCheckBox" name="reuseSessionCheckBox">
-        <property name="text">
-         <string>Enable</string>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="0">
-       <widget class="QLabel" name="sessionTicketLabel">
-        <property name="text">
-         <string>Session Ticket</string>
-=======
-      <item row="7" column="0">
-       <widget class="QLabel" name="reuseSessionLabel">
-        <property name="text">
-         <string>Reuse Session</string>
->>>>>>> Stashed changes
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="1">
-<<<<<<< Updated upstream
-       <widget class="QCheckBox" name="sessionTicketCheckBox">
-=======
-       <widget class="QCheckBox" name="reuseSessionCheckBox">
->>>>>>> Stashed changes
-        <property name="text">
-         <string>Enable</string>
-        </property>
-       </widget>
-      </item>
       <item row="8" column="0">
-<<<<<<< Updated upstream
-       <widget class="QLabel" name="reusePortLabel">
+       <widget class="QLabel" name="reuseSessionLabel">
         <property name="text">
-         <string>Reuse Port</string>
-=======
-       <widget class="QLabel" name="sessionTicketLabel">
-        <property name="text">
-         <string>Session Ticket</string>
->>>>>>> Stashed changes
+         <string>Reuse Session</string>
         </property>
        </widget>
       </item>
       <item row="8" column="1">
-<<<<<<< Updated upstream
-       <widget class="QCheckBox" name="reusePortCheckBox">
+       <widget class="QCheckBox" name="reuseSessionCheckBox">
         <property name="text">
          <string>Enable</string>
         </property>
        </widget>
       </item>
       <item row="9" column="0">
-=======
+       <widget class="QLabel" name="sessionTicketLabel">
+        <property name="text">
+         <string>Session Ticket</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="1">
        <widget class="QCheckBox" name="sessionTicketCheckBox">
         <property name="text">
          <string>Enable</string>
         </property>
        </widget>
       </item>
-      <item row="9" column="0">
+      <item row="10" column="0">
        <widget class="QLabel" name="reusePortLabel">
         <property name="text">
          <string>Reuse Port</string>
         </property>
        </widget>
       </item>
-      <item row="9" column="1">
+      <item row="10" column="1">
        <widget class="QCheckBox" name="reusePortCheckBox">
         <property name="text">
          <string>Enable</string>
         </property>
        </widget>
       </item>
-      <item row="10" column="0">
->>>>>>> Stashed changes
-       <widget class="QLabel" name="tcpFastOpenLabel">
-        <property name="text">
-         <string>TCP Fast Open</string>
-        </property>
-       </widget>
-      </item>
-      <item row="9" column="1">
-       <widget class="QCheckBox" name="tcpFastOpenCheckBox">
-        <property name="text">
-         <string>Enable</string>
-        </property>
-       </widget>
-      </item>
-      <item row="10" column="0">
-       <widget class="QLabel" name="resetDateLabel">
-        <property name="text">
-         <string>Reset Data Usage after</string>
-        </property>
-       </widget>
-      </item>
-      <item row="10" column="1">
+      <item row="12" column="1">
        <widget class="QDateEdit" name="resetDateEdit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -231,14 +169,14 @@
         </property>
        </widget>
       </item>
-      <item row="11" column="0">
+      <item row="13" column="0">
        <widget class="QLabel" name="autoStartLabel">
         <property name="text">
          <string>Automation</string>
         </property>
        </widget>
       </item>
-      <item row="11" column="1">
+      <item row="13" column="1">
        <widget class="QCheckBox" name="autoStartCheckBox">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -251,15 +189,36 @@
         </property>
        </widget>
       </item>
-      <item row="6" column="0">
+      <item row="7" column="0">
        <widget class="QLabel" name="sniLabel">
         <property name="text">
          <string>SNI</string>
         </property>
        </widget>
       </item>
-      <item row="6" column="1">
+      <item row="7" column="1">
        <widget class="QLineEdit" name="sniEdit"/>
+      </item>
+      <item row="11" column="0">
+       <widget class="QLabel" name="tcpFastOpenLabel">
+        <property name="text">
+         <string>TCP Fast Open</string>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="0">
+       <widget class="QLabel" name="resetDateLabel">
+        <property name="text">
+         <string>Reset Data Usage after</string>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="1">
+       <widget class="QCheckBox" name="tcpFastOpenCheckBox">
+        <property name="text">
+         <string>Enable</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>

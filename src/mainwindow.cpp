@@ -358,17 +358,9 @@ void MainWindow::onAddFromURI()
     URIInputDialog *inputDlg = new URIInputDialog(this);
     connect(inputDlg, &URIInputDialog::finished,
             inputDlg, &URIInputDialog::deleteLater);
-<<<<<<< Updated upstream
-    connect(inputDlg, &URIInputDialog::acceptedURI, [&](const QString &uris){
-        for (QString uri : uris.split("\\r\\n")) {
-            Connection *newCon = new Connection(uri, this);
-            newProfile(newCon);
-        }
-=======
     connect(inputDlg, &URIInputDialog::acceptedURI, [&](const QString &uri){
             Connection *newCon = new Connection(uri, this);
             newProfile(newCon);
->>>>>>> Stashed changes
     });
     inputDlg->exec();
 }
@@ -721,6 +713,8 @@ void MainWindow::setupActionIcon()
                                 QIcon::fromTheme("accessories-text-editor")));
     ui->actionURI->setIcon(QIcon::fromTheme("text-field",
                            QIcon::fromTheme("insert-link")));
+    ui->actionPasteBoardURI->setIcon(QIcon::fromTheme("text-field",
+                           QIcon::fromTheme("insert-link")));
     ui->actionQRCode->setIcon(QIcon::fromTheme("edit-image-face-recognize",
                               QIcon::fromTheme("insert-image")));
     ui->actionScanQRCodeCapturer->setIcon(ui->actionQRCode->icon());
@@ -754,11 +748,7 @@ void MainWindow::initSparkle()
     win_sparkle_init();
 #elif defined (Q_OS_MAC)
     CocoaInitializer initializer;
-<<<<<<< Updated upstream
-    updater = new SparkleAutoUpdater("https://raw.githubusercontent.com/TheWanderingCoel/Trojan-Qt5/master/resources/Appcast_macOS.xml");
-=======
     updater = new SparkleAutoUpdater("https://www.crystalidea.com/update/fancontrol.xml.gz");
->>>>>>> Stashed changes
 #endif
 }
 

@@ -34,9 +34,10 @@ PACServer::PACServer()
      }
 
     QFile::copy(":/pac/gfwlist.txt", gfwList);
-    QFile::copy(":/pac/abp.js", configDir.path() + "/abp.js");
+    QFile::copy(":/pac/trojan_gfw.pac", configDir.path() + "/trojan_gfw.pac");
     QFile::copy(":/pac/trojan_lanip.pac", configDir.path() + "/trojan_lanip.pac");
     QFile::copy(":/pac/trojan_white.pac", configDir.path() + "/trojan_white.pac");
+    QFile::copy(":/pac/trojan_white_advanced.pac", configDir.path() + "/trojan_white_advanced.pac");
     QFile::copy(":/pac/trojan_white_r.pac", configDir.path() + "/trojan_white_r.pac");
     QFile::copy(":/pac/trojan_cnip.pac", configDir.path() +"/trojan_cnip.pac");
     QFile::setPermissions(userRule, QFile::WriteOwner | QFile::ReadOwner | QFile::ReadGroup | QFile::ReadOther);
@@ -102,17 +103,14 @@ void PACServer::typeModify(QString type)
         modify(configDir.path() + "/trojan_lanip.pac");
     } else if (type == "WHITE") {
         modify(configDir.path() + "/trojan_white.pac");
-<<<<<<< Updated upstream
-=======
     } else if (type == "WHITE_ADVANCED") {
         modify(configDir.path() + "/trojan_white_advanced.pac");
->>>>>>> Stashed changes
     } else if (type == "WHITE_R") {
         modify(configDir.path() + "/trojan_white_r.pac");
     } else if (type == "CNIP") {
         modify(configDir.path() + "/trojan_cnip.pac");
     } else if (type == "GFWLIST") {
-        modify(configDir.path() + "/abp.js");
+        modify(configDir.path() + "/trojan_gfw.pac");
     }
     //set System Proxy Again to force system reload pac file
     SystemProxyHelper *sph = new SystemProxyHelper();
@@ -143,7 +141,7 @@ void PACServer::modify(QString filename)
     text.replace(QString("__SOCKS5__"), QString("SOCKS5 %1:%2").arg(conf->getSocks5Address()).arg(QString::number(conf->getSocks5Port())));
     text.replace(QString("__SOCKS__"), QString("SOCKS %1:%2").arg(conf->getSocks5Address()).arg(QString::number(conf->getSocks5Port())));
     text.replace(QString("__PROXY__"), QString("PROXY %1:%2").arg(conf->getHttpAddress()).arg(QString::number(conf->getHttpPort())));
-    if (filename == configDir.path() + "/abp.js")
+    if (filename == configDir.path() + "/trojan_gfw.pac")
         text.replace(QString("__RULES__"), loadRules().toJson());
     file.seek(0); // go to the beginning of the file
     file.write(text.toUtf8()); // write the new text back to the file

@@ -11,9 +11,10 @@ TQProfile::TQProfile()
     verifyCertificate = true;
     verifyHostname = true;
     reuseSession = true;
-    sessionTicket = true;
+    sessionTicket = false;
     reusePort = false;
     tcpFastOpen = false;
+    sni = "";
     latency = LATENCY_UNKNOWN;
     currentUsage = 0;
     totalUsage = 0;

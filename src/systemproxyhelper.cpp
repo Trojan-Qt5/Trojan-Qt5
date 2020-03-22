@@ -90,10 +90,7 @@ void SystemProxyHelper::setSystemProxy(int method)
             if (name == "AirPort"
               || name == "Wi-Fi"
               || name == "Ethernet"
-<<<<<<< Updated upstream
-=======
               || name == "Thunderbolt Ethernet"
->>>>>>> Stashed changes
               || name == "USB 10/100 LAN"
               || name == "USB 10/100/1000 LAN"
               || name == "802.11ac NIC")

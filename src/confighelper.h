@@ -78,6 +78,7 @@ public:
 
     /* some functions used to communicate with SettingsDialog */
     int  getToolbarStyle() const;
+    int  getLogLevel() const;
     QString getSocks5Address() const;
     int getSocks5Port() const;
     QString getHttpAddress() const;
@@ -95,7 +96,7 @@ public:
     bool isShowFilterBar() const;
     bool isNativeMenuBar() const;
     void setGeneralSettings(int ts, bool assp, bool pac, bool hide, bool sal, bool oneInstance, bool cpa, bool nativeMB);
-    void setAdvanceSettings(bool hm, QString sa, int sp, QString ha, int hp, QString pa, int pp);
+    void setAdvanceSettings(int ll, bool hm, QString sa, int sp, QString ha, int hp, QString pa, int pp);
     void setSystemProxySettings(bool pac, bool enable);
     void setMainWindowGeometry(const QByteArray &geometry);
     void setMainWindowState(const QByteArray &state);
@@ -115,6 +116,7 @@ signals:
     void toolbarStyleChanged(const Qt::ToolButtonStyle);
 
 private:
+    int logLevel;
     int toolbarStyle;
     /** Port Settings. */
     bool enableHttpMode;

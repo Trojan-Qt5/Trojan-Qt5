@@ -21,6 +21,7 @@ EditDialog::EditDialog(Connection *_connection, QWidget *parent) :
     ui->verifyCertificateCheckBox->setChecked(connection->profile.verifyCertificate);
     ui->verifyHostnameCheckBox->setChecked(connection->profile.verifyHostname);
     ui->pwdEdit->setText(connection->profile.password);
+    ui->sniEdit->setText(connection->profile.sni);
     ui->reuseSessionCheckBox->setChecked(connection->profile.reuseSession);
     ui->sessionTicketCheckBox->setChecked(connection->profile.sessionTicket);
     ui->reusePortCheckBox->setChecked(connection->profile.reusePort);
@@ -51,6 +52,7 @@ void EditDialog::save()
     connection->profile.reusePort = ui->reusePortCheckBox->isChecked();
     connection->profile.tcpFastOpen = ui->tcpFastOpenCheckBox->isChecked();
     connection->profile.password = ui->pwdEdit->text();
+    connection->profile.sni = ui->sniEdit->text();
     connection->profile.nextResetDate = ui->resetDateEdit->date();
     connection->profile.autoStart = ui->autoStartCheckBox->isChecked();
 

@@ -37,10 +37,7 @@ public:
     void initConnections();
     void updateMenu();
     void onCopyTerminalProxy();
-<<<<<<< Updated upstream
-=======
     void onSetProxyToTelegram();
->>>>>>> Stashed changes
     void onTrojanSubscribeSettings();
 
 signals:
@@ -65,15 +62,10 @@ private:
     QAction *disableModeAction;
     QAction *pacModeAction;
     QAction *globalModeAction;
-<<<<<<< Updated upstream
-    QAction *updatePACToBypassLAN;
-    QAction *updatePACToChnWhite;
-=======
 
     QAction *updatePACToBypassLAN;
     QAction *updatePACToChnWhite;
     QAction *updatePACToChnWhiteAdvanced;
->>>>>>> Stashed changes
     QAction *updatePACToChnIP;
     QAction *updatePACToGFWList;
     QAction *updatePACToChnOnly;
@@ -86,10 +78,7 @@ private:
     QActionGroup *ModeGroup;
 
     QAction *copyTerminalProxyCommand;
-<<<<<<< Updated upstream
-=======
     QAction *setProxyToTelegram;
->>>>>>> Stashed changes
     QAction *minimiseRestoreAction;
     QSystemTrayIcon systray;
     MainWindow *window;

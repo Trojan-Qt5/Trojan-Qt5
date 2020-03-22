@@ -41,7 +41,7 @@ CONFIG += sdk_no_version_check
 #DEFINES += QT_DEPRECATED_WARNINGS
 
 # Define App Version
-DEFINES += "APP_VERSION=\"\\\"0.0.4c\\\"\""
+DEFINES += "APP_VERSION=\"\\\"0.0.4d\\\"\""
 
 # Trojan
 #DEFINES += ENABLE_MYSQL
@@ -52,8 +52,6 @@ DEFINES += ENABLE_SSL_KEYLOG
 DEFINES += ENABLE_TLS13_CIPHERSUITES
 #DEFINES += ENABLE_REUSE_PORT
 
-# Privoxy
-DEFINES += FEATURE_GRACEFUL_TERMINATION
 
 # You can also make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -173,7 +171,6 @@ unix {
         src/privoxy/list.c \
         src/privoxy/pcrs.c \
         src/privoxy/miscutil.c \
-        src/privoxy/fuzz.c \
         src/privoxy/parsers.c \
         src/privoxy/loadcfg.c \
         src/privoxy/filters.c \

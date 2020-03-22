@@ -35,6 +35,7 @@ void ConfigHelper::save(const ConnectionTableModel &model)
     }
     settings->endArray();
 
+    settings->setValue("LogLevel", QVariant(logLevel));
     settings->setValue("EnableHttpMode", QVariant(enableHttpMode));
     settings->setValue("Socks5LocalAddress", QVariant(socks5LocalAddress));
     settings->setValue("Socks5LocalPort", QVariant(socks5LocalPort));
@@ -285,7 +286,7 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
     QJsonArray passwordArray;
     passwordArray.append(profile.password);
     configObj["password"] = QJsonValue(passwordArray);
-    configObj["log_level"] = "1";
+    configObj["log_level"] = QString::number(logLevel);
     QJsonObject ssl;
     ssl["verify"] = profile.verifyCertificate;
     ssl["verify_hostname"] = profile.verifyHostname;
@@ -338,6 +339,12 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
 
 void ConfigHelper::generatePrivoxyConf()
 {
+    if (socks5LocalAddress.contains((":")))
+        socks5LocalAddress = "[" + socks5LocalAddress + "]";
+
+    if (httpLocalAddress.contains(":"))
+        httpLocalAddress = "[" + httpLocalAddress + "]";
+
     QString filecontent = QString("listen-address %1:%2\n"
                                   "toggle 0\n"
                                   "show-on-task-bar 0\n"
@@ -354,6 +361,7 @@ void ConfigHelper::generatePrivoxyConf()
         QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
         QString file = configDir.absolutePath() + "/privoxy.conf";
 #endif
+
     QFile privoxyConf(file);
     privoxyConf.open(QIODevice::WriteOnly | QIODevice::Text |QIODevice::Truncate);
     if (!privoxyConf.isOpen()) {
@@ -368,6 +376,11 @@ void ConfigHelper::generatePrivoxyConf()
     }
     privoxyConf.write(filecontent.toUtf8());
     privoxyConf.close();
+}
+
+int ConfigHelper::getLogLevel() const
+{
+    return logLevel;
 }
 
 int ConfigHelper::getToolbarStyle() const
@@ -470,8 +483,9 @@ void ConfigHelper::setGeneralSettings(int ts, bool assp, bool pac, bool hide, bo
     nativeMenuBar = nativeMB;
 }
 
-void ConfigHelper::setAdvanceSettings(bool hm, QString sa, int sp, QString ha, int hp, QString pa, int pp)
+void ConfigHelper::setAdvanceSettings(int ll, bool hm, QString sa, int sp, QString ha, int hp, QString pa, int pp)
 {
+    logLevel = ll;
     enableHttpMode = hm;
     socks5LocalAddress = sa;
     socks5LocalPort = sp;
@@ -546,6 +560,7 @@ void ConfigHelper::readGeneralSettings()
 
 void ConfigHelper::readAdvanceSettings()
 {
+    logLevel = settings->value("LogLevel", QVariant(1)).toInt();
     enableHttpMode = settings->value("EnableHttpMode", QVariant(true)).toBool();
     socks5LocalAddress = settings->value("Socks5LocalAddress", QVariant("127.0.0.1")).toString();
     socks5LocalPort = settings->value("Socks5LocalPort", QVariant(1080)).toInt();
