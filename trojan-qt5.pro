@@ -41,7 +41,7 @@ CONFIG += sdk_no_version_check
 #DEFINES += QT_DEPRECATED_WARNINGS
 
 # Define App Version
-DEFINES += "APP_VERSION=\"\\\"0.0.4d\\\"\""
+DEFINES += "APP_VERSION=\"\\\"0.0.5\\\"\""
 
 # Trojan
 #DEFINES += ENABLE_MYSQL
