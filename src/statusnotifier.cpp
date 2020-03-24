@@ -55,11 +55,11 @@ void StatusNotifier::initActions()
     ModeMenu->addAction(disableModeAction);
     ModeMenu->addAction(pacModeAction);
     ModeMenu->addAction(globalModeAction);
-    if (helper->isEnablePACMode() && helper->isAutoSetSystemProxy())
+    if (helper->getSystemProxySettings() == "pac")
         pacModeAction->setChecked(true);
-    else if (helper->isAutoSetSystemProxy())
+    else if (helper->getSystemProxySettings() == "global")
         globalModeAction->setChecked(true);
-    else
+    else if (helper->getSystemProxySettings() == "direct")
         disableModeAction->setChecked(true);
 
     //PAC Menu
@@ -135,11 +135,11 @@ void StatusNotifier::initConnections()
 
 void StatusNotifier::updateMenu()
 {
-    if (helper->isAutoSetSystemProxy() && helper->isEnablePACMode())
+    if (helper->getSystemProxySettings() == "pac")
         pacModeAction->setChecked(true);
-    else if (helper->isAutoSetSystemProxy())
+    else if (helper->getSystemProxySettings() == "global")
         globalModeAction->setChecked(true);
-    else
+    else if (helper->getSystemProxySettings() == "disable")
         disableModeAction->setChecked(true);
 }
 
@@ -148,15 +148,15 @@ void StatusNotifier::onToggleMode(QAction *action)
     SystemProxyHelper *sph = new SystemProxyHelper();
     if (action == disableModeAction) {
         sph->setSystemProxy(0);
-        helper->setSystemProxySettings(false, false);
+        helper->setSystemProxySettings("direct");
     } else if (action == pacModeAction) {
         sph->setSystemProxy(0);
         sph->setSystemProxy(2);
-        helper->setSystemProxySettings(true, true);
+        helper->setSystemProxySettings("pac");
     } else if (action == globalModeAction) {
         sph->setSystemProxy(0);
         sph->setSystemProxy(1);
-        helper->setSystemProxySettings(false, true);
+        helper->setSystemProxySettings("global");
     }
 }
 
