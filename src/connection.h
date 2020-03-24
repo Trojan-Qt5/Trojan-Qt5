@@ -44,6 +44,7 @@ public:
     const TQProfile &getProfile() const;
     const QString &getName() const;
     QByteArray getURI() const;
+    void setProfile(TQProfile p);
     bool isValid() const;
     const bool &isRunning() const;
     void latencyTest();

@@ -44,12 +44,12 @@ void ConfigHelper::save(const ConnectionTableModel &model)
     settings->setValue("PACLocalAddress", QVariant(pacLocalAddress));
     settings->setValue("PACLocalPort", QVariant(pacLocalPort));
     settings->setValue("ToolbarStyle", QVariant(toolbarStyle));
-    settings->setValue("AutoSetSystemProxy", QVariant(autoSetSystemProxy));
-    settings->setValue("EnablePACMode", QVariant(enablePACMode));
+    settings->setValue("SystemProxyMode", QVariant(systemProxyMode));
     settings->setValue("HideWindowOnStartup", QVariant(hideWindowOnStartup));
     settings->setValue("StartAtLogin", QVariant(startAtLogin));
     settings->setValue("OnlyOneInstance", QVariant(onlyOneInstace));
     settings->setValue("CheckPortAvailability", QVariant(checkPortAvailability));
+    settings->setValue("HideDockIcon", QVariant(hideDockIcon));
     settings->setValue("ShowToolbar", QVariant(showToolbar));
     settings->setValue("ShowFilterBar", QVariant(showFilterBar));
     settings->setValue("NativeMenuBar", QVariant(nativeMenuBar));
@@ -268,9 +268,16 @@ Connection* ConfigHelper::configJsonToConnection(const QString &file)
     }
     QJsonObject configObj = JSONDoc.object();
     TQProfile p;
-    p.serverAddress = configObj["server"].toString();
-    p.serverPort = configObj["server_port"].toInt();
-    p.password = configObj["password"].toString();
+    p.serverAddress = configObj["remote_addr"].toString();
+    p.serverPort = configObj["remote_port"].toInt();
+    p.password = configObj["password"].toArray()[0].toString(); //only the first password will be used
+    p.sni = configObj["ssl"].toObject()["sni"].toString();
+    p.verifyCertificate = configObj["verify"].toBool();
+    p.verifyHostname = configObj["verify_hostname"].toBool();
+    p.reuseSession = configObj["ssl"].toObject()["reuse_session"].toBool();
+    p.sessionTicket = configObj["ssl"].toObject()["session_ticket"].toBool();
+    p.reusePort = configObj["tcp"].toObject()["reuse_port"].toBool();
+    p.tcpFastOpen = configObj["tcp"].toObject()["fast_open"].toBool();
     Connection *con = new Connection(p, this);
     return con;
 }
@@ -418,19 +425,14 @@ int ConfigHelper::getPACPort() const
     return pacLocalPort;
 }
 
-bool ConfigHelper::isAutoSetSystemProxy() const
+QString ConfigHelper::getSystemProxySettings() const
 {
-    return autoSetSystemProxy;
+    return systemProxyMode;
 }
 
 bool ConfigHelper::isEnableHttpMode() const
 {
     return enableHttpMode;
-}
-
-bool ConfigHelper::isEnablePACMode() const
-{
-    return enablePACMode;
 }
 
 bool ConfigHelper::isHideWindowOnStartup() const
@@ -453,6 +455,11 @@ bool ConfigHelper::isCheckPortAvailability() const
     return checkPortAvailability;
 }
 
+bool ConfigHelper::isHideDockIcon() const
+{
+    return hideDockIcon;
+}
+
 bool ConfigHelper::isShowToolbar() const
 {
     return showToolbar;
@@ -468,18 +475,17 @@ bool ConfigHelper::isNativeMenuBar() const
     return nativeMenuBar;
 }
 
-void ConfigHelper::setGeneralSettings(int ts, bool assp, bool pac, bool hide, bool sal, bool oneInstance, bool cpa, bool nativeMB)
+void ConfigHelper::setGeneralSettings(int ts, bool hide, bool sal, bool oneInstance, bool cpa, bool hdi, bool nativeMB)
 {
     if (toolbarStyle != ts) {
         emit toolbarStyleChanged(static_cast<Qt::ToolButtonStyle>(ts));
     }
     toolbarStyle = ts;
-    autoSetSystemProxy = assp;
-    enablePACMode = pac;
     hideWindowOnStartup = hide;
     startAtLogin = sal;
     onlyOneInstace = oneInstance;
     checkPortAvailability = cpa;
+    hideDockIcon = hdi;
     nativeMenuBar = nativeMB;
 }
 
@@ -495,12 +501,10 @@ void ConfigHelper::setAdvanceSettings(int ll, bool hm, QString sa, int sp, QStri
     pacLocalPort = pp;
 }
 
-void ConfigHelper::setSystemProxySettings(bool pac, bool enable)
+void ConfigHelper::setSystemProxySettings(QString mode)
 {
-   enablePACMode = pac;
-   autoSetSystemProxy = enable;
-   settings->setValue("AutoSetSystemProxy", QVariant(autoSetSystemProxy));
-   settings->setValue("EnablePACMode", QVariant(enablePACMode));
+   systemProxyMode = mode;
+   settings->setValue("AutoSetSystemProxy", QVariant(systemProxyMode));
 }
 
 void ConfigHelper::setShowToolbar(bool show)
@@ -548,11 +552,11 @@ void ConfigHelper::readGeneralSettings()
 {
     toolbarStyle = settings->value("ToolbarStyle", QVariant(3)).toInt();
     startAtLogin = settings->value("StartAtLogin").toBool();
-    autoSetSystemProxy = settings->value("AutoSetSystemProxy", QVariant(true)).toBool();
-    enablePACMode = settings->value("EnablePACMode", QVariant(true)).toBool();
+    systemProxyMode = settings->value("SystemProxyMode", QVariant("global")).toString();
     hideWindowOnStartup = settings->value("HideWindowOnStartup").toBool();
     onlyOneInstace = settings->value("OnlyOneInstance", QVariant(true)).toBool();
     checkPortAvailability = settings->value("CheckPortAvailability", QVariant(true)).toBool();
+    hideDockIcon = settings->value("HideDockIcon", QVariant(true)).toBool();
     showToolbar = settings->value("ShowToolbar", QVariant(true)).toBool();
     showFilterBar = settings->value("ShowFilterBar", QVariant(true)).toBool();
     nativeMenuBar = settings->value("NativeMenuBar", QVariant(false)).toBool();

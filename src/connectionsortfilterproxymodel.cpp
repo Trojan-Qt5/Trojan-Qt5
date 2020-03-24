@@ -1,7 +1,6 @@
 #include "connectionsortfilterproxymodel.h"
 
 #include <QDate>
-#include <QDebug>
 
 ConnectionSortFilterProxyModel::ConnectionSortFilterProxyModel(QObject *parent) : QSortFilterProxyModel(parent)
 {}

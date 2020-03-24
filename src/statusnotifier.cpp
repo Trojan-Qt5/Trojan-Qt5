@@ -47,9 +47,11 @@ void StatusNotifier::initActions()
     disableModeAction = new QAction(tr("Disable system proxy"), ModeGroup);
     pacModeAction = new QAction(tr("PAC"), ModeGroup);
     globalModeAction = new QAction(tr("Global"), ModeGroup);
+    advanceModeAction = new QAction(tr("Advance"), ModeGroup);
     disableModeAction->setCheckable(true);
     pacModeAction->setCheckable(true);
     globalModeAction->setCheckable(true);
+    advanceModeAction->setCheckable(true);
     ModeMenu->addAction(disableModeAction);
     ModeMenu->addAction(pacModeAction);
     ModeMenu->addAction(globalModeAction);
@@ -64,6 +66,7 @@ void StatusNotifier::initActions()
     pacMenu = new QMenu(tr("PAC"));
     updatePACToBypassLAN = new QAction(tr("Update local PAC from Lan IP list"));
     updatePACToChnWhite = new QAction(tr("Update local PAC from Chn White list"));
+    updatePACToChnWhiteAdvanced = new QAction(tr("Update local from Chn Advance White list")); //Advance White list by @zoeysama
     updatePACToChnIP = new QAction(tr("Update local PAC from Chn IP list"));
     updatePACToGFWList = new QAction(tr("Update local PAC from GFWList"));
     updatePACToChnOnly = new QAction(tr("Update local PAC from Chn Only list"));
@@ -73,6 +76,7 @@ void StatusNotifier::initActions()
     pacMenu->addAction(updatePACToBypassLAN);
     pacMenu->addSeparator();
     pacMenu->addAction(updatePACToChnWhite);
+    pacMenu->addAction(updatePACToChnWhiteAdvanced);
     pacMenu->addAction(updatePACToChnIP);
     pacMenu->addAction(updatePACToGFWList);
     pacMenu->addSeparator();
@@ -115,6 +119,7 @@ void StatusNotifier::initConnections()
     PACServer *pacserver = new PACServer();
     connect(updatePACToBypassLAN, &QAction::triggered, pacserver, [=]() { pacserver->typeModify("LAN"); });
     connect(updatePACToChnWhite, &QAction::triggered, pacserver, [=]() { pacserver->typeModify("WHITE"); });
+    connect(updatePACToChnWhiteAdvanced, &QAction::triggered, pacserver, [=]() { pacserver->typeModify("WHITE_ADVANCED"); });
     connect(updatePACToChnIP, &QAction::triggered, pacserver, [=]() { pacserver->typeModify("CNIP"); });
     connect(updatePACToGFWList, &QAction::triggered, pacserver, [=]() { pacserver->typeModify("GFWLIST"); });
     connect(updatePACToChnOnly, &QAction::triggered, pacserver, [=]() { pacserver->typeModify("WHITE_R"); });

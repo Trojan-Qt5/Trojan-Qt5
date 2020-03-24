@@ -59,6 +59,11 @@ QByteArray Connection::getURI() const
     return QByteArray(uri.toUtf8());
 }
 
+void Connection::setProfile(TQProfile p)
+{
+    profile = p;
+}
+
 bool Connection::isValid() const
 {
     if (profile.serverAddress.isEmpty() || profile.password.isEmpty()) {
@@ -145,13 +150,11 @@ void Connection::start()
     emit stateChanged(running);
 
     //set proxy settings after emit the signal
-    if (conf->isAutoSetSystemProxy()) {
-        if (conf->isEnablePACMode()) {
-            SystemProxyHelper::setSystemProxy(2);
-        } else {
-            SystemProxyHelper::setSystemProxy(1);
-        }
-    }
+    if (conf->getSystemProxySettings() == "pac")
+        SystemProxyHelper::setSystemProxy(2);
+    else if (conf->getSystemProxySettings() == "global")
+        SystemProxyHelper::setSystemProxy(1);
+
 }
 
 void Connection::stop()
@@ -171,7 +174,7 @@ void Connection::stop()
         emit stateChanged(running);
 
         //set proxy settings after emit the signal
-        if (conf->isAutoSetSystemProxy()) {
+        if (conf->getSystemProxySettings() != "direct") {
             SystemProxyHelper::setSystemProxy(0);
         }
     }
@@ -186,7 +189,7 @@ void Connection::onStartFailed()
     emit startFailed();
 
     //set proxy settings if the setting is configured to do so
-    if (conf->isAutoSetSystemProxy()) {
+    if (conf->getSystemProxySettings() != "direct") {
         SystemProxyHelper::setSystemProxy(0);
     }
 }

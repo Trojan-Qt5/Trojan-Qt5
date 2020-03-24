@@ -129,12 +129,10 @@ QColor ConnectionItem::convertLatencyToColor(const int latency)
             return QColor(Qt::red);
         default:
             if (latency < 100) {
-                /** RGB come from @eejworks. */
-                return QColor::fromRgb(11, 155, 28, 255);
-            } else if (latency > 100 && latency < 200) {
-                /** RGB come from @eejworks. */
-                return QColor::fromRgb(4, 156, 213, 255);
-            } else if (latency > 200) {
+                return QColor::fromRgb(11, 155, 28, 255); //RGB come from @eejworks.
+            } else if (latency >= 100 && latency < 200) {
+                return QColor::fromRgb(4, 156, 213, 255); //RGB come from @eejworks.
+            } else if (latency >= 200) {
                 return QColor::fromRgb(255, 148, 0);
             }
     }

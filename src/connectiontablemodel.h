@@ -42,7 +42,11 @@ public:
 
     bool appendConnection(Connection *con, const QModelIndex &parent = QModelIndex());
 
-    bool isDuplicate(Connection *newCon);
+    bool isDuplicated(Connection *newCon);
+
+    bool isExisted(Connection *newCon);
+
+    void replace(Connection *newCon);
 
     void disconnectConnections();
 

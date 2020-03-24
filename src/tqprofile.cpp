@@ -1,7 +1,5 @@
 #include "tqprofile.h"
 
-#include <QDebug>
-
 TQProfile::TQProfile()
 {
     autoStart = false;
@@ -83,12 +81,12 @@ QString TQProfile::toUri() const
 
 QDataStream& operator << (QDataStream &out, const TQProfile &p)
 {
-    out << p.autoStart << p.serverPort << p.dualMode << p.name << p.serverAddress << p.verifyCertificate << p.verifyHostname << p.password << p.reuseSession << p.sessionTicket << p.reusePort << p.tcpFastOpen << p.latency << p.currentUsage << p.totalUsage << p.lastTime << p.nextResetDate;
+    out << p.autoStart << p.serverPort << p.dualMode << p.name << p.serverAddress << p.verifyCertificate << p.verifyHostname << p.password << p.sni << p.reuseSession << p.sessionTicket << p.reusePort << p.tcpFastOpen << p.latency << p.currentUsage << p.totalUsage << p.lastTime << p.nextResetDate;
     return out;
 }
 
 QDataStream& operator >> (QDataStream &in, TQProfile &p)
 {
-    in >> p.autoStart >> p.serverPort >> p.dualMode >> p.name >> p.serverAddress >> p.verifyCertificate >> p.verifyHostname >> p.password >> p.reuseSession >> p.sessionTicket >> p.reusePort >> p.tcpFastOpen >> p.latency >> p.currentUsage >> p.totalUsage >> p.lastTime >> p.nextResetDate;
+    in >> p.autoStart >> p.serverPort >> p.dualMode >> p.name >> p.serverAddress >> p.verifyCertificate >> p.verifyHostname >> p.password >> p.sni >> p.reuseSession >> p.sessionTicket >> p.reusePort >> p.tcpFastOpen >> p.latency >> p.currentUsage >> p.totalUsage >> p.lastTime >> p.nextResetDate;
     return in;
 }

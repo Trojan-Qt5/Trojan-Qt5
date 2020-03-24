@@ -2,7 +2,6 @@
 #include <string>
 #include <QCoreApplication>
 #include <QDir>
-#include <QDebug>
 #if !defined (Q_OS_WIN)
 #include "privoxy/jcc.h"
 #endif

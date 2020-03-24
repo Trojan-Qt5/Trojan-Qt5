@@ -6,8 +6,7 @@
 #include <QEventLoop>
 
 SubscribeManager::SubscribeManager(ConfigHelper *ch, QObject *parent) : QObject(parent), helper(ch)
-{
-}
+{}
 
 QString SubscribeManager::checkUpdate(QString url, bool useProxy)
 {
@@ -36,6 +35,7 @@ void SubscribeManager::updateAllSubscribes(bool useProxy)
         subscribes[i].lastUpdateTime = QDateTime::currentDateTime().toTime_t() - QDateTime::fromString("1970-01-01T00:00:00").toTime_t();
         //checkUpdate
         QString data = checkUpdate(subscribes[i].url, useProxy);
+        data = data.replace("\n", ""); //remove \n
         QString decodeRes = QByteArray::fromBase64(data.toLocal8Bit().data());
         QStringList list = decodeRes.split("\r\n");
         for (int i = 0; i< list.length(); i++)

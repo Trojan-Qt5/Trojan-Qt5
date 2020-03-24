@@ -121,7 +121,32 @@ void ConnectionTableModel::disconnectConnections()
     }
 }
 
-bool ConnectionTableModel::isDuplicate(Connection *newCon)
+/**
+ * @brief ConnectionTableModel::isDuplicate
+ * @ref https://github.com/qinyuhang/ShadowsocksX-NG-R/blob/81acc0cfeb514ab1f7eaad858e364144a2735a9e/ShadowsocksX-NG/ServerProfileManager.swift#L105-L120
+ * @param newCon connection
+ * @return duplicate or not
+ */
+bool ConnectionTableModel::isDuplicated(Connection *newCon)
+{
+    for (auto &i : items) {
+        Connection *con = i->getConnection();
+        if (con->getProfile().serverAddress == newCon->getProfile().serverAddress
+                && con->getProfile().serverPort == newCon->getProfile().serverPort
+                && con->getProfile().password == newCon->getProfile().password
+                && con->getProfile().name == newCon->getProfile().name)
+            return true;
+    }
+    return false;
+}
+
+/**
+ * @brief ConnectionTableModel::isExisted
+ * @ref https://github.com/qinyuhang/ShadowsocksX-NG-R/blob/81acc0cfeb514ab1f7eaad858e364144a2735a9e/ShadowsocksX-NG/ServerProfileManager.swift#L95-L103
+ * @param newCon connection
+ * @return exist or not
+ */
+bool ConnectionTableModel::isExisted(Connection *newCon)
 {
     for (auto &i : items) {
         Connection *con = i->getConnection();
@@ -130,6 +155,23 @@ bool ConnectionTableModel::isDuplicate(Connection *newCon)
             return true;
     }
     return false;
+}
+
+void ConnectionTableModel::replace(Connection *newCon)
+{
+    for (auto &i : items) {
+        Connection *con = i->getConnection();
+        if (con->getProfile().serverAddress == newCon->getProfile().serverAddress &&
+            con->getProfile().serverPort == newCon->getProfile().serverPort) {
+            TQProfile p;
+            p.serverAddress = newCon->getProfile().serverAddress;
+            p.serverPort = newCon->getProfile().serverPort;
+            p.password = newCon->getProfile().password;
+            p.name = newCon->getProfile().name;
+            con->setProfile(p);
+        }
+
+    }
 }
 
 void ConnectionTableModel::testAllLatency()

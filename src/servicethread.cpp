@@ -1,6 +1,5 @@
 #include "servicethread.h"
 #include <string>
-#include <QDebug>
 
 void ServiceThread::cleanUp() {
     delete service;

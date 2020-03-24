@@ -62,6 +62,7 @@ private:
     QAction *disableModeAction;
     QAction *pacModeAction;
     QAction *globalModeAction;
+    QAction *advanceModeAction;
 
     QAction *updatePACToBypassLAN;
     QAction *updatePACToChnWhite;

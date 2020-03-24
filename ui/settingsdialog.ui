@@ -7,23 +7,13 @@
     <x>0</x>
     <y>0</y>
     <width>340</width>
-    <height>221</height>
+    <height>249</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>General Settings</string>
   </property>
   <layout class="QFormLayout" name="formLayout">
-   <item row="9" column="0" colspan="2">
-    <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-     </property>
-    </widget>
-   </item>
    <item row="1" column="0">
     <widget class="QLabel" name="toolbarStyleLabel">
      <property name="text">
@@ -67,54 +57,57 @@
     </widget>
    </item>
    <item row="2" column="0" colspan="2">
-    <widget class="QCheckBox" name="autoSetSystemProxyCheckBox">
-     <property name="text">
-      <string>Auto set system proxy</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0" colspan="2">
     <widget class="QCheckBox" name="oneInstanceCheckBox">
      <property name="text">
       <string>Allow only one instance running</string>
      </property>
     </widget>
    </item>
-   <item row="4" column="0" colspan="2">
+   <item row="3" column="0" colspan="2">
     <widget class="QCheckBox" name="availabilityCheckBox">
      <property name="text">
       <string>Check port availability</string>
      </property>
     </widget>
    </item>
-   <item row="5" column="0" colspan="2">
-    <widget class="QCheckBox" name="enablePACModeCheckBox">
+   <item row="4" column="0" colspan="2">
+    <widget class="QCheckBox" name="hideDockIconCheckBox">
      <property name="text">
-      <string>Enable PAC mode</string>
+      <string>Hide Dock Icon (macOS)</string>
      </property>
     </widget>
    </item>
-   <item row="6" column="0" colspan="2">
+   <item row="5" column="0" colspan="2">
     <widget class="QCheckBox" name="startAtLoginCheckbox">
      <property name="text">
       <string>Start at login</string>
      </property>
     </widget>
    </item>
-   <item row="7" column="0" colspan="2">
+   <item row="6" column="0" colspan="2">
     <widget class="QCheckBox" name="hideCheckBox">
      <property name="text">
       <string>Hide window on startup</string>
      </property>
     </widget>
    </item>
-   <item row="8" column="0" colspan="2">
+   <item row="7" column="0" colspan="2">
     <widget class="QCheckBox" name="nativeMenuBarCheckBox">
      <property name="toolTip">
       <string>Need to restart the application for this change to take effect</string>
      </property>
      <property name="text">
       <string>Use native menu bar</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="0" colspan="2">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
      </property>
     </widget>
    </item>

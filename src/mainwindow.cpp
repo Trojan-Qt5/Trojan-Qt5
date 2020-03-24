@@ -249,10 +249,21 @@ void MainWindow::onToggleConnection(bool status)
 void MainWindow::onAddURIFromSubscribe(QString uri)
 {
     Connection *newCon = new Connection(uri, this);
-    if (!model->isDuplicate(newCon)) {
-        model->appendConnection(newCon);
-        configHelper->save(*model);
-    }
+
+    bool dupResult = model->isDuplicated(newCon);
+    bool existResult = model->isExisted(newCon);
+
+    if (dupResult)
+        return;
+
+    if (existResult) {
+        model->replace(newCon);
+        return;
+     }
+
+    model->appendConnection(newCon);
+
+    configHelper->save(*model);
 }
 
 void MainWindow::onImportGuiJson()
@@ -599,7 +610,13 @@ void MainWindow::onAbout()
             "GNU General Public License Version 3</a><br />"
             "Project Hosted at "
             "<a href='https://github.com/TheWanderingCoel/Trojan-Qt5'>"
-            "GitHub</a></p>")
+            "GitHub</a><br />"
+            "Telegram Group "
+            "<a href='https://t.me/TrojanQt5'>"
+            "@TrojanQt5</a><br />"
+            "Telegram Channel "
+            "<a href='https://t.me/TrojanQt5News'>"
+            "@TrojanQt5News</a></p>")
             .arg(QStringLiteral(APP_VERSION))
             .arg(QString::fromStdString(Version::get_version()))
             .arg(QStringLiteral(VERSION))

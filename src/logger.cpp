@@ -1,7 +1,7 @@
 #include "logger.h"
 
 #include <plog/Log.h>
-#include <QDebug>
+
 /**
  * @brief Logger::init
  * @param path the log file path

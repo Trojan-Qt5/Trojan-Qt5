@@ -356,7 +356,7 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="609"/>
+        <location filename="../../src/mainwindow.cpp" line="615"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
@@ -749,72 +749,75 @@
         <translation>常规设置</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="30"/>
+        <location filename="../../ui/settingsdialog.ui" line="20"/>
         <source>Toolbar Style</source>
         <translation>工具栏风格</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="44"/>
+        <location filename="../../ui/settingsdialog.ui" line="34"/>
         <source>Icons Only</source>
         <translation>仅图标</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="49"/>
+        <location filename="../../ui/settingsdialog.ui" line="39"/>
         <source>Text Only</source>
         <translation>仅文本</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="54"/>
+        <location filename="../../ui/settingsdialog.ui" line="44"/>
         <source>Text Alongside Icons</source>
         <translation>文本在图标侧</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="59"/>
+        <location filename="../../ui/settingsdialog.ui" line="49"/>
         <source>Text Under Icons</source>
         <translation>文本在图标下</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="64"/>
+        <location filename="../../ui/settingsdialog.ui" line="54"/>
         <source>System Style</source>
         <translation>系统风格</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="72"/>
-        <source>Auto set system proxy</source>
-        <translation>自动设置系统代理</translation>
+        <location filename="../../ui/settingsdialog.ui" line="76"/>
+        <source>Hide Dock Icon (macOS)</source>
+        <translation>隐藏Dock栏图标 (macOS)</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="79"/>
+        <source>Auto set system proxy</source>
+        <translation type="vanished">自动设置系统代理</translation>
+    </message>
+    <message>
+        <location filename="../../ui/settingsdialog.ui" line="62"/>
         <source>Allow only one instance running</source>
         <translation>仅允许一个实例运行</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="86"/>
+        <location filename="../../ui/settingsdialog.ui" line="69"/>
         <source>Check port availability</source>
         <translation>检查端口可用性</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="93"/>
         <source>Enable PAC mode</source>
-        <translation>启用PAC模式</translation>
+        <translation type="vanished">启用PAC模式</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="107"/>
+        <location filename="../../ui/settingsdialog.ui" line="90"/>
         <source>Hide window on startup</source>
         <translation>启动时隐藏窗口</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="114"/>
+        <location filename="../../ui/settingsdialog.ui" line="97"/>
         <source>Need to restart the application for this change to take effect</source>
         <translation>需重启程序以生效</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="117"/>
+        <location filename="../../ui/settingsdialog.ui" line="100"/>
         <source>Use native menu bar</source>
         <translation>使用原生菜单栏</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="100"/>
+        <location filename="../../ui/settingsdialog.ui" line="83"/>
         <source>Start at login</source>
         <translation>登录时启动</translation>
     </message>
@@ -841,9 +844,9 @@
     <name>StatusNotifier</name>
     <message>
         <location filename="../../src/statusnotifier.cpp" line="25"/>
-        <location filename="../../src/statusnotifier.cpp" line="226"/>
+        <location filename="../../src/statusnotifier.cpp" line="231"/>
         <location filename="../../src/statusnotifier.mm" line="21"/>
-        <location filename="../../src/statusnotifier.mm" line="220"/>
+        <location filename="../../src/statusnotifier.mm" line="222"/>
         <source>Minimise</source>
         <translation>最小化</translation>
     </message>
@@ -855,25 +858,25 @@
     </message>
     <message>
         <location filename="../../src/statusnotifier.cpp" line="25"/>
-        <location filename="../../src/statusnotifier.cpp" line="226"/>
+        <location filename="../../src/statusnotifier.cpp" line="231"/>
         <location filename="../../src/statusnotifier.mm" line="21"/>
-        <location filename="../../src/statusnotifier.mm" line="220"/>
+        <location filename="../../src/statusnotifier.mm" line="222"/>
         <source>Restore</source>
         <translation>恢复</translation>
     </message>
     <message>
         <location filename="../../src/statusnotifier.cpp" line="38"/>
-        <location filename="../../src/statusnotifier.cpp" line="218"/>
+        <location filename="../../src/statusnotifier.cpp" line="223"/>
         <location filename="../../src/statusnotifier.mm" line="34"/>
-        <location filename="../../src/statusnotifier.mm" line="212"/>
+        <location filename="../../src/statusnotifier.mm" line="214"/>
         <source>Trojan: Off</source>
         <translation>Trojan: Off</translation>
     </message>
     <message>
         <location filename="../../src/statusnotifier.cpp" line="40"/>
-        <location filename="../../src/statusnotifier.cpp" line="219"/>
+        <location filename="../../src/statusnotifier.cpp" line="224"/>
         <location filename="../../src/statusnotifier.mm" line="36"/>
-        <location filename="../../src/statusnotifier.mm" line="213"/>
+        <location filename="../../src/statusnotifier.mm" line="215"/>
         <source>Turn On Trojan</source>
         <translation>打开 Trojan</translation>
     </message>
@@ -903,9 +906,9 @@
     </message>
     <message>
         <location filename="../../src/statusnotifier.cpp" line="48"/>
-        <location filename="../../src/statusnotifier.cpp" line="64"/>
+        <location filename="../../src/statusnotifier.cpp" line="66"/>
         <location filename="../../src/statusnotifier.mm" line="44"/>
-        <location filename="../../src/statusnotifier.mm" line="60"/>
+        <location filename="../../src/statusnotifier.mm" line="62"/>
         <source>PAC</source>
         <translation>PAC 模式</translation>
     </message>
@@ -916,105 +919,112 @@
         <translation>全局模式</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="65"/>
-        <location filename="../../src/statusnotifier.mm" line="61"/>
+        <location filename="../../src/statusnotifier.cpp" line="50"/>
+        <location filename="../../src/statusnotifier.mm" line="46"/>
+        <source>Advance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/statusnotifier.cpp" line="67"/>
+        <location filename="../../src/statusnotifier.mm" line="63"/>
         <source>Update local PAC from Lan IP list</source>
         <translation>更新PAC为绕过局域网IP</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="66"/>
-        <location filename="../../src/statusnotifier.mm" line="62"/>
+        <location filename="../../src/statusnotifier.cpp" line="68"/>
+        <location filename="../../src/statusnotifier.mm" line="64"/>
         <source>Update local PAC from Chn White list</source>
         <translation>更新PAC为绕过大陆常见域名列表</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="67"/>
-        <location filename="../../src/statusnotifier.mm" line="64"/>
+        <location filename="../../src/statusnotifier.cpp" line="70"/>
+        <location filename="../../src/statusnotifier.mm" line="66"/>
         <source>Update local PAC from Chn IP list</source>
         <translation>更新PAC为绕过大陆IP(慎用)</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="68"/>
-        <location filename="../../src/statusnotifier.mm" line="65"/>
+        <location filename="../../src/statusnotifier.cpp" line="71"/>
+        <location filename="../../src/statusnotifier.mm" line="67"/>
         <source>Update local PAC from GFWList</source>
         <translation>更新PAC为GFWList</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="69"/>
-        <location filename="../../src/statusnotifier.mm" line="66"/>
+        <location filename="../../src/statusnotifier.cpp" line="72"/>
+        <location filename="../../src/statusnotifier.mm" line="68"/>
         <source>Update local PAC from Chn Only list</source>
         <translation>更新PAC为仅通过大陆常见域名（国外访问大陆）</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="70"/>
-        <location filename="../../src/statusnotifier.mm" line="67"/>
+        <location filename="../../src/statusnotifier.cpp" line="73"/>
+        <location filename="../../src/statusnotifier.mm" line="69"/>
         <source>Copy PAC URL</source>
         <translation>复制 PAC URL</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="71"/>
-        <location filename="../../src/statusnotifier.mm" line="68"/>
+        <location filename="../../src/statusnotifier.cpp" line="74"/>
+        <location filename="../../src/statusnotifier.mm" line="70"/>
         <source>Edit local PAC file</source>
         <translation>编辑本地 PAC 文件</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="72"/>
-        <location filename="../../src/statusnotifier.mm" line="69"/>
+        <location filename="../../src/statusnotifier.cpp" line="75"/>
+        <location filename="../../src/statusnotifier.mm" line="71"/>
         <source>Edit user rule for GFWList</source>
         <translation>编辑 GFWList 的用户规则</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="160"/>
-        <location filename="../../src/statusnotifier.cpp" line="215"/>
-        <location filename="../../src/statusnotifier.mm" line="159"/>
-        <location filename="../../src/statusnotifier.mm" line="209"/>
+        <location filename="../../src/statusnotifier.cpp" line="165"/>
+        <location filename="../../src/statusnotifier.cpp" line="220"/>
+        <location filename="../../src/statusnotifier.mm" line="161"/>
+        <location filename="../../src/statusnotifier.mm" line="211"/>
         <source>Turn Off Trojan</source>
         <translation type="unfinished">关闭 Trojan</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="214"/>
-        <location filename="../../src/statusnotifier.mm" line="208"/>
+        <location filename="../../src/statusnotifier.cpp" line="219"/>
+        <location filename="../../src/statusnotifier.mm" line="210"/>
         <source>Trojan: On</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="86"/>
-        <location filename="../../src/statusnotifier.mm" line="84"/>
+        <location filename="../../src/statusnotifier.cpp" line="90"/>
+        <location filename="../../src/statusnotifier.mm" line="86"/>
         <source>Servers Subscribe</source>
         <translation>服务器订阅</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="87"/>
-        <location filename="../../src/statusnotifier.mm" line="85"/>
+        <location filename="../../src/statusnotifier.cpp" line="91"/>
+        <location filename="../../src/statusnotifier.mm" line="87"/>
         <source>Subscribe setting</source>
         <translation>Trojan服务器订阅设置</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="88"/>
-        <location filename="../../src/statusnotifier.mm" line="86"/>
+        <location filename="../../src/statusnotifier.cpp" line="92"/>
+        <location filename="../../src/statusnotifier.mm" line="88"/>
         <source>Update subscribe Trojan node</source>
         <translation>更新Trojan服务器订阅</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="89"/>
-        <location filename="../../src/statusnotifier.mm" line="87"/>
+        <location filename="../../src/statusnotifier.cpp" line="93"/>
+        <location filename="../../src/statusnotifier.mm" line="89"/>
         <source>Update subscribe Trojan node(bypass proxy)</source>
         <translation>更新Trojan服务器订阅（不通过代理）</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="94"/>
-        <location filename="../../src/statusnotifier.mm" line="92"/>
+        <location filename="../../src/statusnotifier.cpp" line="98"/>
+        <location filename="../../src/statusnotifier.mm" line="94"/>
         <source>Copy terminal proxy command</source>
         <translation>复制终端代理命令</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="95"/>
-        <location filename="../../src/statusnotifier.mm" line="93"/>
+        <location filename="../../src/statusnotifier.cpp" line="99"/>
+        <location filename="../../src/statusnotifier.mm" line="95"/>
         <source>Set Proxy to Telegram</source>
         <translation>设置代理到Telegram</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.mm" line="63"/>
+        <location filename="../../src/statusnotifier.cpp" line="69"/>
+        <location filename="../../src/statusnotifier.mm" line="65"/>
         <source>Update local from Chn Advance White list</source>
         <translation>更新PAC为绕过大陆增强域名列表</translation>
     </message>
