@@ -30,8 +30,11 @@ You can download from [release](https://github.com/TheWanderingCoel/Trojan-Qt5/r
 
 ## Compiling
 
+[English Wiki](https://github.com/TheWanderingCoel/Trojan-Qt5/wiki/Compile)
+
 ## Frequent Ask Question (FAQ)
 
+[FAQ](https://github.com/TheWanderingCoel/Trojan-Qt5/wiki/FAQ)
 
 ## Warning
 Note: Trojan-Qt5 can ONLY be used for learning related technologies such as Qt/C++/Linux/CI/automation and use within the scope permitted by law. Any individual or group MAY NOT use Trojan-Qt5 for any violation of relevant laws and regulations.
@@ -43,7 +46,7 @@ Any attempt to download of any branch or distribution of Trojan-Qt5 constitutes 
 This project is based on:
 
 - [libQtShadowsocks](https://github.com/shadowsocks/libQtShadowsocks) LGPL-3.0
-- [Shadowsocks-qt](https://github.com/trojan-gfw/trojan-qt) LGPL-3.0
+- [Shadowsocks-qt5](https://github.com/shadowsocks/shadowsocks-qt5) LGPL-3.0
 - [Shadowsocks(RR)-Windows]() GPL-3.0
 - [trojan](https://github.com/trojan-gfw/trojan) GPL-3.0
 - [trojan-qt](https://github.com/trojan-gfw/trojan-qt) GPL-3.0
