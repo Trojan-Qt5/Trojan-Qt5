@@ -42,10 +42,10 @@ Note: Trojan-Qt5 can ONLY be used for learning related technologies such as Qt/C
 Any attempt to download of any branch or distribution of Trojan-Qt5 constitutes your agreement that the author of the project will not be liable for any legal liability arising from your breach of the above guidelines.
 
 ## Youtube Channels
-Don't forget to checkout me and my friends channel.
-[ErdongChan](https://bit.ly/3bshXk6)
-[SuMi](https://bit.ly/2UlLN2M)
-[TheWanderingCoel](https://bit.ly/2UhPMhQ)
+Don't forget to checkout me and my friends channel.  
+- [ErdongChan](https://bit.ly/3bshXk6)  
+- [SuMi](https://bit.ly/2UlLN2M)  
+- [TheWanderingCoel](https://bit.ly/2UhPMhQ)  
 
 ## Special Thanks
 
