@@ -765,7 +765,7 @@ void MainWindow::initSparkle()
     win_sparkle_init();
 #elif defined (Q_OS_MAC)
     CocoaInitializer initializer;
-    updater = new SparkleAutoUpdater("https://www.crystalidea.com/update/fancontrol.xml.gz");
+    updater = new SparkleAutoUpdater("https://raw.githubusercontent.com/TheWanderingCoel/Trojan-Qt5/master/resources/Appcast_macOS.xml");
 #endif
 }
 
