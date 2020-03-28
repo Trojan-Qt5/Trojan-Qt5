@@ -124,6 +124,8 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
             this, &MainWindow::onExportGuiJson);
     connect(ui->actionExportShadowrocketJson, &QAction::triggered,
             this, &MainWindow::onExportShadowrocketJson);
+    connect(ui->actionExportSubscribe, &QAction::triggered,
+            this, &MainWindow::onExportTrojanSubscribe);
     connect(ui->actionQuit, &QAction::triggered, qApp, &QApplication::quit);
     connect(ui->actionManually, &QAction::triggered,
             this, &MainWindow::onAddManually);
@@ -300,6 +302,18 @@ void MainWindow::onExportShadowrocketJson()
                    "Shadowrocket Configuration (shadowrocket.json)");
     if (!file.isNull()) {
         configHelper->exportShadowrocketJson(*model, file);
+    }
+}
+
+void MainWindow::onExportTrojanSubscribe()
+{
+    QString file = QFileDialog::getSaveFileName(
+                   this,
+                   tr("Export Trojan Servers as subscribe.txt"),
+                   QString("subscribe.txt"),
+                   "Trojan Subscribe (subscribe.txt)");
+    if (!file.isNull()) {
+        configHelper->exportTrojanSubscribe(*model, file);
     }
 }
 
@@ -726,6 +740,8 @@ void MainWindow::setupActionIcon()
                                      QIcon::fromTheme("document-save-as")));
     ui->actionExportShadowrocketJson->setIcon(QIcon::fromTheme("document-export",
                                               QIcon::fromTheme("document-save-as")));
+    ui->actionExportSubscribe->setIcon(QIcon::fromTheme("document-export",
+                                       QIcon::fromTheme("document-save-as")));
     ui->actionManually->setIcon(QIcon::fromTheme("edit-guides",
                                 QIcon::fromTheme("accessories-text-editor")));
     ui->actionURI->setIcon(QIcon::fromTheme("text-field",

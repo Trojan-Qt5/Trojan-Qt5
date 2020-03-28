@@ -137,6 +137,19 @@
     </rect>
    </property>
   </widget>
+  <widget class="QCheckBox" name="checkBox">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>270</y>
+     <width>101</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Auto Update</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections>

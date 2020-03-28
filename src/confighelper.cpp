@@ -49,6 +49,7 @@ void ConfigHelper::save(const ConnectionTableModel &model)
     settings->setValue("StartAtLogin", QVariant(startAtLogin));
     settings->setValue("OnlyOneInstance", QVariant(onlyOneInstace));
     settings->setValue("CheckPortAvailability", QVariant(checkPortAvailability));
+    settings->setValue("EnableNotification", QVariant(enableNotification));
     settings->setValue("HideDockIcon", QVariant(hideDockIcon));
     settings->setValue("ShowToolbar", QVariant(showToolbar));
     settings->setValue("ShowFilterBar", QVariant(showFilterBar));
@@ -112,6 +113,7 @@ void ConfigHelper::importGuiConfigJson(ConnectionTableModel *model, const QStrin
         p.verifyCertificate = json["verify_certificate"].toBool();
         p.verifyHostname = json["verify_hostname"].toBool();
         p.password = json["password"].toString();
+        p.sni = json["sni"].toString();
         p.reuseSession = json["reuse_session"].toBool();
         p.sessionTicket = json["session_ticket"].toBool();
         p.reusePort = json["reuse_port"].toBool();
@@ -135,6 +137,7 @@ void ConfigHelper::exportGuiConfigJson(const ConnectionTableModel &model, const 
         json["verify_certificate"] = QJsonValue(con->profile.verifyCertificate);
         json["verify_hostname"] = QJsonValue(con->profile.verifyHostname);
         json["password"] = QJsonValue(con->profile.password);
+        json["sni"] = QJsonValue(con->profile.sni);
         json["reuse_session"] = QJsonValue(con->profile.reuseSession);
         json["session_ticket"] = QJsonValue(con->profile.sessionTicket);
         json["reuse_port"] = QJsonValue(con->profile.reusePort);
@@ -240,6 +243,33 @@ void ConfigHelper::exportShadowrocketJson(const ConnectionTableModel &model, con
 
     JSONFile.write(JSONDoc.toJson());
     JSONFile.close();
+}
+
+void ConfigHelper::exportTrojanSubscribe(const ConnectionTableModel &model, const QString &file)
+{
+    QString uri;
+    int size = model.rowCount();
+    for (int i = 0; i < size; ++i) {
+        Connection *con = model.getItem(i)->getConnection();
+        uri += con->getURI();
+    }
+    uri = uri.toUtf8().toBase64();
+
+    QFile Subscribe(file);
+    Subscribe.open(QIODevice::WriteOnly | QIODevice::Text);
+    if (!Subscribe.isOpen()) {
+        qCritical() << "Error: cannot open " << file;
+        Logger::error(QString("cannot open %1").arg(file));
+        return;
+    }
+    if(!Subscribe.isWritable()) {
+        qCritical() << "Error: cannot write into " << file;
+        Logger::error(QString("cannot write into %1").arg(file));
+        return;
+    }
+
+    Subscribe.write(uri.toLocal8Bit().data());
+    Subscribe.close();
 }
 
 Connection* ConfigHelper::configJsonToConnection(const QString &file)
@@ -455,6 +485,11 @@ bool ConfigHelper::isCheckPortAvailability() const
     return checkPortAvailability;
 }
 
+bool ConfigHelper::isEnableNotification() const
+{
+    return enableNotification;
+}
+
 bool ConfigHelper::isHideDockIcon() const
 {
     return hideDockIcon;
@@ -475,7 +510,7 @@ bool ConfigHelper::isNativeMenuBar() const
     return nativeMenuBar;
 }
 
-void ConfigHelper::setGeneralSettings(int ts, bool hide, bool sal, bool oneInstance, bool cpa, bool hdi, bool nativeMB)
+void ConfigHelper::setGeneralSettings(int ts, bool hide, bool sal, bool oneInstance, bool cpa, bool en, bool hdi, bool nativeMB)
 {
     if (toolbarStyle != ts) {
         emit toolbarStyleChanged(static_cast<Qt::ToolButtonStyle>(ts));
@@ -485,6 +520,7 @@ void ConfigHelper::setGeneralSettings(int ts, bool hide, bool sal, bool oneInsta
     startAtLogin = sal;
     onlyOneInstace = oneInstance;
     checkPortAvailability = cpa;
+    enableNotification = en;
     hideDockIcon = hdi;
     nativeMenuBar = nativeMB;
 }
@@ -556,6 +592,7 @@ void ConfigHelper::readGeneralSettings()
     hideWindowOnStartup = settings->value("HideWindowOnStartup").toBool();
     onlyOneInstace = settings->value("OnlyOneInstance", QVariant(true)).toBool();
     checkPortAvailability = settings->value("CheckPortAvailability", QVariant(true)).toBool();
+    enableNotification = settings->value("EnableNotification", QVariant(true)).toBool();
     hideDockIcon = settings->value("HideDockIcon", QVariant(true)).toBool();
     showToolbar = settings->value("ShowToolbar", QVariant(true)).toBool();
     showFilterBar = settings->value("ShowFilterBar", QVariant(true)).toBool();

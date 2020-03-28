@@ -132,7 +132,6 @@ void Connection::start()
     //don't check http mode if httpMode is not enabled
     if (conf->isEnableHttpMode())
         if (pv->isInUse(conf->getHttpPort())) {
-            qCritical() << QString("Http port %1 is being used").arg(QString::number(conf->getHttpPort()));
             Logger::error(QString("Http port %1 is being used").arg(QString::number(conf->getHttpPort())));
             return;
         }

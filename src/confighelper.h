@@ -64,6 +64,8 @@ public:
 
     void exportShadowrocketJson(const ConnectionTableModel &model, const QString &file);
 
+    void exportTrojanSubscribe(const ConnectionTableModel &model, const QString &file);
+
     Connection* configJsonToConnection(const QString &file);
 
     void connectionToJson(TQProfile &profile);
@@ -91,11 +93,12 @@ public:
     bool isStartAtLogin() const;
     bool isOnlyOneInstance() const;
     bool isCheckPortAvailability() const;
+    bool isEnableNotification() const;
     bool isHideDockIcon() const;
     bool isShowToolbar() const;
     bool isShowFilterBar() const;
     bool isNativeMenuBar() const;
-    void setGeneralSettings(int ts, bool hide, bool sal, bool oneInstance, bool cpa, bool hdi, bool nativeMB);
+    void setGeneralSettings(int ts, bool hide, bool sal, bool oneInstance, bool cpa, bool en, bool hdi, bool nativeMB);
     void setAdvanceSettings(int ll, bool hm, QString sa, int sp, QString ha, int hp, QString pa, int pp);
     void setSystemProxySettings(QString mode);
     void setMainWindowGeometry(const QByteArray &geometry);
@@ -131,6 +134,7 @@ private:
     bool startAtLogin;
     bool onlyOneInstace;
     bool checkPortAvailability;
+    bool enableNotification;
     bool hideDockIcon;
     bool showToolbar;
     bool showFilterBar;

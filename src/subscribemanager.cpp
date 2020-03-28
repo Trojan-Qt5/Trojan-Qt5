@@ -4,6 +4,7 @@
 #include <QNetworkProxy>
 #include <QNetworkReply>
 #include <QEventLoop>
+#include <QDebug>
 
 SubscribeManager::SubscribeManager(ConfigHelper *ch, QObject *parent) : QObject(parent), helper(ch)
 {}
@@ -31,12 +32,11 @@ void SubscribeManager::updateAllSubscribes(bool useProxy)
 {
     QList<TQSubscribe> subscribes = helper->readSubscribes();
     for (int i = 0; i < subscribes.size(); i++) {
-        //set lastUpdateTime
         subscribes[i].lastUpdateTime = QDateTime::currentDateTime().toTime_t() - QDateTime::fromString("1970-01-01T00:00:00").toTime_t();
-        //checkUpdate
         QString data = checkUpdate(subscribes[i].url, useProxy);
-        data = data.replace("\n", ""); //remove \n
-        QString decodeRes = QByteArray::fromBase64(data.toLocal8Bit().data());
+        QByteArray decodeArray = QByteArray::fromBase64(data.toLocal8Bit().data());
+        QString decodeRes = QUrl::fromPercentEncoding(decodeArray); // remove percentage in uri
+        decodeRes = decodeRes.replace("\\r\\n", "\r\n"); // change \\r\\n to \r\n
         QStringList list = decodeRes.split("\r\n");
         for (int i = 0; i< list.length(); i++)
             if (TrojanValidator::validate(list[i]))

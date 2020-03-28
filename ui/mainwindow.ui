@@ -306,6 +306,7 @@ QMenu::item:selected {
     <addaction name="actionImportGUIJson"/>
     <addaction name="actionExportGUIJson"/>
     <addaction name="actionExportShadowrocketJson"/>
+    <addaction name="actionExportSubscribe"/>
     <addaction name="actionSaveManually"/>
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
@@ -674,6 +675,16 @@ QMenu::item:selected {
   <action name="actionExportShadowrocketJson">
    <property name="text">
     <string>&amp;Export as shadowrocket.json</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
+   </property>
+  </action>
+  <action name="actionExportSubscribe">
+   <property name="text">
+    <string>&amp;Export as subscribe.txt</string>
    </property>
    <property name="font">
     <font>

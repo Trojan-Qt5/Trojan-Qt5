@@ -32,7 +32,7 @@ struct TQProfile
     QString toUri() const;
 
     bool autoStart;
-    bool dualMode;
+    bool isSubscribe;
     quint16 serverPort;
     QString name;
     QString serverAddress;

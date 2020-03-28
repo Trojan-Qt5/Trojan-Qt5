@@ -201,16 +201,18 @@ void StatusNotifier::activate()
 
 void StatusNotifier::showNotification(const QString &msg)
 {
+    if (helper->isEnableNotification()) {
 #ifdef Q_OS_LINUX
-    //Using DBus to send message.
-    QDBusMessage method = QDBusMessage::createMethodCall("org.freedesktop.Notifications","/org/freedesktop/Notifications", "org.freedesktop.Notifications", "Notify");
-    QVariantList args;
-    args << QCoreApplication::applicationName() << quint32(0) << "trojan-qt5" << "Trojan-Qt5" << msg << QStringList () << QVariantMap() << qint32(-1);
-    method.setArguments(args);
-    QDBusConnection::sessionBus().asyncCall(method);
+        //Using DBus to send message.
+        QDBusMessage method = QDBusMessage::createMethodCall("org.freedesktop.Notifications","/org/freedesktop/Notifications", "org.freedesktop.Notifications", "Notify");
+        QVariantList args;
+        args << QCoreApplication::applicationName() << quint32(0) << "trojan-qt5" << "Trojan-Qt5" << msg << QStringList () << QVariantMap() << qint32(-1);
+        method.setArguments(args);
+        QDBusConnection::sessionBus().asyncCall(method);
 #else
-    systray.showMessage("Trojan-Qt5", msg);
+        systray.showMessage("Trojan-Qt5", msg);
 #endif
+    }
 }
 
 void StatusNotifier::changeIcon(bool started)

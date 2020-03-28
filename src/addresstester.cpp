@@ -35,8 +35,7 @@ AddressTester::AddressTester(const QHostAddress &_address,
     m_address(_address),
     m_port(_port)
 {
-    /** Fix when connected to server there is only one 1ms. */
-    QNetworkProxyFactory::setUseSystemConfiguration(false);
+    QNetworkProxyFactory::setUseSystemConfiguration(false); //fix when connected to server there is only one 1ms.
 
     m_timer.setSingleShot(true);
     m_time = QTime::currentTime();

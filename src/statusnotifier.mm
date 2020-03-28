@@ -55,6 +55,7 @@ void StatusNotifier::initActions()
     ModeMenu->addAction(disableModeAction);
     ModeMenu->addAction(pacModeAction);
     ModeMenu->addAction(globalModeAction);
+    //ModeMenu->addAction(advanceModeAction);
     if (helper->getSystemProxySettings() == "pac")
         pacModeAction->setChecked(true);
     else if (helper->getSystemProxySettings() == "global")
@@ -201,7 +202,8 @@ void StatusNotifier::activate()
 
 void StatusNotifier::showNotification(const QString &msg)
 {
-    systray.showMessage("Trojan-Qt5", msg);
+    if (helper->isEnableNotification())
+        systray.showMessage("Trojan-Qt5", msg);
 }
 
 void StatusNotifier::changeIcon(bool started)
