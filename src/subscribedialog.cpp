@@ -34,6 +34,8 @@ SubscribeDialog::SubscribeDialog(ConfigHelper *ch, QWidget *parent) :
     {
         ui->urlLineEdit->setEnabled(true);
     }
+
+    ui->autoUpdateCheckBox->setChecked(helper->isAutoUpdateSubscribes());
 }
 
 SubscribeDialog::~SubscribeDialog()
@@ -153,6 +155,9 @@ void SubscribeDialog::onAccepted()
     int select_index = ui->listView->currentIndex().row();
     SaveSelected(select_index);
     helper->saveSubscribes(subscribes);
+
+    qDebug() << ui->autoUpdateCheckBox->isChecked();
+    helper->setAutoUpdateSubscribes(ui->autoUpdateCheckBox->isChecked());
 
     this->accept();
 }

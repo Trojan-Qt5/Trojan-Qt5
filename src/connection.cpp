@@ -97,8 +97,11 @@ void Connection::start()
         latencyTest();
     }
 
-    //MUST initial there otherwise privoxy will not listen port
+    //MUST initialize there otherwise privoxy will not listen port
     privoxy = new PrivoxyThread();
+
+    //initialize tun2socks
+    //tun2socks = new Tun2socksThread();
 
     ConfigHelper *conf = new ConfigHelper(configFile);
 
@@ -141,12 +144,18 @@ void Connection::start()
     running = true;
     service->start();
 
-    //start privoxy if profile is configured to do so
-    if (conf->isEnableHttpMode()) {
+    //start privoxy if settings is configured to do so
+    if (conf->isEnableHttpMode())
         privoxy->start();
-    }
+
+    //start tun2socks if settings is configured to do so
+    //if (conf->getSystemProxySettings() == "advance")
+        //tun2socks->start();
+
+    conf->setTrojanOn(running);
 
     emit stateChanged(running);
+
 
     //set proxy settings after emit the signal
     if (conf->getSystemProxySettings() == "pac")
@@ -170,6 +179,8 @@ void Connection::stop()
             privoxy->stop();
         }
 
+        conf->setTrojanOn(running);
+
         emit stateChanged(running);
 
         //set proxy settings after emit the signal
@@ -184,6 +195,7 @@ void Connection::onStartFailed()
     ConfigHelper *conf = new ConfigHelper(configFile);
 
     running = false;
+    conf->setTrojanOn(running);
     emit stateChanged(running);
     emit startFailed();
 

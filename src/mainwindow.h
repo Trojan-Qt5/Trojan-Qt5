@@ -48,6 +48,10 @@ public:
     ~MainWindow();
 
     void startAutoStartConnections();
+    QList<TQProfile> getAllServers();
+    TQProfile getSelectedServer();
+    void onAddServerFromSystemTray(QString type);
+    void onToggleServerFromSystemTray(TQProfile profile);
     bool isInstanceRunning() const;
 
 private:

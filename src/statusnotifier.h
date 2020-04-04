@@ -36,6 +36,7 @@ public:
     void initActions();
     void initConnections();
     void updateMenu();
+    void updateServersMenu();
     void onCopyTerminalProxy();
     void onSetProxyToTelegram();
     void onTrojanSubscribeSettings();
@@ -47,6 +48,7 @@ public slots:
     void activate();
     void onToggleMode(QAction *action);
     void onToggleConnection();
+    void onToggleServer(QAction *actived);
     void showNotification(const QString &);
     void changeIcon(bool started);
     void onWindowVisibleChanged(bool visible);
@@ -56,6 +58,8 @@ private:
     QMenu systrayMenu;
     QMenu *ModeMenu;
     QMenu *pacMenu;
+    QMenu *serverMenu;
+    QMenu *addServerMenu;
     QMenu *subscribeMenu;
     QAction *trojanQt5Action;
     QAction *toggleTrojanAction;
@@ -63,6 +67,9 @@ private:
     QAction *pacModeAction;
     QAction *globalModeAction;
     QAction *advanceModeAction;
+    QAction *addManually;
+    QAction *addFromScreenQRCode;
+    QAction *addFromPasteBoardUri;
 
     QAction *updatePACToBypassLAN;
     QAction *updatePACToChnWhite;
@@ -77,6 +84,7 @@ private:
     QAction *updateSubscribe;
     QAction *updateSubscribeBypass;
     QActionGroup *ModeGroup;
+    QActionGroup *ServerGroup;
 
     QAction *copyTerminalProxyCommand;
     QAction *setProxyToTelegram;

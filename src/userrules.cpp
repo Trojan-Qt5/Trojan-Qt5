@@ -35,7 +35,7 @@ void UserRules::onAccepted()
      QFile file(userRule);
      file.open(QIODevice::Truncate | QIODevice::ReadWrite);
      QTextStream out(&file);
-     out << ui->textEdit->document()->toPlainText();
+     out << ui->textEdit->document()->toPlainText().toUtf8().data();
      file.close();
 
      this->accept();

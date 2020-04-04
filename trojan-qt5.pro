@@ -41,7 +41,7 @@ CONFIG += sdk_no_version_check
 #DEFINES += QT_DEPRECATED_WARNINGS
 
 # Define App Version
-DEFINES += "APP_VERSION=\"\\\"0.0.6\\\"\""
+DEFINES += "APP_VERSION=\"\\\"0.0.7\\\"\""
 
 # Trojan
 #DEFINES += ENABLE_MYSQL
@@ -109,6 +109,7 @@ mac {
     LIBS += -L/usr/local/opt/zlib/lib -lz
     LIBS += -L/usr/local/opt/pcre/lib -lpcre
     LIBS += -framework Security -framework Cocoa
+    #LIBS += $$PWD/3rd/tun2socks/tun2socks.a
     # For Sparkle Usage
     SOURCES += \
         src/sparkle/AutoUpdater.cpp \
@@ -246,6 +247,7 @@ SOURCES += \
     src/tqprofile.cpp \
     src/tqsubscribe.cpp \
     src/trojanvalidator.cpp \
+    src/tun2socksthread.cpp \
     src/urihelper.cpp \
     src/uriinputdialog.cpp \
     src/userrules.cpp \
@@ -294,6 +296,7 @@ HEADERS += \
     src/statusnotifier.h \
     src/tqsubscribe.h \
     src/trojanvalidator.h \
+    src/tun2socksthread.h \
     src/urihelper.h \
     src/uriinputdialog.h \
     src/userrules.h \
@@ -314,7 +317,8 @@ HEADERS += \
     src/trojan/src/session/session.h \
     src/trojan/src/session/udpforwardsession.h \
     src/trojan/src/ssl/ssldefaults.h \
-    src/trojan/src/ssl/sslsession.h
+    src/trojan/src/ssl/sslsession.h \
+    #3rd/tun2socks/tun2socks.h
 
 FORMS += \
     ui/advancesettingsdialog.ui \
@@ -328,7 +332,8 @@ FORMS += \
 
 TRANSLATIONS += \
     resources/i18n/trojan-qt5_zh_CN.ts \
-    resources/i18n/trojan-qt5_zh_TW.ts
+    resources/i18n/trojan-qt5_zh_TW.ts \
+    resources/i18n/trojan-qt5_zh_SG.ts
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

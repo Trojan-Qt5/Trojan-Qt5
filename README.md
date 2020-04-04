@@ -30,7 +30,8 @@ You can download from [release](https://github.com/TheWanderingCoel/Trojan-Qt5/r
 
 ## Compiling
 
-[English Wiki](https://github.com/TheWanderingCoel/Trojan-Qt5/wiki/Compile)
+[English Wiki](https://github.com/TheWanderingCoel/Trojan-Qt5/wiki/Compile)  
+[Chinese Wiki](https://github.com/TheWanderingCoel/Trojan-Qt5/wiki/Compile_CN)
 
 ## Frequent Ask Question (FAQ)
 

@@ -33,18 +33,22 @@ TQProfile TQProfile::fromUri(const std::string& trojanUri) const
         throw std::invalid_argument("Trojan URI is too short");
     }
 
-    /** Prevent line separator casuing wrong password. */
+    //prevent line separator casuing wrong password.
     if (!QString::fromStdString(trojanUri).startsWith("trojan://")) {
          throw std::invalid_argument("Invalid Trojan URI");
     }
 
     TQProfile result;
+
     //remove the prefix "trojan://" from uri
     std::string uri(trojanUri.data() + 9, trojanUri.length() - 9);
     size_t hashPos = uri.find_last_of('#');
     if (hashPos != std::string::npos) {
         // Get the name/remark
-        result.name = QString::fromStdString(uri.substr(hashPos + 1));
+        if (QByteArray::fromBase64(uri.substr(hashPos + 1).data()) == "")
+            result.name = QString::fromStdString(uri.substr(hashPos + 1));
+        else
+            result.name = QByteArray::fromBase64(uri.substr(hashPos + 1).data());
         uri.erase(hashPos);
     }
 
@@ -58,8 +62,20 @@ TQProfile TQProfile::fromUri(const std::string& trojanUri) const
         }
         result.serverAddress = QString::fromStdString(uri.substr(0, colonPos));
         result.serverPort = std::stoi(uri.substr(colonPos + 1));
+        uri.erase(0, colonPos + 4);
     } else {
         throw std::invalid_argument("Can't find the at separator between password and hostname");
+    }
+
+    size_t ampersandPos = uri.find_first_of('&');
+    if (ampersandPos != std::string::npos) {
+        result.tcpFastOpen = std::stoi(uri.substr(ampersandPos + 5));
+        uri.erase(ampersandPos, ampersandPos + 6);
+    }
+
+    size_t questionMarkPos = uri.find_last_of('?');
+    if (questionMarkPos != std::string::npos) {
+        result.verifyCertificate = !std::stoi(uri.substr(questionMarkPos + 15));
     }
 
     return result;
@@ -71,7 +87,7 @@ TQProfile TQProfile::fromUri(const std::string& trojanUri) const
  */
 QString TQProfile::toUri() const
 {
-    QString trojanUri = password + "@" + serverAddress + ":" + QString::number(serverPort);
+    QString trojanUri = password + "@" + serverAddress + ":" + QString::number(serverPort) + "?allowinsecure=" + QString::number(int(!verifyCertificate)) + "&tfo=" + QString::number(tcpFastOpen);
     QByteArray uri = QByteArray(trojanUri.toUtf8());
     uri.prepend("trojan://");
     uri.append("#");

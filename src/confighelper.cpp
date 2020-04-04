@@ -1,4 +1,4 @@
-#include "confighelper.h"
+﻿#include "confighelper.h"
 #include <QCoreApplication>
 #include <QDir>
 #include <QFile>
@@ -44,6 +44,8 @@ void ConfigHelper::save(const ConnectionTableModel &model)
     settings->setValue("PACLocalAddress", QVariant(pacLocalAddress));
     settings->setValue("PACLocalPort", QVariant(pacLocalPort));
     settings->setValue("ToolbarStyle", QVariant(toolbarStyle));
+    settings->setValue("AutoUpdateSubscribes", QVariant(autoUpdateSubscribes));
+    settings->setValue("TrojanOn", QVariant(trojanOn));
     settings->setValue("SystemProxyMode", QVariant(systemProxyMode));
     settings->setValue("HideWindowOnStartup", QVariant(hideWindowOnStartup));
     settings->setValue("StartAtLogin", QVariant(startAtLogin));
@@ -460,6 +462,11 @@ QString ConfigHelper::getSystemProxySettings() const
     return systemProxyMode;
 }
 
+bool ConfigHelper::isTrojanOn() const
+{
+    return trojanOn;
+}
+
 bool ConfigHelper::isEnableHttpMode() const
 {
     return enableHttpMode;
@@ -493,6 +500,11 @@ bool ConfigHelper::isEnableNotification() const
 bool ConfigHelper::isHideDockIcon() const
 {
     return hideDockIcon;
+}
+
+bool ConfigHelper::isAutoUpdateSubscribes() const
+{
+    return autoUpdateSubscribes;
 }
 
 bool ConfigHelper::isShowToolbar() const
@@ -540,7 +552,19 @@ void ConfigHelper::setAdvanceSettings(int ll, bool hm, QString sa, int sp, QStri
 void ConfigHelper::setSystemProxySettings(QString mode)
 {
    systemProxyMode = mode;
-   settings->setValue("AutoSetSystemProxy", QVariant(systemProxyMode));
+   settings->setValue("SystemProxyMode", QVariant(systemProxyMode));
+}
+
+void ConfigHelper::setTrojanOn(bool on)
+{
+    trojanOn = on;
+    settings->setValue("TrojanOn", trojanOn);
+}
+
+void ConfigHelper::setAutoUpdateSubscribes(bool update)
+{
+    autoUpdateSubscribes = update;
+    settings->setValue("AutoUpdateSubscribes", QVariant(autoUpdateSubscribes));
 }
 
 void ConfigHelper::setShowToolbar(bool show)
@@ -586,8 +610,10 @@ QList<TQSubscribe> ConfigHelper::readSubscribes()
 
 void ConfigHelper::readGeneralSettings()
 {
+    trojanOn = settings->value("TrojanOn", QVariant(false)).toBool();
     toolbarStyle = settings->value("ToolbarStyle", QVariant(3)).toInt();
     startAtLogin = settings->value("StartAtLogin").toBool();
+    autoUpdateSubscribes = settings->value("AutoUpdateSubscribes", QVariant(false)).toBool();
     systemProxyMode = settings->value("SystemProxyMode", QVariant("global")).toString();
     hideWindowOnStartup = settings->value("HideWindowOnStartup").toBool();
     onlyOneInstace = settings->value("OnlyOneInstance", QVariant(true)).toBool();

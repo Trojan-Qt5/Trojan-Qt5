@@ -190,7 +190,7 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
             this, static_cast<void (MainWindow::*)(const QModelIndex&)>
             (&MainWindow::checkCurrentIndex));
     connect(ui->connectionView, &QTableView::doubleClicked,
-            this, &MainWindow::onEdit);
+            this, &MainWindow::onConnect);
 
     /* set custom context menu */
     ui->connectionView->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -232,6 +232,20 @@ void MainWindow::startAutoStartConnections()
     configHelper->startAllAutoStart(*model);
 }
 
+QList<TQProfile> MainWindow::getAllServers()
+{
+    return model->getAllServers();
+}
+
+TQProfile MainWindow::getSelectedServer()
+{
+    int row = proxyModel->mapToSource(ui->connectionView->currentIndex()).row();
+    if (row < 0)
+        return TQProfile();
+    TQProfile profile = model->getItem(row)->getConnection()->getProfile();
+    return profile;
+}
+
 void MainWindow::onToggleConnection(bool status)
 {
     if (!status) {
@@ -246,6 +260,16 @@ void MainWindow::onToggleConnection(bool status)
             con->start();
         }
     }
+}
+
+void MainWindow::onAddServerFromSystemTray(QString type)
+{
+    if (type == "manually")
+        onAddManually();
+    else if (type == "qrcode")
+        onAddScreenQRCode();
+    else if (type == "pasteboard")
+        onAddFromPasteBoardURI();
 }
 
 void MainWindow::onAddURIFromSubscribe(QString uri)
@@ -481,6 +505,18 @@ void MainWindow::onDisconnect()
 {
     int row = proxyModel->mapToSource(ui->connectionView->currentIndex()).row();
     model->getItem(row)->getConnection()->stop();
+}
+
+void MainWindow::onToggleServerFromSystemTray(TQProfile profile)
+{
+    for (int i=0; i < ui->connectionView->model()->rowCount(); i++) {
+        int row = proxyModel->mapToSource(ui->connectionView->model()->index(i,0)).row();
+        TQProfile p = model->getItem(row)->getConnection()->getProfile();
+        if (p.toUri() == profile.toUri()) {
+            ui->connectionView->selectRow(i);
+        }
+    }
+    checkCurrentIndex();
 }
 
 void MainWindow::onConnectionStatusChanged(const int row, const bool running)
@@ -794,10 +830,10 @@ void MainWindow::initLog()
     QString guiLog = path.path() + "/gui.log";
     QString trojanLog = path.path() + "/trojan.log";
 
-    /** Initialize the gui's log. */
+    //Initialize the gui's log.
     Logger::init(guiLog);
 
-    /** Redirect Trojan's log to our logfile. */
+    //Redirect Trojan's log to our logfile.
     Log::redirect(trojanLog.toLocal8Bit().data());
 
 }

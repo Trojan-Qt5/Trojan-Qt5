@@ -8,6 +8,8 @@
 #include <QClipboard>
 #include <Cocoa/Cocoa.h>
 #include <QDesktopServices>
+#include <QBitmap>
+#include <QColor>
 
 StatusNotifier::StatusNotifier(MainWindow *w, ConfigHelper *ch, SubscribeManager *sm, QObject *parent) :
     QObject(parent),
@@ -15,9 +17,19 @@ StatusNotifier::StatusNotifier(MainWindow *w, ConfigHelper *ch, SubscribeManager
     helper(ch),
     sbMgr(sm)
 {
-    systray.setIcon(QIcon(":/icons/icons/trojan-qt5-2.png"));
+    systray.setIcon(QIcon(":/icons/icons/trojan-qt5_off.png"));
     systray.setToolTip(QString("Trojan-Qt5"));
-    connect(&systray, &QSystemTrayIcon::activated, [=]() { updateMenu(); });
+    connect(&systray, &QSystemTrayIcon::activated, [=]() {
+        updateMenu();
+        updateServersMenu();
+    });
+    connect(&systray, &QSystemTrayIcon::activated, [this](QSystemTrayIcon::ActivationReason r) {
+        if (r == QSystemTrayIcon::DoubleClick) {
+            window->showNormal();
+            window->activateWindow();
+            window->raise();
+        }
+    });
     minimiseRestoreAction = new QAction(helper->isHideWindowOnStartup() ? tr("Restore") : tr("Minimise"), this);
     connect(minimiseRestoreAction, &QAction::triggered, this, &StatusNotifier::activate);
     initActions();
@@ -30,6 +42,9 @@ StatusNotifier::StatusNotifier(MainWindow *w, ConfigHelper *ch, SubscribeManager
         TransformProcessType(&psn, kProcessTransformToUIElementApplication);
     }
     systray.show();
+    if (helper->isAutoUpdateSubscribes()) {
+        sbMgr->updateAllSubscribes(false);
+    }
 }
 
 void StatusNotifier::initActions()
@@ -62,6 +77,8 @@ void StatusNotifier::initActions()
         globalModeAction->setChecked(true);
     else if (helper->getSystemProxySettings() == "direct")
         disableModeAction->setChecked(true);
+    else if (helper->getSystemProxySettings() == "advance")
+        advanceModeAction->setChecked(true);
 
     //PAC Menu
     pacMenu = new QMenu(tr("PAC"));
@@ -87,6 +104,18 @@ void StatusNotifier::initActions()
     pacMenu->addAction(editLocalPACFile);
     pacMenu->addAction(editGFWListUserRule);
 
+    //server Menu
+    serverMenu = new QMenu(tr("Servers"));
+    ServerGroup = new QActionGroup(this);
+    ServerGroup->setExclusive(true);
+    addServerMenu = new QMenu(tr("Add Server"));
+    addManually = new QAction(tr("Add Manually"));
+    addFromScreenQRCode = new QAction(tr("Scan QRCode on Screen"));
+    addFromPasteBoardUri = new QAction(tr("Add From Pasteboard Uri"));
+    addServerMenu->addAction(addManually);
+    addServerMenu->addAction(addFromScreenQRCode);
+    addServerMenu->addAction(addFromPasteBoardUri);
+
     //subscribe Menu
     subscribeMenu = new QMenu(tr("Servers Subscribe"));
     subscribeSettings = new QAction(tr("Subscribe setting"));
@@ -105,14 +134,18 @@ void StatusNotifier::initActions()
     systrayMenu.addSeparator();
     systrayMenu.addMenu(ModeMenu);
     systrayMenu.addMenu(pacMenu);
+    systrayMenu.addMenu(serverMenu);
     systrayMenu.addMenu(subscribeMenu);
     systrayMenu.addAction(copyTerminalProxyCommand);
     systrayMenu.addAction(setProxyToTelegram);
     systrayMenu.addSeparator();
 
     connect(toggleTrojanAction, &QAction::triggered, this, &StatusNotifier::onToggleConnection);
+    connect(addManually, &QAction::triggered, window, [=]() { window->onAddServerFromSystemTray("manually"); });
+    connect(addFromScreenQRCode, &QAction::triggered, window, [=]() { window->onAddServerFromSystemTray("qrcode"); });
+    connect(addFromPasteBoardUri, &QAction::triggered, window, [=]() { window->onAddServerFromSystemTray("pasteboard"); });
     connect(ModeGroup, SIGNAL(triggered(QAction*)), this, SLOT(onToggleMode(QAction*)));
-
+    connect(ServerGroup, SIGNAL(triggered(QAction*)), this, SLOT(onToggleServer(QAction*)));
 }
 
 void StatusNotifier::initConnections()
@@ -142,23 +175,56 @@ void StatusNotifier::updateMenu()
         globalModeAction->setChecked(true);
     else if (helper->getSystemProxySettings() == "disable")
         disableModeAction->setChecked(true);
+    else if (helper->getSystemProxySettings() == "advance")
+        advanceModeAction->setChecked(true);
+}
+
+void StatusNotifier::updateServersMenu()
+{
+    QList<TQProfile> serverList = window->getAllServers();
+    TQProfile actived = window->getSelectedServer();
+    serverMenu->clear();
+    serverMenu->addMenu(addServerMenu);
+    serverMenu->addSeparator();
+    for (int i=0; i<serverList.size(); i++) {
+        QAction *action = new QAction(serverList[i].name, ServerGroup);
+        action->setCheckable(false);
+        action->setIcon(QIcon(":/icons/icons/trojan_off.png"));
+        if (serverList[i].toUri() == actived.toUri())
+            action->setIcon(QIcon(":/icons/icons/trojan_on.png"));
+        serverMenu->addAction(action);
+    }
 }
 
 void StatusNotifier::onToggleMode(QAction *action)
 {
     SystemProxyHelper *sph = new SystemProxyHelper();
+    helper->readGeneralSettings();
+
     if (action == disableModeAction) {
-        sph->setSystemProxy(0);
+        if (helper->isTrojanOn())
+            sph->setSystemProxy(0);
         helper->setSystemProxySettings("direct");
     } else if (action == pacModeAction) {
-        sph->setSystemProxy(0);
-        sph->setSystemProxy(2);
+        if (helper->isTrojanOn()) {
+            sph->setSystemProxy(0);
+            sph->setSystemProxy(2);
+        }
         helper->setSystemProxySettings("pac");
     } else if (action == globalModeAction) {
-        sph->setSystemProxy(0);
-        sph->setSystemProxy(1);
+        if (helper->isTrojanOn()) {
+            sph->setSystemProxy(0);
+            sph->setSystemProxy(1);
+        }
         helper->setSystemProxySettings("global");
+    } else if (action == advanceModeAction) {
+        helper->setSystemProxySettings("advance");
     }
+
+    if (helper->isTrojanOn())
+        changeIcon(true);
+    else
+        changeIcon(false);
 }
 
 void StatusNotifier::onToggleConnection()
@@ -167,6 +233,14 @@ void StatusNotifier::onToggleConnection()
         emit toggleConnection(false);
     else
         emit toggleConnection(true);
+}
+
+void StatusNotifier::onToggleServer(QAction *actived)
+{
+    QList<TQProfile> serverList = window->getAllServers();
+    for (int i=0; i<serverList.size(); i++)
+        if (actived->text() == serverList[i].name)
+            window->onToggleServerFromSystemTray(serverList[i]);
 }
 
 void StatusNotifier::onTrojanSubscribeSettings()
@@ -211,11 +285,14 @@ void StatusNotifier::changeIcon(bool started)
     if (started) {
         trojanQt5Action->setText(tr("Trojan: On"));
         toggleTrojanAction->setText(tr("Turn Off Trojan"));
-        systray.setIcon(QIcon(":/icons/icons/trojan-qt5.png"));
+        QString mode = helper->getSystemProxySettings();
+        QIcon icon(QString(QString(":/icons/icons/trojan-qt5_%1.png").arg(mode)));
+        icon.setIsMask(true);
+        systray.setIcon(icon);
     } else {
         trojanQt5Action->setText(tr("Trojan: Off"));
         toggleTrojanAction->setText(tr("Turn On Trojan"));
-        systray.setIcon(QIcon(":/icons/icons/trojan-qt5-2.png"));
+        systray.setIcon(QIcon(":/icons/icons/trojan-qt5_off.png"));
     }
 }
 

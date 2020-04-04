@@ -26,6 +26,7 @@
 #include "pacserver.h"
 #include "privoxythread.h"
 #include "servicethread.h"
+#include "tun2socksthread.h"
 #include "systemproxyhelper.h"
 #include "tqprofile.h"
 
@@ -65,6 +66,7 @@ private:
     QString configFile;
     PrivoxyThread *privoxy;
     ServiceThread *service;
+    Tun2socksThread *tun2socks;
     TQProfile profile;
     bool running;
 

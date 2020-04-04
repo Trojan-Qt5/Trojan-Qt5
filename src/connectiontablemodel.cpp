@@ -121,6 +121,19 @@ void ConnectionTableModel::disconnectConnections()
     }
 }
 
+void ConnectionTableModel::connectConnections(TQProfile profile)
+{
+    for (auto &i : items) {
+        Connection *con = i->getConnection();
+        if (con->isValid()) {
+            if (con->getProfile().toUri() == profile.toUri()) {
+                disconnectConnections();
+                con->start();
+            }
+        }
+    }
+}
+
 /**
  * @brief ConnectionTableModel::isDuplicate
  * @ref https://github.com/qinyuhang/ShadowsocksX-NG-R/blob/81acc0cfeb514ab1f7eaad858e364144a2735a9e/ShadowsocksX-NG/ServerProfileManager.swift#L105-L120
@@ -179,6 +192,17 @@ void ConnectionTableModel::testAllLatency()
     for (auto &i : items) {
         i->testLatency();
     }
+}
+
+QList<TQProfile> ConnectionTableModel::getAllServers()
+{
+    QList<TQProfile> servers;
+
+    for (auto &i : items) {
+        servers.append(i->getConnection()->getProfile());
+    }
+
+    return servers;
 }
 
 void ConnectionTableModel::onConnectionStateChanged(bool running)

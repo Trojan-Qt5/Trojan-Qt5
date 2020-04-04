@@ -88,6 +88,7 @@ public:
     QString getPACAddress() const;
     int getPACPort() const;
     QString getSystemProxySettings() const;
+    bool isTrojanOn() const;
     bool isEnableHttpMode() const;
     bool isHideWindowOnStartup() const;
     bool isStartAtLogin() const;
@@ -95,12 +96,15 @@ public:
     bool isCheckPortAvailability() const;
     bool isEnableNotification() const;
     bool isHideDockIcon() const;
+    bool isAutoUpdateSubscribes() const;
     bool isShowToolbar() const;
     bool isShowFilterBar() const;
     bool isNativeMenuBar() const;
     void setGeneralSettings(int ts, bool hide, bool sal, bool oneInstance, bool cpa, bool en, bool hdi, bool nativeMB);
     void setAdvanceSettings(int ll, bool hm, QString sa, int sp, QString ha, int hp, QString pa, int pp);
     void setSystemProxySettings(QString mode);
+    void setTrojanOn(bool on);
+    void setAutoUpdateSubscribes(bool update);
     void setMainWindowGeometry(const QByteArray &geometry);
     void setMainWindowState(const QByteArray &state);
     void setTableGeometry(const QByteArray &geometry);
@@ -121,7 +125,6 @@ signals:
 private:
     int logLevel;
     int toolbarStyle;
-    /** Port Settings. */
     bool enableHttpMode;
     QString socks5LocalAddress;
     int socks5LocalPort;
@@ -130,6 +133,8 @@ private:
     QString pacLocalAddress;
     int pacLocalPort;
     QString systemProxyMode;
+    bool trojanOn;
+    bool autoUpdateSubscribes;
     bool hideWindowOnStartup;
     bool startAtLogin;
     bool onlyOneInstace;

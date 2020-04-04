@@ -48,7 +48,11 @@ public:
 
     void replace(Connection *newCon);
 
+    void connectConnections(TQProfile profile);
+
     void disconnectConnections();
+
+    QList<TQProfile> getAllServers();
 
 public slots:
     void testAllLatency();

@@ -137,7 +137,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QCheckBox" name="checkBox">
+  <widget class="QCheckBox" name="autoUpdateCheckBox">
    <property name="geometry">
     <rect>
      <x>10</x>

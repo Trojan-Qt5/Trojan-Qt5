@@ -25,5 +25,12 @@
         <file alias="index.theme">icons/Breeze/index.theme</file>
         <file>icons/trojan-qt5.png</file>
         <file>icons/trojan-qt5-2.png</file>
+        <file>icons/trojan_off.png</file>
+        <file>icons/trojan_on.png</file>
+        <file>icons/trojan-qt5_off.png</file>
+        <file>icons/trojan-qt5_direct.png</file>
+        <file>icons/trojan-qt5_pac.png</file>
+        <file>icons/trojan-qt5_global.png</file>
+        <file>icons/trojan-qt5_advance.png</file>
     </qresource>
 </RCC>

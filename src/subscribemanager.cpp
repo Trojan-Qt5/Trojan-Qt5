@@ -36,8 +36,10 @@ void SubscribeManager::updateAllSubscribes(bool useProxy)
         QString data = checkUpdate(subscribes[i].url, useProxy);
         QByteArray decodeArray = QByteArray::fromBase64(data.toLocal8Bit().data());
         QString decodeRes = QUrl::fromPercentEncoding(decodeArray); // remove percentage in uri
-        decodeRes = decodeRes.replace("\\r\\n", "\r\n"); // change \\r\\n to \r\n
-        QStringList list = decodeRes.split("\r\n");
+        decodeRes = decodeRes.replace("\\r", "\r"); // change \\r to \r
+        decodeRes = decodeRes.replace("\\n", "\n"); // change \\n to \n
+        decodeRes = decodeRes.replace("\r\n", "\n"); // change \r\n to \n
+        QStringList list = decodeRes.split("\n");
         for (int i = 0; i< list.length(); i++)
             if (TrojanValidator::validate(list[i]))
                 emit addUri(list[i]);

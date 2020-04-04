@@ -23,11 +23,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>Trojan-Qt5 0.0.4</string>
+	<string>Trojan-Qt5 0.0.7</string>
 	<key>CFBundleSignature</key>
 	<string>trojan-qt5</string>
 	<key>CFBundleVersion</key>
-	<string>0.0.4</string>
+	<string>0.0.7</string>
 	<key>CSResourcesFileMapped</key>
 	<true/>
 	<key>NSRequiresAquaSystemAppearance</key>
