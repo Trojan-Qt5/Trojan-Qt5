@@ -3,6 +3,12 @@
     <channel>
         <title>trojan-qt5</title>
         <item>
+            <title>Trojan-Qt5 0.0.8</title>
+            <pubDate>周六, 04 4月 2020 22:43:23 +0800</pubDate>
+            <sparkle:minimumSystemVersion>10.7</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/TheWanderingCoel/Trojan-Qt5/releases/download/v0.0.8/Trojan-Qt5-macOS.dmg" sparkle:version="0.0.8" sparkle:shortVersionString="Trojan-Qt5 0.0.8" length="23638700" type="application/octet-stream" sparkle:edSignature="mtHVRHhc2/uyrlQ2Fi77JzxNeFXh/lrr39BuOzlho7d5b7w8xuF+0fz7jKtmOiX2pN+9UtucTJdEJwinzPiRBQ=="/>
+        </item>
+        <item>
             <title>Trojan-Qt5 0.0.7</title>
             <pubDate>周六, 04 4月 2020 15:23:41 +0800</pubDate>
             <sparkle:minimumSystemVersion>10.7</sparkle:minimumSystemVersion>
