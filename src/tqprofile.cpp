@@ -45,10 +45,7 @@ TQProfile TQProfile::fromUri(const std::string& trojanUri) const
     size_t hashPos = uri.find_last_of('#');
     if (hashPos != std::string::npos) {
         // Get the name/remark
-        if (QByteArray::fromBase64(uri.substr(hashPos + 1).data()) == "")
-            result.name = QString::fromStdString(uri.substr(hashPos + 1));
-        else
-            result.name = QByteArray::fromBase64(uri.substr(hashPos + 1).data());
+        result.name = QString::fromStdString(uri.substr(hashPos + 1));
         uri.erase(hashPos);
     }
 

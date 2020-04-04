@@ -4,6 +4,7 @@
 #include <QCoreApplication>
 #include <QDir>
 #include <QTextStream>
+#include <QTextCodec>
 
 UserRules::UserRules(QWidget *parent) :
     QDialog(parent),
@@ -35,7 +36,9 @@ void UserRules::onAccepted()
      QFile file(userRule);
      file.open(QIODevice::Truncate | QIODevice::ReadWrite);
      QTextStream out(&file);
-     out << ui->textEdit->document()->toPlainText().toUtf8().data();
+     //must manually set utf-8 encoing otherwise the text will have garbled characters
+     out.setCodec(QTextCodec::codecForName("utf-8"));
+     out << ui->textEdit->document()->toPlainText();
      file.close();
 
      this->accept();
