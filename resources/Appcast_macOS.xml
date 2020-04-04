@@ -1,17 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
     <channel>
-        <title>Trojan's Changelog</title>
-        <description>Most recent changes with links to updates.</description>
-        <language>en</language>
+        <title>trojan-qt5</title>
         <item>
-            <title>Version 2.0 (2 bugs fixed; 3 new features)</title>
-            <sparkle:releaseNotesLink>
-                http://you.com/app/2.0.html
-            </sparkle:releaseNotesLink>
-            <pubDate>Wed, 09 Jan 2006 19:20:11 +0000</pubDate>
-            <!-- Sparkle 1.21+ uses sparkle::edSignature="ed25519" instead of sparkle::dsaSignature="deprecated DSA" -->
-            <enclosure url="http://you.com/app/Your%20Great%20App%202.0.zip" sparkle:version="2.0" length="1623481" type="application/octet-stream" sparkle:dsaSignature="BAFJW4B6B1K1JyW30nbkBwainOzrN6EQuAh" />
+            <title>Trojan-Qt5 0.0.7</title>
+            <pubDate>周六, 04 4月 2020 15:23:41 +0800</pubDate>
             <sparkle:minimumSystemVersion>10.7</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/TheWanderingCoel/Trojan-Qt5/releases/download/v0.0.7/Trojan-Qt5-macOS.dmg" sparkle:version="0.0.7" sparkle:shortVersionString="Trojan-Qt5 0.0.7" length="23728229" type="application/octet-stream" sparkle:edSignature="jzKX7iov64U7yXd1BAwk8G95B2T+iuWAearEqRq538pat/oo1hhfmmw3DJxpuDFACBsIMIJKeGK6WnslWQt+DQ=="/>
         </item>
+    </channel>
 </rss>
