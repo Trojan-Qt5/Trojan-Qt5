@@ -6,6 +6,7 @@
 #include "subscribemanager.h"
 #include <QApplication>
 #include <QClipboard>
+#include <QColor>
 #include <QDesktopServices>
 #ifdef Q_OS_LINUX
 #include <QDBusMessage>
@@ -293,9 +294,38 @@ void StatusNotifier::changeIcon(bool started)
     if (started) {
         trojanQt5Action->setText(tr("Trojan: On"));
         toggleTrojanAction->setText(tr("Turn Off Trojan"));
+
+        bool enabled = helper->getSystemProxySettings() != "direct";
+        bool global = helper->getSystemProxySettings() == "global";
         QString mode = helper->getSystemProxySettings();
-        QIcon icon(QString(QString(":/icons/icons/trojan-qt5_%1.png").arg(mode)));
-        icon.setIsMask(true);
+        QImage image(QString(":/icons/icons/trojan-qt5_%1.png").arg(mode));
+        QImage alpha = image.alphaChannel();
+
+        double mul_r = 1.0, mul_g = 1.0, mul_b = 1.0;
+        if (!enabled) {
+            mul_g = 0.4;
+        }
+        else if (!global) {
+            mul_b = 0.4;
+            mul_g = 0.65;
+        }
+        mul_r = 0.4;
+
+        for (int x = 0; x < image.width(); x++) {
+            for (int y = 0; y < image.height(); y++) {
+                // https://www.qtcentre.org/threads/16090-SOLVED-QImage-setPixel-alpha-issue
+                int a = qAlpha(image.pixel(x, y));
+                QColor color(image.pixel(x, y));
+
+                if (a > 0)
+                    image.setPixel(x, y, qRgb(
+                                     color.red() * mul_r,
+                                     color.green() * mul_g,
+                                     color.blue() * mul_b));
+            }
+        }
+
+        QIcon icon(QPixmap::fromImage(image));
         systray.setIcon(icon);
     } else {
         trojanQt5Action->setText(tr("Trojan: Off"));

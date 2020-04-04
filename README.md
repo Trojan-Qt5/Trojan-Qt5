@@ -60,4 +60,10 @@ This project is based on:
 - [Privoxy](https://www.privoxy.org) GPL-2.0
 - [sysproxy](https://github.com/Noisyfox/sysproxy/) Apache-2.0
 
-Thanks for @eejworks 's Fantastic UI Design(working in progress)
+Credits:  
+
+**UI Design**
+- [@eejworks]()
+- [@erdongchan]()
+- [westworldss]()
+- [shadowsocksRR-windows]()
