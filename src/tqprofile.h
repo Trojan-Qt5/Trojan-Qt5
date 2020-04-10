@@ -22,6 +22,7 @@
 #include <QDataStream>
 #include <QDate>
 #include <QDateTime>
+#include <QUrl>
 
 struct TQProfile
 {

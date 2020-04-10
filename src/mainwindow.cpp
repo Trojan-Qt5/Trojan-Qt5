@@ -120,6 +120,8 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
     //UI signals
     connect(ui->actionImportGUIJson, &QAction::triggered,
             this, &MainWindow::onImportGuiJson);
+    connect(ui->actionImportConfigYaml, &QAction::triggered,
+            this, &MainWindow::onImportConfigYaml);
     connect(ui->actionExportGUIJson, &QAction::triggered,
             this, &MainWindow::onExportGuiJson);
     connect(ui->actionExportShadowrocketJson, &QAction::triggered,
@@ -257,6 +259,7 @@ void MainWindow::onToggleConnection(bool status)
         Connection *con = model->getItem(row)->getConnection();
         if (con->isValid()) {
             model->disconnectConnections();
+            //configHelper->isEnableServerLoadBalance() ? configHelper->generateHaproxyConf(*model) : void();
             con->start();
         }
     }
@@ -314,6 +317,19 @@ void MainWindow::onExportGuiJson()
                    "GUI Configuration (gui-config.json)");
     if (!file.isNull()) {
         configHelper->exportGuiConfigJson(*model, file);
+    }
+}
+
+void MainWindow::onImportConfigYaml()
+{
+    QString file = QFileDialog::getOpenFileName(
+                   this,
+                   tr("Import Connections from config.yaml"),
+                   QString(),
+                   "Clash Configuration (config.yaml)");
+    if (!file.isNull()) {
+        configHelper->importConfigYaml(model, file);
+        configHelper->save(*model);
     }
 }
 
@@ -479,6 +495,7 @@ void MainWindow::onConnect()
     Connection *con = model->getItem(row)->getConnection();
     if (con->isValid()) {
         model->disconnectConnections();
+        //configHelper->isEnableServerLoadBalance() ? configHelper->generateHaproxyConf(*model) : void();
         con->start();
     } else {
         QMessageBox::critical(this, tr("Invalid"),
@@ -493,6 +510,7 @@ void MainWindow::onForceConnect()
     Connection *con = model->getItem(row)->getConnection();
     if (con->isValid()) {
         model->disconnectConnections();
+        //configHelper->isEnableServerLoadBalance() ? configHelper->generateHaproxyConf(*model) : void();
         con->start();
     } else {
         QMessageBox::critical(this, tr("Invalid"),
@@ -771,6 +789,8 @@ void MainWindow::setupActionIcon()
     ui->actionMoveUp->setIcon(awesome->icon(fas::up));
     ui->actionMoveDown->setIcon(awesome->icon(fas::down));
     ui->actionImportGUIJson->setIcon(QIcon::fromTheme("document-import",
+                                     QIcon::fromTheme("insert-text")));
+    ui->actionImportConfigYaml->setIcon(QIcon::fromTheme("document-import",
                                      QIcon::fromTheme("insert-text")));
     ui->actionExportGUIJson->setIcon(QIcon::fromTheme("document-export",
                                      QIcon::fromTheme("document-save-as")));

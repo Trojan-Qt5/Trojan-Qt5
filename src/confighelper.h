@@ -60,6 +60,8 @@ public:
 
     void exportGuiConfigJson(const ConnectionTableModel& model, const QString &file);
 
+    void importConfigYaml(ConnectionTableModel *model, const QString &file);
+
     void importShadowrocketJson(ConnectionTableModel *model, const QString &file);
 
     void exportShadowrocketJson(const ConnectionTableModel &model, const QString &file);
@@ -72,6 +74,8 @@ public:
 
     void generatePrivoxyConf();
 
+    void generateHaproxyConf(const ConnectionTableModel &model);
+
     //start those connections marked as auto-start
     void startAllAutoStart(const ConnectionTableModel& model);
 
@@ -81,14 +85,16 @@ public:
     /* some functions used to communicate with SettingsDialog */
     int  getToolbarStyle() const;
     int  getLogLevel() const;
-    QString getSocks5Address() const;
     int getSocks5Port() const;
-    QString getHttpAddress() const;
     int getHttpPort() const;
-    QString getPACAddress() const;
     int getPACPort() const;
+    int getHaproxyPort() const;
+    int getHaproxyStatusPort() const;
     QString getSystemProxySettings() const;
     bool isTrojanOn() const;
+    bool isEnableServerLoadBalance() const;
+    bool isShareOverLan() const;
+    bool isEnableIpv6Support() const;
     bool isEnableHttpMode() const;
     bool isHideWindowOnStartup() const;
     bool isStartAtLogin() const;
@@ -101,10 +107,11 @@ public:
     bool isShowFilterBar() const;
     bool isNativeMenuBar() const;
     void setGeneralSettings(int ts, bool hide, bool sal, bool oneInstance, bool cpa, bool en, bool hdi, bool nativeMB);
-    void setAdvanceSettings(int ll, bool hm, QString sa, int sp, QString ha, int hp, QString pa, int pp);
+    void setAdvanceSettings(int ll, bool hm, bool eis, bool sol, int sp, int hp, int pp, int ap, int hsp);
     void setSystemProxySettings(QString mode);
     void setTrojanOn(bool on);
     void setAutoUpdateSubscribes(bool update);
+    void setServerLoadBalance(bool enable);
     void setMainWindowGeometry(const QByteArray &geometry);
     void setMainWindowState(const QByteArray &state);
     void setTableGeometry(const QByteArray &geometry);
@@ -126,14 +133,16 @@ private:
     int logLevel;
     int toolbarStyle;
     bool enableHttpMode;
-    QString socks5LocalAddress;
-    int socks5LocalPort;
-    QString httpLocalAddress;
-    int httpLocalPort;
-    QString pacLocalAddress;
-    int pacLocalPort;
+    int socks5Port;
+    int httpPort;
+    int pacPort;
+    int haproxyStatusPort;
+    int haproxyPort;
     QString systemProxyMode;
     bool trojanOn;
+    bool serverLoadBalance;
+    bool shareOverLan;
+    bool enableIpv6Support;
     bool autoUpdateSubscribes;
     bool hideWindowOnStartup;
     bool startAtLogin;

@@ -84,6 +84,7 @@ private slots:
     void onToggleConnection(bool);
     void onAddURIFromSubscribe(QString);
     void onImportGuiJson();
+    void onImportConfigYaml();
     void onExportGuiJson();
     void onExportShadowrocketJson();
     void onExportTrojanSubscribe();

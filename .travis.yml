@@ -98,6 +98,9 @@ script:
   - cd 3rd/qthttpserver
   - qmake && make -j$(nproc) && make install
   - cd ../..
+  - cd 3rd/yaml-cpp
+  - cmake . && make -j$(nproc)
+  - cd ../..
   - if [ "$BADGE" = "osx" ]; then
       mkdir build && cd ./build;
       qmake ../;

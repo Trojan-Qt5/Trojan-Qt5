@@ -1,4 +1,5 @@
 *.user
 *.autosave
+*.cmake
 .DS_Store
 build

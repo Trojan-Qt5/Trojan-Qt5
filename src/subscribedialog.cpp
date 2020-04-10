@@ -156,7 +156,6 @@ void SubscribeDialog::onAccepted()
     SaveSelected(select_index);
     helper->saveSubscribes(subscribes);
 
-    qDebug() << ui->autoUpdateCheckBox->isChecked();
     helper->setAutoUpdateSubscribes(ui->autoUpdateCheckBox->isChecked());
 
     this->accept();

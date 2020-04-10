@@ -43,6 +43,9 @@ void setupApplication(QApplication &a)
     a.setApplicationDisplayName("Trojan-Qt5");
     a.setApplicationVersion(APP_VERSION);
 
+    // https://stackoverflow.com/questions/46143546/application-closes-when-its-hidden-and-i-close-a-modal-dialog
+    a.setQuitOnLastWindowClosed(false); // prevent application quit when mainwindow is hidden and user closed dialog
+
 #ifdef Q_OS_WIN
     if (QLocale::system().country() == QLocale::China) {
         a.setFont(QFont("Microsoft Yahei", 9, QFont::Normal, false));
@@ -153,15 +156,23 @@ int main(int argc, char *argv[])
 #if defined(Q_OS_WIN)
     server.route("/<arg>", [](const QUrl &url) {
         QDir dir = QApplication::applicationDirPath() + "/pac";
-        return QHttpServerResponse::fromFile(dir.path() + QString("/%1").arg(url.path()));
+        QHttpServerResponse response = QHttpServerResponse::fromFile(dir.path() + QString("/%1").arg(url.path()));
+        response.addHeader("Server", "Trojan-Qt5");
+        response.setHeader("Content-Type", "application/x-ns-proxy-autoconfig");
+        response.addHeader("Connection", "Close");
+        return response;
     });
 #else
     server.route("/<arg>", [](const QUrl &url) {
         QDir configDir = QDir::homePath() + "/.config/trojan-qt5/pac";
-        return QHttpServerResponse::fromFile(configDir.path() + QString("/%1").arg(url.path()));
+        QHttpServerResponse response = QHttpServerResponse::fromFile(configDir.path() + QString("/%1").arg(url.path()));
+        response.addHeader("Server", "Trojan-Qt5");
+        response.setHeader("Content-Type", "application/x-ns-proxy-autoconfig");
+        response.addHeader("Connection", "Close");
+        return response;
     });
 #endif
-    server.listen(QHostAddress(conf.getPACAddress()), conf.getPACPort());
+    server.listen(QHostAddress(conf.isEnableIpv6Support() ? (conf.isShareOverLan() ? "::" : "::1") : (conf.isShareOverLan() ? "0.0.0.0" : "127.0.0.1")), conf.getPACPort());
 
     //start all servers which were configured to start at startup
     w.startAutoStartConnections();

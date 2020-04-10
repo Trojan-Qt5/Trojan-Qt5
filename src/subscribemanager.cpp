@@ -17,7 +17,7 @@ QString SubscribeManager::checkUpdate(QString url, bool useProxy)
     if (useProxy) {
         QNetworkProxy proxy;
         proxy.setType(QNetworkProxy::Socks5Proxy);
-        proxy.setHostName(helper->getSocks5Address());
+        proxy.setHostName("127.0.0.1");
         proxy.setPort(helper->getSocks5Port());
         manager->setProxy(proxy);
     }

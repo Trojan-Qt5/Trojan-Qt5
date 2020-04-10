@@ -124,6 +124,9 @@ void StatusNotifier::initActions()
     subscribeMenu->addAction(updateSubscribe);
     subscribeMenu->addAction(updateSubscribeBypass);
 
+    serverLoadBalance = new QAction(tr("Server Load Balance"));
+    serverLoadBalance->setCheckable(true);
+
     copyTerminalProxyCommand = new QAction(tr("Copy terminal proxy command"));
     setProxyToTelegram = new QAction(tr("Set Proxy to Telegram"));
 
@@ -133,8 +136,11 @@ void StatusNotifier::initActions()
     systrayMenu.addSeparator();
     systrayMenu.addMenu(ModeMenu);
     systrayMenu.addMenu(pacMenu);
+    systrayMenu.addSeparator();
     systrayMenu.addMenu(serverMenu);
     systrayMenu.addMenu(subscribeMenu);
+    systrayMenu.addAction(serverLoadBalance);
+    systrayMenu.addSeparator();
     systrayMenu.addAction(copyTerminalProxyCommand);
     systrayMenu.addAction(setProxyToTelegram);
     systrayMenu.addSeparator();
@@ -143,6 +149,7 @@ void StatusNotifier::initActions()
     connect(addManually, &QAction::triggered, window, [=]() { window->onAddServerFromSystemTray("manually"); });
     connect(addFromScreenQRCode, &QAction::triggered, window, [=]() { window->onAddServerFromSystemTray("qrcode"); });
     connect(addFromPasteBoardUri, &QAction::triggered, window, [=]() { window->onAddServerFromSystemTray("pasteboard"); });
+    connect(serverLoadBalance, &QAction::triggered, this, [this]() { onToggleServerLoadBalance(serverLoadBalance->isChecked()); });
     connect(ModeGroup, SIGNAL(triggered(QAction*)), this, SLOT(onToggleMode(QAction*)));
     connect(ServerGroup, SIGNAL(triggered(QAction*)), this, SLOT(onToggleServer(QAction*)));
 }
@@ -176,6 +183,8 @@ void StatusNotifier::updateMenu()
         disableModeAction->setChecked(true);
     else if (helper->getSystemProxySettings() == "advance")
         advanceModeAction->setChecked(true);
+
+    serverLoadBalance->setChecked(helper->isEnableServerLoadBalance());
 }
 
 void StatusNotifier::updateServersMenu()
@@ -248,18 +257,25 @@ void StatusNotifier::onTrojanSubscribeSettings()
     sbDig->exec();
 }
 
+void StatusNotifier::onToggleServerLoadBalance(bool checked)
+{
+    helper->readGeneralSettings();
+    helper->setServerLoadBalance(checked);
+    changeIcon(helper->isTrojanOn());
+}
+
 void StatusNotifier::onCopyTerminalProxy()
 {
     QClipboard *board = QApplication::clipboard();
     if (helper->isEnableHttpMode())
-        board->setText(QString("export HTTP_PROXY=http://%1:%2; export HTTPS_PROXY=http://%1:%2; export ALL_PROXY=socks5://%3:%4").arg(helper->getHttpAddress()).arg(helper->getHttpPort()).arg(helper->getSocks5Address()).arg(helper->getSocks5Port()));
+        board->setText(QString("export HTTP_PROXY=http://127.0.0.1:%1; export HTTPS_PROXY=http://127.0.0.1:%1; export ALL_PROXY=socks5://127.0.0.1:%2").arg(helper->getHttpPort()).arg(helper->getSocks5Port()));
     else
-        board->setText(QString("export HTTP_PROXY=socks5://%1:%2; export HTTPS_PROXY=socks5://%1:%2; export ALL_PROXY=socks5://%1:%2").arg(helper->getSocks5Address()).arg(helper->getSocks5Port()));
+        board->setText(QString("export HTTP_PROXY=socks5://127.0.0.1:%1; export HTTPS_PROXY=socks5://127.0.0.1:%1; export ALL_PROXY=socks5://127.0.0.1:%1").arg(helper->getSocks5Port()));
 }
 
 void StatusNotifier::onSetProxyToTelegram()
 {
-    QDesktopServices::openUrl(QString("tg://socks?server=%1&port=%2").arg(helper->getSocks5Address()).arg(helper->getSocks5Port()));
+    QDesktopServices::openUrl(QString("tg://socks?server=127.0.0.1&port=%2").arg(helper->getSocks5Port()));
 }
 
 void StatusNotifier::activate()
@@ -287,6 +303,7 @@ void StatusNotifier::changeIcon(bool started)
 
         bool enabled = helper->getSystemProxySettings() != "direct";
         bool global = helper->getSystemProxySettings() == "global";
+        bool random = helper->isEnableServerLoadBalance();
         QString mode = helper->getSystemProxySettings();
         QImage image(QString(":/icons/icons/trojan-qt5_%1.png").arg(mode));
         QImage alpha = image.alphaChannel();
@@ -299,7 +316,9 @@ void StatusNotifier::changeIcon(bool started)
             mul_b = 0.4;
             mul_g = 0.65;
         }
-        mul_r = 0.4;
+        if (!random) {
+            mul_r = 0.4;
+        }
 
         for (int x = 0; x < image.width(); x++) {
             for (int y = 0; y < image.height(); y++) {

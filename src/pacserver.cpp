@@ -54,7 +54,7 @@ void PACServer::copyPACUrl()
 {
     ConfigHelper *conf = new ConfigHelper(configFile);
     QClipboard *board = QApplication::clipboard();
-    board->setText(QString("http://%1:%2/proxy.pac").arg(conf->getPACAddress()).arg(conf->getPACPort()));
+    board->setText(QString("http://127.0.0.1:%1/proxy.pac").arg(conf->getPACPort()));
 }
 
 void PACServer::editLocalPACFile()
@@ -138,9 +138,9 @@ void PACServer::modify(QString filename)
     file.open(QIODevice::ReadWrite); // open for read and write
     fileData = file.readAll(); // read all the data into the byte array
     QString text(fileData); // add to text string for easy string replace
-    text.replace(QString("__SOCKS5__"), QString("SOCKS5 %1:%2").arg(conf->getSocks5Address()).arg(QString::number(conf->getSocks5Port())));
-    text.replace(QString("__SOCKS__"), QString("SOCKS %1:%2").arg(conf->getSocks5Address()).arg(QString::number(conf->getSocks5Port())));
-    text.replace(QString("__PROXY__"), QString("PROXY %1:%2").arg(conf->getHttpAddress()).arg(QString::number(conf->getHttpPort())));
+    text.replace(QString("__SOCKS5__"), QString("SOCKS5 127.0.0.1:%1").arg(QString::number(conf->getSocks5Port())));
+    text.replace(QString("__SOCKS__"), QString("SOCKS 127.0.0.1:%1").arg(QString::number(conf->getSocks5Port())));
+    text.replace(QString("__PROXY__"), QString("PROXY 127.0.0.1:%1").arg(QString::number(conf->getHttpPort())));
     if (filename == configDir.path() + "/trojan_gfw.pac")
         text.replace(QString("__RULES__"), loadRules().toJson());
     file.seek(0); // go to the beginning of the file

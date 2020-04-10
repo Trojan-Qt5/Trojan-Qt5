@@ -26,7 +26,7 @@ class PortValidator : public QValidator
 public:
     PortValidator(QObject *parent = 0);
     State validate(QString &input, int &) const;
-    bool isInUse(int port);
+    QString isInUse(int port);
 };
 
 #endif // PORTVALIDATOR_H

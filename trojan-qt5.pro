@@ -41,7 +41,7 @@ CONFIG += sdk_no_version_check
 #DEFINES += QT_DEPRECATED_WARNINGS
 
 # Define App Version
-DEFINES += "APP_VERSION=\"\\\"0.0.8\\\"\""
+DEFINES += "APP_VERSION=\"\\\"0.0.9 Early Access\\\"\""
 
 # Trojan
 #DEFINES += ENABLE_MYSQL
@@ -85,6 +85,7 @@ win32 {
     LIBS += -lwsock32 -lws2_32
     LIBS += -lCrypt32
     DEFINES += WIN32_LEAN_AND_MEAN
+    LIBS += $$PWD\3rd\yaml-cpp\Release\libyaml-cpp.lib
     # Otherwise lupdate will not work
     TR_EXCLUDE += C:\TQLibraries\boost_1_72_0\*
 }
@@ -217,12 +218,15 @@ unix {
         src/privoxy/filters.h \
         src/privoxy/loadcfg.h \
         src/privoxy/config.h
+
+    LIBS += $$PWD/3rd/yaml-cpp/libyaml-cpp.a
 }
 
 !isEmpty(target.path): INSTALLS += target
 
 SOURCES += \
     src/connectionsortfilterproxymodel.cpp \
+    src/haproxythread.cpp \
     src/logger.cpp \
     src/pacserver.cpp \
     src/privoxythread.cpp \
@@ -272,6 +276,7 @@ SOURCES += \
 
 HEADERS += \
     src/connectionsortfilterproxymodel.h \
+    src/haproxythread.h \
     src/logger.h \
     src/pacserver.h \
     src/privoxythread.h \
@@ -335,11 +340,14 @@ TRANSLATIONS += \
     resources/i18n/trojan-qt5_zh_TW.ts \
     resources/i18n/trojan-qt5_zh_SG.ts
 
+INCLUDEPATH += $$PWD/3rd/yaml-cpp/include
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 
 RESOURCES += \
     resources/bin.qrc \
+    resources/conf.qrc \
     resources/icons.qrc \
     resources/pac.qrc \
     resources/pem.qrc \

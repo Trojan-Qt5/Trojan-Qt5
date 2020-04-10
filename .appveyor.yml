@@ -11,6 +11,9 @@ install:
   - git submodule update --init --recursive
   - cd 3rd\qthttpserver && qmake && nmake && nmake install
   - cd ..\..
+  - cd 3rd\yaml-cpp && cmake .
+  - msbuild YAML_CPP.sln /p:Configuration=Release /p:Platform="Win32"
+  - cd ..\..
 
 init:
   - C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Community\VC\Auxiliary\Build\vcvarsall.bat x86

@@ -126,17 +126,19 @@ void Connection::start()
     //wait, let's check if port is in use
     if (conf->isCheckPortAvailability()) {
         PortValidator *pv = new PortValidator();
-        if (pv->isInUse(conf->getSocks5Port())) {
-            qCritical() << QString("Socks5 port %1 is being used").arg(QString::number(conf->getSocks5Port()));
-            Logger::error(QString("Socks5 port %1 is being used").arg(QString::number(conf->getSocks5Port())));
+        QString errorString = pv->isInUse(conf->getSocks5Port());
+        if (!errorString.isEmpty()) {
+            Logger::error(QString("can't bind socks5 port %1: %2").arg(QString::number(conf->getSocks5Port())).arg(errorString));
             return;
         }
 
-    //don't check http mode if httpMode is not enabled
-    if (conf->isEnableHttpMode())
-        if (pv->isInUse(conf->getHttpPort())) {
-            Logger::error(QString("Http port %1 is being used").arg(QString::number(conf->getHttpPort())));
-            return;
+        //don't check http mode if httpMode is not enabled
+        if (conf->isEnableHttpMode()) {
+            QString errorString = pv->isInUse(conf->getHttpPort());
+            if (!errorString.isEmpty()) {
+                Logger::error(QString("can't bind http port %1: %2").arg(QString::number(conf->getHttpPort())).arg(errorString));
+                return;
+            }
         }
     }
 
@@ -195,7 +197,14 @@ void Connection::onStartFailed()
     ConfigHelper *conf = new ConfigHelper(configFile);
 
     running = false;
+
     conf->setTrojanOn(running);
+
+    //if we have started privoxy, stop it
+    if (conf->isEnableHttpMode()) {
+        privoxy->stop();
+    }
+
     emit stateChanged(running);
     emit startFailed();
 

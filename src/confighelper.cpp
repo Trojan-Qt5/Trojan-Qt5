@@ -9,6 +9,9 @@
 #include <QDebug>
 
 #include "logger.h"
+#include "yaml-cpp/yaml.h"
+
+using namespace std;
 
 ConfigHelper::ConfigHelper(const QString &configuration, QObject *parent) :
     QObject(parent),
@@ -37,16 +40,18 @@ void ConfigHelper::save(const ConnectionTableModel &model)
 
     settings->setValue("LogLevel", QVariant(logLevel));
     settings->setValue("EnableHttpMode", QVariant(enableHttpMode));
-    settings->setValue("Socks5LocalAddress", QVariant(socks5LocalAddress));
-    settings->setValue("Socks5LocalPort", QVariant(socks5LocalPort));
-    settings->setValue("HttpLocalAddress", QVariant(httpLocalAddress));
-    settings->setValue("HttpLocalPort", QVariant(httpLocalPort));
-    settings->setValue("PACLocalAddress", QVariant(pacLocalAddress));
-    settings->setValue("PACLocalPort", QVariant(pacLocalPort));
+    settings->setValue("Socks5LocalPort", QVariant(socks5Port));
+    settings->setValue("HttpLocalPort", QVariant(httpPort));
+    settings->setValue("PACLocalPort", QVariant(pacPort));
+    settings->setValue("HaproxyStatusPort", QVariant(haproxyStatusPort));
+    settings->setValue("HaproxyPort", QVariant(haproxyPort));
     settings->setValue("ToolbarStyle", QVariant(toolbarStyle));
     settings->setValue("AutoUpdateSubscribes", QVariant(autoUpdateSubscribes));
     settings->setValue("TrojanOn", QVariant(trojanOn));
     settings->setValue("SystemProxyMode", QVariant(systemProxyMode));
+    settings->setValue("EnableIPV6Support", QVariant(enableIpv6Support));
+    settings->setValue("ShareOverLan", QVariant(shareOverLan));
+    settings->setValue("ServerLoadBalance", QVariant(serverLoadBalance));
     settings->setValue("HideWindowOnStartup", QVariant(hideWindowOnStartup));
     settings->setValue("StartAtLogin", QVariant(startAtLogin));
     settings->setValue("OnlyOneInstance", QVariant(onlyOneInstace));
@@ -167,6 +172,25 @@ void ConfigHelper::exportGuiConfigJson(const ConnectionTableModel &model, const 
 
     JSONFile.write(JSONDoc.toJson());
     JSONFile.close();
+}
+
+void ConfigHelper::importConfigYaml(ConnectionTableModel *model, const QString &file)
+{
+    YAML::Node config = YAML::LoadFile(file.toStdString());
+    const YAML::Node& proxies = config["Proxy"];
+    for (std::size_t i = 0; i < proxies.size(); i++) {
+        const YAML::Node& proxy = proxies[i];
+        if (QString::fromStdString(proxy["type"].as<string>()) == "trojan") {
+            TQProfile p;
+            p.name = QString::fromStdString(proxy["name"].as<string>());
+            p.serverAddress = QString::fromStdString(proxy["server"].as<string>());
+            p.serverPort = proxy["skip-cert-verify"].as<int>();
+            p.password = QString::fromStdString(proxy["password"].as<string>());
+            p.verifyCertificate = !proxy["skip-cert-verify"].as<bool>();
+            Connection *con = new Connection(p, this);
+            model->appendConnection(con);
+        }
+    }
 }
 
 void ConfigHelper::importShadowrocketJson(ConnectionTableModel *model, const QString &file)
@@ -318,8 +342,8 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
 {
     QJsonObject configObj;
     configObj["run_type"] = "client";
-    configObj["local_addr"] = socks5LocalAddress;
-    configObj["local_port"] = socks5LocalPort;
+    configObj["local_addr"] = isEnableIpv6Support() ? (isShareOverLan() ? "::" : "::1") : (isShareOverLan() ? "0.0.0.0" : "127.0.0.1");
+    configObj["local_port"] = socks5Port;
     configObj["remote_addr"] = profile.serverAddress;
     configObj["remote_port"] = profile.serverPort;
     QJsonArray passwordArray;
@@ -378,22 +402,16 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
 
 void ConfigHelper::generatePrivoxyConf()
 {
-    if (socks5LocalAddress.contains((":")))
-        socks5LocalAddress = "[" + socks5LocalAddress + "]";
-
-    if (httpLocalAddress.contains(":"))
-        httpLocalAddress = "[" + httpLocalAddress + "]";
-
     QString filecontent = QString("listen-address %1:%2\n"
                                   "toggle 0\n"
                                   "show-on-task-bar 0\n"
                                   "activity-animation 0\n"
                                   "forward-socks5 / %3:%4 .\n"
                                   "hide-console\n")
-                                  .arg(httpLocalAddress)
-                                  .arg(QString::number(httpLocalPort))
-                                  .arg(socks5LocalAddress)
-                                  .arg(QString::number(socks5LocalPort));
+                                  .arg(isEnableIpv6Support() ? (isShareOverLan() ? "[::]" : "[::1]") : (isShareOverLan() ? "0.0.0.0" : "127.0.0.1"))
+                                  .arg(QString::number(httpPort))
+                                  .arg(isEnableIpv6Support() ? (isShareOverLan() ? "[::]" : "[::1]") : (isShareOverLan() ? "0.0.0.0" : "127.0.0.1"))
+                                  .arg(QString::number(socks5Port));
 #ifdef Q_OS_WIN
         QString file = QCoreApplication::applicationDirPath() + "/privoxy/privoxy.conf";
 #else
@@ -417,6 +435,38 @@ void ConfigHelper::generatePrivoxyConf()
     privoxyConf.close();
 }
 
+void ConfigHelper::generateHaproxyConf(const ConnectionTableModel &model)
+{
+#ifdef Q_OS_WIN
+        QString haproxyConf = QCoreApplication::applicationDirPath() + "/haproxy.conf";
+#else
+        QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
+        QString haproxyConf = configDir.absolutePath() + "/haproxy.conf";
+#endif
+
+    if (QFile::exists(haproxyConf)) {
+        QFile::remove(haproxyConf);
+    }
+    QFile::copy(":/conf/haproxy.conf", haproxyConf);
+    QFile::setPermissions(haproxyConf, QFile::WriteOwner | QFile::ReadOwner | QFile::ReadGroup | QFile::ReadOther);
+
+    QFile file(haproxyConf);
+    file.open(QIODevice::ReadWrite); // open for read and write
+    QByteArray fileData = file.readAll(); // read all the data into the byte array
+    QString text(fileData); // add to text string for easy string replace
+    int size = model.rowCount();
+    for (int i = 0; i < size; ++i) {
+        TQProfile p = model.getItem(i)->getConnection()->getProfile();
+        text += QString("    server trojan%1 %2:%3 check inter 1000 weight 2\n").arg(QString::number(i)).arg(p.serverAddress).arg(i);
+    }
+    text.replace(QString("__STATUS__"), QString("%1:%2").arg(isEnableIpv6Support() ? (isShareOverLan() ? "::" : "::1") : (isShareOverLan() ? "0.0.0.0" : "127.0.0.1")).arg(QString::number(haproxyStatusPort)));
+    text.replace(QString("__TROJAN__"), QString("%1:%2").arg(isEnableIpv6Support() ? (isShareOverLan() ? "::" : "::1") : (isShareOverLan() ? "0.0.0.0" : "127.0.0.1")).arg(QString::number(haproxyPort)));
+    text.replace(QString("__MODE__"), QString("%1"));
+    file.seek(0); // go to the beginning of the file
+    file.write(text.toUtf8()); // write the new text back to the file
+    file.close(); // close the file handle.
+}
+
 int ConfigHelper::getLogLevel() const
 {
     return logLevel;
@@ -427,34 +477,29 @@ int ConfigHelper::getToolbarStyle() const
     return toolbarStyle;
 }
 
-QString ConfigHelper::getSocks5Address() const
-{
-    return socks5LocalAddress;
-}
-
 int ConfigHelper::getSocks5Port() const
 {
-    return socks5LocalPort;
-}
-
-QString ConfigHelper::getHttpAddress() const
-{
-    return httpLocalAddress;
+    return socks5Port;
 }
 
 int ConfigHelper::getHttpPort() const
 {
-    return httpLocalPort;
-}
-
-QString ConfigHelper::getPACAddress() const
-{
-    return pacLocalAddress;
+    return httpPort;
 }
 
 int ConfigHelper::getPACPort() const
 {
-    return pacLocalPort;
+    return pacPort;
+}
+
+int ConfigHelper::getHaproxyPort() const
+{
+    return haproxyPort;
+}
+
+int ConfigHelper::getHaproxyStatusPort() const
+{
+    return haproxyStatusPort;
 }
 
 QString ConfigHelper::getSystemProxySettings() const
@@ -465,6 +510,21 @@ QString ConfigHelper::getSystemProxySettings() const
 bool ConfigHelper::isTrojanOn() const
 {
     return trojanOn;
+}
+
+bool ConfigHelper::isEnableServerLoadBalance() const
+{
+    return serverLoadBalance;
+}
+
+bool ConfigHelper::isEnableIpv6Support() const
+{
+    return enableIpv6Support;
+}
+
+bool ConfigHelper::isShareOverLan() const
+{
+    return shareOverLan;
 }
 
 bool ConfigHelper::isEnableHttpMode() const
@@ -537,16 +597,17 @@ void ConfigHelper::setGeneralSettings(int ts, bool hide, bool sal, bool oneInsta
     nativeMenuBar = nativeMB;
 }
 
-void ConfigHelper::setAdvanceSettings(int ll, bool hm, QString sa, int sp, QString ha, int hp, QString pa, int pp)
+void ConfigHelper::setAdvanceSettings(int ll, bool hm, bool eis, bool sol, int sp, int hp, int pp, int ap, int hsp)
 {
     logLevel = ll;
     enableHttpMode = hm;
-    socks5LocalAddress = sa;
-    socks5LocalPort = sp;
-    httpLocalAddress = ha;
-    httpLocalPort = hp;
-    pacLocalAddress = pa;
-    pacLocalPort = pp;
+    enableIpv6Support = eis;
+    shareOverLan = sol;
+    socks5Port = sp;
+    httpPort = hp;
+    pacPort = pp;
+    haproxyPort = ap;
+    haproxyStatusPort = hsp;
 }
 
 void ConfigHelper::setSystemProxySettings(QString mode)
@@ -565,6 +626,12 @@ void ConfigHelper::setAutoUpdateSubscribes(bool update)
 {
     autoUpdateSubscribes = update;
     settings->setValue("AutoUpdateSubscribes", QVariant(autoUpdateSubscribes));
+}
+
+void ConfigHelper::setServerLoadBalance(bool enable)
+{
+    serverLoadBalance = enable;
+    settings->setValue("ServerLoadBalance", QVariant(serverLoadBalance));
 }
 
 void ConfigHelper::setShowToolbar(bool show)
@@ -614,12 +681,13 @@ void ConfigHelper::readGeneralSettings()
     toolbarStyle = settings->value("ToolbarStyle", QVariant(3)).toInt();
     startAtLogin = settings->value("StartAtLogin").toBool();
     autoUpdateSubscribes = settings->value("AutoUpdateSubscribes", QVariant(false)).toBool();
-    systemProxyMode = settings->value("SystemProxyMode", QVariant("global")).toString();
+    systemProxyMode = settings->value("SystemProxyMode", QVariant("pac")).toString();
+    serverLoadBalance = settings->value("ServerLoadBalance", QVariant(false)).toBool();
     hideWindowOnStartup = settings->value("HideWindowOnStartup").toBool();
     onlyOneInstace = settings->value("OnlyOneInstance", QVariant(true)).toBool();
     checkPortAvailability = settings->value("CheckPortAvailability", QVariant(true)).toBool();
     enableNotification = settings->value("EnableNotification", QVariant(true)).toBool();
-    hideDockIcon = settings->value("HideDockIcon", QVariant(true)).toBool();
+    hideDockIcon = settings->value("HideDockIcon", QVariant(false)).toBool();
     showToolbar = settings->value("ShowToolbar", QVariant(true)).toBool();
     showFilterBar = settings->value("ShowFilterBar", QVariant(true)).toBool();
     nativeMenuBar = settings->value("NativeMenuBar", QVariant(false)).toBool();
@@ -629,12 +697,13 @@ void ConfigHelper::readAdvanceSettings()
 {
     logLevel = settings->value("LogLevel", QVariant(1)).toInt();
     enableHttpMode = settings->value("EnableHttpMode", QVariant(true)).toBool();
-    socks5LocalAddress = settings->value("Socks5LocalAddress", QVariant("127.0.0.1")).toString();
-    socks5LocalPort = settings->value("Socks5LocalPort", QVariant(1080)).toInt();
-    httpLocalAddress = settings->value("HttpLocalAddress", QVariant("127.0.0.1")).toString();
-    httpLocalPort = settings->value("HttpLocalPort", QVariant(1081)).toInt();
-    pacLocalAddress = settings->value("PACLocalAddress", QVariant("127.0.0.1")).toString();
-    pacLocalPort = settings->value("PACLocalPort", QVariant(8070)).toInt();
+    shareOverLan = settings->value("ShareOverLan", QVariant(false)).toBool();
+    enableIpv6Support = settings->value("EnableIpv6Support", QVariant(false)).toBool();
+    socks5Port = settings->value("Socks5LocalPort", QVariant(1080)).toInt();
+    httpPort = settings->value("HttpLocalPort", QVariant(1081)).toInt();
+    pacPort = settings->value("PACLocalPort", QVariant(8070)).toInt();
+    haproxyStatusPort = settings->value("HaproxyStatusPort", QVariant(2080)).toInt();
+    haproxyPort = settings->value("HaproxyPort", QVariant(7777)).toInt();
 }
 
 void ConfigHelper::checkProfileDataUsageReset(TQProfile &profile)

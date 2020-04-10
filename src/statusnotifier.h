@@ -49,6 +49,7 @@ public slots:
     void onToggleMode(QAction *action);
     void onToggleConnection();
     void onToggleServer(QAction *actived);
+    void onToggleServerLoadBalance(bool checked);
     void showNotification(const QString &);
     void changeIcon(bool started);
     void onWindowVisibleChanged(bool visible);
@@ -67,6 +68,7 @@ private:
     QAction *pacModeAction;
     QAction *globalModeAction;
     QAction *advanceModeAction;
+    QAction *serverLoadBalance;
     QAction *addManually;
     QAction *addFromScreenQRCode;
     QAction *addFromPasteBoardUri;

@@ -17,20 +17,18 @@ QValidator::State PortValidator::validate(QString &input, int &) const
         return Invalid;
 }
 
-bool PortValidator::isInUse(int port)
+QString PortValidator::isInUse(int port)
 {
-    /** Use TcpServer to listen to the port specified. */
-    QTcpServer *server = new QTcpServer();
+    QTcpServer *server = new QTcpServer(); // Use TcpServer to listen to the port specified
     bool status = server->listen(QHostAddress::LocalHost, port);
     if (status) {
         server->close();
         server->deleteLater();
-        return false;
-    /** There is something listening on it or error encourted. */
+        return "";
     } else {
+        // There is something listening on it or error encourted.
         server->close();
         server->deleteLater();
-        Logger::error(server->errorString());
-        return true;
+        return server->errorString();
     }
 }

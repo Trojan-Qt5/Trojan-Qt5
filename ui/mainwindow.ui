@@ -304,6 +304,7 @@ QMenu::item:selected {
      <string>Fi&amp;le</string>
     </property>
     <addaction name="actionImportGUIJson"/>
+    <addaction name="actionImportConfigYaml"/>
     <addaction name="actionExportGUIJson"/>
     <addaction name="actionExportShadowrocketJson"/>
     <addaction name="actionExportSubscribe"/>
@@ -577,6 +578,19 @@ QMenu::item:selected {
    </property>
    <property name="toolTip">
     <string>Import connections from old version configuration file</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
+   </property>
+  </action>
+  <action name="actionImportConfigYaml">
+   <property name="text">
+    <string>&amp;Import Connections from config.yaml</string>
+   </property>
+   <property name="toolTip">
+    <string>Import connections from clash configuration file</string>
    </property>
    <property name="font">
     <font>
