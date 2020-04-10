@@ -85,7 +85,7 @@ win32 {
     LIBS += -lwsock32 -lws2_32
     LIBS += -lCrypt32
     DEFINES += WIN32_LEAN_AND_MEAN
-    LIBS += $$PWD\3rd\yaml-cpp\Release\libyaml-cpp.lib
+    LIBS += $$PWD\3rd\yaml-cpp\Release\yaml-cpp.lib
     # Otherwise lupdate will not work
     TR_EXCLUDE += C:\TQLibraries\boost_1_72_0\*
 }
