@@ -46,13 +46,13 @@ TQProfile TQProfile::fromUri(const std::string& trojanUri) const
     size_t hashPos = uri.find_last_of('#');
     if (hashPos != std::string::npos) {
         // Get the name/remark
-        result.name = QUrl::fromPercentEncoding(QString::fromStdString(uri.substr(hashPos + 1)).toLocal8Bit().data());
+        result.name = QUrl::fromPercentEncoding(QString::fromStdString(uri.substr(hashPos + 1)).toUtf8().data());
         uri.erase(hashPos);
     }
 
     size_t atPos = uri.find_first_of('@');
     if (atPos != std::string::npos) {
-        result.password = QUrl::fromPercentEncoding(QString::fromStdString(uri.substr(0, atPos)).toLocal8Bit().data());
+        result.password = QUrl::fromPercentEncoding(QString::fromStdString(uri.substr(0, atPos)).toUtf8().data());
         uri.erase(0, atPos + 1);
         size_t colonPos = uri.find_last_of(':');
         if (colonPos == std::string::npos) {
@@ -85,11 +85,11 @@ TQProfile TQProfile::fromUri(const std::string& trojanUri) const
  */
 QString TQProfile::toUri() const
 {
-    QString trojanUri = password.toLocal8Bit().toPercentEncoding() + "@" + serverAddress + ":" + QString::number(serverPort) + "?allowinsecure=" + QString::number(int(!verifyCertificate)) + "&tfo=" + QString::number(tcpFastOpen);
+    QString trojanUri = password.toUtf8().toPercentEncoding() + "@" + serverAddress + ":" + QString::number(serverPort) + "?allowinsecure=" + QString::number(int(!verifyCertificate)) + "&tfo=" + QString::number(tcpFastOpen);
     QByteArray uri = QByteArray(trojanUri.toUtf8());
     uri.prepend("trojan://");
     uri.append("#");
-    uri.append(name.toLocal8Bit().toPercentEncoding());
+    uri.append(name.toUtf8().toPercentEncoding());
     return QString(uri);
 }
 

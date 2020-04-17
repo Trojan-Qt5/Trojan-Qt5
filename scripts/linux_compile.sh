@@ -44,6 +44,6 @@ wget -O boost_1_72_0.tar.gz https://sourceforge.net/projects/boost/files/boost/1
 tar -xf boost_1_72_0.tar.gz;
 cd boost_1_72_0/;
 ./bootstrap.sh --prefix=/usr/local/boost >/dev/null 2>&1;
-./b2 -j$(nproc);
+./b2 --with-system --with-program_options -j$(nproc);
 sudo ./b2 install >/dev/null 2>&1;
 cd ..;

@@ -112,6 +112,8 @@ int main(int argc, char *argv[])
     qRegisterMetaTypeStreamOperators<TQProfile>("TQProfile");
     qRegisterMetaTypeStreamOperators<TQSubscribe>("TQSubscribe");
 
+    QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+
     QApplication a(argc, argv);
     setupApplication(a);
 

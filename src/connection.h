@@ -49,6 +49,7 @@ public:
     bool isValid() const;
     const bool &isRunning() const;
     void latencyTest();
+    static void onTrojanConnectionDestoryed(Connection& connection, const uint64_t download, const uint64_t upload);
 
 signals:
     void stateChanged(bool started);
@@ -56,6 +57,7 @@ signals:
     void newLogAvailable(const QString &);
     void dataUsageChanged(const quint64 &current, const quint64 &total);
     void startFailed();
+
 
 public slots:
     void start();
@@ -80,6 +82,7 @@ private:
 private slots:
     void onServerAddressLookedUp(const QHostInfo &host);
     void onLatencyAvailable(const int);
+    void onNewBytesTransmitted(const quint64 &);
 
 };
 Q_DECLARE_METATYPE(Connection*)

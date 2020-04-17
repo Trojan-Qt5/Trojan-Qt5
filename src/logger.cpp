@@ -8,7 +8,7 @@
  */
 void Logger::init(const QString &path)
 {
-    plog::init(plog::debug, path.toLocal8Bit().data());
+    plog::init(plog::debug, path.toUtf8().data());
 }
 
 /**

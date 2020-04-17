@@ -294,7 +294,7 @@ void ConfigHelper::exportTrojanSubscribe(const ConnectionTableModel &model, cons
         return;
     }
 
-    Subscribe.write(uri.toLocal8Bit().data());
+    Subscribe.write(uri.toUtf8().data());
     Subscribe.close();
 }
 

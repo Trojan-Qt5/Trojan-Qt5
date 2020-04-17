@@ -41,7 +41,7 @@ CONFIG += sdk_no_version_check
 #DEFINES += QT_DEPRECATED_WARNINGS
 
 # Define App Version
-DEFINES += "APP_VERSION=\"\\\"0.0.9 Early Access\\\"\""
+DEFINES += "APP_VERSION=\"\\\"1.0.0\\\"\""
 
 # Trojan
 #DEFINES += ENABLE_MYSQL
@@ -228,6 +228,7 @@ SOURCES += \
     src/connectionsortfilterproxymodel.cpp \
     src/haproxythread.cpp \
     src/logger.cpp \
+    src/midman.cpp \
     src/pacserver.cpp \
     src/privoxythread.cpp \
     src/resourcehelper.cpp \
@@ -278,6 +279,7 @@ HEADERS += \
     src/connectionsortfilterproxymodel.h \
     src/haproxythread.h \
     src/logger.h \
+    src/midman.h \
     src/pacserver.h \
     src/privoxythread.h \
     src/resourcehelper.h \
@@ -341,6 +343,7 @@ TRANSLATIONS += \
     resources/i18n/trojan-qt5_zh_SG.ts
 
 INCLUDEPATH += $$PWD/3rd/yaml-cpp/include
+INCLUDEPATH += $$PWD/src
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

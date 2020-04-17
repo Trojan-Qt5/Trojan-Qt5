@@ -9,6 +9,7 @@
 #include <QHostAddress>
 
 #include "logger.h"
+#include "midman.h"
 
 #include <boost/exception/all.hpp>
 
@@ -118,7 +119,7 @@ void Connection::start()
 
     //load service config first
     try {
-        service->config().load(file.toLocal8Bit().data());
+        service->config().load(file.toUtf8().data());
     } catch (boost::exception &e) {
         Logger::error(QString::fromStdString(boost::diagnostic_information(e)));
     }
@@ -145,6 +146,7 @@ void Connection::start()
     //set running status to true before we start trojan
     running = true;
     service->start();
+    MidMan::setConnection(this);
 
     //start privoxy if settings is configured to do so
     if (conf->isEnableHttpMode())
@@ -219,6 +221,18 @@ void Connection::testAddressLatency(const QHostAddress &addr)
     AddressTester *addrTester = new AddressTester(addr, profile.serverPort, this);
     connect(addrTester, &AddressTester::lagTestFinished, this, &Connection::onLatencyAvailable, Qt::QueuedConnection);
     addrTester->startLagTest();
+}
+
+void Connection::onTrojanConnectionDestoryed(Connection& connection, const uint64_t download, const uint64_t upload)
+{
+    connection.onNewBytesTransmitted(download + upload);
+}
+
+void Connection::onNewBytesTransmitted(const quint64 &b)
+{
+    profile.currentUsage += b;
+    profile.totalUsage += b;
+    emit dataUsageChanged(profile.currentUsage, profile.totalUsage);
 }
 
 void Connection::onServerAddressLookedUp(const QHostInfo &host)

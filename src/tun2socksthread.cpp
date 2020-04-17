@@ -25,7 +25,7 @@ void Tun2socksThread::run()
 
 #if defined(Q_OS_MAC)
     tunName = "utun1";
-    run_tun2socks(tunName.toLocal8Bit().data(), tunAddr.toLocal8Bit().data(), tunGw.toLocal8Bit().data(), tunDns.toLocal8Bit().data(), proxyServer.toLocal8Bit().data());
+    run_tun2socks(tunName.toUtf8().data(), tunAddr.toUtf8().data(), tunGw.toUtf8().data(), tunDns.toUtf8().data(), proxyServer.toUtf8().data());
 #endif
 }
 

@@ -34,7 +34,7 @@ void SubscribeManager::updateAllSubscribes(bool useProxy)
     for (int i = 0; i < subscribes.size(); i++) {
         subscribes[i].lastUpdateTime = QDateTime::currentDateTime().toTime_t() - QDateTime::fromString("1970-01-01T00:00:00").toTime_t();
         QString data = checkUpdate(subscribes[i].url, useProxy);
-        QByteArray decodeArray = QByteArray::fromBase64(data.toLocal8Bit().data());
+        QByteArray decodeArray = QByteArray::fromBase64(data.toUtf8().data());
         QString decodeRes = QUrl::fromPercentEncoding(decodeArray); // remove percentage in uri
         decodeRes = decodeRes.replace("\\r", "\r"); // change \\r to \r
         decodeRes = decodeRes.replace("\\n", "\n"); // change \\n to \n

@@ -47,6 +47,6 @@ void PrivoxyThread::run() {
     QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
     QString file = configDir.absolutePath() + "/privoxy.conf";
 
-    start_privoxy(file.toLocal8Bit().data());
+    start_privoxy(file.toUtf8().data());
 #endif
 }

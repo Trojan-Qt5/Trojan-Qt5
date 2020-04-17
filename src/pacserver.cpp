@@ -113,9 +113,14 @@ void PACServer::typeModify(QString type)
         modify(configDir.path() + "/trojan_gfw.pac");
     }
     //set System Proxy Again to force system reload pac file
-    SystemProxyHelper *sph = new SystemProxyHelper();
-    sph->setSystemProxy(0);
-    sph->setSystemProxy(2);
+    ConfigHelper *conf = new ConfigHelper(configFile);
+    conf->readGeneralSettings();
+    if (conf->isTrojanOn())
+        if (conf->getSystemProxySettings() == "pac") {
+            SystemProxyHelper *sph = new SystemProxyHelper();
+            sph->setSystemProxy(0);
+            sph->setSystemProxy(2);
+        }
 }
 
 /**

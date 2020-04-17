@@ -36,6 +36,52 @@ bool ConnectionSortFilterProxyModel::lessThan(const QModelIndex &left, const QMo
         return leftLatency < rightLatency;
     }
 
+    //process traffic
+    if (left.column() == 3 || left.column() == 4) {
+        double leftTraffict = 0;
+        double rightTraffict = 0;
+        if (leftData.toString().endsWith("KiB")) {
+            leftTraffict = leftData.toString().replace("KiB", "").toFloat() * 1024;
+        } else if (leftData.toString().endsWith("MiB")) {
+            leftTraffict = leftData.toString().replace("MiB", "").toFloat() * 1024 * 1024;
+        } else if (leftData.toString().endsWith("GiB")) {
+            leftTraffict = leftData.toString().replace("GiB", "").toFloat() * 1024 * 1024 * 1024;
+        } else if (leftData.toString().endsWith("TiB")) {
+            leftTraffict = leftData.toString().replace("TiB", "").toFloat() * 1024 * 1024 * 1024 * 1024;
+        } else if (leftData.toString().endsWith("PiB")) {
+            leftTraffict = leftData.toString().replace("PiB", "").toFloat() * 1024 * 1024 * 1024 * 1024 * 1024;
+        } else if (leftData.toString().endsWith("EiB")) {
+            leftTraffict = leftData.toString().replace("EiB", "").toFloat() * 1024 * 1024 * 1024 * 1024 * 1024 * 1024;
+        } else if (leftData.toString().endsWith("ZiB")) {
+            leftTraffict = leftData.toString().replace("ZiB", "").toFloat() * 1024 * 1024 * 1024 * 1024 * 1024 * 1024 * 1024;
+        } else if (leftData.toString().endsWith("YiB")) {
+            leftTraffict = leftData.toString().replace("YiB", "").toFloat() * 1024 * 1024 * 1024 * 1024 * 1024 * 1024 * 1024 * 1024;
+        } else if (leftData.toString().endsWith("B")) {
+            leftTraffict = leftData.toString().replace("B", "").toFloat();
+        }
+
+        if (rightData.toString().endsWith("KiB")) {
+            rightTraffict = rightData.toString().replace("KiB", "").toFloat() * 1024;
+        } else if (rightData.toString().endsWith("MiB")) {
+            rightTraffict = rightData.toString().replace("MiB", "").toFloat() * 1024 * 1024;
+        } else if (rightData.toString().endsWith("GiB")) {
+            rightTraffict = rightData.toString().replace("GiB", "").toFloat() * 1024 * 1024 * 1024;
+        } else if (rightData.toString().endsWith("TiB")) {
+            rightTraffict = rightData.toString().replace("TiB", "").toFloat() * 1024 * 1024 * 1024 * 1024;
+        } else if (rightData.toString().endsWith("PiB")) {
+            rightTraffict = rightData.toString().replace("PiB", "").toFloat() * 1024 * 1024 * 1024 * 1024 * 1024;
+        } else if (rightData.toString().endsWith("EiB")) {
+            rightTraffict = rightData.toString().replace("EiB", "").toFloat() * 1024 * 1024 * 1024 * 1024 * 1024 * 1024;
+        } else if (rightData.toString().endsWith("ZiB")) {
+            rightTraffict = rightData.toString().replace("ZiB", "").toFloat() * 1024 * 1024 * 1024 * 1024 * 1024 * 1024 * 1024;
+        } else if (rightData.toString().endsWith("YiB")) {
+            rightTraffict = rightData.toString().replace("YiB", "").toFloat() * 1024 * 1024 * 1024 * 1024 * 1024 * 1024 * 1024 * 1024;
+        } else if (rightData.toString().endsWith("B")) {
+            rightTraffict = rightData.toString().replace("B", "").toFloat();
+        }
+        return leftTraffict < rightTraffict;
+    }
+
     int c;
 
     if (isSortLocaleAware()) {
