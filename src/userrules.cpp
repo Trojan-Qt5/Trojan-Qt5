@@ -18,11 +18,12 @@ UserRules::UserRules(QWidget *parent) :
     userRule = configDir + "/user-rule.txt";
 
     QFile file(userRule);
+    file.open(QIODevice::ReadOnly);
     QTextStream in(&file);
     in.setCodec(QTextCodec::codecForName("utf-8"));
     ui->setupUi(this);
     connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &UserRules::onAccepted);
-    ui->textEdit->setText(file.readAll());
+    ui->textEdit->setText(in.readAll());
     file.close();
 }
 

@@ -33,6 +33,8 @@ QT_EDITION = OpenSource
 
 CONFIG += c++11
 CONFIG += sdk_no_version_check
+# Sanitizer
+#CONFIG += sanitizer sanitize_address
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -162,7 +164,7 @@ unix:!mac {
     shortcutfiles.files = src/trojan-qt5.desktop
     shortcutfiles.path = $$PREFIX/share/applications/
     data.files += resources/icons/trojan-qt5.png
-    data.path = $$PREFIX/share/hicolor/512x512/trojan-qt5.png
+    data.path = $$PREFIX/share/hicolor/512x512/
 
     INSTALLS += shortcutfiles
     INSTALLS += data
@@ -355,6 +357,3 @@ RESOURCES += \
     resources/pac.qrc \
     resources/pem.qrc \
     resources/translations.qrc
-
-DISTFILES += \
-    src/sysproxy/macos.m
