@@ -213,19 +213,19 @@
     </message>
 </context>
 <context>
-    <name>EditDialog</name>
+    <name>TrojanEditDialog</name>
     <message>
-        <location filename="../../ui/editdialog.ui" line="14"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="14"/>
         <source>Profile Editor</source>
         <translation>設定檔編輯器</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="89"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="89"/>
         <source>Verify Hostname</source>
         <translation>驗證主機名</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="195"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="195"/>
         <source>SNI</source>
         <translation type="unfinished"></translation>
     </message>
@@ -266,47 +266,47 @@
         <translation type="vanished">本機位址</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="103"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="103"/>
         <source>Password</source>
         <translation>密碼</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="61"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="61"/>
         <source>Server Port</source>
         <translation>伺服器埠</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="51"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="51"/>
         <source>Server Address</source>
         <translation>伺服器位址</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="41"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="41"/>
         <source>Profile Name</source>
         <translation>設定檔名稱</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="205"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="205"/>
         <source>TCP Fast Open</source>
         <translation>TCP快速打開</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="82"/>
-        <location filename="../../ui/editdialog.ui" line="96"/>
-        <location filename="../../ui/editdialog.ui" line="127"/>
-        <location filename="../../ui/editdialog.ui" line="141"/>
-        <location filename="../../ui/editdialog.ui" line="155"/>
-        <location filename="../../ui/editdialog.ui" line="219"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="82"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="96"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="127"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="141"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="155"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="219"/>
         <source>Enable</source>
         <translation>開啟</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="188"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="188"/>
         <source>Auto connect on application start</source>
         <translation>程式啟動時自動連線</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="75"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="75"/>
         <source>Verify Certificate</source>
         <translation>驗證證書</translation>
     </message>
@@ -319,17 +319,17 @@
         <translation type="vanished">SOCKS5 + HTTP</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="148"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="148"/>
         <source>Reuse Port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="120"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="120"/>
         <source>Reuse Session</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="134"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="134"/>
         <source>Session Ticket</source>
         <translation type="unfinished"></translation>
     </message>
@@ -342,12 +342,12 @@
         <translation type="vanished">記錄檔等級</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="175"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="175"/>
         <source>Automation</source>
         <translation>自動化</translation>
     </message>
     <message>
-        <location filename="../../ui/editdialog.ui" line="212"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="212"/>
         <source>Reset Data Usage after</source>
         <translation>重設資料使用量之後</translation>
     </message>

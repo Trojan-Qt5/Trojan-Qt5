@@ -16,6 +16,8 @@ public:
 
     void modify(QString filename);
 
+    QByteArray request(QString url);
+
 public slots:
     void typeModify(QString type);
     void copyPACUrl();

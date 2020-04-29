@@ -14,6 +14,8 @@ public:
 
     QString checkUpdate(QString url, bool useProxy);
 
+    bool isFiltered(QString name);
+
 signals:
     void addUri(QString);
 

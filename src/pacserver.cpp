@@ -6,6 +6,9 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QClipboard>
+#include <QNetworkAccessManager>
+#include <QNetworkProxy>
+#include <QNetworkReply>
 
 #include "confighelper.h"
 #include "userrules.h"
@@ -50,6 +53,24 @@ PACServer::PACServer()
 PACServer::~PACServer()
 {}
 
+QByteArray PACServer::request(QString url)
+{
+    ConfigHelper *conf = new ConfigHelper(configFile);
+
+    QNetworkAccessManager* manager = new QNetworkAccessManager();
+    QNetworkRequest request(url);
+    QNetworkProxy proxy;
+    proxy.setType(QNetworkProxy::Socks5Proxy);
+    proxy.setHostName("127.0.0.1");
+    proxy.setPort(conf->getSocks5Port());
+    manager->setProxy(proxy);
+    QNetworkReply* reply = manager->sendCustomRequest(request, "GET", "");
+    QEventLoop loop;
+    connect(reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
+    loop.exec();
+    return reply->readAll();
+}
+
 void PACServer::copyPACUrl()
 {
     ConfigHelper *conf = new ConfigHelper(configFile);
@@ -72,10 +93,21 @@ void PACServer::editUserRule()
 
 QJsonDocument PACServer::loadRules()
 {
-    QFile file(gfwList);
-    file.open(QIODevice::ReadOnly);
-    QStringList list = QString::fromUtf8(QByteArray::fromBase64(file.readAll())).split("\n");
-    file.close();
+    ConfigHelper *conf = new ConfigHelper(configFile);
+    QStringList list;
+
+    if (conf->getGfwlistUrl() == 0) {
+        list = QString::fromUtf8(QByteArray::fromBase64(request("https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt"))).split("\n");
+    }
+    else if (conf->getGfwlistUrl() == 1) {
+        list = QString::fromUtf8(QByteArray::fromBase64(request("https://raw.githubusercontent.com/Loukky/gfwlist-by-loukky/master/gfwlist.txt"))).split("\n");
+    }
+    else if (conf->getGfwlistUrl() == 2) {
+        QFile file(gfwList);
+        file.open(QIODevice::ReadOnly);
+        QStringList list = QString::fromUtf8(QByteArray::fromBase64(file.readAll())).split("\n");
+        file.close();
+    }
     QStringList filedata;
     for (int i=0; i<list.length(); i++) {
         if (!list[i].startsWith("!") && !list[i].startsWith("["))
@@ -133,6 +165,7 @@ void PACServer::typeModify(QString type)
 void PACServer::modify(QString filename)
 {
     ConfigHelper *conf = new ConfigHelper(configFile);
+
     if (QFile::exists(pac)) {
         QFile::remove(pac);
     }

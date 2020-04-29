@@ -13,6 +13,8 @@ SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
     helper->readGeneralSettings();
 
     ui->toolbarStyleComboBox->setCurrentIndex(helper->getToolbarStyle());
+    ui->logLevelComboBox->setCurrentIndex(helper->getLogLevel());
+    //ui->haproxyModeComboBox->setCurrentIndex();
     ui->hideCheckBox->setChecked(helper->isHideWindowOnStartup());
     ui->startAtLoginCheckbox->setChecked(helper->isStartAtLogin());
     ui->oneInstanceCheckBox->setChecked(helper->isOnlyOneInstance());
@@ -20,19 +22,34 @@ SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
     ui->enableNotificationCheckBox->setChecked(helper->isEnableNotification());
     ui->hideDockIconCheckBox->setChecked(helper->isHideDockIcon());
     ui->nativeMenuBarCheckBox->setChecked(helper->isNativeMenuBar());
+    ui->enableHttpProxyCheckBox->setChecked(helper->isEnableHttpMode());
+    ui->enableIPV6SupportCheckBox->setChecked(helper->isEnableIpv6Support());
+    ui->shareOverLANCheckBox->setChecked(helper->isShareOverLan());
+    ui->socks5PortLineEdit->setText(QString::number(helper->getSocks5Port()));
+    ui->httpPortLineEdit->setText(QString::number(helper->getHttpPort()));
+    ui->pacPortLineEdit->setText(QString::number(helper->getPACPort()));
+    ui->haproxyPortLineEdit->setText(QString::number(helper->getHaproxyPort()));
+    ui->haproxyStatusPortLineEdit->setText(QString::number(helper->getHaproxyStatusPort()));
+    ui->forwardProxyCheckBox->setChecked(helper->isEnableForwardProxy());
+    ui->forwardProxyTypeComboBox->setCurrentIndex(helper->getForwardProxyType());
+    ui->forwardProxyIpAddressLineEdit->setText(helper->getForwardProxyAddress());
+    ui->forwardProxyPortLineEdit->setText(QString::number(helper->getForwardProxyPort()));
+    ui->forwardProxyAuthenticationCheckBox->setChecked(helper->isEnableForwardProxyAuthentication());
+    ui->forwardProxyUsername->setText(helper->getForwardProxyUsername());
+    ui->forwardProxyPassword->setText(helper->getForwardProxyPassword());
+    ui->gfwlistUpdateUrlComboBox->setCurrentIndex(helper->getGfwlistUrl());
+    ui->updateUserAgentLineEdit->setText(helper->getUpdateUserAgent());
+    ui->filterKeywordLineEdit->setText(helper->getFilterKeyword());
+    ui->trojanBackendComboBox->setCurrentIndex(helper->getTrojanBackend());
+    ui->tlsFingerprintComboBox->setCurrentIndex(helper->getFLSFingerPrint());
+    ui->enableAPICheckBox->setChecked(helper->isEnableTrojanAPI());
+    ui->enableRouterCheckBox->setChecked(helper->isEnableTrojanRouter());
+    ui->apiPortLineEdit->setText(QString::number(helper->getTrojanAPIPort()));
+    ui->certLineEdit->setText(helper->getTrojanCertPath());
+    ui->cipherLineEdit->setText(helper->getTrojanCipher());
+    ui->cipherTLS13LineEdit->setText(helper->getTrojanCipherTLS13());
 
     connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &SettingsDialog::onAccepted);
-    connect(ui->toolbarStyleComboBox, &QComboBox::currentTextChanged, this, &SettingsDialog::onChanged);
-    connect(ui->hideCheckBox, &QCheckBox::stateChanged, this, &SettingsDialog::onChanged);
-    connect(ui->startAtLoginCheckbox, &QCheckBox::stateChanged, this, &SettingsDialog::onChanged);
-    connect(ui->oneInstanceCheckBox, &QCheckBox::stateChanged, this, &SettingsDialog::onChanged);
-    connect(ui->availabilityCheckBox, &QCheckBox::stateChanged, this, &SettingsDialog::onChanged);
-    connect(ui->enableNotificationCheckBox, &QCheckBox::stateChanged, this, &SettingsDialog::onChanged);
-    connect(ui->hideDockIconCheckBox, &QCheckBox::stateChanged, this, &SettingsDialog::onChanged);
-    connect(ui->nativeMenuBarCheckBox, &QCheckBox::stateChanged, this, &SettingsDialog::onChanged);
-
-    ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
-
     this->adjustSize();
 }
 
@@ -59,7 +76,34 @@ void SettingsDialog::onAccepted()
                                ui->availabilityCheckBox->isChecked(),
                                ui->enableNotificationCheckBox->isChecked(),
                                ui->hideDockIconCheckBox->isChecked(),
-                               ui->nativeMenuBarCheckBox->isChecked());
+                               ui->nativeMenuBarCheckBox->isChecked(),
+                               ui->logLevelComboBox->currentIndex(),
+                               ui->enableHttpProxyCheckBox->isChecked(),
+                               ui->enableIPV6SupportCheckBox->isChecked(),
+                               ui->shareOverLANCheckBox->isChecked(),
+                               ui->socks5PortLineEdit->text().toInt(),
+                               ui->httpPortLineEdit->text().toInt(),
+                               ui->pacPortLineEdit->text().toInt(),
+                               ui->haproxyPortLineEdit->text().toInt(),
+                               ui->haproxyStatusPortLineEdit->text().toInt(),
+                               ui->forwardProxyCheckBox->isChecked(),
+                               ui->forwardProxyTypeComboBox->currentIndex(),
+                               ui->forwardProxyIpAddressLineEdit->text(),
+                               ui->forwardProxyPortLineEdit->text().toInt(),
+                               ui->forwardProxyAuthenticationCheckBox->isChecked(),
+                               ui->forwardProxyUsername->text(),
+                               ui->forwardProxyPassword->text(),
+                               ui->gfwlistUpdateUrlComboBox->currentIndex(),
+                               ui->updateUserAgentLineEdit->text(),
+                               ui->filterKeywordLineEdit->text(),
+                               ui->trojanBackendComboBox->currentIndex(),
+                               ui->tlsFingerprintComboBox->currentIndex(),
+                               ui->enableAPICheckBox->isChecked(),
+                               ui->enableRouterCheckBox->isChecked(),
+                               ui->apiPortLineEdit->text().toInt(),
+                               ui->certLineEdit->text(),
+                               ui->cipherLineEdit->text(),
+                               ui->cipherTLS13LineEdit->text());
     this->accept();
 }
 

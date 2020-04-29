@@ -1,12 +1,12 @@
-#include "editdialog.h"
-#include "ui_editdialog.h"
-#include "trojanvalidator.h"
+#include "trojaneditdialog.h"
+#include "ui_trojaneditdialog.h"
+#include "generalvalidator.h"
 #include "ip4validator.h"
 #include "portvalidator.h"
 
-EditDialog::EditDialog(Connection *_connection, QWidget *parent) :
+TrojanEditDialog::TrojanEditDialog(Connection *_connection, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::EditDialog),
+    ui(new Ui::TrojanEditDialog),
     connection(_connection)
 {
     ui->setupUi(this);
@@ -26,22 +26,29 @@ EditDialog::EditDialog(Connection *_connection, QWidget *parent) :
     ui->sessionTicketCheckBox->setChecked(connection->profile.sessionTicket);
     ui->reusePortCheckBox->setChecked(connection->profile.reusePort);
     ui->tcpFastOpenCheckBox->setChecked(connection->profile.tcpFastOpen);
+    ui->muxCheckBox->setChecked(connection->profile.mux);
+    ui->websocketCheckBox->setChecked(connection->profile.websocket);
+    ui->websocketDoubleTLSCheckBox->setChecked(connection->profile.websocketDoubleTLS);
+    ui->websocketPathEdit->setText(connection->profile.websocketPath);
+    ui->websocketHostnameEdit->setText(connection->profile.websocketHostname);
+    ui->websocketObfsPasswordEdit->setText(connection->profile.websocketObfsPassword);
     ui->resetDateEdit->setDate(connection->profile.nextResetDate);
     ui->resetDateEdit->setMinimumDate(QDate::currentDate());
     ui->autoStartCheckBox->setChecked(connection->profile.autoStart);
 
-    connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &EditDialog::save);
+    connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &TrojanEditDialog::save);
 
     this->adjustSize();
 }
 
-EditDialog::~EditDialog()
+TrojanEditDialog::~TrojanEditDialog()
 {
     delete ui;
 }
 
-void EditDialog::save()
+void TrojanEditDialog::save()
 {
+    connection->profile.type = "trojan";
     connection->profile.name = ui->nameEdit->text();
     connection->profile.serverAddress = ui->serverAddrEdit->text().trimmed();
     connection->profile.serverPort = ui->serverPortEdit->text().toUShort();
@@ -51,6 +58,11 @@ void EditDialog::save()
     connection->profile.sessionTicket = ui->sessionTicketCheckBox->isChecked();
     connection->profile.reusePort = ui->reusePortCheckBox->isChecked();
     connection->profile.tcpFastOpen = ui->tcpFastOpenCheckBox->isChecked();
+    connection->profile.mux = ui->muxCheckBox->isChecked();
+    connection->profile.websocket = ui->websocketCheckBox->isChecked();
+    connection->profile.websocketDoubleTLS = ui->websocketDoubleTLSCheckBox->isChecked();
+    connection->profile.websocketPath = ui->websocketPathEdit->text();
+    connection->profile.websocketObfsPassword = ui->websocketObfsPasswordEdit->text();
     connection->profile.password = ui->pwdEdit->text();
     connection->profile.sni = ui->sniEdit->text();
     connection->profile.nextResetDate = ui->resetDateEdit->date();

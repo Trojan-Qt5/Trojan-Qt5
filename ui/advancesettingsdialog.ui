@@ -192,6 +192,11 @@
       </item>
       <item>
        <property name="text">
+        <string>leastconn</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
         <string>source</string>
        </property>
       </item>

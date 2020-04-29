@@ -22,6 +22,7 @@ A cross-platform Trojan GUI client
 - Subscription Support
 - Import Servers from many methods
 - Mutiple servers Support
+- SSR,Trojan Support
 - ....and more
 
 ## Install
@@ -54,20 +55,27 @@ This project is based on:
 
 - [libQtShadowsocks](https://github.com/shadowsocks/libQtShadowsocks) LGPL-3.0
 - [Shadowsocks-qt5](https://github.com/shadowsocks/shadowsocks-qt5) LGPL-3.0
-- [Shadowsocks(RR)-Windows]() GPL-3.0
+- [Shadowsocks(RR)-Windows](https://github.com/shadowsocksrr/shadowsocksr-csharp) GPL-3.0
+- [ShadowsocksR-uvw](https://github.com/qv2ray/shadowsocksr-uvw) GPL-3.0
+- [Qv2ray](https://github.com/qv2ray/qv2ray) GPL-3.0
+- [go-tun2socks](https://github.com/eycorsican/go-tun2socks) MIT
 - [trojan](https://github.com/trojan-gfw/trojan) GPL-3.0
 - [trojan-qt](https://github.com/trojan-gfw/trojan-qt) GPL-3.0
+- [trojan-go](https://github.com/p4gefau1t/trojan-go/) GPL-3.0
 - [Privoxy](https://www.privoxy.org) GPL-2.0
 - [sysproxy](https://github.com/Noisyfox/sysproxy/) Apache-2.0
+- [qbittorrent](https://github.com/qbittorrent/qBittorrent) GPL-2.0
 
-Credits:  
-
-**UI Design**
+## UI Design
 - [@eejworks]()
 - [@erdongchan]()
 - [westworldss]()
-- [shadowsocksRR-windows]()
+- [MieLink](https://www.mielink.cc)
+- [shadowsocksRR-windows](https://github.com/shadowsocksrr/shadowsocksr-csharp)
+- [Qv2ray](https://github.com/qv2ray/qv2ray)
+
+Trojan-Qt5's icon is owned by [mielink] and [erdongchan], any unanthorized usage will be blamed.
 
 ## Sponsors
 ![MieLink](https://i.imgur.com/XmvuOOi.png)
-Use this [link](https://www.yangjuan.network/register?aff=COELWU) to get 10RMB initial balance!
+Use this [link](http://rakuten-co-jp.club/register?aff=COELWU) to get 10RMB initial balance!

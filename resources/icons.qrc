@@ -32,5 +32,10 @@
         <file>icons/trojan-qt5_pac.png</file>
         <file>icons/trojan-qt5_global.png</file>
         <file>icons/trojan-qt5_advance.png</file>
+        <file>icons/ssr_off.png</file>
+        <file>icons/ssr_on.png</file>
+        <file>icons/mielink.png</file>
+        <file>icons/donation.png</file>
+        <file>icons/trojan-qt5_new.png</file>
     </qresource>
 </RCC>

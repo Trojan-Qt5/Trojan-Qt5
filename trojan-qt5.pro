@@ -23,18 +23,19 @@ QT       += core gui network httpserver
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-RC_ICONS = $$PWD/resources/icons/trojan-qt5.ico
-ICON = $$PWD/resources/icons/trojan-qt5.icns
+RC_ICONS = $$PWD/resources/icons/trojan-qt5_new.ico
+ICON = $$PWD/resources/icons/trojan-qt5_new.icns
 
 TARGET = trojan-qt5
 
 # Use OpenSource Version of Qt5
 QT_EDITION = OpenSource
 
-CONFIG += c++11
+CONFIG += c++17
 CONFIG += sdk_no_version_check
+#CONFIG + =link_pkgconfig
 # Sanitizer
-#CONFIG += sanitizer sanitize_address
+CONFIG += sanitizer sanitize_address
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -43,7 +44,7 @@ CONFIG += sdk_no_version_check
 #DEFINES += QT_DEPRECATED_WARNINGS
 
 # Define App Version
-DEFINES += "APP_VERSION=\"\\\"1.0.0\\\"\""
+DEFINES += "APP_VERSION=\"\\\"1.0.0 Insider Preview\\\"\""
 
 # Trojan
 #DEFINES += ENABLE_MYSQL
@@ -53,7 +54,7 @@ DEFINES += ENABLE_SSL_KEYLOG
 #DEFINES += ENABLE_NAT
 DEFINES += ENABLE_TLS13_CIPHERSUITES
 #DEFINES += ENABLE_REUSE_PORT
-
+DEFINES += TROJAN_USE_EXTERNAL_LOGGER
 
 # You can also make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -65,6 +66,9 @@ INCLUDEPATH += $$PWD/src/plog/include
 
 # QtAwesome
 include($$PWD/src/QtAwesome/QtAwesome/QtAwesome.pri)
+
+# ShadowsocksR-uvw
+include($$PWD/src/shadowsocksr-uvw/Shadowsocksr-uvw.pri)
 
 win32 {
     SOURCES += \
@@ -91,7 +95,6 @@ win32 {
     # Otherwise lupdate will not work
     TR_EXCLUDE += C:\TQLibraries\boost_1_72_0\*
 }
-
 mac {
     HEADERS += \
         src/LetsMove/PFMoveApplication.h
@@ -105,14 +108,22 @@ mac {
     INCLUDEPATH += /usr/local/opt/boost/include
     INCLUDEPATH += /usr/local/opt/pcre/include
     INCLUDEPATH += /usr/local/opt/zlib/include
+    INCLUDEPATH += /usr/local/opt/libuv/include
+    INCLUDEPATH += /usr/local/opt/libsodium/include
+    INCLUDEPATH += /usr/local/opt/grpc/include
+    INCLUDEPATH += /usr/local/opt/protobuf/include
     LIBS += -L/usr/local/opt/zbar/lib -lzbar
     LIBS += -L/usr/local/opt/qrencode/lib -lqrencode
     LIBS += -L/usr/local/opt/openssl@1.1/lib -lcrypto -lssl
     LIBS += -L/usr/local/opt/boost/lib -lboost_system
     LIBS += -L/usr/local/opt/zlib/lib -lz
     LIBS += -L/usr/local/opt/pcre/lib -lpcre
+    LIBS += -L/usr/local/opt/libuv/lib -luv
+    LIBS += -L/usr/local/opt/libsodium/lib -lsodium
+    LIBS += -L/usr/local/opt/grpc/lib -lgrpc -lgrpc++ -lgrpc_unsecure -lgrpc++_unsecure -lgpr -lupb
+    LIBS += -L/usr/local/opt/protobuf/lib -lprotobuf
     LIBS += -framework Security -framework Cocoa
-    #LIBS += $$PWD/3rd/tun2socks/tun2socks.a
+    LIBS += $$PWD/3rd/trojan-qt5-libs/trojan-qt5-libs.a
     # For Sparkle Usage
     SOURCES += \
         src/sparkle/AutoUpdater.cpp \
@@ -232,15 +243,19 @@ SOURCES += \
     src/logger.cpp \
     src/midman.cpp \
     src/pacserver.cpp \
+    src/privilegeshelper.cpp \
     src/privoxythread.cpp \
     src/resourcehelper.cpp \
+    src/routetablehelper.cpp \
     src/servicethread.cpp \
     src/addresstester.cpp \
     src/confighelper.cpp \
     src/connection.cpp \
     src/connectionitem.cpp \
     src/connectiontablemodel.cpp \
-    src/editdialog.cpp \
+    src/speedplotview.cpp \
+    src/speedwidget.cpp \
+    src/trojaneditdialog.cpp \
     src/ip4validator.cpp \
     src/main.cpp \
     src/mainwindow.cpp \
@@ -253,12 +268,12 @@ SOURCES += \
     src/systemproxyhelper.cpp \
     src/tqprofile.cpp \
     src/tqsubscribe.cpp \
-    src/trojanvalidator.cpp \
+    src/generalvalidator.cpp \
+    src/trojangoapi.cpp \
     src/tun2socksthread.cpp \
     src/urihelper.cpp \
     src/uriinputdialog.cpp \
     src/userrules.cpp \
-    src/advancesettingsdialog.cpp \
     src/subscribedialog.cpp \
     src/trojan/src/core/authenticator.cpp \
     src/trojan/src/core/config.cpp \
@@ -275,7 +290,13 @@ SOURCES += \
     src/trojan/src/session/session.cpp \
     src/trojan/src/session/udpforwardsession.cpp \
     src/trojan/src/ssl/ssldefaults.cpp \
-    src/trojan/src/ssl/sslsession.cpp
+    src/trojan/src/ssl/sslsession.cpp \
+    src/ssreditdialog.cpp \
+    src/utils.cpp \
+    src/speedplot.cpp \
+    src/aboutdialog.cpp \
+    src/clickablelabel.cpp \
+    ui/sseditdialog.cpp
 
 HEADERS += \
     src/connectionsortfilterproxymodel.h \
@@ -283,15 +304,19 @@ HEADERS += \
     src/logger.h \
     src/midman.h \
     src/pacserver.h \
+    src/privilegeshelper.h \
     src/privoxythread.h \
     src/resourcehelper.h \
+    src/routetablehelper.h \
     src/servicethread.h \
     src/addresstester.h \
     src/confighelper.h \
     src/connection.h \
     src/connectionitem.h \
     src/connectiontablemodel.h \
-    src/editdialog.h \
+    src/speedplotview.hpp \
+    src/speedwidget.hpp \
+    src/trojaneditdialog.h \
     src/ip4validator.h \
     src/mainwindow.h \
     src/portvalidator.h \
@@ -304,12 +329,12 @@ HEADERS += \
     src/tqprofile.h \
     src/statusnotifier.h \
     src/tqsubscribe.h \
-    src/trojanvalidator.h \
+    src/generalvalidator.h \
+    src/trojangoapi.h \
     src/tun2socksthread.h \
     src/urihelper.h \
     src/uriinputdialog.h \
     src/userrules.h \
-    src/advancesettingsdialog.h \
     src/subscribedialog.h \
     src/trojan/src/core/authenticator.h \
     src/trojan/src/core/config.h \
@@ -327,23 +352,46 @@ HEADERS += \
     src/trojan/src/session/udpforwardsession.h \
     src/trojan/src/ssl/ssldefaults.h \
     src/trojan/src/ssl/sslsession.h \
-    #3rd/tun2socks/tun2socks.h
+    3rd/trojan-qt5-libs/trojan-qt5-libs.h \
+    src/ssreditdialog.h \
+    src/utils.h \
+    src/speedplot.h \
+    src/aboutdialog.h \
+    src/clickablelabel.h \
+    ui/sseditdialog.h
 
 FORMS += \
+    ui/aboutdialog.ui \
+    ui/settingsdialog.ui \
     ui/advancesettingsdialog.ui \
-    ui/editdialog.ui \
     ui/mainwindow.ui \
     ui/settingsdialog.ui \
     ui/sharedialog.ui \
+    ui/speedplot.ui \
+    ui/sseditdialog.ui \
+    ui/ssreditdialog.ui \
     ui/subscribedialog.ui \
+    ui/trojaneditdialog.ui \
     ui/uriinputdialog.ui \
-    ui/userrules.ui
+    ui/userrules.ui \
 
 TRANSLATIONS += \
     resources/i18n/trojan-qt5_zh_CN.ts \
     resources/i18n/trojan-qt5_zh_TW.ts \
     resources/i18n/trojan-qt5_zh_SG.ts
 
+PROTOS = $$PWD/src/trojangoapi.proto
+
+include($$PWD/src/protobuf.pri)
+include($$PWD/src/grpc.pri)
+
+INSTALLS += headers
+
+headers.path = /usr/include
+headers.CONFIG = no_check_exist
+headers.files = $${PROTOBUF_HEADERS}
+
+INCLUDEPATH += $$PWD/3rd/tun2socks
 INCLUDEPATH += $$PWD/3rd/yaml-cpp/include
 INCLUDEPATH += $$PWD/src
 
@@ -353,6 +401,7 @@ qnx: target.path = /tmp/$${TARGET}/bin
 RESOURCES += \
     resources/bin.qrc \
     resources/conf.qrc \
+    resources/credits.qrc \
     resources/icons.qrc \
     resources/pac.qrc \
     resources/pem.qrc \

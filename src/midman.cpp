@@ -3,20 +3,28 @@
 MidMan::MidMan()
 {}
 
+Connection* MidMan::connection = new Connection();
+
+Connection* MidMan::statusConnection = new Connection(TQProfile());
+
 MidMan::~MidMan()
 {
     delete MidMan::connection;
+    delete MidMan::statusConnection;
     MidMan::connection = nullptr;
 }
 
-Connection* MidMan::connection = new Connection();
-
 void MidMan::setConnection(Connection *con)
 {
-    connection = con;
+    MidMan::connection = con;
 }
 
 Connection& MidMan::getConnection()
 {
-    return *connection;
+    return *MidMan::connection;
+}
+
+Connection *MidMan::getStatusConnection()
+{
+    return MidMan::statusConnection;
 }

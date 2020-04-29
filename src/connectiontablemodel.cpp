@@ -42,18 +42,20 @@ QVariant ConnectionTableModel::headerData(int section, Qt::Orientation orientati
     case 0:
         return QVariant(tr("Name"));
     case 1:
-        return QVariant(tr("Server"));
+        return QVariant(tr("Type"));
     case 2:
-        return QVariant(tr("Status"));
+        return QVariant(tr("Server"));
     case 3:
-        return QVariant(tr("Latency"));
+        return QVariant(tr("Status"));
     case 4:
-        return QVariant(tr("Term Usage"));
+        return QVariant(tr("Latency"));
     case 5:
-        return QVariant(tr("Total Usage"));
+        return QVariant(tr("Term Usage"));
     case 6:
-        return QVariant(tr("Reset Date"));
+        return QVariant(tr("Total Usage"));
     case 7:
+        return QVariant(tr("Reset Date"));
+    case 8:
         return QVariant(tr("Last Used"));
     default:
         return QVariant();
@@ -126,7 +128,7 @@ void ConnectionTableModel::connectConnections(TQProfile profile)
     for (auto &i : items) {
         Connection *con = i->getConnection();
         if (con->isValid()) {
-            if (con->getProfile().toUri() == profile.toUri()) {
+            if (con->getProfile().equals(profile)) {
                 disconnectConnections();
                 con->start();
             }

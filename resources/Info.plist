@@ -11,7 +11,7 @@
 	<key>CFBundleExecutable</key>
 	<string>trojan-qt5</string>
 	<key>CFBundleIconFile</key>
-	<string>trojan-qt5.icns</string>
+	<string>trojan-qt5_new.icns</string>
 	<key>CFBundleGetInfoString</key>
 	<string>Trojan-Qt5</string>
 	<key>CFBundleIdentifier</key>
@@ -23,11 +23,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>Trojan-Qt5 0.0.8</string>
+	<string>Trojan-Qt5 1.0.0</string>
 	<key>CFBundleSignature</key>
 	<string>trojan-qt5</string>
 	<key>CFBundleVersion</key>
-	<string>0.0.8</string>
+	<string>1.0.0</string>
 	<key>CSResourcesFileMapped</key>
 	<true/>
 	<key>NSRequiresAquaSystemAppearance</key>

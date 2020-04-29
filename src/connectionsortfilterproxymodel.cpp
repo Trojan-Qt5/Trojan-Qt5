@@ -16,7 +16,7 @@ bool ConnectionSortFilterProxyModel::lessThan(const QModelIndex &left, const QMo
     }
 
     //process latency
-    if (left.column() == 3) {
+    if (left.column() == 4) {
         float leftLatency = 0;
         float rightLatency = 0;
         if (leftData.toString().endsWith("ms")) {
@@ -37,7 +37,7 @@ bool ConnectionSortFilterProxyModel::lessThan(const QModelIndex &left, const QMo
     }
 
     //process traffic
-    if (left.column() == 3 || left.column() == 4) {
+    if (left.column() == 5 || left.column() == 6) {
         double leftTraffict = 0;
         double rightTraffict = 0;
         if (leftData.toString().endsWith("KiB")) {

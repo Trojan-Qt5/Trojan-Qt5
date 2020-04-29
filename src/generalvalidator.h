@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015-2016 Symeon Huang <hzwhuang@gmail.com>
+ * Copyright (C) 2014-2016 Symeon Huang <hzwhuang@gmail.com>
  *
  * shadowsocks-qt5 is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -16,30 +16,23 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-#ifndef EDITDIALOG_H
-#define EDITDIALOG_H
+#ifndef GENERALVALIDATOR_H
+#define GENERALVALIDATOR_H
+#include <QString>
+#include <QStringList>
 
-#include <QDialog>
-#include "connection.h"
-
-namespace Ui {
-class EditDialog;
-}
-
-class EditDialog : public QDialog
+class GeneralValidator
 {
-    Q_OBJECT
-
 public:
-    explicit EditDialog(Connection *_connection, QWidget *parent = 0);
-    ~EditDialog();
+    static bool validateSSR(const QString &input);
+    static bool validateTrojan(const QString &input);
+    static bool validatePort(const QString &port);
 
-private:
-    Ui::EditDialog *ui;
-    Connection *connection;
-
-private slots:
-    void save();
+    /*
+     * Return supported encryption method list at run-time
+     * To avoid repetitive query, please store return result as static.
+     */
+    static QStringList supportedMethodList();
 };
 
-#endif // EDITDIALOG_H
+#endif // SSVALIDATOR_H

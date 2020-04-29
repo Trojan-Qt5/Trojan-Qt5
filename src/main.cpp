@@ -11,6 +11,7 @@
 #include "confighelper.h"
 #include "resourcehelper.h"
 #include "logger.h"
+#include "midman.h"
 
 #include "LetsMove/PFMoveApplication.h"
 
@@ -120,9 +121,12 @@ int main(int argc, char *argv[])
     QCommandLineParser parser;
     parser.addHelpOption();
     parser.addVersionOption();
+    QCommandLineOption noInstanceCheckOption("b",
+                                        "bypass one instance check.");
     QCommandLineOption configFileOption("c",
                                         "specify configuration file.",
                                         "config.ini");
+    parser.addOption(noInstanceCheckOption);
     parser.addOption(configFileOption);
     parser.process(a);
 
@@ -149,9 +153,10 @@ int main(int argc, char *argv[])
     setupDockClickHandler();
 #endif
 
-    if (conf.isOnlyOneInstance() && w.isInstanceRunning()) {
-        return -1;
-    }
+    bool bypassOneInstance = parser.isSet(noInstanceCheckOption);
+    if (!bypassOneInstance)
+        if (conf.isOnlyOneInstance() && w.isInstanceRunning())
+            return -1;
 
     //we have to start QHttpServer in main otherwise it will not listen
     QHttpServer server;

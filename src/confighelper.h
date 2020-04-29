@@ -50,8 +50,6 @@ public:
      */
     void readGeneralSettings();
 
-    void readAdvanceSettings();
-
     void save(const ConnectionTableModel &model);
 
     void saveSubscribes(QList<TQSubscribe> subscribes);
@@ -83,6 +81,8 @@ public:
     void setStartAtLogin();
 
     /* some functions used to communicate with SettingsDialog */
+    int getFLSFingerPrint() const;
+    QString parseTLSFingerprint(int choice) const;
     int  getToolbarStyle() const;
     int  getLogLevel() const;
     int getSocks5Port() const;
@@ -90,6 +90,23 @@ public:
     int getPACPort() const;
     int getHaproxyPort() const;
     int getHaproxyStatusPort() const;
+    bool isEnableForwardProxy() const;
+    int getForwardProxyType() const;
+    QString getForwardProxyAddress() const;
+    int getForwardProxyPort() const;
+    bool isEnableForwardProxyAuthentication() const;
+    QString getForwardProxyUsername() const;
+    QString getForwardProxyPassword() const;
+    int getGfwlistUrl() const;
+    QString getUpdateUserAgent() const;
+    QString getFilterKeyword() const;
+    int getTrojanBackend() const;
+    bool isEnableTrojanAPI() const;
+    bool isEnableTrojanRouter() const;
+    int getTrojanAPIPort() const;
+    QString getTrojanCertPath() const;
+    QString getTrojanCipher() const;
+    QString getTrojanCipherTLS13() const;
     QString getSystemProxySettings() const;
     bool isTrojanOn() const;
     bool isEnableServerLoadBalance() const;
@@ -106,8 +123,7 @@ public:
     bool isShowToolbar() const;
     bool isShowFilterBar() const;
     bool isNativeMenuBar() const;
-    void setGeneralSettings(int ts, bool hide, bool sal, bool oneInstance, bool cpa, bool en, bool hdi, bool nativeMB);
-    void setAdvanceSettings(int ll, bool hm, bool eis, bool sol, int sp, int hp, int pp, int ap, int hsp);
+    void setGeneralSettings(int ts, bool hide, bool sal, bool oneInstance, bool cpa, bool en, bool hdi, bool nativeMB, int ll, bool hm, bool eis, bool sol, int sp, int hp, int pp, int ap, int hsp, bool efp, int fpt, QString fpa, int fpp, bool efpa, QString fpu, QString fppa, int glu, QString uua, QString fkw, int tb, int fp, bool eta, bool etr, int tap, QString tcp, QString tc, QString tct13);
     void setSystemProxySettings(QString mode);
     void setTrojanOn(bool on);
     void setAutoUpdateSubscribes(bool update);
@@ -138,6 +154,24 @@ private:
     int pacPort;
     int haproxyStatusPort;
     int haproxyPort;
+    bool enableForwardProxy;
+    int forwardProxyType;
+    QString forwardProxyAddress;
+    int forwardProxyPort;
+    bool enableForwardProxyAuthentication;
+    QString forwardProxyUsername;
+    QString forwardProxyPassword;
+    int gfwlistUrl;
+    QString updateUserAgent;
+    QString filterKeyword;
+    bool enableTrojanAPI;
+    bool enableTrojanRouter;
+    int trojanBackend;
+    int fingerprint;
+    int trojanAPIPort;
+    QString trojanCertPath;
+    QString trojanCipher;
+    QString trojanCipherTLS13;
     QString systemProxyMode;
     bool trojanOn;
     bool serverLoadBalance;

@@ -40,6 +40,7 @@ public:
     void onCopyTerminalProxy();
     void onSetProxyToTelegram();
     void onTrojanSubscribeSettings();
+    void showServerSpeedPlot();
 
 signals:
     void toggleConnection(bool);
@@ -88,6 +89,7 @@ private:
     QActionGroup *ModeGroup;
     QActionGroup *ServerGroup;
 
+    QAction *serverSpeedPlot;
     QAction *copyTerminalProxyCommand;
     QAction *setProxyToTelegram;
     QAction *minimiseRestoreAction;

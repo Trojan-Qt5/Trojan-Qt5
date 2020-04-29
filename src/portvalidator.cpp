@@ -1,5 +1,5 @@
 #include "portvalidator.h"
-#include "trojanvalidator.h"
+#include "generalvalidator.h"
 #include "logger.h"
 
 #include <QTcpServer>
@@ -10,7 +10,7 @@ PortValidator::PortValidator(QObject *parent)
 
 QValidator::State PortValidator::validate(QString &input, int &) const
 {
-    if (TrojanValidator::validatePort(input)) {
+    if (GeneralValidator::validatePort(input)) {
         return Acceptable;
     }
     else

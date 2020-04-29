@@ -17,7 +17,7 @@
    <item>
     <widget class="QLabel" name="uriLabel">
      <property name="text">
-      <string>Please input trojan:// URI</string>
+      <string>Please input ssr:// or trojan:// URI</string>
      </property>
     </widget>
    </item>

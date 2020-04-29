@@ -1,5 +1,5 @@
 #include "subscribemanager.h"
-#include "trojanvalidator.h"
+#include "generalvalidator.h"
 #include <QNetworkAccessManager>
 #include <QNetworkProxy>
 #include <QNetworkReply>
@@ -13,7 +13,7 @@ QString SubscribeManager::checkUpdate(QString url, bool useProxy)
 {
     QNetworkAccessManager* manager = new QNetworkAccessManager();
     QNetworkRequest request(url);
-    request.setRawHeader("User-Agent", QString("Trojan-Qt5/%1").arg(APP_VERSION).toUtf8());
+    request.setRawHeader("User-Agent", helper->getUpdateUserAgent().toUtf8().data());
     if (useProxy) {
         QNetworkProxy proxy;
         proxy.setType(QNetworkProxy::Socks5Proxy);
@@ -41,8 +41,23 @@ void SubscribeManager::updateAllSubscribes(bool useProxy)
         decodeRes = decodeRes.replace("\r\n", "\n"); // change \r\n to \n
         QStringList list = decodeRes.split("\n");
         for (int i = 0; i< list.length(); i++)
-            if (TrojanValidator::validate(list[i]))
-                emit addUri(list[i]);
+            if (GeneralValidator::validateSSR(list[i]) || GeneralValidator::validateTrojan(list[i]))
+                if (!isFiltered(TQProfile(list[i]).name))
+                    emit addUri(list[i]);
+        subscribes[i].groupName = TQProfile(list[0]).group;
     }
     helper->saveSubscribes(subscribes);
+}
+
+bool SubscribeManager::isFiltered(QString name)
+{
+    QStringList keywords = helper->getFilterKeyword().split(",");
+    if (keywords.size() == 1 && keywords[0] == "")
+        return false;
+
+    for (int i = 0; i < keywords.size(); i++)
+        if (name.contains(keywords[i]))
+            return true;
+
+    return false;
 }

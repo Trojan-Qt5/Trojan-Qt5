@@ -1,6 +1,6 @@
 #include "uriinputdialog.h"
 #include "ui_uriinputdialog.h"
-#include "trojanvalidator.h"
+#include "generalvalidator.h"
 #include <QPushButton>
 
 URIInputDialog::URIInputDialog(QWidget *parent) :
@@ -22,7 +22,7 @@ URIInputDialog::~URIInputDialog()
 
 void URIInputDialog::onURIChanged(const QString &str)
 {
-    if (!TrojanValidator::validate(str)) {
+    if (!GeneralValidator::validateSSR(str) && !GeneralValidator::validateTrojan(str)) {
         ui->uriEdit->setStyleSheet("background: pink");
         ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
     }

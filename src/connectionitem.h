@@ -46,6 +46,7 @@ signals:
 private:
     Connection *con;
 
+    static QString convertType(TQProfile profile);
     static QColor convertStatusToColor(const bool isRunning);
     static QColor convertLatencyToColor(const int latency);
     static QString convertLatencyToString(const int latency);

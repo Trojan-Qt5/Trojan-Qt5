@@ -12,9 +12,11 @@ public:
 
     static void setConnection(Connection*);
     static Connection& getConnection();
+    static Connection* getStatusConnection();
 
 private:
     static Connection *connection;
+    static Connection *statusConnection;
 
 };
 

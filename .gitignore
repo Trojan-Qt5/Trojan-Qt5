@@ -1,5 +1,10 @@
 *.user
 *.autosave
 *.cmake
+tun2socks.h
+tun2socks.a
+trojan-qt5-libs.a
+trojan-qt5-libs.h
 .DS_Store
 build
+wss.txt

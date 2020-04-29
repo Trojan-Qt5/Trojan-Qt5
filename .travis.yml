@@ -4,13 +4,16 @@ matrix:
   include:
     - os: osx
       osx_image: xcode11
-      env: BADGE=osx
+      env: 
+        - BADGE=osx
+        - _TROJAN_QT5_BUILD_INFO_="Trojan-Qt5 build from Travis-CI"
     - os: linux
       dist: xenial
       sudo: required
       env: 
         - BADGE=linux
         - QT_CI_PACKAGES=qt.qt5.5132.gcc_64,qt.qt5.5132.qtwebengine PATH="$TRAVIS_BUILD_DIR/Qt/5.13.2/gcc_64/bin:${PATH}"
+        - _TROJAN_QT5_BUILD_INFO_="Trojan-Qt5 build from Travis-CI"
       addons:
         apt:
           packages:
@@ -66,10 +69,10 @@ install:
       make -j$(nproc) >/dev/null 2>&1;
       sudo make install >/dev/null 2>&1;
       cd ..;
-      echo "Installing openssl 1.1.1f...";
-      wget https://www.openssl.org/source/openssl-1.1.1f.tar.gz;
-      tar -xf openssl-1.1.1f.tar.gz;
-      cd openssl-1.1.1f;
+      echo "Installing openssl 1.1.1g...";
+      wget https://www.openssl.org/source/openssl-1.1.1g.tar.gz;
+      tar -xf openssl-1.1.1g.tar.gz;
+      cd openssl-1.1.1g;
       ./config --prefix=/usr/local/openssl --openssldir=/usr/local/openssl shared zlib >/dev/null 2>&1;
       make -j$(nproc) >/dev/null 2>&1;
       sudo make install >/dev/null 2>&1;
@@ -82,9 +85,27 @@ install:
       ./b2 --with-system --with-program_options -j$(nproc);
       sudo ./b2 install >/dev/null 2>&1;
       cd ..;
+      echo "Installing libuv";
+      wget -O libuv-1.37.0.zip https://github.com/libuv/libuv/archive/v1.37.0.zip;
+      unzip libuv-1.37.0.zip;
+      cd libuv-1.37.0;
+      mkdir build && cd build;
+      cmake -D CMAKE_INSTALL_PREFIX=/usr/local/libuv ..;
+      make -j$(nproc) >/dev/null 2>&1;
+      sudo make install >/dev/null 2>&1;
+      cd ..;
+      echo "Installing libsodium";
+      wget -O https://github.com/jedisct1/libsodium/releases/download/1.0.18-RELEASE/libsodium-1.0.18.tar.gz;
+      tar -zxf libsodium-1.0.18.tar.gz;
+      cd libsodium-1.0.18;
+      ./configure --prefix=/usr/local/libsodium;
+      make -j$(nproc) >/dev/null 2>&1;
+      sudo make install >/dev/null 2>&1;
+      cd ..;
+      
     fi
   - if [ "$BADGE" = "osx" ]; then    
-      brew install zbar qrencode boost openssl@1.1 zlib pcre python3;
+      brew install zbar qrencode boost openssl@1.1 zlib pcre python3 libsodium libuv grpc;
       brew reinstall https://raw.githubusercontent.com/Homebrew/homebrew-core/89bf3a54383d884f8b8511c6237325dd5b5ae6ba/Formula/qt.rb --verbose;
       cp -r framework/Sparkle.framework /usr/local/Cellar/qt/5.13.1/lib;
       cp -r framework/LetsMove.framework /usr/local/Cellar/qt/5.13.1/lib;
