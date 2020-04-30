@@ -61,7 +61,9 @@ const QString& Connection::getName() const
 QByteArray Connection::getURI(QString type) const
 {
     QString uri = "";
-    if (type == "ssr")
+    if (type == "ss")
+        uri = profile.toSSUri();
+    else if (type == "ssr")
         uri = profile.toSSRUri();
     else if (type == "trojan")
         uri = profile.toTrojanUri();
@@ -174,7 +176,18 @@ void Connection::start()
     //set running status to true before we start proxy
     running = true;
 
-    if (profile.type == "ssr") {
+    if (profile.type == "ss") {
+        QString clientAddr = conf->isEnableIpv6Support() ? (conf->isShareOverLan() ? "::" : "::1") : (conf->isShareOverLan() ? "0.0.0.0" : "127.0.0.1");
+        clientAddr += ":" + QString::number(conf->getSocks5Port());
+        QString serverAddr = profile.serverAddress + ":" + QString::number(profile.serverPort);
+        startShadowsocksGo(clientAddr.toUtf8().data(),
+                           serverAddr.toUtf8().data(),
+                           profile.method.toUtf8().data(),
+                           profile.password.toUtf8().data(),
+                           profile.plugin.toUtf8().data(),
+                           profile.pluginParam.toUtf8().data());
+    }
+    else if (profile.type == "ssr") {
         ssr->start();
     } else if (profile.type == "trojan" && conf->getTrojanBackend() == 0) {
         service->start();
@@ -227,7 +240,10 @@ void Connection::stop()
         //set the running status to false first. */
         running = false;
 
-        if (profile.type == "ssr") {
+        if (profile.type == "ss") {
+            stopShadowsocksGo();
+        }
+        else if (profile.type == "ssr") {
             ssr->stop();
             ssr = nullptr;
         }

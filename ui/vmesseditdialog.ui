@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>SSEditDialog</class>
- <widget class="QDialog" name="SSEditDialog">
+ <class>VMessEditDialog</class>
+ <widget class="QDialog" name="VMessEditDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>462</width>
-    <height>494</height>
+    <width>735</width>
+    <height>561</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -70,100 +70,13 @@
        </widget>
       </item>
       <item row="4" column="0">
-       <widget class="QLabel" name="label_5">
+       <widget class="QLabel" name="pwdLabel">
         <property name="text">
-         <string>Method</string>
+         <string>UUID</string>
         </property>
        </widget>
       </item>
       <item row="4" column="1">
-       <widget class="QComboBox" name="methodComboBox">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <item>
-         <property name="text">
-          <string>aes-128-ctr</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>aes-192-ctr</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>aes-256-ctr</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>aes-128-cfb</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>aes-192-cfb</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>aes-256-cfb</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>aes-128-gcm</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>aes-192-gcm</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>aes-256-gcm</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>chacha20</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>xchacha20</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>chacha20-ietf</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>chacha20-ietf-poly1305</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>xchacha20-ietf-poly1305</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="pwdLabel">
-        <property name="text">
-         <string>Password</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="1">
        <widget class="QLineEdit" name="pwdEdit">
         <property name="inputMethodHints">
          <set>Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData</set>
@@ -173,28 +86,110 @@
         </property>
        </widget>
       </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Alter ID</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QLineEdit" name="lineEdit"/>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Security</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QComboBox" name="comboBox">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <item>
+         <property name="text">
+          <string>aes-128-gcm</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>chacha20-poly1305</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>auto</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>none</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="7" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>Network</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1">
+       <widget class="QComboBox" name="comboBox_2">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <item>
+         <property name="text">
+          <string>tcp</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>kcp</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ws</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>h2</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>quic</string>
+         </property>
+        </item>
+       </widget>
+      </item>
       <item row="8" column="0">
-       <widget class="QLabel" name="tcpFastOpenLabel">
+       <widget class="QLabel" name="label_4">
         <property name="text">
-         <string>TCP Fast Open</string>
+         <string>Type</string>
         </property>
        </widget>
       </item>
-      <item row="8" column="1">
-       <widget class="QCheckBox" name="tcpFastOpenCheckBox">
-        <property name="text">
-         <string>Enable</string>
-        </property>
-       </widget>
-      </item>
-      <item row="9" column="0">
+      <item row="13" column="0">
        <widget class="QLabel" name="resetDateLabel">
         <property name="text">
          <string>Reset Data Usage after</string>
         </property>
        </widget>
       </item>
-      <item row="9" column="1">
+      <item row="13" column="1">
        <widget class="QDateEdit" name="resetDateEdit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -207,14 +202,14 @@
         </property>
        </widget>
       </item>
-      <item row="10" column="0">
+      <item row="14" column="0">
        <widget class="QLabel" name="autoStartLabel">
         <property name="text">
          <string>Automation</string>
         </property>
        </widget>
       </item>
-      <item row="10" column="1">
+      <item row="14" column="1">
        <widget class="QCheckBox" name="autoStartCheckBox">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -227,25 +222,94 @@
         </property>
        </widget>
       </item>
-      <item row="7" column="0">
-       <widget class="QLabel" name="label">
+      <item row="8" column="1">
+       <widget class="QComboBox" name="comboBox_3">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <item>
+         <property name="text">
+          <string>none</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>http</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="9" column="0">
+       <widget class="QLabel" name="label_5">
         <property name="text">
-         <string>Plugin Options</string>
+         <string>Host</string>
         </property>
        </widget>
       </item>
-      <item row="7" column="1">
-       <widget class="QLineEdit" name="pluginOptionsEdit"/>
-      </item>
-      <item row="6" column="0">
-       <widget class="QLabel" name="label_2">
+      <item row="10" column="0">
+       <widget class="QLabel" name="label_6">
         <property name="text">
-         <string>Plugin</string>
+         <string>Path</string>
         </property>
        </widget>
       </item>
-      <item row="6" column="1">
-       <widget class="QLineEdit" name="pluginEdit"/>
+      <item row="9" column="1">
+       <widget class="QLineEdit" name="lineEdit_2">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;1) http host (,)&lt;/p&gt;&lt;p&gt;2) ws host&lt;/p&gt;&lt;p&gt;3) h2 host (,)&lt;/p&gt;&lt;p&gt;4 QUIC encryption method&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="1">
+       <widget class="QLineEdit" name="lineEdit_3">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;1) ws path&lt;/p&gt;&lt;p&gt;2) h2 path&lt;/p&gt;&lt;p&gt;3) QUIC Encryption Key&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="0">
+       <widget class="QLabel" name="label_7">
+        <property name="text">
+         <string>Transport Layer</string>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="1">
+       <widget class="QComboBox" name="comboBox_4">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <item>
+         <property name="text">
+          <string>none</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>tls</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="12" column="0">
+       <widget class="QLabel" name="label_8">
+        <property name="text">
+         <string>Allow Insecure</string>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="1">
+       <widget class="QCheckBox" name="checkBox">
+        <property name="text">
+         <string>Enable</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -288,7 +352,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>SSEditDialog</receiver>
+   <receiver>VMessEditDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

@@ -158,12 +158,16 @@ unix:!mac {
     INCLUDEPATH += /usr/local/boost/include
     INCLUDEPATH += /usr/local/pcre/include
     INCLUDEPATH += /usr/local/zlib/include
+    INCLUDEPATH += /usr/local/opt/libuv/include
+    INCLUDEPATH += /usr/local/opt/libsodium/include
     LIBS += -L/usr/local/zbar/lib -lzbar
     LIBS += -L/usr/local/qrencode/lib -lqrencode
     LIBS += -L/usr/local/openssl/lib -lcrypto -lssl
     LIBS += -L/usr/local/boost/lib -lboost_system
     LIBS += -L/usr/local/zlib/lib -lz
     LIBS += -L/usr/local/pcre/lib -lpcre
+    LIBS += -L/usr/local/opt/libuv/lib -luv
+    LIBS += -L/usr/local/opt/libsodium/lib -lsodium
     # Otherwise lupdate will not work
     TR_EXCLUDE += /usr/local/boost/*
 
@@ -296,7 +300,8 @@ SOURCES += \
     src/speedplot.cpp \
     src/aboutdialog.cpp \
     src/clickablelabel.cpp \
-    ui/sseditdialog.cpp
+    src/sseditdialog.cpp \
+    ui/vmesseditdialog.cpp
 
 HEADERS += \
     src/connectionsortfilterproxymodel.h \
@@ -358,7 +363,8 @@ HEADERS += \
     src/speedplot.h \
     src/aboutdialog.h \
     src/clickablelabel.h \
-    ui/sseditdialog.h
+    src/sseditdialog.h \
+    ui/vmesseditdialog.h
 
 FORMS += \
     ui/aboutdialog.ui \
@@ -374,6 +380,7 @@ FORMS += \
     ui/trojaneditdialog.ui \
     ui/uriinputdialog.ui \
     ui/userrules.ui \
+    ui/vmesseditdialog.ui
 
 TRANSLATIONS += \
     resources/i18n/trojan-qt5_zh_CN.ts \
@@ -391,7 +398,6 @@ headers.path = /usr/include
 headers.CONFIG = no_check_exist
 headers.files = $${PROTOBUF_HEADERS}
 
-INCLUDEPATH += $$PWD/3rd/tun2socks
 INCLUDEPATH += $$PWD/3rd/yaml-cpp/include
 INCLUDEPATH += $$PWD/src
 

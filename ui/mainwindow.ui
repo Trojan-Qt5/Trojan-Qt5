@@ -270,6 +270,7 @@ QMenu::item:selected {
     <property name="title">
       <string>&amp;Manually</string>
      </property>
+     <addaction name="actionManuallySS"/>
      <addaction name="actionManuallySSR"/>
      <addaction name="actionManuallyTrojan"/>
     </widget>
@@ -362,6 +363,19 @@ QMenu::item:selected {
    <addaction name="menuSettings"/>
    <addaction name="menuHelp"/>
   </widget>
+  <action name="actionManuallySS">
+   <property name="text">
+    <string>&amp;Add SS Manually</string>
+   </property>
+   <property name="toolTip">
+    <string>Add SS connection manually</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
+   </property>
+  </action>
   <action name="actionManuallySSR">
    <property name="text">
     <string>&amp;Add SSR Manually</string>

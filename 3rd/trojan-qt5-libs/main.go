@@ -22,8 +22,9 @@ import (
 	"github.com/p4gefau1t/trojan-go/log"
 	"github.com/p4gefau1t/trojan-go/proxy"
 	_ "github.com/p4gefau1t/trojan-go/proxy"
-
 	_ "github.com/p4gefau1t/trojan-go/proxy/client"
+
+	"github.com/TheWanderingCoel/go-shadowsocks2/cmd/shadowsocks"
 )
 
 const (
@@ -103,6 +104,16 @@ func run_tun2socks(tunName *C.char, tunAddr *C.char, tunGw *C.char, tunDns *C.ch
 	isRunning = true
 
 	<-ctx.Done()
+}
+
+//export startShadowsocksGo
+func startShadowsocksGo(ClientAddr *C.char, ServerAddr *C.char, Cipher *C.char, Password *C.char, Plugin *C.char, PluginOptions *C.char) {
+	shadowsocks.StartGoShadowsocks(C.GoString(ClientAddr), C.GoString(ServerAddr), C.GoString(Cipher), C.GoString(Password), C.GoString(Plugin), C.GoString(PluginOptions))
+}
+
+//export stopShadowsocksGo
+func stopShadowsocksGo() {
+	shadowsocks.StopGoShadowsocks()
 }
 
 //export startTrojanGo

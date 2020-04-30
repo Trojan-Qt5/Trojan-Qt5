@@ -2,8 +2,9 @@
 #include "ui_mainwindow.h"
 
 #include "connection.h"
-#include "trojaneditdialog.h"
+#include "sseditdialog.h"
 #include "ssreditdialog.h"
+#include "trojaneditdialog.h"
 #include "urihelper.h"
 #include "uriinputdialog.h"
 #include "userrules.h"
@@ -128,6 +129,8 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
     connect(ui->actionExportSubscribe, &QAction::triggered,
             this, &MainWindow::onExportTrojanSubscribe);
     connect(ui->actionQuit, &QAction::triggered, qApp, &QApplication::quit);
+    connect(ui->actionManuallySS, &QAction::triggered,
+            this, [this]() { onAddManually("ss"); });
     connect(ui->actionManuallySSR, &QAction::triggered,
             this, [this]() { onAddManually("ssr"); });
     connect(ui->actionManuallyTrojan, &QAction::triggered,
@@ -485,7 +488,9 @@ void MainWindow::onShare()
                 proxyModel->mapToSource(ui->connectionView->currentIndex()).
                 row())->getConnection();
 
-    if (con->getProfile().type == "ssr")
+    if (con->getProfile().type == "ss")
+        uri = con->getURI("ss");
+    else if (con->getProfile().type == "ssr")
         uri = con->getURI("ssr");
     else if (con->getProfile().type == "trojan")
         uri = con->getURI("trojan");
@@ -610,7 +615,10 @@ void MainWindow::onUserRuleSettings()
 void MainWindow::newProfile(QString type, Connection *newCon)
 {
     QDialog *editDlg = new QDialog(this);
-    if (type == "ssr") {
+    if (type == "ss") {
+        editDlg = new SSEditDialog(newCon, this);
+        connect(editDlg, &SSEditDialog::finished, editDlg, &SSREditDialog::deleteLater);
+    } else if (type == "ssr") {
         editDlg = new SSREditDialog(newCon, this);
         connect(editDlg, &SSREditDialog::finished, editDlg, &SSREditDialog::deleteLater);
     } else if (type == "trojan") {
@@ -631,7 +639,11 @@ void MainWindow::editRow(int row)
     Connection *con = model->getItem(row)->getConnection();
 
     QDialog *editDlg = new QDialog(this);
-    if (con->getProfile().type == "ssr") {
+    if (con->getProfile().type == "ss") {
+        editDlg = new SSEditDialog(con, this);
+        connect(editDlg, &SSEditDialog::finished, editDlg, &TrojanEditDialog::deleteLater);
+    }
+    else if (con->getProfile().type == "ssr") {
         editDlg = new SSREditDialog(con, this);
         connect(editDlg, &SSREditDialog::finished, editDlg, &TrojanEditDialog::deleteLater);
     } else if (con->getProfile().type == "trojan") {

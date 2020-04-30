@@ -85,8 +85,9 @@ private:
 
     void testAddressLatency(const QHostAddress &addr);
 
-    friend class TrojanEditDialog;
+    friend class SSEditDialog;
     friend class SSREditDialog;
+    friend class TrojanEditDialog;
     friend class ConfigHelper;
     friend class StatusDialog;
     friend class ConnectionItem;

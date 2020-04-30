@@ -31,6 +31,7 @@ struct TQProfile
 
     TQProfile fromSSRUri(const std::string& trojanUri) const;
     TQProfile fromTrojanUri(const std::string& trojanUri) const;
+    QString toSSUri() const;
     QString toSSRUri() const;
     QString toTrojanUri() const;
 
@@ -67,6 +68,8 @@ struct TQProfile
     QString protocolParam;
     QString obfs;
     QString obfsParam;
+    QString plugin;
+    QString pluginParam;
 
     static const int LATENCY_TIMEOUT = -1;
     static const int LATENCY_ERROR = -2;

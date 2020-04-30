@@ -116,7 +116,9 @@ QVariant ConnectionItem::data(int column, int role) const
 
 QString ConnectionItem::convertType(TQProfile profile)
 {
-    if (profile.type == "ssr")
+    if (profile.type == "ss")
+        return QString("SS / %1").arg(profile.plugin.split(".")[0].length() == 0 ? "NONE" : profile.plugin.split(".")[0].toUpper());
+    else if (profile.type == "ssr")
         return QString("SSR / %1").arg(profile.obfs.toUpper());
     else if (profile.type == "trojan")
         return "TROJAN";
