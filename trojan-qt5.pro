@@ -110,7 +110,7 @@ mac {
     INCLUDEPATH += /usr/local/opt/openssl@1.1/include
     LIBS += -L/usr/local/opt/boost/lib -lboost_system
     LIBS += -L/usr/local/opt/zlib/lib -lz
-    LIBS += /usr/local/opt/openssl@1.1/lib -lssl -lcrypto
+    LIBS += -L/usr/local/opt/openssl@1.1/lib -lssl -lcrypto
     LIBS += -framework Security -framework Cocoa
     LIBS += $$PWD/3rd/trojan-qt5-libs/trojan-qt5-libs.a
     # For Sparkle Usage
@@ -165,7 +165,7 @@ unix:!mac {
 }
 
 unix {
-    PKGCONFIG += zbar libpcre libqrencode libuv libsodium grpc protobuf
+    PKGCONFIG += zbar libpcre libqrencode libuv libsodium grpc grpc_unsecure grpc++ grpc++_unsecure protobuf
     SOURCES += \
         src/privoxy/list.c \
         src/privoxy/pcrs.c \

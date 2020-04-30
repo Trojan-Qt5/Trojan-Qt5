@@ -209,7 +209,7 @@ void Connection::start()
     if (conf->getSystemProxySettings() == "advance") {
         if (PrivilegesHelper::checkPrivileges()) {
             tun2socks->start();
-            rhelper->setRouteTable();
+            rhelper->set();
            }
         else {
             PrivilegesHelper::showWarning();
@@ -265,7 +265,7 @@ void Connection::stop()
 
         if (conf->getSystemProxySettings() == "advance") {
             tun2socks->stop();
-            rhelper->resetRouteTable();
+            rhelper->reset();
          }
 
         //set proxy settings after emit the signal

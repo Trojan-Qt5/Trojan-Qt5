@@ -14,10 +14,12 @@ public:
 
     QString getDefaultGateWay();
 
-    void resetRouteTable();
+    void set();
+    void reset();
 
 public slots:
     void setRouteTable();
+    void resetRouteTable();
 
 private:
     QString serverAddress;

@@ -32,7 +32,7 @@ before_install:
 
 install:
   - if [ "$BADGE" = "linux" ]; then    
-      sudo add-apt-repository ppa:webispy/grpc;
+      sudo add-apt-repository ppa:webispy/grpc -y;
       sudo apt-get install libgl-dev git build-essential g++ python-dev autoconf autotools-dev libicu-dev libbz2-dev checkinstall zlib1g zlib1g-dev python3 pkg-config libprotobuf-dev libgrpc++-dev protobuf-compiler protobuf-c-compiler libsodium-dev libuv-dev -y;
       git clone https://github.com/benlau/qtci.git;
       source qtci/path.env;

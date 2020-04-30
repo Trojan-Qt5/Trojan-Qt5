@@ -10,7 +10,7 @@ RouteTableHelper::RouteTableHelper(QString serverAddress) : serverAddress(server
     thread = new QThread(this);
     this->moveToThread(thread);
     connect(thread, SIGNAL(started()), this, SLOT(setRouteTable()));
-    thread->start();
+    connect(thread, SIGNAL(finished()), this, SLOT(resetRouteTable()));
 }
 
 RouteTableHelper::~RouteTableHelper()
@@ -28,6 +28,16 @@ QString RouteTableHelper::getDefaultGateWay()
     gateway = gateway.remove("\n");
     return gateway;
 #endif
+}
+
+void RouteTableHelper::set()
+{
+    thread->start();
+}
+
+void RouteTableHelper::reset()
+{
+    thread->exit();
 }
 
 void RouteTableHelper::setRouteTable()
@@ -81,5 +91,4 @@ void RouteTableHelper::resetRouteTable()
     for (int i = 0; i < 8; i++)
         QProcess::execute("route -n flush");
     QProcess::execute(QString("route add default %1").arg(gateWay).toUtf8().data());
-    thread->exit();
 }

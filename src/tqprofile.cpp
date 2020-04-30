@@ -63,6 +63,45 @@ bool TQProfile::equals(const TQProfile &profile) const
          && websocketObfsPassword == profile.websocketObfsPassword);
 }
 
+TQProfile TQProfile::fromSSUri(const std::string& ssUri) const
+{
+    std::string prefix = "ss://";
+
+    if (ssUri.length() < 5) {
+        throw std::invalid_argument("SSR URI is too short");
+    }
+
+    if (!QString::fromStdString(ssUri).startsWith("ss://")) {
+        throw std::invalid_argument("Invalid Trojan URI");
+    }
+
+    TQProfile result;
+
+    result.type = "ss";
+
+    //remove the prefix "ss://" from uri
+    std::string uri(ssUri.data() + 5, ssUri.length() - 5);
+
+    size_t atPos = uri.find_first_of('@');
+    if (atPos != std::string::npos) {
+        QString userInfo = QByteArray::fromBase64(QString::fromStdString(uri.substr(0, atPos)).toUtf8().data());
+        result.method = userInfo.split(":")[0];
+        result.password = userInfo.split(":")[1];
+        uri.erase(0, atPos + 1);
+        size_t colonPos = uri.find_last_of(':');
+        if (colonPos == std::string::npos) {
+            throw std::invalid_argument("Can't find the colon separator between hostname and port");
+        }
+        result.serverAddress = QString::fromStdString(uri.substr(0, colonPos));
+        result.serverPort = std::stoi(uri.substr(colonPos + 1));
+        uri.erase(0, colonPos + 4);
+    } else {
+        throw std::invalid_argument("Can't find the at separator between userInfo and hostname");
+    }
+
+    return  result;
+}
+
 TQProfile TQProfile::fromSSRUri(const std::string& ssrUri) const
 {
     std::string prefix = "ssr://";
@@ -241,12 +280,12 @@ QString TQProfile::toTrojanUri() const
 
 QDataStream& operator << (QDataStream &out, const TQProfile &p)
 {
-    out << p.type << p.autoStart << p.serverPort << p.name << p.serverAddress << p.verifyCertificate << p.verifyHostname << p.password << p.sni << p.reuseSession << p.sessionTicket << p.reusePort << p.tcpFastOpen << p.mux << p.websocket << p.websocketDoubleTLS << p.websocketPath << p.websocketHostname << p.websocketObfsPassword << p.method << p.protocol << p.protocolParam << p.obfs << p.obfsParam << p.latency << p.currentUsage << p.totalUsage << p.lastTime << p.nextResetDate;
+    out << p.type << p.autoStart << p.serverPort << p.name << p.serverAddress << p.verifyCertificate << p.verifyHostname << p.password << p.sni << p.reuseSession << p.sessionTicket << p.reusePort << p.tcpFastOpen << p.mux << p.websocket << p.websocketDoubleTLS << p.websocketPath << p.websocketHostname << p.websocketObfsPassword << p.method << p.protocol << p.protocolParam << p.obfs << p.obfsParam << p.plugin << p.pluginParam << p.latency << p.currentUsage << p.totalUsage << p.lastTime << p.nextResetDate;
     return out;
 }
 
 QDataStream& operator >> (QDataStream &in, TQProfile &p)
 {
-    in >> p.type >> p.autoStart >> p.serverPort >> p.name >> p.serverAddress >> p.verifyCertificate >> p.verifyHostname >> p.password >> p.sni >> p.reuseSession >> p.sessionTicket >> p.reusePort >> p.tcpFastOpen >> p.mux >> p.websocket >> p.websocketDoubleTLS >> p.websocketPath >> p.websocketHostname >> p.websocketObfsPassword >> p.method >> p.protocol >> p.protocolParam >> p.obfs >> p.obfsParam >> p.latency >> p.currentUsage >> p.totalUsage >> p.lastTime >> p.nextResetDate;
+    in >> p.type >> p.autoStart >> p.serverPort >> p.name >> p.serverAddress >> p.verifyCertificate >> p.verifyHostname >> p.password >> p.sni >> p.reuseSession >> p.sessionTicket >> p.reusePort >> p.tcpFastOpen >> p.mux >> p.websocket >> p.websocketDoubleTLS >> p.websocketPath >> p.websocketHostname >> p.websocketObfsPassword >> p.method >> p.protocol >> p.protocolParam >> p.obfs >> p.obfsParam >> p.plugin >> p.pluginParam >> p.latency >> p.currentUsage >> p.totalUsage >> p.lastTime >> p.nextResetDate;
     return in;
 }
