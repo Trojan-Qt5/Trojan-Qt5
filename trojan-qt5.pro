@@ -23,6 +23,8 @@ QT       += core gui network httpserver
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+QT_CONFIG -= no-pkg-config
+
 RC_ICONS = $$PWD/resources/icons/trojan-qt5_new.ico
 ICON = $$PWD/resources/icons/trojan-qt5_new.icns
 
@@ -33,7 +35,7 @@ QT_EDITION = OpenSource
 
 CONFIG += c++17
 CONFIG += sdk_no_version_check
-#CONFIG + =link_pkgconfig
+CONFIG += link_pkgconfig
 # Sanitizer
 CONFIG += sanitizer sanitize_address
 
@@ -101,27 +103,14 @@ mac {
     SOURCES += \
         src/statusnotifier.mm \
         src/LetsMove/PFMoveApplication.m
+    PKG_CONFIG = /usr/local/bin/pkg-config
     INCLUDEPATH += $$PWD/src/trojan/src
-    INCLUDEPATH += /usr/local/opt/zbar/include
-    INCLUDEPATH += /usr/local/opt/qrencode/include
-    INCLUDEPATH += /usr/local/opt/openssl@1.1/include
     INCLUDEPATH += /usr/local/opt/boost/include
-    INCLUDEPATH += /usr/local/opt/pcre/include
     INCLUDEPATH += /usr/local/opt/zlib/include
-    INCLUDEPATH += /usr/local/opt/libuv/include
-    INCLUDEPATH += /usr/local/opt/libsodium/include
-    INCLUDEPATH += /usr/local/opt/grpc/include
-    INCLUDEPATH += /usr/local/opt/protobuf/include
-    LIBS += -L/usr/local/opt/zbar/lib -lzbar
-    LIBS += -L/usr/local/opt/qrencode/lib -lqrencode
-    LIBS += -L/usr/local/opt/openssl@1.1/lib -lcrypto -lssl
+    INCLUDEPATH += /usr/local/opt/openssl@1.1/include
     LIBS += -L/usr/local/opt/boost/lib -lboost_system
     LIBS += -L/usr/local/opt/zlib/lib -lz
-    LIBS += -L/usr/local/opt/pcre/lib -lpcre
-    LIBS += -L/usr/local/opt/libuv/lib -luv
-    LIBS += -L/usr/local/opt/libsodium/lib -lsodium
-    LIBS += -L/usr/local/opt/grpc/lib -lgrpc -lgrpc++ -lgrpc_unsecure -lgrpc++_unsecure -lgpr -lupb
-    LIBS += -L/usr/local/opt/protobuf/lib -lprotobuf
+    LIBS += /usr/local/opt/openssl@1.1/lib -lssl -lcrypto
     LIBS += -framework Security -framework Cocoa
     LIBS += $$PWD/3rd/trojan-qt5-libs/trojan-qt5-libs.a
     # For Sparkle Usage
@@ -152,22 +141,12 @@ unix:!mac {
     SOURCES += \
         src/statusnotifier.cpp
     INCLUDEPATH += $$PWD/src/trojan/src
-    INCLUDEPATH += /usr/local/zbar/include
-    INCLUDEPATH += /usr/local/qrencode/include
     INCLUDEPATH += /usr/local/openssl/include
     INCLUDEPATH += /usr/local/boost/include
-    INCLUDEPATH += /usr/local/pcre/include
     INCLUDEPATH += /usr/local/zlib/include
-    INCLUDEPATH += /usr/local/opt/libuv/include
-    INCLUDEPATH += /usr/local/opt/libsodium/include
-    LIBS += -L/usr/local/zbar/lib -lzbar
-    LIBS += -L/usr/local/qrencode/lib -lqrencode
     LIBS += -L/usr/local/openssl/lib -lcrypto -lssl
     LIBS += -L/usr/local/boost/lib -lboost_system
     LIBS += -L/usr/local/zlib/lib -lz
-    LIBS += -L/usr/local/pcre/lib -lpcre
-    LIBS += -L/usr/local/opt/libuv/lib -luv
-    LIBS += -L/usr/local/opt/libsodium/lib -lsodium
     # Otherwise lupdate will not work
     TR_EXCLUDE += /usr/local/boost/*
 
@@ -186,6 +165,7 @@ unix:!mac {
 }
 
 unix {
+    PKGCONFIG += zbar libpcre libqrencode libuv libsodium grpc protobuf
     SOURCES += \
         src/privoxy/list.c \
         src/privoxy/pcrs.c \

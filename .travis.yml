@@ -32,7 +32,8 @@ before_install:
 
 install:
   - if [ "$BADGE" = "linux" ]; then    
-      sudo apt-get install libgl-dev git build-essential g++ python-dev autoconf autotools-dev libicu-dev libbz2-dev checkinstall zlib1g zlib1g-dev python3 -y;
+      sudo add-apt-repository ppa:webispy/grpc;
+      sudo apt-get install libgl-dev git build-essential g++ python-dev autoconf autotools-dev libicu-dev libbz2-dev checkinstall zlib1g zlib1g-dev python3 pkg-config libprotobuf-dev libgrpc++-dev protobuf-compiler protobuf-c-compiler libsodium-dev libuv-dev -y;
       git clone https://github.com/benlau/qtci.git;
       source qtci/path.env;
       install-qt 5.13.2 >/dev/null 2>&1;
@@ -41,31 +42,6 @@ install:
       tar -xf zlib-1.2.11.tar.gz;
       cd zlib-1.2.11;
       ./configure --prefix=/usr/local/zlib >/dev/null 2>&1;
-      make -j$(nproc) >/dev/null 2>&1;
-      sudo make install >/dev/null 2>&1;
-      cd ..;
-      echo "Installing Pcre 8.43...";
-      wget https://ftp.pcre.org/pub/pcre/pcre-8.43.tar.gz;
-      tar -xf pcre-8.43.tar.gz;
-      cd pcre-8.43;
-      ./configure --prefix=/usr/local/pcre >/dev/null 2>&1;
-      make -j$(nproc) >/dev/null 2>&1;
-      sudo make install >/dev/null 2>&1;
-      cd ..;
-      echo "Installing ZBar 0.10...";
-      wget -O zbar-0.10.tar.gz https://sourceforge.net/projects/zbar/files/zbar/0.10/zbar-0.10.tar.gz/download;
-      tar -xf zbar-0.10.tar.gz;
-      cd zbar-0.10;
-      export CFLAGS="";
-      ./configure --prefix=/usr/local/zbar --disable-video --without-qt --without-gtk --without-python >/dev/null 2>&1;
-      make -j$(nproc) >/dev/null 2>&1;
-      sudo make install >/dev/null 2>&1;
-      cd ..;
-      echo "Installing libqrencode...";
-      git clone https://github.com/fukuchi/libqrencode.git;
-      cd libqrencode;
-      ./autogen.sh >/dev/null 2>&1;
-      ./configure --prefix=/usr/local/qrencode >/dev/null 2>&1;
       make -j$(nproc) >/dev/null 2>&1;
       sudo make install >/dev/null 2>&1;
       cd ..;
@@ -85,34 +61,17 @@ install:
       ./b2 --with-system --with-program_options -j$(nproc);
       sudo ./b2 install >/dev/null 2>&1;
       cd ..;
-      echo "Installing libuv";
-      wget -O libuv-1.37.0.zip https://github.com/libuv/libuv/archive/v1.37.0.zip;
-      unzip libuv-1.37.0.zip;
-      cd libuv-1.37.0;
-      mkdir build && cd build;
-      cmake -D CMAKE_INSTALL_PREFIX=/usr/local/libuv ..;
-      make -j$(nproc) >/dev/null 2>&1;
-      sudo make install >/dev/null 2>&1;
-      cd ..;
-      echo "Installing libsodium";
-      wget -O https://github.com/jedisct1/libsodium/releases/download/1.0.18-RELEASE/libsodium-1.0.18.tar.gz;
-      tar -zxf libsodium-1.0.18.tar.gz;
-      cd libsodium-1.0.18;
-      ./configure --prefix=/usr/local/libsodium;
-      make -j$(nproc) >/dev/null 2>&1;
-      sudo make install >/dev/null 2>&1;
-      cd ..;
       
     fi
   - if [ "$BADGE" = "osx" ]; then    
-      brew install zbar qrencode boost openssl@1.1 zlib pcre python3 libsodium libuv grpc;
-      brew reinstall https://raw.githubusercontent.com/Homebrew/homebrew-core/89bf3a54383d884f8b8511c6237325dd5b5ae6ba/Formula/qt.rb --verbose;
-      cp -r framework/Sparkle.framework /usr/local/Cellar/qt/5.13.1/lib;
-      cp -r framework/LetsMove.framework /usr/local/Cellar/qt/5.13.1/lib;
+      brew install zbar qrencode boost openssl@1.1 zlib pcre python3 libsodium libuv grpc pkg-config;
+      brew reinstall https://raw.githubusercontent.com/Homebrew/homebrew-core/8846805afc0cb8e5d114d5e222af1de3b35289df/Formula/qt.rb --verbose;
+      cp -r framework/Sparkle.framework /usr/local/Cellar/qt/5.14.2/lib;
+      cp -r framework/LetsMove.framework /usr/local/Cellar/qt/5.14.2/lib;
     fi
 
 before_script:
-  - if [ "$BADGE" = "osx" ];   then    export PATH="/usr/local/Cellar/qt/5.13.1/bin:$PATH"; fi
+  - if [ "$BADGE" = "osx" ];   then    export PATH="/usr/local/Cellar/qt/5.14.2/bin:$PATH"; fi
 
 script:
   - git submodule update --init --recursive
