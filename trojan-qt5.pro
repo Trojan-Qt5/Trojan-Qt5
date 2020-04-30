@@ -166,56 +166,6 @@ unix:!mac {
 
 unix {
     PKGCONFIG += zbar libpcre libqrencode libuv libsodium grpc grpc_unsecure grpc++ grpc++_unsecure protobuf
-    SOURCES += \
-        src/privoxy/list.c \
-        src/privoxy/pcrs.c \
-        src/privoxy/miscutil.c \
-        src/privoxy/parsers.c \
-        src/privoxy/loadcfg.c \
-        src/privoxy/filters.c \
-        src/privoxy/cgi.c \
-        src/privoxy/loaders.c \
-        src/privoxy/encode.c \
-        src/privoxy/errlog.c \
-        src/privoxy/gateway.c \
-        src/privoxy/actions.c \
-        src/privoxy/urlmatch.c \
-        src/privoxy/jcc.c \
-        src/privoxy/deanimate.c \
-        src/privoxy/cgisimple.c \
-        src/privoxy/cgiedit.c \
-        src/privoxy/client-tags.c \
-        src/privoxy/jbsockets.c \
-        src/privoxy/ssplit.c
-
-    HEADERS += \
-        src/privoxy/actionlist.h \
-        src/privoxy/urlmatch.h \
-        src/privoxy/jcc.h \
-        src/privoxy/actions.h \
-        src/privoxy/gateway.h \
-        src/privoxy/acconfig.h \
-        src/privoxy/cygwin.h \
-        src/privoxy/strptime.h \
-        src/privoxy/deanimate.h \
-        src/privoxy/client-tags.h \
-        src/privoxy/jbsockets.h \
-        src/privoxy/ssplit.h \
-        src/privoxy/cgiedit.h \
-        src/privoxy/cgisimple.h \
-        src/privoxy/pcrs.h \
-        src/privoxy/list.h \
-        src/privoxy/miscutil.h \
-        src/privoxy/project.h \
-        src/privoxy/parsers.h \
-        src/privoxy/errlog.h \
-        src/privoxy/encode.h \
-        src/privoxy/loaders.h \
-        src/privoxy/cgi.h \
-        src/privoxy/filters.h \
-        src/privoxy/loadcfg.h \
-        src/privoxy/config.h
-
     LIBS += $$PWD/3rd/yaml-cpp/libyaml-cpp.a
 }
 
@@ -228,7 +178,6 @@ SOURCES += \
     src/midman.cpp \
     src/pacserver.cpp \
     src/privilegeshelper.cpp \
-    src/privoxythread.cpp \
     src/resourcehelper.cpp \
     src/routetablehelper.cpp \
     src/servicethread.cpp \
@@ -259,6 +208,8 @@ SOURCES += \
     src/uriinputdialog.cpp \
     src/userrules.cpp \
     src/subscribedialog.cpp \
+    src/httpproxy.cpp \
+    src/socketstream.cpp \
     src/trojan/src/core/authenticator.cpp \
     src/trojan/src/core/config.cpp \
     src/trojan/src/core/log.cpp \
@@ -290,7 +241,6 @@ HEADERS += \
     src/midman.h \
     src/pacserver.h \
     src/privilegeshelper.h \
-    src/privoxythread.h \
     src/resourcehelper.h \
     src/routetablehelper.h \
     src/servicethread.h \
@@ -321,6 +271,8 @@ HEADERS += \
     src/uriinputdialog.h \
     src/userrules.h \
     src/subscribedialog.h \
+    src/httpproxy.h \
+    src/socketstream.h \
     src/trojan/src/core/authenticator.h \
     src/trojan/src/core/config.h \
     src/trojan/src/core/log.h \

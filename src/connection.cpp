@@ -108,14 +108,14 @@ void Connection::start()
         latencyTest();
     }
 
+    ConfigHelper *conf = new ConfigHelper(configFile);
+
     //MUST initialize there otherwise privoxy will not listen port
-    privoxy = new PrivoxyThread();
+    http = new HttpProxy();
 
     //initialize tun2socks and route table helper
     tun2socks = new Tun2socksThread();
     rhelper = new RouteTableHelper(profile.serverAddress);
-
-    ConfigHelper *conf = new ConfigHelper(configFile);
 
     //generate Config File that trojan and privoxy will use
     conf->connectionToJson(profile);
@@ -200,10 +200,15 @@ void Connection::start()
     // hack so we can get the connection
     MidMan::setConnection(this);
 
-    //start privoxy if settings is configured to do so
+    QString localAddr = conf->isEnableIpv6Support() ? (conf->isShareOverLan() ? "::" : "::1") : (conf->isShareOverLan() ? "0.0.0.0" : "127.0.0.1");
+
+    //start http proxy if settings is configured to do so
     if (conf->isEnableHttpMode())
         if (conf->getSystemProxySettings() != "advance")
-            privoxy->start();
+            http->httpListen(QHostAddress(localAddr),
+                             conf->getHttpPort(),
+                             conf->isEnableIpv6Support() ? (conf->isShareOverLan() ? "::" : "::1") : (conf->isShareOverLan() ? "0.0.0.0" : "127.0.0.1"),
+                             conf->getSocks5Port());
 
     //start tun2socks if settings is configured to do so
     if (conf->getSystemProxySettings() == "advance") {
@@ -254,9 +259,9 @@ void Connection::stop()
             trojanGoAPI->stop();
         }
 
-        //if we have started privoxy, stop it
+        //if we have started http proxy, stop it
         if (conf->isEnableHttpMode()) {
-            privoxy->stop();
+            http->close();
         }
 
         conf->setTrojanOn(running);
@@ -294,9 +299,9 @@ void Connection::onStartFailed()
         trojanGoAPI->stop();
     }
 
-    //if we have started privoxy, stop it
+    //if we have started http proxy, stop it
     if (conf->isEnableHttpMode()) {
-        privoxy->stop();
+        http->close();
     }
 
     emit stateChanged(running);

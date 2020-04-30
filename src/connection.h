@@ -24,7 +24,6 @@
 #include <QHostAddress>
 #include <memory>
 #include "pacserver.h"
-#include "privoxythread.h"
 #include "servicethread.h"
 #include "SSRThread.hpp"
 #include "tun2socksthread.h"
@@ -74,7 +73,7 @@ public slots:
 
 private:
     QString configFile;
-    PrivoxyThread *privoxy;
+    HttpProxy *http;
     ServiceThread *service;
     std::unique_ptr<SSRThread> ssr;
     Tun2socksThread *tun2socks;
