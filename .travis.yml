@@ -1,7 +1,7 @@
 language: cpp
 
 go:
-  - 1.14.2
+  - 1.14.x
 
 matrix:
   include:
@@ -11,7 +11,7 @@ matrix:
         - BADGE=osx
         - _TROJAN_QT5_BUILD_INFO_="Trojan-Qt5 build from Travis-CI"
     - os: linux
-      dist: xenial
+      dist: bionic
       sudo: required
       env: 
         - BADGE=linux
@@ -101,7 +101,7 @@ defore_deploy:
     fi
   - if [ "$BADGE" = "linux" ]; then
       export LD_LIBRARY_PATH=/usr/loal/zlib/lib:/usr/local/pcre/lib:/usr/local/zbar/lib/:/usr/local/qrencode/lib/:/usr/local/boost/lib/:/usr/local/openssl/lib/:$LD_LIBRARY_PATH;
-      ./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -appimage;
+      ./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -appimage -unsupported-allow-new-glibc;
       mv Trojan-Qt5*.AppImage Trojan-Qt5-Linux.AppImage;
       python3 ../scripts/checksum.py Trojan-Qt5-Linux.AppImage Trojan-Qt5-Linux.hash;
     fi
