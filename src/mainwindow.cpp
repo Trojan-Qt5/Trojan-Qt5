@@ -14,7 +14,6 @@
 #include "generalvalidator.h"
 #include "midman.h"
 #include "aboutdialog.h"
-#include "core/log.h"
 #include "logger.h"
 #include "QtAwesome.h"
 

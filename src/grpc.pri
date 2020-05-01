@@ -32,13 +32,13 @@
 isEmpty(PROTOS):error("Define PROTOS before including grpc.pri")
 
 mac {
-
     isEmpty(PROTOC):PROTOC = /usr/local/bin/protoc
     isEmpty(PROTOC_GRPC):PROTOC_GRPC = /usr/local/bin/grpc_cpp_plugin
 }
 
 unix:!mac {
-
+    isEmpty(PROTOC):PROTOC = /usr/bin/protoc
+    isEmpty(PROTOC_GRPC):PROTOC_GRPC = /usr/bin/grpc_cpp_plugin
 }
 
 grpc_decl.name = grpc headers

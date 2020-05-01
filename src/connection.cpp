@@ -15,8 +15,6 @@
 #include "logger.h"
 #include "midman.h"
 
-#include <boost/exception/all.hpp>
-
 Connection::Connection(QObject *parent) :
     QObject(parent),
     running(false)
@@ -180,7 +178,7 @@ void Connection::start()
     }
     else if (profile.type == "ssr") {
         ssr->start();
-    } else if (profile.type == "trojan" && conf->getTrojanBackend() == 1) {
+    } else if (profile.type == "trojan") {
         startTrojanGo(file.toUtf8().data());
         trojanGoAPI = new TrojanGoAPI();
         connect(trojanGoAPI, &TrojanGoAPI::OnDataReady, this, &Connection::onNewBytesTransmitted);

@@ -32,12 +32,11 @@
 isEmpty(PROTOS):error("Define PROTOS before including protobuf.pri")
 
 mac {
-
     isEmpty(PROTOC):PROTOC = /usr/local/bin/protoc
 }
 
 unix:!mac {
-
+    isEmpty(PROTOC):PROTOC = /usr/bin/protoc
 }
 
 protobuf_decl.name = protobuf headers

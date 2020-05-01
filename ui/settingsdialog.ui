@@ -29,7 +29,7 @@
     </sizepolicy>
    </property>
    <property name="currentIndex">
-    <number>4</number>
+    <number>3</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -574,7 +574,7 @@
        </widget>
       </item>
       <item row="3" column="1">
-       <widget class="QLineEdit" name="maxiumSubscribe"/>
+       <widget class="QLineEdit" name="maximumSubscribe"/>
       </item>
      </layout>
     </widget>
