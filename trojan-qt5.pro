@@ -159,7 +159,7 @@ unix:!mac {
 }
 
 unix {
-    PKGCONFIG += zbar libpcre libqrencode libuv libsodium grpc grpc_unsecure grpc++ grpc++_unsecure protobuf
+    PKGCONFIG += zbar libqrencode libuv libsodium grpc grpc_unsecure grpc++ grpc++_unsecure protobuf
     LIBS += $$PWD/3rd/yaml-cpp/libyaml-cpp.a
 }
 

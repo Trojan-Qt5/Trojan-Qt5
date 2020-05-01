@@ -1,5 +1,8 @@
 language: cpp
 
+go:
+  - 1.14.2
+
 matrix:
   include:
     - os: osx
@@ -19,10 +22,6 @@ matrix:
           packages:
             - libxkbcommon-x11-0
             - libgl1-mesa-dev
-        snaps:
-          - name: go
-            confinement: classic
-            channel: latest/stable
       services:
         - xvfb
 
@@ -75,7 +74,7 @@ script:
   - cmake . && make -j$(nproc)
   - cd ../..
   - cd 3rd/trojan-qt5-libs
-  - /snap/bin/go build -buildmode=c-archive
+  - go build -buildmode=c-archive
   - cd ../..
   - if [ "$BADGE" = "osx" ]; then
       mkdir build && cd ./build;
