@@ -1,6 +1,3 @@
-[submodule "src/trojan"]
-	path = src/trojan
-	url = https://github.com/trojan-gfw/trojan.git
 [submodule "src/plog"]
 	path = src/plog
 	url = https://github.com/SergiusTheBest/plog.git

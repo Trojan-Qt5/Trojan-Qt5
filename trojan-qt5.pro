@@ -81,14 +81,11 @@ win32 {
         src/sysproxy/windows.h
     INCLUDEPATH += $$PWD\src\trojan\src
     INCLUDEPATH += C:\TQLibraries\ZBar\include
-    INCLUDEPATH += C:\TQLibraries\boost_1_72_0
     INCLUDEPATH += C:\TQLibraries\OpenSSL-Win32\include
     INCLUDEPATH += C:\TQLibraries\QREncode\include
     INCLUDEPATH += C:\TQLibraries\WinSparkle\include
     LIBS += -LC:\TQLibraries\ZBar\lib -llibzbar-0
     LIBS += -LC:\TQLibraries\OpenSSL-Win32\lib -llibcrypto -llibssl
-    LIBS += -LC:\TQLibraries\boost_1_72_0\lib32-msvc-14.1
-    LIBS += -LC:\TQLibraries\boost_1_72_0\lib32-msvc-14.2
     LIBS += -LC:\TQLibraries\QREncode\lib -lqrcodelib
     LIBS += -LC:\TQLibraries\WinSparkle\lib
     LIBS += -lwsock32 -lws2_32
@@ -106,10 +103,8 @@ mac {
         src/LetsMove/PFMoveApplication.m
     PKG_CONFIG = /usr/local/bin/pkg-config
     INCLUDEPATH += $$PWD/src/trojan/src
-    INCLUDEPATH += /usr/local/opt/boost/include
     INCLUDEPATH += /usr/local/opt/zlib/include
     INCLUDEPATH += /usr/local/opt/openssl@1.1/include
-    LIBS += -L/usr/local/opt/boost/lib -lboost_system
     LIBS += -L/usr/local/opt/zlib/lib -lz
     LIBS += -L/usr/local/opt/openssl@1.1/lib -lssl -lcrypto
     LIBS += -framework Security -framework Cocoa
@@ -143,10 +138,8 @@ unix:!mac {
         src/statusnotifier.cpp
     INCLUDEPATH += $$PWD/src/trojan/src
     INCLUDEPATH += /usr/local/openssl/include
-    INCLUDEPATH += /usr/local/boost/include
     INCLUDEPATH += /usr/local/zlib/include
     LIBS += -L/usr/local/openssl/lib -lcrypto -lssl
-    LIBS += -L/usr/local/boost/lib -lboost_system
     LIBS += -L/usr/local/zlib/lib -lz
     # Otherwise lupdate will not work
     TR_EXCLUDE += /usr/local/boost/*
@@ -182,7 +175,6 @@ SOURCES += \
     src/privilegeshelper.cpp \
     src/resourcehelper.cpp \
     src/routetablehelper.cpp \
-    src/servicethread.cpp \
     src/addresstester.cpp \
     src/confighelper.cpp \
     src/connection.cpp \
@@ -212,22 +204,6 @@ SOURCES += \
     src/subscribedialog.cpp \
     src/httpproxy.cpp \
     src/socketstream.cpp \
-    src/trojan/src/core/authenticator.cpp \
-    src/trojan/src/core/config.cpp \
-    src/trojan/src/core/log.cpp \
-    src/trojan/src/core/service.cpp \
-    src/trojan/src/core/version.cpp \
-    src/trojan/src/proto/socks5address.cpp \
-    src/trojan/src/proto/trojanrequest.cpp \
-    src/trojan/src/proto/udppacket.cpp \
-    src/trojan/src/session/clientsession.cpp \
-    src/trojan/src/session/forwardsession.cpp \
-    src/trojan/src/session/natsession.cpp \
-    src/trojan/src/session/serversession.cpp \
-    src/trojan/src/session/session.cpp \
-    src/trojan/src/session/udpforwardsession.cpp \
-    src/trojan/src/ssl/ssldefaults.cpp \
-    src/trojan/src/ssl/sslsession.cpp \
     src/ssreditdialog.cpp \
     src/utils.cpp \
     src/speedplot.cpp \
@@ -246,7 +222,6 @@ HEADERS += \
     src/privilegeshelper.h \
     src/resourcehelper.h \
     src/routetablehelper.h \
-    src/servicethread.h \
     src/addresstester.h \
     src/confighelper.h \
     src/connection.h \
@@ -276,22 +251,6 @@ HEADERS += \
     src/subscribedialog.h \
     src/httpproxy.h \
     src/socketstream.h \
-    src/trojan/src/core/authenticator.h \
-    src/trojan/src/core/config.h \
-    src/trojan/src/core/log.h \
-    src/trojan/src/core/service.h \
-    src/trojan/src/core/version.h \
-    src/trojan/src/proto/socks5address.h \
-    src/trojan/src/proto/trojanrequest.h \
-    src/trojan/src/proto/udppacket.h \
-    src/trojan/src/session/clientsession.h \
-    src/trojan/src/session/forwardsession.h \
-    src/trojan/src/session/natsession.h \
-    src/trojan/src/session/serversession.h \
-    src/trojan/src/session/session.h \
-    src/trojan/src/session/udpforwardsession.h \
-    src/trojan/src/ssl/ssldefaults.h \
-    src/trojan/src/ssl/sslsession.h \
     3rd/trojan-qt5-libs/trojan-qt5-libs.h \
     src/ssreditdialog.h \
     src/utils.h \
@@ -304,7 +263,6 @@ HEADERS += \
 FORMS += \
     ui/aboutdialog.ui \
     ui/settingsdialog.ui \
-    ui/advancesettingsdialog.ui \
     ui/mainwindow.ui \
     ui/settingsdialog.ui \
     ui/sharedialog.ui \

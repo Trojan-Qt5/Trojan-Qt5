@@ -29,7 +29,7 @@
     </sizepolicy>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>4</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -566,6 +566,16 @@
       <item row="2" column="1">
        <widget class="QLineEdit" name="filterKeywordLineEdit"/>
       </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Maximum</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="maxiumSubscribe"/>
+      </item>
      </layout>
     </widget>
    </widget>
@@ -587,108 +597,13 @@
        <enum>QFormLayout::ExpandingFieldsGrow</enum>
       </property>
       <item row="0" column="0">
-       <widget class="QLabel" name="trojanBackendLabel">
-        <property name="text">
-         <string>Trojan Backend</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QComboBox" name="trojanBackendComboBox">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <item>
-         <property name="text">
-          <string>trojan-gfw/trojan</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>p4gefau1t/trojan-go</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="enableAPILabel">
-        <property name="text">
-         <string>Enable API</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QCheckBox" name="enableAPICheckBox">
-        <property name="text">
-         <string>Enable</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="0">
-       <widget class="QLabel" name="apiPortLabel">
-        <property name="text">
-         <string>API Port</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="1">
-       <widget class="QLineEdit" name="apiPortLineEdit"/>
-      </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="certLabel">
-        <property name="text">
-         <string>Cert</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="1">
-       <widget class="QLineEdit" name="certLineEdit"/>
-      </item>
-      <item row="6" column="0">
-       <widget class="QLabel" name="cipherLabel">
-        <property name="text">
-         <string>Cipher</string>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="1">
-       <widget class="QLineEdit" name="cipherLineEdit"/>
-      </item>
-      <item row="7" column="0">
-       <widget class="QLabel" name="cipherTLS13Label">
-        <property name="text">
-         <string>Cipher TLS13</string>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="1">
-       <widget class="QLineEdit" name="cipherTLS13LineEdit"/>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="enableRouterLabel">
-        <property name="text">
-         <string>Enable Router</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QCheckBox" name="enableRouterCheckBox">
-        <property name="text">
-         <string>Enable</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
        <widget class="QLabel" name="label">
         <property name="text">
          <string>TLS Fingerprint</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="1">
+      <item row="0" column="1">
        <widget class="QComboBox" name="tlsFingerprintComboBox">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -727,6 +642,74 @@
          </property>
         </item>
        </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="enableRouterLabel">
+        <property name="text">
+         <string>Enable Router</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QCheckBox" name="enableRouterCheckBox">
+        <property name="text">
+         <string>Enable</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="enableAPILabel">
+        <property name="text">
+         <string>Enable API</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QCheckBox" name="enableAPICheckBox">
+        <property name="text">
+         <string>Enable</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="apiPortLabel">
+        <property name="text">
+         <string>API Port</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="apiPortLineEdit"/>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="certLabel">
+        <property name="text">
+         <string>Cert</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QLineEdit" name="certLineEdit"/>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="cipherLabel">
+        <property name="text">
+         <string>Cipher</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QLineEdit" name="cipherLineEdit"/>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="cipherTLS13Label">
+        <property name="text">
+         <string>Cipher TLS13</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QLineEdit" name="cipherTLS13LineEdit"/>
       </item>
      </layout>
     </widget>

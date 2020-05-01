@@ -40,7 +40,7 @@ SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
     ui->gfwlistUpdateUrlComboBox->setCurrentIndex(helper->getGfwlistUrl());
     ui->updateUserAgentLineEdit->setText(helper->getUpdateUserAgent());
     ui->filterKeywordLineEdit->setText(helper->getFilterKeyword());
-    ui->trojanBackendComboBox->setCurrentIndex(helper->getTrojanBackend());
+    ui->maximumSubscribe->setText(QString::number(helper->getMaximumSubscribe()));
     ui->tlsFingerprintComboBox->setCurrentIndex(helper->getFLSFingerPrint());
     ui->enableAPICheckBox->setChecked(helper->isEnableTrojanAPI());
     ui->enableRouterCheckBox->setChecked(helper->isEnableTrojanRouter());
@@ -96,7 +96,7 @@ void SettingsDialog::onAccepted()
                                ui->gfwlistUpdateUrlComboBox->currentIndex(),
                                ui->updateUserAgentLineEdit->text(),
                                ui->filterKeywordLineEdit->text(),
-                               ui->trojanBackendComboBox->currentIndex(),
+                               ui->maximumSubscribe->text().toInt(),
                                ui->tlsFingerprintComboBox->currentIndex(),
                                ui->enableAPICheckBox->isChecked(),
                                ui->enableRouterCheckBox->isChecked(),

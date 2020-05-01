@@ -881,9 +881,6 @@ void MainWindow::initLog()
     //Initialize the gui's log.
     Logger::init(guiLog);
 
-    //Redirect Trojan's log to our logfile.
-    Log::redirect(trojanLog.toLocal8Bit().data());
-
 }
 
 void MainWindow::initSingleInstance()

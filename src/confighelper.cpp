@@ -71,7 +71,7 @@ void ConfigHelper::save(const ConnectionTableModel &model)
     settings->setValue("GFWListUrl", QVariant(gfwlistUrl));
     settings->setValue("UpdateUserAgent", QVariant(updateUserAgent));
     settings->setValue("FilterKeyword", QVariant(filterKeyword));
-    settings->setValue("TrojanBackend", QVariant(trojanBackend));
+    settings->setValue("MaximumSubscribe", QVariant(maximumSubscribe));
     settings->setValue("Fingerprint", QVariant(fingerprint));
     settings->setValue("EnableTrojanAPI", QVariant(enableTrojanAPI));
     settings->setValue("EnableTrojanRouter", QVariant(enableTrojanRouter));
@@ -675,9 +675,9 @@ QString ConfigHelper::getFilterKeyword() const
     return filterKeyword;
 }
 
-int ConfigHelper::getTrojanBackend() const
+int ConfigHelper::getMaximumSubscribe() const
 {
-    return trojanBackend;
+    return maximumSubscribe;
 }
 
 bool ConfigHelper::isEnableTrojanAPI() const
@@ -730,7 +730,7 @@ bool ConfigHelper::isNativeMenuBar() const
     return nativeMenuBar;
 }
 
-void ConfigHelper::setGeneralSettings(int ts, bool hide, bool sal, bool oneInstance, bool cpa, bool en, bool hdi, bool nativeMB, int ll, bool hm, bool eis, bool sol, int sp, int hp, int pp, int ap, int hsp, bool efp, int fpt, QString fpa, int fpp, bool efpa, QString fpu, QString fppa, int glu, QString uua, QString fkw, int tb, int fp, bool eta, bool etr, int tap, QString tcp, QString tc, QString tct13)
+void ConfigHelper::setGeneralSettings(int ts, bool hide, bool sal, bool oneInstance, bool cpa, bool en, bool hdi, bool nativeMB, int ll, bool hm, bool eis, bool sol, int sp, int hp, int pp, int ap, int hsp, bool efp, int fpt, QString fpa, int fpp, bool efpa, QString fpu, QString fppa, int glu, QString uua, QString fkw, int ms, int fp, bool eta, bool etr, int tap, QString tcp, QString tc, QString tct13)
 {
     if (toolbarStyle != ts) {
         emit toolbarStyleChanged(static_cast<Qt::ToolButtonStyle>(ts));
@@ -762,7 +762,7 @@ void ConfigHelper::setGeneralSettings(int ts, bool hide, bool sal, bool oneInsta
     gfwlistUrl = glu;
     updateUserAgent = uua;
     filterKeyword = fkw;
-    trojanBackend = tb;
+    maximumSubscribe = ms;
     fingerprint = fp;
     enableTrojanAPI = eta;
     enableTrojanRouter = etr;
@@ -871,7 +871,7 @@ void ConfigHelper::readGeneralSettings()
     gfwlistUrl = settings->value("GFWListUrl", QVariant(0)).toInt();
     updateUserAgent = settings->value("UpdateUserAgent", QVariant(QString("Trojan-Qt5/%1").arg(APP_VERSION))).toString();
     filterKeyword = settings->value("FilterKeyword", QVariant("")).toString();
-    trojanBackend = settings->value("TrojanBackend", QVariant(1)).toInt();
+    maximumSubscribe = settings->value("MaximumSubscribe", QVariant(0)).toInt();
     fingerprint = settings->value("Fingerprint", QVariant(0)).toInt();
     enableTrojanAPI = settings->value("EnableTrojanAPI", QVariant(true)).toBool();
     enableTrojanRouter = settings->value("EnableTrojanRouter", QVariant(false)).toBool();

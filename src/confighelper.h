@@ -100,7 +100,7 @@ public:
     int getGfwlistUrl() const;
     QString getUpdateUserAgent() const;
     QString getFilterKeyword() const;
-    int getTrojanBackend() const;
+    int getMaximumSubscribe() const;
     bool isEnableTrojanAPI() const;
     bool isEnableTrojanRouter() const;
     int getTrojanAPIPort() const;
@@ -123,7 +123,7 @@ public:
     bool isShowToolbar() const;
     bool isShowFilterBar() const;
     bool isNativeMenuBar() const;
-    void setGeneralSettings(int ts, bool hide, bool sal, bool oneInstance, bool cpa, bool en, bool hdi, bool nativeMB, int ll, bool hm, bool eis, bool sol, int sp, int hp, int pp, int ap, int hsp, bool efp, int fpt, QString fpa, int fpp, bool efpa, QString fpu, QString fppa, int glu, QString uua, QString fkw, int tb, int fp, bool eta, bool etr, int tap, QString tcp, QString tc, QString tct13);
+    void setGeneralSettings(int ts, bool hide, bool sal, bool oneInstance, bool cpa, bool en, bool hdi, bool nativeMB, int ll, bool hm, bool eis, bool sol, int sp, int hp, int pp, int ap, int hsp, bool efp, int fpt, QString fpa, int fpp, bool efpa, QString fpu, QString fppa, int glu, QString uua, QString fkw, int ms, int fp, bool eta, bool etr, int tap, QString tcp, QString tc, QString tct13);
     void setSystemProxySettings(QString mode);
     void setTrojanOn(bool on);
     void setAutoUpdateSubscribes(bool update);
@@ -164,9 +164,9 @@ private:
     int gfwlistUrl;
     QString updateUserAgent;
     QString filterKeyword;
+    int maximumSubscribe;
     bool enableTrojanAPI;
     bool enableTrojanRouter;
-    int trojanBackend;
     int fingerprint;
     int trojanAPIPort;
     QString trojanCertPath;

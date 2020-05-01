@@ -25,7 +25,6 @@
 #include <memory>
 #include "httpproxy.h"
 #include "pachelper.h"
-#include "servicethread.h"
 #include "SSRThread.hpp"
 #include "tun2socksthread.h"
 #include "systemproxyhelper.h"
@@ -75,7 +74,6 @@ public slots:
 private:
     QString configFile;
     HttpProxy *http;
-    ServiceThread *service;
     std::unique_ptr<SSRThread> ssr;
     Tun2socksThread *tun2socks;
     RouteTableHelper *rhelper;

@@ -53,18 +53,10 @@ install:
       make -j$(nproc) >/dev/null 2>&1;
       sudo make install >/dev/null 2>&1;
       cd ..;
-      echo "Installing boost 1_72_0...";
-      wget -O boost_1_72_0.tar.gz https://sourceforge.net/projects/boost/files/boost/1.72.0/boost_1_72_0.tar.gz/download >/dev/null 2>&1;
-      tar -xf boost_1_72_0.tar.gz;
-      cd boost_1_72_0/;
-      ./bootstrap.sh --prefix=/usr/local/boost >/dev/null 2>&1;
-      ./b2 --with-system --with-program_options -j$(nproc);
-      sudo ./b2 install >/dev/null 2>&1;
-      cd ..;
       
     fi
   - if [ "$BADGE" = "osx" ]; then    
-      brew install zbar qrencode boost openssl@1.1 zlib pcre python3 libsodium libuv grpc pkg-config;
+      brew install zbar qrencode openssl@1.1 zlib pcre python3 libsodium libuv grpc pkg-config;
       brew reinstall https://raw.githubusercontent.com/Homebrew/homebrew-core/8846805afc0cb8e5d114d5e222af1de3b35289df/Formula/qt.rb --verbose;
       cp -r framework/Sparkle.framework /usr/local/Cellar/qt/5.14.2/lib;
       cp -r framework/LetsMove.framework /usr/local/Cellar/qt/5.14.2/lib;

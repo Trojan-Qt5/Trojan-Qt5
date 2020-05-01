@@ -19,8 +19,7 @@
 
 Connection::Connection(QObject *parent) :
     QObject(parent),
-    running(false),
-    service(new ServiceThread(this))
+    running(false)
 {
 #ifdef Q_OS_WIN
     configFile = QCoreApplication::applicationDirPath() + "/config.ini";
@@ -28,7 +27,6 @@ Connection::Connection(QObject *parent) :
     QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
     configFile = configDir.absolutePath() + "/config.ini";
 #endif
-    connect(service, &ServiceThread::startFailed, this, &Connection::onStartFailed);
 }
 
 Connection::Connection(const TQProfile &_profile, QObject *parent) :
@@ -145,13 +143,6 @@ void Connection::start()
                             profile.protocolParam.toStdString());
         ssr->connect(ssr.get(), &SSRThread::OnDataReady, this, &Connection::onNewBytesTransmitted);
         ssr->connect(ssr.get(), &SSRThread::onSSRThreadLog, this, &Connection::onLog);
-    } else if (profile.type == "trojan" && conf->getTrojanBackend() == 0) {
-        //load service config first
-        try {
-            service->config().load(file.toUtf8().data());
-        } catch (boost::exception &e) {
-            Logger::error(QString::fromStdString(boost::diagnostic_information(e)));
-        }
     }
 
     //wait, let's check if port is in use
@@ -189,8 +180,6 @@ void Connection::start()
     }
     else if (profile.type == "ssr") {
         ssr->start();
-    } else if (profile.type == "trojan" && conf->getTrojanBackend() == 0) {
-        service->start();
     } else if (profile.type == "trojan" && conf->getTrojanBackend() == 1) {
         startTrojanGo(file.toUtf8().data());
         trojanGoAPI = new TrojanGoAPI();
@@ -252,9 +241,7 @@ void Connection::stop()
             ssr->stop();
             ssr = nullptr;
         }
-        else if (profile.type == "trojan" && conf->getTrojanBackend() == 0)
-            service->stop();
-        else if (profile.type == "trojan" && conf->getTrojanBackend() == 1) {
+        else if (profile.type == "trojan") {
             stopTrojanGo();
             trojanGoAPI->stop();
         }
@@ -292,9 +279,7 @@ void Connection::onStartFailed()
         ssr->stop();
         ssr = nullptr;
     }
-    else if (profile.type == "trojan" && conf->getTrojanBackend() == 0)
-        service->stop();
-    else if (profile.type == "trojan" && conf->getTrojanBackend() == 1) {
+    else if (profile.type == "trojan") {
         stopTrojanGo();
         trojanGoAPI->stop();
     }
