@@ -115,7 +115,6 @@ void Connection::start()
 
     //generate Config File that trojan and privoxy will use
     conf->connectionToJson(profile);
-    conf->generatePrivoxyConf();
 
 #ifdef Q_OS_WIN
     QString file = QCoreApplication::applicationDirPath() + "/config.json";

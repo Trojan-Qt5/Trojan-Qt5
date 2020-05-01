@@ -2,6 +2,8 @@
 #include "ui_settingsdialog.h"
 #include <QPushButton>
 #include <QMessageBox>
+#include <QStyleFactory>
+#include <QApplication>
 
 SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
     QDialog(parent),
@@ -15,6 +17,8 @@ SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
     ui->toolbarStyleComboBox->setCurrentIndex(helper->getToolbarStyle());
     ui->logLevelComboBox->setCurrentIndex(helper->getLogLevel());
     //ui->haproxyModeComboBox->setCurrentIndex();
+    ui->themeComboBox->addItems(QStyleFactory::keys());
+    ui->themeComboBox->setCurrentText(helper->getTheme());
     ui->hideCheckBox->setChecked(helper->isHideWindowOnStartup());
     ui->startAtLoginCheckbox->setChecked(helper->isStartAtLogin());
     ui->oneInstanceCheckBox->setChecked(helper->isOnlyOneInstance());
@@ -71,6 +75,7 @@ void SettingsDialog::onAccepted()
 
     helper->setGeneralSettings(ui->toolbarStyleComboBox->currentIndex(),
                                ui->hideCheckBox->isChecked(),
+                               ui->themeComboBox->currentText(),
                                ui->startAtLoginCheckbox->isChecked(),
                                ui->oneInstanceCheckBox->isChecked(),
                                ui->availabilityCheckBox->isChecked(),
@@ -104,6 +109,9 @@ void SettingsDialog::onAccepted()
                                ui->certLineEdit->text(),
                                ui->cipherLineEdit->text(),
                                ui->cipherTLS13LineEdit->text());
+
+    QApplication::setStyle(ui->themeComboBox->currentText());
+
     this->accept();
 }
 

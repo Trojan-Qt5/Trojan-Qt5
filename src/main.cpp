@@ -146,6 +146,9 @@ int main(int argc, char *argv[])
 
     ConfigHelper conf(configFile);
 
+    // setup the theme here
+    a.setStyle(conf.getTheme());
+
     MainWindow w(&conf);
     mainWindow = &w;
 

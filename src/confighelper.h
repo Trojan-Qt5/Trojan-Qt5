@@ -81,6 +81,7 @@ public:
     void setStartAtLogin();
 
     /* some functions used to communicate with SettingsDialog */
+    QString getTheme() const;
     int getFLSFingerPrint() const;
     QString parseTLSFingerprint(int choice) const;
     int  getToolbarStyle() const;
@@ -123,7 +124,7 @@ public:
     bool isShowToolbar() const;
     bool isShowFilterBar() const;
     bool isNativeMenuBar() const;
-    void setGeneralSettings(int ts, bool hide, bool sal, bool oneInstance, bool cpa, bool en, bool hdi, bool nativeMB, int ll, bool hm, bool eis, bool sol, int sp, int hp, int pp, int ap, int hsp, bool efp, int fpt, QString fpa, int fpp, bool efpa, QString fpu, QString fppa, int glu, QString uua, QString fkw, int ms, int fp, bool eta, bool etr, int tap, QString tcp, QString tc, QString tct13);
+    void setGeneralSettings(int ts, bool hide, QString th, bool sal, bool oneInstance, bool cpa, bool en, bool hdi, bool nativeMB, int ll, bool hm, bool eis, bool sol, int sp, int hp, int pp, int ap, int hsp, bool efp, int fpt, QString fpa, int fpp, bool efpa, QString fpu, QString fppa, int glu, QString uua, QString fkw, int ms, int fp, bool eta, bool etr, int tap, QString tcp, QString tc, QString tct13);
     void setSystemProxySettings(QString mode);
     void setTrojanOn(bool on);
     void setAutoUpdateSubscribes(bool update);
@@ -146,6 +147,7 @@ signals:
     void toolbarStyleChanged(const Qt::ToolButtonStyle);
 
 private:
+    QString theme;
     int logLevel;
     int toolbarStyle;
     bool enableHttpMode;

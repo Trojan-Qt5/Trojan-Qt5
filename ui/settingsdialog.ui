@@ -29,7 +29,7 @@
     </sizepolicy>
    </property>
    <property name="currentIndex">
-    <number>3</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -88,104 +88,6 @@
           <string>System Style</string>
          </property>
         </item>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="onlyOneInstanceLabel">
-        <property name="text">
-         <string>Allow Only one instance running</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QCheckBox" name="oneInstanceCheckBox">
-        <property name="text">
-         <string>Enable</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="0">
-       <widget class="QLabel" name="checkPortAvailabilityLabel">
-        <property name="text">
-         <string>Check Port Availability</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="1">
-       <widget class="QCheckBox" name="availabilityCheckBox">
-        <property name="text">
-         <string>Enable</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="enableNotificationLabel">
-        <property name="text">
-         <string>Enable Notification</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="1">
-       <widget class="QCheckBox" name="enableNotificationCheckBox">
-        <property name="text">
-         <string>Enable</string>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="0">
-       <widget class="QLabel" name="hideDockIconLabel">
-        <property name="text">
-         <string>Hide Dock Icon (macOS)</string>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="1">
-       <widget class="QCheckBox" name="hideDockIconCheckBox">
-        <property name="text">
-         <string>Enable</string>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="0">
-       <widget class="QLabel" name="startAtLoginLabel">
-        <property name="text">
-         <string>Start at login</string>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="1">
-       <widget class="QCheckBox" name="startAtLoginCheckbox">
-        <property name="text">
-         <string>Enable</string>
-        </property>
-       </widget>
-      </item>
-      <item row="8" column="0">
-       <widget class="QLabel" name="hideWindowsOnStartupLabel">
-        <property name="text">
-         <string>Hide windows on startup</string>
-        </property>
-       </widget>
-      </item>
-      <item row="8" column="1">
-       <widget class="QCheckBox" name="hideCheckBox">
-        <property name="text">
-         <string>Enable</string>
-        </property>
-       </widget>
-      </item>
-      <item row="9" column="0">
-       <widget class="QLabel" name="useNativeMenuBar">
-        <property name="text">
-         <string>Use native menubar</string>
-        </property>
-       </widget>
-      </item>
-      <item row="9" column="1">
-       <widget class="QCheckBox" name="nativeMenuBarCheckBox">
-        <property name="text">
-         <string>Enable</string>
-        </property>
        </widget>
       </item>
       <item row="1" column="0">
@@ -266,6 +168,114 @@
          </property>
         </item>
        </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="onlyOneInstanceLabel">
+        <property name="text">
+         <string>Allow Only one instance running</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QCheckBox" name="oneInstanceCheckBox">
+        <property name="text">
+         <string>Enable</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="checkPortAvailabilityLabel">
+        <property name="text">
+         <string>Check Port Availability</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QCheckBox" name="availabilityCheckBox">
+        <property name="text">
+         <string>Enable</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="enableNotificationLabel">
+        <property name="text">
+         <string>Enable Notification</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QCheckBox" name="enableNotificationCheckBox">
+        <property name="text">
+         <string>Enable</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0">
+       <widget class="QLabel" name="hideDockIconLabel">
+        <property name="text">
+         <string>Hide Dock Icon (macOS)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1">
+       <widget class="QCheckBox" name="hideDockIconCheckBox">
+        <property name="text">
+         <string>Enable</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="0">
+       <widget class="QLabel" name="startAtLoginLabel">
+        <property name="text">
+         <string>Start at login</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="1">
+       <widget class="QCheckBox" name="startAtLoginCheckbox">
+        <property name="text">
+         <string>Enable</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="0">
+       <widget class="QLabel" name="hideWindowsOnStartupLabel">
+        <property name="text">
+         <string>Hide windows on startup</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="1">
+       <widget class="QCheckBox" name="hideCheckBox">
+        <property name="text">
+         <string>Enable</string>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="0">
+       <widget class="QLabel" name="useNativeMenuBar">
+        <property name="text">
+         <string>Use native menubar</string>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="1">
+       <widget class="QCheckBox" name="nativeMenuBarCheckBox">
+        <property name="text">
+         <string>Enable</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>Theme</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QComboBox" name="themeComboBox"/>
       </item>
      </layout>
     </widget>

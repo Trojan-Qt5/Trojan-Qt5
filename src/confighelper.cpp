@@ -37,6 +37,7 @@ void ConfigHelper::save(const ConnectionTableModel &model)
     }
     settings->endArray();
 
+    settings->setValue("Theme", QVariant(theme));
     settings->setValue("LogLevel", QVariant(logLevel));
     settings->setValue("EnableHttpMode", QVariant(enableHttpMode));
     settings->setValue("Socks5LocalPort", QVariant(socks5Port));
@@ -447,41 +448,6 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
 
 }
 
-void ConfigHelper::generatePrivoxyConf()
-{
-    QString filecontent = QString("listen-address %1:%2\n"
-                                  "toggle 0\n"
-                                  "show-on-task-bar 0\n"
-                                  "activity-animation 0\n"
-                                  "forward-socks5 / %3:%4 .\n"
-                                  "hide-console\n")
-                                  .arg(isEnableIpv6Support() ? (isShareOverLan() ? "[::]" : "[::1]") : (isShareOverLan() ? "0.0.0.0" : "127.0.0.1"))
-                                  .arg(QString::number(httpPort))
-                                  .arg(isEnableIpv6Support() ? (isShareOverLan() ? "[::]" : "[::1]") : (isShareOverLan() ? "0.0.0.0" : "127.0.0.1"))
-                                  .arg(QString::number(socks5Port));
-#ifdef Q_OS_WIN
-        QString file = QCoreApplication::applicationDirPath() + "/privoxy/privoxy.conf";
-#else
-        QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
-        QString file = configDir.absolutePath() + "/privoxy.conf";
-#endif
-
-    QFile privoxyConf(file);
-    privoxyConf.open(QIODevice::WriteOnly | QIODevice::Text |QIODevice::Truncate);
-    if (!privoxyConf.isOpen()) {
-        qCritical() << "Error: cannot open " << file;
-        Logger::error(QString("cannot open %1").arg(file));
-        return;
-    }
-    if(!privoxyConf.isWritable()) {
-        qCritical() << "Error: cannot write into " << file;
-        Logger::error(QString("cannot write into %1").arg(file));
-        return;
-    }
-    privoxyConf.write(filecontent.toUtf8());
-    privoxyConf.close();
-}
-
 void ConfigHelper::generateHaproxyConf(const ConnectionTableModel &model)
 {
 #ifdef Q_OS_WIN
@@ -532,6 +498,11 @@ QString ConfigHelper::parseTLSFingerprint(int choice) const
         return "randomized";
     }
     return "";
+}
+
+QString ConfigHelper::getTheme() const
+{
+    return theme;
 }
 
 int ConfigHelper::getFLSFingerPrint() const
@@ -739,13 +710,14 @@ bool ConfigHelper::isNativeMenuBar() const
     return nativeMenuBar;
 }
 
-void ConfigHelper::setGeneralSettings(int ts, bool hide, bool sal, bool oneInstance, bool cpa, bool en, bool hdi, bool nativeMB, int ll, bool hm, bool eis, bool sol, int sp, int hp, int pp, int ap, int hsp, bool efp, int fpt, QString fpa, int fpp, bool efpa, QString fpu, QString fppa, int glu, QString uua, QString fkw, int ms, int fp, bool eta, bool etr, int tap, QString tcp, QString tc, QString tct13)
+void ConfigHelper::setGeneralSettings(int ts, bool hide, QString th, bool sal, bool oneInstance, bool cpa, bool en, bool hdi, bool nativeMB, int ll, bool hm, bool eis, bool sol, int sp, int hp, int pp, int ap, int hsp, bool efp, int fpt, QString fpa, int fpp, bool efpa, QString fpu, QString fppa, int glu, QString uua, QString fkw, int ms, int fp, bool eta, bool etr, int tap, QString tcp, QString tc, QString tct13)
 {
     if (toolbarStyle != ts) {
         emit toolbarStyleChanged(static_cast<Qt::ToolButtonStyle>(ts));
     }
     toolbarStyle = ts;
     hideWindowOnStartup = hide;
+    theme = th;
     startAtLogin = sal;
     onlyOneInstace = oneInstance;
     checkPortAvailability = cpa;
@@ -847,6 +819,7 @@ QList<TQSubscribe> ConfigHelper::readSubscribes()
 
 void ConfigHelper::readGeneralSettings()
 {
+    theme = settings->value("Theme", QVariant("Fusion")).toString();
     trojanOn = settings->value("TrojanOn", QVariant(false)).toBool();
     toolbarStyle = settings->value("ToolbarStyle", QVariant(3)).toInt();
     logLevel = settings->value("LogLevel", QVariant(1)).toInt();
