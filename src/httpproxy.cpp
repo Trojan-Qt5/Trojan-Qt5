@@ -41,7 +41,7 @@ bool HttpProxy::httpListen(const QHostAddress &http_addr,
                            uint16_t socks_port)
 {
     upstreamProxy = QNetworkProxy(QNetworkProxy::Socks5Proxy,
-                                  "127.0.0.1",
+                                  socks_addr,
                                   socks_port);
     return this->listen(http_addr, http_port);
 }

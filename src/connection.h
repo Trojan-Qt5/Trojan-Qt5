@@ -23,7 +23,8 @@
 #include <QHostInfo>
 #include <QHostAddress>
 #include <memory>
-#include "pacserver.h"
+#include "httpproxy.h"
+#include "pachelper.h"
 #include "servicethread.h"
 #include "SSRThread.hpp"
 #include "tun2socksthread.h"

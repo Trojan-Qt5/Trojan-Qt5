@@ -824,6 +824,8 @@ void MainWindow::setupActionIcon()
                                        QIcon::fromTheme("document-save-as")));
     ui->menuManually->setIcon(QIcon::fromTheme("edit-guides",
                                           QIcon::fromTheme("accessories-text-editor")));
+    ui->actionManuallySS->setIcon(QIcon::fromTheme("edit-guides",
+                                QIcon::fromTheme("accessories-text-editor")));
     ui->actionManuallySSR->setIcon(QIcon::fromTheme("edit-guides",
                                 QIcon::fromTheme("accessories-text-editor")));
     ui->actionManuallyTrojan->setIcon(QIcon::fromTheme("edit-guides",

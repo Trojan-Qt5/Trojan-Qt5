@@ -17,9 +17,7 @@
 # <http://www.gnu.org/licenses/>.
 #
 
-requires(qtHaveModule(httpserver))
-
-QT       += core gui network httpserver
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -71,6 +69,9 @@ include($$PWD/src/QtAwesome/QtAwesome/QtAwesome.pri)
 
 # ShadowsocksR-uvw
 include($$PWD/src/shadowsocksr-uvw/Shadowsocksr-uvw.pri)
+
+# QHttpServer
+include($$PWD/3rd/qhttpserver/qhttpserver.pri)
 
 win32 {
     SOURCES += \
@@ -177,6 +178,7 @@ SOURCES += \
     src/logger.cpp \
     src/midman.cpp \
     src/pacserver.cpp \
+    src/pachelper.cpp \
     src/privilegeshelper.cpp \
     src/resourcehelper.cpp \
     src/routetablehelper.cpp \
@@ -240,6 +242,7 @@ HEADERS += \
     src/logger.h \
     src/midman.h \
     src/pacserver.h \
+    src/pachelper.h \
     src/privilegeshelper.h \
     src/resourcehelper.h \
     src/routetablehelper.h \

@@ -1,9 +1,6 @@
 [submodule "src/trojan"]
 	path = src/trojan
 	url = https://github.com/trojan-gfw/trojan.git
-[submodule "3rd/qthttpserver"]
-	path = 3rd/qthttpserver
-	url = https://github.com/qt-labs/qthttpserver.git
 [submodule "src/plog"]
 	path = src/plog
 	url = https://github.com/SergiusTheBest/plog.git
@@ -16,3 +13,6 @@
 [submodule "src/shadowsocksr-uvw"]
 	path = src/shadowsocksr-uvw
 	url = https://github.com/TheWanderingCoel/shadowsocksr-uvw.git
+[submodule "3rd/qhttpserver"]
+	path = 3rd/qhttpserver
+	url = https://github.com/TheWanderingCoel/qhttpserver.git

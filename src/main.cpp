@@ -5,7 +5,7 @@
 #include <QMessageBox>
 #include <QDir>
 #include <QCommandLineParser>
-#include <QHttpServer>
+#include "pacserver.h"
 #include <signal.h>
 #include "mainwindow.h"
 #include "confighelper.h"
@@ -158,28 +158,9 @@ int main(int argc, char *argv[])
         if (conf.isOnlyOneInstance() && w.isInstanceRunning())
             return -1;
 
-    //we have to start QHttpServer in main otherwise it will not listen
-    QHttpServer server;
-#if defined(Q_OS_WIN)
-    server.route("/<arg>", [](const QUrl &url) {
-        QDir dir = QApplication::applicationDirPath() + "/pac";
-        QHttpServerResponse response = QHttpServerResponse::fromFile(dir.path() + QString("/%1").arg(url.path()));
-        response.addHeader("Server", "Trojan-Qt5");
-        response.setHeader("Content-Type", "application/x-ns-proxy-autoconfig");
-        response.addHeader("Connection", "Close");
-        return response;
-    });
-#else
-    server.route("/<arg>", [](const QUrl &url) {
-        QDir configDir = QDir::homePath() + "/.config/trojan-qt5/pac";
-        QHttpServerResponse response = QHttpServerResponse::fromFile(configDir.path() + QString("/%1").arg(url.path()));
-        response.addHeader("Server", "Trojan-Qt5");
-        response.setHeader("Content-Type", "application/x-ns-proxy-autoconfig");
-        response.addHeader("Connection", "Close");
-        return response;
-    });
-#endif
-    server.listen(QHostAddress(conf.isEnableIpv6Support() ? (conf.isShareOverLan() ? "::" : "::1") : (conf.isShareOverLan() ? "0.0.0.0" : "127.0.0.1")), conf.getPACPort());
+    //let's start PAC Server
+    PACServer pacServer;
+    pacServer.listen();
 
     //start all servers which were configured to start at startup
     w.startAutoStartConnections();

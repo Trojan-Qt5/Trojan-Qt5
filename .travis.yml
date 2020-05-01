@@ -75,9 +75,6 @@ before_script:
 
 script:
   - git submodule update --init --recursive
-  - cd 3rd/qthttpserver
-  - qmake && make -j$(nproc) && make install
-  - cd ../..
   - cd 3rd/yaml-cpp
   - cmake . && make -j$(nproc)
   - cd ../..
@@ -90,9 +87,6 @@ script:
       make -j$(nproc);
     fi
   - if [ "$BADGE" = "linux" ]; then
-      cd src/privoxy;
-      autoheader && autoconf && ./configure;
-      cd ../..;
       mkdir build && cd ./build;
       wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage";
       chmod a+x linuxdeployqt-continuous-x86_64.AppImage;

@@ -12,8 +12,6 @@ install:
   - powershell ".\\boost_1_72_0-msvc-14.2-32.exe /SILENT /SP- /SUPPRESSMSGBOXES /DIR='C:\TQLibraries\boost_1_72_0'"
   - set PATH=%QTDIR%;%PYDIR%;%PATH%;
   - git submodule update --init --recursive
-  - cd 3rd\qthttpserver && qmake && nmake && nmake install
-  - cd ..\..
   - cd 3rd\yaml-cpp && cmake -G "Visual Studio 16 2019" -A Win32 .
   - msbuild YAML_CPP.sln /p:Configuration=Release /p:Platform="Win32"
   - cd ..\..

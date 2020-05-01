@@ -1,6 +1,6 @@
 #include "statusnotifier.h"
 #include "mainwindow.h"
-#include "pacserver.h"
+#include "pachelper.h"
 #include "systemproxyhelper.h"
 #include "subscribedialog.h"
 #include "subscribemanager.h"
@@ -160,16 +160,16 @@ void StatusNotifier::initActions()
 
 void StatusNotifier::initConnections()
 {
-    PACServer *pacserver = new PACServer();
-    connect(updatePACToBypassLAN, &QAction::triggered, pacserver, [=]() { pacserver->typeModify("LAN"); });
-    connect(updatePACToChnWhite, &QAction::triggered, pacserver, [=]() { pacserver->typeModify("WHITE"); });
-    connect(updatePACToChnWhiteAdvanced, &QAction::triggered, pacserver, [=]() { pacserver->typeModify("WHITE_ADVANCED"); });
-    connect(updatePACToChnIP, &QAction::triggered, pacserver, [=]() { pacserver->typeModify("CNIP"); });
-    connect(updatePACToGFWList, &QAction::triggered, pacserver, [=]() { pacserver->typeModify("GFWLIST"); });
-    connect(updatePACToChnOnly, &QAction::triggered, pacserver, [=]() { pacserver->typeModify("WHITE_R"); });
-    connect(copyPACUrl, &QAction::triggered, pacserver, [=]() { pacserver->copyPACUrl(); });
-    connect(editLocalPACFile, &QAction::triggered, pacserver, [=]() { pacserver->editLocalPACFile(); });
-    connect(editGFWListUserRule, &QAction::triggered, pacserver, [=]() { pacserver->editUserRule(); });
+    PACHelper *pachelper = new PACHelper();
+    connect(updatePACToBypassLAN, &QAction::triggered, pachelper, [=]() { pachelper->typeModify("LAN"); });
+    connect(updatePACToChnWhite, &QAction::triggered, pachelper, [=]() { pachelper->typeModify("WHITE"); });
+    connect(updatePACToChnWhiteAdvanced, &QAction::triggered, pachelper, [=]() { pachelper->typeModify("WHITE_ADVANCED"); });
+    connect(updatePACToChnIP, &QAction::triggered, pachelper, [=]() { pachelper->typeModify("CNIP"); });
+    connect(updatePACToGFWList, &QAction::triggered, pachelper, [=]() { pachelper->typeModify("GFWLIST"); });
+    connect(updatePACToChnOnly, &QAction::triggered, pachelper, [=]() { pachelper->typeModify("WHITE_R"); });
+    connect(copyPACUrl, &QAction::triggered, pachelper, [=]() { pachelper->copyPACUrl(); });
+    connect(editLocalPACFile, &QAction::triggered, pachelper, [=]() { pachelper->editLocalPACFile(); });
+    connect(editGFWListUserRule, &QAction::triggered, pachelper, [=]() { pachelper->editUserRule(); });
     connect(subscribeSettings, &QAction::triggered, this, [this]() { onTrojanSubscribeSettings(); });
     connect(updateSubscribe, &QAction::triggered, sbMgr, [=]() { sbMgr->updateAllSubscribes(true); });
     connect(updateSubscribeBypass, &QAction::triggered, sbMgr, [=]() { sbMgr->updateAllSubscribes(false); });

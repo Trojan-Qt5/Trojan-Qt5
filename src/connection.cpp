@@ -1,7 +1,7 @@
 #include "addresstester.h"
 #include "connection.h"
 #include "confighelper.h"
-#include "pacserver.h"
+#include "pachelper.h"
 #include "portvalidator.h"
 #include "privilegeshelper.h"
 #include "trojangoapi.h"

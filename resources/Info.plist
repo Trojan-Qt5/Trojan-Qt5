@@ -34,5 +34,22 @@
 	<true/>
 	<key>SUPublicEDKey</key>
 	<string>bmzcQnOMLLTdjgdXSyEpSDAw1Gv5wRraInICUMNOMkE=</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLIconFile</key>
+			<string>Icon</string>
+			<key>CFBundleURLName</key>
+			<string>com.thewanderingcoel.trojan-qt5</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>trojan-qt5</string>
+			</array>
+		</dict>
+	</array>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2019-2020年 TheWanderingCoel. All rights reserved.</string>
 </dict>
 </plist>
