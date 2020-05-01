@@ -16,7 +16,9 @@ public:
     TrojanGoAPI();
     ~TrojanGoAPI();
 
+    void start();
     void stop();
+    void setPassword(QString pass);
 
 signals:
      void OnDataReady(const quint64 up, const quint64 down);
@@ -27,8 +29,10 @@ public slots:
 private:
     bool running;
     QThread *thread;
+    QString password;
     std::shared_ptr<::grpc::Channel> Channel;
-    std::unique_ptr<::api::TrojanService::Stub> Stub;
+    std::unique_ptr<::api::TrojanClientService::Stub> Stub;
+    ::api::User *User;
 
 };
 

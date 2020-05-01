@@ -12,8 +12,6 @@ TrojanGoAPI::TrojanGoAPI()
     thread = new QThread();
     this->moveToThread(thread);
     connect(thread, SIGNAL(started()), this, SLOT(run()));
-    running = true;
-    thread->start();
 }
 
 
@@ -23,6 +21,17 @@ TrojanGoAPI::~TrojanGoAPI()
     thread->wait();
     thread = nullptr;
     delete thread;
+}
+
+void TrojanGoAPI::setPassword(QString pass)
+{
+    password = pass;
+}
+
+void TrojanGoAPI::start()
+{
+    running = true;
+    thread->start();
 }
 
 void TrojanGoAPI::run()
@@ -41,20 +50,21 @@ void TrojanGoAPI::run()
     while (running) {
 
         Channel = grpc::CreateChannel(address.toStdString(), grpc::InsecureChannelCredentials());
-        TrojanService service;
+        TrojanClientService service;
         Stub = service.NewStub(Channel);
-        StatsReply reply;
-        StatsRequest request;
-        request.set_password("");
+        GetSpeedResponse reply;
+        GetSpeedRequest request;
+        User->set_password(password.toUtf8().data());
+        request.set_allocated_user(User);
         ClientContext context;
-        Status status = Stub->QueryStats(&context, request, &reply);
+        Status status = Stub->GetSpeed(&context, request, &reply);
 
         if (!status.ok()) {
             Logger::error(QString("Trojan API Request failed: %1 (%2)").arg(status.error_code()).arg(QString::fromStdString(status.error_message())));
         }
 
-        quint64 up = reply.upload_speed();
-        quint64 down = reply.download_speed();
+        quint64 up = reply.speed_current().upload_speed();
+        quint64 down = reply.speed_current().download_speed();
 
         if (up >= 0 && down >= 0)
             emit OnDataReady(up, down);

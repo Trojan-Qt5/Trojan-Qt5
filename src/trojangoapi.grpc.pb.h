@@ -28,35 +28,54 @@
 
 namespace api {
 
-class TrojanService final {
+class TrojanClientService final {
  public:
   static constexpr char const* service_full_name() {
-    return "api.TrojanService";
+    return "api.TrojanClientService";
   }
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status QueryStats(::grpc::ClientContext* context, const ::api::StatsRequest& request, ::api::StatsReply* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::api::StatsReply>> AsyncQueryStats(::grpc::ClientContext* context, const ::api::StatsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::api::StatsReply>>(AsyncQueryStatsRaw(context, request, cq));
+    virtual ::grpc::Status GetTraffic(::grpc::ClientContext* context, const ::api::GetTrafficRequest& request, ::api::GetTrafficResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::api::GetTrafficResponse>> AsyncGetTraffic(::grpc::ClientContext* context, const ::api::GetTrafficRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::api::GetTrafficResponse>>(AsyncGetTrafficRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::api::StatsReply>> PrepareAsyncQueryStats(::grpc::ClientContext* context, const ::api::StatsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::api::StatsReply>>(PrepareAsyncQueryStatsRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::api::GetTrafficResponse>> PrepareAsyncGetTraffic(::grpc::ClientContext* context, const ::api::GetTrafficRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::api::GetTrafficResponse>>(PrepareAsyncGetTrafficRaw(context, request, cq));
+    }
+    virtual ::grpc::Status GetSpeed(::grpc::ClientContext* context, const ::api::GetSpeedRequest& request, ::api::GetSpeedResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::api::GetSpeedResponse>> AsyncGetSpeed(::grpc::ClientContext* context, const ::api::GetSpeedRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::api::GetSpeedResponse>>(AsyncGetSpeedRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::api::GetSpeedResponse>> PrepareAsyncGetSpeed(::grpc::ClientContext* context, const ::api::GetSpeedRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::api::GetSpeedResponse>>(PrepareAsyncGetSpeedRaw(context, request, cq));
     }
     class experimental_async_interface {
      public:
       virtual ~experimental_async_interface() {}
-      virtual void QueryStats(::grpc::ClientContext* context, const ::api::StatsRequest* request, ::api::StatsReply* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void QueryStats(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::StatsReply* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetTraffic(::grpc::ClientContext* context, const ::api::GetTrafficRequest* request, ::api::GetTrafficResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetTraffic(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::GetTrafficResponse* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void QueryStats(::grpc::ClientContext* context, const ::api::StatsRequest* request, ::api::StatsReply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetTraffic(::grpc::ClientContext* context, const ::api::GetTrafficRequest* request, ::api::GetTrafficResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
-      virtual void QueryStats(::grpc::ClientContext* context, const ::api::StatsRequest* request, ::api::StatsReply* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void GetTraffic(::grpc::ClientContext* context, const ::api::GetTrafficRequest* request, ::api::GetTrafficResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void QueryStats(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::StatsReply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetTraffic(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::GetTrafficResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
-      virtual void QueryStats(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::StatsReply* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void GetTraffic(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::GetTrafficResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      virtual void GetSpeed(::grpc::ClientContext* context, const ::api::GetSpeedRequest* request, ::api::GetSpeedResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetSpeed(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::GetSpeedResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetSpeed(::grpc::ClientContext* context, const ::api::GetSpeedRequest* request, ::api::GetSpeedResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetSpeed(::grpc::ClientContext* context, const ::api::GetSpeedRequest* request, ::api::GetSpeedResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetSpeed(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::GetSpeedResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void GetSpeed(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::GetSpeedResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
     };
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -67,33 +86,54 @@ class TrojanService final {
     #endif
     virtual class experimental_async_interface* experimental_async() { return nullptr; }
   private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::api::StatsReply>* AsyncQueryStatsRaw(::grpc::ClientContext* context, const ::api::StatsRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::api::StatsReply>* PrepareAsyncQueryStatsRaw(::grpc::ClientContext* context, const ::api::StatsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::api::GetTrafficResponse>* AsyncGetTrafficRaw(::grpc::ClientContext* context, const ::api::GetTrafficRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::api::GetTrafficResponse>* PrepareAsyncGetTrafficRaw(::grpc::ClientContext* context, const ::api::GetTrafficRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::api::GetSpeedResponse>* AsyncGetSpeedRaw(::grpc::ClientContext* context, const ::api::GetSpeedRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::api::GetSpeedResponse>* PrepareAsyncGetSpeedRaw(::grpc::ClientContext* context, const ::api::GetSpeedRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
-    ::grpc::Status QueryStats(::grpc::ClientContext* context, const ::api::StatsRequest& request, ::api::StatsReply* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::api::StatsReply>> AsyncQueryStats(::grpc::ClientContext* context, const ::api::StatsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::api::StatsReply>>(AsyncQueryStatsRaw(context, request, cq));
+    ::grpc::Status GetTraffic(::grpc::ClientContext* context, const ::api::GetTrafficRequest& request, ::api::GetTrafficResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::api::GetTrafficResponse>> AsyncGetTraffic(::grpc::ClientContext* context, const ::api::GetTrafficRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::api::GetTrafficResponse>>(AsyncGetTrafficRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::api::StatsReply>> PrepareAsyncQueryStats(::grpc::ClientContext* context, const ::api::StatsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::api::StatsReply>>(PrepareAsyncQueryStatsRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::api::GetTrafficResponse>> PrepareAsyncGetTraffic(::grpc::ClientContext* context, const ::api::GetTrafficRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::api::GetTrafficResponse>>(PrepareAsyncGetTrafficRaw(context, request, cq));
+    }
+    ::grpc::Status GetSpeed(::grpc::ClientContext* context, const ::api::GetSpeedRequest& request, ::api::GetSpeedResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::api::GetSpeedResponse>> AsyncGetSpeed(::grpc::ClientContext* context, const ::api::GetSpeedRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::api::GetSpeedResponse>>(AsyncGetSpeedRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::api::GetSpeedResponse>> PrepareAsyncGetSpeed(::grpc::ClientContext* context, const ::api::GetSpeedRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::api::GetSpeedResponse>>(PrepareAsyncGetSpeedRaw(context, request, cq));
     }
     class experimental_async final :
       public StubInterface::experimental_async_interface {
      public:
-      void QueryStats(::grpc::ClientContext* context, const ::api::StatsRequest* request, ::api::StatsReply* response, std::function<void(::grpc::Status)>) override;
-      void QueryStats(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::StatsReply* response, std::function<void(::grpc::Status)>) override;
+      void GetTraffic(::grpc::ClientContext* context, const ::api::GetTrafficRequest* request, ::api::GetTrafficResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetTraffic(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::GetTrafficResponse* response, std::function<void(::grpc::Status)>) override;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void QueryStats(::grpc::ClientContext* context, const ::api::StatsRequest* request, ::api::StatsReply* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetTraffic(::grpc::ClientContext* context, const ::api::GetTrafficRequest* request, ::api::GetTrafficResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
-      void QueryStats(::grpc::ClientContext* context, const ::api::StatsRequest* request, ::api::StatsReply* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void GetTraffic(::grpc::ClientContext* context, const ::api::GetTrafficRequest* request, ::api::GetTrafficResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void QueryStats(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::StatsReply* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetTraffic(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::GetTrafficResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
-      void QueryStats(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::StatsReply* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void GetTraffic(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::GetTrafficResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void GetSpeed(::grpc::ClientContext* context, const ::api::GetSpeedRequest* request, ::api::GetSpeedResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetSpeed(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::GetSpeedResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetSpeed(::grpc::ClientContext* context, const ::api::GetSpeedRequest* request, ::api::GetSpeedResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetSpeed(::grpc::ClientContext* context, const ::api::GetSpeedRequest* request, ::api::GetSpeedResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetSpeed(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::GetSpeedResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void GetSpeed(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::GetSpeedResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
      private:
       friend class Stub;
@@ -106,9 +146,12 @@ class TrojanService final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class experimental_async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::api::StatsReply>* AsyncQueryStatsRaw(::grpc::ClientContext* context, const ::api::StatsRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::api::StatsReply>* PrepareAsyncQueryStatsRaw(::grpc::ClientContext* context, const ::api::StatsRequest& request, ::grpc::CompletionQueue* cq) override;
-    const ::grpc::internal::RpcMethod rpcmethod_QueryStats_;
+    ::grpc::ClientAsyncResponseReader< ::api::GetTrafficResponse>* AsyncGetTrafficRaw(::grpc::ClientContext* context, const ::api::GetTrafficRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::api::GetTrafficResponse>* PrepareAsyncGetTrafficRaw(::grpc::ClientContext* context, const ::api::GetTrafficRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::api::GetSpeedResponse>* AsyncGetSpeedRaw(::grpc::ClientContext* context, const ::api::GetSpeedRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::api::GetSpeedResponse>* PrepareAsyncGetSpeedRaw(::grpc::ClientContext* context, const ::api::GetSpeedRequest& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_GetTraffic_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetSpeed_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -116,124 +159,229 @@ class TrojanService final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status QueryStats(::grpc::ServerContext* context, const ::api::StatsRequest* request, ::api::StatsReply* response);
+    virtual ::grpc::Status GetTraffic(::grpc::ServerContext* context, const ::api::GetTrafficRequest* request, ::api::GetTrafficResponse* response);
+    virtual ::grpc::Status GetSpeed(::grpc::ServerContext* context, const ::api::GetSpeedRequest* request, ::api::GetSpeedResponse* response);
   };
   template <class BaseClass>
-  class WithAsyncMethod_QueryStats : public BaseClass {
+  class WithAsyncMethod_GetTraffic : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_QueryStats() {
+    WithAsyncMethod_GetTraffic() {
       ::grpc::Service::MarkMethodAsync(0);
     }
-    ~WithAsyncMethod_QueryStats() override {
+    ~WithAsyncMethod_GetTraffic() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status QueryStats(::grpc::ServerContext* /*context*/, const ::api::StatsRequest* /*request*/, ::api::StatsReply* /*response*/) override {
+    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, const ::api::GetTrafficRequest* /*request*/, ::api::GetTrafficResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestQueryStats(::grpc::ServerContext* context, ::api::StatsRequest* request, ::grpc::ServerAsyncResponseWriter< ::api::StatsReply>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestGetTraffic(::grpc::ServerContext* context, ::api::GetTrafficRequest* request, ::grpc::ServerAsyncResponseWriter< ::api::GetTrafficResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_QueryStats<Service > AsyncService;
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_QueryStats : public BaseClass {
+  class WithAsyncMethod_GetSpeed : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_QueryStats() {
+    WithAsyncMethod_GetSpeed() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_GetSpeed() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetSpeed(::grpc::ServerContext* /*context*/, const ::api::GetSpeedRequest* /*request*/, ::api::GetSpeedResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetSpeed(::grpc::ServerContext* context, ::api::GetSpeedRequest* request, ::grpc::ServerAsyncResponseWriter< ::api::GetSpeedResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_GetTraffic<WithAsyncMethod_GetSpeed<Service > > AsyncService;
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_GetTraffic : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_GetTraffic() {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::Service::
     #else
       ::grpc::Service::experimental().
     #endif
         MarkMethodCallback(0,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::api::StatsRequest, ::api::StatsReply>(
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::api::GetTrafficRequest, ::api::GetTrafficResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
     #else
                    ::grpc::experimental::CallbackServerContext*
     #endif
-                     context, const ::api::StatsRequest* request, ::api::StatsReply* response) { return this->QueryStats(context, request, response); }));}
-    void SetMessageAllocatorFor_QueryStats(
-        ::grpc::experimental::MessageAllocator< ::api::StatsRequest, ::api::StatsReply>* allocator) {
+                     context, const ::api::GetTrafficRequest* request, ::api::GetTrafficResponse* response) { return this->GetTraffic(context, request, response); }));}
+    void SetMessageAllocatorFor_GetTraffic(
+        ::grpc::experimental::MessageAllocator< ::api::GetTrafficRequest, ::api::GetTrafficResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
     #else
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(0);
     #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::api::StatsRequest, ::api::StatsReply>*>(handler)
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::api::GetTrafficRequest, ::api::GetTrafficResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_QueryStats() override {
+    ~ExperimentalWithCallbackMethod_GetTraffic() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status QueryStats(::grpc::ServerContext* /*context*/, const ::api::StatsRequest* /*request*/, ::api::StatsReply* /*response*/) override {
+    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, const ::api::GetTrafficRequest* /*request*/, ::api::GetTrafficResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* QueryStats(
-      ::grpc::CallbackServerContext* /*context*/, const ::api::StatsRequest* /*request*/, ::api::StatsReply* /*response*/)
+    virtual ::grpc::ServerUnaryReactor* GetTraffic(
+      ::grpc::CallbackServerContext* /*context*/, const ::api::GetTrafficRequest* /*request*/, ::api::GetTrafficResponse* /*response*/)
     #else
-    virtual ::grpc::experimental::ServerUnaryReactor* QueryStats(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::api::StatsRequest* /*request*/, ::api::StatsReply* /*response*/)
+    virtual ::grpc::experimental::ServerUnaryReactor* GetTraffic(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::api::GetTrafficRequest* /*request*/, ::api::GetTrafficResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_GetSpeed : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_GetSpeed() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(1,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::api::GetSpeedRequest, ::api::GetSpeedResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::api::GetSpeedRequest* request, ::api::GetSpeedResponse* response) { return this->GetSpeed(context, request, response); }));}
+    void SetMessageAllocatorFor_GetSpeed(
+        ::grpc::experimental::MessageAllocator< ::api::GetSpeedRequest, ::api::GetSpeedResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::api::GetSpeedRequest, ::api::GetSpeedResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_GetSpeed() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetSpeed(::grpc::ServerContext* /*context*/, const ::api::GetSpeedRequest* /*request*/, ::api::GetSpeedResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* GetSpeed(
+      ::grpc::CallbackServerContext* /*context*/, const ::api::GetSpeedRequest* /*request*/, ::api::GetSpeedResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetSpeed(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::api::GetSpeedRequest* /*request*/, ::api::GetSpeedResponse* /*response*/)
     #endif
       { return nullptr; }
   };
   #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef ExperimentalWithCallbackMethod_QueryStats<Service > CallbackService;
+  typedef ExperimentalWithCallbackMethod_GetTraffic<ExperimentalWithCallbackMethod_GetSpeed<Service > > CallbackService;
   #endif
 
-  typedef ExperimentalWithCallbackMethod_QueryStats<Service > ExperimentalCallbackService;
+  typedef ExperimentalWithCallbackMethod_GetTraffic<ExperimentalWithCallbackMethod_GetSpeed<Service > > ExperimentalCallbackService;
   template <class BaseClass>
-  class WithGenericMethod_QueryStats : public BaseClass {
+  class WithGenericMethod_GetTraffic : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_QueryStats() {
+    WithGenericMethod_GetTraffic() {
       ::grpc::Service::MarkMethodGeneric(0);
     }
-    ~WithGenericMethod_QueryStats() override {
+    ~WithGenericMethod_GetTraffic() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status QueryStats(::grpc::ServerContext* /*context*/, const ::api::StatsRequest* /*request*/, ::api::StatsReply* /*response*/) override {
+    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, const ::api::GetTrafficRequest* /*request*/, ::api::GetTrafficResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
   };
   template <class BaseClass>
-  class WithRawMethod_QueryStats : public BaseClass {
+  class WithGenericMethod_GetSpeed : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_QueryStats() {
-      ::grpc::Service::MarkMethodRaw(0);
+    WithGenericMethod_GetSpeed() {
+      ::grpc::Service::MarkMethodGeneric(1);
     }
-    ~WithRawMethod_QueryStats() override {
+    ~WithGenericMethod_GetSpeed() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status QueryStats(::grpc::ServerContext* /*context*/, const ::api::StatsRequest* /*request*/, ::api::StatsReply* /*response*/) override {
+    ::grpc::Status GetSpeed(::grpc::ServerContext* /*context*/, const ::api::GetSpeedRequest* /*request*/, ::api::GetSpeedResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestQueryStats(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetTraffic : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetTraffic() {
+      ::grpc::Service::MarkMethodRaw(0);
+    }
+    ~WithRawMethod_GetTraffic() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, const ::api::GetTrafficRequest* /*request*/, ::api::GetTrafficResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetTraffic(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_QueryStats : public BaseClass {
+  class WithRawMethod_GetSpeed : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_QueryStats() {
+    WithRawMethod_GetSpeed() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_GetSpeed() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetSpeed(::grpc::ServerContext* /*context*/, const ::api::GetSpeedRequest* /*request*/, ::api::GetSpeedResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetSpeed(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_GetTraffic : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_GetTraffic() {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::Service::
     #else
@@ -247,48 +395,1366 @@ class TrojanService final {
     #else
                    ::grpc::experimental::CallbackServerContext*
     #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->QueryStats(context, request, response); }));
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetTraffic(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_QueryStats() override {
+    ~ExperimentalWithRawCallbackMethod_GetTraffic() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status QueryStats(::grpc::ServerContext* /*context*/, const ::api::StatsRequest* /*request*/, ::api::StatsReply* /*response*/) override {
+    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, const ::api::GetTrafficRequest* /*request*/, ::api::GetTrafficResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* QueryStats(
+    virtual ::grpc::ServerUnaryReactor* GetTraffic(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
     #else
-    virtual ::grpc::experimental::ServerUnaryReactor* QueryStats(
+    virtual ::grpc::experimental::ServerUnaryReactor* GetTraffic(
       ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
     #endif
       { return nullptr; }
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_QueryStats : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetSpeed : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_QueryStats() {
-      ::grpc::Service::MarkMethodStreamed(0,
-        new ::grpc::internal::StreamedUnaryHandler< ::api::StatsRequest, ::api::StatsReply>(std::bind(&WithStreamedUnaryMethod_QueryStats<BaseClass>::StreamedQueryStats, this, std::placeholders::_1, std::placeholders::_2)));
+    ExperimentalWithRawCallbackMethod_GetSpeed() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(1,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetSpeed(context, request, response); }));
     }
-    ~WithStreamedUnaryMethod_QueryStats() override {
+    ~ExperimentalWithRawCallbackMethod_GetSpeed() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetSpeed(::grpc::ServerContext* /*context*/, const ::api::GetSpeedRequest* /*request*/, ::api::GetSpeedResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* GetSpeed(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* GetSpeed(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetTraffic : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetTraffic() {
+      ::grpc::Service::MarkMethodStreamed(0,
+        new ::grpc::internal::StreamedUnaryHandler< ::api::GetTrafficRequest, ::api::GetTrafficResponse>(std::bind(&WithStreamedUnaryMethod_GetTraffic<BaseClass>::StreamedGetTraffic, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_GetTraffic() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status QueryStats(::grpc::ServerContext* /*context*/, const ::api::StatsRequest* /*request*/, ::api::StatsReply* /*response*/) override {
+    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, const ::api::GetTrafficRequest* /*request*/, ::api::GetTrafficResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedQueryStats(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::api::StatsRequest,::api::StatsReply>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedGetTraffic(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::api::GetTrafficRequest,::api::GetTrafficResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_QueryStats<Service > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetSpeed : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_GetSpeed() {
+      ::grpc::Service::MarkMethodStreamed(1,
+        new ::grpc::internal::StreamedUnaryHandler< ::api::GetSpeedRequest, ::api::GetSpeedResponse>(std::bind(&WithStreamedUnaryMethod_GetSpeed<BaseClass>::StreamedGetSpeed, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_GetSpeed() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetSpeed(::grpc::ServerContext* /*context*/, const ::api::GetSpeedRequest* /*request*/, ::api::GetSpeedResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetSpeed(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::api::GetSpeedRequest,::api::GetSpeedResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_GetTraffic<WithStreamedUnaryMethod_GetSpeed<Service > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_QueryStats<Service > StreamedService;
+  typedef WithStreamedUnaryMethod_GetTraffic<WithStreamedUnaryMethod_GetSpeed<Service > > StreamedService;
+};
+
+class TrojanServerService final {
+ public:
+  static constexpr char const* service_full_name() {
+    return "api.TrojanServerService";
+  }
+  class StubInterface {
+   public:
+    virtual ~StubInterface() {}
+    std::unique_ptr< ::grpc::ClientReaderInterface< ::api::ListUserResponse>> ListUsers(::grpc::ClientContext* context, const ::api::ListUserRequest& request) {
+      return std::unique_ptr< ::grpc::ClientReaderInterface< ::api::ListUserResponse>>(ListUsersRaw(context, request));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::api::ListUserResponse>> AsyncListUsers(::grpc::ClientContext* context, const ::api::ListUserRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::api::ListUserResponse>>(AsyncListUsersRaw(context, request, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::api::ListUserResponse>> PrepareAsyncListUsers(::grpc::ClientContext* context, const ::api::ListUserRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::api::ListUserResponse>>(PrepareAsyncListUsersRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::api::GetTrafficRequest, ::api::GetTrafficResponse>> GetTraffic(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::api::GetTrafficRequest, ::api::GetTrafficResponse>>(GetTrafficRaw(context));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::api::GetTrafficRequest, ::api::GetTrafficResponse>> AsyncGetTraffic(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::api::GetTrafficRequest, ::api::GetTrafficResponse>>(AsyncGetTrafficRaw(context, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::api::GetTrafficRequest, ::api::GetTrafficResponse>> PrepareAsyncGetTraffic(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::api::GetTrafficRequest, ::api::GetTrafficResponse>>(PrepareAsyncGetTrafficRaw(context, cq));
+    }
+    std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::api::SetTrafficRequest, ::api::SetTrafficReponse>> SetTraffic(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::api::SetTrafficRequest, ::api::SetTrafficReponse>>(SetTrafficRaw(context));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::api::SetTrafficRequest, ::api::SetTrafficReponse>> AsyncSetTraffic(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::api::SetTrafficRequest, ::api::SetTrafficReponse>>(AsyncSetTrafficRaw(context, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::api::SetTrafficRequest, ::api::SetTrafficReponse>> PrepareAsyncSetTraffic(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::api::SetTrafficRequest, ::api::SetTrafficReponse>>(PrepareAsyncSetTrafficRaw(context, cq));
+    }
+    std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::api::GetSpeedRequest, ::api::GetSpeedResponse>> GetSpeed(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::api::GetSpeedRequest, ::api::GetSpeedResponse>>(GetSpeedRaw(context));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::api::GetSpeedRequest, ::api::GetSpeedResponse>> AsyncGetSpeed(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::api::GetSpeedRequest, ::api::GetSpeedResponse>>(AsyncGetSpeedRaw(context, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::api::GetSpeedRequest, ::api::GetSpeedResponse>> PrepareAsyncGetSpeed(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::api::GetSpeedRequest, ::api::GetSpeedResponse>>(PrepareAsyncGetSpeedRaw(context, cq));
+    }
+    std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::api::SetSpeedRequest, ::api::SetSpeedResponse>> SetSpeed(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::api::SetSpeedRequest, ::api::SetSpeedResponse>>(SetSpeedRaw(context));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::api::SetSpeedRequest, ::api::SetSpeedResponse>> AsyncSetSpeed(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::api::SetSpeedRequest, ::api::SetSpeedResponse>>(AsyncSetSpeedRaw(context, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::api::SetSpeedRequest, ::api::SetSpeedResponse>> PrepareAsyncSetSpeed(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::api::SetSpeedRequest, ::api::SetSpeedResponse>>(PrepareAsyncSetSpeedRaw(context, cq));
+    }
+    std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::api::AddUserRequest, ::api::AddUserResponse>> AddUsers(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::api::AddUserRequest, ::api::AddUserResponse>>(AddUsersRaw(context));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::api::AddUserRequest, ::api::AddUserResponse>> AsyncAddUsers(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::api::AddUserRequest, ::api::AddUserResponse>>(AsyncAddUsersRaw(context, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::api::AddUserRequest, ::api::AddUserResponse>> PrepareAsyncAddUsers(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::api::AddUserRequest, ::api::AddUserResponse>>(PrepareAsyncAddUsersRaw(context, cq));
+    }
+    std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::api::DeleteUserRequest, ::api::DeleteUserResponse>> DeleteUsers(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::api::DeleteUserRequest, ::api::DeleteUserResponse>>(DeleteUsersRaw(context));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::api::DeleteUserRequest, ::api::DeleteUserResponse>> AsyncDeleteUsers(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::api::DeleteUserRequest, ::api::DeleteUserResponse>>(AsyncDeleteUsersRaw(context, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::api::DeleteUserRequest, ::api::DeleteUserResponse>> PrepareAsyncDeleteUsers(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::api::DeleteUserRequest, ::api::DeleteUserResponse>>(PrepareAsyncDeleteUsersRaw(context, cq));
+    }
+    class experimental_async_interface {
+     public:
+      virtual ~experimental_async_interface() {}
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void ListUsers(::grpc::ClientContext* context, ::api::ListUserRequest* request, ::grpc::ClientReadReactor< ::api::ListUserResponse>* reactor) = 0;
+      #else
+      virtual void ListUsers(::grpc::ClientContext* context, ::api::ListUserRequest* request, ::grpc::experimental::ClientReadReactor< ::api::ListUserResponse>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetTraffic(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::api::GetTrafficRequest,::api::GetTrafficResponse>* reactor) = 0;
+      #else
+      virtual void GetTraffic(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::api::GetTrafficRequest,::api::GetTrafficResponse>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void SetTraffic(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::api::SetTrafficRequest,::api::SetTrafficReponse>* reactor) = 0;
+      #else
+      virtual void SetTraffic(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::api::SetTrafficRequest,::api::SetTrafficReponse>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetSpeed(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::api::GetSpeedRequest,::api::GetSpeedResponse>* reactor) = 0;
+      #else
+      virtual void GetSpeed(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::api::GetSpeedRequest,::api::GetSpeedResponse>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void SetSpeed(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::api::SetSpeedRequest,::api::SetSpeedResponse>* reactor) = 0;
+      #else
+      virtual void SetSpeed(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::api::SetSpeedRequest,::api::SetSpeedResponse>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void AddUsers(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::api::AddUserRequest,::api::AddUserResponse>* reactor) = 0;
+      #else
+      virtual void AddUsers(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::api::AddUserRequest,::api::AddUserResponse>* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void DeleteUsers(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::api::DeleteUserRequest,::api::DeleteUserResponse>* reactor) = 0;
+      #else
+      virtual void DeleteUsers(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::api::DeleteUserRequest,::api::DeleteUserResponse>* reactor) = 0;
+      #endif
+    };
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    typedef class experimental_async_interface async_interface;
+    #endif
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    async_interface* async() { return experimental_async(); }
+    #endif
+    virtual class experimental_async_interface* experimental_async() { return nullptr; }
+  private:
+    virtual ::grpc::ClientReaderInterface< ::api::ListUserResponse>* ListUsersRaw(::grpc::ClientContext* context, const ::api::ListUserRequest& request) = 0;
+    virtual ::grpc::ClientAsyncReaderInterface< ::api::ListUserResponse>* AsyncListUsersRaw(::grpc::ClientContext* context, const ::api::ListUserRequest& request, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderInterface< ::api::ListUserResponse>* PrepareAsyncListUsersRaw(::grpc::ClientContext* context, const ::api::ListUserRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderWriterInterface< ::api::GetTrafficRequest, ::api::GetTrafficResponse>* GetTrafficRaw(::grpc::ClientContext* context) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::api::GetTrafficRequest, ::api::GetTrafficResponse>* AsyncGetTrafficRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::api::GetTrafficRequest, ::api::GetTrafficResponse>* PrepareAsyncGetTrafficRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderWriterInterface< ::api::SetTrafficRequest, ::api::SetTrafficReponse>* SetTrafficRaw(::grpc::ClientContext* context) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::api::SetTrafficRequest, ::api::SetTrafficReponse>* AsyncSetTrafficRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::api::SetTrafficRequest, ::api::SetTrafficReponse>* PrepareAsyncSetTrafficRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderWriterInterface< ::api::GetSpeedRequest, ::api::GetSpeedResponse>* GetSpeedRaw(::grpc::ClientContext* context) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::api::GetSpeedRequest, ::api::GetSpeedResponse>* AsyncGetSpeedRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::api::GetSpeedRequest, ::api::GetSpeedResponse>* PrepareAsyncGetSpeedRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderWriterInterface< ::api::SetSpeedRequest, ::api::SetSpeedResponse>* SetSpeedRaw(::grpc::ClientContext* context) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::api::SetSpeedRequest, ::api::SetSpeedResponse>* AsyncSetSpeedRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::api::SetSpeedRequest, ::api::SetSpeedResponse>* PrepareAsyncSetSpeedRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderWriterInterface< ::api::AddUserRequest, ::api::AddUserResponse>* AddUsersRaw(::grpc::ClientContext* context) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::api::AddUserRequest, ::api::AddUserResponse>* AsyncAddUsersRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::api::AddUserRequest, ::api::AddUserResponse>* PrepareAsyncAddUsersRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderWriterInterface< ::api::DeleteUserRequest, ::api::DeleteUserResponse>* DeleteUsersRaw(::grpc::ClientContext* context) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::api::DeleteUserRequest, ::api::DeleteUserResponse>* AsyncDeleteUsersRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::api::DeleteUserRequest, ::api::DeleteUserResponse>* PrepareAsyncDeleteUsersRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
+  };
+  class Stub final : public StubInterface {
+   public:
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
+    std::unique_ptr< ::grpc::ClientReader< ::api::ListUserResponse>> ListUsers(::grpc::ClientContext* context, const ::api::ListUserRequest& request) {
+      return std::unique_ptr< ::grpc::ClientReader< ::api::ListUserResponse>>(ListUsersRaw(context, request));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReader< ::api::ListUserResponse>> AsyncListUsers(::grpc::ClientContext* context, const ::api::ListUserRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReader< ::api::ListUserResponse>>(AsyncListUsersRaw(context, request, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReader< ::api::ListUserResponse>> PrepareAsyncListUsers(::grpc::ClientContext* context, const ::api::ListUserRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReader< ::api::ListUserResponse>>(PrepareAsyncListUsersRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientReaderWriter< ::api::GetTrafficRequest, ::api::GetTrafficResponse>> GetTraffic(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriter< ::api::GetTrafficRequest, ::api::GetTrafficResponse>>(GetTrafficRaw(context));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::api::GetTrafficRequest, ::api::GetTrafficResponse>> AsyncGetTraffic(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::api::GetTrafficRequest, ::api::GetTrafficResponse>>(AsyncGetTrafficRaw(context, cq, tag));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::api::GetTrafficRequest, ::api::GetTrafficResponse>> PrepareAsyncGetTraffic(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::api::GetTrafficRequest, ::api::GetTrafficResponse>>(PrepareAsyncGetTrafficRaw(context, cq));
+    }
+    std::unique_ptr< ::grpc::ClientReaderWriter< ::api::SetTrafficRequest, ::api::SetTrafficReponse>> SetTraffic(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriter< ::api::SetTrafficRequest, ::api::SetTrafficReponse>>(SetTrafficRaw(context));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::api::SetTrafficRequest, ::api::SetTrafficReponse>> AsyncSetTraffic(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::api::SetTrafficRequest, ::api::SetTrafficReponse>>(AsyncSetTrafficRaw(context, cq, tag));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::api::SetTrafficRequest, ::api::SetTrafficReponse>> PrepareAsyncSetTraffic(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::api::SetTrafficRequest, ::api::SetTrafficReponse>>(PrepareAsyncSetTrafficRaw(context, cq));
+    }
+    std::unique_ptr< ::grpc::ClientReaderWriter< ::api::GetSpeedRequest, ::api::GetSpeedResponse>> GetSpeed(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriter< ::api::GetSpeedRequest, ::api::GetSpeedResponse>>(GetSpeedRaw(context));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::api::GetSpeedRequest, ::api::GetSpeedResponse>> AsyncGetSpeed(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::api::GetSpeedRequest, ::api::GetSpeedResponse>>(AsyncGetSpeedRaw(context, cq, tag));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::api::GetSpeedRequest, ::api::GetSpeedResponse>> PrepareAsyncGetSpeed(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::api::GetSpeedRequest, ::api::GetSpeedResponse>>(PrepareAsyncGetSpeedRaw(context, cq));
+    }
+    std::unique_ptr< ::grpc::ClientReaderWriter< ::api::SetSpeedRequest, ::api::SetSpeedResponse>> SetSpeed(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriter< ::api::SetSpeedRequest, ::api::SetSpeedResponse>>(SetSpeedRaw(context));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::api::SetSpeedRequest, ::api::SetSpeedResponse>> AsyncSetSpeed(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::api::SetSpeedRequest, ::api::SetSpeedResponse>>(AsyncSetSpeedRaw(context, cq, tag));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::api::SetSpeedRequest, ::api::SetSpeedResponse>> PrepareAsyncSetSpeed(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::api::SetSpeedRequest, ::api::SetSpeedResponse>>(PrepareAsyncSetSpeedRaw(context, cq));
+    }
+    std::unique_ptr< ::grpc::ClientReaderWriter< ::api::AddUserRequest, ::api::AddUserResponse>> AddUsers(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriter< ::api::AddUserRequest, ::api::AddUserResponse>>(AddUsersRaw(context));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::api::AddUserRequest, ::api::AddUserResponse>> AsyncAddUsers(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::api::AddUserRequest, ::api::AddUserResponse>>(AsyncAddUsersRaw(context, cq, tag));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::api::AddUserRequest, ::api::AddUserResponse>> PrepareAsyncAddUsers(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::api::AddUserRequest, ::api::AddUserResponse>>(PrepareAsyncAddUsersRaw(context, cq));
+    }
+    std::unique_ptr< ::grpc::ClientReaderWriter< ::api::DeleteUserRequest, ::api::DeleteUserResponse>> DeleteUsers(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriter< ::api::DeleteUserRequest, ::api::DeleteUserResponse>>(DeleteUsersRaw(context));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::api::DeleteUserRequest, ::api::DeleteUserResponse>> AsyncDeleteUsers(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::api::DeleteUserRequest, ::api::DeleteUserResponse>>(AsyncDeleteUsersRaw(context, cq, tag));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::api::DeleteUserRequest, ::api::DeleteUserResponse>> PrepareAsyncDeleteUsers(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::api::DeleteUserRequest, ::api::DeleteUserResponse>>(PrepareAsyncDeleteUsersRaw(context, cq));
+    }
+    class experimental_async final :
+      public StubInterface::experimental_async_interface {
+     public:
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void ListUsers(::grpc::ClientContext* context, ::api::ListUserRequest* request, ::grpc::ClientReadReactor< ::api::ListUserResponse>* reactor) override;
+      #else
+      void ListUsers(::grpc::ClientContext* context, ::api::ListUserRequest* request, ::grpc::experimental::ClientReadReactor< ::api::ListUserResponse>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetTraffic(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::api::GetTrafficRequest,::api::GetTrafficResponse>* reactor) override;
+      #else
+      void GetTraffic(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::api::GetTrafficRequest,::api::GetTrafficResponse>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void SetTraffic(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::api::SetTrafficRequest,::api::SetTrafficReponse>* reactor) override;
+      #else
+      void SetTraffic(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::api::SetTrafficRequest,::api::SetTrafficReponse>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetSpeed(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::api::GetSpeedRequest,::api::GetSpeedResponse>* reactor) override;
+      #else
+      void GetSpeed(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::api::GetSpeedRequest,::api::GetSpeedResponse>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void SetSpeed(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::api::SetSpeedRequest,::api::SetSpeedResponse>* reactor) override;
+      #else
+      void SetSpeed(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::api::SetSpeedRequest,::api::SetSpeedResponse>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void AddUsers(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::api::AddUserRequest,::api::AddUserResponse>* reactor) override;
+      #else
+      void AddUsers(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::api::AddUserRequest,::api::AddUserResponse>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void DeleteUsers(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::api::DeleteUserRequest,::api::DeleteUserResponse>* reactor) override;
+      #else
+      void DeleteUsers(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::api::DeleteUserRequest,::api::DeleteUserResponse>* reactor) override;
+      #endif
+     private:
+      friend class Stub;
+      explicit experimental_async(Stub* stub): stub_(stub) { }
+      Stub* stub() { return stub_; }
+      Stub* stub_;
+    };
+    class experimental_async_interface* experimental_async() override { return &async_stub_; }
+
+   private:
+    std::shared_ptr< ::grpc::ChannelInterface> channel_;
+    class experimental_async async_stub_{this};
+    ::grpc::ClientReader< ::api::ListUserResponse>* ListUsersRaw(::grpc::ClientContext* context, const ::api::ListUserRequest& request) override;
+    ::grpc::ClientAsyncReader< ::api::ListUserResponse>* AsyncListUsersRaw(::grpc::ClientContext* context, const ::api::ListUserRequest& request, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReader< ::api::ListUserResponse>* PrepareAsyncListUsersRaw(::grpc::ClientContext* context, const ::api::ListUserRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReaderWriter< ::api::GetTrafficRequest, ::api::GetTrafficResponse>* GetTrafficRaw(::grpc::ClientContext* context) override;
+    ::grpc::ClientAsyncReaderWriter< ::api::GetTrafficRequest, ::api::GetTrafficResponse>* AsyncGetTrafficRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReaderWriter< ::api::GetTrafficRequest, ::api::GetTrafficResponse>* PrepareAsyncGetTrafficRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReaderWriter< ::api::SetTrafficRequest, ::api::SetTrafficReponse>* SetTrafficRaw(::grpc::ClientContext* context) override;
+    ::grpc::ClientAsyncReaderWriter< ::api::SetTrafficRequest, ::api::SetTrafficReponse>* AsyncSetTrafficRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReaderWriter< ::api::SetTrafficRequest, ::api::SetTrafficReponse>* PrepareAsyncSetTrafficRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReaderWriter< ::api::GetSpeedRequest, ::api::GetSpeedResponse>* GetSpeedRaw(::grpc::ClientContext* context) override;
+    ::grpc::ClientAsyncReaderWriter< ::api::GetSpeedRequest, ::api::GetSpeedResponse>* AsyncGetSpeedRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReaderWriter< ::api::GetSpeedRequest, ::api::GetSpeedResponse>* PrepareAsyncGetSpeedRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReaderWriter< ::api::SetSpeedRequest, ::api::SetSpeedResponse>* SetSpeedRaw(::grpc::ClientContext* context) override;
+    ::grpc::ClientAsyncReaderWriter< ::api::SetSpeedRequest, ::api::SetSpeedResponse>* AsyncSetSpeedRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReaderWriter< ::api::SetSpeedRequest, ::api::SetSpeedResponse>* PrepareAsyncSetSpeedRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReaderWriter< ::api::AddUserRequest, ::api::AddUserResponse>* AddUsersRaw(::grpc::ClientContext* context) override;
+    ::grpc::ClientAsyncReaderWriter< ::api::AddUserRequest, ::api::AddUserResponse>* AsyncAddUsersRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReaderWriter< ::api::AddUserRequest, ::api::AddUserResponse>* PrepareAsyncAddUsersRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReaderWriter< ::api::DeleteUserRequest, ::api::DeleteUserResponse>* DeleteUsersRaw(::grpc::ClientContext* context) override;
+    ::grpc::ClientAsyncReaderWriter< ::api::DeleteUserRequest, ::api::DeleteUserResponse>* AsyncDeleteUsersRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReaderWriter< ::api::DeleteUserRequest, ::api::DeleteUserResponse>* PrepareAsyncDeleteUsersRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_ListUsers_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetTraffic_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetTraffic_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetSpeed_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetSpeed_;
+    const ::grpc::internal::RpcMethod rpcmethod_AddUsers_;
+    const ::grpc::internal::RpcMethod rpcmethod_DeleteUsers_;
+  };
+  static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+
+  class Service : public ::grpc::Service {
+   public:
+    Service();
+    virtual ~Service();
+    virtual ::grpc::Status ListUsers(::grpc::ServerContext* context, const ::api::ListUserRequest* request, ::grpc::ServerWriter< ::api::ListUserResponse>* writer);
+    virtual ::grpc::Status GetTraffic(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::api::GetTrafficResponse, ::api::GetTrafficRequest>* stream);
+    virtual ::grpc::Status SetTraffic(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::api::SetTrafficReponse, ::api::SetTrafficRequest>* stream);
+    virtual ::grpc::Status GetSpeed(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::api::GetSpeedResponse, ::api::GetSpeedRequest>* stream);
+    virtual ::grpc::Status SetSpeed(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::api::SetSpeedResponse, ::api::SetSpeedRequest>* stream);
+    virtual ::grpc::Status AddUsers(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::api::AddUserResponse, ::api::AddUserRequest>* stream);
+    virtual ::grpc::Status DeleteUsers(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::api::DeleteUserResponse, ::api::DeleteUserRequest>* stream);
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_ListUsers : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_ListUsers() {
+      ::grpc::Service::MarkMethodAsync(0);
+    }
+    ~WithAsyncMethod_ListUsers() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListUsers(::grpc::ServerContext* /*context*/, const ::api::ListUserRequest* /*request*/, ::grpc::ServerWriter< ::api::ListUserResponse>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestListUsers(::grpc::ServerContext* context, ::api::ListUserRequest* request, ::grpc::ServerAsyncWriter< ::api::ListUserResponse>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncServerStreaming(0, context, request, writer, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_GetTraffic : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetTraffic() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_GetTraffic() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::GetTrafficResponse, ::api::GetTrafficRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetTraffic(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::api::GetTrafficResponse, ::api::GetTrafficRequest>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(1, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_SetTraffic : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetTraffic() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_SetTraffic() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetTraffic(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::SetTrafficReponse, ::api::SetTrafficRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetTraffic(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::api::SetTrafficReponse, ::api::SetTrafficRequest>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(2, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_GetSpeed : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetSpeed() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_GetSpeed() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetSpeed(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::GetSpeedResponse, ::api::GetSpeedRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetSpeed(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::api::GetSpeedResponse, ::api::GetSpeedRequest>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(3, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_SetSpeed : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetSpeed() {
+      ::grpc::Service::MarkMethodAsync(4);
+    }
+    ~WithAsyncMethod_SetSpeed() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetSpeed(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::SetSpeedResponse, ::api::SetSpeedRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetSpeed(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::api::SetSpeedResponse, ::api::SetSpeedRequest>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(4, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_AddUsers : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_AddUsers() {
+      ::grpc::Service::MarkMethodAsync(5);
+    }
+    ~WithAsyncMethod_AddUsers() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddUsers(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::AddUserResponse, ::api::AddUserRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestAddUsers(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::api::AddUserResponse, ::api::AddUserRequest>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(5, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_DeleteUsers : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_DeleteUsers() {
+      ::grpc::Service::MarkMethodAsync(6);
+    }
+    ~WithAsyncMethod_DeleteUsers() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteUsers(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::DeleteUserResponse, ::api::DeleteUserRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDeleteUsers(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::api::DeleteUserResponse, ::api::DeleteUserRequest>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(6, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_ListUsers<WithAsyncMethod_GetTraffic<WithAsyncMethod_SetTraffic<WithAsyncMethod_GetSpeed<WithAsyncMethod_SetSpeed<WithAsyncMethod_AddUsers<WithAsyncMethod_DeleteUsers<Service > > > > > > > AsyncService;
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_ListUsers : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_ListUsers() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(0,
+          new ::grpc_impl::internal::CallbackServerStreamingHandler< ::api::ListUserRequest, ::api::ListUserResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::api::ListUserRequest* request) { return this->ListUsers(context, request); }));
+    }
+    ~ExperimentalWithCallbackMethod_ListUsers() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListUsers(::grpc::ServerContext* /*context*/, const ::api::ListUserRequest* /*request*/, ::grpc::ServerWriter< ::api::ListUserResponse>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerWriteReactor< ::api::ListUserResponse>* ListUsers(
+      ::grpc::CallbackServerContext* /*context*/, const ::api::ListUserRequest* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::api::ListUserResponse>* ListUsers(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::api::ListUserRequest* /*request*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_GetTraffic : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_GetTraffic() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(1,
+          new ::grpc_impl::internal::CallbackBidiHandler< ::api::GetTrafficRequest, ::api::GetTrafficResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context) { return this->GetTraffic(context); }));
+    }
+    ~ExperimentalWithCallbackMethod_GetTraffic() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::GetTrafficResponse, ::api::GetTrafficRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerBidiReactor< ::api::GetTrafficRequest, ::api::GetTrafficResponse>* GetTraffic(
+      ::grpc::CallbackServerContext* /*context*/)
+    #else
+    virtual ::grpc::experimental::ServerBidiReactor< ::api::GetTrafficRequest, ::api::GetTrafficResponse>* GetTraffic(
+      ::grpc::experimental::CallbackServerContext* /*context*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_SetTraffic : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_SetTraffic() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(2,
+          new ::grpc_impl::internal::CallbackBidiHandler< ::api::SetTrafficRequest, ::api::SetTrafficReponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context) { return this->SetTraffic(context); }));
+    }
+    ~ExperimentalWithCallbackMethod_SetTraffic() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetTraffic(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::SetTrafficReponse, ::api::SetTrafficRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerBidiReactor< ::api::SetTrafficRequest, ::api::SetTrafficReponse>* SetTraffic(
+      ::grpc::CallbackServerContext* /*context*/)
+    #else
+    virtual ::grpc::experimental::ServerBidiReactor< ::api::SetTrafficRequest, ::api::SetTrafficReponse>* SetTraffic(
+      ::grpc::experimental::CallbackServerContext* /*context*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_GetSpeed : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_GetSpeed() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(3,
+          new ::grpc_impl::internal::CallbackBidiHandler< ::api::GetSpeedRequest, ::api::GetSpeedResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context) { return this->GetSpeed(context); }));
+    }
+    ~ExperimentalWithCallbackMethod_GetSpeed() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetSpeed(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::GetSpeedResponse, ::api::GetSpeedRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerBidiReactor< ::api::GetSpeedRequest, ::api::GetSpeedResponse>* GetSpeed(
+      ::grpc::CallbackServerContext* /*context*/)
+    #else
+    virtual ::grpc::experimental::ServerBidiReactor< ::api::GetSpeedRequest, ::api::GetSpeedResponse>* GetSpeed(
+      ::grpc::experimental::CallbackServerContext* /*context*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_SetSpeed : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_SetSpeed() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(4,
+          new ::grpc_impl::internal::CallbackBidiHandler< ::api::SetSpeedRequest, ::api::SetSpeedResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context) { return this->SetSpeed(context); }));
+    }
+    ~ExperimentalWithCallbackMethod_SetSpeed() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetSpeed(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::SetSpeedResponse, ::api::SetSpeedRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerBidiReactor< ::api::SetSpeedRequest, ::api::SetSpeedResponse>* SetSpeed(
+      ::grpc::CallbackServerContext* /*context*/)
+    #else
+    virtual ::grpc::experimental::ServerBidiReactor< ::api::SetSpeedRequest, ::api::SetSpeedResponse>* SetSpeed(
+      ::grpc::experimental::CallbackServerContext* /*context*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_AddUsers : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_AddUsers() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(5,
+          new ::grpc_impl::internal::CallbackBidiHandler< ::api::AddUserRequest, ::api::AddUserResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context) { return this->AddUsers(context); }));
+    }
+    ~ExperimentalWithCallbackMethod_AddUsers() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddUsers(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::AddUserResponse, ::api::AddUserRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerBidiReactor< ::api::AddUserRequest, ::api::AddUserResponse>* AddUsers(
+      ::grpc::CallbackServerContext* /*context*/)
+    #else
+    virtual ::grpc::experimental::ServerBidiReactor< ::api::AddUserRequest, ::api::AddUserResponse>* AddUsers(
+      ::grpc::experimental::CallbackServerContext* /*context*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_DeleteUsers : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_DeleteUsers() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(6,
+          new ::grpc_impl::internal::CallbackBidiHandler< ::api::DeleteUserRequest, ::api::DeleteUserResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context) { return this->DeleteUsers(context); }));
+    }
+    ~ExperimentalWithCallbackMethod_DeleteUsers() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteUsers(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::DeleteUserResponse, ::api::DeleteUserRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerBidiReactor< ::api::DeleteUserRequest, ::api::DeleteUserResponse>* DeleteUsers(
+      ::grpc::CallbackServerContext* /*context*/)
+    #else
+    virtual ::grpc::experimental::ServerBidiReactor< ::api::DeleteUserRequest, ::api::DeleteUserResponse>* DeleteUsers(
+      ::grpc::experimental::CallbackServerContext* /*context*/)
+    #endif
+      { return nullptr; }
+  };
+  #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+  typedef ExperimentalWithCallbackMethod_ListUsers<ExperimentalWithCallbackMethod_GetTraffic<ExperimentalWithCallbackMethod_SetTraffic<ExperimentalWithCallbackMethod_GetSpeed<ExperimentalWithCallbackMethod_SetSpeed<ExperimentalWithCallbackMethod_AddUsers<ExperimentalWithCallbackMethod_DeleteUsers<Service > > > > > > > CallbackService;
+  #endif
+
+  typedef ExperimentalWithCallbackMethod_ListUsers<ExperimentalWithCallbackMethod_GetTraffic<ExperimentalWithCallbackMethod_SetTraffic<ExperimentalWithCallbackMethod_GetSpeed<ExperimentalWithCallbackMethod_SetSpeed<ExperimentalWithCallbackMethod_AddUsers<ExperimentalWithCallbackMethod_DeleteUsers<Service > > > > > > > ExperimentalCallbackService;
+  template <class BaseClass>
+  class WithGenericMethod_ListUsers : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_ListUsers() {
+      ::grpc::Service::MarkMethodGeneric(0);
+    }
+    ~WithGenericMethod_ListUsers() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListUsers(::grpc::ServerContext* /*context*/, const ::api::ListUserRequest* /*request*/, ::grpc::ServerWriter< ::api::ListUserResponse>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetTraffic : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetTraffic() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_GetTraffic() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::GetTrafficResponse, ::api::GetTrafficRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_SetTraffic : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetTraffic() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_SetTraffic() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetTraffic(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::SetTrafficReponse, ::api::SetTrafficRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetSpeed : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetSpeed() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_GetSpeed() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetSpeed(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::GetSpeedResponse, ::api::GetSpeedRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_SetSpeed : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetSpeed() {
+      ::grpc::Service::MarkMethodGeneric(4);
+    }
+    ~WithGenericMethod_SetSpeed() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetSpeed(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::SetSpeedResponse, ::api::SetSpeedRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_AddUsers : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_AddUsers() {
+      ::grpc::Service::MarkMethodGeneric(5);
+    }
+    ~WithGenericMethod_AddUsers() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddUsers(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::AddUserResponse, ::api::AddUserRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_DeleteUsers : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_DeleteUsers() {
+      ::grpc::Service::MarkMethodGeneric(6);
+    }
+    ~WithGenericMethod_DeleteUsers() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteUsers(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::DeleteUserResponse, ::api::DeleteUserRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_ListUsers : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_ListUsers() {
+      ::grpc::Service::MarkMethodRaw(0);
+    }
+    ~WithRawMethod_ListUsers() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListUsers(::grpc::ServerContext* /*context*/, const ::api::ListUserRequest* /*request*/, ::grpc::ServerWriter< ::api::ListUserResponse>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestListUsers(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncWriter< ::grpc::ByteBuffer>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncServerStreaming(0, context, request, writer, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetTraffic : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetTraffic() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_GetTraffic() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::GetTrafficResponse, ::api::GetTrafficRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetTraffic(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(1, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SetTraffic : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetTraffic() {
+      ::grpc::Service::MarkMethodRaw(2);
+    }
+    ~WithRawMethod_SetTraffic() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetTraffic(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::SetTrafficReponse, ::api::SetTrafficRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetTraffic(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(2, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetSpeed : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetSpeed() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_GetSpeed() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetSpeed(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::GetSpeedResponse, ::api::GetSpeedRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetSpeed(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(3, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SetSpeed : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetSpeed() {
+      ::grpc::Service::MarkMethodRaw(4);
+    }
+    ~WithRawMethod_SetSpeed() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetSpeed(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::SetSpeedResponse, ::api::SetSpeedRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetSpeed(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(4, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_AddUsers : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_AddUsers() {
+      ::grpc::Service::MarkMethodRaw(5);
+    }
+    ~WithRawMethod_AddUsers() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddUsers(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::AddUserResponse, ::api::AddUserRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestAddUsers(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(5, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_DeleteUsers : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_DeleteUsers() {
+      ::grpc::Service::MarkMethodRaw(6);
+    }
+    ~WithRawMethod_DeleteUsers() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteUsers(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::DeleteUserResponse, ::api::DeleteUserRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDeleteUsers(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(6, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_ListUsers : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_ListUsers() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(0,
+          new ::grpc_impl::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->ListUsers(context, request); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_ListUsers() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListUsers(::grpc::ServerContext* /*context*/, const ::api::ListUserRequest* /*request*/, ::grpc::ServerWriter< ::api::ListUserResponse>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* ListUsers(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* ListUsers(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_GetTraffic : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_GetTraffic() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(1,
+          new ::grpc_impl::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context) { return this->GetTraffic(context); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_GetTraffic() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::GetTrafficResponse, ::api::GetTrafficRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* GetTraffic(
+      ::grpc::CallbackServerContext* /*context*/)
+    #else
+    virtual ::grpc::experimental::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* GetTraffic(
+      ::grpc::experimental::CallbackServerContext* /*context*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_SetTraffic : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_SetTraffic() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(2,
+          new ::grpc_impl::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context) { return this->SetTraffic(context); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_SetTraffic() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetTraffic(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::SetTrafficReponse, ::api::SetTrafficRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* SetTraffic(
+      ::grpc::CallbackServerContext* /*context*/)
+    #else
+    virtual ::grpc::experimental::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* SetTraffic(
+      ::grpc::experimental::CallbackServerContext* /*context*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_GetSpeed : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_GetSpeed() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(3,
+          new ::grpc_impl::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context) { return this->GetSpeed(context); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_GetSpeed() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetSpeed(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::GetSpeedResponse, ::api::GetSpeedRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* GetSpeed(
+      ::grpc::CallbackServerContext* /*context*/)
+    #else
+    virtual ::grpc::experimental::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* GetSpeed(
+      ::grpc::experimental::CallbackServerContext* /*context*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_SetSpeed : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_SetSpeed() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(4,
+          new ::grpc_impl::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context) { return this->SetSpeed(context); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_SetSpeed() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetSpeed(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::SetSpeedResponse, ::api::SetSpeedRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* SetSpeed(
+      ::grpc::CallbackServerContext* /*context*/)
+    #else
+    virtual ::grpc::experimental::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* SetSpeed(
+      ::grpc::experimental::CallbackServerContext* /*context*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_AddUsers : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_AddUsers() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(5,
+          new ::grpc_impl::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context) { return this->AddUsers(context); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_AddUsers() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddUsers(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::AddUserResponse, ::api::AddUserRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* AddUsers(
+      ::grpc::CallbackServerContext* /*context*/)
+    #else
+    virtual ::grpc::experimental::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* AddUsers(
+      ::grpc::experimental::CallbackServerContext* /*context*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_DeleteUsers : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_DeleteUsers() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(6,
+          new ::grpc_impl::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context) { return this->DeleteUsers(context); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_DeleteUsers() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DeleteUsers(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::DeleteUserResponse, ::api::DeleteUserRequest>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* DeleteUsers(
+      ::grpc::CallbackServerContext* /*context*/)
+    #else
+    virtual ::grpc::experimental::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* DeleteUsers(
+      ::grpc::experimental::CallbackServerContext* /*context*/)
+    #endif
+      { return nullptr; }
+  };
+  typedef Service StreamedUnaryService;
+  template <class BaseClass>
+  class WithSplitStreamingMethod_ListUsers : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithSplitStreamingMethod_ListUsers() {
+      ::grpc::Service::MarkMethodStreamed(0,
+        new ::grpc::internal::SplitServerStreamingHandler< ::api::ListUserRequest, ::api::ListUserResponse>(std::bind(&WithSplitStreamingMethod_ListUsers<BaseClass>::StreamedListUsers, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithSplitStreamingMethod_ListUsers() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status ListUsers(::grpc::ServerContext* /*context*/, const ::api::ListUserRequest* /*request*/, ::grpc::ServerWriter< ::api::ListUserResponse>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with split streamed
+    virtual ::grpc::Status StreamedListUsers(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::api::ListUserRequest,::api::ListUserResponse>* server_split_streamer) = 0;
+  };
+  typedef WithSplitStreamingMethod_ListUsers<Service > SplitStreamedService;
+  typedef WithSplitStreamingMethod_ListUsers<Service > StreamedService;
 };
 
 }  // namespace api

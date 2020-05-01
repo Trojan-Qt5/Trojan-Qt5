@@ -181,6 +181,8 @@ void Connection::start()
     } else if (profile.type == "trojan") {
         startTrojanGo(file.toUtf8().data());
         trojanGoAPI = new TrojanGoAPI();
+        trojanGoAPI->setPassword(profile.password);
+        trojanGoAPI->start();
         connect(trojanGoAPI, &TrojanGoAPI::OnDataReady, this, &Connection::onNewBytesTransmitted);
     }
 

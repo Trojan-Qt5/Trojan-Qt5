@@ -47,7 +47,7 @@ struct TableStruct_trojangoapi_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[2]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[17]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -55,38 +55,98 @@ struct TableStruct_trojangoapi_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_trojangoapi_2eproto;
 namespace api {
-class StatsReply;
-class StatsReplyDefaultTypeInternal;
-extern StatsReplyDefaultTypeInternal _StatsReply_default_instance_;
-class StatsRequest;
-class StatsRequestDefaultTypeInternal;
-extern StatsRequestDefaultTypeInternal _StatsRequest_default_instance_;
+class AddUserRequest;
+class AddUserRequestDefaultTypeInternal;
+extern AddUserRequestDefaultTypeInternal _AddUserRequest_default_instance_;
+class AddUserResponse;
+class AddUserResponseDefaultTypeInternal;
+extern AddUserResponseDefaultTypeInternal _AddUserResponse_default_instance_;
+class DeleteUserRequest;
+class DeleteUserRequestDefaultTypeInternal;
+extern DeleteUserRequestDefaultTypeInternal _DeleteUserRequest_default_instance_;
+class DeleteUserResponse;
+class DeleteUserResponseDefaultTypeInternal;
+extern DeleteUserResponseDefaultTypeInternal _DeleteUserResponse_default_instance_;
+class GetSpeedRequest;
+class GetSpeedRequestDefaultTypeInternal;
+extern GetSpeedRequestDefaultTypeInternal _GetSpeedRequest_default_instance_;
+class GetSpeedResponse;
+class GetSpeedResponseDefaultTypeInternal;
+extern GetSpeedResponseDefaultTypeInternal _GetSpeedResponse_default_instance_;
+class GetTrafficRequest;
+class GetTrafficRequestDefaultTypeInternal;
+extern GetTrafficRequestDefaultTypeInternal _GetTrafficRequest_default_instance_;
+class GetTrafficResponse;
+class GetTrafficResponseDefaultTypeInternal;
+extern GetTrafficResponseDefaultTypeInternal _GetTrafficResponse_default_instance_;
+class ListUserRequest;
+class ListUserRequestDefaultTypeInternal;
+extern ListUserRequestDefaultTypeInternal _ListUserRequest_default_instance_;
+class ListUserResponse;
+class ListUserResponseDefaultTypeInternal;
+extern ListUserResponseDefaultTypeInternal _ListUserResponse_default_instance_;
+class SetSpeedRequest;
+class SetSpeedRequestDefaultTypeInternal;
+extern SetSpeedRequestDefaultTypeInternal _SetSpeedRequest_default_instance_;
+class SetSpeedResponse;
+class SetSpeedResponseDefaultTypeInternal;
+extern SetSpeedResponseDefaultTypeInternal _SetSpeedResponse_default_instance_;
+class SetTrafficReponse;
+class SetTrafficReponseDefaultTypeInternal;
+extern SetTrafficReponseDefaultTypeInternal _SetTrafficReponse_default_instance_;
+class SetTrafficRequest;
+class SetTrafficRequestDefaultTypeInternal;
+extern SetTrafficRequestDefaultTypeInternal _SetTrafficRequest_default_instance_;
+class Speed;
+class SpeedDefaultTypeInternal;
+extern SpeedDefaultTypeInternal _Speed_default_instance_;
+class Traffic;
+class TrafficDefaultTypeInternal;
+extern TrafficDefaultTypeInternal _Traffic_default_instance_;
+class User;
+class UserDefaultTypeInternal;
+extern UserDefaultTypeInternal _User_default_instance_;
 }  // namespace api
 PROTOBUF_NAMESPACE_OPEN
-template<> ::api::StatsReply* Arena::CreateMaybeMessage<::api::StatsReply>(Arena*);
-template<> ::api::StatsRequest* Arena::CreateMaybeMessage<::api::StatsRequest>(Arena*);
+template<> ::api::AddUserRequest* Arena::CreateMaybeMessage<::api::AddUserRequest>(Arena*);
+template<> ::api::AddUserResponse* Arena::CreateMaybeMessage<::api::AddUserResponse>(Arena*);
+template<> ::api::DeleteUserRequest* Arena::CreateMaybeMessage<::api::DeleteUserRequest>(Arena*);
+template<> ::api::DeleteUserResponse* Arena::CreateMaybeMessage<::api::DeleteUserResponse>(Arena*);
+template<> ::api::GetSpeedRequest* Arena::CreateMaybeMessage<::api::GetSpeedRequest>(Arena*);
+template<> ::api::GetSpeedResponse* Arena::CreateMaybeMessage<::api::GetSpeedResponse>(Arena*);
+template<> ::api::GetTrafficRequest* Arena::CreateMaybeMessage<::api::GetTrafficRequest>(Arena*);
+template<> ::api::GetTrafficResponse* Arena::CreateMaybeMessage<::api::GetTrafficResponse>(Arena*);
+template<> ::api::ListUserRequest* Arena::CreateMaybeMessage<::api::ListUserRequest>(Arena*);
+template<> ::api::ListUserResponse* Arena::CreateMaybeMessage<::api::ListUserResponse>(Arena*);
+template<> ::api::SetSpeedRequest* Arena::CreateMaybeMessage<::api::SetSpeedRequest>(Arena*);
+template<> ::api::SetSpeedResponse* Arena::CreateMaybeMessage<::api::SetSpeedResponse>(Arena*);
+template<> ::api::SetTrafficReponse* Arena::CreateMaybeMessage<::api::SetTrafficReponse>(Arena*);
+template<> ::api::SetTrafficRequest* Arena::CreateMaybeMessage<::api::SetTrafficRequest>(Arena*);
+template<> ::api::Speed* Arena::CreateMaybeMessage<::api::Speed>(Arena*);
+template<> ::api::Traffic* Arena::CreateMaybeMessage<::api::Traffic>(Arena*);
+template<> ::api::User* Arena::CreateMaybeMessage<::api::User>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace api {
 
 // ===================================================================
 
-class StatsRequest :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:api.StatsRequest) */ {
+class Traffic :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:api.Traffic) */ {
  public:
-  StatsRequest();
-  virtual ~StatsRequest();
+  Traffic();
+  virtual ~Traffic();
 
-  StatsRequest(const StatsRequest& from);
-  StatsRequest(StatsRequest&& from) noexcept
-    : StatsRequest() {
+  Traffic(const Traffic& from);
+  Traffic(Traffic&& from) noexcept
+    : Traffic() {
     *this = ::std::move(from);
   }
 
-  inline StatsRequest& operator=(const StatsRequest& from) {
+  inline Traffic& operator=(const Traffic& from) {
     CopyFrom(from);
     return *this;
   }
-  inline StatsRequest& operator=(StatsRequest&& from) noexcept {
+  inline Traffic& operator=(Traffic&& from) noexcept {
     if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
       if (this != &from) InternalSwap(&from);
     } else {
@@ -104,37 +164,37 @@ class StatsRequest :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return GetMetadataStatic().reflection;
   }
-  static const StatsRequest& default_instance();
+  static const Traffic& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const StatsRequest* internal_default_instance() {
-    return reinterpret_cast<const StatsRequest*>(
-               &_StatsRequest_default_instance_);
+  static inline const Traffic* internal_default_instance() {
+    return reinterpret_cast<const Traffic*>(
+               &_Traffic_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     0;
 
-  friend void swap(StatsRequest& a, StatsRequest& b) {
+  friend void swap(Traffic& a, Traffic& b) {
     a.Swap(&b);
   }
-  inline void Swap(StatsRequest* other) {
+  inline void Swap(Traffic* other) {
     if (other == this) return;
     InternalSwap(other);
   }
 
   // implements Message ----------------------------------------------
 
-  inline StatsRequest* New() const final {
-    return CreateMaybeMessage<StatsRequest>(nullptr);
+  inline Traffic* New() const final {
+    return CreateMaybeMessage<Traffic>(nullptr);
   }
 
-  StatsRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<StatsRequest>(arena);
+  Traffic* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<Traffic>(arena);
   }
   void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
   void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const StatsRequest& from);
-  void MergeFrom(const StatsRequest& from);
+  void CopyFrom(const Traffic& from);
+  void MergeFrom(const Traffic& from);
   PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
   bool IsInitialized() const final;
 
@@ -148,145 +208,10 @@ class StatsRequest :
   inline void SharedCtor();
   inline void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(StatsRequest* other);
+  void InternalSwap(Traffic* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "api.StatsRequest";
-  }
-  private:
-  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
-    return nullptr;
-  }
-  inline void* MaybeArenaPtr() const {
-    return nullptr;
-  }
-  public:
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  private:
-  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
-    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_trojangoapi_2eproto);
-    return ::descriptor_table_trojangoapi_2eproto.file_level_metadata[kIndexInFileMessages];
-  }
-
-  public:
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kPasswordFieldNumber = 1,
-  };
-  // string password = 1;
-  void clear_password();
-  const std::string& password() const;
-  void set_password(const std::string& value);
-  void set_password(std::string&& value);
-  void set_password(const char* value);
-  void set_password(const char* value, size_t size);
-  std::string* mutable_password();
-  std::string* release_password();
-  void set_allocated_password(std::string* password);
-  private:
-  const std::string& _internal_password() const;
-  void _internal_set_password(const std::string& value);
-  std::string* _internal_mutable_password();
-  public:
-
-  // @@protoc_insertion_point(class_scope:api.StatsRequest)
- private:
-  class _Internal;
-
-  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr password_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_trojangoapi_2eproto;
-};
-// -------------------------------------------------------------------
-
-class StatsReply :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:api.StatsReply) */ {
- public:
-  StatsReply();
-  virtual ~StatsReply();
-
-  StatsReply(const StatsReply& from);
-  StatsReply(StatsReply&& from) noexcept
-    : StatsReply() {
-    *this = ::std::move(from);
-  }
-
-  inline StatsReply& operator=(const StatsReply& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline StatsReply& operator=(StatsReply&& from) noexcept {
-    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return GetMetadataStatic().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return GetMetadataStatic().reflection;
-  }
-  static const StatsReply& default_instance();
-
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const StatsReply* internal_default_instance() {
-    return reinterpret_cast<const StatsReply*>(
-               &_StatsReply_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    1;
-
-  friend void swap(StatsReply& a, StatsReply& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(StatsReply* other) {
-    if (other == this) return;
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  inline StatsReply* New() const final {
-    return CreateMaybeMessage<StatsReply>(nullptr);
-  }
-
-  StatsReply* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<StatsReply>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const StatsReply& from);
-  void MergeFrom(const StatsReply& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  inline void SharedCtor();
-  inline void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(StatsReply* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "api.StatsReply";
+    return "api.Traffic";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -313,8 +238,6 @@ class StatsReply :
   enum : int {
     kUploadTrafficFieldNumber = 1,
     kDownloadTrafficFieldNumber = 2,
-    kUploadSpeedFieldNumber = 3,
-    kDownloadSpeedFieldNumber = 4,
   };
   // uint64 upload_traffic = 1;
   void clear_upload_traffic();
@@ -334,7 +257,128 @@ class StatsReply :
   void _internal_set_download_traffic(::PROTOBUF_NAMESPACE_ID::uint64 value);
   public:
 
-  // uint64 upload_speed = 3;
+  // @@protoc_insertion_point(class_scope:api.Traffic)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 upload_traffic_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 download_traffic_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_trojangoapi_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Speed :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:api.Speed) */ {
+ public:
+  Speed();
+  virtual ~Speed();
+
+  Speed(const Speed& from);
+  Speed(Speed&& from) noexcept
+    : Speed() {
+    *this = ::std::move(from);
+  }
+
+  inline Speed& operator=(const Speed& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Speed& operator=(Speed&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const Speed& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const Speed* internal_default_instance() {
+    return reinterpret_cast<const Speed*>(
+               &_Speed_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  friend void swap(Speed& a, Speed& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Speed* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Speed* New() const final {
+    return CreateMaybeMessage<Speed>(nullptr);
+  }
+
+  Speed* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<Speed>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const Speed& from);
+  void MergeFrom(const Speed& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Speed* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "api.Speed";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_trojangoapi_2eproto);
+    return ::descriptor_table_trojangoapi_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kUploadSpeedFieldNumber = 1,
+    kDownloadSpeedFieldNumber = 2,
+  };
+  // uint64 upload_speed = 1;
   void clear_upload_speed();
   ::PROTOBUF_NAMESPACE_ID::uint64 upload_speed() const;
   void set_upload_speed(::PROTOBUF_NAMESPACE_ID::uint64 value);
@@ -343,7 +387,7 @@ class StatsReply :
   void _internal_set_upload_speed(::PROTOBUF_NAMESPACE_ID::uint64 value);
   public:
 
-  // uint64 download_speed = 4;
+  // uint64 download_speed = 2;
   void clear_download_speed();
   ::PROTOBUF_NAMESPACE_ID::uint64 download_speed() const;
   void set_download_speed(::PROTOBUF_NAMESPACE_ID::uint64 value);
@@ -352,15 +396,2251 @@ class StatsReply :
   void _internal_set_download_speed(::PROTOBUF_NAMESPACE_ID::uint64 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:api.StatsReply)
+  // @@protoc_insertion_point(class_scope:api.Speed)
  private:
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::PROTOBUF_NAMESPACE_ID::uint64 upload_traffic_;
-  ::PROTOBUF_NAMESPACE_ID::uint64 download_traffic_;
   ::PROTOBUF_NAMESPACE_ID::uint64 upload_speed_;
   ::PROTOBUF_NAMESPACE_ID::uint64 download_speed_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_trojangoapi_2eproto;
+};
+// -------------------------------------------------------------------
+
+class User :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:api.User) */ {
+ public:
+  User();
+  virtual ~User();
+
+  User(const User& from);
+  User(User&& from) noexcept
+    : User() {
+    *this = ::std::move(from);
+  }
+
+  inline User& operator=(const User& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline User& operator=(User&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const User& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const User* internal_default_instance() {
+    return reinterpret_cast<const User*>(
+               &_User_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(User& a, User& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(User* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline User* New() const final {
+    return CreateMaybeMessage<User>(nullptr);
+  }
+
+  User* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<User>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const User& from);
+  void MergeFrom(const User& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(User* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "api.User";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_trojangoapi_2eproto);
+    return ::descriptor_table_trojangoapi_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPasswordFieldNumber = 1,
+    kHashFieldNumber = 2,
+    kValidFieldNumber = 3,
+  };
+  // string password = 1;
+  void clear_password();
+  const std::string& password() const;
+  void set_password(const std::string& value);
+  void set_password(std::string&& value);
+  void set_password(const char* value);
+  void set_password(const char* value, size_t size);
+  std::string* mutable_password();
+  std::string* release_password();
+  void set_allocated_password(std::string* password);
+  private:
+  const std::string& _internal_password() const;
+  void _internal_set_password(const std::string& value);
+  std::string* _internal_mutable_password();
+  public:
+
+  // string hash = 2;
+  void clear_hash();
+  const std::string& hash() const;
+  void set_hash(const std::string& value);
+  void set_hash(std::string&& value);
+  void set_hash(const char* value);
+  void set_hash(const char* value, size_t size);
+  std::string* mutable_hash();
+  std::string* release_hash();
+  void set_allocated_hash(std::string* hash);
+  private:
+  const std::string& _internal_hash() const;
+  void _internal_set_hash(const std::string& value);
+  std::string* _internal_mutable_hash();
+  public:
+
+  // bool valid = 3;
+  void clear_valid();
+  bool valid() const;
+  void set_valid(bool value);
+  private:
+  bool _internal_valid() const;
+  void _internal_set_valid(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:api.User)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr password_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr hash_;
+  bool valid_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_trojangoapi_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetTrafficRequest :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:api.GetTrafficRequest) */ {
+ public:
+  GetTrafficRequest();
+  virtual ~GetTrafficRequest();
+
+  GetTrafficRequest(const GetTrafficRequest& from);
+  GetTrafficRequest(GetTrafficRequest&& from) noexcept
+    : GetTrafficRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetTrafficRequest& operator=(const GetTrafficRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetTrafficRequest& operator=(GetTrafficRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const GetTrafficRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const GetTrafficRequest* internal_default_instance() {
+    return reinterpret_cast<const GetTrafficRequest*>(
+               &_GetTrafficRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(GetTrafficRequest& a, GetTrafficRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetTrafficRequest* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline GetTrafficRequest* New() const final {
+    return CreateMaybeMessage<GetTrafficRequest>(nullptr);
+  }
+
+  GetTrafficRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<GetTrafficRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const GetTrafficRequest& from);
+  void MergeFrom(const GetTrafficRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetTrafficRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "api.GetTrafficRequest";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_trojangoapi_2eproto);
+    return ::descriptor_table_trojangoapi_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kUserFieldNumber = 1,
+  };
+  // .api.User user = 1;
+  bool has_user() const;
+  private:
+  bool _internal_has_user() const;
+  public:
+  void clear_user();
+  const ::api::User& user() const;
+  ::api::User* release_user();
+  ::api::User* mutable_user();
+  void set_allocated_user(::api::User* user);
+  private:
+  const ::api::User& _internal_user() const;
+  ::api::User* _internal_mutable_user();
+  public:
+
+  // @@protoc_insertion_point(class_scope:api.GetTrafficRequest)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::api::User* user_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_trojangoapi_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetTrafficResponse :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:api.GetTrafficResponse) */ {
+ public:
+  GetTrafficResponse();
+  virtual ~GetTrafficResponse();
+
+  GetTrafficResponse(const GetTrafficResponse& from);
+  GetTrafficResponse(GetTrafficResponse&& from) noexcept
+    : GetTrafficResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetTrafficResponse& operator=(const GetTrafficResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetTrafficResponse& operator=(GetTrafficResponse&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const GetTrafficResponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const GetTrafficResponse* internal_default_instance() {
+    return reinterpret_cast<const GetTrafficResponse*>(
+               &_GetTrafficResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(GetTrafficResponse& a, GetTrafficResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetTrafficResponse* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline GetTrafficResponse* New() const final {
+    return CreateMaybeMessage<GetTrafficResponse>(nullptr);
+  }
+
+  GetTrafficResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<GetTrafficResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const GetTrafficResponse& from);
+  void MergeFrom(const GetTrafficResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetTrafficResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "api.GetTrafficResponse";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_trojangoapi_2eproto);
+    return ::descriptor_table_trojangoapi_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTrafficTotalFieldNumber = 1,
+    kTrafficQuotaFieldNumber = 2,
+  };
+  // .api.Traffic traffic_total = 1;
+  bool has_traffic_total() const;
+  private:
+  bool _internal_has_traffic_total() const;
+  public:
+  void clear_traffic_total();
+  const ::api::Traffic& traffic_total() const;
+  ::api::Traffic* release_traffic_total();
+  ::api::Traffic* mutable_traffic_total();
+  void set_allocated_traffic_total(::api::Traffic* traffic_total);
+  private:
+  const ::api::Traffic& _internal_traffic_total() const;
+  ::api::Traffic* _internal_mutable_traffic_total();
+  public:
+
+  // .api.Traffic traffic_quota = 2;
+  bool has_traffic_quota() const;
+  private:
+  bool _internal_has_traffic_quota() const;
+  public:
+  void clear_traffic_quota();
+  const ::api::Traffic& traffic_quota() const;
+  ::api::Traffic* release_traffic_quota();
+  ::api::Traffic* mutable_traffic_quota();
+  void set_allocated_traffic_quota(::api::Traffic* traffic_quota);
+  private:
+  const ::api::Traffic& _internal_traffic_quota() const;
+  ::api::Traffic* _internal_mutable_traffic_quota();
+  public:
+
+  // @@protoc_insertion_point(class_scope:api.GetTrafficResponse)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::api::Traffic* traffic_total_;
+  ::api::Traffic* traffic_quota_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_trojangoapi_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetSpeedRequest :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:api.GetSpeedRequest) */ {
+ public:
+  GetSpeedRequest();
+  virtual ~GetSpeedRequest();
+
+  GetSpeedRequest(const GetSpeedRequest& from);
+  GetSpeedRequest(GetSpeedRequest&& from) noexcept
+    : GetSpeedRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetSpeedRequest& operator=(const GetSpeedRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetSpeedRequest& operator=(GetSpeedRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const GetSpeedRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const GetSpeedRequest* internal_default_instance() {
+    return reinterpret_cast<const GetSpeedRequest*>(
+               &_GetSpeedRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(GetSpeedRequest& a, GetSpeedRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetSpeedRequest* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline GetSpeedRequest* New() const final {
+    return CreateMaybeMessage<GetSpeedRequest>(nullptr);
+  }
+
+  GetSpeedRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<GetSpeedRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const GetSpeedRequest& from);
+  void MergeFrom(const GetSpeedRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetSpeedRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "api.GetSpeedRequest";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_trojangoapi_2eproto);
+    return ::descriptor_table_trojangoapi_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kUserFieldNumber = 1,
+  };
+  // .api.User user = 1;
+  bool has_user() const;
+  private:
+  bool _internal_has_user() const;
+  public:
+  void clear_user();
+  const ::api::User& user() const;
+  ::api::User* release_user();
+  ::api::User* mutable_user();
+  void set_allocated_user(::api::User* user);
+  private:
+  const ::api::User& _internal_user() const;
+  ::api::User* _internal_mutable_user();
+  public:
+
+  // @@protoc_insertion_point(class_scope:api.GetSpeedRequest)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::api::User* user_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_trojangoapi_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetSpeedResponse :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:api.GetSpeedResponse) */ {
+ public:
+  GetSpeedResponse();
+  virtual ~GetSpeedResponse();
+
+  GetSpeedResponse(const GetSpeedResponse& from);
+  GetSpeedResponse(GetSpeedResponse&& from) noexcept
+    : GetSpeedResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetSpeedResponse& operator=(const GetSpeedResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetSpeedResponse& operator=(GetSpeedResponse&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const GetSpeedResponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const GetSpeedResponse* internal_default_instance() {
+    return reinterpret_cast<const GetSpeedResponse*>(
+               &_GetSpeedResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    6;
+
+  friend void swap(GetSpeedResponse& a, GetSpeedResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetSpeedResponse* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline GetSpeedResponse* New() const final {
+    return CreateMaybeMessage<GetSpeedResponse>(nullptr);
+  }
+
+  GetSpeedResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<GetSpeedResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const GetSpeedResponse& from);
+  void MergeFrom(const GetSpeedResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetSpeedResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "api.GetSpeedResponse";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_trojangoapi_2eproto);
+    return ::descriptor_table_trojangoapi_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kSpeedCurrentFieldNumber = 1,
+    kSpeedLimitFieldNumber = 2,
+  };
+  // .api.Speed speed_current = 1;
+  bool has_speed_current() const;
+  private:
+  bool _internal_has_speed_current() const;
+  public:
+  void clear_speed_current();
+  const ::api::Speed& speed_current() const;
+  ::api::Speed* release_speed_current();
+  ::api::Speed* mutable_speed_current();
+  void set_allocated_speed_current(::api::Speed* speed_current);
+  private:
+  const ::api::Speed& _internal_speed_current() const;
+  ::api::Speed* _internal_mutable_speed_current();
+  public:
+
+  // .api.Speed speed_limit = 2;
+  bool has_speed_limit() const;
+  private:
+  bool _internal_has_speed_limit() const;
+  public:
+  void clear_speed_limit();
+  const ::api::Speed& speed_limit() const;
+  ::api::Speed* release_speed_limit();
+  ::api::Speed* mutable_speed_limit();
+  void set_allocated_speed_limit(::api::Speed* speed_limit);
+  private:
+  const ::api::Speed& _internal_speed_limit() const;
+  ::api::Speed* _internal_mutable_speed_limit();
+  public:
+
+  // @@protoc_insertion_point(class_scope:api.GetSpeedResponse)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::api::Speed* speed_current_;
+  ::api::Speed* speed_limit_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_trojangoapi_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ListUserRequest :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:api.ListUserRequest) */ {
+ public:
+  ListUserRequest();
+  virtual ~ListUserRequest();
+
+  ListUserRequest(const ListUserRequest& from);
+  ListUserRequest(ListUserRequest&& from) noexcept
+    : ListUserRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline ListUserRequest& operator=(const ListUserRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ListUserRequest& operator=(ListUserRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const ListUserRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const ListUserRequest* internal_default_instance() {
+    return reinterpret_cast<const ListUserRequest*>(
+               &_ListUserRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    7;
+
+  friend void swap(ListUserRequest& a, ListUserRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ListUserRequest* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ListUserRequest* New() const final {
+    return CreateMaybeMessage<ListUserRequest>(nullptr);
+  }
+
+  ListUserRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ListUserRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const ListUserRequest& from);
+  void MergeFrom(const ListUserRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ListUserRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "api.ListUserRequest";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_trojangoapi_2eproto);
+    return ::descriptor_table_trojangoapi_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:api.ListUserRequest)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_trojangoapi_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ListUserResponse :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:api.ListUserResponse) */ {
+ public:
+  ListUserResponse();
+  virtual ~ListUserResponse();
+
+  ListUserResponse(const ListUserResponse& from);
+  ListUserResponse(ListUserResponse&& from) noexcept
+    : ListUserResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline ListUserResponse& operator=(const ListUserResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ListUserResponse& operator=(ListUserResponse&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const ListUserResponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const ListUserResponse* internal_default_instance() {
+    return reinterpret_cast<const ListUserResponse*>(
+               &_ListUserResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(ListUserResponse& a, ListUserResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ListUserResponse* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ListUserResponse* New() const final {
+    return CreateMaybeMessage<ListUserResponse>(nullptr);
+  }
+
+  ListUserResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ListUserResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const ListUserResponse& from);
+  void MergeFrom(const ListUserResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ListUserResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "api.ListUserResponse";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_trojangoapi_2eproto);
+    return ::descriptor_table_trojangoapi_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kUserFieldNumber = 1,
+    kTrafficTotalFieldNumber = 3,
+    kTrafficQuotaFieldNumber = 4,
+    kSpeedCurrentFieldNumber = 5,
+    kSpeedLimitFieldNumber = 6,
+    kOnlineFieldNumber = 2,
+  };
+  // .api.User user = 1;
+  bool has_user() const;
+  private:
+  bool _internal_has_user() const;
+  public:
+  void clear_user();
+  const ::api::User& user() const;
+  ::api::User* release_user();
+  ::api::User* mutable_user();
+  void set_allocated_user(::api::User* user);
+  private:
+  const ::api::User& _internal_user() const;
+  ::api::User* _internal_mutable_user();
+  public:
+
+  // .api.Traffic traffic_total = 3;
+  bool has_traffic_total() const;
+  private:
+  bool _internal_has_traffic_total() const;
+  public:
+  void clear_traffic_total();
+  const ::api::Traffic& traffic_total() const;
+  ::api::Traffic* release_traffic_total();
+  ::api::Traffic* mutable_traffic_total();
+  void set_allocated_traffic_total(::api::Traffic* traffic_total);
+  private:
+  const ::api::Traffic& _internal_traffic_total() const;
+  ::api::Traffic* _internal_mutable_traffic_total();
+  public:
+
+  // .api.Traffic traffic_quota = 4;
+  bool has_traffic_quota() const;
+  private:
+  bool _internal_has_traffic_quota() const;
+  public:
+  void clear_traffic_quota();
+  const ::api::Traffic& traffic_quota() const;
+  ::api::Traffic* release_traffic_quota();
+  ::api::Traffic* mutable_traffic_quota();
+  void set_allocated_traffic_quota(::api::Traffic* traffic_quota);
+  private:
+  const ::api::Traffic& _internal_traffic_quota() const;
+  ::api::Traffic* _internal_mutable_traffic_quota();
+  public:
+
+  // .api.Speed speed_current = 5;
+  bool has_speed_current() const;
+  private:
+  bool _internal_has_speed_current() const;
+  public:
+  void clear_speed_current();
+  const ::api::Speed& speed_current() const;
+  ::api::Speed* release_speed_current();
+  ::api::Speed* mutable_speed_current();
+  void set_allocated_speed_current(::api::Speed* speed_current);
+  private:
+  const ::api::Speed& _internal_speed_current() const;
+  ::api::Speed* _internal_mutable_speed_current();
+  public:
+
+  // .api.Speed speed_limit = 6;
+  bool has_speed_limit() const;
+  private:
+  bool _internal_has_speed_limit() const;
+  public:
+  void clear_speed_limit();
+  const ::api::Speed& speed_limit() const;
+  ::api::Speed* release_speed_limit();
+  ::api::Speed* mutable_speed_limit();
+  void set_allocated_speed_limit(::api::Speed* speed_limit);
+  private:
+  const ::api::Speed& _internal_speed_limit() const;
+  ::api::Speed* _internal_mutable_speed_limit();
+  public:
+
+  // bool online = 2;
+  void clear_online();
+  bool online() const;
+  void set_online(bool value);
+  private:
+  bool _internal_online() const;
+  void _internal_set_online(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:api.ListUserResponse)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::api::User* user_;
+  ::api::Traffic* traffic_total_;
+  ::api::Traffic* traffic_quota_;
+  ::api::Speed* speed_current_;
+  ::api::Speed* speed_limit_;
+  bool online_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_trojangoapi_2eproto;
+};
+// -------------------------------------------------------------------
+
+class SetTrafficRequest :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:api.SetTrafficRequest) */ {
+ public:
+  SetTrafficRequest();
+  virtual ~SetTrafficRequest();
+
+  SetTrafficRequest(const SetTrafficRequest& from);
+  SetTrafficRequest(SetTrafficRequest&& from) noexcept
+    : SetTrafficRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline SetTrafficRequest& operator=(const SetTrafficRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SetTrafficRequest& operator=(SetTrafficRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const SetTrafficRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const SetTrafficRequest* internal_default_instance() {
+    return reinterpret_cast<const SetTrafficRequest*>(
+               &_SetTrafficRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  friend void swap(SetTrafficRequest& a, SetTrafficRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SetTrafficRequest* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline SetTrafficRequest* New() const final {
+    return CreateMaybeMessage<SetTrafficRequest>(nullptr);
+  }
+
+  SetTrafficRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<SetTrafficRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const SetTrafficRequest& from);
+  void MergeFrom(const SetTrafficRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SetTrafficRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "api.SetTrafficRequest";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_trojangoapi_2eproto);
+    return ::descriptor_table_trojangoapi_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kUserFieldNumber = 1,
+    kTrafficQuotaFieldNumber = 2,
+  };
+  // .api.User user = 1;
+  bool has_user() const;
+  private:
+  bool _internal_has_user() const;
+  public:
+  void clear_user();
+  const ::api::User& user() const;
+  ::api::User* release_user();
+  ::api::User* mutable_user();
+  void set_allocated_user(::api::User* user);
+  private:
+  const ::api::User& _internal_user() const;
+  ::api::User* _internal_mutable_user();
+  public:
+
+  // .api.Traffic traffic_quota = 2;
+  bool has_traffic_quota() const;
+  private:
+  bool _internal_has_traffic_quota() const;
+  public:
+  void clear_traffic_quota();
+  const ::api::Traffic& traffic_quota() const;
+  ::api::Traffic* release_traffic_quota();
+  ::api::Traffic* mutable_traffic_quota();
+  void set_allocated_traffic_quota(::api::Traffic* traffic_quota);
+  private:
+  const ::api::Traffic& _internal_traffic_quota() const;
+  ::api::Traffic* _internal_mutable_traffic_quota();
+  public:
+
+  // @@protoc_insertion_point(class_scope:api.SetTrafficRequest)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::api::User* user_;
+  ::api::Traffic* traffic_quota_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_trojangoapi_2eproto;
+};
+// -------------------------------------------------------------------
+
+class SetTrafficReponse :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:api.SetTrafficReponse) */ {
+ public:
+  SetTrafficReponse();
+  virtual ~SetTrafficReponse();
+
+  SetTrafficReponse(const SetTrafficReponse& from);
+  SetTrafficReponse(SetTrafficReponse&& from) noexcept
+    : SetTrafficReponse() {
+    *this = ::std::move(from);
+  }
+
+  inline SetTrafficReponse& operator=(const SetTrafficReponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SetTrafficReponse& operator=(SetTrafficReponse&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const SetTrafficReponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const SetTrafficReponse* internal_default_instance() {
+    return reinterpret_cast<const SetTrafficReponse*>(
+               &_SetTrafficReponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    10;
+
+  friend void swap(SetTrafficReponse& a, SetTrafficReponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SetTrafficReponse* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline SetTrafficReponse* New() const final {
+    return CreateMaybeMessage<SetTrafficReponse>(nullptr);
+  }
+
+  SetTrafficReponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<SetTrafficReponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const SetTrafficReponse& from);
+  void MergeFrom(const SetTrafficReponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SetTrafficReponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "api.SetTrafficReponse";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_trojangoapi_2eproto);
+    return ::descriptor_table_trojangoapi_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kInfoFieldNumber = 2,
+    kSuccessFieldNumber = 1,
+  };
+  // string info = 2;
+  void clear_info();
+  const std::string& info() const;
+  void set_info(const std::string& value);
+  void set_info(std::string&& value);
+  void set_info(const char* value);
+  void set_info(const char* value, size_t size);
+  std::string* mutable_info();
+  std::string* release_info();
+  void set_allocated_info(std::string* info);
+  private:
+  const std::string& _internal_info() const;
+  void _internal_set_info(const std::string& value);
+  std::string* _internal_mutable_info();
+  public:
+
+  // bool success = 1;
+  void clear_success();
+  bool success() const;
+  void set_success(bool value);
+  private:
+  bool _internal_success() const;
+  void _internal_set_success(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:api.SetTrafficReponse)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr info_;
+  bool success_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_trojangoapi_2eproto;
+};
+// -------------------------------------------------------------------
+
+class SetSpeedRequest :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:api.SetSpeedRequest) */ {
+ public:
+  SetSpeedRequest();
+  virtual ~SetSpeedRequest();
+
+  SetSpeedRequest(const SetSpeedRequest& from);
+  SetSpeedRequest(SetSpeedRequest&& from) noexcept
+    : SetSpeedRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline SetSpeedRequest& operator=(const SetSpeedRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SetSpeedRequest& operator=(SetSpeedRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const SetSpeedRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const SetSpeedRequest* internal_default_instance() {
+    return reinterpret_cast<const SetSpeedRequest*>(
+               &_SetSpeedRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    11;
+
+  friend void swap(SetSpeedRequest& a, SetSpeedRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SetSpeedRequest* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline SetSpeedRequest* New() const final {
+    return CreateMaybeMessage<SetSpeedRequest>(nullptr);
+  }
+
+  SetSpeedRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<SetSpeedRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const SetSpeedRequest& from);
+  void MergeFrom(const SetSpeedRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SetSpeedRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "api.SetSpeedRequest";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_trojangoapi_2eproto);
+    return ::descriptor_table_trojangoapi_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kUserFieldNumber = 1,
+    kSpeedLimitFieldNumber = 2,
+  };
+  // .api.User user = 1;
+  bool has_user() const;
+  private:
+  bool _internal_has_user() const;
+  public:
+  void clear_user();
+  const ::api::User& user() const;
+  ::api::User* release_user();
+  ::api::User* mutable_user();
+  void set_allocated_user(::api::User* user);
+  private:
+  const ::api::User& _internal_user() const;
+  ::api::User* _internal_mutable_user();
+  public:
+
+  // .api.Speed speed_limit = 2;
+  bool has_speed_limit() const;
+  private:
+  bool _internal_has_speed_limit() const;
+  public:
+  void clear_speed_limit();
+  const ::api::Speed& speed_limit() const;
+  ::api::Speed* release_speed_limit();
+  ::api::Speed* mutable_speed_limit();
+  void set_allocated_speed_limit(::api::Speed* speed_limit);
+  private:
+  const ::api::Speed& _internal_speed_limit() const;
+  ::api::Speed* _internal_mutable_speed_limit();
+  public:
+
+  // @@protoc_insertion_point(class_scope:api.SetSpeedRequest)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::api::User* user_;
+  ::api::Speed* speed_limit_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_trojangoapi_2eproto;
+};
+// -------------------------------------------------------------------
+
+class SetSpeedResponse :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:api.SetSpeedResponse) */ {
+ public:
+  SetSpeedResponse();
+  virtual ~SetSpeedResponse();
+
+  SetSpeedResponse(const SetSpeedResponse& from);
+  SetSpeedResponse(SetSpeedResponse&& from) noexcept
+    : SetSpeedResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline SetSpeedResponse& operator=(const SetSpeedResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SetSpeedResponse& operator=(SetSpeedResponse&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const SetSpeedResponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const SetSpeedResponse* internal_default_instance() {
+    return reinterpret_cast<const SetSpeedResponse*>(
+               &_SetSpeedResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    12;
+
+  friend void swap(SetSpeedResponse& a, SetSpeedResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SetSpeedResponse* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline SetSpeedResponse* New() const final {
+    return CreateMaybeMessage<SetSpeedResponse>(nullptr);
+  }
+
+  SetSpeedResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<SetSpeedResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const SetSpeedResponse& from);
+  void MergeFrom(const SetSpeedResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SetSpeedResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "api.SetSpeedResponse";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_trojangoapi_2eproto);
+    return ::descriptor_table_trojangoapi_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kInfoFieldNumber = 2,
+    kSuccessFieldNumber = 1,
+  };
+  // string info = 2;
+  void clear_info();
+  const std::string& info() const;
+  void set_info(const std::string& value);
+  void set_info(std::string&& value);
+  void set_info(const char* value);
+  void set_info(const char* value, size_t size);
+  std::string* mutable_info();
+  std::string* release_info();
+  void set_allocated_info(std::string* info);
+  private:
+  const std::string& _internal_info() const;
+  void _internal_set_info(const std::string& value);
+  std::string* _internal_mutable_info();
+  public:
+
+  // bool success = 1;
+  void clear_success();
+  bool success() const;
+  void set_success(bool value);
+  private:
+  bool _internal_success() const;
+  void _internal_set_success(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:api.SetSpeedResponse)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr info_;
+  bool success_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_trojangoapi_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AddUserRequest :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:api.AddUserRequest) */ {
+ public:
+  AddUserRequest();
+  virtual ~AddUserRequest();
+
+  AddUserRequest(const AddUserRequest& from);
+  AddUserRequest(AddUserRequest&& from) noexcept
+    : AddUserRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline AddUserRequest& operator=(const AddUserRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AddUserRequest& operator=(AddUserRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const AddUserRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const AddUserRequest* internal_default_instance() {
+    return reinterpret_cast<const AddUserRequest*>(
+               &_AddUserRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    13;
+
+  friend void swap(AddUserRequest& a, AddUserRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AddUserRequest* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline AddUserRequest* New() const final {
+    return CreateMaybeMessage<AddUserRequest>(nullptr);
+  }
+
+  AddUserRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<AddUserRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const AddUserRequest& from);
+  void MergeFrom(const AddUserRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AddUserRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "api.AddUserRequest";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_trojangoapi_2eproto);
+    return ::descriptor_table_trojangoapi_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kUserFieldNumber = 1,
+    kTrafficQuotaFieldNumber = 4,
+    kSpeedLimitFieldNumber = 6,
+  };
+  // .api.User user = 1;
+  bool has_user() const;
+  private:
+  bool _internal_has_user() const;
+  public:
+  void clear_user();
+  const ::api::User& user() const;
+  ::api::User* release_user();
+  ::api::User* mutable_user();
+  void set_allocated_user(::api::User* user);
+  private:
+  const ::api::User& _internal_user() const;
+  ::api::User* _internal_mutable_user();
+  public:
+
+  // .api.Traffic traffic_quota = 4;
+  bool has_traffic_quota() const;
+  private:
+  bool _internal_has_traffic_quota() const;
+  public:
+  void clear_traffic_quota();
+  const ::api::Traffic& traffic_quota() const;
+  ::api::Traffic* release_traffic_quota();
+  ::api::Traffic* mutable_traffic_quota();
+  void set_allocated_traffic_quota(::api::Traffic* traffic_quota);
+  private:
+  const ::api::Traffic& _internal_traffic_quota() const;
+  ::api::Traffic* _internal_mutable_traffic_quota();
+  public:
+
+  // .api.Speed speed_limit = 6;
+  bool has_speed_limit() const;
+  private:
+  bool _internal_has_speed_limit() const;
+  public:
+  void clear_speed_limit();
+  const ::api::Speed& speed_limit() const;
+  ::api::Speed* release_speed_limit();
+  ::api::Speed* mutable_speed_limit();
+  void set_allocated_speed_limit(::api::Speed* speed_limit);
+  private:
+  const ::api::Speed& _internal_speed_limit() const;
+  ::api::Speed* _internal_mutable_speed_limit();
+  public:
+
+  // @@protoc_insertion_point(class_scope:api.AddUserRequest)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::api::User* user_;
+  ::api::Traffic* traffic_quota_;
+  ::api::Speed* speed_limit_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_trojangoapi_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AddUserResponse :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:api.AddUserResponse) */ {
+ public:
+  AddUserResponse();
+  virtual ~AddUserResponse();
+
+  AddUserResponse(const AddUserResponse& from);
+  AddUserResponse(AddUserResponse&& from) noexcept
+    : AddUserResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline AddUserResponse& operator=(const AddUserResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AddUserResponse& operator=(AddUserResponse&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const AddUserResponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const AddUserResponse* internal_default_instance() {
+    return reinterpret_cast<const AddUserResponse*>(
+               &_AddUserResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    14;
+
+  friend void swap(AddUserResponse& a, AddUserResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AddUserResponse* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline AddUserResponse* New() const final {
+    return CreateMaybeMessage<AddUserResponse>(nullptr);
+  }
+
+  AddUserResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<AddUserResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const AddUserResponse& from);
+  void MergeFrom(const AddUserResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AddUserResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "api.AddUserResponse";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_trojangoapi_2eproto);
+    return ::descriptor_table_trojangoapi_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kUserFieldNumber = 1,
+  };
+  // .api.User user = 1;
+  bool has_user() const;
+  private:
+  bool _internal_has_user() const;
+  public:
+  void clear_user();
+  const ::api::User& user() const;
+  ::api::User* release_user();
+  ::api::User* mutable_user();
+  void set_allocated_user(::api::User* user);
+  private:
+  const ::api::User& _internal_user() const;
+  ::api::User* _internal_mutable_user();
+  public:
+
+  // @@protoc_insertion_point(class_scope:api.AddUserResponse)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::api::User* user_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_trojangoapi_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DeleteUserRequest :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:api.DeleteUserRequest) */ {
+ public:
+  DeleteUserRequest();
+  virtual ~DeleteUserRequest();
+
+  DeleteUserRequest(const DeleteUserRequest& from);
+  DeleteUserRequest(DeleteUserRequest&& from) noexcept
+    : DeleteUserRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline DeleteUserRequest& operator=(const DeleteUserRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DeleteUserRequest& operator=(DeleteUserRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const DeleteUserRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const DeleteUserRequest* internal_default_instance() {
+    return reinterpret_cast<const DeleteUserRequest*>(
+               &_DeleteUserRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    15;
+
+  friend void swap(DeleteUserRequest& a, DeleteUserRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DeleteUserRequest* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline DeleteUserRequest* New() const final {
+    return CreateMaybeMessage<DeleteUserRequest>(nullptr);
+  }
+
+  DeleteUserRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<DeleteUserRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const DeleteUserRequest& from);
+  void MergeFrom(const DeleteUserRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DeleteUserRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "api.DeleteUserRequest";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_trojangoapi_2eproto);
+    return ::descriptor_table_trojangoapi_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kUserFieldNumber = 1,
+  };
+  // .api.User user = 1;
+  bool has_user() const;
+  private:
+  bool _internal_has_user() const;
+  public:
+  void clear_user();
+  const ::api::User& user() const;
+  ::api::User* release_user();
+  ::api::User* mutable_user();
+  void set_allocated_user(::api::User* user);
+  private:
+  const ::api::User& _internal_user() const;
+  ::api::User* _internal_mutable_user();
+  public:
+
+  // @@protoc_insertion_point(class_scope:api.DeleteUserRequest)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::api::User* user_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_trojangoapi_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DeleteUserResponse :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:api.DeleteUserResponse) */ {
+ public:
+  DeleteUserResponse();
+  virtual ~DeleteUserResponse();
+
+  DeleteUserResponse(const DeleteUserResponse& from);
+  DeleteUserResponse(DeleteUserResponse&& from) noexcept
+    : DeleteUserResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline DeleteUserResponse& operator=(const DeleteUserResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DeleteUserResponse& operator=(DeleteUserResponse&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const DeleteUserResponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const DeleteUserResponse* internal_default_instance() {
+    return reinterpret_cast<const DeleteUserResponse*>(
+               &_DeleteUserResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    16;
+
+  friend void swap(DeleteUserResponse& a, DeleteUserResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DeleteUserResponse* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline DeleteUserResponse* New() const final {
+    return CreateMaybeMessage<DeleteUserResponse>(nullptr);
+  }
+
+  DeleteUserResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<DeleteUserResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const DeleteUserResponse& from);
+  void MergeFrom(const DeleteUserResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DeleteUserResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "api.DeleteUserResponse";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_trojangoapi_2eproto);
+    return ::descriptor_table_trojangoapi_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kInfoFieldNumber = 2,
+    kSuccessFieldNumber = 1,
+  };
+  // string info = 2;
+  void clear_info();
+  const std::string& info() const;
+  void set_info(const std::string& value);
+  void set_info(std::string&& value);
+  void set_info(const char* value);
+  void set_info(const char* value, size_t size);
+  std::string* mutable_info();
+  std::string* release_info();
+  void set_allocated_info(std::string* info);
+  private:
+  const std::string& _internal_info() const;
+  void _internal_set_info(const std::string& value);
+  std::string* _internal_mutable_info();
+  public:
+
+  // bool success = 1;
+  void clear_success();
+  bool success() const;
+  void set_success(bool value);
+  private:
+  bool _internal_success() const;
+  void _internal_set_success(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:api.DeleteUserResponse)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr info_;
+  bool success_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trojangoapi_2eproto;
 };
@@ -373,155 +2653,1785 @@ class StatsReply :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// StatsRequest
+// Traffic
+
+// uint64 upload_traffic = 1;
+inline void Traffic::clear_upload_traffic() {
+  upload_traffic_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 Traffic::_internal_upload_traffic() const {
+  return upload_traffic_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 Traffic::upload_traffic() const {
+  // @@protoc_insertion_point(field_get:api.Traffic.upload_traffic)
+  return _internal_upload_traffic();
+}
+inline void Traffic::_internal_set_upload_traffic(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  upload_traffic_ = value;
+}
+inline void Traffic::set_upload_traffic(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_upload_traffic(value);
+  // @@protoc_insertion_point(field_set:api.Traffic.upload_traffic)
+}
+
+// uint64 download_traffic = 2;
+inline void Traffic::clear_download_traffic() {
+  download_traffic_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 Traffic::_internal_download_traffic() const {
+  return download_traffic_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 Traffic::download_traffic() const {
+  // @@protoc_insertion_point(field_get:api.Traffic.download_traffic)
+  return _internal_download_traffic();
+}
+inline void Traffic::_internal_set_download_traffic(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  download_traffic_ = value;
+}
+inline void Traffic::set_download_traffic(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_download_traffic(value);
+  // @@protoc_insertion_point(field_set:api.Traffic.download_traffic)
+}
+
+// -------------------------------------------------------------------
+
+// Speed
+
+// uint64 upload_speed = 1;
+inline void Speed::clear_upload_speed() {
+  upload_speed_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 Speed::_internal_upload_speed() const {
+  return upload_speed_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 Speed::upload_speed() const {
+  // @@protoc_insertion_point(field_get:api.Speed.upload_speed)
+  return _internal_upload_speed();
+}
+inline void Speed::_internal_set_upload_speed(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  upload_speed_ = value;
+}
+inline void Speed::set_upload_speed(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_upload_speed(value);
+  // @@protoc_insertion_point(field_set:api.Speed.upload_speed)
+}
+
+// uint64 download_speed = 2;
+inline void Speed::clear_download_speed() {
+  download_speed_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 Speed::_internal_download_speed() const {
+  return download_speed_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 Speed::download_speed() const {
+  // @@protoc_insertion_point(field_get:api.Speed.download_speed)
+  return _internal_download_speed();
+}
+inline void Speed::_internal_set_download_speed(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  download_speed_ = value;
+}
+inline void Speed::set_download_speed(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_download_speed(value);
+  // @@protoc_insertion_point(field_set:api.Speed.download_speed)
+}
+
+// -------------------------------------------------------------------
+
+// User
 
 // string password = 1;
-inline void StatsRequest::clear_password() {
+inline void User::clear_password() {
   password_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
-inline const std::string& StatsRequest::password() const {
-  // @@protoc_insertion_point(field_get:api.StatsRequest.password)
+inline const std::string& User::password() const {
+  // @@protoc_insertion_point(field_get:api.User.password)
   return _internal_password();
 }
-inline void StatsRequest::set_password(const std::string& value) {
+inline void User::set_password(const std::string& value) {
   _internal_set_password(value);
-  // @@protoc_insertion_point(field_set:api.StatsRequest.password)
+  // @@protoc_insertion_point(field_set:api.User.password)
 }
-inline std::string* StatsRequest::mutable_password() {
-  // @@protoc_insertion_point(field_mutable:api.StatsRequest.password)
+inline std::string* User::mutable_password() {
+  // @@protoc_insertion_point(field_mutable:api.User.password)
   return _internal_mutable_password();
 }
-inline const std::string& StatsRequest::_internal_password() const {
+inline const std::string& User::_internal_password() const {
   return password_.GetNoArena();
 }
-inline void StatsRequest::_internal_set_password(const std::string& value) {
+inline void User::_internal_set_password(const std::string& value) {
   
   password_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
-inline void StatsRequest::set_password(std::string&& value) {
+inline void User::set_password(std::string&& value) {
   
   password_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:api.StatsRequest.password)
+  // @@protoc_insertion_point(field_set_rvalue:api.User.password)
 }
-inline void StatsRequest::set_password(const char* value) {
+inline void User::set_password(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   password_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:api.StatsRequest.password)
+  // @@protoc_insertion_point(field_set_char:api.User.password)
 }
-inline void StatsRequest::set_password(const char* value, size_t size) {
+inline void User::set_password(const char* value, size_t size) {
   
   password_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:api.StatsRequest.password)
+  // @@protoc_insertion_point(field_set_pointer:api.User.password)
 }
-inline std::string* StatsRequest::_internal_mutable_password() {
+inline std::string* User::_internal_mutable_password() {
   
   return password_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
-inline std::string* StatsRequest::release_password() {
-  // @@protoc_insertion_point(field_release:api.StatsRequest.password)
+inline std::string* User::release_password() {
+  // @@protoc_insertion_point(field_release:api.User.password)
   
   return password_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
-inline void StatsRequest::set_allocated_password(std::string* password) {
+inline void User::set_allocated_password(std::string* password) {
   if (password != nullptr) {
     
   } else {
     
   }
   password_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), password);
-  // @@protoc_insertion_point(field_set_allocated:api.StatsRequest.password)
+  // @@protoc_insertion_point(field_set_allocated:api.User.password)
+}
+
+// string hash = 2;
+inline void User::clear_hash() {
+  hash_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& User::hash() const {
+  // @@protoc_insertion_point(field_get:api.User.hash)
+  return _internal_hash();
+}
+inline void User::set_hash(const std::string& value) {
+  _internal_set_hash(value);
+  // @@protoc_insertion_point(field_set:api.User.hash)
+}
+inline std::string* User::mutable_hash() {
+  // @@protoc_insertion_point(field_mutable:api.User.hash)
+  return _internal_mutable_hash();
+}
+inline const std::string& User::_internal_hash() const {
+  return hash_.GetNoArena();
+}
+inline void User::_internal_set_hash(const std::string& value) {
+  
+  hash_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void User::set_hash(std::string&& value) {
+  
+  hash_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:api.User.hash)
+}
+inline void User::set_hash(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  hash_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:api.User.hash)
+}
+inline void User::set_hash(const char* value, size_t size) {
+  
+  hash_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:api.User.hash)
+}
+inline std::string* User::_internal_mutable_hash() {
+  
+  return hash_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* User::release_hash() {
+  // @@protoc_insertion_point(field_release:api.User.hash)
+  
+  return hash_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void User::set_allocated_hash(std::string* hash) {
+  if (hash != nullptr) {
+    
+  } else {
+    
+  }
+  hash_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), hash);
+  // @@protoc_insertion_point(field_set_allocated:api.User.hash)
+}
+
+// bool valid = 3;
+inline void User::clear_valid() {
+  valid_ = false;
+}
+inline bool User::_internal_valid() const {
+  return valid_;
+}
+inline bool User::valid() const {
+  // @@protoc_insertion_point(field_get:api.User.valid)
+  return _internal_valid();
+}
+inline void User::_internal_set_valid(bool value) {
+  
+  valid_ = value;
+}
+inline void User::set_valid(bool value) {
+  _internal_set_valid(value);
+  // @@protoc_insertion_point(field_set:api.User.valid)
 }
 
 // -------------------------------------------------------------------
 
-// StatsReply
+// GetTrafficRequest
 
-// uint64 upload_traffic = 1;
-inline void StatsReply::clear_upload_traffic() {
-  upload_traffic_ = PROTOBUF_ULONGLONG(0);
+// .api.User user = 1;
+inline bool GetTrafficRequest::_internal_has_user() const {
+  return this != internal_default_instance() && user_ != nullptr;
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint64 StatsReply::_internal_upload_traffic() const {
-  return upload_traffic_;
+inline bool GetTrafficRequest::has_user() const {
+  return _internal_has_user();
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint64 StatsReply::upload_traffic() const {
-  // @@protoc_insertion_point(field_get:api.StatsReply.upload_traffic)
-  return _internal_upload_traffic();
+inline void GetTrafficRequest::clear_user() {
+  if (GetArenaNoVirtual() == nullptr && user_ != nullptr) {
+    delete user_;
+  }
+  user_ = nullptr;
 }
-inline void StatsReply::_internal_set_upload_traffic(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+inline const ::api::User& GetTrafficRequest::_internal_user() const {
+  const ::api::User* p = user_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::api::User*>(
+      &::api::_User_default_instance_);
+}
+inline const ::api::User& GetTrafficRequest::user() const {
+  // @@protoc_insertion_point(field_get:api.GetTrafficRequest.user)
+  return _internal_user();
+}
+inline ::api::User* GetTrafficRequest::release_user() {
+  // @@protoc_insertion_point(field_release:api.GetTrafficRequest.user)
   
-  upload_traffic_ = value;
+  ::api::User* temp = user_;
+  user_ = nullptr;
+  return temp;
 }
-inline void StatsReply::set_upload_traffic(::PROTOBUF_NAMESPACE_ID::uint64 value) {
-  _internal_set_upload_traffic(value);
-  // @@protoc_insertion_point(field_set:api.StatsReply.upload_traffic)
+inline ::api::User* GetTrafficRequest::_internal_mutable_user() {
+  
+  if (user_ == nullptr) {
+    auto* p = CreateMaybeMessage<::api::User>(GetArenaNoVirtual());
+    user_ = p;
+  }
+  return user_;
+}
+inline ::api::User* GetTrafficRequest::mutable_user() {
+  // @@protoc_insertion_point(field_mutable:api.GetTrafficRequest.user)
+  return _internal_mutable_user();
+}
+inline void GetTrafficRequest::set_allocated_user(::api::User* user) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete user_;
+  }
+  if (user) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      user = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, user, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  user_ = user;
+  // @@protoc_insertion_point(field_set_allocated:api.GetTrafficRequest.user)
 }
 
-// uint64 download_traffic = 2;
-inline void StatsReply::clear_download_traffic() {
-  download_traffic_ = PROTOBUF_ULONGLONG(0);
+// -------------------------------------------------------------------
+
+// GetTrafficResponse
+
+// .api.Traffic traffic_total = 1;
+inline bool GetTrafficResponse::_internal_has_traffic_total() const {
+  return this != internal_default_instance() && traffic_total_ != nullptr;
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint64 StatsReply::_internal_download_traffic() const {
-  return download_traffic_;
+inline bool GetTrafficResponse::has_traffic_total() const {
+  return _internal_has_traffic_total();
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint64 StatsReply::download_traffic() const {
-  // @@protoc_insertion_point(field_get:api.StatsReply.download_traffic)
-  return _internal_download_traffic();
+inline void GetTrafficResponse::clear_traffic_total() {
+  if (GetArenaNoVirtual() == nullptr && traffic_total_ != nullptr) {
+    delete traffic_total_;
+  }
+  traffic_total_ = nullptr;
 }
-inline void StatsReply::_internal_set_download_traffic(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+inline const ::api::Traffic& GetTrafficResponse::_internal_traffic_total() const {
+  const ::api::Traffic* p = traffic_total_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::api::Traffic*>(
+      &::api::_Traffic_default_instance_);
+}
+inline const ::api::Traffic& GetTrafficResponse::traffic_total() const {
+  // @@protoc_insertion_point(field_get:api.GetTrafficResponse.traffic_total)
+  return _internal_traffic_total();
+}
+inline ::api::Traffic* GetTrafficResponse::release_traffic_total() {
+  // @@protoc_insertion_point(field_release:api.GetTrafficResponse.traffic_total)
   
-  download_traffic_ = value;
+  ::api::Traffic* temp = traffic_total_;
+  traffic_total_ = nullptr;
+  return temp;
 }
-inline void StatsReply::set_download_traffic(::PROTOBUF_NAMESPACE_ID::uint64 value) {
-  _internal_set_download_traffic(value);
-  // @@protoc_insertion_point(field_set:api.StatsReply.download_traffic)
+inline ::api::Traffic* GetTrafficResponse::_internal_mutable_traffic_total() {
+  
+  if (traffic_total_ == nullptr) {
+    auto* p = CreateMaybeMessage<::api::Traffic>(GetArenaNoVirtual());
+    traffic_total_ = p;
+  }
+  return traffic_total_;
+}
+inline ::api::Traffic* GetTrafficResponse::mutable_traffic_total() {
+  // @@protoc_insertion_point(field_mutable:api.GetTrafficResponse.traffic_total)
+  return _internal_mutable_traffic_total();
+}
+inline void GetTrafficResponse::set_allocated_traffic_total(::api::Traffic* traffic_total) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete traffic_total_;
+  }
+  if (traffic_total) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      traffic_total = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, traffic_total, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  traffic_total_ = traffic_total;
+  // @@protoc_insertion_point(field_set_allocated:api.GetTrafficResponse.traffic_total)
 }
 
-// uint64 upload_speed = 3;
-inline void StatsReply::clear_upload_speed() {
-  upload_speed_ = PROTOBUF_ULONGLONG(0);
+// .api.Traffic traffic_quota = 2;
+inline bool GetTrafficResponse::_internal_has_traffic_quota() const {
+  return this != internal_default_instance() && traffic_quota_ != nullptr;
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint64 StatsReply::_internal_upload_speed() const {
-  return upload_speed_;
+inline bool GetTrafficResponse::has_traffic_quota() const {
+  return _internal_has_traffic_quota();
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint64 StatsReply::upload_speed() const {
-  // @@protoc_insertion_point(field_get:api.StatsReply.upload_speed)
-  return _internal_upload_speed();
+inline void GetTrafficResponse::clear_traffic_quota() {
+  if (GetArenaNoVirtual() == nullptr && traffic_quota_ != nullptr) {
+    delete traffic_quota_;
+  }
+  traffic_quota_ = nullptr;
 }
-inline void StatsReply::_internal_set_upload_speed(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+inline const ::api::Traffic& GetTrafficResponse::_internal_traffic_quota() const {
+  const ::api::Traffic* p = traffic_quota_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::api::Traffic*>(
+      &::api::_Traffic_default_instance_);
+}
+inline const ::api::Traffic& GetTrafficResponse::traffic_quota() const {
+  // @@protoc_insertion_point(field_get:api.GetTrafficResponse.traffic_quota)
+  return _internal_traffic_quota();
+}
+inline ::api::Traffic* GetTrafficResponse::release_traffic_quota() {
+  // @@protoc_insertion_point(field_release:api.GetTrafficResponse.traffic_quota)
   
-  upload_speed_ = value;
+  ::api::Traffic* temp = traffic_quota_;
+  traffic_quota_ = nullptr;
+  return temp;
 }
-inline void StatsReply::set_upload_speed(::PROTOBUF_NAMESPACE_ID::uint64 value) {
-  _internal_set_upload_speed(value);
-  // @@protoc_insertion_point(field_set:api.StatsReply.upload_speed)
+inline ::api::Traffic* GetTrafficResponse::_internal_mutable_traffic_quota() {
+  
+  if (traffic_quota_ == nullptr) {
+    auto* p = CreateMaybeMessage<::api::Traffic>(GetArenaNoVirtual());
+    traffic_quota_ = p;
+  }
+  return traffic_quota_;
+}
+inline ::api::Traffic* GetTrafficResponse::mutable_traffic_quota() {
+  // @@protoc_insertion_point(field_mutable:api.GetTrafficResponse.traffic_quota)
+  return _internal_mutable_traffic_quota();
+}
+inline void GetTrafficResponse::set_allocated_traffic_quota(::api::Traffic* traffic_quota) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete traffic_quota_;
+  }
+  if (traffic_quota) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      traffic_quota = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, traffic_quota, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  traffic_quota_ = traffic_quota;
+  // @@protoc_insertion_point(field_set_allocated:api.GetTrafficResponse.traffic_quota)
 }
 
-// uint64 download_speed = 4;
-inline void StatsReply::clear_download_speed() {
-  download_speed_ = PROTOBUF_ULONGLONG(0);
+// -------------------------------------------------------------------
+
+// GetSpeedRequest
+
+// .api.User user = 1;
+inline bool GetSpeedRequest::_internal_has_user() const {
+  return this != internal_default_instance() && user_ != nullptr;
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint64 StatsReply::_internal_download_speed() const {
-  return download_speed_;
+inline bool GetSpeedRequest::has_user() const {
+  return _internal_has_user();
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint64 StatsReply::download_speed() const {
-  // @@protoc_insertion_point(field_get:api.StatsReply.download_speed)
-  return _internal_download_speed();
+inline void GetSpeedRequest::clear_user() {
+  if (GetArenaNoVirtual() == nullptr && user_ != nullptr) {
+    delete user_;
+  }
+  user_ = nullptr;
 }
-inline void StatsReply::_internal_set_download_speed(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+inline const ::api::User& GetSpeedRequest::_internal_user() const {
+  const ::api::User* p = user_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::api::User*>(
+      &::api::_User_default_instance_);
+}
+inline const ::api::User& GetSpeedRequest::user() const {
+  // @@protoc_insertion_point(field_get:api.GetSpeedRequest.user)
+  return _internal_user();
+}
+inline ::api::User* GetSpeedRequest::release_user() {
+  // @@protoc_insertion_point(field_release:api.GetSpeedRequest.user)
   
-  download_speed_ = value;
+  ::api::User* temp = user_;
+  user_ = nullptr;
+  return temp;
 }
-inline void StatsReply::set_download_speed(::PROTOBUF_NAMESPACE_ID::uint64 value) {
-  _internal_set_download_speed(value);
-  // @@protoc_insertion_point(field_set:api.StatsReply.download_speed)
+inline ::api::User* GetSpeedRequest::_internal_mutable_user() {
+  
+  if (user_ == nullptr) {
+    auto* p = CreateMaybeMessage<::api::User>(GetArenaNoVirtual());
+    user_ = p;
+  }
+  return user_;
+}
+inline ::api::User* GetSpeedRequest::mutable_user() {
+  // @@protoc_insertion_point(field_mutable:api.GetSpeedRequest.user)
+  return _internal_mutable_user();
+}
+inline void GetSpeedRequest::set_allocated_user(::api::User* user) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete user_;
+  }
+  if (user) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      user = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, user, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  user_ = user;
+  // @@protoc_insertion_point(field_set_allocated:api.GetSpeedRequest.user)
+}
+
+// -------------------------------------------------------------------
+
+// GetSpeedResponse
+
+// .api.Speed speed_current = 1;
+inline bool GetSpeedResponse::_internal_has_speed_current() const {
+  return this != internal_default_instance() && speed_current_ != nullptr;
+}
+inline bool GetSpeedResponse::has_speed_current() const {
+  return _internal_has_speed_current();
+}
+inline void GetSpeedResponse::clear_speed_current() {
+  if (GetArenaNoVirtual() == nullptr && speed_current_ != nullptr) {
+    delete speed_current_;
+  }
+  speed_current_ = nullptr;
+}
+inline const ::api::Speed& GetSpeedResponse::_internal_speed_current() const {
+  const ::api::Speed* p = speed_current_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::api::Speed*>(
+      &::api::_Speed_default_instance_);
+}
+inline const ::api::Speed& GetSpeedResponse::speed_current() const {
+  // @@protoc_insertion_point(field_get:api.GetSpeedResponse.speed_current)
+  return _internal_speed_current();
+}
+inline ::api::Speed* GetSpeedResponse::release_speed_current() {
+  // @@protoc_insertion_point(field_release:api.GetSpeedResponse.speed_current)
+  
+  ::api::Speed* temp = speed_current_;
+  speed_current_ = nullptr;
+  return temp;
+}
+inline ::api::Speed* GetSpeedResponse::_internal_mutable_speed_current() {
+  
+  if (speed_current_ == nullptr) {
+    auto* p = CreateMaybeMessage<::api::Speed>(GetArenaNoVirtual());
+    speed_current_ = p;
+  }
+  return speed_current_;
+}
+inline ::api::Speed* GetSpeedResponse::mutable_speed_current() {
+  // @@protoc_insertion_point(field_mutable:api.GetSpeedResponse.speed_current)
+  return _internal_mutable_speed_current();
+}
+inline void GetSpeedResponse::set_allocated_speed_current(::api::Speed* speed_current) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete speed_current_;
+  }
+  if (speed_current) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      speed_current = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, speed_current, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  speed_current_ = speed_current;
+  // @@protoc_insertion_point(field_set_allocated:api.GetSpeedResponse.speed_current)
+}
+
+// .api.Speed speed_limit = 2;
+inline bool GetSpeedResponse::_internal_has_speed_limit() const {
+  return this != internal_default_instance() && speed_limit_ != nullptr;
+}
+inline bool GetSpeedResponse::has_speed_limit() const {
+  return _internal_has_speed_limit();
+}
+inline void GetSpeedResponse::clear_speed_limit() {
+  if (GetArenaNoVirtual() == nullptr && speed_limit_ != nullptr) {
+    delete speed_limit_;
+  }
+  speed_limit_ = nullptr;
+}
+inline const ::api::Speed& GetSpeedResponse::_internal_speed_limit() const {
+  const ::api::Speed* p = speed_limit_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::api::Speed*>(
+      &::api::_Speed_default_instance_);
+}
+inline const ::api::Speed& GetSpeedResponse::speed_limit() const {
+  // @@protoc_insertion_point(field_get:api.GetSpeedResponse.speed_limit)
+  return _internal_speed_limit();
+}
+inline ::api::Speed* GetSpeedResponse::release_speed_limit() {
+  // @@protoc_insertion_point(field_release:api.GetSpeedResponse.speed_limit)
+  
+  ::api::Speed* temp = speed_limit_;
+  speed_limit_ = nullptr;
+  return temp;
+}
+inline ::api::Speed* GetSpeedResponse::_internal_mutable_speed_limit() {
+  
+  if (speed_limit_ == nullptr) {
+    auto* p = CreateMaybeMessage<::api::Speed>(GetArenaNoVirtual());
+    speed_limit_ = p;
+  }
+  return speed_limit_;
+}
+inline ::api::Speed* GetSpeedResponse::mutable_speed_limit() {
+  // @@protoc_insertion_point(field_mutable:api.GetSpeedResponse.speed_limit)
+  return _internal_mutable_speed_limit();
+}
+inline void GetSpeedResponse::set_allocated_speed_limit(::api::Speed* speed_limit) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete speed_limit_;
+  }
+  if (speed_limit) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      speed_limit = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, speed_limit, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  speed_limit_ = speed_limit;
+  // @@protoc_insertion_point(field_set_allocated:api.GetSpeedResponse.speed_limit)
+}
+
+// -------------------------------------------------------------------
+
+// ListUserRequest
+
+// -------------------------------------------------------------------
+
+// ListUserResponse
+
+// .api.User user = 1;
+inline bool ListUserResponse::_internal_has_user() const {
+  return this != internal_default_instance() && user_ != nullptr;
+}
+inline bool ListUserResponse::has_user() const {
+  return _internal_has_user();
+}
+inline void ListUserResponse::clear_user() {
+  if (GetArenaNoVirtual() == nullptr && user_ != nullptr) {
+    delete user_;
+  }
+  user_ = nullptr;
+}
+inline const ::api::User& ListUserResponse::_internal_user() const {
+  const ::api::User* p = user_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::api::User*>(
+      &::api::_User_default_instance_);
+}
+inline const ::api::User& ListUserResponse::user() const {
+  // @@protoc_insertion_point(field_get:api.ListUserResponse.user)
+  return _internal_user();
+}
+inline ::api::User* ListUserResponse::release_user() {
+  // @@protoc_insertion_point(field_release:api.ListUserResponse.user)
+  
+  ::api::User* temp = user_;
+  user_ = nullptr;
+  return temp;
+}
+inline ::api::User* ListUserResponse::_internal_mutable_user() {
+  
+  if (user_ == nullptr) {
+    auto* p = CreateMaybeMessage<::api::User>(GetArenaNoVirtual());
+    user_ = p;
+  }
+  return user_;
+}
+inline ::api::User* ListUserResponse::mutable_user() {
+  // @@protoc_insertion_point(field_mutable:api.ListUserResponse.user)
+  return _internal_mutable_user();
+}
+inline void ListUserResponse::set_allocated_user(::api::User* user) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete user_;
+  }
+  if (user) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      user = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, user, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  user_ = user;
+  // @@protoc_insertion_point(field_set_allocated:api.ListUserResponse.user)
+}
+
+// bool online = 2;
+inline void ListUserResponse::clear_online() {
+  online_ = false;
+}
+inline bool ListUserResponse::_internal_online() const {
+  return online_;
+}
+inline bool ListUserResponse::online() const {
+  // @@protoc_insertion_point(field_get:api.ListUserResponse.online)
+  return _internal_online();
+}
+inline void ListUserResponse::_internal_set_online(bool value) {
+  
+  online_ = value;
+}
+inline void ListUserResponse::set_online(bool value) {
+  _internal_set_online(value);
+  // @@protoc_insertion_point(field_set:api.ListUserResponse.online)
+}
+
+// .api.Traffic traffic_total = 3;
+inline bool ListUserResponse::_internal_has_traffic_total() const {
+  return this != internal_default_instance() && traffic_total_ != nullptr;
+}
+inline bool ListUserResponse::has_traffic_total() const {
+  return _internal_has_traffic_total();
+}
+inline void ListUserResponse::clear_traffic_total() {
+  if (GetArenaNoVirtual() == nullptr && traffic_total_ != nullptr) {
+    delete traffic_total_;
+  }
+  traffic_total_ = nullptr;
+}
+inline const ::api::Traffic& ListUserResponse::_internal_traffic_total() const {
+  const ::api::Traffic* p = traffic_total_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::api::Traffic*>(
+      &::api::_Traffic_default_instance_);
+}
+inline const ::api::Traffic& ListUserResponse::traffic_total() const {
+  // @@protoc_insertion_point(field_get:api.ListUserResponse.traffic_total)
+  return _internal_traffic_total();
+}
+inline ::api::Traffic* ListUserResponse::release_traffic_total() {
+  // @@protoc_insertion_point(field_release:api.ListUserResponse.traffic_total)
+  
+  ::api::Traffic* temp = traffic_total_;
+  traffic_total_ = nullptr;
+  return temp;
+}
+inline ::api::Traffic* ListUserResponse::_internal_mutable_traffic_total() {
+  
+  if (traffic_total_ == nullptr) {
+    auto* p = CreateMaybeMessage<::api::Traffic>(GetArenaNoVirtual());
+    traffic_total_ = p;
+  }
+  return traffic_total_;
+}
+inline ::api::Traffic* ListUserResponse::mutable_traffic_total() {
+  // @@protoc_insertion_point(field_mutable:api.ListUserResponse.traffic_total)
+  return _internal_mutable_traffic_total();
+}
+inline void ListUserResponse::set_allocated_traffic_total(::api::Traffic* traffic_total) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete traffic_total_;
+  }
+  if (traffic_total) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      traffic_total = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, traffic_total, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  traffic_total_ = traffic_total;
+  // @@protoc_insertion_point(field_set_allocated:api.ListUserResponse.traffic_total)
+}
+
+// .api.Traffic traffic_quota = 4;
+inline bool ListUserResponse::_internal_has_traffic_quota() const {
+  return this != internal_default_instance() && traffic_quota_ != nullptr;
+}
+inline bool ListUserResponse::has_traffic_quota() const {
+  return _internal_has_traffic_quota();
+}
+inline void ListUserResponse::clear_traffic_quota() {
+  if (GetArenaNoVirtual() == nullptr && traffic_quota_ != nullptr) {
+    delete traffic_quota_;
+  }
+  traffic_quota_ = nullptr;
+}
+inline const ::api::Traffic& ListUserResponse::_internal_traffic_quota() const {
+  const ::api::Traffic* p = traffic_quota_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::api::Traffic*>(
+      &::api::_Traffic_default_instance_);
+}
+inline const ::api::Traffic& ListUserResponse::traffic_quota() const {
+  // @@protoc_insertion_point(field_get:api.ListUserResponse.traffic_quota)
+  return _internal_traffic_quota();
+}
+inline ::api::Traffic* ListUserResponse::release_traffic_quota() {
+  // @@protoc_insertion_point(field_release:api.ListUserResponse.traffic_quota)
+  
+  ::api::Traffic* temp = traffic_quota_;
+  traffic_quota_ = nullptr;
+  return temp;
+}
+inline ::api::Traffic* ListUserResponse::_internal_mutable_traffic_quota() {
+  
+  if (traffic_quota_ == nullptr) {
+    auto* p = CreateMaybeMessage<::api::Traffic>(GetArenaNoVirtual());
+    traffic_quota_ = p;
+  }
+  return traffic_quota_;
+}
+inline ::api::Traffic* ListUserResponse::mutable_traffic_quota() {
+  // @@protoc_insertion_point(field_mutable:api.ListUserResponse.traffic_quota)
+  return _internal_mutable_traffic_quota();
+}
+inline void ListUserResponse::set_allocated_traffic_quota(::api::Traffic* traffic_quota) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete traffic_quota_;
+  }
+  if (traffic_quota) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      traffic_quota = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, traffic_quota, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  traffic_quota_ = traffic_quota;
+  // @@protoc_insertion_point(field_set_allocated:api.ListUserResponse.traffic_quota)
+}
+
+// .api.Speed speed_current = 5;
+inline bool ListUserResponse::_internal_has_speed_current() const {
+  return this != internal_default_instance() && speed_current_ != nullptr;
+}
+inline bool ListUserResponse::has_speed_current() const {
+  return _internal_has_speed_current();
+}
+inline void ListUserResponse::clear_speed_current() {
+  if (GetArenaNoVirtual() == nullptr && speed_current_ != nullptr) {
+    delete speed_current_;
+  }
+  speed_current_ = nullptr;
+}
+inline const ::api::Speed& ListUserResponse::_internal_speed_current() const {
+  const ::api::Speed* p = speed_current_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::api::Speed*>(
+      &::api::_Speed_default_instance_);
+}
+inline const ::api::Speed& ListUserResponse::speed_current() const {
+  // @@protoc_insertion_point(field_get:api.ListUserResponse.speed_current)
+  return _internal_speed_current();
+}
+inline ::api::Speed* ListUserResponse::release_speed_current() {
+  // @@protoc_insertion_point(field_release:api.ListUserResponse.speed_current)
+  
+  ::api::Speed* temp = speed_current_;
+  speed_current_ = nullptr;
+  return temp;
+}
+inline ::api::Speed* ListUserResponse::_internal_mutable_speed_current() {
+  
+  if (speed_current_ == nullptr) {
+    auto* p = CreateMaybeMessage<::api::Speed>(GetArenaNoVirtual());
+    speed_current_ = p;
+  }
+  return speed_current_;
+}
+inline ::api::Speed* ListUserResponse::mutable_speed_current() {
+  // @@protoc_insertion_point(field_mutable:api.ListUserResponse.speed_current)
+  return _internal_mutable_speed_current();
+}
+inline void ListUserResponse::set_allocated_speed_current(::api::Speed* speed_current) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete speed_current_;
+  }
+  if (speed_current) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      speed_current = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, speed_current, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  speed_current_ = speed_current;
+  // @@protoc_insertion_point(field_set_allocated:api.ListUserResponse.speed_current)
+}
+
+// .api.Speed speed_limit = 6;
+inline bool ListUserResponse::_internal_has_speed_limit() const {
+  return this != internal_default_instance() && speed_limit_ != nullptr;
+}
+inline bool ListUserResponse::has_speed_limit() const {
+  return _internal_has_speed_limit();
+}
+inline void ListUserResponse::clear_speed_limit() {
+  if (GetArenaNoVirtual() == nullptr && speed_limit_ != nullptr) {
+    delete speed_limit_;
+  }
+  speed_limit_ = nullptr;
+}
+inline const ::api::Speed& ListUserResponse::_internal_speed_limit() const {
+  const ::api::Speed* p = speed_limit_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::api::Speed*>(
+      &::api::_Speed_default_instance_);
+}
+inline const ::api::Speed& ListUserResponse::speed_limit() const {
+  // @@protoc_insertion_point(field_get:api.ListUserResponse.speed_limit)
+  return _internal_speed_limit();
+}
+inline ::api::Speed* ListUserResponse::release_speed_limit() {
+  // @@protoc_insertion_point(field_release:api.ListUserResponse.speed_limit)
+  
+  ::api::Speed* temp = speed_limit_;
+  speed_limit_ = nullptr;
+  return temp;
+}
+inline ::api::Speed* ListUserResponse::_internal_mutable_speed_limit() {
+  
+  if (speed_limit_ == nullptr) {
+    auto* p = CreateMaybeMessage<::api::Speed>(GetArenaNoVirtual());
+    speed_limit_ = p;
+  }
+  return speed_limit_;
+}
+inline ::api::Speed* ListUserResponse::mutable_speed_limit() {
+  // @@protoc_insertion_point(field_mutable:api.ListUserResponse.speed_limit)
+  return _internal_mutable_speed_limit();
+}
+inline void ListUserResponse::set_allocated_speed_limit(::api::Speed* speed_limit) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete speed_limit_;
+  }
+  if (speed_limit) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      speed_limit = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, speed_limit, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  speed_limit_ = speed_limit;
+  // @@protoc_insertion_point(field_set_allocated:api.ListUserResponse.speed_limit)
+}
+
+// -------------------------------------------------------------------
+
+// SetTrafficRequest
+
+// .api.User user = 1;
+inline bool SetTrafficRequest::_internal_has_user() const {
+  return this != internal_default_instance() && user_ != nullptr;
+}
+inline bool SetTrafficRequest::has_user() const {
+  return _internal_has_user();
+}
+inline void SetTrafficRequest::clear_user() {
+  if (GetArenaNoVirtual() == nullptr && user_ != nullptr) {
+    delete user_;
+  }
+  user_ = nullptr;
+}
+inline const ::api::User& SetTrafficRequest::_internal_user() const {
+  const ::api::User* p = user_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::api::User*>(
+      &::api::_User_default_instance_);
+}
+inline const ::api::User& SetTrafficRequest::user() const {
+  // @@protoc_insertion_point(field_get:api.SetTrafficRequest.user)
+  return _internal_user();
+}
+inline ::api::User* SetTrafficRequest::release_user() {
+  // @@protoc_insertion_point(field_release:api.SetTrafficRequest.user)
+  
+  ::api::User* temp = user_;
+  user_ = nullptr;
+  return temp;
+}
+inline ::api::User* SetTrafficRequest::_internal_mutable_user() {
+  
+  if (user_ == nullptr) {
+    auto* p = CreateMaybeMessage<::api::User>(GetArenaNoVirtual());
+    user_ = p;
+  }
+  return user_;
+}
+inline ::api::User* SetTrafficRequest::mutable_user() {
+  // @@protoc_insertion_point(field_mutable:api.SetTrafficRequest.user)
+  return _internal_mutable_user();
+}
+inline void SetTrafficRequest::set_allocated_user(::api::User* user) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete user_;
+  }
+  if (user) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      user = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, user, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  user_ = user;
+  // @@protoc_insertion_point(field_set_allocated:api.SetTrafficRequest.user)
+}
+
+// .api.Traffic traffic_quota = 2;
+inline bool SetTrafficRequest::_internal_has_traffic_quota() const {
+  return this != internal_default_instance() && traffic_quota_ != nullptr;
+}
+inline bool SetTrafficRequest::has_traffic_quota() const {
+  return _internal_has_traffic_quota();
+}
+inline void SetTrafficRequest::clear_traffic_quota() {
+  if (GetArenaNoVirtual() == nullptr && traffic_quota_ != nullptr) {
+    delete traffic_quota_;
+  }
+  traffic_quota_ = nullptr;
+}
+inline const ::api::Traffic& SetTrafficRequest::_internal_traffic_quota() const {
+  const ::api::Traffic* p = traffic_quota_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::api::Traffic*>(
+      &::api::_Traffic_default_instance_);
+}
+inline const ::api::Traffic& SetTrafficRequest::traffic_quota() const {
+  // @@protoc_insertion_point(field_get:api.SetTrafficRequest.traffic_quota)
+  return _internal_traffic_quota();
+}
+inline ::api::Traffic* SetTrafficRequest::release_traffic_quota() {
+  // @@protoc_insertion_point(field_release:api.SetTrafficRequest.traffic_quota)
+  
+  ::api::Traffic* temp = traffic_quota_;
+  traffic_quota_ = nullptr;
+  return temp;
+}
+inline ::api::Traffic* SetTrafficRequest::_internal_mutable_traffic_quota() {
+  
+  if (traffic_quota_ == nullptr) {
+    auto* p = CreateMaybeMessage<::api::Traffic>(GetArenaNoVirtual());
+    traffic_quota_ = p;
+  }
+  return traffic_quota_;
+}
+inline ::api::Traffic* SetTrafficRequest::mutable_traffic_quota() {
+  // @@protoc_insertion_point(field_mutable:api.SetTrafficRequest.traffic_quota)
+  return _internal_mutable_traffic_quota();
+}
+inline void SetTrafficRequest::set_allocated_traffic_quota(::api::Traffic* traffic_quota) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete traffic_quota_;
+  }
+  if (traffic_quota) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      traffic_quota = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, traffic_quota, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  traffic_quota_ = traffic_quota;
+  // @@protoc_insertion_point(field_set_allocated:api.SetTrafficRequest.traffic_quota)
+}
+
+// -------------------------------------------------------------------
+
+// SetTrafficReponse
+
+// bool success = 1;
+inline void SetTrafficReponse::clear_success() {
+  success_ = false;
+}
+inline bool SetTrafficReponse::_internal_success() const {
+  return success_;
+}
+inline bool SetTrafficReponse::success() const {
+  // @@protoc_insertion_point(field_get:api.SetTrafficReponse.success)
+  return _internal_success();
+}
+inline void SetTrafficReponse::_internal_set_success(bool value) {
+  
+  success_ = value;
+}
+inline void SetTrafficReponse::set_success(bool value) {
+  _internal_set_success(value);
+  // @@protoc_insertion_point(field_set:api.SetTrafficReponse.success)
+}
+
+// string info = 2;
+inline void SetTrafficReponse::clear_info() {
+  info_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& SetTrafficReponse::info() const {
+  // @@protoc_insertion_point(field_get:api.SetTrafficReponse.info)
+  return _internal_info();
+}
+inline void SetTrafficReponse::set_info(const std::string& value) {
+  _internal_set_info(value);
+  // @@protoc_insertion_point(field_set:api.SetTrafficReponse.info)
+}
+inline std::string* SetTrafficReponse::mutable_info() {
+  // @@protoc_insertion_point(field_mutable:api.SetTrafficReponse.info)
+  return _internal_mutable_info();
+}
+inline const std::string& SetTrafficReponse::_internal_info() const {
+  return info_.GetNoArena();
+}
+inline void SetTrafficReponse::_internal_set_info(const std::string& value) {
+  
+  info_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void SetTrafficReponse::set_info(std::string&& value) {
+  
+  info_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:api.SetTrafficReponse.info)
+}
+inline void SetTrafficReponse::set_info(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  info_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:api.SetTrafficReponse.info)
+}
+inline void SetTrafficReponse::set_info(const char* value, size_t size) {
+  
+  info_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:api.SetTrafficReponse.info)
+}
+inline std::string* SetTrafficReponse::_internal_mutable_info() {
+  
+  return info_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* SetTrafficReponse::release_info() {
+  // @@protoc_insertion_point(field_release:api.SetTrafficReponse.info)
+  
+  return info_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void SetTrafficReponse::set_allocated_info(std::string* info) {
+  if (info != nullptr) {
+    
+  } else {
+    
+  }
+  info_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), info);
+  // @@protoc_insertion_point(field_set_allocated:api.SetTrafficReponse.info)
+}
+
+// -------------------------------------------------------------------
+
+// SetSpeedRequest
+
+// .api.User user = 1;
+inline bool SetSpeedRequest::_internal_has_user() const {
+  return this != internal_default_instance() && user_ != nullptr;
+}
+inline bool SetSpeedRequest::has_user() const {
+  return _internal_has_user();
+}
+inline void SetSpeedRequest::clear_user() {
+  if (GetArenaNoVirtual() == nullptr && user_ != nullptr) {
+    delete user_;
+  }
+  user_ = nullptr;
+}
+inline const ::api::User& SetSpeedRequest::_internal_user() const {
+  const ::api::User* p = user_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::api::User*>(
+      &::api::_User_default_instance_);
+}
+inline const ::api::User& SetSpeedRequest::user() const {
+  // @@protoc_insertion_point(field_get:api.SetSpeedRequest.user)
+  return _internal_user();
+}
+inline ::api::User* SetSpeedRequest::release_user() {
+  // @@protoc_insertion_point(field_release:api.SetSpeedRequest.user)
+  
+  ::api::User* temp = user_;
+  user_ = nullptr;
+  return temp;
+}
+inline ::api::User* SetSpeedRequest::_internal_mutable_user() {
+  
+  if (user_ == nullptr) {
+    auto* p = CreateMaybeMessage<::api::User>(GetArenaNoVirtual());
+    user_ = p;
+  }
+  return user_;
+}
+inline ::api::User* SetSpeedRequest::mutable_user() {
+  // @@protoc_insertion_point(field_mutable:api.SetSpeedRequest.user)
+  return _internal_mutable_user();
+}
+inline void SetSpeedRequest::set_allocated_user(::api::User* user) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete user_;
+  }
+  if (user) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      user = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, user, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  user_ = user;
+  // @@protoc_insertion_point(field_set_allocated:api.SetSpeedRequest.user)
+}
+
+// .api.Speed speed_limit = 2;
+inline bool SetSpeedRequest::_internal_has_speed_limit() const {
+  return this != internal_default_instance() && speed_limit_ != nullptr;
+}
+inline bool SetSpeedRequest::has_speed_limit() const {
+  return _internal_has_speed_limit();
+}
+inline void SetSpeedRequest::clear_speed_limit() {
+  if (GetArenaNoVirtual() == nullptr && speed_limit_ != nullptr) {
+    delete speed_limit_;
+  }
+  speed_limit_ = nullptr;
+}
+inline const ::api::Speed& SetSpeedRequest::_internal_speed_limit() const {
+  const ::api::Speed* p = speed_limit_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::api::Speed*>(
+      &::api::_Speed_default_instance_);
+}
+inline const ::api::Speed& SetSpeedRequest::speed_limit() const {
+  // @@protoc_insertion_point(field_get:api.SetSpeedRequest.speed_limit)
+  return _internal_speed_limit();
+}
+inline ::api::Speed* SetSpeedRequest::release_speed_limit() {
+  // @@protoc_insertion_point(field_release:api.SetSpeedRequest.speed_limit)
+  
+  ::api::Speed* temp = speed_limit_;
+  speed_limit_ = nullptr;
+  return temp;
+}
+inline ::api::Speed* SetSpeedRequest::_internal_mutable_speed_limit() {
+  
+  if (speed_limit_ == nullptr) {
+    auto* p = CreateMaybeMessage<::api::Speed>(GetArenaNoVirtual());
+    speed_limit_ = p;
+  }
+  return speed_limit_;
+}
+inline ::api::Speed* SetSpeedRequest::mutable_speed_limit() {
+  // @@protoc_insertion_point(field_mutable:api.SetSpeedRequest.speed_limit)
+  return _internal_mutable_speed_limit();
+}
+inline void SetSpeedRequest::set_allocated_speed_limit(::api::Speed* speed_limit) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete speed_limit_;
+  }
+  if (speed_limit) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      speed_limit = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, speed_limit, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  speed_limit_ = speed_limit;
+  // @@protoc_insertion_point(field_set_allocated:api.SetSpeedRequest.speed_limit)
+}
+
+// -------------------------------------------------------------------
+
+// SetSpeedResponse
+
+// bool success = 1;
+inline void SetSpeedResponse::clear_success() {
+  success_ = false;
+}
+inline bool SetSpeedResponse::_internal_success() const {
+  return success_;
+}
+inline bool SetSpeedResponse::success() const {
+  // @@protoc_insertion_point(field_get:api.SetSpeedResponse.success)
+  return _internal_success();
+}
+inline void SetSpeedResponse::_internal_set_success(bool value) {
+  
+  success_ = value;
+}
+inline void SetSpeedResponse::set_success(bool value) {
+  _internal_set_success(value);
+  // @@protoc_insertion_point(field_set:api.SetSpeedResponse.success)
+}
+
+// string info = 2;
+inline void SetSpeedResponse::clear_info() {
+  info_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& SetSpeedResponse::info() const {
+  // @@protoc_insertion_point(field_get:api.SetSpeedResponse.info)
+  return _internal_info();
+}
+inline void SetSpeedResponse::set_info(const std::string& value) {
+  _internal_set_info(value);
+  // @@protoc_insertion_point(field_set:api.SetSpeedResponse.info)
+}
+inline std::string* SetSpeedResponse::mutable_info() {
+  // @@protoc_insertion_point(field_mutable:api.SetSpeedResponse.info)
+  return _internal_mutable_info();
+}
+inline const std::string& SetSpeedResponse::_internal_info() const {
+  return info_.GetNoArena();
+}
+inline void SetSpeedResponse::_internal_set_info(const std::string& value) {
+  
+  info_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void SetSpeedResponse::set_info(std::string&& value) {
+  
+  info_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:api.SetSpeedResponse.info)
+}
+inline void SetSpeedResponse::set_info(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  info_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:api.SetSpeedResponse.info)
+}
+inline void SetSpeedResponse::set_info(const char* value, size_t size) {
+  
+  info_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:api.SetSpeedResponse.info)
+}
+inline std::string* SetSpeedResponse::_internal_mutable_info() {
+  
+  return info_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* SetSpeedResponse::release_info() {
+  // @@protoc_insertion_point(field_release:api.SetSpeedResponse.info)
+  
+  return info_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void SetSpeedResponse::set_allocated_info(std::string* info) {
+  if (info != nullptr) {
+    
+  } else {
+    
+  }
+  info_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), info);
+  // @@protoc_insertion_point(field_set_allocated:api.SetSpeedResponse.info)
+}
+
+// -------------------------------------------------------------------
+
+// AddUserRequest
+
+// .api.User user = 1;
+inline bool AddUserRequest::_internal_has_user() const {
+  return this != internal_default_instance() && user_ != nullptr;
+}
+inline bool AddUserRequest::has_user() const {
+  return _internal_has_user();
+}
+inline void AddUserRequest::clear_user() {
+  if (GetArenaNoVirtual() == nullptr && user_ != nullptr) {
+    delete user_;
+  }
+  user_ = nullptr;
+}
+inline const ::api::User& AddUserRequest::_internal_user() const {
+  const ::api::User* p = user_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::api::User*>(
+      &::api::_User_default_instance_);
+}
+inline const ::api::User& AddUserRequest::user() const {
+  // @@protoc_insertion_point(field_get:api.AddUserRequest.user)
+  return _internal_user();
+}
+inline ::api::User* AddUserRequest::release_user() {
+  // @@protoc_insertion_point(field_release:api.AddUserRequest.user)
+  
+  ::api::User* temp = user_;
+  user_ = nullptr;
+  return temp;
+}
+inline ::api::User* AddUserRequest::_internal_mutable_user() {
+  
+  if (user_ == nullptr) {
+    auto* p = CreateMaybeMessage<::api::User>(GetArenaNoVirtual());
+    user_ = p;
+  }
+  return user_;
+}
+inline ::api::User* AddUserRequest::mutable_user() {
+  // @@protoc_insertion_point(field_mutable:api.AddUserRequest.user)
+  return _internal_mutable_user();
+}
+inline void AddUserRequest::set_allocated_user(::api::User* user) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete user_;
+  }
+  if (user) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      user = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, user, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  user_ = user;
+  // @@protoc_insertion_point(field_set_allocated:api.AddUserRequest.user)
+}
+
+// .api.Traffic traffic_quota = 4;
+inline bool AddUserRequest::_internal_has_traffic_quota() const {
+  return this != internal_default_instance() && traffic_quota_ != nullptr;
+}
+inline bool AddUserRequest::has_traffic_quota() const {
+  return _internal_has_traffic_quota();
+}
+inline void AddUserRequest::clear_traffic_quota() {
+  if (GetArenaNoVirtual() == nullptr && traffic_quota_ != nullptr) {
+    delete traffic_quota_;
+  }
+  traffic_quota_ = nullptr;
+}
+inline const ::api::Traffic& AddUserRequest::_internal_traffic_quota() const {
+  const ::api::Traffic* p = traffic_quota_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::api::Traffic*>(
+      &::api::_Traffic_default_instance_);
+}
+inline const ::api::Traffic& AddUserRequest::traffic_quota() const {
+  // @@protoc_insertion_point(field_get:api.AddUserRequest.traffic_quota)
+  return _internal_traffic_quota();
+}
+inline ::api::Traffic* AddUserRequest::release_traffic_quota() {
+  // @@protoc_insertion_point(field_release:api.AddUserRequest.traffic_quota)
+  
+  ::api::Traffic* temp = traffic_quota_;
+  traffic_quota_ = nullptr;
+  return temp;
+}
+inline ::api::Traffic* AddUserRequest::_internal_mutable_traffic_quota() {
+  
+  if (traffic_quota_ == nullptr) {
+    auto* p = CreateMaybeMessage<::api::Traffic>(GetArenaNoVirtual());
+    traffic_quota_ = p;
+  }
+  return traffic_quota_;
+}
+inline ::api::Traffic* AddUserRequest::mutable_traffic_quota() {
+  // @@protoc_insertion_point(field_mutable:api.AddUserRequest.traffic_quota)
+  return _internal_mutable_traffic_quota();
+}
+inline void AddUserRequest::set_allocated_traffic_quota(::api::Traffic* traffic_quota) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete traffic_quota_;
+  }
+  if (traffic_quota) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      traffic_quota = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, traffic_quota, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  traffic_quota_ = traffic_quota;
+  // @@protoc_insertion_point(field_set_allocated:api.AddUserRequest.traffic_quota)
+}
+
+// .api.Speed speed_limit = 6;
+inline bool AddUserRequest::_internal_has_speed_limit() const {
+  return this != internal_default_instance() && speed_limit_ != nullptr;
+}
+inline bool AddUserRequest::has_speed_limit() const {
+  return _internal_has_speed_limit();
+}
+inline void AddUserRequest::clear_speed_limit() {
+  if (GetArenaNoVirtual() == nullptr && speed_limit_ != nullptr) {
+    delete speed_limit_;
+  }
+  speed_limit_ = nullptr;
+}
+inline const ::api::Speed& AddUserRequest::_internal_speed_limit() const {
+  const ::api::Speed* p = speed_limit_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::api::Speed*>(
+      &::api::_Speed_default_instance_);
+}
+inline const ::api::Speed& AddUserRequest::speed_limit() const {
+  // @@protoc_insertion_point(field_get:api.AddUserRequest.speed_limit)
+  return _internal_speed_limit();
+}
+inline ::api::Speed* AddUserRequest::release_speed_limit() {
+  // @@protoc_insertion_point(field_release:api.AddUserRequest.speed_limit)
+  
+  ::api::Speed* temp = speed_limit_;
+  speed_limit_ = nullptr;
+  return temp;
+}
+inline ::api::Speed* AddUserRequest::_internal_mutable_speed_limit() {
+  
+  if (speed_limit_ == nullptr) {
+    auto* p = CreateMaybeMessage<::api::Speed>(GetArenaNoVirtual());
+    speed_limit_ = p;
+  }
+  return speed_limit_;
+}
+inline ::api::Speed* AddUserRequest::mutable_speed_limit() {
+  // @@protoc_insertion_point(field_mutable:api.AddUserRequest.speed_limit)
+  return _internal_mutable_speed_limit();
+}
+inline void AddUserRequest::set_allocated_speed_limit(::api::Speed* speed_limit) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete speed_limit_;
+  }
+  if (speed_limit) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      speed_limit = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, speed_limit, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  speed_limit_ = speed_limit;
+  // @@protoc_insertion_point(field_set_allocated:api.AddUserRequest.speed_limit)
+}
+
+// -------------------------------------------------------------------
+
+// AddUserResponse
+
+// .api.User user = 1;
+inline bool AddUserResponse::_internal_has_user() const {
+  return this != internal_default_instance() && user_ != nullptr;
+}
+inline bool AddUserResponse::has_user() const {
+  return _internal_has_user();
+}
+inline void AddUserResponse::clear_user() {
+  if (GetArenaNoVirtual() == nullptr && user_ != nullptr) {
+    delete user_;
+  }
+  user_ = nullptr;
+}
+inline const ::api::User& AddUserResponse::_internal_user() const {
+  const ::api::User* p = user_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::api::User*>(
+      &::api::_User_default_instance_);
+}
+inline const ::api::User& AddUserResponse::user() const {
+  // @@protoc_insertion_point(field_get:api.AddUserResponse.user)
+  return _internal_user();
+}
+inline ::api::User* AddUserResponse::release_user() {
+  // @@protoc_insertion_point(field_release:api.AddUserResponse.user)
+  
+  ::api::User* temp = user_;
+  user_ = nullptr;
+  return temp;
+}
+inline ::api::User* AddUserResponse::_internal_mutable_user() {
+  
+  if (user_ == nullptr) {
+    auto* p = CreateMaybeMessage<::api::User>(GetArenaNoVirtual());
+    user_ = p;
+  }
+  return user_;
+}
+inline ::api::User* AddUserResponse::mutable_user() {
+  // @@protoc_insertion_point(field_mutable:api.AddUserResponse.user)
+  return _internal_mutable_user();
+}
+inline void AddUserResponse::set_allocated_user(::api::User* user) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete user_;
+  }
+  if (user) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      user = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, user, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  user_ = user;
+  // @@protoc_insertion_point(field_set_allocated:api.AddUserResponse.user)
+}
+
+// -------------------------------------------------------------------
+
+// DeleteUserRequest
+
+// .api.User user = 1;
+inline bool DeleteUserRequest::_internal_has_user() const {
+  return this != internal_default_instance() && user_ != nullptr;
+}
+inline bool DeleteUserRequest::has_user() const {
+  return _internal_has_user();
+}
+inline void DeleteUserRequest::clear_user() {
+  if (GetArenaNoVirtual() == nullptr && user_ != nullptr) {
+    delete user_;
+  }
+  user_ = nullptr;
+}
+inline const ::api::User& DeleteUserRequest::_internal_user() const {
+  const ::api::User* p = user_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::api::User*>(
+      &::api::_User_default_instance_);
+}
+inline const ::api::User& DeleteUserRequest::user() const {
+  // @@protoc_insertion_point(field_get:api.DeleteUserRequest.user)
+  return _internal_user();
+}
+inline ::api::User* DeleteUserRequest::release_user() {
+  // @@protoc_insertion_point(field_release:api.DeleteUserRequest.user)
+  
+  ::api::User* temp = user_;
+  user_ = nullptr;
+  return temp;
+}
+inline ::api::User* DeleteUserRequest::_internal_mutable_user() {
+  
+  if (user_ == nullptr) {
+    auto* p = CreateMaybeMessage<::api::User>(GetArenaNoVirtual());
+    user_ = p;
+  }
+  return user_;
+}
+inline ::api::User* DeleteUserRequest::mutable_user() {
+  // @@protoc_insertion_point(field_mutable:api.DeleteUserRequest.user)
+  return _internal_mutable_user();
+}
+inline void DeleteUserRequest::set_allocated_user(::api::User* user) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete user_;
+  }
+  if (user) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      user = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, user, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  user_ = user;
+  // @@protoc_insertion_point(field_set_allocated:api.DeleteUserRequest.user)
+}
+
+// -------------------------------------------------------------------
+
+// DeleteUserResponse
+
+// bool success = 1;
+inline void DeleteUserResponse::clear_success() {
+  success_ = false;
+}
+inline bool DeleteUserResponse::_internal_success() const {
+  return success_;
+}
+inline bool DeleteUserResponse::success() const {
+  // @@protoc_insertion_point(field_get:api.DeleteUserResponse.success)
+  return _internal_success();
+}
+inline void DeleteUserResponse::_internal_set_success(bool value) {
+  
+  success_ = value;
+}
+inline void DeleteUserResponse::set_success(bool value) {
+  _internal_set_success(value);
+  // @@protoc_insertion_point(field_set:api.DeleteUserResponse.success)
+}
+
+// string info = 2;
+inline void DeleteUserResponse::clear_info() {
+  info_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& DeleteUserResponse::info() const {
+  // @@protoc_insertion_point(field_get:api.DeleteUserResponse.info)
+  return _internal_info();
+}
+inline void DeleteUserResponse::set_info(const std::string& value) {
+  _internal_set_info(value);
+  // @@protoc_insertion_point(field_set:api.DeleteUserResponse.info)
+}
+inline std::string* DeleteUserResponse::mutable_info() {
+  // @@protoc_insertion_point(field_mutable:api.DeleteUserResponse.info)
+  return _internal_mutable_info();
+}
+inline const std::string& DeleteUserResponse::_internal_info() const {
+  return info_.GetNoArena();
+}
+inline void DeleteUserResponse::_internal_set_info(const std::string& value) {
+  
+  info_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void DeleteUserResponse::set_info(std::string&& value) {
+  
+  info_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:api.DeleteUserResponse.info)
+}
+inline void DeleteUserResponse::set_info(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  info_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:api.DeleteUserResponse.info)
+}
+inline void DeleteUserResponse::set_info(const char* value, size_t size) {
+  
+  info_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:api.DeleteUserResponse.info)
+}
+inline std::string* DeleteUserResponse::_internal_mutable_info() {
+  
+  return info_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* DeleteUserResponse::release_info() {
+  // @@protoc_insertion_point(field_release:api.DeleteUserResponse.info)
+  
+  return info_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void DeleteUserResponse::set_allocated_info(std::string* info) {
+  if (info != nullptr) {
+    
+  } else {
+    
+  }
+  info_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), info);
+  // @@protoc_insertion_point(field_set_allocated:api.DeleteUserResponse.info)
 }
 
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 

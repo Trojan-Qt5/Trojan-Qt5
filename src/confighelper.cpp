@@ -411,6 +411,15 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
     api["api_addr"] = "127.0.0.1";
     api["api_port"] = trojanAPIPort;
     configObj["api"] = QJsonValue(api);
+    QJsonObject forward_proxy;
+    forward_proxy["enabled"] = enableForwardProxy;
+    forward_proxy["proxy_addr"] = forwardProxyAddress;
+    forward_proxy["proxy_port"] = forwardProxyPort;
+    if (enableForwardProxyAuthentication) {
+        forward_proxy["username"] = forwardProxyUsername;
+        forward_proxy["password"] = forwardProxyPassword;
+    }
+    configObj["forward_proxy"] = QJsonValue(forward_proxy);
     QJsonDocument JSONDoc(configObj);
 
 #ifdef Q_OS_WIN

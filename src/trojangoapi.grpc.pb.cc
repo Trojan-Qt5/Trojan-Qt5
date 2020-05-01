@@ -21,63 +21,328 @@
 #include <grpcpp/impl/codegen/sync_stream.h>
 namespace api {
 
-static const char* TrojanService_method_names[] = {
-  "/api.TrojanService/QueryStats",
+static const char* TrojanClientService_method_names[] = {
+  "/api.TrojanClientService/GetTraffic",
+  "/api.TrojanClientService/GetSpeed",
 };
 
-std::unique_ptr< TrojanService::Stub> TrojanService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+std::unique_ptr< TrojanClientService::Stub> TrojanClientService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
   (void)options;
-  std::unique_ptr< TrojanService::Stub> stub(new TrojanService::Stub(channel));
+  std::unique_ptr< TrojanClientService::Stub> stub(new TrojanClientService::Stub(channel));
   return stub;
 }
 
-TrojanService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
-  : channel_(channel), rpcmethod_QueryStats_(TrojanService_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+TrojanClientService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
+  : channel_(channel), rpcmethod_GetTraffic_(TrojanClientService_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetSpeed_(TrojanClientService_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status TrojanService::Stub::QueryStats(::grpc::ClientContext* context, const ::api::StatsRequest& request, ::api::StatsReply* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_QueryStats_, context, request, response);
+::grpc::Status TrojanClientService::Stub::GetTraffic(::grpc::ClientContext* context, const ::api::GetTrafficRequest& request, ::api::GetTrafficResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetTraffic_, context, request, response);
 }
 
-void TrojanService::Stub::experimental_async::QueryStats(::grpc::ClientContext* context, const ::api::StatsRequest* request, ::api::StatsReply* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_QueryStats_, context, request, response, std::move(f));
+void TrojanClientService::Stub::experimental_async::GetTraffic(::grpc::ClientContext* context, const ::api::GetTrafficRequest* request, ::api::GetTrafficResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetTraffic_, context, request, response, std::move(f));
 }
 
-void TrojanService::Stub::experimental_async::QueryStats(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::StatsReply* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_QueryStats_, context, request, response, std::move(f));
+void TrojanClientService::Stub::experimental_async::GetTraffic(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::GetTrafficResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetTraffic_, context, request, response, std::move(f));
 }
 
-void TrojanService::Stub::experimental_async::QueryStats(::grpc::ClientContext* context, const ::api::StatsRequest* request, ::api::StatsReply* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_QueryStats_, context, request, response, reactor);
+void TrojanClientService::Stub::experimental_async::GetTraffic(::grpc::ClientContext* context, const ::api::GetTrafficRequest* request, ::api::GetTrafficResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetTraffic_, context, request, response, reactor);
 }
 
-void TrojanService::Stub::experimental_async::QueryStats(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::StatsReply* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_QueryStats_, context, request, response, reactor);
+void TrojanClientService::Stub::experimental_async::GetTraffic(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::GetTrafficResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetTraffic_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::api::StatsReply>* TrojanService::Stub::AsyncQueryStatsRaw(::grpc::ClientContext* context, const ::api::StatsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::api::StatsReply>::Create(channel_.get(), cq, rpcmethod_QueryStats_, context, request, true);
+::grpc::ClientAsyncResponseReader< ::api::GetTrafficResponse>* TrojanClientService::Stub::AsyncGetTrafficRaw(::grpc::ClientContext* context, const ::api::GetTrafficRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::api::GetTrafficResponse>::Create(channel_.get(), cq, rpcmethod_GetTraffic_, context, request, true);
 }
 
-::grpc::ClientAsyncResponseReader< ::api::StatsReply>* TrojanService::Stub::PrepareAsyncQueryStatsRaw(::grpc::ClientContext* context, const ::api::StatsRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::api::StatsReply>::Create(channel_.get(), cq, rpcmethod_QueryStats_, context, request, false);
+::grpc::ClientAsyncResponseReader< ::api::GetTrafficResponse>* TrojanClientService::Stub::PrepareAsyncGetTrafficRaw(::grpc::ClientContext* context, const ::api::GetTrafficRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::api::GetTrafficResponse>::Create(channel_.get(), cq, rpcmethod_GetTraffic_, context, request, false);
 }
 
-TrojanService::Service::Service() {
+::grpc::Status TrojanClientService::Stub::GetSpeed(::grpc::ClientContext* context, const ::api::GetSpeedRequest& request, ::api::GetSpeedResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetSpeed_, context, request, response);
+}
+
+void TrojanClientService::Stub::experimental_async::GetSpeed(::grpc::ClientContext* context, const ::api::GetSpeedRequest* request, ::api::GetSpeedResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetSpeed_, context, request, response, std::move(f));
+}
+
+void TrojanClientService::Stub::experimental_async::GetSpeed(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::GetSpeedResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetSpeed_, context, request, response, std::move(f));
+}
+
+void TrojanClientService::Stub::experimental_async::GetSpeed(::grpc::ClientContext* context, const ::api::GetSpeedRequest* request, ::api::GetSpeedResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetSpeed_, context, request, response, reactor);
+}
+
+void TrojanClientService::Stub::experimental_async::GetSpeed(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::GetSpeedResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetSpeed_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::api::GetSpeedResponse>* TrojanClientService::Stub::AsyncGetSpeedRaw(::grpc::ClientContext* context, const ::api::GetSpeedRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::api::GetSpeedResponse>::Create(channel_.get(), cq, rpcmethod_GetSpeed_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::api::GetSpeedResponse>* TrojanClientService::Stub::PrepareAsyncGetSpeedRaw(::grpc::ClientContext* context, const ::api::GetSpeedRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::api::GetSpeedResponse>::Create(channel_.get(), cq, rpcmethod_GetSpeed_, context, request, false);
+}
+
+TrojanClientService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      TrojanService_method_names[0],
+      TrojanClientService_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< TrojanService::Service, ::api::StatsRequest, ::api::StatsReply>(
-          std::mem_fn(&TrojanService::Service::QueryStats), this)));
+      new ::grpc::internal::RpcMethodHandler< TrojanClientService::Service, ::api::GetTrafficRequest, ::api::GetTrafficResponse>(
+          std::mem_fn(&TrojanClientService::Service::GetTraffic), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TrojanClientService_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TrojanClientService::Service, ::api::GetSpeedRequest, ::api::GetSpeedResponse>(
+          std::mem_fn(&TrojanClientService::Service::GetSpeed), this)));
 }
 
-TrojanService::Service::~Service() {
+TrojanClientService::Service::~Service() {
 }
 
-::grpc::Status TrojanService::Service::QueryStats(::grpc::ServerContext* context, const ::api::StatsRequest* request, ::api::StatsReply* response) {
+::grpc::Status TrojanClientService::Service::GetTraffic(::grpc::ServerContext* context, const ::api::GetTrafficRequest* request, ::api::GetTrafficResponse* response) {
   (void) context;
   (void) request;
   (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TrojanClientService::Service::GetSpeed(::grpc::ServerContext* context, const ::api::GetSpeedRequest* request, ::api::GetSpeedResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+
+static const char* TrojanServerService_method_names[] = {
+  "/api.TrojanServerService/ListUsers",
+  "/api.TrojanServerService/GetTraffic",
+  "/api.TrojanServerService/SetTraffic",
+  "/api.TrojanServerService/GetSpeed",
+  "/api.TrojanServerService/SetSpeed",
+  "/api.TrojanServerService/AddUsers",
+  "/api.TrojanServerService/DeleteUsers",
+};
+
+std::unique_ptr< TrojanServerService::Stub> TrojanServerService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< TrojanServerService::Stub> stub(new TrojanServerService::Stub(channel));
+  return stub;
+}
+
+TrojanServerService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
+  : channel_(channel), rpcmethod_ListUsers_(TrojanServerService_method_names[0], ::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
+  , rpcmethod_GetTraffic_(TrojanServerService_method_names[1], ::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
+  , rpcmethod_SetTraffic_(TrojanServerService_method_names[2], ::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
+  , rpcmethod_GetSpeed_(TrojanServerService_method_names[3], ::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
+  , rpcmethod_SetSpeed_(TrojanServerService_method_names[4], ::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
+  , rpcmethod_AddUsers_(TrojanServerService_method_names[5], ::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
+  , rpcmethod_DeleteUsers_(TrojanServerService_method_names[6], ::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
+  {}
+
+::grpc::ClientReader< ::api::ListUserResponse>* TrojanServerService::Stub::ListUsersRaw(::grpc::ClientContext* context, const ::api::ListUserRequest& request) {
+  return ::grpc_impl::internal::ClientReaderFactory< ::api::ListUserResponse>::Create(channel_.get(), rpcmethod_ListUsers_, context, request);
+}
+
+void TrojanServerService::Stub::experimental_async::ListUsers(::grpc::ClientContext* context, ::api::ListUserRequest* request, ::grpc::experimental::ClientReadReactor< ::api::ListUserResponse>* reactor) {
+  ::grpc_impl::internal::ClientCallbackReaderFactory< ::api::ListUserResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_ListUsers_, context, request, reactor);
+}
+
+::grpc::ClientAsyncReader< ::api::ListUserResponse>* TrojanServerService::Stub::AsyncListUsersRaw(::grpc::ClientContext* context, const ::api::ListUserRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc_impl::internal::ClientAsyncReaderFactory< ::api::ListUserResponse>::Create(channel_.get(), cq, rpcmethod_ListUsers_, context, request, true, tag);
+}
+
+::grpc::ClientAsyncReader< ::api::ListUserResponse>* TrojanServerService::Stub::PrepareAsyncListUsersRaw(::grpc::ClientContext* context, const ::api::ListUserRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncReaderFactory< ::api::ListUserResponse>::Create(channel_.get(), cq, rpcmethod_ListUsers_, context, request, false, nullptr);
+}
+
+::grpc::ClientReaderWriter< ::api::GetTrafficRequest, ::api::GetTrafficResponse>* TrojanServerService::Stub::GetTrafficRaw(::grpc::ClientContext* context) {
+  return ::grpc_impl::internal::ClientReaderWriterFactory< ::api::GetTrafficRequest, ::api::GetTrafficResponse>::Create(channel_.get(), rpcmethod_GetTraffic_, context);
+}
+
+void TrojanServerService::Stub::experimental_async::GetTraffic(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::api::GetTrafficRequest,::api::GetTrafficResponse>* reactor) {
+  ::grpc_impl::internal::ClientCallbackReaderWriterFactory< ::api::GetTrafficRequest,::api::GetTrafficResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_GetTraffic_, context, reactor);
+}
+
+::grpc::ClientAsyncReaderWriter< ::api::GetTrafficRequest, ::api::GetTrafficResponse>* TrojanServerService::Stub::AsyncGetTrafficRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::api::GetTrafficRequest, ::api::GetTrafficResponse>::Create(channel_.get(), cq, rpcmethod_GetTraffic_, context, true, tag);
+}
+
+::grpc::ClientAsyncReaderWriter< ::api::GetTrafficRequest, ::api::GetTrafficResponse>* TrojanServerService::Stub::PrepareAsyncGetTrafficRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::api::GetTrafficRequest, ::api::GetTrafficResponse>::Create(channel_.get(), cq, rpcmethod_GetTraffic_, context, false, nullptr);
+}
+
+::grpc::ClientReaderWriter< ::api::SetTrafficRequest, ::api::SetTrafficReponse>* TrojanServerService::Stub::SetTrafficRaw(::grpc::ClientContext* context) {
+  return ::grpc_impl::internal::ClientReaderWriterFactory< ::api::SetTrafficRequest, ::api::SetTrafficReponse>::Create(channel_.get(), rpcmethod_SetTraffic_, context);
+}
+
+void TrojanServerService::Stub::experimental_async::SetTraffic(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::api::SetTrafficRequest,::api::SetTrafficReponse>* reactor) {
+  ::grpc_impl::internal::ClientCallbackReaderWriterFactory< ::api::SetTrafficRequest,::api::SetTrafficReponse>::Create(stub_->channel_.get(), stub_->rpcmethod_SetTraffic_, context, reactor);
+}
+
+::grpc::ClientAsyncReaderWriter< ::api::SetTrafficRequest, ::api::SetTrafficReponse>* TrojanServerService::Stub::AsyncSetTrafficRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::api::SetTrafficRequest, ::api::SetTrafficReponse>::Create(channel_.get(), cq, rpcmethod_SetTraffic_, context, true, tag);
+}
+
+::grpc::ClientAsyncReaderWriter< ::api::SetTrafficRequest, ::api::SetTrafficReponse>* TrojanServerService::Stub::PrepareAsyncSetTrafficRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::api::SetTrafficRequest, ::api::SetTrafficReponse>::Create(channel_.get(), cq, rpcmethod_SetTraffic_, context, false, nullptr);
+}
+
+::grpc::ClientReaderWriter< ::api::GetSpeedRequest, ::api::GetSpeedResponse>* TrojanServerService::Stub::GetSpeedRaw(::grpc::ClientContext* context) {
+  return ::grpc_impl::internal::ClientReaderWriterFactory< ::api::GetSpeedRequest, ::api::GetSpeedResponse>::Create(channel_.get(), rpcmethod_GetSpeed_, context);
+}
+
+void TrojanServerService::Stub::experimental_async::GetSpeed(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::api::GetSpeedRequest,::api::GetSpeedResponse>* reactor) {
+  ::grpc_impl::internal::ClientCallbackReaderWriterFactory< ::api::GetSpeedRequest,::api::GetSpeedResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_GetSpeed_, context, reactor);
+}
+
+::grpc::ClientAsyncReaderWriter< ::api::GetSpeedRequest, ::api::GetSpeedResponse>* TrojanServerService::Stub::AsyncGetSpeedRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::api::GetSpeedRequest, ::api::GetSpeedResponse>::Create(channel_.get(), cq, rpcmethod_GetSpeed_, context, true, tag);
+}
+
+::grpc::ClientAsyncReaderWriter< ::api::GetSpeedRequest, ::api::GetSpeedResponse>* TrojanServerService::Stub::PrepareAsyncGetSpeedRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::api::GetSpeedRequest, ::api::GetSpeedResponse>::Create(channel_.get(), cq, rpcmethod_GetSpeed_, context, false, nullptr);
+}
+
+::grpc::ClientReaderWriter< ::api::SetSpeedRequest, ::api::SetSpeedResponse>* TrojanServerService::Stub::SetSpeedRaw(::grpc::ClientContext* context) {
+  return ::grpc_impl::internal::ClientReaderWriterFactory< ::api::SetSpeedRequest, ::api::SetSpeedResponse>::Create(channel_.get(), rpcmethod_SetSpeed_, context);
+}
+
+void TrojanServerService::Stub::experimental_async::SetSpeed(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::api::SetSpeedRequest,::api::SetSpeedResponse>* reactor) {
+  ::grpc_impl::internal::ClientCallbackReaderWriterFactory< ::api::SetSpeedRequest,::api::SetSpeedResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_SetSpeed_, context, reactor);
+}
+
+::grpc::ClientAsyncReaderWriter< ::api::SetSpeedRequest, ::api::SetSpeedResponse>* TrojanServerService::Stub::AsyncSetSpeedRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::api::SetSpeedRequest, ::api::SetSpeedResponse>::Create(channel_.get(), cq, rpcmethod_SetSpeed_, context, true, tag);
+}
+
+::grpc::ClientAsyncReaderWriter< ::api::SetSpeedRequest, ::api::SetSpeedResponse>* TrojanServerService::Stub::PrepareAsyncSetSpeedRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::api::SetSpeedRequest, ::api::SetSpeedResponse>::Create(channel_.get(), cq, rpcmethod_SetSpeed_, context, false, nullptr);
+}
+
+::grpc::ClientReaderWriter< ::api::AddUserRequest, ::api::AddUserResponse>* TrojanServerService::Stub::AddUsersRaw(::grpc::ClientContext* context) {
+  return ::grpc_impl::internal::ClientReaderWriterFactory< ::api::AddUserRequest, ::api::AddUserResponse>::Create(channel_.get(), rpcmethod_AddUsers_, context);
+}
+
+void TrojanServerService::Stub::experimental_async::AddUsers(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::api::AddUserRequest,::api::AddUserResponse>* reactor) {
+  ::grpc_impl::internal::ClientCallbackReaderWriterFactory< ::api::AddUserRequest,::api::AddUserResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_AddUsers_, context, reactor);
+}
+
+::grpc::ClientAsyncReaderWriter< ::api::AddUserRequest, ::api::AddUserResponse>* TrojanServerService::Stub::AsyncAddUsersRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::api::AddUserRequest, ::api::AddUserResponse>::Create(channel_.get(), cq, rpcmethod_AddUsers_, context, true, tag);
+}
+
+::grpc::ClientAsyncReaderWriter< ::api::AddUserRequest, ::api::AddUserResponse>* TrojanServerService::Stub::PrepareAsyncAddUsersRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::api::AddUserRequest, ::api::AddUserResponse>::Create(channel_.get(), cq, rpcmethod_AddUsers_, context, false, nullptr);
+}
+
+::grpc::ClientReaderWriter< ::api::DeleteUserRequest, ::api::DeleteUserResponse>* TrojanServerService::Stub::DeleteUsersRaw(::grpc::ClientContext* context) {
+  return ::grpc_impl::internal::ClientReaderWriterFactory< ::api::DeleteUserRequest, ::api::DeleteUserResponse>::Create(channel_.get(), rpcmethod_DeleteUsers_, context);
+}
+
+void TrojanServerService::Stub::experimental_async::DeleteUsers(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::api::DeleteUserRequest,::api::DeleteUserResponse>* reactor) {
+  ::grpc_impl::internal::ClientCallbackReaderWriterFactory< ::api::DeleteUserRequest,::api::DeleteUserResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_DeleteUsers_, context, reactor);
+}
+
+::grpc::ClientAsyncReaderWriter< ::api::DeleteUserRequest, ::api::DeleteUserResponse>* TrojanServerService::Stub::AsyncDeleteUsersRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::api::DeleteUserRequest, ::api::DeleteUserResponse>::Create(channel_.get(), cq, rpcmethod_DeleteUsers_, context, true, tag);
+}
+
+::grpc::ClientAsyncReaderWriter< ::api::DeleteUserRequest, ::api::DeleteUserResponse>* TrojanServerService::Stub::PrepareAsyncDeleteUsersRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::api::DeleteUserRequest, ::api::DeleteUserResponse>::Create(channel_.get(), cq, rpcmethod_DeleteUsers_, context, false, nullptr);
+}
+
+TrojanServerService::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TrojanServerService_method_names[0],
+      ::grpc::internal::RpcMethod::SERVER_STREAMING,
+      new ::grpc::internal::ServerStreamingHandler< TrojanServerService::Service, ::api::ListUserRequest, ::api::ListUserResponse>(
+          std::mem_fn(&TrojanServerService::Service::ListUsers), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TrojanServerService_method_names[1],
+      ::grpc::internal::RpcMethod::BIDI_STREAMING,
+      new ::grpc::internal::BidiStreamingHandler< TrojanServerService::Service, ::api::GetTrafficRequest, ::api::GetTrafficResponse>(
+          std::mem_fn(&TrojanServerService::Service::GetTraffic), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TrojanServerService_method_names[2],
+      ::grpc::internal::RpcMethod::BIDI_STREAMING,
+      new ::grpc::internal::BidiStreamingHandler< TrojanServerService::Service, ::api::SetTrafficRequest, ::api::SetTrafficReponse>(
+          std::mem_fn(&TrojanServerService::Service::SetTraffic), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TrojanServerService_method_names[3],
+      ::grpc::internal::RpcMethod::BIDI_STREAMING,
+      new ::grpc::internal::BidiStreamingHandler< TrojanServerService::Service, ::api::GetSpeedRequest, ::api::GetSpeedResponse>(
+          std::mem_fn(&TrojanServerService::Service::GetSpeed), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TrojanServerService_method_names[4],
+      ::grpc::internal::RpcMethod::BIDI_STREAMING,
+      new ::grpc::internal::BidiStreamingHandler< TrojanServerService::Service, ::api::SetSpeedRequest, ::api::SetSpeedResponse>(
+          std::mem_fn(&TrojanServerService::Service::SetSpeed), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TrojanServerService_method_names[5],
+      ::grpc::internal::RpcMethod::BIDI_STREAMING,
+      new ::grpc::internal::BidiStreamingHandler< TrojanServerService::Service, ::api::AddUserRequest, ::api::AddUserResponse>(
+          std::mem_fn(&TrojanServerService::Service::AddUsers), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TrojanServerService_method_names[6],
+      ::grpc::internal::RpcMethod::BIDI_STREAMING,
+      new ::grpc::internal::BidiStreamingHandler< TrojanServerService::Service, ::api::DeleteUserRequest, ::api::DeleteUserResponse>(
+          std::mem_fn(&TrojanServerService::Service::DeleteUsers), this)));
+}
+
+TrojanServerService::Service::~Service() {
+}
+
+::grpc::Status TrojanServerService::Service::ListUsers(::grpc::ServerContext* context, const ::api::ListUserRequest* request, ::grpc::ServerWriter< ::api::ListUserResponse>* writer) {
+  (void) context;
+  (void) request;
+  (void) writer;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TrojanServerService::Service::GetTraffic(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::api::GetTrafficResponse, ::api::GetTrafficRequest>* stream) {
+  (void) context;
+  (void) stream;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TrojanServerService::Service::SetTraffic(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::api::SetTrafficReponse, ::api::SetTrafficRequest>* stream) {
+  (void) context;
+  (void) stream;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TrojanServerService::Service::GetSpeed(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::api::GetSpeedResponse, ::api::GetSpeedRequest>* stream) {
+  (void) context;
+  (void) stream;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TrojanServerService::Service::SetSpeed(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::api::SetSpeedResponse, ::api::SetSpeedRequest>* stream) {
+  (void) context;
+  (void) stream;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TrojanServerService::Service::AddUsers(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::api::AddUserResponse, ::api::AddUserRequest>* stream) {
+  (void) context;
+  (void) stream;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TrojanServerService::Service::DeleteUsers(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::api::DeleteUserResponse, ::api::DeleteUserRequest>* stream) {
+  (void) context;
+  (void) stream;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 

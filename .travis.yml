@@ -19,6 +19,10 @@ matrix:
           packages:
             - libxkbcommon-x11-0
             - libgl1-mesa-dev
+        snaps:
+          - name: go
+            confinement: classic
+            channel: latest/stable
       services:
         - xvfb
 

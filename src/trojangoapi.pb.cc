@@ -14,97 +14,575 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
+extern PROTOBUF_INTERNAL_EXPORT_trojangoapi_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Speed_trojangoapi_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_trojangoapi_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Traffic_trojangoapi_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_trojangoapi_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_User_trojangoapi_2eproto;
 namespace api {
-class StatsRequestDefaultTypeInternal {
+class TrafficDefaultTypeInternal {
  public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<StatsRequest> _instance;
-} _StatsRequest_default_instance_;
-class StatsReplyDefaultTypeInternal {
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Traffic> _instance;
+} _Traffic_default_instance_;
+class SpeedDefaultTypeInternal {
  public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<StatsReply> _instance;
-} _StatsReply_default_instance_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Speed> _instance;
+} _Speed_default_instance_;
+class UserDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<User> _instance;
+} _User_default_instance_;
+class GetTrafficRequestDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<GetTrafficRequest> _instance;
+} _GetTrafficRequest_default_instance_;
+class GetTrafficResponseDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<GetTrafficResponse> _instance;
+} _GetTrafficResponse_default_instance_;
+class GetSpeedRequestDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<GetSpeedRequest> _instance;
+} _GetSpeedRequest_default_instance_;
+class GetSpeedResponseDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<GetSpeedResponse> _instance;
+} _GetSpeedResponse_default_instance_;
+class ListUserRequestDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<ListUserRequest> _instance;
+} _ListUserRequest_default_instance_;
+class ListUserResponseDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<ListUserResponse> _instance;
+} _ListUserResponse_default_instance_;
+class SetTrafficRequestDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<SetTrafficRequest> _instance;
+} _SetTrafficRequest_default_instance_;
+class SetTrafficReponseDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<SetTrafficReponse> _instance;
+} _SetTrafficReponse_default_instance_;
+class SetSpeedRequestDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<SetSpeedRequest> _instance;
+} _SetSpeedRequest_default_instance_;
+class SetSpeedResponseDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<SetSpeedResponse> _instance;
+} _SetSpeedResponse_default_instance_;
+class AddUserRequestDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<AddUserRequest> _instance;
+} _AddUserRequest_default_instance_;
+class AddUserResponseDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<AddUserResponse> _instance;
+} _AddUserResponse_default_instance_;
+class DeleteUserRequestDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<DeleteUserRequest> _instance;
+} _DeleteUserRequest_default_instance_;
+class DeleteUserResponseDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<DeleteUserResponse> _instance;
+} _DeleteUserResponse_default_instance_;
 }  // namespace api
-static void InitDefaultsscc_info_StatsReply_trojangoapi_2eproto() {
+static void InitDefaultsscc_info_AddUserRequest_trojangoapi_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::api::_StatsReply_default_instance_;
-    new (ptr) ::api::StatsReply();
+    void* ptr = &::api::_AddUserRequest_default_instance_;
+    new (ptr) ::api::AddUserRequest();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::api::StatsReply::InitAsDefaultInstance();
+  ::api::AddUserRequest::InitAsDefaultInstance();
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_StatsReply_trojangoapi_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_StatsReply_trojangoapi_2eproto}, {}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<3> scc_info_AddUserRequest_trojangoapi_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 3, 0, InitDefaultsscc_info_AddUserRequest_trojangoapi_2eproto}, {
+      &scc_info_User_trojangoapi_2eproto.base,
+      &scc_info_Traffic_trojangoapi_2eproto.base,
+      &scc_info_Speed_trojangoapi_2eproto.base,}};
 
-static void InitDefaultsscc_info_StatsRequest_trojangoapi_2eproto() {
+static void InitDefaultsscc_info_AddUserResponse_trojangoapi_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::api::_StatsRequest_default_instance_;
-    new (ptr) ::api::StatsRequest();
+    void* ptr = &::api::_AddUserResponse_default_instance_;
+    new (ptr) ::api::AddUserResponse();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::api::StatsRequest::InitAsDefaultInstance();
+  ::api::AddUserResponse::InitAsDefaultInstance();
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_StatsRequest_trojangoapi_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_StatsRequest_trojangoapi_2eproto}, {}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_AddUserResponse_trojangoapi_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_AddUserResponse_trojangoapi_2eproto}, {
+      &scc_info_User_trojangoapi_2eproto.base,}};
 
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_trojangoapi_2eproto[2];
+static void InitDefaultsscc_info_DeleteUserRequest_trojangoapi_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::api::_DeleteUserRequest_default_instance_;
+    new (ptr) ::api::DeleteUserRequest();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::api::DeleteUserRequest::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_DeleteUserRequest_trojangoapi_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_DeleteUserRequest_trojangoapi_2eproto}, {
+      &scc_info_User_trojangoapi_2eproto.base,}};
+
+static void InitDefaultsscc_info_DeleteUserResponse_trojangoapi_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::api::_DeleteUserResponse_default_instance_;
+    new (ptr) ::api::DeleteUserResponse();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::api::DeleteUserResponse::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_DeleteUserResponse_trojangoapi_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_DeleteUserResponse_trojangoapi_2eproto}, {}};
+
+static void InitDefaultsscc_info_GetSpeedRequest_trojangoapi_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::api::_GetSpeedRequest_default_instance_;
+    new (ptr) ::api::GetSpeedRequest();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::api::GetSpeedRequest::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_GetSpeedRequest_trojangoapi_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_GetSpeedRequest_trojangoapi_2eproto}, {
+      &scc_info_User_trojangoapi_2eproto.base,}};
+
+static void InitDefaultsscc_info_GetSpeedResponse_trojangoapi_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::api::_GetSpeedResponse_default_instance_;
+    new (ptr) ::api::GetSpeedResponse();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::api::GetSpeedResponse::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_GetSpeedResponse_trojangoapi_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_GetSpeedResponse_trojangoapi_2eproto}, {
+      &scc_info_Speed_trojangoapi_2eproto.base,}};
+
+static void InitDefaultsscc_info_GetTrafficRequest_trojangoapi_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::api::_GetTrafficRequest_default_instance_;
+    new (ptr) ::api::GetTrafficRequest();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::api::GetTrafficRequest::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_GetTrafficRequest_trojangoapi_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_GetTrafficRequest_trojangoapi_2eproto}, {
+      &scc_info_User_trojangoapi_2eproto.base,}};
+
+static void InitDefaultsscc_info_GetTrafficResponse_trojangoapi_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::api::_GetTrafficResponse_default_instance_;
+    new (ptr) ::api::GetTrafficResponse();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::api::GetTrafficResponse::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_GetTrafficResponse_trojangoapi_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_GetTrafficResponse_trojangoapi_2eproto}, {
+      &scc_info_Traffic_trojangoapi_2eproto.base,}};
+
+static void InitDefaultsscc_info_ListUserRequest_trojangoapi_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::api::_ListUserRequest_default_instance_;
+    new (ptr) ::api::ListUserRequest();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::api::ListUserRequest::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ListUserRequest_trojangoapi_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_ListUserRequest_trojangoapi_2eproto}, {}};
+
+static void InitDefaultsscc_info_ListUserResponse_trojangoapi_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::api::_ListUserResponse_default_instance_;
+    new (ptr) ::api::ListUserResponse();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::api::ListUserResponse::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<3> scc_info_ListUserResponse_trojangoapi_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 3, 0, InitDefaultsscc_info_ListUserResponse_trojangoapi_2eproto}, {
+      &scc_info_User_trojangoapi_2eproto.base,
+      &scc_info_Traffic_trojangoapi_2eproto.base,
+      &scc_info_Speed_trojangoapi_2eproto.base,}};
+
+static void InitDefaultsscc_info_SetSpeedRequest_trojangoapi_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::api::_SetSpeedRequest_default_instance_;
+    new (ptr) ::api::SetSpeedRequest();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::api::SetSpeedRequest::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_SetSpeedRequest_trojangoapi_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 2, 0, InitDefaultsscc_info_SetSpeedRequest_trojangoapi_2eproto}, {
+      &scc_info_User_trojangoapi_2eproto.base,
+      &scc_info_Speed_trojangoapi_2eproto.base,}};
+
+static void InitDefaultsscc_info_SetSpeedResponse_trojangoapi_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::api::_SetSpeedResponse_default_instance_;
+    new (ptr) ::api::SetSpeedResponse();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::api::SetSpeedResponse::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_SetSpeedResponse_trojangoapi_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_SetSpeedResponse_trojangoapi_2eproto}, {}};
+
+static void InitDefaultsscc_info_SetTrafficReponse_trojangoapi_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::api::_SetTrafficReponse_default_instance_;
+    new (ptr) ::api::SetTrafficReponse();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::api::SetTrafficReponse::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_SetTrafficReponse_trojangoapi_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_SetTrafficReponse_trojangoapi_2eproto}, {}};
+
+static void InitDefaultsscc_info_SetTrafficRequest_trojangoapi_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::api::_SetTrafficRequest_default_instance_;
+    new (ptr) ::api::SetTrafficRequest();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::api::SetTrafficRequest::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_SetTrafficRequest_trojangoapi_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 2, 0, InitDefaultsscc_info_SetTrafficRequest_trojangoapi_2eproto}, {
+      &scc_info_User_trojangoapi_2eproto.base,
+      &scc_info_Traffic_trojangoapi_2eproto.base,}};
+
+static void InitDefaultsscc_info_Speed_trojangoapi_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::api::_Speed_default_instance_;
+    new (ptr) ::api::Speed();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::api::Speed::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Speed_trojangoapi_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Speed_trojangoapi_2eproto}, {}};
+
+static void InitDefaultsscc_info_Traffic_trojangoapi_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::api::_Traffic_default_instance_;
+    new (ptr) ::api::Traffic();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::api::Traffic::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Traffic_trojangoapi_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Traffic_trojangoapi_2eproto}, {}};
+
+static void InitDefaultsscc_info_User_trojangoapi_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::api::_User_default_instance_;
+    new (ptr) ::api::User();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::api::User::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_User_trojangoapi_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_User_trojangoapi_2eproto}, {}};
+
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_trojangoapi_2eproto[17];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_trojangoapi_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_trojangoapi_2eproto = nullptr;
 
 const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_trojangoapi_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::api::StatsRequest, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::api::Traffic, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::api::StatsRequest, password_),
+  PROTOBUF_FIELD_OFFSET(::api::Traffic, upload_traffic_),
+  PROTOBUF_FIELD_OFFSET(::api::Traffic, download_traffic_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::api::StatsReply, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::api::Speed, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::api::StatsReply, upload_traffic_),
-  PROTOBUF_FIELD_OFFSET(::api::StatsReply, download_traffic_),
-  PROTOBUF_FIELD_OFFSET(::api::StatsReply, upload_speed_),
-  PROTOBUF_FIELD_OFFSET(::api::StatsReply, download_speed_),
+  PROTOBUF_FIELD_OFFSET(::api::Speed, upload_speed_),
+  PROTOBUF_FIELD_OFFSET(::api::Speed, download_speed_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::api::User, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::api::User, password_),
+  PROTOBUF_FIELD_OFFSET(::api::User, hash_),
+  PROTOBUF_FIELD_OFFSET(::api::User, valid_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::api::GetTrafficRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::api::GetTrafficRequest, user_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::api::GetTrafficResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::api::GetTrafficResponse, traffic_total_),
+  PROTOBUF_FIELD_OFFSET(::api::GetTrafficResponse, traffic_quota_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::api::GetSpeedRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::api::GetSpeedRequest, user_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::api::GetSpeedResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::api::GetSpeedResponse, speed_current_),
+  PROTOBUF_FIELD_OFFSET(::api::GetSpeedResponse, speed_limit_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::api::ListUserRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::api::ListUserResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::api::ListUserResponse, user_),
+  PROTOBUF_FIELD_OFFSET(::api::ListUserResponse, online_),
+  PROTOBUF_FIELD_OFFSET(::api::ListUserResponse, traffic_total_),
+  PROTOBUF_FIELD_OFFSET(::api::ListUserResponse, traffic_quota_),
+  PROTOBUF_FIELD_OFFSET(::api::ListUserResponse, speed_current_),
+  PROTOBUF_FIELD_OFFSET(::api::ListUserResponse, speed_limit_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::api::SetTrafficRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::api::SetTrafficRequest, user_),
+  PROTOBUF_FIELD_OFFSET(::api::SetTrafficRequest, traffic_quota_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::api::SetTrafficReponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::api::SetTrafficReponse, success_),
+  PROTOBUF_FIELD_OFFSET(::api::SetTrafficReponse, info_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::api::SetSpeedRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::api::SetSpeedRequest, user_),
+  PROTOBUF_FIELD_OFFSET(::api::SetSpeedRequest, speed_limit_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::api::SetSpeedResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::api::SetSpeedResponse, success_),
+  PROTOBUF_FIELD_OFFSET(::api::SetSpeedResponse, info_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::api::AddUserRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::api::AddUserRequest, user_),
+  PROTOBUF_FIELD_OFFSET(::api::AddUserRequest, traffic_quota_),
+  PROTOBUF_FIELD_OFFSET(::api::AddUserRequest, speed_limit_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::api::AddUserResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::api::AddUserResponse, user_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::api::DeleteUserRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::api::DeleteUserRequest, user_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::api::DeleteUserResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::api::DeleteUserResponse, success_),
+  PROTOBUF_FIELD_OFFSET(::api::DeleteUserResponse, info_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(::api::StatsRequest)},
-  { 6, -1, sizeof(::api::StatsReply)},
+  { 0, -1, sizeof(::api::Traffic)},
+  { 7, -1, sizeof(::api::Speed)},
+  { 14, -1, sizeof(::api::User)},
+  { 22, -1, sizeof(::api::GetTrafficRequest)},
+  { 28, -1, sizeof(::api::GetTrafficResponse)},
+  { 35, -1, sizeof(::api::GetSpeedRequest)},
+  { 41, -1, sizeof(::api::GetSpeedResponse)},
+  { 48, -1, sizeof(::api::ListUserRequest)},
+  { 53, -1, sizeof(::api::ListUserResponse)},
+  { 64, -1, sizeof(::api::SetTrafficRequest)},
+  { 71, -1, sizeof(::api::SetTrafficReponse)},
+  { 78, -1, sizeof(::api::SetSpeedRequest)},
+  { 85, -1, sizeof(::api::SetSpeedResponse)},
+  { 92, -1, sizeof(::api::AddUserRequest)},
+  { 100, -1, sizeof(::api::AddUserResponse)},
+  { 106, -1, sizeof(::api::DeleteUserRequest)},
+  { 112, -1, sizeof(::api::DeleteUserResponse)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::api::_StatsRequest_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::api::_StatsReply_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::api::_Traffic_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::api::_Speed_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::api::_User_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::api::_GetTrafficRequest_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::api::_GetTrafficResponse_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::api::_GetSpeedRequest_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::api::_GetSpeedResponse_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::api::_ListUserRequest_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::api::_ListUserResponse_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::api::_SetTrafficRequest_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::api::_SetTrafficReponse_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::api::_SetSpeedRequest_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::api::_SetSpeedResponse_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::api::_AddUserRequest_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::api::_AddUserResponse_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::api::_DeleteUserRequest_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::api::_DeleteUserResponse_default_instance_),
 };
 
 const char descriptor_table_protodef_trojangoapi_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\021trojangoapi.proto\022\003api\" \n\014StatsRequest"
-  "\022\020\n\010password\030\001 \001(\t\"l\n\nStatsReply\022\026\n\016uplo"
-  "ad_traffic\030\001 \001(\004\022\030\n\020download_traffic\030\002 \001"
-  "(\004\022\024\n\014upload_speed\030\003 \001(\004\022\026\n\016download_spe"
-  "ed\030\004 \001(\0042C\n\rTrojanService\0222\n\nQueryStats\022"
-  "\021.api.StatsRequest\032\017.api.StatsReply\"\000b\006p"
-  "roto3"
+  "\n\021trojangoapi.proto\022\003api\";\n\007Traffic\022\026\n\016u"
+  "pload_traffic\030\001 \001(\004\022\030\n\020download_traffic\030"
+  "\002 \001(\004\"5\n\005Speed\022\024\n\014upload_speed\030\001 \001(\004\022\026\n\016"
+  "download_speed\030\002 \001(\004\"5\n\004User\022\020\n\010password"
+  "\030\001 \001(\t\022\014\n\004hash\030\002 \001(\t\022\r\n\005valid\030\003 \001(\010\",\n\021G"
+  "etTrafficRequest\022\027\n\004user\030\001 \001(\0132\t.api.Use"
+  "r\"^\n\022GetTrafficResponse\022#\n\rtraffic_total"
+  "\030\001 \001(\0132\014.api.Traffic\022#\n\rtraffic_quota\030\002 "
+  "\001(\0132\014.api.Traffic\"*\n\017GetSpeedRequest\022\027\n\004"
+  "user\030\001 \001(\0132\t.api.User\"V\n\020GetSpeedRespons"
+  "e\022!\n\rspeed_current\030\001 \001(\0132\n.api.Speed\022\037\n\013"
+  "speed_limit\030\002 \001(\0132\n.api.Speed\"\021\n\017ListUse"
+  "rRequest\"\311\001\n\020ListUserResponse\022\027\n\004user\030\001 "
+  "\001(\0132\t.api.User\022\016\n\006online\030\002 \001(\010\022#\n\rtraffi"
+  "c_total\030\003 \001(\0132\014.api.Traffic\022#\n\rtraffic_q"
+  "uota\030\004 \001(\0132\014.api.Traffic\022!\n\rspeed_curren"
+  "t\030\005 \001(\0132\n.api.Speed\022\037\n\013speed_limit\030\006 \001(\013"
+  "2\n.api.Speed\"Q\n\021SetTrafficRequest\022\027\n\004use"
+  "r\030\001 \001(\0132\t.api.User\022#\n\rtraffic_quota\030\002 \001("
+  "\0132\014.api.Traffic\"2\n\021SetTrafficReponse\022\017\n\007"
+  "success\030\001 \001(\010\022\014\n\004info\030\002 \001(\t\"K\n\017SetSpeedR"
+  "equest\022\027\n\004user\030\001 \001(\0132\t.api.User\022\037\n\013speed"
+  "_limit\030\002 \001(\0132\n.api.Speed\"1\n\020SetSpeedResp"
+  "onse\022\017\n\007success\030\001 \001(\010\022\014\n\004info\030\002 \001(\t\"o\n\016A"
+  "ddUserRequest\022\027\n\004user\030\001 \001(\0132\t.api.User\022#"
+  "\n\rtraffic_quota\030\004 \001(\0132\014.api.Traffic\022\037\n\013s"
+  "peed_limit\030\006 \001(\0132\n.api.Speed\"*\n\017AddUserR"
+  "esponse\022\027\n\004user\030\001 \001(\0132\t.api.User\",\n\021Dele"
+  "teUserRequest\022\027\n\004user\030\001 \001(\0132\t.api.User\"3"
+  "\n\022DeleteUserResponse\022\017\n\007success\030\001 \001(\010\022\014\n"
+  "\004info\030\002 \001(\t2\221\001\n\023TrojanClientService\022\?\n\nG"
+  "etTraffic\022\026.api.GetTrafficRequest\032\027.api."
+  "GetTrafficResponse\"\000\0229\n\010GetSpeed\022\024.api.G"
+  "etSpeedRequest\032\025.api.GetSpeedResponse\"\0002"
+  "\335\003\n\023TrojanServerService\022<\n\tListUsers\022\024.a"
+  "pi.ListUserRequest\032\025.api.ListUserRespons"
+  "e\"\0000\001\022C\n\nGetTraffic\022\026.api.GetTrafficRequ"
+  "est\032\027.api.GetTrafficResponse\"\000(\0010\001\022B\n\nSe"
+  "tTraffic\022\026.api.SetTrafficRequest\032\026.api.S"
+  "etTrafficReponse\"\000(\0010\001\022=\n\010GetSpeed\022\024.api"
+  ".GetSpeedRequest\032\025.api.GetSpeedResponse\""
+  "\000(\0010\001\022=\n\010SetSpeed\022\024.api.SetSpeedRequest\032"
+  "\025.api.SetSpeedResponse\"\000(\0010\001\022;\n\010AddUsers"
+  "\022\023.api.AddUserRequest\032\024.api.AddUserRespo"
+  "nse\"\000(\0010\001\022D\n\013DeleteUsers\022\026.api.DeleteUse"
+  "rRequest\032\027.api.DeleteUserResponse\"\000(\0010\001b"
+  "\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_trojangoapi_2eproto_deps[1] = {
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_trojangoapi_2eproto_sccs[2] = {
-  &scc_info_StatsReply_trojangoapi_2eproto.base,
-  &scc_info_StatsRequest_trojangoapi_2eproto.base,
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_trojangoapi_2eproto_sccs[17] = {
+  &scc_info_AddUserRequest_trojangoapi_2eproto.base,
+  &scc_info_AddUserResponse_trojangoapi_2eproto.base,
+  &scc_info_DeleteUserRequest_trojangoapi_2eproto.base,
+  &scc_info_DeleteUserResponse_trojangoapi_2eproto.base,
+  &scc_info_GetSpeedRequest_trojangoapi_2eproto.base,
+  &scc_info_GetSpeedResponse_trojangoapi_2eproto.base,
+  &scc_info_GetTrafficRequest_trojangoapi_2eproto.base,
+  &scc_info_GetTrafficResponse_trojangoapi_2eproto.base,
+  &scc_info_ListUserRequest_trojangoapi_2eproto.base,
+  &scc_info_ListUserResponse_trojangoapi_2eproto.base,
+  &scc_info_SetSpeedRequest_trojangoapi_2eproto.base,
+  &scc_info_SetSpeedResponse_trojangoapi_2eproto.base,
+  &scc_info_SetTrafficReponse_trojangoapi_2eproto.base,
+  &scc_info_SetTrafficRequest_trojangoapi_2eproto.base,
+  &scc_info_Speed_trojangoapi_2eproto.base,
+  &scc_info_Traffic_trojangoapi_2eproto.base,
+  &scc_info_User_trojangoapi_2eproto.base,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_trojangoapi_2eproto_once;
 static bool descriptor_table_trojangoapi_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_trojangoapi_2eproto = {
-  &descriptor_table_trojangoapi_2eproto_initialized, descriptor_table_protodef_trojangoapi_2eproto, "trojangoapi.proto", 245,
-  &descriptor_table_trojangoapi_2eproto_once, descriptor_table_trojangoapi_2eproto_sccs, descriptor_table_trojangoapi_2eproto_deps, 2, 0,
+  &descriptor_table_trojangoapi_2eproto_initialized, descriptor_table_protodef_trojangoapi_2eproto, "trojangoapi.proto", 1847,
+  &descriptor_table_trojangoapi_2eproto_once, descriptor_table_trojangoapi_2eproto_sccs, descriptor_table_trojangoapi_2eproto_deps, 17, 0,
   schemas, file_default_instances, TableStruct_trojangoapi_2eproto::offsets,
-  file_level_metadata_trojangoapi_2eproto, 2, file_level_enum_descriptors_trojangoapi_2eproto, file_level_service_descriptors_trojangoapi_2eproto,
+  file_level_metadata_trojangoapi_2eproto, 17, file_level_enum_descriptors_trojangoapi_2eproto, file_level_service_descriptors_trojangoapi_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
@@ -113,74 +591,80 @@ namespace api {
 
 // ===================================================================
 
-void StatsRequest::InitAsDefaultInstance() {
+void Traffic::InitAsDefaultInstance() {
 }
-class StatsRequest::_Internal {
+class Traffic::_Internal {
  public:
 };
 
-StatsRequest::StatsRequest()
+Traffic::Traffic()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:api.StatsRequest)
+  // @@protoc_insertion_point(constructor:api.Traffic)
 }
-StatsRequest::StatsRequest(const StatsRequest& from)
+Traffic::Traffic(const Traffic& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  password_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_password().empty()) {
-    password_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.password_);
-  }
-  // @@protoc_insertion_point(copy_constructor:api.StatsRequest)
+  ::memcpy(&upload_traffic_, &from.upload_traffic_,
+    static_cast<size_t>(reinterpret_cast<char*>(&download_traffic_) -
+    reinterpret_cast<char*>(&upload_traffic_)) + sizeof(download_traffic_));
+  // @@protoc_insertion_point(copy_constructor:api.Traffic)
 }
 
-void StatsRequest::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_StatsRequest_trojangoapi_2eproto.base);
-  password_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+void Traffic::SharedCtor() {
+  ::memset(&upload_traffic_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&download_traffic_) -
+      reinterpret_cast<char*>(&upload_traffic_)) + sizeof(download_traffic_));
 }
 
-StatsRequest::~StatsRequest() {
-  // @@protoc_insertion_point(destructor:api.StatsRequest)
+Traffic::~Traffic() {
+  // @@protoc_insertion_point(destructor:api.Traffic)
   SharedDtor();
 }
 
-void StatsRequest::SharedDtor() {
-  password_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+void Traffic::SharedDtor() {
 }
 
-void StatsRequest::SetCachedSize(int size) const {
+void Traffic::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const StatsRequest& StatsRequest::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_StatsRequest_trojangoapi_2eproto.base);
+const Traffic& Traffic::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Traffic_trojangoapi_2eproto.base);
   return *internal_default_instance();
 }
 
 
-void StatsRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:api.StatsRequest)
+void Traffic::Clear() {
+// @@protoc_insertion_point(message_clear_start:api.Traffic)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  password_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  ::memset(&upload_traffic_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&download_traffic_) -
+      reinterpret_cast<char*>(&upload_traffic_)) + sizeof(download_traffic_));
   _internal_metadata_.Clear();
 }
 
-const char* StatsRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* Traffic::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // string password = 1;
+      // uint64 upload_traffic = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          auto str = _internal_mutable_password();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "api.StatsRequest.password"));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          upload_traffic_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // uint64 download_traffic = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          download_traffic_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -204,43 +688,52 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* StatsRequest::_InternalSerialize(
+::PROTOBUF_NAMESPACE_ID::uint8* Traffic::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:api.StatsRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:api.Traffic)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // string password = 1;
-  if (this->password().size() > 0) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_password().data(), static_cast<int>(this->_internal_password().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "api.StatsRequest.password");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_password(), target);
+  // uint64 upload_traffic = 1;
+  if (this->upload_traffic() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(1, this->_internal_upload_traffic(), target);
+  }
+
+  // uint64 download_traffic = 2;
+  if (this->download_traffic() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(2, this->_internal_download_traffic(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:api.StatsRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:api.Traffic)
   return target;
 }
 
-size_t StatsRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:api.StatsRequest)
+size_t Traffic::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:api.Traffic)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string password = 1;
-  if (this->password().size() > 0) {
+  // uint64 upload_traffic = 1;
+  if (this->upload_traffic() != 0) {
     total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_password());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
+        this->_internal_upload_traffic());
+  }
+
+  // uint64 download_traffic = 2;
+  if (this->download_traffic() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
+        this->_internal_download_traffic());
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -252,153 +745,141 @@ size_t StatsRequest::ByteSizeLong() const {
   return total_size;
 }
 
-void StatsRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:api.StatsRequest)
+void Traffic::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:api.Traffic)
   GOOGLE_DCHECK_NE(&from, this);
-  const StatsRequest* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<StatsRequest>(
+  const Traffic* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<Traffic>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:api.StatsRequest)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:api.Traffic)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:api.StatsRequest)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:api.Traffic)
     MergeFrom(*source);
   }
 }
 
-void StatsRequest::MergeFrom(const StatsRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:api.StatsRequest)
+void Traffic::MergeFrom(const Traffic& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:api.Traffic)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from.password().size() > 0) {
-
-    password_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.password_);
+  if (from.upload_traffic() != 0) {
+    _internal_set_upload_traffic(from._internal_upload_traffic());
+  }
+  if (from.download_traffic() != 0) {
+    _internal_set_download_traffic(from._internal_download_traffic());
   }
 }
 
-void StatsRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:api.StatsRequest)
+void Traffic::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:api.Traffic)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void StatsRequest::CopyFrom(const StatsRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:api.StatsRequest)
+void Traffic::CopyFrom(const Traffic& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:api.Traffic)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool StatsRequest::IsInitialized() const {
+bool Traffic::IsInitialized() const {
   return true;
 }
 
-void StatsRequest::InternalSwap(StatsRequest* other) {
+void Traffic::InternalSwap(Traffic* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
-  password_.Swap(&other->password_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
+  swap(upload_traffic_, other->upload_traffic_);
+  swap(download_traffic_, other->download_traffic_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata StatsRequest::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata Traffic::GetMetadata() const {
   return GetMetadataStatic();
 }
 
 
 // ===================================================================
 
-void StatsReply::InitAsDefaultInstance() {
+void Speed::InitAsDefaultInstance() {
 }
-class StatsReply::_Internal {
+class Speed::_Internal {
  public:
 };
 
-StatsReply::StatsReply()
+Speed::Speed()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:api.StatsReply)
+  // @@protoc_insertion_point(constructor:api.Speed)
 }
-StatsReply::StatsReply(const StatsReply& from)
+Speed::Speed(const Speed& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::memcpy(&upload_traffic_, &from.upload_traffic_,
+  ::memcpy(&upload_speed_, &from.upload_speed_,
     static_cast<size_t>(reinterpret_cast<char*>(&download_speed_) -
-    reinterpret_cast<char*>(&upload_traffic_)) + sizeof(download_speed_));
-  // @@protoc_insertion_point(copy_constructor:api.StatsReply)
+    reinterpret_cast<char*>(&upload_speed_)) + sizeof(download_speed_));
+  // @@protoc_insertion_point(copy_constructor:api.Speed)
 }
 
-void StatsReply::SharedCtor() {
-  ::memset(&upload_traffic_, 0, static_cast<size_t>(
+void Speed::SharedCtor() {
+  ::memset(&upload_speed_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&download_speed_) -
-      reinterpret_cast<char*>(&upload_traffic_)) + sizeof(download_speed_));
+      reinterpret_cast<char*>(&upload_speed_)) + sizeof(download_speed_));
 }
 
-StatsReply::~StatsReply() {
-  // @@protoc_insertion_point(destructor:api.StatsReply)
+Speed::~Speed() {
+  // @@protoc_insertion_point(destructor:api.Speed)
   SharedDtor();
 }
 
-void StatsReply::SharedDtor() {
+void Speed::SharedDtor() {
 }
 
-void StatsReply::SetCachedSize(int size) const {
+void Speed::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const StatsReply& StatsReply::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_StatsReply_trojangoapi_2eproto.base);
+const Speed& Speed::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Speed_trojangoapi_2eproto.base);
   return *internal_default_instance();
 }
 
 
-void StatsReply::Clear() {
-// @@protoc_insertion_point(message_clear_start:api.StatsReply)
+void Speed::Clear() {
+// @@protoc_insertion_point(message_clear_start:api.Speed)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&upload_traffic_, 0, static_cast<size_t>(
+  ::memset(&upload_speed_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&download_speed_) -
-      reinterpret_cast<char*>(&upload_traffic_)) + sizeof(download_speed_));
+      reinterpret_cast<char*>(&upload_speed_)) + sizeof(download_speed_));
   _internal_metadata_.Clear();
 }
 
-const char* StatsReply::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* Speed::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // uint64 upload_traffic = 1;
+      // uint64 upload_speed = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          upload_traffic_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // uint64 download_traffic = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          download_traffic_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // uint64 upload_speed = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
           upload_speed_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // uint64 download_speed = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
+      // uint64 download_speed = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
           download_speed_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
@@ -423,74 +904,48 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* StatsReply::_InternalSerialize(
+::PROTOBUF_NAMESPACE_ID::uint8* Speed::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:api.StatsReply)
+  // @@protoc_insertion_point(serialize_to_array_start:api.Speed)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // uint64 upload_traffic = 1;
-  if (this->upload_traffic() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(1, this->_internal_upload_traffic(), target);
-  }
-
-  // uint64 download_traffic = 2;
-  if (this->download_traffic() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(2, this->_internal_download_traffic(), target);
-  }
-
-  // uint64 upload_speed = 3;
+  // uint64 upload_speed = 1;
   if (this->upload_speed() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(3, this->_internal_upload_speed(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(1, this->_internal_upload_speed(), target);
   }
 
-  // uint64 download_speed = 4;
+  // uint64 download_speed = 2;
   if (this->download_speed() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(4, this->_internal_download_speed(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(2, this->_internal_download_speed(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:api.StatsReply)
+  // @@protoc_insertion_point(serialize_to_array_end:api.Speed)
   return target;
 }
 
-size_t StatsReply::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:api.StatsReply)
+size_t Speed::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:api.Speed)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // uint64 upload_traffic = 1;
-  if (this->upload_traffic() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
-        this->_internal_upload_traffic());
-  }
-
-  // uint64 download_traffic = 2;
-  if (this->download_traffic() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
-        this->_internal_download_traffic());
-  }
-
-  // uint64 upload_speed = 3;
+  // uint64 upload_speed = 1;
   if (this->upload_speed() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
         this->_internal_upload_speed());
   }
 
-  // uint64 download_speed = 4;
+  // uint64 download_speed = 2;
   if (this->download_speed() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
@@ -506,34 +961,28 @@ size_t StatsReply::ByteSizeLong() const {
   return total_size;
 }
 
-void StatsReply::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:api.StatsReply)
+void Speed::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:api.Speed)
   GOOGLE_DCHECK_NE(&from, this);
-  const StatsReply* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<StatsReply>(
+  const Speed* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<Speed>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:api.StatsReply)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:api.Speed)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:api.StatsReply)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:api.Speed)
     MergeFrom(*source);
   }
 }
 
-void StatsReply::MergeFrom(const StatsReply& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:api.StatsReply)
+void Speed::MergeFrom(const Speed& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:api.Speed)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from.upload_traffic() != 0) {
-    _internal_set_upload_traffic(from._internal_upload_traffic());
-  }
-  if (from.download_traffic() != 0) {
-    _internal_set_download_traffic(from._internal_download_traffic());
-  }
   if (from.upload_speed() != 0) {
     _internal_set_upload_speed(from._internal_upload_speed());
   }
@@ -542,34 +991,3627 @@ void StatsReply::MergeFrom(const StatsReply& from) {
   }
 }
 
-void StatsReply::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:api.StatsReply)
+void Speed::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:api.Speed)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void StatsReply::CopyFrom(const StatsReply& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:api.StatsReply)
+void Speed::CopyFrom(const Speed& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:api.Speed)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool StatsReply::IsInitialized() const {
+bool Speed::IsInitialized() const {
   return true;
 }
 
-void StatsReply::InternalSwap(StatsReply* other) {
+void Speed::InternalSwap(Speed* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(upload_traffic_, other->upload_traffic_);
-  swap(download_traffic_, other->download_traffic_);
   swap(upload_speed_, other->upload_speed_);
   swap(download_speed_, other->download_speed_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata StatsReply::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata Speed::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void User::InitAsDefaultInstance() {
+}
+class User::_Internal {
+ public:
+};
+
+User::User()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:api.User)
+}
+User::User(const User& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  password_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_password().empty()) {
+    password_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.password_);
+  }
+  hash_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_hash().empty()) {
+    hash_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.hash_);
+  }
+  valid_ = from.valid_;
+  // @@protoc_insertion_point(copy_constructor:api.User)
+}
+
+void User::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_User_trojangoapi_2eproto.base);
+  password_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  hash_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  valid_ = false;
+}
+
+User::~User() {
+  // @@protoc_insertion_point(destructor:api.User)
+  SharedDtor();
+}
+
+void User::SharedDtor() {
+  password_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  hash_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void User::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const User& User::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_User_trojangoapi_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void User::Clear() {
+// @@protoc_insertion_point(message_clear_start:api.User)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  password_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  hash_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  valid_ = false;
+  _internal_metadata_.Clear();
+}
+
+const char* User::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // string password = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_password();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "api.User.password"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string hash = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_hash();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "api.User.hash"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bool valid = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
+          valid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* User::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:api.User)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string password = 1;
+  if (this->password().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_password().data(), static_cast<int>(this->_internal_password().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "api.User.password");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_password(), target);
+  }
+
+  // string hash = 2;
+  if (this->hash().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_hash().data(), static_cast<int>(this->_internal_hash().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "api.User.hash");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_hash(), target);
+  }
+
+  // bool valid = 3;
+  if (this->valid() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(3, this->_internal_valid(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:api.User)
+  return target;
+}
+
+size_t User::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:api.User)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string password = 1;
+  if (this->password().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_password());
+  }
+
+  // string hash = 2;
+  if (this->hash().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_hash());
+  }
+
+  // bool valid = 3;
+  if (this->valid() != 0) {
+    total_size += 1 + 1;
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void User::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:api.User)
+  GOOGLE_DCHECK_NE(&from, this);
+  const User* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<User>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:api.User)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:api.User)
+    MergeFrom(*source);
+  }
+}
+
+void User::MergeFrom(const User& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:api.User)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.password().size() > 0) {
+
+    password_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.password_);
+  }
+  if (from.hash().size() > 0) {
+
+    hash_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.hash_);
+  }
+  if (from.valid() != 0) {
+    _internal_set_valid(from._internal_valid());
+  }
+}
+
+void User::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:api.User)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void User::CopyFrom(const User& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:api.User)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool User::IsInitialized() const {
+  return true;
+}
+
+void User::InternalSwap(User* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  password_.Swap(&other->password_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  hash_.Swap(&other->hash_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  swap(valid_, other->valid_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata User::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void GetTrafficRequest::InitAsDefaultInstance() {
+  ::api::_GetTrafficRequest_default_instance_._instance.get_mutable()->user_ = const_cast< ::api::User*>(
+      ::api::User::internal_default_instance());
+}
+class GetTrafficRequest::_Internal {
+ public:
+  static const ::api::User& user(const GetTrafficRequest* msg);
+};
+
+const ::api::User&
+GetTrafficRequest::_Internal::user(const GetTrafficRequest* msg) {
+  return *msg->user_;
+}
+GetTrafficRequest::GetTrafficRequest()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:api.GetTrafficRequest)
+}
+GetTrafficRequest::GetTrafficRequest(const GetTrafficRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from._internal_has_user()) {
+    user_ = new ::api::User(*from.user_);
+  } else {
+    user_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:api.GetTrafficRequest)
+}
+
+void GetTrafficRequest::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_GetTrafficRequest_trojangoapi_2eproto.base);
+  user_ = nullptr;
+}
+
+GetTrafficRequest::~GetTrafficRequest() {
+  // @@protoc_insertion_point(destructor:api.GetTrafficRequest)
+  SharedDtor();
+}
+
+void GetTrafficRequest::SharedDtor() {
+  if (this != internal_default_instance()) delete user_;
+}
+
+void GetTrafficRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const GetTrafficRequest& GetTrafficRequest::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_GetTrafficRequest_trojangoapi_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void GetTrafficRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:api.GetTrafficRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaNoVirtual() == nullptr && user_ != nullptr) {
+    delete user_;
+  }
+  user_ = nullptr;
+  _internal_metadata_.Clear();
+}
+
+const char* GetTrafficRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // .api.User user = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_user(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* GetTrafficRequest::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:api.GetTrafficRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .api.User user = 1;
+  if (this->has_user()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::user(this), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:api.GetTrafficRequest)
+  return target;
+}
+
+size_t GetTrafficRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:api.GetTrafficRequest)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .api.User user = 1;
+  if (this->has_user()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *user_);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void GetTrafficRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:api.GetTrafficRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const GetTrafficRequest* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<GetTrafficRequest>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:api.GetTrafficRequest)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:api.GetTrafficRequest)
+    MergeFrom(*source);
+  }
+}
+
+void GetTrafficRequest::MergeFrom(const GetTrafficRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:api.GetTrafficRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.has_user()) {
+    _internal_mutable_user()->::api::User::MergeFrom(from._internal_user());
+  }
+}
+
+void GetTrafficRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:api.GetTrafficRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void GetTrafficRequest::CopyFrom(const GetTrafficRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:api.GetTrafficRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetTrafficRequest::IsInitialized() const {
+  return true;
+}
+
+void GetTrafficRequest::InternalSwap(GetTrafficRequest* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(user_, other->user_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetTrafficRequest::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void GetTrafficResponse::InitAsDefaultInstance() {
+  ::api::_GetTrafficResponse_default_instance_._instance.get_mutable()->traffic_total_ = const_cast< ::api::Traffic*>(
+      ::api::Traffic::internal_default_instance());
+  ::api::_GetTrafficResponse_default_instance_._instance.get_mutable()->traffic_quota_ = const_cast< ::api::Traffic*>(
+      ::api::Traffic::internal_default_instance());
+}
+class GetTrafficResponse::_Internal {
+ public:
+  static const ::api::Traffic& traffic_total(const GetTrafficResponse* msg);
+  static const ::api::Traffic& traffic_quota(const GetTrafficResponse* msg);
+};
+
+const ::api::Traffic&
+GetTrafficResponse::_Internal::traffic_total(const GetTrafficResponse* msg) {
+  return *msg->traffic_total_;
+}
+const ::api::Traffic&
+GetTrafficResponse::_Internal::traffic_quota(const GetTrafficResponse* msg) {
+  return *msg->traffic_quota_;
+}
+GetTrafficResponse::GetTrafficResponse()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:api.GetTrafficResponse)
+}
+GetTrafficResponse::GetTrafficResponse(const GetTrafficResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from._internal_has_traffic_total()) {
+    traffic_total_ = new ::api::Traffic(*from.traffic_total_);
+  } else {
+    traffic_total_ = nullptr;
+  }
+  if (from._internal_has_traffic_quota()) {
+    traffic_quota_ = new ::api::Traffic(*from.traffic_quota_);
+  } else {
+    traffic_quota_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:api.GetTrafficResponse)
+}
+
+void GetTrafficResponse::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_GetTrafficResponse_trojangoapi_2eproto.base);
+  ::memset(&traffic_total_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&traffic_quota_) -
+      reinterpret_cast<char*>(&traffic_total_)) + sizeof(traffic_quota_));
+}
+
+GetTrafficResponse::~GetTrafficResponse() {
+  // @@protoc_insertion_point(destructor:api.GetTrafficResponse)
+  SharedDtor();
+}
+
+void GetTrafficResponse::SharedDtor() {
+  if (this != internal_default_instance()) delete traffic_total_;
+  if (this != internal_default_instance()) delete traffic_quota_;
+}
+
+void GetTrafficResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const GetTrafficResponse& GetTrafficResponse::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_GetTrafficResponse_trojangoapi_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void GetTrafficResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:api.GetTrafficResponse)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaNoVirtual() == nullptr && traffic_total_ != nullptr) {
+    delete traffic_total_;
+  }
+  traffic_total_ = nullptr;
+  if (GetArenaNoVirtual() == nullptr && traffic_quota_ != nullptr) {
+    delete traffic_quota_;
+  }
+  traffic_quota_ = nullptr;
+  _internal_metadata_.Clear();
+}
+
+const char* GetTrafficResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // .api.Traffic traffic_total = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_traffic_total(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .api.Traffic traffic_quota = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_traffic_quota(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* GetTrafficResponse::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:api.GetTrafficResponse)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .api.Traffic traffic_total = 1;
+  if (this->has_traffic_total()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::traffic_total(this), target, stream);
+  }
+
+  // .api.Traffic traffic_quota = 2;
+  if (this->has_traffic_quota()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        2, _Internal::traffic_quota(this), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:api.GetTrafficResponse)
+  return target;
+}
+
+size_t GetTrafficResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:api.GetTrafficResponse)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .api.Traffic traffic_total = 1;
+  if (this->has_traffic_total()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *traffic_total_);
+  }
+
+  // .api.Traffic traffic_quota = 2;
+  if (this->has_traffic_quota()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *traffic_quota_);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void GetTrafficResponse::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:api.GetTrafficResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  const GetTrafficResponse* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<GetTrafficResponse>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:api.GetTrafficResponse)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:api.GetTrafficResponse)
+    MergeFrom(*source);
+  }
+}
+
+void GetTrafficResponse::MergeFrom(const GetTrafficResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:api.GetTrafficResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.has_traffic_total()) {
+    _internal_mutable_traffic_total()->::api::Traffic::MergeFrom(from._internal_traffic_total());
+  }
+  if (from.has_traffic_quota()) {
+    _internal_mutable_traffic_quota()->::api::Traffic::MergeFrom(from._internal_traffic_quota());
+  }
+}
+
+void GetTrafficResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:api.GetTrafficResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void GetTrafficResponse::CopyFrom(const GetTrafficResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:api.GetTrafficResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetTrafficResponse::IsInitialized() const {
+  return true;
+}
+
+void GetTrafficResponse::InternalSwap(GetTrafficResponse* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(traffic_total_, other->traffic_total_);
+  swap(traffic_quota_, other->traffic_quota_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetTrafficResponse::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void GetSpeedRequest::InitAsDefaultInstance() {
+  ::api::_GetSpeedRequest_default_instance_._instance.get_mutable()->user_ = const_cast< ::api::User*>(
+      ::api::User::internal_default_instance());
+}
+class GetSpeedRequest::_Internal {
+ public:
+  static const ::api::User& user(const GetSpeedRequest* msg);
+};
+
+const ::api::User&
+GetSpeedRequest::_Internal::user(const GetSpeedRequest* msg) {
+  return *msg->user_;
+}
+GetSpeedRequest::GetSpeedRequest()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:api.GetSpeedRequest)
+}
+GetSpeedRequest::GetSpeedRequest(const GetSpeedRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from._internal_has_user()) {
+    user_ = new ::api::User(*from.user_);
+  } else {
+    user_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:api.GetSpeedRequest)
+}
+
+void GetSpeedRequest::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_GetSpeedRequest_trojangoapi_2eproto.base);
+  user_ = nullptr;
+}
+
+GetSpeedRequest::~GetSpeedRequest() {
+  // @@protoc_insertion_point(destructor:api.GetSpeedRequest)
+  SharedDtor();
+}
+
+void GetSpeedRequest::SharedDtor() {
+  if (this != internal_default_instance()) delete user_;
+}
+
+void GetSpeedRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const GetSpeedRequest& GetSpeedRequest::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_GetSpeedRequest_trojangoapi_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void GetSpeedRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:api.GetSpeedRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaNoVirtual() == nullptr && user_ != nullptr) {
+    delete user_;
+  }
+  user_ = nullptr;
+  _internal_metadata_.Clear();
+}
+
+const char* GetSpeedRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // .api.User user = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_user(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* GetSpeedRequest::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:api.GetSpeedRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .api.User user = 1;
+  if (this->has_user()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::user(this), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:api.GetSpeedRequest)
+  return target;
+}
+
+size_t GetSpeedRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:api.GetSpeedRequest)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .api.User user = 1;
+  if (this->has_user()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *user_);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void GetSpeedRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:api.GetSpeedRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const GetSpeedRequest* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<GetSpeedRequest>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:api.GetSpeedRequest)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:api.GetSpeedRequest)
+    MergeFrom(*source);
+  }
+}
+
+void GetSpeedRequest::MergeFrom(const GetSpeedRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:api.GetSpeedRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.has_user()) {
+    _internal_mutable_user()->::api::User::MergeFrom(from._internal_user());
+  }
+}
+
+void GetSpeedRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:api.GetSpeedRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void GetSpeedRequest::CopyFrom(const GetSpeedRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:api.GetSpeedRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetSpeedRequest::IsInitialized() const {
+  return true;
+}
+
+void GetSpeedRequest::InternalSwap(GetSpeedRequest* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(user_, other->user_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetSpeedRequest::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void GetSpeedResponse::InitAsDefaultInstance() {
+  ::api::_GetSpeedResponse_default_instance_._instance.get_mutable()->speed_current_ = const_cast< ::api::Speed*>(
+      ::api::Speed::internal_default_instance());
+  ::api::_GetSpeedResponse_default_instance_._instance.get_mutable()->speed_limit_ = const_cast< ::api::Speed*>(
+      ::api::Speed::internal_default_instance());
+}
+class GetSpeedResponse::_Internal {
+ public:
+  static const ::api::Speed& speed_current(const GetSpeedResponse* msg);
+  static const ::api::Speed& speed_limit(const GetSpeedResponse* msg);
+};
+
+const ::api::Speed&
+GetSpeedResponse::_Internal::speed_current(const GetSpeedResponse* msg) {
+  return *msg->speed_current_;
+}
+const ::api::Speed&
+GetSpeedResponse::_Internal::speed_limit(const GetSpeedResponse* msg) {
+  return *msg->speed_limit_;
+}
+GetSpeedResponse::GetSpeedResponse()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:api.GetSpeedResponse)
+}
+GetSpeedResponse::GetSpeedResponse(const GetSpeedResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from._internal_has_speed_current()) {
+    speed_current_ = new ::api::Speed(*from.speed_current_);
+  } else {
+    speed_current_ = nullptr;
+  }
+  if (from._internal_has_speed_limit()) {
+    speed_limit_ = new ::api::Speed(*from.speed_limit_);
+  } else {
+    speed_limit_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:api.GetSpeedResponse)
+}
+
+void GetSpeedResponse::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_GetSpeedResponse_trojangoapi_2eproto.base);
+  ::memset(&speed_current_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&speed_limit_) -
+      reinterpret_cast<char*>(&speed_current_)) + sizeof(speed_limit_));
+}
+
+GetSpeedResponse::~GetSpeedResponse() {
+  // @@protoc_insertion_point(destructor:api.GetSpeedResponse)
+  SharedDtor();
+}
+
+void GetSpeedResponse::SharedDtor() {
+  if (this != internal_default_instance()) delete speed_current_;
+  if (this != internal_default_instance()) delete speed_limit_;
+}
+
+void GetSpeedResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const GetSpeedResponse& GetSpeedResponse::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_GetSpeedResponse_trojangoapi_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void GetSpeedResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:api.GetSpeedResponse)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaNoVirtual() == nullptr && speed_current_ != nullptr) {
+    delete speed_current_;
+  }
+  speed_current_ = nullptr;
+  if (GetArenaNoVirtual() == nullptr && speed_limit_ != nullptr) {
+    delete speed_limit_;
+  }
+  speed_limit_ = nullptr;
+  _internal_metadata_.Clear();
+}
+
+const char* GetSpeedResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // .api.Speed speed_current = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_speed_current(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .api.Speed speed_limit = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_speed_limit(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* GetSpeedResponse::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:api.GetSpeedResponse)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .api.Speed speed_current = 1;
+  if (this->has_speed_current()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::speed_current(this), target, stream);
+  }
+
+  // .api.Speed speed_limit = 2;
+  if (this->has_speed_limit()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        2, _Internal::speed_limit(this), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:api.GetSpeedResponse)
+  return target;
+}
+
+size_t GetSpeedResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:api.GetSpeedResponse)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .api.Speed speed_current = 1;
+  if (this->has_speed_current()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *speed_current_);
+  }
+
+  // .api.Speed speed_limit = 2;
+  if (this->has_speed_limit()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *speed_limit_);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void GetSpeedResponse::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:api.GetSpeedResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  const GetSpeedResponse* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<GetSpeedResponse>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:api.GetSpeedResponse)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:api.GetSpeedResponse)
+    MergeFrom(*source);
+  }
+}
+
+void GetSpeedResponse::MergeFrom(const GetSpeedResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:api.GetSpeedResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.has_speed_current()) {
+    _internal_mutable_speed_current()->::api::Speed::MergeFrom(from._internal_speed_current());
+  }
+  if (from.has_speed_limit()) {
+    _internal_mutable_speed_limit()->::api::Speed::MergeFrom(from._internal_speed_limit());
+  }
+}
+
+void GetSpeedResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:api.GetSpeedResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void GetSpeedResponse::CopyFrom(const GetSpeedResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:api.GetSpeedResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetSpeedResponse::IsInitialized() const {
+  return true;
+}
+
+void GetSpeedResponse::InternalSwap(GetSpeedResponse* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(speed_current_, other->speed_current_);
+  swap(speed_limit_, other->speed_limit_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetSpeedResponse::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void ListUserRequest::InitAsDefaultInstance() {
+}
+class ListUserRequest::_Internal {
+ public:
+};
+
+ListUserRequest::ListUserRequest()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:api.ListUserRequest)
+}
+ListUserRequest::ListUserRequest(const ListUserRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:api.ListUserRequest)
+}
+
+void ListUserRequest::SharedCtor() {
+}
+
+ListUserRequest::~ListUserRequest() {
+  // @@protoc_insertion_point(destructor:api.ListUserRequest)
+  SharedDtor();
+}
+
+void ListUserRequest::SharedDtor() {
+}
+
+void ListUserRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const ListUserRequest& ListUserRequest::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_ListUserRequest_trojangoapi_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void ListUserRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:api.ListUserRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_metadata_.Clear();
+}
+
+const char* ListUserRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* ListUserRequest::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:api.ListUserRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:api.ListUserRequest)
+  return target;
+}
+
+size_t ListUserRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:api.ListUserRequest)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void ListUserRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:api.ListUserRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ListUserRequest* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ListUserRequest>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:api.ListUserRequest)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:api.ListUserRequest)
+    MergeFrom(*source);
+  }
+}
+
+void ListUserRequest::MergeFrom(const ListUserRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:api.ListUserRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+}
+
+void ListUserRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:api.ListUserRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void ListUserRequest::CopyFrom(const ListUserRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:api.ListUserRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ListUserRequest::IsInitialized() const {
+  return true;
+}
+
+void ListUserRequest::InternalSwap(ListUserRequest* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ListUserRequest::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void ListUserResponse::InitAsDefaultInstance() {
+  ::api::_ListUserResponse_default_instance_._instance.get_mutable()->user_ = const_cast< ::api::User*>(
+      ::api::User::internal_default_instance());
+  ::api::_ListUserResponse_default_instance_._instance.get_mutable()->traffic_total_ = const_cast< ::api::Traffic*>(
+      ::api::Traffic::internal_default_instance());
+  ::api::_ListUserResponse_default_instance_._instance.get_mutable()->traffic_quota_ = const_cast< ::api::Traffic*>(
+      ::api::Traffic::internal_default_instance());
+  ::api::_ListUserResponse_default_instance_._instance.get_mutable()->speed_current_ = const_cast< ::api::Speed*>(
+      ::api::Speed::internal_default_instance());
+  ::api::_ListUserResponse_default_instance_._instance.get_mutable()->speed_limit_ = const_cast< ::api::Speed*>(
+      ::api::Speed::internal_default_instance());
+}
+class ListUserResponse::_Internal {
+ public:
+  static const ::api::User& user(const ListUserResponse* msg);
+  static const ::api::Traffic& traffic_total(const ListUserResponse* msg);
+  static const ::api::Traffic& traffic_quota(const ListUserResponse* msg);
+  static const ::api::Speed& speed_current(const ListUserResponse* msg);
+  static const ::api::Speed& speed_limit(const ListUserResponse* msg);
+};
+
+const ::api::User&
+ListUserResponse::_Internal::user(const ListUserResponse* msg) {
+  return *msg->user_;
+}
+const ::api::Traffic&
+ListUserResponse::_Internal::traffic_total(const ListUserResponse* msg) {
+  return *msg->traffic_total_;
+}
+const ::api::Traffic&
+ListUserResponse::_Internal::traffic_quota(const ListUserResponse* msg) {
+  return *msg->traffic_quota_;
+}
+const ::api::Speed&
+ListUserResponse::_Internal::speed_current(const ListUserResponse* msg) {
+  return *msg->speed_current_;
+}
+const ::api::Speed&
+ListUserResponse::_Internal::speed_limit(const ListUserResponse* msg) {
+  return *msg->speed_limit_;
+}
+ListUserResponse::ListUserResponse()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:api.ListUserResponse)
+}
+ListUserResponse::ListUserResponse(const ListUserResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from._internal_has_user()) {
+    user_ = new ::api::User(*from.user_);
+  } else {
+    user_ = nullptr;
+  }
+  if (from._internal_has_traffic_total()) {
+    traffic_total_ = new ::api::Traffic(*from.traffic_total_);
+  } else {
+    traffic_total_ = nullptr;
+  }
+  if (from._internal_has_traffic_quota()) {
+    traffic_quota_ = new ::api::Traffic(*from.traffic_quota_);
+  } else {
+    traffic_quota_ = nullptr;
+  }
+  if (from._internal_has_speed_current()) {
+    speed_current_ = new ::api::Speed(*from.speed_current_);
+  } else {
+    speed_current_ = nullptr;
+  }
+  if (from._internal_has_speed_limit()) {
+    speed_limit_ = new ::api::Speed(*from.speed_limit_);
+  } else {
+    speed_limit_ = nullptr;
+  }
+  online_ = from.online_;
+  // @@protoc_insertion_point(copy_constructor:api.ListUserResponse)
+}
+
+void ListUserResponse::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_ListUserResponse_trojangoapi_2eproto.base);
+  ::memset(&user_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&online_) -
+      reinterpret_cast<char*>(&user_)) + sizeof(online_));
+}
+
+ListUserResponse::~ListUserResponse() {
+  // @@protoc_insertion_point(destructor:api.ListUserResponse)
+  SharedDtor();
+}
+
+void ListUserResponse::SharedDtor() {
+  if (this != internal_default_instance()) delete user_;
+  if (this != internal_default_instance()) delete traffic_total_;
+  if (this != internal_default_instance()) delete traffic_quota_;
+  if (this != internal_default_instance()) delete speed_current_;
+  if (this != internal_default_instance()) delete speed_limit_;
+}
+
+void ListUserResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const ListUserResponse& ListUserResponse::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_ListUserResponse_trojangoapi_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void ListUserResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:api.ListUserResponse)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaNoVirtual() == nullptr && user_ != nullptr) {
+    delete user_;
+  }
+  user_ = nullptr;
+  if (GetArenaNoVirtual() == nullptr && traffic_total_ != nullptr) {
+    delete traffic_total_;
+  }
+  traffic_total_ = nullptr;
+  if (GetArenaNoVirtual() == nullptr && traffic_quota_ != nullptr) {
+    delete traffic_quota_;
+  }
+  traffic_quota_ = nullptr;
+  if (GetArenaNoVirtual() == nullptr && speed_current_ != nullptr) {
+    delete speed_current_;
+  }
+  speed_current_ = nullptr;
+  if (GetArenaNoVirtual() == nullptr && speed_limit_ != nullptr) {
+    delete speed_limit_;
+  }
+  speed_limit_ = nullptr;
+  online_ = false;
+  _internal_metadata_.Clear();
+}
+
+const char* ListUserResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // .api.User user = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_user(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bool online = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          online_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .api.Traffic traffic_total = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_traffic_total(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .api.Traffic traffic_quota = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          ptr = ctx->ParseMessage(_internal_mutable_traffic_quota(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .api.Speed speed_current = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          ptr = ctx->ParseMessage(_internal_mutable_speed_current(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .api.Speed speed_limit = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 50)) {
+          ptr = ctx->ParseMessage(_internal_mutable_speed_limit(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* ListUserResponse::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:api.ListUserResponse)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .api.User user = 1;
+  if (this->has_user()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::user(this), target, stream);
+  }
+
+  // bool online = 2;
+  if (this->online() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(2, this->_internal_online(), target);
+  }
+
+  // .api.Traffic traffic_total = 3;
+  if (this->has_traffic_total()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        3, _Internal::traffic_total(this), target, stream);
+  }
+
+  // .api.Traffic traffic_quota = 4;
+  if (this->has_traffic_quota()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        4, _Internal::traffic_quota(this), target, stream);
+  }
+
+  // .api.Speed speed_current = 5;
+  if (this->has_speed_current()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        5, _Internal::speed_current(this), target, stream);
+  }
+
+  // .api.Speed speed_limit = 6;
+  if (this->has_speed_limit()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        6, _Internal::speed_limit(this), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:api.ListUserResponse)
+  return target;
+}
+
+size_t ListUserResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:api.ListUserResponse)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .api.User user = 1;
+  if (this->has_user()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *user_);
+  }
+
+  // .api.Traffic traffic_total = 3;
+  if (this->has_traffic_total()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *traffic_total_);
+  }
+
+  // .api.Traffic traffic_quota = 4;
+  if (this->has_traffic_quota()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *traffic_quota_);
+  }
+
+  // .api.Speed speed_current = 5;
+  if (this->has_speed_current()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *speed_current_);
+  }
+
+  // .api.Speed speed_limit = 6;
+  if (this->has_speed_limit()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *speed_limit_);
+  }
+
+  // bool online = 2;
+  if (this->online() != 0) {
+    total_size += 1 + 1;
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void ListUserResponse::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:api.ListUserResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ListUserResponse* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ListUserResponse>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:api.ListUserResponse)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:api.ListUserResponse)
+    MergeFrom(*source);
+  }
+}
+
+void ListUserResponse::MergeFrom(const ListUserResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:api.ListUserResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.has_user()) {
+    _internal_mutable_user()->::api::User::MergeFrom(from._internal_user());
+  }
+  if (from.has_traffic_total()) {
+    _internal_mutable_traffic_total()->::api::Traffic::MergeFrom(from._internal_traffic_total());
+  }
+  if (from.has_traffic_quota()) {
+    _internal_mutable_traffic_quota()->::api::Traffic::MergeFrom(from._internal_traffic_quota());
+  }
+  if (from.has_speed_current()) {
+    _internal_mutable_speed_current()->::api::Speed::MergeFrom(from._internal_speed_current());
+  }
+  if (from.has_speed_limit()) {
+    _internal_mutable_speed_limit()->::api::Speed::MergeFrom(from._internal_speed_limit());
+  }
+  if (from.online() != 0) {
+    _internal_set_online(from._internal_online());
+  }
+}
+
+void ListUserResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:api.ListUserResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void ListUserResponse::CopyFrom(const ListUserResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:api.ListUserResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ListUserResponse::IsInitialized() const {
+  return true;
+}
+
+void ListUserResponse::InternalSwap(ListUserResponse* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(user_, other->user_);
+  swap(traffic_total_, other->traffic_total_);
+  swap(traffic_quota_, other->traffic_quota_);
+  swap(speed_current_, other->speed_current_);
+  swap(speed_limit_, other->speed_limit_);
+  swap(online_, other->online_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ListUserResponse::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void SetTrafficRequest::InitAsDefaultInstance() {
+  ::api::_SetTrafficRequest_default_instance_._instance.get_mutable()->user_ = const_cast< ::api::User*>(
+      ::api::User::internal_default_instance());
+  ::api::_SetTrafficRequest_default_instance_._instance.get_mutable()->traffic_quota_ = const_cast< ::api::Traffic*>(
+      ::api::Traffic::internal_default_instance());
+}
+class SetTrafficRequest::_Internal {
+ public:
+  static const ::api::User& user(const SetTrafficRequest* msg);
+  static const ::api::Traffic& traffic_quota(const SetTrafficRequest* msg);
+};
+
+const ::api::User&
+SetTrafficRequest::_Internal::user(const SetTrafficRequest* msg) {
+  return *msg->user_;
+}
+const ::api::Traffic&
+SetTrafficRequest::_Internal::traffic_quota(const SetTrafficRequest* msg) {
+  return *msg->traffic_quota_;
+}
+SetTrafficRequest::SetTrafficRequest()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:api.SetTrafficRequest)
+}
+SetTrafficRequest::SetTrafficRequest(const SetTrafficRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from._internal_has_user()) {
+    user_ = new ::api::User(*from.user_);
+  } else {
+    user_ = nullptr;
+  }
+  if (from._internal_has_traffic_quota()) {
+    traffic_quota_ = new ::api::Traffic(*from.traffic_quota_);
+  } else {
+    traffic_quota_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:api.SetTrafficRequest)
+}
+
+void SetTrafficRequest::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_SetTrafficRequest_trojangoapi_2eproto.base);
+  ::memset(&user_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&traffic_quota_) -
+      reinterpret_cast<char*>(&user_)) + sizeof(traffic_quota_));
+}
+
+SetTrafficRequest::~SetTrafficRequest() {
+  // @@protoc_insertion_point(destructor:api.SetTrafficRequest)
+  SharedDtor();
+}
+
+void SetTrafficRequest::SharedDtor() {
+  if (this != internal_default_instance()) delete user_;
+  if (this != internal_default_instance()) delete traffic_quota_;
+}
+
+void SetTrafficRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const SetTrafficRequest& SetTrafficRequest::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_SetTrafficRequest_trojangoapi_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void SetTrafficRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:api.SetTrafficRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaNoVirtual() == nullptr && user_ != nullptr) {
+    delete user_;
+  }
+  user_ = nullptr;
+  if (GetArenaNoVirtual() == nullptr && traffic_quota_ != nullptr) {
+    delete traffic_quota_;
+  }
+  traffic_quota_ = nullptr;
+  _internal_metadata_.Clear();
+}
+
+const char* SetTrafficRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // .api.User user = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_user(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .api.Traffic traffic_quota = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_traffic_quota(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* SetTrafficRequest::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:api.SetTrafficRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .api.User user = 1;
+  if (this->has_user()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::user(this), target, stream);
+  }
+
+  // .api.Traffic traffic_quota = 2;
+  if (this->has_traffic_quota()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        2, _Internal::traffic_quota(this), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:api.SetTrafficRequest)
+  return target;
+}
+
+size_t SetTrafficRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:api.SetTrafficRequest)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .api.User user = 1;
+  if (this->has_user()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *user_);
+  }
+
+  // .api.Traffic traffic_quota = 2;
+  if (this->has_traffic_quota()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *traffic_quota_);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void SetTrafficRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:api.SetTrafficRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const SetTrafficRequest* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<SetTrafficRequest>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:api.SetTrafficRequest)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:api.SetTrafficRequest)
+    MergeFrom(*source);
+  }
+}
+
+void SetTrafficRequest::MergeFrom(const SetTrafficRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:api.SetTrafficRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.has_user()) {
+    _internal_mutable_user()->::api::User::MergeFrom(from._internal_user());
+  }
+  if (from.has_traffic_quota()) {
+    _internal_mutable_traffic_quota()->::api::Traffic::MergeFrom(from._internal_traffic_quota());
+  }
+}
+
+void SetTrafficRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:api.SetTrafficRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void SetTrafficRequest::CopyFrom(const SetTrafficRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:api.SetTrafficRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SetTrafficRequest::IsInitialized() const {
+  return true;
+}
+
+void SetTrafficRequest::InternalSwap(SetTrafficRequest* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(user_, other->user_);
+  swap(traffic_quota_, other->traffic_quota_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SetTrafficRequest::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void SetTrafficReponse::InitAsDefaultInstance() {
+}
+class SetTrafficReponse::_Internal {
+ public:
+};
+
+SetTrafficReponse::SetTrafficReponse()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:api.SetTrafficReponse)
+}
+SetTrafficReponse::SetTrafficReponse(const SetTrafficReponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  info_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_info().empty()) {
+    info_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.info_);
+  }
+  success_ = from.success_;
+  // @@protoc_insertion_point(copy_constructor:api.SetTrafficReponse)
+}
+
+void SetTrafficReponse::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_SetTrafficReponse_trojangoapi_2eproto.base);
+  info_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  success_ = false;
+}
+
+SetTrafficReponse::~SetTrafficReponse() {
+  // @@protoc_insertion_point(destructor:api.SetTrafficReponse)
+  SharedDtor();
+}
+
+void SetTrafficReponse::SharedDtor() {
+  info_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void SetTrafficReponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const SetTrafficReponse& SetTrafficReponse::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_SetTrafficReponse_trojangoapi_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void SetTrafficReponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:api.SetTrafficReponse)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  info_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  success_ = false;
+  _internal_metadata_.Clear();
+}
+
+const char* SetTrafficReponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // bool success = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          success_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string info = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_info();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "api.SetTrafficReponse.info"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* SetTrafficReponse::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:api.SetTrafficReponse)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_success(), target);
+  }
+
+  // string info = 2;
+  if (this->info().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_info().data(), static_cast<int>(this->_internal_info().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "api.SetTrafficReponse.info");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_info(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:api.SetTrafficReponse)
+  return target;
+}
+
+size_t SetTrafficReponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:api.SetTrafficReponse)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string info = 2;
+  if (this->info().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_info());
+  }
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    total_size += 1 + 1;
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void SetTrafficReponse::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:api.SetTrafficReponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  const SetTrafficReponse* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<SetTrafficReponse>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:api.SetTrafficReponse)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:api.SetTrafficReponse)
+    MergeFrom(*source);
+  }
+}
+
+void SetTrafficReponse::MergeFrom(const SetTrafficReponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:api.SetTrafficReponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.info().size() > 0) {
+
+    info_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.info_);
+  }
+  if (from.success() != 0) {
+    _internal_set_success(from._internal_success());
+  }
+}
+
+void SetTrafficReponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:api.SetTrafficReponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void SetTrafficReponse::CopyFrom(const SetTrafficReponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:api.SetTrafficReponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SetTrafficReponse::IsInitialized() const {
+  return true;
+}
+
+void SetTrafficReponse::InternalSwap(SetTrafficReponse* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  info_.Swap(&other->info_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  swap(success_, other->success_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SetTrafficReponse::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void SetSpeedRequest::InitAsDefaultInstance() {
+  ::api::_SetSpeedRequest_default_instance_._instance.get_mutable()->user_ = const_cast< ::api::User*>(
+      ::api::User::internal_default_instance());
+  ::api::_SetSpeedRequest_default_instance_._instance.get_mutable()->speed_limit_ = const_cast< ::api::Speed*>(
+      ::api::Speed::internal_default_instance());
+}
+class SetSpeedRequest::_Internal {
+ public:
+  static const ::api::User& user(const SetSpeedRequest* msg);
+  static const ::api::Speed& speed_limit(const SetSpeedRequest* msg);
+};
+
+const ::api::User&
+SetSpeedRequest::_Internal::user(const SetSpeedRequest* msg) {
+  return *msg->user_;
+}
+const ::api::Speed&
+SetSpeedRequest::_Internal::speed_limit(const SetSpeedRequest* msg) {
+  return *msg->speed_limit_;
+}
+SetSpeedRequest::SetSpeedRequest()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:api.SetSpeedRequest)
+}
+SetSpeedRequest::SetSpeedRequest(const SetSpeedRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from._internal_has_user()) {
+    user_ = new ::api::User(*from.user_);
+  } else {
+    user_ = nullptr;
+  }
+  if (from._internal_has_speed_limit()) {
+    speed_limit_ = new ::api::Speed(*from.speed_limit_);
+  } else {
+    speed_limit_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:api.SetSpeedRequest)
+}
+
+void SetSpeedRequest::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_SetSpeedRequest_trojangoapi_2eproto.base);
+  ::memset(&user_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&speed_limit_) -
+      reinterpret_cast<char*>(&user_)) + sizeof(speed_limit_));
+}
+
+SetSpeedRequest::~SetSpeedRequest() {
+  // @@protoc_insertion_point(destructor:api.SetSpeedRequest)
+  SharedDtor();
+}
+
+void SetSpeedRequest::SharedDtor() {
+  if (this != internal_default_instance()) delete user_;
+  if (this != internal_default_instance()) delete speed_limit_;
+}
+
+void SetSpeedRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const SetSpeedRequest& SetSpeedRequest::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_SetSpeedRequest_trojangoapi_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void SetSpeedRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:api.SetSpeedRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaNoVirtual() == nullptr && user_ != nullptr) {
+    delete user_;
+  }
+  user_ = nullptr;
+  if (GetArenaNoVirtual() == nullptr && speed_limit_ != nullptr) {
+    delete speed_limit_;
+  }
+  speed_limit_ = nullptr;
+  _internal_metadata_.Clear();
+}
+
+const char* SetSpeedRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // .api.User user = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_user(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .api.Speed speed_limit = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_speed_limit(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* SetSpeedRequest::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:api.SetSpeedRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .api.User user = 1;
+  if (this->has_user()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::user(this), target, stream);
+  }
+
+  // .api.Speed speed_limit = 2;
+  if (this->has_speed_limit()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        2, _Internal::speed_limit(this), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:api.SetSpeedRequest)
+  return target;
+}
+
+size_t SetSpeedRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:api.SetSpeedRequest)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .api.User user = 1;
+  if (this->has_user()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *user_);
+  }
+
+  // .api.Speed speed_limit = 2;
+  if (this->has_speed_limit()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *speed_limit_);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void SetSpeedRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:api.SetSpeedRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const SetSpeedRequest* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<SetSpeedRequest>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:api.SetSpeedRequest)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:api.SetSpeedRequest)
+    MergeFrom(*source);
+  }
+}
+
+void SetSpeedRequest::MergeFrom(const SetSpeedRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:api.SetSpeedRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.has_user()) {
+    _internal_mutable_user()->::api::User::MergeFrom(from._internal_user());
+  }
+  if (from.has_speed_limit()) {
+    _internal_mutable_speed_limit()->::api::Speed::MergeFrom(from._internal_speed_limit());
+  }
+}
+
+void SetSpeedRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:api.SetSpeedRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void SetSpeedRequest::CopyFrom(const SetSpeedRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:api.SetSpeedRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SetSpeedRequest::IsInitialized() const {
+  return true;
+}
+
+void SetSpeedRequest::InternalSwap(SetSpeedRequest* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(user_, other->user_);
+  swap(speed_limit_, other->speed_limit_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SetSpeedRequest::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void SetSpeedResponse::InitAsDefaultInstance() {
+}
+class SetSpeedResponse::_Internal {
+ public:
+};
+
+SetSpeedResponse::SetSpeedResponse()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:api.SetSpeedResponse)
+}
+SetSpeedResponse::SetSpeedResponse(const SetSpeedResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  info_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_info().empty()) {
+    info_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.info_);
+  }
+  success_ = from.success_;
+  // @@protoc_insertion_point(copy_constructor:api.SetSpeedResponse)
+}
+
+void SetSpeedResponse::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_SetSpeedResponse_trojangoapi_2eproto.base);
+  info_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  success_ = false;
+}
+
+SetSpeedResponse::~SetSpeedResponse() {
+  // @@protoc_insertion_point(destructor:api.SetSpeedResponse)
+  SharedDtor();
+}
+
+void SetSpeedResponse::SharedDtor() {
+  info_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void SetSpeedResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const SetSpeedResponse& SetSpeedResponse::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_SetSpeedResponse_trojangoapi_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void SetSpeedResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:api.SetSpeedResponse)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  info_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  success_ = false;
+  _internal_metadata_.Clear();
+}
+
+const char* SetSpeedResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // bool success = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          success_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string info = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_info();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "api.SetSpeedResponse.info"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* SetSpeedResponse::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:api.SetSpeedResponse)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_success(), target);
+  }
+
+  // string info = 2;
+  if (this->info().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_info().data(), static_cast<int>(this->_internal_info().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "api.SetSpeedResponse.info");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_info(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:api.SetSpeedResponse)
+  return target;
+}
+
+size_t SetSpeedResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:api.SetSpeedResponse)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string info = 2;
+  if (this->info().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_info());
+  }
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    total_size += 1 + 1;
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void SetSpeedResponse::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:api.SetSpeedResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  const SetSpeedResponse* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<SetSpeedResponse>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:api.SetSpeedResponse)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:api.SetSpeedResponse)
+    MergeFrom(*source);
+  }
+}
+
+void SetSpeedResponse::MergeFrom(const SetSpeedResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:api.SetSpeedResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.info().size() > 0) {
+
+    info_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.info_);
+  }
+  if (from.success() != 0) {
+    _internal_set_success(from._internal_success());
+  }
+}
+
+void SetSpeedResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:api.SetSpeedResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void SetSpeedResponse::CopyFrom(const SetSpeedResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:api.SetSpeedResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SetSpeedResponse::IsInitialized() const {
+  return true;
+}
+
+void SetSpeedResponse::InternalSwap(SetSpeedResponse* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  info_.Swap(&other->info_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  swap(success_, other->success_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SetSpeedResponse::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void AddUserRequest::InitAsDefaultInstance() {
+  ::api::_AddUserRequest_default_instance_._instance.get_mutable()->user_ = const_cast< ::api::User*>(
+      ::api::User::internal_default_instance());
+  ::api::_AddUserRequest_default_instance_._instance.get_mutable()->traffic_quota_ = const_cast< ::api::Traffic*>(
+      ::api::Traffic::internal_default_instance());
+  ::api::_AddUserRequest_default_instance_._instance.get_mutable()->speed_limit_ = const_cast< ::api::Speed*>(
+      ::api::Speed::internal_default_instance());
+}
+class AddUserRequest::_Internal {
+ public:
+  static const ::api::User& user(const AddUserRequest* msg);
+  static const ::api::Traffic& traffic_quota(const AddUserRequest* msg);
+  static const ::api::Speed& speed_limit(const AddUserRequest* msg);
+};
+
+const ::api::User&
+AddUserRequest::_Internal::user(const AddUserRequest* msg) {
+  return *msg->user_;
+}
+const ::api::Traffic&
+AddUserRequest::_Internal::traffic_quota(const AddUserRequest* msg) {
+  return *msg->traffic_quota_;
+}
+const ::api::Speed&
+AddUserRequest::_Internal::speed_limit(const AddUserRequest* msg) {
+  return *msg->speed_limit_;
+}
+AddUserRequest::AddUserRequest()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:api.AddUserRequest)
+}
+AddUserRequest::AddUserRequest(const AddUserRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from._internal_has_user()) {
+    user_ = new ::api::User(*from.user_);
+  } else {
+    user_ = nullptr;
+  }
+  if (from._internal_has_traffic_quota()) {
+    traffic_quota_ = new ::api::Traffic(*from.traffic_quota_);
+  } else {
+    traffic_quota_ = nullptr;
+  }
+  if (from._internal_has_speed_limit()) {
+    speed_limit_ = new ::api::Speed(*from.speed_limit_);
+  } else {
+    speed_limit_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:api.AddUserRequest)
+}
+
+void AddUserRequest::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_AddUserRequest_trojangoapi_2eproto.base);
+  ::memset(&user_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&speed_limit_) -
+      reinterpret_cast<char*>(&user_)) + sizeof(speed_limit_));
+}
+
+AddUserRequest::~AddUserRequest() {
+  // @@protoc_insertion_point(destructor:api.AddUserRequest)
+  SharedDtor();
+}
+
+void AddUserRequest::SharedDtor() {
+  if (this != internal_default_instance()) delete user_;
+  if (this != internal_default_instance()) delete traffic_quota_;
+  if (this != internal_default_instance()) delete speed_limit_;
+}
+
+void AddUserRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const AddUserRequest& AddUserRequest::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_AddUserRequest_trojangoapi_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void AddUserRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:api.AddUserRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaNoVirtual() == nullptr && user_ != nullptr) {
+    delete user_;
+  }
+  user_ = nullptr;
+  if (GetArenaNoVirtual() == nullptr && traffic_quota_ != nullptr) {
+    delete traffic_quota_;
+  }
+  traffic_quota_ = nullptr;
+  if (GetArenaNoVirtual() == nullptr && speed_limit_ != nullptr) {
+    delete speed_limit_;
+  }
+  speed_limit_ = nullptr;
+  _internal_metadata_.Clear();
+}
+
+const char* AddUserRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // .api.User user = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_user(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .api.Traffic traffic_quota = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          ptr = ctx->ParseMessage(_internal_mutable_traffic_quota(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .api.Speed speed_limit = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 50)) {
+          ptr = ctx->ParseMessage(_internal_mutable_speed_limit(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* AddUserRequest::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:api.AddUserRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .api.User user = 1;
+  if (this->has_user()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::user(this), target, stream);
+  }
+
+  // .api.Traffic traffic_quota = 4;
+  if (this->has_traffic_quota()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        4, _Internal::traffic_quota(this), target, stream);
+  }
+
+  // .api.Speed speed_limit = 6;
+  if (this->has_speed_limit()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        6, _Internal::speed_limit(this), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:api.AddUserRequest)
+  return target;
+}
+
+size_t AddUserRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:api.AddUserRequest)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .api.User user = 1;
+  if (this->has_user()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *user_);
+  }
+
+  // .api.Traffic traffic_quota = 4;
+  if (this->has_traffic_quota()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *traffic_quota_);
+  }
+
+  // .api.Speed speed_limit = 6;
+  if (this->has_speed_limit()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *speed_limit_);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void AddUserRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:api.AddUserRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const AddUserRequest* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<AddUserRequest>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:api.AddUserRequest)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:api.AddUserRequest)
+    MergeFrom(*source);
+  }
+}
+
+void AddUserRequest::MergeFrom(const AddUserRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:api.AddUserRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.has_user()) {
+    _internal_mutable_user()->::api::User::MergeFrom(from._internal_user());
+  }
+  if (from.has_traffic_quota()) {
+    _internal_mutable_traffic_quota()->::api::Traffic::MergeFrom(from._internal_traffic_quota());
+  }
+  if (from.has_speed_limit()) {
+    _internal_mutable_speed_limit()->::api::Speed::MergeFrom(from._internal_speed_limit());
+  }
+}
+
+void AddUserRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:api.AddUserRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void AddUserRequest::CopyFrom(const AddUserRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:api.AddUserRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool AddUserRequest::IsInitialized() const {
+  return true;
+}
+
+void AddUserRequest::InternalSwap(AddUserRequest* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(user_, other->user_);
+  swap(traffic_quota_, other->traffic_quota_);
+  swap(speed_limit_, other->speed_limit_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata AddUserRequest::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void AddUserResponse::InitAsDefaultInstance() {
+  ::api::_AddUserResponse_default_instance_._instance.get_mutable()->user_ = const_cast< ::api::User*>(
+      ::api::User::internal_default_instance());
+}
+class AddUserResponse::_Internal {
+ public:
+  static const ::api::User& user(const AddUserResponse* msg);
+};
+
+const ::api::User&
+AddUserResponse::_Internal::user(const AddUserResponse* msg) {
+  return *msg->user_;
+}
+AddUserResponse::AddUserResponse()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:api.AddUserResponse)
+}
+AddUserResponse::AddUserResponse(const AddUserResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from._internal_has_user()) {
+    user_ = new ::api::User(*from.user_);
+  } else {
+    user_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:api.AddUserResponse)
+}
+
+void AddUserResponse::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_AddUserResponse_trojangoapi_2eproto.base);
+  user_ = nullptr;
+}
+
+AddUserResponse::~AddUserResponse() {
+  // @@protoc_insertion_point(destructor:api.AddUserResponse)
+  SharedDtor();
+}
+
+void AddUserResponse::SharedDtor() {
+  if (this != internal_default_instance()) delete user_;
+}
+
+void AddUserResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const AddUserResponse& AddUserResponse::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_AddUserResponse_trojangoapi_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void AddUserResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:api.AddUserResponse)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaNoVirtual() == nullptr && user_ != nullptr) {
+    delete user_;
+  }
+  user_ = nullptr;
+  _internal_metadata_.Clear();
+}
+
+const char* AddUserResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // .api.User user = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_user(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* AddUserResponse::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:api.AddUserResponse)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .api.User user = 1;
+  if (this->has_user()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::user(this), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:api.AddUserResponse)
+  return target;
+}
+
+size_t AddUserResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:api.AddUserResponse)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .api.User user = 1;
+  if (this->has_user()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *user_);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void AddUserResponse::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:api.AddUserResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  const AddUserResponse* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<AddUserResponse>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:api.AddUserResponse)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:api.AddUserResponse)
+    MergeFrom(*source);
+  }
+}
+
+void AddUserResponse::MergeFrom(const AddUserResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:api.AddUserResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.has_user()) {
+    _internal_mutable_user()->::api::User::MergeFrom(from._internal_user());
+  }
+}
+
+void AddUserResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:api.AddUserResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void AddUserResponse::CopyFrom(const AddUserResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:api.AddUserResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool AddUserResponse::IsInitialized() const {
+  return true;
+}
+
+void AddUserResponse::InternalSwap(AddUserResponse* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(user_, other->user_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata AddUserResponse::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void DeleteUserRequest::InitAsDefaultInstance() {
+  ::api::_DeleteUserRequest_default_instance_._instance.get_mutable()->user_ = const_cast< ::api::User*>(
+      ::api::User::internal_default_instance());
+}
+class DeleteUserRequest::_Internal {
+ public:
+  static const ::api::User& user(const DeleteUserRequest* msg);
+};
+
+const ::api::User&
+DeleteUserRequest::_Internal::user(const DeleteUserRequest* msg) {
+  return *msg->user_;
+}
+DeleteUserRequest::DeleteUserRequest()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:api.DeleteUserRequest)
+}
+DeleteUserRequest::DeleteUserRequest(const DeleteUserRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from._internal_has_user()) {
+    user_ = new ::api::User(*from.user_);
+  } else {
+    user_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:api.DeleteUserRequest)
+}
+
+void DeleteUserRequest::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_DeleteUserRequest_trojangoapi_2eproto.base);
+  user_ = nullptr;
+}
+
+DeleteUserRequest::~DeleteUserRequest() {
+  // @@protoc_insertion_point(destructor:api.DeleteUserRequest)
+  SharedDtor();
+}
+
+void DeleteUserRequest::SharedDtor() {
+  if (this != internal_default_instance()) delete user_;
+}
+
+void DeleteUserRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const DeleteUserRequest& DeleteUserRequest::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_DeleteUserRequest_trojangoapi_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void DeleteUserRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:api.DeleteUserRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaNoVirtual() == nullptr && user_ != nullptr) {
+    delete user_;
+  }
+  user_ = nullptr;
+  _internal_metadata_.Clear();
+}
+
+const char* DeleteUserRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // .api.User user = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_user(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* DeleteUserRequest::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:api.DeleteUserRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .api.User user = 1;
+  if (this->has_user()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::user(this), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:api.DeleteUserRequest)
+  return target;
+}
+
+size_t DeleteUserRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:api.DeleteUserRequest)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .api.User user = 1;
+  if (this->has_user()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *user_);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void DeleteUserRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:api.DeleteUserRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const DeleteUserRequest* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<DeleteUserRequest>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:api.DeleteUserRequest)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:api.DeleteUserRequest)
+    MergeFrom(*source);
+  }
+}
+
+void DeleteUserRequest::MergeFrom(const DeleteUserRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:api.DeleteUserRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.has_user()) {
+    _internal_mutable_user()->::api::User::MergeFrom(from._internal_user());
+  }
+}
+
+void DeleteUserRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:api.DeleteUserRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void DeleteUserRequest::CopyFrom(const DeleteUserRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:api.DeleteUserRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool DeleteUserRequest::IsInitialized() const {
+  return true;
+}
+
+void DeleteUserRequest::InternalSwap(DeleteUserRequest* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(user_, other->user_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata DeleteUserRequest::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void DeleteUserResponse::InitAsDefaultInstance() {
+}
+class DeleteUserResponse::_Internal {
+ public:
+};
+
+DeleteUserResponse::DeleteUserResponse()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:api.DeleteUserResponse)
+}
+DeleteUserResponse::DeleteUserResponse(const DeleteUserResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  info_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_info().empty()) {
+    info_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.info_);
+  }
+  success_ = from.success_;
+  // @@protoc_insertion_point(copy_constructor:api.DeleteUserResponse)
+}
+
+void DeleteUserResponse::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_DeleteUserResponse_trojangoapi_2eproto.base);
+  info_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  success_ = false;
+}
+
+DeleteUserResponse::~DeleteUserResponse() {
+  // @@protoc_insertion_point(destructor:api.DeleteUserResponse)
+  SharedDtor();
+}
+
+void DeleteUserResponse::SharedDtor() {
+  info_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void DeleteUserResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const DeleteUserResponse& DeleteUserResponse::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_DeleteUserResponse_trojangoapi_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void DeleteUserResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:api.DeleteUserResponse)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  info_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  success_ = false;
+  _internal_metadata_.Clear();
+}
+
+const char* DeleteUserResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // bool success = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          success_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string info = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_info();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "api.DeleteUserResponse.info"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* DeleteUserResponse::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:api.DeleteUserResponse)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_success(), target);
+  }
+
+  // string info = 2;
+  if (this->info().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_info().data(), static_cast<int>(this->_internal_info().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "api.DeleteUserResponse.info");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_info(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:api.DeleteUserResponse)
+  return target;
+}
+
+size_t DeleteUserResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:api.DeleteUserResponse)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string info = 2;
+  if (this->info().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_info());
+  }
+
+  // bool success = 1;
+  if (this->success() != 0) {
+    total_size += 1 + 1;
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void DeleteUserResponse::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:api.DeleteUserResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  const DeleteUserResponse* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<DeleteUserResponse>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:api.DeleteUserResponse)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:api.DeleteUserResponse)
+    MergeFrom(*source);
+  }
+}
+
+void DeleteUserResponse::MergeFrom(const DeleteUserResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:api.DeleteUserResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.info().size() > 0) {
+
+    info_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.info_);
+  }
+  if (from.success() != 0) {
+    _internal_set_success(from._internal_success());
+  }
+}
+
+void DeleteUserResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:api.DeleteUserResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void DeleteUserResponse::CopyFrom(const DeleteUserResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:api.DeleteUserResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool DeleteUserResponse::IsInitialized() const {
+  return true;
+}
+
+void DeleteUserResponse::InternalSwap(DeleteUserResponse* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  info_.Swap(&other->info_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  swap(success_, other->success_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata DeleteUserResponse::GetMetadata() const {
   return GetMetadataStatic();
 }
 
@@ -577,11 +4619,56 @@ void StatsReply::InternalSwap(StatsReply* other) {
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace api
 PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::api::StatsRequest* Arena::CreateMaybeMessage< ::api::StatsRequest >(Arena* arena) {
-  return Arena::CreateInternal< ::api::StatsRequest >(arena);
+template<> PROTOBUF_NOINLINE ::api::Traffic* Arena::CreateMaybeMessage< ::api::Traffic >(Arena* arena) {
+  return Arena::CreateInternal< ::api::Traffic >(arena);
 }
-template<> PROTOBUF_NOINLINE ::api::StatsReply* Arena::CreateMaybeMessage< ::api::StatsReply >(Arena* arena) {
-  return Arena::CreateInternal< ::api::StatsReply >(arena);
+template<> PROTOBUF_NOINLINE ::api::Speed* Arena::CreateMaybeMessage< ::api::Speed >(Arena* arena) {
+  return Arena::CreateInternal< ::api::Speed >(arena);
+}
+template<> PROTOBUF_NOINLINE ::api::User* Arena::CreateMaybeMessage< ::api::User >(Arena* arena) {
+  return Arena::CreateInternal< ::api::User >(arena);
+}
+template<> PROTOBUF_NOINLINE ::api::GetTrafficRequest* Arena::CreateMaybeMessage< ::api::GetTrafficRequest >(Arena* arena) {
+  return Arena::CreateInternal< ::api::GetTrafficRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::api::GetTrafficResponse* Arena::CreateMaybeMessage< ::api::GetTrafficResponse >(Arena* arena) {
+  return Arena::CreateInternal< ::api::GetTrafficResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::api::GetSpeedRequest* Arena::CreateMaybeMessage< ::api::GetSpeedRequest >(Arena* arena) {
+  return Arena::CreateInternal< ::api::GetSpeedRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::api::GetSpeedResponse* Arena::CreateMaybeMessage< ::api::GetSpeedResponse >(Arena* arena) {
+  return Arena::CreateInternal< ::api::GetSpeedResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::api::ListUserRequest* Arena::CreateMaybeMessage< ::api::ListUserRequest >(Arena* arena) {
+  return Arena::CreateInternal< ::api::ListUserRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::api::ListUserResponse* Arena::CreateMaybeMessage< ::api::ListUserResponse >(Arena* arena) {
+  return Arena::CreateInternal< ::api::ListUserResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::api::SetTrafficRequest* Arena::CreateMaybeMessage< ::api::SetTrafficRequest >(Arena* arena) {
+  return Arena::CreateInternal< ::api::SetTrafficRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::api::SetTrafficReponse* Arena::CreateMaybeMessage< ::api::SetTrafficReponse >(Arena* arena) {
+  return Arena::CreateInternal< ::api::SetTrafficReponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::api::SetSpeedRequest* Arena::CreateMaybeMessage< ::api::SetSpeedRequest >(Arena* arena) {
+  return Arena::CreateInternal< ::api::SetSpeedRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::api::SetSpeedResponse* Arena::CreateMaybeMessage< ::api::SetSpeedResponse >(Arena* arena) {
+  return Arena::CreateInternal< ::api::SetSpeedResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::api::AddUserRequest* Arena::CreateMaybeMessage< ::api::AddUserRequest >(Arena* arena) {
+  return Arena::CreateInternal< ::api::AddUserRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::api::AddUserResponse* Arena::CreateMaybeMessage< ::api::AddUserResponse >(Arena* arena) {
+  return Arena::CreateInternal< ::api::AddUserResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::api::DeleteUserRequest* Arena::CreateMaybeMessage< ::api::DeleteUserRequest >(Arena* arena) {
+  return Arena::CreateInternal< ::api::DeleteUserRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::api::DeleteUserResponse* Arena::CreateMaybeMessage< ::api::DeleteUserResponse >(Arena* arena) {
+  return Arena::CreateInternal< ::api::DeleteUserResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 
