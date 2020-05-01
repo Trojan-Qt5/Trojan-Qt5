@@ -17,6 +17,7 @@ install:
   - cd ..\..
   - cd 3rd\trojan-qt5-libs
   - set CGO_ENABLED=1
+  - set GOARCH=386
   - go build -buildmode=c-shared -o trojan-qt5-libs.dll main.go
   - dumpbin /exports trojan-qt5-libs.dll > exports.txt
   - echo LIBRARY TROJAN-QT5-LIBS > trojan-qt5-libs.def

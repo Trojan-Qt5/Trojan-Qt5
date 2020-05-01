@@ -15,7 +15,7 @@ matrix:
       sudo: required
       env: 
         - BADGE=linux
-        - QT_CI_PACKAGES=qt.qt5.5142.gcc_64,qt.qt5.5142.qtwebengine PATH=${TRAVIS_BUILD_DIR}/recipes:${TRAVIS_BUILD_DIR}/bin:${PATH}
+        - QT_CI_PACKAGES=qt.qt5.5132.gcc_64,qt.qt5.5132.qtwebengine PATH=${TRAVIS_BUILD_DIR}/recipes:${TRAVIS_BUILD_DIR}/bin:${PATH}
         - _TROJAN_QT5_BUILD_INFO_="Trojan-Qt5 build from Travis-CI"
       addons:
         apt:
@@ -39,8 +39,8 @@ install:
       sudo apt-get install libqrencode-dev libzbar-dev libgl-dev git build-essential g++ python-dev autoconf autotools-dev libicu-dev libbz2-dev checkinstall zlib1g zlib1g-dev python3 pkg-config libprotobuf-dev libgrpc++-dev protobuf-compiler protobuf-c-compiler protobuf-compiler-grpc libsodium-dev libuv-dev -y;
       git clone https://github.com/benlau/qtci.git;
       source qtci/path.env;
-      install-qt 5.14.2;
-      source qt-5.14.2.env;
+      install-qt 5.13.2;
+      source qt-5.13.2.env;
       echo "Installing Zlib 1.2.11...";
       wget https://www.zlib.net/zlib-1.2.11.tar.gz;
       tar -xf zlib-1.2.11.tar.gz;
@@ -57,7 +57,6 @@ install:
       make -j$(nproc) >/dev/null 2>&1;
       sudo make install >/dev/null 2>&1;
       cd ..;
-      
     fi
   - if [ "$BADGE" = "osx" ]; then    
       brew install zbar qrencode openssl@1.1 zlib pcre python3 libsodium libuv grpc pkg-config;
