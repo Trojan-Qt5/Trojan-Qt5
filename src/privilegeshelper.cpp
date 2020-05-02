@@ -62,7 +62,7 @@ void PrivilegesHelper::showWarning()
     link = tr("https://www.isumsoft.com/windows-10/run-an-app-as-administrator-in-windows-10.html");
 #elif defined (Q_OS_MAC)
     link = tr("https://osxdaily.com/2013/02/06/how-to-run-gui-apps-as-root-in-mac-os-x/");
-#elif define (Q_OS_LINUX)
+#elif defined (Q_OS_LINUX)
     link = tr("https://askubuntu.com/questions/207466/how-to-run-applications-as-root");
 #endif
     QMessageBox::warning(NULL, "Can't start tun2socks", QString("You need to run this application as admin/root\nSee the following link for a reference:\n%1").arg(link), QMessageBox::Ok);

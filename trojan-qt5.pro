@@ -273,7 +273,6 @@ FORMS += \
     ui/aboutdialog.ui \
     ui/settingsdialog.ui \
     ui/mainwindow.ui \
-    ui/settingsdialog.ui \
     ui/sharedialog.ui \
     ui/speedplot.ui \
     ui/sseditdialog.ui \

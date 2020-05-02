@@ -32,7 +32,7 @@
 isEmpty(PROTOS):error("Define PROTOS before including protobuf.pri")
 
 win32 {
-    isEmpty(PROTOC):PROTOC = C:\TQLibraris\Grpc\tools\protobuf\protoc
+    isEmpty(PROTOC):PROTOC = C:\TQLibraries\Grpc\tools\protobuf\protoc
 }
 
 mac {
