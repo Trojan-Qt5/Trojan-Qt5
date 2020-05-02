@@ -44,7 +44,7 @@ CONFIG += link_pkgconfig
 #DEFINES += QT_DEPRECATED_WARNINGS
 
 # Define App Version
-DEFINES += "APP_VERSION=\"\\\"1.0.0 Insider Preview\\\"\""
+DEFINES += "APP_VERSION=\"\\\"1.0.0\\\"\""
 
 # Trojan
 #DEFINES += ENABLE_MYSQL

@@ -23,6 +23,7 @@ install:
   - set GOARCH=386
   - go build -buildmode=c-shared -o trojan-qt5-libs.dll main.go
   - process.bat
+  - python msvc.py
   - cd ../..
 
 init:
@@ -46,9 +47,6 @@ build_script:
   - python ..\..\scripts\checksum.py Trojan-Qt5-Windows.zip Trojan-Qt5-Windows.hash
   - cd ..
   - cd ..
-
-on_finish:
-  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
 artifacts:
 - path: 'build\release\Trojan-Qt5-Windows.*'

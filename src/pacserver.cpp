@@ -2,6 +2,7 @@
 
 #include <QDir>
 #include <QFile>
+#include <QCoreApplication>
 
 #include "qhttprequest.h"
 #include "qhttpresponse.h"

@@ -20,8 +20,21 @@ QString RouteTableHelper::getDefaultGateWay()
 {
     QProcess *task = new QProcess;
     QStringList param;
-#if defined (Q_OS_MAC) || defined (Q_OS_LINUX)
+#if defined (Q_OS_WIN)
+    task->start("cmd /c \"FOR /F \"tokens=13\" %x IN ('\"ipconfig /renew * > nul & ipconfig | findstr \"Default Gateway\" | findstr \"[0-9]*\\.[0-9]*\\.[0-9]*\\.[0-9]*\"\"') DO echo %x\"");
+    task->waitForFinished();
+    QString gateway = task->readAllStandardOutput();
+    gateway = gateway.remove("\n");
+    return gateway;
+#elif defined (Q_OS_MAC)
     param << "-c" << "route get default | grep gateway | awk '{print $2}'";
+    task->start("bash", param);
+    task->waitForFinished();
+    QString gateway = task->readAllStandardOutput();
+    gateway = gateway.remove("\n");
+    return gateway;
+#elif defined (Q_OS_LINUX)
+    param << "-c" << "route -n | awk '{print $2}' | awk 'NR == 3 {print}'";
     task->start("bash", param);
     task->waitForFinished();
     QString gateway = task->readAllStandardOutput();

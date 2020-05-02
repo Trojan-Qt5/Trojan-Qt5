@@ -93,6 +93,9 @@ private:
     QAction *copyTerminalProxyCommand;
     QAction *setProxyToTelegram;
     QAction *minimiseRestoreAction;
+#if defined (Q_OS_WIN)
+    QAction *installTapDriver;
+#endif
     QSystemTrayIcon systray;
     MainWindow *window;
     ConfigHelper *helper;

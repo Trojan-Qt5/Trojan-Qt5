@@ -1,8 +1,9 @@
 #include "resourcehelper.h"
 
-#include <QCoreApplication>
+#include <QProcess>
 #include <QDir>
 #include <QFile>
+#include <QStandardPaths>
 
 ResourceHelper::ResourceHelper()
 {
@@ -10,12 +11,16 @@ ResourceHelper::ResourceHelper()
 
 void ResourceHelper::initPrivoxy()
 {
-    QDir configDir = QCoreApplication::applicationDirPath() + "/privoxy";
+    QDir configDir = QStandardPaths::writableLocation(QStandardPaths::TempLocation) + "/Trojan-Qt5";
     if (!configDir.exists()) {
         configDir.mkpath(".");
     }
 
-    QString privoxy = QCoreApplication::applicationDirPath() + "/privoxy/privoxy.exe";
-    QFile::copy(":/bin/privoxy.exe", privoxy);
+    QString tapInstallerPath = configDir.dirName() + "/tap-windows-9.22.1-I602.exe";
+
+    if (!QFile::exists(tapInstallerPath))
+        QFile::copy(":/bin/tap-windows-9.22.1-I602.exe", tapInstallerPath);
+
+    QProcess::startDetached(tapInstallerPath);
 }
 

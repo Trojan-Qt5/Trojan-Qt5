@@ -69,7 +69,7 @@ void StatusNotifier::initActions()
     ModeMenu->addAction(disableModeAction);
     ModeMenu->addAction(pacModeAction);
     ModeMenu->addAction(globalModeAction);
-    //ModeMenu->addAction(advanceModeAction);
+    ModeMenu->addAction(advanceModeAction);
     if (helper->getSystemProxySettings() == "pac")
         pacModeAction->setChecked(true);
     else if (helper->getSystemProxySettings() == "global")
@@ -127,8 +127,12 @@ void StatusNotifier::initActions()
     serverLoadBalance = new QAction(tr("Server Load Balance"));
     serverLoadBalance->setCheckable(true);
 
+    serverSpeedPlot = new QAction(tr("Server Speed Plot"));
     copyTerminalProxyCommand = new QAction(tr("Copy terminal proxy command"));
     setProxyToTelegram = new QAction(tr("Set Proxy to Telegram"));
+#if defined (Q_OS_WIN)
+    installTapDriver = new QAction(tr("Instal TAP Driver"));
+#endif
 
     //setup systray Menu
     systrayMenu.addAction(trojanQt5Action);
@@ -141,8 +145,12 @@ void StatusNotifier::initActions()
     systrayMenu.addMenu(subscribeMenu);
     systrayMenu.addAction(serverLoadBalance);
     systrayMenu.addSeparator();
+    systrayMenu.addAction(serverSpeedPlot);
     systrayMenu.addAction(copyTerminalProxyCommand);
     systrayMenu.addAction(setProxyToTelegram);
+#if defined (Q_OS_WIN)
+    systrayMenu.addAction(installTapDriver);
+#endif
     systrayMenu.addSeparator();
 
     connect(toggleTrojanAction, &QAction::triggered, this, &StatusNotifier::onToggleConnection);
@@ -169,6 +177,7 @@ void StatusNotifier::initConnections()
     connect(subscribeSettings, &QAction::triggered, this, [this]() { onTrojanSubscribeSettings(); });
     connect(updateSubscribe, &QAction::triggered, sbMgr, [=]() { sbMgr->updateAllSubscribes(true); });
     connect(updateSubscribeBypass, &QAction::triggered, sbMgr, [=]() { sbMgr->updateAllSubscribes(false); });
+    connect(serverSpeedPlot, &QAction::triggered, this, [this]() { showServerSpeedPlot(); });
     connect(copyTerminalProxyCommand, &QAction::triggered, this, [this]() { onCopyTerminalProxy(); });
     connect(setProxyToTelegram, &QAction::triggered, this, [this]() { onSetProxyToTelegram(); });
 }
@@ -197,9 +206,15 @@ void StatusNotifier::updateServersMenu()
     for (int i=0; i<serverList.size(); i++) {
         QAction *action = new QAction(serverList[i].name, ServerGroup);
         action->setCheckable(false);
-        action->setIcon(QIcon(":/icons/icons/trojan_off.png"));
-        if (serverList[i].equals(actived))
-            action->setIcon(QIcon(":/icons/icons/trojan_on.png"));
+        if (serverList[i].type == "ssr") {
+            action->setIcon(QIcon(":/icons/icons/ssr_off.png"));
+            if (serverList[i].equals(actived))
+                action->setIcon(QIcon(":/icons/icons/ssr_on.png"));
+        } else if (serverList[i].type == "trojan") {
+            action->setIcon(QIcon(":/icons/icons/trojan_off.png"));
+            if (serverList[i].equals(actived))
+                action->setIcon(QIcon(":/icons/icons/trojan_on.png"));
+        }
         serverMenu->addAction(action);
     }
 }
@@ -313,6 +328,7 @@ void StatusNotifier::changeIcon(bool started)
 
         bool enabled = helper->getSystemProxySettings() != "direct";
         bool global = helper->getSystemProxySettings() == "global";
+        bool advance = helper->getSystemProxySettings() == "advance";
         bool random = helper->isEnableServerLoadBalance();
         QString mode = helper->getSystemProxySettings();
         QImage image(QString(":/icons/icons/trojan-qt5_%1.png").arg(mode));
@@ -325,6 +341,10 @@ void StatusNotifier::changeIcon(bool started)
         else if (!global) {
             mul_b = 0.4;
             mul_g = 0.65;
+        }
+        if (advance) {
+            mul_b = 0.2;
+            mul_g = 0.3;
         }
         if (!random) {
             mul_r = 0.4;
@@ -351,6 +371,14 @@ void StatusNotifier::changeIcon(bool started)
         toggleTrojanAction->setText(tr("Turn On Trojan"));
         systray.setIcon(QIcon(":/icons/icons/trojan-qt5_off.png"));
     }
+}
+
+void StatusNotifier::showServerSpeedPlot()
+{
+    SpeedPlot *sp = new SpeedPlot();
+    sp->show();
+    sp->raise();
+    sp->setFocus();
 }
 
 void StatusNotifier::onWindowVisibleChanged(bool visible)
