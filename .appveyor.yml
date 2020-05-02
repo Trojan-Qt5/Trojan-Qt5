@@ -49,6 +49,9 @@ build_script:
   - cd ..
   - cd ..
 
+on_finish:
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+
 artifacts:
 - path: 'build\release\Trojan-Qt5-Windows.*'
   name: Trojan-Qt5

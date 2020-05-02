@@ -838,8 +838,8 @@ void ConfigHelper::readGeneralSettings()
     enableHttpMode = settings->value("EnableHttpMode", QVariant(true)).toBool();
     shareOverLan = settings->value("ShareOverLan", QVariant(false)).toBool();
     enableIpv6Support = settings->value("EnableIpv6Support", QVariant(false)).toBool();
-    socks5Port = settings->value("Socks5LocalPort", QVariant(1080)).toInt();
-    httpPort = settings->value("HttpLocalPort", QVariant(1081)).toInt();
+    socks5Port = settings->value("Socks5LocalPort", QVariant(10086)).toInt();
+    httpPort = settings->value("HttpLocalPort", QVariant(10087)).toInt();
     pacPort = settings->value("PACLocalPort", QVariant(8070)).toInt();
     haproxyStatusPort = settings->value("HaproxyStatusPort", QVariant(2080)).toInt();
     haproxyPort = settings->value("HaproxyPort", QVariant(7777)).toInt();
