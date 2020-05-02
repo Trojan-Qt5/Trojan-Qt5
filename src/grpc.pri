@@ -49,7 +49,7 @@ unix:!mac {
 grpc_decl.name = grpc headers
 grpc_decl.input = PROTOS
 grpc_decl.output = ${QMAKE_FILE_IN_PATH}/${QMAKE_FILE_BASE}.grpc.pb.h
-grpc_decl.depend_command = $$PWD/protobuf_deps ${QMAKE_FILE_IN_PATH} ${QMAKE_FILE_NAME}
+grpc_decl.depend_command = $$PWD/protobuf_deps.sh ${QMAKE_FILE_IN_PATH} ${QMAKE_FILE_NAME}
 #grpc_decl.dependency_type = TYPE_C
 grpc_decl.commands = $${PROTOC} --grpc_out=${QMAKE_FILE_IN_PATH} --proto_path=${QMAKE_FILE_IN_PATH} --plugin=protoc-gen-grpc=$${PROTOC_GRPC} ${QMAKE_FILE_NAME}
 grpc_decl.variable_out = HEADERS
