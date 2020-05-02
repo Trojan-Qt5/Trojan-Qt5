@@ -38,7 +38,7 @@ void PACServer::listen()
 QString PACServer::loadPACFile()
 {
 #if defined (Q_OS_WIN)
-    QFile file(QCoreApplication::applicationDirPath() + "/pac/proxy.pac)";
+    QFile file(QCoreApplication::applicationDirPath() + "/pac/proxy.pac");
 #else
     QFile file(QDir::homePath() + "/.config/trojan-qt5/pac/proxy.pac");
 #endif
