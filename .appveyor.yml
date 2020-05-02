@@ -5,7 +5,8 @@ install:
   - set _TROJAN_QT5_BUILD_INFO_="Trojan-Qt5 build from AppVeyor"
   - set QTDIR=C:\Qt\5.14.2\msvc2017\bin
   - set PYDIR=C:\Python36
-  - set GODIR=C:\go114-x86
+  - set GODIR=C:\go114-x86\bin
+  - set GOROOT=C:\go114-x86
   - set MINGWDIR=C:\MinGW\bin
   - git clone https://github.com/TheWanderingCoel/Trojan-Qt5-Libraries.git C:\TQLibraries
   - curl -LO https://slproweb.com/download/Win32OpenSSL-1_1_1g.exe
@@ -16,7 +17,6 @@ install:
   - msbuild YAML_CPP.sln /p:Configuration=Release /p:Platform="Win32"
   - cd ..\..
   - cd 3rd\trojan-qt5-libs
-  - set CGO_ENABLED=0
   - set GOARCH=386
   - go build -buildmode=c-shared -o trojan-qt5-libs.dll main.go
   - dumpbin /exports trojan-qt5-libs.dll > exports.txt

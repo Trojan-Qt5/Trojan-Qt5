@@ -4,7 +4,7 @@ go 1.14
 
 require (
 	github.com/TheWanderingCoel/go-shadowsocks2 v0.1.1-0.20200501024944-0f0b7406c57c
-	github.com/eycorsican/go-tun2socks v1.15.0
+	github.com/TheWanderingCoel/go-tun2socks v1.15.1-0.20200502030227-ce1cc7554f03
 	github.com/p4gefau1t/trojan-go v0.4.3-0.20200501092403-20ef0b842dd6
 	github.com/songgao/water v0.0.0-20200317203138-2b4b6d7c09d8 // indirect
 	github.com/valyala/tcplisten v0.0.0-20161114210144-ceec8f93295a // indirect

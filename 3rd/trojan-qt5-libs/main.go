@@ -11,11 +11,11 @@ import (
 	"strings"
 	"time"
 
-	//"github.com/eycorsican/go-tun2socks/common/log"
-	_ "github.com/eycorsican/go-tun2socks/common/log/simple"
-	"github.com/eycorsican/go-tun2socks/core"
-	"github.com/eycorsican/go-tun2socks/proxy/socks"
-	"github.com/eycorsican/go-tun2socks/tun"
+	//"github.com/TheWanderingCoel/go-tun2socks/common/log"
+	_ "github.com/TheWanderingCoel/go-tun2socks/common/log/simple"
+	"github.com/TheWanderingCoel/go-tun2socks/core"
+	"github.com/TheWanderingCoel/go-tun2socks/proxy/socks"
+	"github.com/TheWanderingCoel/go-tun2socks/tun"
 
 	"github.com/p4gefau1t/trojan-go/common"
 	"github.com/p4gefau1t/trojan-go/conf"

@@ -44,6 +44,9 @@ github.com/Shopify/sarama v1.19.0/go.mod h1:FVkBWblsNy7DGZRfXLU0O9RCGt5g3g3yEuWX
 github.com/Shopify/toxiproxy v2.1.4+incompatible/go.mod h1:OXgGpZ6Cli1/URJOF1DMxUHB2q5Ap20/P/eIdh4G0pI=
 github.com/TheWanderingCoel/go-shadowsocks2 v0.1.1-0.20200501024944-0f0b7406c57c h1:VO44/IcD/FbvUvH991wXHhtdhB260F6GaFknTF8Naww=
 github.com/TheWanderingCoel/go-shadowsocks2 v0.1.1-0.20200501024944-0f0b7406c57c/go.mod h1:xiRP5EP5GmB8ULYdOBX31T7w1Kal+hPja3JTwnrP4KA=
+github.com/TheWanderingCoel/go-tun2socks v1.15.0/go.mod h1:CeNLI/tY13Zc7UeR6SxeWK1UbBgxkT7usUezqZtSo6Y=
+github.com/TheWanderingCoel/go-tun2socks v1.15.1-0.20200502030227-ce1cc7554f03 h1:2wDGddzcgxt+cvZcZTmZPrBeLb/gCZqOwREDstKNqV0=
+github.com/TheWanderingCoel/go-tun2socks v1.15.1-0.20200502030227-ce1cc7554f03/go.mod h1:CeNLI/tY13Zc7UeR6SxeWK1UbBgxkT7usUezqZtSo6Y=
 github.com/aead/chacha20 v0.0.0-20180709150244-8b13a72661da h1:KjTM2ks9d14ZYCvmHS9iAKVt9AyzRSqNU1qabPih5BY=
 github.com/aead/chacha20 v0.0.0-20180709150244-8b13a72661da/go.mod h1:eHEWzANqSiWQsof+nXEI9bUVUyV6F53Fp89EuCh2EAA=
 github.com/akamai/AkamaiOPEN-edgegrid-golang v0.9.8/go.mod h1:aVvklgKsPENRkl29bNwrHISa1F+YLGTHArMxZMBqWM8=
