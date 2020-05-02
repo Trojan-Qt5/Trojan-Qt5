@@ -1589,15 +1589,15 @@
 <context>
     <name>StatusNotifier</name>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="36"/>
-        <location filename="../../src/statusnotifier.cpp" line="386"/>
+        <location filename="../../src/statusnotifier.cpp" line="38"/>
+        <location filename="../../src/statusnotifier.cpp" line="388"/>
         <location filename="../../src/statusnotifier.mm" line="34"/>
         <location filename="../../src/statusnotifier.mm" line="372"/>
         <source>Minimise</source>
         <translation>最小化</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="41"/>
+        <location filename="../../src/statusnotifier.cpp" line="43"/>
         <location filename="../../src/statusnotifier.mm" line="39"/>
         <source>Quit</source>
         <translation>結束</translation>
@@ -1607,208 +1607,208 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="52"/>
-        <location filename="../../src/statusnotifier.cpp" line="370"/>
+        <location filename="../../src/statusnotifier.cpp" line="54"/>
+        <location filename="../../src/statusnotifier.cpp" line="372"/>
         <location filename="../../src/statusnotifier.mm" line="54"/>
         <location filename="../../src/statusnotifier.mm" line="356"/>
         <source>Trojan: Off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="54"/>
-        <location filename="../../src/statusnotifier.cpp" line="371"/>
+        <location filename="../../src/statusnotifier.cpp" line="56"/>
+        <location filename="../../src/statusnotifier.cpp" line="373"/>
         <location filename="../../src/statusnotifier.mm" line="56"/>
         <location filename="../../src/statusnotifier.mm" line="357"/>
         <source>Turn On Trojan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="58"/>
+        <location filename="../../src/statusnotifier.cpp" line="60"/>
         <location filename="../../src/statusnotifier.mm" line="60"/>
         <source>Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="61"/>
+        <location filename="../../src/statusnotifier.cpp" line="63"/>
         <location filename="../../src/statusnotifier.mm" line="63"/>
         <source>Disable system proxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="62"/>
-        <location filename="../../src/statusnotifier.cpp" line="83"/>
+        <location filename="../../src/statusnotifier.cpp" line="64"/>
+        <location filename="../../src/statusnotifier.cpp" line="85"/>
         <location filename="../../src/statusnotifier.mm" line="64"/>
         <location filename="../../src/statusnotifier.mm" line="85"/>
         <source>PAC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="63"/>
+        <location filename="../../src/statusnotifier.cpp" line="65"/>
         <location filename="../../src/statusnotifier.mm" line="65"/>
         <source>Global</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="64"/>
+        <location filename="../../src/statusnotifier.cpp" line="66"/>
         <location filename="../../src/statusnotifier.mm" line="66"/>
         <source>Advance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="84"/>
+        <location filename="../../src/statusnotifier.cpp" line="86"/>
         <location filename="../../src/statusnotifier.mm" line="86"/>
         <source>Update local PAC from Lan IP list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="85"/>
+        <location filename="../../src/statusnotifier.cpp" line="87"/>
         <location filename="../../src/statusnotifier.mm" line="87"/>
         <source>Update local PAC from Chn White list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="87"/>
+        <location filename="../../src/statusnotifier.cpp" line="89"/>
         <location filename="../../src/statusnotifier.mm" line="89"/>
         <source>Update local PAC from Chn IP list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="88"/>
+        <location filename="../../src/statusnotifier.cpp" line="90"/>
         <location filename="../../src/statusnotifier.mm" line="90"/>
         <source>Update local PAC from GFWList</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="89"/>
+        <location filename="../../src/statusnotifier.cpp" line="91"/>
         <location filename="../../src/statusnotifier.mm" line="91"/>
         <source>Update local PAC from Chn Only list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="90"/>
+        <location filename="../../src/statusnotifier.cpp" line="92"/>
         <location filename="../../src/statusnotifier.mm" line="92"/>
         <source>Copy PAC URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="91"/>
+        <location filename="../../src/statusnotifier.cpp" line="93"/>
         <location filename="../../src/statusnotifier.mm" line="93"/>
         <source>Edit local PAC file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="92"/>
+        <location filename="../../src/statusnotifier.cpp" line="94"/>
         <location filename="../../src/statusnotifier.mm" line="94"/>
         <source>Edit user rule for GFWList</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="134"/>
+        <location filename="../../src/statusnotifier.cpp" line="136"/>
         <source>Instal TAP Driver</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="255"/>
-        <location filename="../../src/statusnotifier.cpp" line="327"/>
+        <location filename="../../src/statusnotifier.cpp" line="257"/>
+        <location filename="../../src/statusnotifier.cpp" line="329"/>
         <location filename="../../src/statusnotifier.mm" line="251"/>
         <location filename="../../src/statusnotifier.mm" line="313"/>
         <source>Turn Off Trojan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="326"/>
+        <location filename="../../src/statusnotifier.cpp" line="328"/>
         <location filename="../../src/statusnotifier.mm" line="312"/>
         <source>Trojan: On</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="119"/>
+        <location filename="../../src/statusnotifier.cpp" line="121"/>
         <location filename="../../src/statusnotifier.mm" line="121"/>
         <source>Servers Subscribe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="36"/>
-        <location filename="../../src/statusnotifier.cpp" line="386"/>
+        <location filename="../../src/statusnotifier.cpp" line="38"/>
+        <location filename="../../src/statusnotifier.cpp" line="388"/>
         <location filename="../../src/statusnotifier.mm" line="34"/>
         <location filename="../../src/statusnotifier.mm" line="372"/>
         <source>Restore</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="120"/>
+        <location filename="../../src/statusnotifier.cpp" line="122"/>
         <location filename="../../src/statusnotifier.mm" line="122"/>
         <source>Subscribe setting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="121"/>
+        <location filename="../../src/statusnotifier.cpp" line="123"/>
         <location filename="../../src/statusnotifier.mm" line="123"/>
         <source>Update subscribe Trojan node</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="122"/>
+        <location filename="../../src/statusnotifier.cpp" line="124"/>
         <location filename="../../src/statusnotifier.mm" line="124"/>
         <source>Update subscribe Trojan node(bypass proxy)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="131"/>
+        <location filename="../../src/statusnotifier.cpp" line="133"/>
         <location filename="../../src/statusnotifier.mm" line="133"/>
         <source>Copy terminal proxy command</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="132"/>
+        <location filename="../../src/statusnotifier.cpp" line="134"/>
         <location filename="../../src/statusnotifier.mm" line="134"/>
         <source>Set Proxy to Telegram</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="86"/>
+        <location filename="../../src/statusnotifier.cpp" line="88"/>
         <location filename="../../src/statusnotifier.mm" line="88"/>
         <source>Update local from Chn Advance White list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="107"/>
+        <location filename="../../src/statusnotifier.cpp" line="109"/>
         <location filename="../../src/statusnotifier.mm" line="109"/>
         <source>Servers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="110"/>
+        <location filename="../../src/statusnotifier.cpp" line="112"/>
         <location filename="../../src/statusnotifier.mm" line="112"/>
         <source>Add Server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="111"/>
+        <location filename="../../src/statusnotifier.cpp" line="113"/>
         <location filename="../../src/statusnotifier.mm" line="113"/>
         <source>Add Manually</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="112"/>
+        <location filename="../../src/statusnotifier.cpp" line="114"/>
         <location filename="../../src/statusnotifier.mm" line="114"/>
         <source>Scan QRCode on Screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="113"/>
+        <location filename="../../src/statusnotifier.cpp" line="115"/>
         <location filename="../../src/statusnotifier.mm" line="115"/>
         <source>Add From Pasteboard Uri</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="127"/>
+        <location filename="../../src/statusnotifier.cpp" line="129"/>
         <location filename="../../src/statusnotifier.mm" line="129"/>
         <source>Server Load Balance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="130"/>
+        <location filename="../../src/statusnotifier.cpp" line="132"/>
         <location filename="../../src/statusnotifier.mm" line="132"/>
         <source>Server Speed Plot</source>
         <translation type="unfinished"></translation>

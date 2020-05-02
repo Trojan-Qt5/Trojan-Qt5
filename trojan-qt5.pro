@@ -95,8 +95,8 @@ win32 {
     LIBS += -LC:\TQLibraries\OpenSSL-Win32\lib -llibcrypto -llibssl
     LIBS += -LC:\TQLibraries\QREncode\lib -lqrcodelib
     LIBS += -LC:\TQLibraries\WinSparkle\lib
-    LIBS += -LC:\TQLibraries\Libsodium\lib -lsodium
-    LIBS += -LC:\TQLibraries\Libuv\lib -luv
+    LIBS += -LC:\TQLibraries\Libsodium\lib -llibsodium
+    LIBS += -LC:\TQLibraries\Libuv\lib -llibuv
     LIBS += -LC:\TQLibraries\Grpc\lib
     LIBS += -lwsock32 -lws2_32
     LIBS += -lCrypt32

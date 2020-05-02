@@ -1161,12 +1161,12 @@
     <message>
         <location filename="../../ui/settingsdialog.ui" line="14"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="54"/>
         <source>ToolBar Style</source>
-        <translation type="unfinished"></translation>
+        <translation>工具栏样式</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="68"/>
@@ -1196,7 +1196,7 @@
     <message>
         <location filename="../../ui/settingsdialog.ui" line="175"/>
         <source>Allow Only one instance running</source>
-        <translation type="unfinished"></translation>
+        <translation>只允许一个实例运行</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="182"/>
@@ -1214,17 +1214,17 @@
         <location filename="../../ui/settingsdialog.ui" line="666"/>
         <location filename="../../ui/settingsdialog.ui" line="680"/>
         <source>Enable</source>
-        <translation type="unfinished">开启</translation>
+        <translation>开启</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="189"/>
         <source>Check Port Availability</source>
-        <translation type="unfinished"></translation>
+        <translation>检查端口可用性</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="203"/>
         <source>Enable Notification</source>
-        <translation type="unfinished">开启通知</translation>
+        <translation>开启通知</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="217"/>
@@ -1234,17 +1234,17 @@
     <message>
         <location filename="../../ui/settingsdialog.ui" line="245"/>
         <source>Hide windows on startup</source>
-        <translation type="unfinished"></translation>
+        <translation>开启时隐藏窗口</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="259"/>
         <source>Use native menubar</source>
-        <translation type="unfinished"></translation>
+        <translation>使用原生菜单栏</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="96"/>
         <source>Log Level</source>
-        <translation type="unfinished">日志级别</translation>
+        <translation>日志级别</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="110"/>
@@ -1279,7 +1279,7 @@
     <message>
         <location filename="../../ui/settingsdialog.ui" line="143"/>
         <source>Haproxy Mode</source>
-        <translation type="unfinished">Haproxy模式</translation>
+        <translation>Haproxy模式</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="157"/>
@@ -1299,92 +1299,92 @@
     <message>
         <location filename="../../ui/settingsdialog.ui" line="273"/>
         <source>Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>主题</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="285"/>
         <source>Inbound Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>入站设置</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="303"/>
         <source>Enable Http Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>开启Http代理</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="317"/>
         <source>Enable IPV6 Support</source>
-        <translation type="unfinished">开启IPV6支持</translation>
+        <translation>开启IPV6支持</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="331"/>
         <source>Share Over LAN</source>
-        <translation type="unfinished">局域网共享</translation>
+        <translation>局域网共享</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="345"/>
         <source>Sock5 Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Socks5端口</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="355"/>
         <source>Http Port</source>
-        <translation type="unfinished">Http端口</translation>
+        <translation>Http端口</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="365"/>
         <source>PAC Port</source>
-        <translation type="unfinished">PAC端口</translation>
+        <translation>PAC端口</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="375"/>
         <source>Haproxy Port</source>
-        <translation type="unfinished">Haproxy端口</translation>
+        <translation>Haproxy端口</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="385"/>
         <source>Haproxy Status Port</source>
-        <translation type="unfinished">Haproxy状态端口</translation>
+        <translation>Haproxy状态端口</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="397"/>
         <source>Outbond Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>出站设置</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="415"/>
         <source>Forward Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>前置代理</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="422"/>
         <source>IP Address</source>
-        <translation type="unfinished"></translation>
+        <translation>IP地址</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="429"/>
         <source>Port</source>
-        <translation type="unfinished"></translation>
+        <translation>端口</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="436"/>
         <source>Authenticaton</source>
-        <translation type="unfinished"></translation>
+        <translation>身份验证</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="443"/>
         <source>Username</source>
-        <translation type="unfinished"></translation>
+        <translation>用户名</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="453"/>
         <source>Password</source>
-        <translation type="unfinished">密钥</translation>
+        <translation>密码</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="463"/>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>类型</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="484"/>
@@ -1399,12 +1399,12 @@
     <message>
         <location filename="../../ui/settingsdialog.ui" line="512"/>
         <source>Subscribe Settings</source>
-        <translation type="unfinished">订阅设置</translation>
+        <translation>订阅设置</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="530"/>
         <source>GFWList Update Url</source>
-        <translation type="unfinished"></translation>
+        <translation>GFWList更新Url</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="544"/>
@@ -1424,37 +1424,37 @@
     <message>
         <location filename="../../ui/settingsdialog.ui" line="562"/>
         <source>Update User Agent</source>
-        <translation type="unfinished"></translation>
+        <translation>更新订阅用户代理</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="572"/>
         <source>Filter Keyword (,)</source>
-        <translation type="unfinished"></translation>
+        <translation>过滤关键词(,)</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="582"/>
         <source>Maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>最大订阅数</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="594"/>
         <source>Trojan Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Trojan设置</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="673"/>
         <source>Enable API</source>
-        <translation type="unfinished"></translation>
+        <translation>开启API</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="687"/>
         <source>API Port</source>
-        <translation type="unfinished"></translation>
+        <translation>API端口</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="697"/>
         <source>Cert</source>
-        <translation type="unfinished"></translation>
+        <translation>证书路径</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="707"/>
@@ -1469,12 +1469,12 @@
     <message>
         <location filename="../../ui/settingsdialog.ui" line="659"/>
         <source>Enable Router</source>
-        <translation type="unfinished"></translation>
+        <translation>开启路由规则</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="612"/>
         <source>TLS Fingerprint</source>
-        <translation type="unfinished"></translation>
+        <translation>TLS指纹</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="626"/>
@@ -1598,7 +1598,7 @@
     <message>
         <location filename="../../ui/snelleditdialog.ui" line="92"/>
         <source>Obfuscation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">混淆</translation>
     </message>
     <message>
         <location filename="../../ui/snelleditdialog.ui" line="106"/>
@@ -1613,7 +1613,7 @@
     <message>
         <location filename="../../ui/snelleditdialog.ui" line="119"/>
         <source>Obfuscation Param</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">混淆参数</translation>
     </message>
     <message>
         <location filename="../../ui/snelleditdialog.ui" line="129"/>
@@ -1665,38 +1665,38 @@
 <context>
     <name>StatusNotifier</name>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="36"/>
-        <location filename="../../src/statusnotifier.cpp" line="386"/>
+        <location filename="../../src/statusnotifier.cpp" line="38"/>
+        <location filename="../../src/statusnotifier.cpp" line="388"/>
         <location filename="../../src/statusnotifier.mm" line="34"/>
         <location filename="../../src/statusnotifier.mm" line="372"/>
         <source>Minimise</source>
         <translation>最小化</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="41"/>
+        <location filename="../../src/statusnotifier.cpp" line="43"/>
         <location filename="../../src/statusnotifier.mm" line="39"/>
         <source>Quit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="36"/>
-        <location filename="../../src/statusnotifier.cpp" line="386"/>
+        <location filename="../../src/statusnotifier.cpp" line="38"/>
+        <location filename="../../src/statusnotifier.cpp" line="388"/>
         <location filename="../../src/statusnotifier.mm" line="34"/>
         <location filename="../../src/statusnotifier.mm" line="372"/>
         <source>Restore</source>
         <translation>恢复</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="52"/>
-        <location filename="../../src/statusnotifier.cpp" line="370"/>
+        <location filename="../../src/statusnotifier.cpp" line="54"/>
+        <location filename="../../src/statusnotifier.cpp" line="372"/>
         <location filename="../../src/statusnotifier.mm" line="54"/>
         <location filename="../../src/statusnotifier.mm" line="356"/>
         <source>Trojan: Off</source>
         <translation>Trojan: Off</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="54"/>
-        <location filename="../../src/statusnotifier.cpp" line="371"/>
+        <location filename="../../src/statusnotifier.cpp" line="56"/>
+        <location filename="../../src/statusnotifier.cpp" line="373"/>
         <location filename="../../src/statusnotifier.mm" line="56"/>
         <location filename="../../src/statusnotifier.mm" line="357"/>
         <source>Turn On Trojan</source>
@@ -1715,184 +1715,184 @@
         <translation type="vanished">手动模式</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="58"/>
+        <location filename="../../src/statusnotifier.cpp" line="60"/>
         <location filename="../../src/statusnotifier.mm" line="60"/>
         <source>Mode</source>
         <translation>系统代理模式</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="61"/>
+        <location filename="../../src/statusnotifier.cpp" line="63"/>
         <location filename="../../src/statusnotifier.mm" line="63"/>
         <source>Disable system proxy</source>
         <translation>直连模式</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="62"/>
-        <location filename="../../src/statusnotifier.cpp" line="83"/>
+        <location filename="../../src/statusnotifier.cpp" line="64"/>
+        <location filename="../../src/statusnotifier.cpp" line="85"/>
         <location filename="../../src/statusnotifier.mm" line="64"/>
         <location filename="../../src/statusnotifier.mm" line="85"/>
         <source>PAC</source>
         <translation>PAC 模式</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="63"/>
+        <location filename="../../src/statusnotifier.cpp" line="65"/>
         <location filename="../../src/statusnotifier.mm" line="65"/>
         <source>Global</source>
         <translation>全局模式</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="64"/>
+        <location filename="../../src/statusnotifier.cpp" line="66"/>
         <location filename="../../src/statusnotifier.mm" line="66"/>
         <source>Advance</source>
         <translation>增强模式</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="84"/>
+        <location filename="../../src/statusnotifier.cpp" line="86"/>
         <location filename="../../src/statusnotifier.mm" line="86"/>
         <source>Update local PAC from Lan IP list</source>
         <translation>更新PAC为绕过局域网IP</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="85"/>
+        <location filename="../../src/statusnotifier.cpp" line="87"/>
         <location filename="../../src/statusnotifier.mm" line="87"/>
         <source>Update local PAC from Chn White list</source>
         <translation>更新PAC为绕过大陆常见域名列表</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="87"/>
+        <location filename="../../src/statusnotifier.cpp" line="89"/>
         <location filename="../../src/statusnotifier.mm" line="89"/>
         <source>Update local PAC from Chn IP list</source>
         <translation>更新PAC为绕过大陆IP(慎用)</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="88"/>
+        <location filename="../../src/statusnotifier.cpp" line="90"/>
         <location filename="../../src/statusnotifier.mm" line="90"/>
         <source>Update local PAC from GFWList</source>
         <translation>更新PAC为GFWList</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="89"/>
+        <location filename="../../src/statusnotifier.cpp" line="91"/>
         <location filename="../../src/statusnotifier.mm" line="91"/>
         <source>Update local PAC from Chn Only list</source>
         <translation>更新PAC为仅通过大陆常见域名（国外访问大陆）</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="90"/>
+        <location filename="../../src/statusnotifier.cpp" line="92"/>
         <location filename="../../src/statusnotifier.mm" line="92"/>
         <source>Copy PAC URL</source>
         <translation>复制 PAC URL</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="91"/>
+        <location filename="../../src/statusnotifier.cpp" line="93"/>
         <location filename="../../src/statusnotifier.mm" line="93"/>
         <source>Edit local PAC file</source>
         <translation>编辑本地 PAC 文件</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="92"/>
+        <location filename="../../src/statusnotifier.cpp" line="94"/>
         <location filename="../../src/statusnotifier.mm" line="94"/>
         <source>Edit user rule for GFWList</source>
         <translation>编辑 GFWList 的用户规则</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="134"/>
+        <location filename="../../src/statusnotifier.cpp" line="136"/>
         <source>Instal TAP Driver</source>
         <translation>安装TAP驱动</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="255"/>
-        <location filename="../../src/statusnotifier.cpp" line="327"/>
+        <location filename="../../src/statusnotifier.cpp" line="257"/>
+        <location filename="../../src/statusnotifier.cpp" line="329"/>
         <location filename="../../src/statusnotifier.mm" line="251"/>
         <location filename="../../src/statusnotifier.mm" line="313"/>
         <source>Turn Off Trojan</source>
         <translation>关闭 Trojan</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="326"/>
+        <location filename="../../src/statusnotifier.cpp" line="328"/>
         <location filename="../../src/statusnotifier.mm" line="312"/>
         <source>Trojan: On</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="119"/>
+        <location filename="../../src/statusnotifier.cpp" line="121"/>
         <location filename="../../src/statusnotifier.mm" line="121"/>
         <source>Servers Subscribe</source>
         <translation>服务器订阅</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="120"/>
+        <location filename="../../src/statusnotifier.cpp" line="122"/>
         <location filename="../../src/statusnotifier.mm" line="122"/>
         <source>Subscribe setting</source>
         <translation>Trojan服务器订阅设置</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="121"/>
+        <location filename="../../src/statusnotifier.cpp" line="123"/>
         <location filename="../../src/statusnotifier.mm" line="123"/>
         <source>Update subscribe Trojan node</source>
         <translation>更新Trojan服务器订阅</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="122"/>
+        <location filename="../../src/statusnotifier.cpp" line="124"/>
         <location filename="../../src/statusnotifier.mm" line="124"/>
         <source>Update subscribe Trojan node(bypass proxy)</source>
         <translation>更新Trojan服务器订阅（不通过代理）</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="131"/>
+        <location filename="../../src/statusnotifier.cpp" line="133"/>
         <location filename="../../src/statusnotifier.mm" line="133"/>
         <source>Copy terminal proxy command</source>
         <translation>复制终端代理命令</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="132"/>
+        <location filename="../../src/statusnotifier.cpp" line="134"/>
         <location filename="../../src/statusnotifier.mm" line="134"/>
         <source>Set Proxy to Telegram</source>
         <translation>设置代理到Telegram</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="86"/>
+        <location filename="../../src/statusnotifier.cpp" line="88"/>
         <location filename="../../src/statusnotifier.mm" line="88"/>
         <source>Update local from Chn Advance White list</source>
         <translation>更新PAC为绕过大陆增强域名列表</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="107"/>
+        <location filename="../../src/statusnotifier.cpp" line="109"/>
         <location filename="../../src/statusnotifier.mm" line="109"/>
         <source>Servers</source>
         <translation>服务器</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="110"/>
+        <location filename="../../src/statusnotifier.cpp" line="112"/>
         <location filename="../../src/statusnotifier.mm" line="112"/>
         <source>Add Server</source>
         <translation>添加服务器</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="111"/>
+        <location filename="../../src/statusnotifier.cpp" line="113"/>
         <location filename="../../src/statusnotifier.mm" line="113"/>
         <source>Add Manually</source>
         <translation>手动添加</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="112"/>
+        <location filename="../../src/statusnotifier.cpp" line="114"/>
         <location filename="../../src/statusnotifier.mm" line="114"/>
         <source>Scan QRCode on Screen</source>
         <translation>扫描屏幕上的二维码</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="113"/>
+        <location filename="../../src/statusnotifier.cpp" line="115"/>
         <location filename="../../src/statusnotifier.mm" line="115"/>
         <source>Add From Pasteboard Uri</source>
         <translation>从剪贴板导入服务器配置链接</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="127"/>
+        <location filename="../../src/statusnotifier.cpp" line="129"/>
         <location filename="../../src/statusnotifier.mm" line="129"/>
         <source>Server Load Balance</source>
         <translation>服务器负载均衡</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="130"/>
+        <location filename="../../src/statusnotifier.cpp" line="132"/>
         <location filename="../../src/statusnotifier.mm" line="132"/>
         <source>Server Speed Plot</source>
         <translation>服务器速度图标</translation>
@@ -2240,7 +2240,7 @@
     <message>
         <location filename="../../ui/vmesseditdialog.ui" line="181"/>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">类型</translation>
     </message>
     <message>
         <location filename="../../ui/vmesseditdialog.ui" line="188"/>
