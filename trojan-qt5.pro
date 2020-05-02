@@ -94,12 +94,12 @@ win32 {
     LIBS += -LC:\TQLibraries\ZBar\lib -llibzbar-0
     LIBS += -LC:\TQLibraries\OpenSSL-Win32\lib -llibcrypto -llibssl
     LIBS += -LC:\TQLibraries\QREncode\lib -lqrcodelib
-    LIBS += -LC:\TQLibraries\WinSparkle\lib
+    LIBS += -LC:\TQLibraries\WinSparkle\lib -lWinSparkle
     LIBS += -LC:\TQLibraries\Libsodium\lib -llibsodium
     LIBS += -LC:\TQLibraries\Libuv\lib -llibuv
-    LIBS += -LC:\TQLibraries\Grpc\lib
-    LIBS += -lwsock32 -lws2_32
-    LIBS += -lCrypt32
+    LIBS += -LC:\TQLibraries\Grpc\lib -lgrpc -lgrpc_unsecure -lgrpc++ -lgrpc++_unsecure -llibprotobuf
+    LIBS += -lwsock32 -lws2_32 -luserenv -liphlpapi
+    LIBS += -lCrypt32 -lkernel32 -lpsapi
     DEFINES += WIN32_LEAN_AND_MEAN
     LIBS += $$PWD\3rd\yaml-cpp\Release\yaml-cpp.lib
     LIBS += $$PWD\3rd\trojan-qt5-libs\trojan-qt5-libs.lib
