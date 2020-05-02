@@ -46,6 +46,9 @@ CONFIG += link_pkgconfig
 # Define App Version
 DEFINES += "APP_VERSION=\"\\\"1.0.0\\\"\""
 
+# QHttpServer
+DEFINES += QHTTPSERVER_EXPORT
+
 # Trojan
 #DEFINES += ENABLE_MYSQL
 DEFINES += TCP_FASTOPEN
