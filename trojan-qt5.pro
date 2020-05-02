@@ -35,7 +35,7 @@ CONFIG += c++17
 CONFIG += sdk_no_version_check
 CONFIG += link_pkgconfig
 # Sanitizer
-CONFIG += sanitizer sanitize_address
+#CONFIG += sanitizer sanitize_address
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -74,6 +74,7 @@ include($$PWD/src/shadowsocksr-uvw/Shadowsocksr-uvw.pri)
 include($$PWD/3rd/qhttpserver/qhttpserver.pri)
 
 win32 {
+    DEFINES += _WIN32_WINNT=0x600
     SOURCES += \
         src/sysproxy/windows.c \
         src/statusnotifier.cpp

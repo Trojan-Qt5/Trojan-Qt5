@@ -52,12 +52,13 @@ void TrojanGoAPI::run()
         Channel = grpc::CreateChannel(address.toStdString(), grpc::InsecureChannelCredentials());
         TrojanClientService service;
         Stub = service.NewStub(Channel);
-        GetSpeedResponse reply;
-        GetSpeedRequest request;
+        GetTrafficResponse reply;
+        GetTrafficRequest request;
+        User = new ::api::User;
         User->set_password(password.toUtf8().data());
         request.set_allocated_user(User);
         ClientContext context;
-        Status status = Stub->GetSpeed(&context, request, &reply);
+        Status status = Stub->GetTraffic(&context, request, &reply);
 
         if (!status.ok()) {
             Logger::error(QString("Trojan API Request failed: %1 (%2)").arg(status.error_code()).arg(QString::fromStdString(status.error_message())));

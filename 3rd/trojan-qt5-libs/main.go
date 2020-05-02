@@ -17,12 +17,14 @@ import (
 	"github.com/TheWanderingCoel/go-tun2socks/proxy/socks"
 	"github.com/TheWanderingCoel/go-tun2socks/tun"
 
+	_ "github.com/p4gefau1t/trojan-go/api"
 	"github.com/p4gefau1t/trojan-go/common"
 	"github.com/p4gefau1t/trojan-go/conf"
 	"github.com/p4gefau1t/trojan-go/log"
 	"github.com/p4gefau1t/trojan-go/proxy"
 	_ "github.com/p4gefau1t/trojan-go/proxy"
 	_ "github.com/p4gefau1t/trojan-go/proxy/client"
+	_ "github.com/p4gefau1t/trojan-go/stat/memory"
 
 	"github.com/TheWanderingCoel/go-shadowsocks2/cmd/shadowsocks"
 )

@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>bin/privoxy.exe</file>
+        <file>bin/tap-windows-9.22.1-I602.exe</file>
     </qresource>
 </RCC>

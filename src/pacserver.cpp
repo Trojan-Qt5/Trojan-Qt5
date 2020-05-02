@@ -39,6 +39,7 @@ QString PACServer::loadPACFile()
 #else
     QFile file(QDir::homePath() + "/.config/trojan-qt5/pac/proxy.pac");
 #endif
+    file.open(QIODevice::ReadOnly);
     QString data = file.readAll();
     file.close();
     return data;
