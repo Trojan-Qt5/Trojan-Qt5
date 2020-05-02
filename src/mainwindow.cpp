@@ -859,7 +859,7 @@ void MainWindow::initSparkle()
     win_sparkle_set_appcast_url("https://raw.githubusercontent.com/TheWanderingCoel/Trojan-Qt5/master/resources/Appcast_Windows.xml");
     win_sparkle_set_app_details(reinterpret_cast<const wchar_t *>(QCoreApplication::organizationName().utf16()),
                                 reinterpret_cast<const wchar_t *>(QCoreApplication::applicationName().utf16()),
-                                reinterpret_cast<const wchar_t *>(QStringLiteral(VERSION).utf16()));
+                                reinterpret_cast<const wchar_t *>(QStringLiteral(APP_VERSION).utf16()));
     win_sparkle_set_dsa_pub_pem(reinterpret_cast<const char *>(QResource(":/pem/dsa_pub.pem").data()));
     win_sparkle_init();
 #elif defined (Q_OS_MAC)

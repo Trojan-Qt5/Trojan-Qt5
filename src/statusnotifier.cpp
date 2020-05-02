@@ -4,6 +4,8 @@
 #include "systemproxyhelper.h"
 #include "subscribedialog.h"
 #include "subscribemanager.h"
+#include "speedplot.h"
+
 #include <QApplication>
 #include <QClipboard>
 #include <QColor>

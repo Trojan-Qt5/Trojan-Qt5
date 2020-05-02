@@ -1,6 +1,9 @@
 #include "trojangoapi.h"
 #include "logger.h"
 #include "confighelper.h"
+#if defined (Q_OS_WIN)
+#include <QCoreApplication>
+#endif
 
 using namespace api;
 using grpc::Channel;

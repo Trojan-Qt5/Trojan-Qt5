@@ -5,7 +5,7 @@ f = open("trojan-qt5-libs.h", "r")
 f2 = open("trojan-qt5-libs-new.h", "w")
 
 for line in f.readlines():
-    if "#line 1" in line or "_Complex" in line:
+    if "#line 1" in line or "_Complex" in line or "__SIZE_TYPE__" in line:
         pass
     else:
         f2.write(line)
