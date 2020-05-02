@@ -8,7 +8,7 @@ install:
   - set GODIR=C:\go114-x86\bin
   - set GOROOT=C:\go114-x86
   - set MINGWDIR=C:\MinGW\bin
-  - git clone https://github.com/TheWanderingCoel/Trojan-Qt5-Libraries.git C:\TQLibraries
+  - git clone https://github.com/Trojan-Qt5/Trojan-Qt5-Libraries.git C:\TQLibraries
   - cd C:\TQLibraries
   - 7z x Grpc.7z
   - cd C:\projects\trojan-qt5
@@ -36,11 +36,16 @@ build_script:
   - cd release
   - windeployqt trojan-qt5.exe
   - del *.o *.h *.cpp *.stash *.qrc *.obj Makefile
-  - curl -LO https://github.com/TheWanderingCoel/Trojan-Qt5-DLL/raw/master/libiconv-2.dll
-  - curl -LO https://github.com/TheWanderingCoel/Trojan-Qt5-DLL/raw/master/libzbar-0.dll
-  - curl -LO https://github.com/TheWanderingCoel/Trojan-Qt5-DLL/raw/master/libssl-1_1.dll
-  - curl -LO https://github.com/TheWanderingCoel/Trojan-Qt5-DLL/raw/master/libcrypto-1_1.dll
-  - curl -LO https://github.com/TheWanderingCoel/Trojan-Qt5-DLL/raw/master/WinSparkle.dll
+  - curl -LO https://github.com/Trojan-Qt5/Trojan-Qt5-DLL/raw/master/move.py
+  - python move.py
+  - curl -LO https://github.com/Trojan-Qt5/Trojan-Qt5-DLL/raw/master/libiconv-2.dll
+  - curl -LO https://github.com/Trojan-Qt5/Trojan-Qt5-DLL/raw/master/libzbar-0.dll
+  - curl -LO https://github.com/Trojan-Qt5/Trojan-Qt5-DLL/raw/master/libssl-1_1.dll
+  - curl -LO https://github.com/Trojan-Qt5/Trojan-Qt5-DLL/raw/master/libcrypto-1_1.dll
+  - curl -LO https://github.com/Trojan-Qt5/Trojan-Qt5-DLL/raw/master/WinSparkle.dll
+  - curl -LO https://github.com/Trojan-Qt5/Trojan-Qt5-DLL/raw/master/cares.dll
+  - curl -LO https://github.com/Trojan-Qt5/Trojan-Qt5-DLL/raw/master/libprotobuf.dll
+  - curl -LO https://github.com/Trojan-Qt5/Trojan-Qt5-DLL/raw/master/libgcc_s_dw2-1.dll
   - del /f /s /q vc_redist.x86.exe opengl32sw.dll d3dcompiler_47.dll libGLESV2.dll libEGL.dll Qt5Svg.dll imageformats\qgif.dll iconengines\qsvgicon.dll imageformats\qtga.dll imageformats\qtiff.dll imageformats\qwbmp.dll imageformats\qwebp.dll imageformats\qjpeg.dll imageformats\qsvg.dll iconengines bearer vc_redist.x86.exe
   - rmdir iconengines bearer
   - 7z a Trojan-Qt5-Windows.zip *
