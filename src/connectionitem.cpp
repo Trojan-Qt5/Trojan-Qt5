@@ -122,6 +122,10 @@ QString ConnectionItem::convertType(TQProfile profile)
         return QString("SSR / %1").arg(profile.obfs.toUpper());
     else if (profile.type == "trojan")
         return "TROJAN";
+    else if (profile.type == "snell")
+        return QString("SNELL / %1").arg(profile.obfs.toUpper());
+    else
+        return QString("UNKNOWN / ERROR");
 }
 
 QColor ConnectionItem::convertStatusToColor(const bool isRunning)

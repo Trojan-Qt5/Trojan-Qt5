@@ -16,7 +16,7 @@ install:
   - msbuild YAML_CPP.sln /p:Configuration=Release /p:Platform="Win32"
   - cd ..\..
   - cd 3rd\trojan-qt5-libs
-  - set CGO_ENABLED=1
+  - set CGO_ENABLED=0
   - set GOARCH=386
   - go build -buildmode=c-shared -o trojan-qt5-libs.dll main.go
   - dumpbin /exports trojan-qt5-libs.dll > exports.txt
