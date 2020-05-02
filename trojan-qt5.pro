@@ -86,19 +86,23 @@ win32 {
     INCLUDEPATH += C:\TQLibraries\WinSparkle\include
     INCLUDEPATH += C:\TQLibraries\Libsodium\include
     INCLUDEPATH += C:\TQLibraries\Libuv\include
+    INCLUDEPATH += C:\TQLibraries\Grpc\include
     LIBS += -LC:\TQLibraries\ZBar\lib -llibzbar-0
     LIBS += -LC:\TQLibraries\OpenSSL-Win32\lib -llibcrypto -llibssl
     LIBS += -LC:\TQLibraries\QREncode\lib -lqrcodelib
     LIBS += -LC:\TQLibraries\WinSparkle\lib
     LIBS += -LC:\TQLibraries\Libsodium\lib -lsodium
     LIBS += -LC:\TQLibraries\Libuv\lib -luv
+    LIBS += -LC:\TQLibraries\Grpc\lib
     LIBS += -lwsock32 -lws2_32
     LIBS += -lCrypt32
     DEFINES += WIN32_LEAN_AND_MEAN
     LIBS += $$PWD\3rd\yaml-cpp\Release\yaml-cpp.lib
+    LIBS += $$PWD\3rd\trojan-qt5-libs\trojan-qt5-libs.lib
     # Otherwise lupdate will not work
     TR_EXCLUDE += C:\TQLibraries\boost_1_72_0\*
 }
+
 mac {
     HEADERS += \
         src/LetsMove/PFMoveApplication.h
@@ -106,13 +110,11 @@ mac {
         src/statusnotifier.mm \
         src/LetsMove/PFMoveApplication.m
     PKG_CONFIG = /usr/local/bin/pkg-config
-    INCLUDEPATH += $$PWD/src/trojan/src
     INCLUDEPATH += /usr/local/opt/zlib/include
     INCLUDEPATH += /usr/local/opt/openssl@1.1/include
     LIBS += -L/usr/local/opt/zlib/lib -lz
     LIBS += -L/usr/local/opt/openssl@1.1/lib -lssl -lcrypto
     LIBS += -framework Security -framework Cocoa
-    LIBS += $$PWD/3rd/trojan-qt5-libs/trojan-qt5-libs.a
     # For Sparkle Usage
     SOURCES += \
         src/sparkle/AutoUpdater.cpp \
@@ -165,6 +167,7 @@ unix:!mac {
 unix {
     PKGCONFIG += zbar libqrencode libuv libsodium grpc grpc_unsecure grpc++ grpc++_unsecure protobuf
     LIBS += $$PWD/3rd/yaml-cpp/libyaml-cpp.a
+    LIBS += $$PWD/3rd/trojan-qt5-libs/trojan-qt5-libs.a
 }
 
 !isEmpty(target.path): INSTALLS += target

@@ -27,7 +27,7 @@ matrix:
 
 before_install:
   - if [ "$BADGE" = "linux" ]; then
-      sudo add-apt-repository ppa:webispy/grpc -y;
+      sudo add-apt-repository ppa:ymshenyu/grpc -y;
       sudo add-apt-repository ppa:savoury1/backports -y;
       sudo apt-get update;
     fi

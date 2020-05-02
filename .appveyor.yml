@@ -9,6 +9,9 @@ install:
   - set GOROOT=C:\go114-x86
   - set MINGWDIR=C:\MinGW\bin
   - git clone https://github.com/TheWanderingCoel/Trojan-Qt5-Libraries.git C:\TQLibraries
+  - cd C:\TQLibraries
+  - 7z x Grpc.7z
+  - cd C:\projects\trojan-qt5
   - curl -LO https://slproweb.com/download/Win32OpenSSL-1_1_1g.exe
   - powershell ".\\Win32OpenSSL-1_1_1g.exe /silent /sp- /suppressmsgboxes /DIR='C:\\TQLibraries\\OpenSSL-Win32'"
   - set PATH=%QTDIR%;%GODIR%;%PYDIR%;%MINGWDIR%;%PATH%;
@@ -19,12 +22,7 @@ install:
   - cd 3rd\trojan-qt5-libs
   - set GOARCH=386
   - go build -buildmode=c-shared -o trojan-qt5-libs.dll main.go
-  - dumpbin /exports trojan-qt5-libs.dll > exports.txt
-  - echo LIBRARY TROJAN-QT5-LIBS > trojan-qt5-libs.def
-  - echo EXPORTS >> trojan-qt5-libs.def
-  - for /f "skip=19 tokens=4" %A in (exports.txt) do echo %A >> trojan-qt5-libs.def
-  - lib /def:trojan-qt5-libs.def /out:trojan-qt5-libs.lib /machine:x86
-  - dir
+  - process.bat
   - cd ../..
 
 init:

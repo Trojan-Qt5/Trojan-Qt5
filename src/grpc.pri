@@ -31,6 +31,11 @@
 
 isEmpty(PROTOS):error("Define PROTOS before including grpc.pri")
 
+win32 {
+    isEmpty(PROTOC):PROTOC = C:\TQLibraris\Grpc\tools\protobuf\protoc.exe
+    isEmpty(PROTOC_GRPC):PROTOC_GRPC = C:\TQLibraris\Grpc\tools\grpc\grpc_cpp_plugin.exe
+}
+
 mac {
     isEmpty(PROTOC):PROTOC = /usr/local/bin/protoc
     isEmpty(PROTOC_GRPC):PROTOC_GRPC = /usr/local/bin/grpc_cpp_plugin
