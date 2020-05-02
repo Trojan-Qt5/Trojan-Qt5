@@ -97,7 +97,7 @@ win32 {
     LIBS += -LC:\TQLibraries\WinSparkle\lib -lWinSparkle
     LIBS += -LC:\TQLibraries\Libsodium\lib -llibsodium
     LIBS += -LC:\TQLibraries\Libuv\lib -llibuv
-    LIBS += -LC:\TQLibraries\Grpc\lib -lgrpc -lgrpc_unsecure -lgrpc++ -lgrpc++_unsecure -llibprotobuf -lgpr
+    LIBS += -LC:\TQLibraries\Grpc\lib -lgrpc -lgrpc_unsecure -lgrpc++ -lgrpc++_unsecure -llibprotobuf -lgpr -lzlib -lupb -lcares -labsl_strings -labsl_base -labsl_throw_delegate -laddress_sorting
     LIBS += -lwsock32 -lws2_32 -luserenv -liphlpapi
     LIBS += -lCrypt32 -lkernel32 -lpsapi -luser32
     DEFINES += WIN32_LEAN_AND_MEAN
