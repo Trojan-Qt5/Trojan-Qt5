@@ -39,6 +39,7 @@ before_install:
 install:
   - if [ "$BADGE" = "linux" ]; then    
       sudo apt-get install gcc-9 g++-9 libqrencode-dev libzbar-dev libgl-dev git build-essential python-dev autoconf autotools-dev libicu-dev libbz2-dev checkinstall zlib1g zlib1g-dev python3 pkg-config libprotobuf-dev libgrpc++-dev protobuf-compiler protobuf-c-compiler protobuf-compiler-grpc libsodium-dev libuv1-dev -y;
+      sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 60 --slave /usr/bin/g++ g++ /usr/bin/g++-9;
       git clone https://github.com/benlau/qtci.git;
       source qtci/path.env;
       install-qt 5.13.2 >/dev/null 2>&1;
