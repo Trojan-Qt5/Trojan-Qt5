@@ -228,7 +228,7 @@ MainWindow::~MainWindow()
 }
 
 const QUrl MainWindow::issueUrl =
-        QUrl("https://github.com/TheWanderingCoel/Trojan-Qt5/issues");
+        QUrl("https://github.com/Trojan-Qt5/Trojan-Qt5/issues");
 
 void MainWindow::startAutoStartConnections()
 {
@@ -856,7 +856,7 @@ bool MainWindow::isInstanceRunning() const
 void MainWindow::initSparkle()
 {
 #if defined (Q_OS_WIN)
-    win_sparkle_set_appcast_url("https://raw.githubusercontent.com/TheWanderingCoel/Trojan-Qt5/master/resources/Appcast_Windows.xml");
+    win_sparkle_set_appcast_url("https://raw.githubusercontent.com/Trojan-Qt5/Trojan-Qt5/master/resources/Appcast_Windows.xml");
     win_sparkle_set_app_details(reinterpret_cast<const wchar_t *>(QCoreApplication::organizationName().utf16()),
                                 reinterpret_cast<const wchar_t *>(QCoreApplication::applicationName().utf16()),
                                 reinterpret_cast<const wchar_t *>(QStringLiteral(APP_VERSION).utf16()));
@@ -864,7 +864,7 @@ void MainWindow::initSparkle()
     win_sparkle_init();
 #elif defined (Q_OS_MAC)
     CocoaInitializer initializer;
-    updater = new SparkleAutoUpdater("https://raw.githubusercontent.com/TheWanderingCoel/Trojan-Qt5/master/resources/Appcast_macOS.xml");
+    updater = new SparkleAutoUpdater("https://raw.githubusercontent.com/Trojan-Qt5/Trojan-Qt5/master/resources/Appcast_macOS.xml");
 #endif
 }
 

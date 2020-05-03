@@ -11,11 +11,11 @@ import (
 	"strings"
 	"time"
 
-	//"github.com/TheWanderingCoel/go-tun2socks/common/log"
-	_ "github.com/TheWanderingCoel/go-tun2socks/common/log/simple"
-	"github.com/TheWanderingCoel/go-tun2socks/core"
-	"github.com/TheWanderingCoel/go-tun2socks/proxy/socks"
-	"github.com/TheWanderingCoel/go-tun2socks/tun"
+	//"github.com/Trojan-Qt5/go-tun2socks/common/log"
+	_ "github.com/Trojan-Qt5/go-tun2socks/common/log/simple"
+	"github.com/Trojan-Qt5/go-tun2socks/core"
+	"github.com/Trojan-Qt5/go-tun2socks/proxy/socks"
+	"github.com/Trojan-Qt5/go-tun2socks/tun"
 
 	_ "github.com/p4gefau1t/trojan-go/api"
 	"github.com/p4gefau1t/trojan-go/common"
@@ -26,7 +26,7 @@ import (
 	_ "github.com/p4gefau1t/trojan-go/proxy/client"
 	_ "github.com/p4gefau1t/trojan-go/stat/memory"
 
-	"github.com/TheWanderingCoel/go-shadowsocks2/cmd/shadowsocks"
+	"github.com/Trojan-Qt5/go-shadowsocks2/cmd/shadowsocks"
 )
 
 const (

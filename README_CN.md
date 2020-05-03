@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="https://github.com/TheWanderingCoel/Trojan-Qt5/blob/master/resources/icons/trojan-qt5.png?raw=true" alt="Trojan-Qt5" width="200">
+  <img src="https://github.com/Trojan-Qt5/Trojan-Qt5/blob/master/resources/icons/trojan-qt5_new.png?raw=true" alt="Trojan-Qt5" width="200">
   <br>
   Trojan-Qt5
   <br>
@@ -7,16 +7,16 @@
 
 一个跨平台的Trojan图形客户端
 
-[![Build status](https://travis-ci.com/TheWanderingCoel/Trojan-Qt5.svg?branch=master)](https://travis-ci.com/TheWanderingCoel/Trojan-Qt5)
+[![Build status](https://travis-ci.com/Trojan-Qt5/Trojan-Qt5.svg?branch=master)](https://travis-ci.com/Trojan-Qt5/Trojan-Qt5)
 [![Build status](https://ci.appveyor.com/api/projects/status/shjhg9mlvc3c74ek?svg=true)](https://ci.appveyor.com/project/CoelWu/trojan-qt5)
-[![HitCount](http://hits.dwyl.io/TheWanderingCoel/Trojan-Qt5.svg)](http://hits.dwyl.io/TheWanderingCoel/Trojan-Qt5)
-![GitHub Releases](https://img.shields.io/github/downloads/TheWanderingCoel/Trojan-Qt5/latest/total?style=flat-square&logo=github)
-![GitHub All Releases](https://img.shields.io/github/downloads/TheWanderingCoel/Trojan-Qt5/total?label=downloads-total&logo=github&style=flat-square)
+[![HitCount](http://hits.dwyl.io/Trojan-Qt5/Trojan-Qt5.svg)](http://hits.dwyl.io/Trojan-Qt5/Trojan-Qt5)
+![GitHub Releases](https://img.shields.io/github/downloads/Trojan-Qt5/Trojan-Qt5/latest/total?style=flat-square&logo=github)
+![GitHub All Releases](https://img.shields.io/github/downloads/Trojan-Qt5/Trojan-Qt5/total?label=downloads-total&logo=github&style=flat-square)
 [![License](https://img.shields.io/badge/license-GPL%20V3-blue.svg?longCache=true)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 ## 安装
 
-你可以在 [release](https://github.com/TheWanderingCoel/Trojan-Qt5/releases) 页面下载到编译好的二进制程序
+你可以在 [release](https://github.com/Trojan-Qt5/Trojan-Qt5/releases) 页面下载到编译好的二进制程序
 
 ## 编译
 
@@ -40,7 +40,7 @@ C:\"Program Files (x86)"\"Microsoft Visual Studio"\2019\Community\VC\Auxiliary\B
 ```
 - 2. 克隆需要的库
 ```
-git clone https://github.com/TheWanderingCoel/Trojan-Qt5-Libraries.git C:\TQLibraries
+git clone https://github.com/Trojan-Qt5/Trojan-Qt5-Libraries.git C:\TQLibraries
 ```
 - 3. 手动安装Boost库(在大陆很慢)
 ```

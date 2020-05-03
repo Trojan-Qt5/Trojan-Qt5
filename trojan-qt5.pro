@@ -23,7 +23,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 QT_CONFIG -= no-pkg-config
 
-RC_ICONS = $$PWD/resources/icons/trojan-qt5_new.ico
+RC_ICONS = $$PWD/resources/icons/trojan-qt5_new_white.ico
 ICON = $$PWD/resources/icons/trojan-qt5_new.icns
 
 TARGET = trojan-qt5
@@ -44,7 +44,7 @@ CONFIG += link_pkgconfig
 #DEFINES += QT_DEPRECATED_WARNINGS
 
 # Define App Version
-DEFINES += "APP_VERSION=\"\\\"1.0.0\\\"\""
+DEFINES += "APP_VERSION=\"\\\"1.0.1\\\"\""
 
 # Set Build Info String
 _TROJAN_QT5_BUILD_INFO_STR_=$$getenv(_TROJAN_QT5_BUILD_INFO_)
@@ -125,6 +125,7 @@ mac {
     INCLUDEPATH += /usr/local/opt/openssl@1.1/include
     LIBS += -L/usr/local/opt/zlib/lib -lz
     LIBS += -L/usr/local/opt/openssl@1.1/lib -lssl -lcrypto
+    LIBS += -L/usr/local/opt/grpc/lib -lupb
     LIBS += -framework Security -framework Cocoa
     # For Sparkle Usage
     SOURCES += \
@@ -176,7 +177,7 @@ unix:!mac {
 }
 
 unix {
-    PKGCONFIG += zbar libqrencode libuv libsodium grpc grpc_unsecure grpc++ grpc++_unsecure protobuf
+    PKGCONFIG += zbar libqrencode libuv libsodium grpc grpc_unsecure grpc++ grpc++_unsecure protobuf gpr
     LIBS += $$PWD/3rd/yaml-cpp/libyaml-cpp.a
     LIBS += $$PWD/3rd/trojan-qt5-libs/trojan-qt5-libs.a
 }

@@ -3,13 +3,13 @@
 	url = https://github.com/SergiusTheBest/plog.git
 [submodule "src/QtAwesome"]
 	path = src/QtAwesome
-	url = https://github.com/TheWanderingCoel/QtAwesome.git
+	url = https://github.com/Trojan-Qt5/QtAwesome.git
 [submodule "3rd/yaml-cpp"]
 	path = 3rd/yaml-cpp
 	url = https://github.com/jbeder/yaml-cpp.git
 [submodule "src/shadowsocksr-uvw"]
 	path = src/shadowsocksr-uvw
-	url = https://github.com/TheWanderingCoel/shadowsocksr-uvw.git
+	url = https://github.com/Trojan-Qt5/shadowsocksr-uvw.git
 [submodule "3rd/qhttpserver"]
 	path = 3rd/qhttpserver
-	url = https://github.com/TheWanderingCoel/qhttpserver.git
+	url = https://github.com/Trojan-Qt5/qhttpserver.git
