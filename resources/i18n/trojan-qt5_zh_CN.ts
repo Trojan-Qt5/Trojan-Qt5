@@ -2055,7 +2055,7 @@
     <message>
         <location filename="../../ui/trojaneditdialog.ui" line="224"/>
         <source>Websocket Hostname</source>
-        <translation>Wensocket主机名称</translation>
+        <translation>Websocket主机名称</translation>
     </message>
     <message>
         <location filename="../../ui/trojaneditdialog.ui" line="231"/>

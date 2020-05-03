@@ -177,7 +177,7 @@ unix:!mac {
 }
 
 unix {
-    PKGCONFIG += zbar libqrencode libuv libsodium grpc grpc_unsecure grpc++ grpc++_unsecure protobuf gpr
+    PKGCONFIG += zbar libqrencode libuv libsodium grpc grpc++ protobuf gpr
     LIBS += $$PWD/3rd/yaml-cpp/libyaml-cpp.a
     LIBS += $$PWD/3rd/trojan-qt5-libs/trojan-qt5-libs.a
 }
