@@ -11,7 +11,7 @@ matrix:
         - BADGE=osx
         - _TROJAN_QT5_BUILD_INFO_="Trojan-Qt5 build from Travis-CI"
     - os: linux
-      dist: bionic
+      dist: xenial
       sudo: required
       env: 
         - BADGE=linux

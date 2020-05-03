@@ -46,6 +46,13 @@ CONFIG += link_pkgconfig
 # Define App Version
 DEFINES += "APP_VERSION=\"\\\"1.0.0\\\"\""
 
+# Set Build Info String
+_TROJAN_QT5_BUILD_INFO_STR_=$$getenv(_TROJAN_QT5_BUILD_INFO_)
+isEmpty(_TROJAN_QT5_BUILD_INFO_STR_) {
+    _TROJAN_QT5_BUILD_INFO_STR_ = "Trojan-Qt5 build from local machine"
+}
+DEFINES += _TROJAN_QT5_BUILD_INFO_STR_=\"\\\"$${_TROJAN_QT5_BUILD_INFO_STR_}\\\"\"
+
 # QHttpServer
 DEFINES += QHTTPSERVER_EXPORT
 

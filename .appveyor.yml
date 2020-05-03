@@ -53,9 +53,6 @@ build_script:
   - cd ..
   - cd ..
 
-on_finish:
-  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
-  
 artifacts:
 - path: 'build\release\Trojan-Qt5-Windows.*'
   name: Trojan-Qt5
@@ -64,7 +61,7 @@ deploy:
   provider: GitHub
   description: "Trojan-Qt5 Release"
   auth_token:
-    secure: uAMRAuhJjhHbPRvsKDUGYBDrrDPhlj2q1zHICgjSo7K2CSmVMxHreSMJYqer4y2k
+    secure: qGafocyZJiSruCvUTcOoEOoYMT/jScJsMHvUsVmRbCS8Jxh5xnzFbK9SedzJFJUo
   artifact: Trojan-Qt5
   draft: false
   prerelease: false
