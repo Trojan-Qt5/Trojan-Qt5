@@ -169,7 +169,7 @@ unix:!mac {
     target.path = $$PREFIX/bin
     shortcutfiles.files = src/trojan-qt5.desktop
     shortcutfiles.path = $$PREFIX/share/applications/
-    data.files += resources/icons/trojan-qt5.png
+    data.files += resources/icons/trojan-qt5_new_white.png
     data.path = $$PREFIX/share/hicolor/512x512/
 
     INSTALLS += shortcutfiles
