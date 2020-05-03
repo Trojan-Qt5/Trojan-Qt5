@@ -52,7 +52,7 @@ build_script:
   - python ..\..\scripts\checksum.py Trojan-Qt5-Windows.zip Trojan-Qt5-Windows.hash
   - cd ..
   - cd ..
-  
+
 artifacts:
 - path: 'build\release\Trojan-Qt5-Windows.*'
   name: Trojan-Qt5
@@ -61,7 +61,7 @@ deploy:
   provider: GitHub
   description: "Trojan-Qt5 Release"
   auth_token:
-    secure: qGafocyZJiSruCvUTcOoEOoYMT/jScJsMHvUsVmRbCS8Jxh5xnzFbK9SedzJFJUo
+    secure: irJpr7f61rftnluing6Rqm7Q5Lxmk48O48F5t9/3KjaoMsIUh2lUb8SmXQmhkHY9
   artifact: Trojan-Qt5
   draft: false
   prerelease: false
