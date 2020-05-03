@@ -83,18 +83,6 @@ script:
       mkdir build && cd ./build;
       qmake ../;
       make -j$(nproc);
-    fi
-  - if [ "$BADGE" = "linux" ]; then
-      mkdir build && cd ./build;
-      wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage";
-      chmod a+x linuxdeployqt-continuous-x86_64.AppImage;
-      qmake CONFIG+=release .. PREFIX=/usr;
-      make -j$(nproc);
-      make INSTALL_ROOT=appdir -j$(nproc) install ; find appdir/;
-    fi
-
-defore_deploy:
-  - if [ "$BADGE" = "osx" ]; then
       xattr -c -r trojan-qt5.app;
       xattr -d com.apple.quarantine trojan-qt5.app;
       macdeployqt trojan-qt5.app -dmg;
@@ -103,11 +91,20 @@ defore_deploy:
       python3 ../scripts/checksum.py Trojan-Qt5-macOS.dmg Trojan-Qt5-macOS.hash;
     fi
   - if [ "$BADGE" = "linux" ]; then
+      mkdir build && cd ./build;
+      wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage";
+      chmod a+x linuxdeployqt-continuous-x86_64.AppImage;
+      qmake CONFIG+=release .. PREFIX=/usr;
+      make -j$(nproc);
+      make INSTALL_ROOT=appdir -j$(nproc) install ; find appdir/;
       export LD_LIBRARY_PATH=/usr/loal/zlib/lib:/usr/local/pcre/lib:/usr/local/zbar/lib/:/usr/local/qrencode/lib/:/usr/local/boost/lib/:/usr/local/openssl/lib/:$LD_LIBRARY_PATH;
       ./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -appimage -unsupported-allow-new-glibc;
+      ls;
       mv Trojan-Qt5*.AppImage Trojan-Qt5-Linux.AppImage;
       python3 ../scripts/checksum.py Trojan-Qt5-Linux.AppImage Trojan-Qt5-Linux.hash;
     fi
+
+defore_deploy:
   - cd ..
 
 deploy:
