@@ -3,6 +3,18 @@
 
 #include <QDebug>
 
+bool GeneralValidator::validateSS(const QString &input)
+{
+    bool valid = true;
+    try {
+        TQProfile tqprofile;
+        tqprofile.fromSSUri(input.toStdString());
+    } catch(const std::exception&) {
+        valid = false;
+    }
+    return valid;
+}
+
 bool GeneralValidator::validateSSR(const QString &input)
 {
     bool valid = true;

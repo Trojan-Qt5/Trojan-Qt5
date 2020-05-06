@@ -44,7 +44,7 @@ CONFIG += link_pkgconfig
 #DEFINES += QT_DEPRECATED_WARNINGS
 
 # Define App Version
-DEFINES += "APP_VERSION=\"\\\"1.0.1\\\"\""
+DEFINES += "APP_VERSION=\"\\\"1.0.2\\\"\""
 
 # Set Build Info String
 _TROJAN_QT5_BUILD_INFO_STR_=$$getenv(_TROJAN_QT5_BUILD_INFO_)
@@ -83,6 +83,16 @@ include($$PWD/src/shadowsocksr-uvw/Shadowsocksr-uvw.pri)
 # QHttpServer
 include($$PWD/3rd/qhttpserver/qhttpserver.pri)
 
+win32:CONFIG(debug) {
+    LIBS += -LC:\TQLibraries\Grpc\debug\lib -lgrpc -lgrpc++ -llibprotobufd -lgpr -lzlibd -lupb -lcares -labsl_strings -labsl_base -labsl_throw_delegate -laddress_sorting
+    LIBS += $$PWD\3rd\yaml-cpp\Debug\yaml-cppd.lib
+}
+
+else:win32:CONFIG(release) {
+    LIBS += -LC:\TQLibraries\Grpc\lib -lgrpc -lgrpc++ -llibprotobuf -lgpr -lzlib -lupb -lcares -labsl_strings -labsl_base -labsl_throw_delegate -laddress_sorting
+    LIBS += $$PWD\3rd\yaml-cpp\Release\yaml-cpp.lib
+}
+
 win32 {
     DEFINES += _WIN32_WINNT=0x600
     SOURCES += \
@@ -104,12 +114,10 @@ win32 {
     LIBS += -LC:\TQLibraries\WinSparkle\lib -lWinSparkle
     LIBS += -LC:\TQLibraries\Libsodium\lib -llibsodium
     LIBS += -LC:\TQLibraries\Libuv\lib -llibuv
-    LIBS += -LC:\TQLibraries\Grpc\lib -lgrpc -lgrpc_unsecure -lgrpc++ -lgrpc++_unsecure -llibprotobuf -lgpr -lzlib -lupb -lcares -labsl_strings -labsl_base -labsl_throw_delegate -laddress_sorting
     LIBS += -lwsock32 -lws2_32 -luserenv -liphlpapi
     LIBS += -lCrypt32 -lkernel32 -lpsapi -luser32
     DEFINES += WIN32_LEAN_AND_MEAN
-    LIBS += $$PWD\3rd\yaml-cpp\Release\yaml-cpp.lib
-    LIBS += $$PWD\3rd\trojan-qt5-libs\trojan-qt5-libs.lib
+    LIBS += $$PWD\3rd\trojan-qt5-core\trojan-qt5-core.lib
     # Otherwise lupdate will not work
     TR_EXCLUDE += C:\TQLibraries\boost_1_72_0\*
 }
@@ -179,7 +187,7 @@ unix:!mac {
 unix {
     PKGCONFIG += zbar libqrencode libuv libsodium grpc grpc++ protobuf gpr
     LIBS += $$PWD/3rd/yaml-cpp/libyaml-cpp.a
-    LIBS += $$PWD/3rd/trojan-qt5-libs/trojan-qt5-libs.a
+    LIBS += $$PWD/3rd/trojan-qt5-core/trojan-qt5-core.a
 }
 
 !isEmpty(target.path): INSTALLS += target
@@ -230,7 +238,8 @@ SOURCES += \
     src/clickablelabel.cpp \
     src/sseditdialog.cpp \
     src/snelleditdialog.cpp \
-    src/vmesseditdialog.cpp
+    src/vmesseditdialog.cpp \
+    src/ssgoapi.cpp
 
 HEADERS += \
     src/connectionsortfilterproxymodel.h \
@@ -279,7 +288,8 @@ HEADERS += \
     src/clickablelabel.h \
     src/sseditdialog.h \
     src/snelleditdialog.h \
-    src/vmesseditdialog.h
+    src/vmesseditdialog.h \
+    src/ssgoapi.h
 
 FORMS += \
     ui/aboutdialog.ui \
@@ -301,7 +311,9 @@ TRANSLATIONS += \
     resources/i18n/trojan-qt5_zh_TW.ts \
     resources/i18n/trojan-qt5_zh_SG.ts
 
-PROTOS = $$PWD/src/trojangoapi.proto
+PROTOS += \
+    $$PWD/src/trojangoapi.proto \
+    $$PWD/src/ssgoapi.proto
 
 include($$PWD/src/protobuf.pri)
 include($$PWD/src/grpc.pri)

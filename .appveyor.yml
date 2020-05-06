@@ -19,9 +19,9 @@ install:
   - cd 3rd\yaml-cpp && cmake -G "Visual Studio 16 2019" -A Win32 .
   - msbuild YAML_CPP.sln /p:Configuration=Release /p:Platform="Win32"
   - cd ..\..
-  - cd 3rd\trojan-qt5-libs
+  - cd 3rd\trojan-qt5-core
   - set GOARCH=386
-  - go build -buildmode=c-shared -o trojan-qt5-libs.dll main.go
+  - go build --tags "api client" -buildmode=c-shared -o trojan-qt5-core.dll main.go
   - process.bat
   - python msvc.py
   - cd ../..

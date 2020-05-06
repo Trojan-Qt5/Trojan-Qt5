@@ -4,7 +4,7 @@
 #if defined (Q_OS_WIN)
 #include <QCoreApplication>
 #endif
-#include "3rd/trojan-qt5-libs/trojan-qt5-libs.h"
+#include "3rd/trojan-qt5-core/trojan-qt5-core.h"
 
 Tun2socksThread::Tun2socksThread()
 {}

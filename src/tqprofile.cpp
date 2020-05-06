@@ -244,7 +244,7 @@ TQProfile TQProfile::fromTrojanUri(const std::string& trojanUri) const
  */
 QString TQProfile::toSSUri() const
 {
-    QString userInfoBase64 = Utils::Base64UrlEncode(password + ":" + method);
+    QString userInfoBase64 = Utils::Base64UrlEncode(method + ":" + password);
     return "ss://" + userInfoBase64 + "@" + serverAddress + ":" + QString::number(serverPort);
 }
 

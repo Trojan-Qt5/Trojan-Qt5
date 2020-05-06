@@ -4,8 +4,9 @@
 #include "pachelper.h"
 #include "portvalidator.h"
 #include "privilegeshelper.h"
+#include "ssgoapi.h"
 #include "trojangoapi.h"
-#include "3rd/trojan-qt5-libs/trojan-qt5-libs.h"
+#include "3rd/trojan-qt5-core/trojan-qt5-core.h"
 #include "SSRThread.hpp"
 #include <QCoreApplication>
 #include <QDir>
@@ -166,6 +167,7 @@ void Connection::start()
 
     if (profile.type == "ss") {
         QString clientAddr = conf->isEnableIpv6Support() ? (conf->isShareOverLan() ? "::" : "::1") : (conf->isShareOverLan() ? "0.0.0.0" : "127.0.0.1");
+        QString apiAddr = clientAddr + ":" + QString::number(conf->getTrojanAPIPort());
         clientAddr += ":" + QString::number(conf->getSocks5Port());
         QString serverAddr = profile.serverAddress + ":" + QString::number(profile.serverPort);
         startShadowsocksGo(clientAddr.toUtf8().data(),
@@ -173,7 +175,12 @@ void Connection::start()
                            profile.method.toUtf8().data(),
                            profile.password.toUtf8().data(),
                            profile.plugin.toUtf8().data(),
-                           profile.pluginParam.toUtf8().data());
+                           profile.pluginParam.toUtf8().data(),
+                           conf->isEnableTrojanAPI(),
+                           apiAddr.toUtf8().data());
+        ssGoAPI = new SSGoAPI();
+        ssGoAPI->start();
+        connect(ssGoAPI, &SSGoAPI::OnDataReady, this, &Connection::onNewBytesTransmitted);
     }
     else if (profile.type == "ssr") {
         ssr->start();
@@ -235,6 +242,7 @@ void Connection::stop()
 
         if (profile.type == "ss") {
             stopShadowsocksGo();
+            ssGoAPI->stop();
         }
         else if (profile.type == "ssr") {
             ssr->stop();

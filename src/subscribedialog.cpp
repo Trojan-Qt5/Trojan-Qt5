@@ -104,7 +104,7 @@ void SubscribeDialog::SaveSelected(int index)
         if (sb.url != ui->urlLineEdit->text())
         {
             sb.url = ui->urlLineEdit->text();
-            sb.groupName = "";
+            sb.groupName = ui->groupNameLineEdit->text();
             sb.lastUpdateTime = 0;
         }
         subscribes[index] = sb;

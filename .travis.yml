@@ -77,8 +77,8 @@ script:
   - cd 3rd/yaml-cpp
   - cmake . && make -j$(nproc)
   - cd ../..
-  - cd 3rd/trojan-qt5-libs
-  - go build -buildmode=c-archive
+  - cd 3rd/trojan-qt5-core
+  - go build --tags "api client" -buildmode=c-archive
   - cd ../..
   - if [ "$BADGE" = "osx" ]; then
       mkdir build && cd ./build;

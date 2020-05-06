@@ -17,14 +17,11 @@ import (
 	"github.com/Trojan-Qt5/go-tun2socks/proxy/socks"
 	"github.com/Trojan-Qt5/go-tun2socks/tun"
 
-	_ "github.com/p4gefau1t/trojan-go/api"
 	"github.com/p4gefau1t/trojan-go/common"
 	"github.com/p4gefau1t/trojan-go/conf"
 	"github.com/p4gefau1t/trojan-go/log"
 	"github.com/p4gefau1t/trojan-go/proxy"
-	_ "github.com/p4gefau1t/trojan-go/proxy"
-	_ "github.com/p4gefau1t/trojan-go/proxy/client"
-	_ "github.com/p4gefau1t/trojan-go/stat/memory"
+	_ "github.com/p4gefau1t/trojan-go/build"
 
 	"github.com/Trojan-Qt5/go-shadowsocks2/cmd/shadowsocks"
 )
@@ -109,8 +106,8 @@ func run_tun2socks(tunName *C.char, tunAddr *C.char, tunGw *C.char, tunDns *C.ch
 }
 
 //export startShadowsocksGo
-func startShadowsocksGo(ClientAddr *C.char, ServerAddr *C.char, Cipher *C.char, Password *C.char, Plugin *C.char, PluginOptions *C.char) {
-	shadowsocks.StartGoShadowsocks(C.GoString(ClientAddr), C.GoString(ServerAddr), C.GoString(Cipher), C.GoString(Password), C.GoString(Plugin), C.GoString(PluginOptions))
+func startShadowsocksGo(ClientAddr *C.char, ServerAddr *C.char, Cipher *C.char, Password *C.char, Plugin *C.char, PluginOptions *C.char, EnableAPI bool, APIAddress *C.char) {
+	shadowsocks.StartGoShadowsocks(C.GoString(ClientAddr), C.GoString(ServerAddr), C.GoString(Cipher), C.GoString(Password), C.GoString(Plugin), C.GoString(PluginOptions), EnableAPI, C.GoString(APIAddress))
 }
 
 //export stopShadowsocksGo

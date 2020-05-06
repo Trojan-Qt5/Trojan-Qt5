@@ -30,6 +30,7 @@
 #include "systemproxyhelper.h"
 #include "tqprofile.h"
 #include "routetablehelper.h"
+#include "ssgoapi.h"
 #include "trojangoapi.h"
 
 class Connection : public QObject
@@ -77,6 +78,7 @@ private:
     std::unique_ptr<SSRThread> ssr;
     Tun2socksThread *tun2socks;
     RouteTableHelper *rhelper;
+    SSGoAPI *ssGoAPI;
     TrojanGoAPI *trojanGoAPI;
     TQProfile profile;
     bool running;

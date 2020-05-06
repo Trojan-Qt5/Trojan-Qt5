@@ -7,6 +7,7 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QDebug>
+#include <QStandardPaths>
 
 #include "logger.h"
 #include "yaml-cpp/yaml.h"
@@ -364,6 +365,8 @@ Connection* ConfigHelper::configJsonToConnection(const QString &file)
 
 void ConfigHelper::connectionToJson(TQProfile &profile)
 {
+    QDir path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Library/Logs/Trojan-Qt5";
+
     QJsonObject configObj;
     configObj["run_type"] = "client";
     configObj["local_addr"] = isEnableIpv6Support() ? (isShareOverLan() ? "::" : "::1") : (isShareOverLan() ? "0.0.0.0" : "127.0.0.1");
@@ -374,6 +377,7 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
     passwordArray.append(profile.password);
     configObj["password"] = QJsonValue(passwordArray);
     configObj["log_level"] = logLevel;
+    configObj["log_file"] = path.path() + "/trojan.log";
     QJsonObject ssl;
     ssl["verify"] = profile.verifyCertificate;
     ssl["verify_hostname"] = profile.verifyHostname;
@@ -850,7 +854,7 @@ void ConfigHelper::readGeneralSettings()
     enableForwardProxyAuthentication = settings->value("ForwardProxyAuthentication", QVariant(false)).toBool();
     forwardProxyUsername = settings->value("ForwardProxyUsername", QVariant("")).toString();
     forwardProxyPassword = settings->value("ForwardProxyPassword", QVariant("")).toString();
-    gfwlistUrl = settings->value("GFWListUrl", QVariant(0)).toInt();
+    gfwlistUrl = settings->value("GFWListUrl", QVariant(2)).toInt();
     updateUserAgent = settings->value("UpdateUserAgent", QVariant(QString("Trojan-Qt5/%1").arg(APP_VERSION))).toString();
     filterKeyword = settings->value("FilterKeyword", QVariant("")).toString();
     maximumSubscribe = settings->value("MaximumSubscribe", QVariant(0)).toInt();

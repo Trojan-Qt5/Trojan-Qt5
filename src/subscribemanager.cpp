@@ -1,5 +1,6 @@
 #include "subscribemanager.h"
 #include "generalvalidator.h"
+#include "logger.h"
 #include <QNetworkAccessManager>
 #include <QNetworkProxy>
 #include <QNetworkReply>
@@ -11,6 +12,7 @@ SubscribeManager::SubscribeManager(ConfigHelper *ch, QObject *parent) : QObject(
 
 QString SubscribeManager::checkUpdate(QString url, bool useProxy)
 {
+    Logger::debug(QString("[Subscribe] Subscribe Link: %1").arg(url));
     QNetworkAccessManager* manager = new QNetworkAccessManager();
     QNetworkRequest request(url);
     request.setRawHeader("User-Agent", helper->getUpdateUserAgent().toUtf8().data());
@@ -21,10 +23,11 @@ QString SubscribeManager::checkUpdate(QString url, bool useProxy)
         proxy.setPort(helper->getSocks5Port());
         manager->setProxy(proxy);
     }
-    QNetworkReply* reply = manager->sendCustomRequest(request, "GET", "");
+    QNetworkReply* reply = manager->get(request);
     QEventLoop loop;
     connect(reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
     loop.exec();
+    Logger::debug(QString("[Subscribe] Request Status %1").arg(QString::number(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt())));
     return QString::fromUtf8(reply->readAll());
 }
 
@@ -40,10 +43,20 @@ void SubscribeManager::updateAllSubscribes(bool useProxy)
         decodeRes = decodeRes.replace("\\n", "\n"); // change \\n to \n
         decodeRes = decodeRes.replace("\r\n", "\n"); // change \r\n to \n
         QStringList list = decodeRes.split("\n");
-        for (int i = 0; i< list.length(); i++)
-            if (GeneralValidator::validateSSR(list[i]) || GeneralValidator::validateTrojan(list[i]))
-                if (!isFiltered(TQProfile(list[i]).name))
-                    emit addUri(list[i]);
+        Logger::debug(QString("[Subscribe] Read %1 Servers").arg(list.length()));
+        for (int x = 0; x < list.length(); x++) {
+            if (list[x].isEmpty()) {
+                continue;
+            }
+            if (GeneralValidator::validateSSR(list[x]) || GeneralValidator::validateTrojan(list[x])) {
+                if (!isFiltered(TQProfile(list[x]).name) && (x < helper->getMaximumSubscribe() || x == 0)) {
+                    emit addUri(list[x]);
+                }
+            }
+            else {
+                Logger::debug(QString("[Subscribe] Server %1 is not valid").arg(list[x]));
+            }
+        }
         subscribes[i].groupName = TQProfile(list[0]).group;
     }
     helper->saveSubscribes(subscribes);
@@ -56,8 +69,10 @@ bool SubscribeManager::isFiltered(QString name)
         return false;
 
     for (int i = 0; i < keywords.size(); i++)
-        if (name.contains(keywords[i]))
+        if (name.contains(keywords[i])) {
+            Logger::debug(QString("[Subscribe] Server %1 meet the filter key word %2, skipping").arg(name).arg(keywords[i]));
             return true;
+        }
 
     return false;
 }
