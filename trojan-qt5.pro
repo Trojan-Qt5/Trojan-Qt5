@@ -83,12 +83,12 @@ include($$PWD/src/shadowsocksr-uvw/Shadowsocksr-uvw.pri)
 # QHttpServer
 include($$PWD/3rd/qhttpserver/qhttpserver.pri)
 
-win32:CONFIG(debug) {
+win32:CONFIG(debug, debug|release) {
     LIBS += -LC:\TQLibraries\Grpc\debug\lib -lgrpc -lgrpc++ -llibprotobufd -lgpr -lzlibd -lupb -lcares -labsl_strings -labsl_base -labsl_throw_delegate -laddress_sorting
     LIBS += $$PWD\3rd\yaml-cpp\Debug\yaml-cppd.lib
 }
 
-else:win32:CONFIG(release) {
+else:win32:CONFIG(release, debug|release) {
     LIBS += -LC:\TQLibraries\Grpc\lib -lgrpc -lgrpc++ -llibprotobuf -lgpr -lzlib -lupb -lcares -labsl_strings -labsl_base -labsl_throw_delegate -laddress_sorting
     LIBS += $$PWD\3rd\yaml-cpp\Release\yaml-cpp.lib
 }

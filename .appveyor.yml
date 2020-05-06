@@ -31,7 +31,7 @@ init:
 
 build_script:
   - mkdir build && cd build
-  - qmake ..
+  - qmake CONFIG+=release ..
   - nmake
   - cd release
   - windeployqt trojan-qt5.exe

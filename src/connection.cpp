@@ -243,6 +243,7 @@ void Connection::stop()
         if (profile.type == "ss") {
             stopShadowsocksGo();
             ssGoAPI->stop();
+            ssGoAPI = nullptr;
         }
         else if (profile.type == "ssr") {
             ssr->stop();
@@ -251,6 +252,7 @@ void Connection::stop()
         else if (profile.type == "trojan") {
             stopTrojanGo();
             trojanGoAPI->stop();
+            trojanGoAPI = nullptr;
         }
 
         //if we have started http proxy, stop it
@@ -265,6 +267,7 @@ void Connection::stop()
         if (conf->getSystemProxySettings() == "advance") {
             tun2socks->stop();
             rhelper->reset();
+            rhelper = nullptr;
          }
 
         //set proxy settings after emit the signal
