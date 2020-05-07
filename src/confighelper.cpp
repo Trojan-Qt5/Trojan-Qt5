@@ -842,8 +842,8 @@ void ConfigHelper::readGeneralSettings()
     enableHttpMode = settings->value("EnableHttpMode", QVariant(true)).toBool();
     shareOverLan = settings->value("ShareOverLan", QVariant(false)).toBool();
     enableIpv6Support = settings->value("EnableIpv6Support", QVariant(false)).toBool();
-    socks5Port = settings->value("Socks5LocalPort", QVariant(10086)).toInt();
-    httpPort = settings->value("HttpLocalPort", QVariant(10087)).toInt();
+    socks5Port = settings->value("Socks5LocalPort", QVariant(51837)).toInt();
+    httpPort = settings->value("HttpLocalPort", QVariant(58591)).toInt();
     pacPort = settings->value("PACLocalPort", QVariant(8070)).toInt();
     haproxyStatusPort = settings->value("HaproxyStatusPort", QVariant(2080)).toInt();
     haproxyPort = settings->value("HaproxyPort", QVariant(7777)).toInt();
@@ -861,7 +861,7 @@ void ConfigHelper::readGeneralSettings()
     fingerprint = settings->value("Fingerprint", QVariant(0)).toInt();
     enableTrojanAPI = settings->value("EnableTrojanAPI", QVariant(true)).toBool();
     enableTrojanRouter = settings->value("EnableTrojanRouter", QVariant(false)).toBool();
-    trojanAPIPort = settings->value("TrojanAPIPort", QVariant(10000)).toInt();
+    trojanAPIPort = settings->value("TrojanAPIPort", QVariant(57721)).toInt();
     trojanCertPath = settings->value("TrojanCertPath", QVariant("")).toString();
     trojanCipher = settings->value("TrojanCipher", QVariant("ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES128-SHA:ECDHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA:AES128-SHA:AES256-SHA:DES-CBC3-SHA")).toString();
     trojanCipherTLS13 = settings->value("TrojanCipherTLS13", QVariant("TLS_AES_128_GCM_SHA256:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_256_GCM_SHA384")).toString();
