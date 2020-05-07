@@ -24,6 +24,7 @@ public slots:
 private:
     QString serverAddress;
     QString gateWay;
+    QString ip;
     QThread *thread;
 };
 

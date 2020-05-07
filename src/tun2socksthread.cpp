@@ -33,6 +33,10 @@ void Tun2socksThread::run()
     tunGw = "10.0.0.1";
 #elif defined (Q_OS_MAC)
     tunName = "utun1";
+#elif defined (Q_OS_LINUX)
+    QProcess::execute("ip tuntap add mode tun dev tun1");
+    QProcess::execute("ip addr add 240.0.0.1 dev tun1");
+    QProcess::execute("ip link set dev tun1 up");
 #endif
 
     run_tun2socks(tunName.toUtf8().data(), tunAddr.toUtf8().data(), tunGw.toUtf8().data(), tunDns.toUtf8().data(), proxyServer.toUtf8().data());

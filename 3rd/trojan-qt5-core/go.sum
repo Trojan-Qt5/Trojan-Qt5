@@ -65,6 +65,8 @@ github.com/Trojan-Qt5/go-shadowsocks2 v0.1.1-0.20200506095608-8377cfdf32c7 h1:hO
 github.com/Trojan-Qt5/go-shadowsocks2 v0.1.1-0.20200506095608-8377cfdf32c7/go.mod h1:i59BypVslKo+CFu0zaZ0xSQUrxrAsdlpo79jQS6RaRw=
 github.com/Trojan-Qt5/go-shadowsocks2 v0.1.1-0.20200506123645-2610ee8f33fe h1:TzUaFqRygLPF+pZpuMqTXxBQzRaZMqDCE6JHDwm1Nxc=
 github.com/Trojan-Qt5/go-shadowsocks2 v0.1.1-0.20200506123645-2610ee8f33fe/go.mod h1:i59BypVslKo+CFu0zaZ0xSQUrxrAsdlpo79jQS6RaRw=
+github.com/Trojan-Qt5/go-shadowsocks2 v0.1.1-0.20200507002345-8d68aa4c6f23 h1:CaK9dkkFKVrctDaBtKgq80O9IVe4433VXQP3zCJ54uA=
+github.com/Trojan-Qt5/go-shadowsocks2 v0.1.1-0.20200507002345-8d68aa4c6f23/go.mod h1:i59BypVslKo+CFu0zaZ0xSQUrxrAsdlpo79jQS6RaRw=
 github.com/Trojan-Qt5/go-tun2socks v1.15.1-0.20200503110924-0368dc174def h1:+o1byvylGaLgLlCz72VdkTyOFRyoHir5jNIXPmB8S6I=
 github.com/Trojan-Qt5/go-tun2socks v1.15.1-0.20200503110924-0368dc174def/go.mod h1:zW/9U9jiS5AMYPYubFa6DtSXBIdnUWaTqw5lGrubxRs=
 github.com/Trojan-Qt5/go-tun2socks v1.15.1-0.20200503120916-eef0dba9fa23 h1:Jmh+j7tzLBuLTvCrnMGiMNxNY7XRsjlDMNYEY4RxrIE=
