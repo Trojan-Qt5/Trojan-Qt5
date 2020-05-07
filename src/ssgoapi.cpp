@@ -45,6 +45,8 @@ void SSGoAPI::run()
 
     QString address = QString("127.0.0.1:%1").arg(conf->getTrojanAPIPort());
 
+    conf = nullptr;
+
     while (running) {
 
         Channel = grpc::CreateChannel(address.toStdString(), grpc::InsecureChannelCredentials());
@@ -59,8 +61,8 @@ void SSGoAPI::run()
             Logger::error(QString("Shadowsocks API Request failed: %1 (%2)").arg(status.error_code()).arg(QString::fromStdString(status.error_message())));
         }
 
-        quint64 up = reply.upload_traffic();
-        quint64 down = reply.download_traffic();
+        quint64 up = reply.upload_speed();
+        quint64 down = reply.download_speed();
 
         if (up >= 0 && down >= 0)
             emit OnDataReady(up, down);

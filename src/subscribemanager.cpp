@@ -49,7 +49,7 @@ void SubscribeManager::updateAllSubscribes(bool useProxy)
                 continue;
             }
             if (GeneralValidator::validateSSR(list[x]) || GeneralValidator::validateTrojan(list[x])) {
-                if (!isFiltered(TQProfile(list[x]).name) && (x < helper->getMaximumSubscribe() || x == 0)) {
+                if (!isFiltered(TQProfile(list[x]).name) && (x < helper->getMaximumSubscribe() || helper->getMaximumSubscribe() == 0)) {
                     emit addUri(list[x]);
                 }
             }
