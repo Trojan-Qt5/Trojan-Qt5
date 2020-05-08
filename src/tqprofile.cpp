@@ -199,12 +199,6 @@ TQProfile TQProfile::fromTrojanUri(const std::string& trojanUri) const
         throw std::invalid_argument("Can't find the at separator between password and hostname");
     }
 
-    size_t questionMarkPos = uri.find_first_of('?');
-    if (questionMarkPos != std::string::npos) {
-        result.verifyCertificate = !std::stoi(uri.substr(questionMarkPos + 15));
-        uri.erase(0, questionMarkPos + 16);
-    }
-
     QStringList decoded = QString::fromStdString(uri).split("&");
 
     for (QString data : decoded) {
@@ -217,22 +211,14 @@ TQProfile TQProfile::fromTrojanUri(const std::string& trojanUri) const
         } else if (data.startsWith("group")) {
             data = data.replace("group=", "");
             result.group = data;
+        } else if (data.startsWith("?peer")) {
+            data = data.replace("?peer=", "");
+            result.sni = data;
+        } else if (data.startsWith("?allowinsecure")) {
+            data = data.replace("?allowinsecure=", "");
+            result.verifyCertificate = !data.toInt();
         }
     }
-
-    /* Not used any more
-    size_t ampersandPos = uri.find_last_of('&');
-    if (ampersandPos != std::string::npos) {
-        result.sni = QString::fromStdString(uri.substr(ampersandPos + 5));
-        uri.erase(ampersandPos, ampersandPos + 6);
-    }
-
-    size_t ampersandPos2 = uri.find_first_of('&');
-    if (ampersandPos2 != std::string::npos) {
-        result.tcpFastOpen = std::stoi(uri.substr(ampersandPos2 + 5));
-        uri.erase(ampersandPos2, ampersandPos2 + 6);
-    }
-    */
 
     return result;
 }

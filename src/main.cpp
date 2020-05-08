@@ -121,12 +121,9 @@ int main(int argc, char *argv[])
     QCommandLineParser parser;
     parser.addHelpOption();
     parser.addVersionOption();
-    QCommandLineOption noInstanceCheckOption("b",
-                                        "bypass one instance check.");
     QCommandLineOption configFileOption("c",
                                         "specify configuration file.",
                                         "config.ini");
-    parser.addOption(noInstanceCheckOption);
     parser.addOption(configFileOption);
     parser.process(a);
 
@@ -154,11 +151,6 @@ int main(int argc, char *argv[])
 #if defined (Q_OS_MAC)
     setupDockClickHandler();
 #endif
-
-    bool bypassOneInstance = parser.isSet(noInstanceCheckOption);
-    if (!bypassOneInstance)
-        if (conf.isOnlyOneInstance() && w.isInstanceRunning())
-            return -1;
 
     //let's start PAC Server
     PACServer pacServer;

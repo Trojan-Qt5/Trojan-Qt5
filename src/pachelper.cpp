@@ -105,7 +105,7 @@ QJsonDocument PACHelper::loadRules()
     else if (conf->getGfwlistUrl() == 2) {
         QFile file(gfwList);
         file.open(QIODevice::ReadOnly);
-        QStringList list = QString::fromUtf8(QByteArray::fromBase64(file.readAll())).split("\n");
+        list = QString::fromUtf8(QByteArray::fromBase64(file.readAll())).split("\n");
         file.close();
     }
     QStringList filedata;

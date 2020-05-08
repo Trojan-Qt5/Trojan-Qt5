@@ -56,5 +56,10 @@ void PACServer::onHandleRequest(QHttpRequest *req, QHttpResponse *rsp)
         rsp->setHeader("Connection", "close");
         rsp->writeHead(200);
         rsp->end(loadPACFile().toUtf8().data());
+    } else {
+        rsp->setHeader("Server", "Trojan-Qt5");
+        rsp->setHeader("Connection", "close");
+        rsp->writeHead(404);
+        rsp->end();
     }
 }

@@ -43,9 +43,6 @@ StatusNotifier::StatusNotifier(MainWindow *w, ConfigHelper *ch, SubscribeManager
         TransformProcessType(&psn, kProcessTransformToUIElementApplication);
     }
     systray.show();
-    if (helper->isAutoUpdateSubscribes()) {
-        sbMgr->updateAllSubscribes(false);
-    }
 }
 
 void StatusNotifier::initActions()

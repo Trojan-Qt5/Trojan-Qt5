@@ -44,7 +44,7 @@ CONFIG += link_pkgconfig
 #DEFINES += QT_DEPRECATED_WARNINGS
 
 # Define App Version
-DEFINES += "APP_VERSION=\"\\\"1.0.2\\\"\""
+DEFINES += "APP_VERSION=\"\\\"1.0.3\\\"\""
 
 # Set Build Info String
 _TROJAN_QT5_BUILD_INFO_STR_=$$getenv(_TROJAN_QT5_BUILD_INFO_)
@@ -55,16 +55,6 @@ DEFINES += _TROJAN_QT5_BUILD_INFO_STR_=\"\\\"$${_TROJAN_QT5_BUILD_INFO_STR_}\\\"
 
 # QHttpServer
 DEFINES += QHTTPSERVER_EXPORT
-
-# Trojan
-#DEFINES += ENABLE_MYSQL
-DEFINES += TCP_FASTOPEN
-#DEFINES += TCP_FASTOPEN_CONNECT
-DEFINES += ENABLE_SSL_KEYLOG
-#DEFINES += ENABLE_NAT
-DEFINES += ENABLE_TLS13_CIPHERSUITES
-#DEFINES += ENABLE_REUSE_PORT
-DEFINES += TROJAN_USE_EXTERNAL_LOGGER
 
 # You can also make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -100,7 +90,6 @@ win32 {
         src/statusnotifier.cpp
     HEADERS += \
         src/sysproxy/windows.h
-    INCLUDEPATH += $$PWD\src\trojan\src
     INCLUDEPATH += C:\TQLibraries\ZBar\include
     INCLUDEPATH += C:\TQLibraries\OpenSSL-Win32\include
     INCLUDEPATH += C:\TQLibraries\QREncode\include
@@ -162,7 +151,6 @@ unix:!mac {
     QT += dbus
     SOURCES += \
         src/statusnotifier.cpp
-    INCLUDEPATH += $$PWD/src/trojan/src
     INCLUDEPATH += /usr/local/openssl/include
     INCLUDEPATH += /usr/local/zlib/include
     LIBS += -L/usr/local/openssl/lib -lcrypto -lssl
@@ -280,7 +268,6 @@ HEADERS += \
     src/subscribedialog.h \
     src/httpproxy.h \
     src/socketstream.h \
-    3rd/trojan-qt5-libs/trojan-qt5-libs.h \
     src/ssreditdialog.h \
     src/utils.h \
     src/speedplot.h \

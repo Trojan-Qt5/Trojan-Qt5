@@ -15,6 +15,7 @@ QString SubscribeManager::checkUpdate(QString url, bool useProxy)
     Logger::debug(QString("[Subscribe] Subscribe Link: %1").arg(url));
     QNetworkAccessManager* manager = new QNetworkAccessManager();
     QNetworkRequest request(url);
+    request.setAttribute(QNetworkRequest::HTTP2AllowedAttribute, true);
     request.setRawHeader("User-Agent", helper->getUpdateUserAgent().toUtf8().data());
     if (useProxy) {
         QNetworkProxy proxy;
@@ -33,6 +34,7 @@ QString SubscribeManager::checkUpdate(QString url, bool useProxy)
 
 void SubscribeManager::updateAllSubscribes(bool useProxy)
 {
+    Logger::debug(QString("[Subscribe] Check subscribe clicked, use proxy: %1").arg(useProxy));
     QList<TQSubscribe> subscribes = helper->readSubscribes();
     for (int i = 0; i < subscribes.size(); i++) {
         subscribes[i].lastUpdateTime = QDateTime::currentDateTime().toTime_t() - QDateTime::fromString("1970-01-01T00:00:00").toTime_t();

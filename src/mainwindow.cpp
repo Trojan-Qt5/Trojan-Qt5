@@ -93,7 +93,6 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
     connect(sbMgr, &SubscribeManager::addUri, this,
             &MainWindow::onAddURIFromSubscribe);
 
-
     //some UI changes accoding to config
     ui->toolBar->setVisible(configHelper->isShowToolbar());
     ui->actionShowFilterBar->setChecked(configHelper->isShowFilterBar());
@@ -207,7 +206,6 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
     restoreState(configHelper->getMainWindowState());
     ui->connectionView->horizontalHeader()->restoreGeometry(configHelper->getTableGeometry());
     ui->connectionView->horizontalHeader()->restoreState(configHelper->getTableState());
-
 }
 
 MainWindow::~MainWindow()

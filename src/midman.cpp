@@ -9,9 +9,10 @@ Connection* MidMan::statusConnection = new Connection(TQProfile());
 
 MidMan::~MidMan()
 {
+    MidMan::connection = nullptr;
+    MidMan::statusConnection = nullptr;
     delete MidMan::connection;
     delete MidMan::statusConnection;
-    MidMan::connection = nullptr;
 }
 
 void MidMan::setConnection(Connection *con)
