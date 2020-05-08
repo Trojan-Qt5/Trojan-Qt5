@@ -21,7 +21,7 @@ install:
   - cd ..\..
   - cd 3rd\trojan-qt5-core
   - set GOARCH=386
-  - go build --tags "full" -buildmode=c-shared -o trojan-qt5-core.dll main.go
+  - go build --tags "api client router" -buildmode=c-shared -o trojan-qt5-core.dll main.go
   - process.bat
   - python msvc.py
   - cd ../..

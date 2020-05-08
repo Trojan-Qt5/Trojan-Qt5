@@ -24,6 +24,8 @@ import (
 	_ "github.com/p4gefau1t/trojan-go/build"
 
 	"github.com/Trojan-Qt5/go-shadowsocks2/cmd/shadowsocks"
+
+	v2ray "github.com/Trojan-Qt5/v2ray-go/core"
 )
 
 const (
@@ -113,6 +115,16 @@ func startShadowsocksGo(ClientAddr *C.char, ServerAddr *C.char, Cipher *C.char, 
 //export stopShadowsocksGo
 func stopShadowsocksGo() {
 	shadowsocks.StopGoShadowsocks()
+}
+
+//export startV2rayGo
+func startV2rayGo(configFile *C.char) {
+	v2ray.StartV2ray(C.GoString(configFile))
+}
+
+//export stopV2rayGo
+func stopV2rayGo() {
+	v2ray.StopV2ray()
 }
 
 //export startTrojanGo

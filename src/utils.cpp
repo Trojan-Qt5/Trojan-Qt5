@@ -1,4 +1,7 @@
 #include "utils.h"
+#include "confighelper.h"
+#include <QCoreApplication>
+#include <QDir>
 
 Utils::Utils()
 {}
@@ -16,3 +19,17 @@ QString Utils::Base64UrlDecode(QString encodedText)
     QString plainText = QByteArray::fromBase64(encodedArray, QByteArray::Base64Option::OmitTrailingEquals);
     return plainText;
 }
+
+/*
+QString Utils::getLocalAddr()
+{
+#ifdef Q_OS_WIN
+    QString configFile = QCoreApplication::applicationDirPath() + "/config.ini";
+#else
+    QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
+    QString configFile = configDir.absolutePath() + "/config.ini";
+#endif
+
+    ConfigHelper *conf = new ConfigHelper(configFile);
+    return
+}*/

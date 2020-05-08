@@ -452,6 +452,44 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
 
 }
 
+/*
+void ConfigHelper::generateV2rayJson(TQProfile &profile)
+{
+    QJsonObject configObj;
+    QJsonArray inboundsArray;
+    QJsonObject inbound;
+    QJsonObject inboundSettings;
+    inbound["port"] = socks5Port;
+    inbound["protocol"] = "socks";
+    inboundSettings["udp"] = true;
+    inboundSettings["auth"] = "noauth";
+    inboundSettings["ip"] = isEnableIpv6Support() ? (isShareOverLan() ? "::" : "::1") : (isShareOverLan() ? "0.0.0.0" : "127.0.0.1");
+    inbound["settings"] = inboundSettings;
+    inbound["tag"] = "in-0";
+    inboundsArray.append(inbound);
+    configObj["inbound"] = inboundsArray;
+    QJsonArray outboundsArray;
+    QJsonObject outbound;
+    outbound["protocol"] = "vmess";
+    outbound["tag"] = "out-0";
+    QJsonArray vnetArray;
+    QJsonObject vnet;
+    vnet["address"] = serverAddress;
+    vnet["port"] = serverPort;
+    QJsonArray usersArray;
+    QJsonObject users;
+    users["id"] = ;
+    users["alterId"] = ;
+    usersArray.append(users);
+    vnet["users"] = usersArray;
+    QJsonObject streamSettings;
+    streamSettings["network"] = "";
+    streamSettings["security"] = "";
+    streamSettings[""];
+
+}
+*/
+
 void ConfigHelper::generateHaproxyConf(const ConnectionTableModel &model)
 {
 #ifdef Q_OS_WIN

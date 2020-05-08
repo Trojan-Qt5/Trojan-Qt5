@@ -44,7 +44,7 @@ CONFIG += link_pkgconfig
 #DEFINES += QT_DEPRECATED_WARNINGS
 
 # Define App Version
-DEFINES += "APP_VERSION=\"\\\"1.0.3\\\"\""
+DEFINES += "APP_VERSION=\"\\\"1.0.4\\\"\""
 
 # Set Build Info String
 _TROJAN_QT5_BUILD_INFO_STR_=$$getenv(_TROJAN_QT5_BUILD_INFO_)

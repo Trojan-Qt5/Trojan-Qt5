@@ -87,7 +87,9 @@ private:
 
     friend class SSEditDialog;
     friend class SSREditDialog;
+    friend class VmessEditDialog;
     friend class TrojanEditDialog;
+    friend class SnellEditDialog;
     friend class ConfigHelper;
     friend class StatusDialog;
     friend class ConnectionItem;

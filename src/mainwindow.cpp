@@ -5,6 +5,7 @@
 #include "sseditdialog.h"
 #include "ssreditdialog.h"
 #include "trojaneditdialog.h"
+#include "snelleditdialog.h"
 #include "urihelper.h"
 #include "uriinputdialog.h"
 #include "userrules.h"
@@ -133,6 +134,8 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
             this, [this]() { onAddManually("ssr"); });
     connect(ui->actionManuallyTrojan, &QAction::triggered,
             this, [this]() { onAddManually("trojan"); });
+    connect(ui->actionManuallySnell, &QAction::triggered,
+            this, [this]() { onAddManually("snell"); });
     connect(ui->actionQRCode, &QAction::triggered,
             this, &MainWindow::onAddScreenQRCode);
     connect(ui->actionScanQRCodeCapturer, &QAction::triggered,
@@ -621,6 +624,9 @@ void MainWindow::newProfile(QString type, Connection *newCon)
     } else if (type == "trojan") {
         editDlg = new TrojanEditDialog(newCon, this);
         connect(editDlg, &TrojanEditDialog::finished, editDlg, &TrojanEditDialog::deleteLater);
+    } else if (type == "snell") {
+        editDlg = new SnellEditDialog(newCon, this);
+        connect(editDlg, &SnellEditDialog::finished, editDlg, &SnellEditDialog::deleteLater);
     }
 
     if (editDlg->exec()) {//accepted
@@ -825,7 +831,11 @@ void MainWindow::setupActionIcon()
                                 QIcon::fromTheme("accessories-text-editor")));
     ui->actionManuallySSR->setIcon(QIcon::fromTheme("edit-guides",
                                 QIcon::fromTheme("accessories-text-editor")));
+    ui->actionManuallyVmess->setIcon(QIcon::fromTheme("edit-guides",
+                                QIcon::fromTheme("accessories-text-editor")));
     ui->actionManuallyTrojan->setIcon(QIcon::fromTheme("edit-guides",
+                                QIcon::fromTheme("accessories-text-editor")));
+    ui->actionManuallySnell->setIcon(QIcon::fromTheme("edit-guides",
                                 QIcon::fromTheme("accessories-text-editor")));
     ui->actionURI->setIcon(QIcon::fromTheme("text-field",
                            QIcon::fromTheme("insert-link")));
