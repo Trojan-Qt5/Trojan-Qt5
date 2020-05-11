@@ -1895,7 +1895,7 @@
         <location filename="../../src/statusnotifier.cpp" line="132"/>
         <location filename="../../src/statusnotifier.mm" line="132"/>
         <source>Server Speed Plot</source>
-        <translation>服务器速度图标</translation>
+        <translation>服务器速度图表</translation>
     </message>
 </context>
 <context>
