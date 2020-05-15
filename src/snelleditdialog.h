@@ -17,8 +17,6 @@ public:
     explicit SnellEditDialog(Connection *_connection, QWidget *parent = 0);
     ~SnellEditDialog();
 
-    void save();
-
 private:
     Ui::SnellEditDialog *ui;
     Connection *connection;

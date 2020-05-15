@@ -1,4 +1,4 @@
-﻿#include "confighelper.h"
+#include "confighelper.h"
 #include <QCoreApplication>
 #include <QDir>
 #include <QFile>
