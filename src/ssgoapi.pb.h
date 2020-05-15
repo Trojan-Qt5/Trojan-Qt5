@@ -54,6 +54,7 @@ struct TableStruct_ssgoapi_2eproto {
   static const ::PROTOBUF_NAMESPACE_ID::uint32 offsets[];
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_ssgoapi_2eproto;
+namespace shadowsocks {
 namespace api {
 class StatsReply;
 class StatsReplyDefaultTypeInternal;
@@ -62,16 +63,18 @@ class StatsRequest;
 class StatsRequestDefaultTypeInternal;
 extern StatsRequestDefaultTypeInternal _StatsRequest_default_instance_;
 }  // namespace api
+}  // namespace shadowsocks
 PROTOBUF_NAMESPACE_OPEN
-template<> ::api::StatsReply* Arena::CreateMaybeMessage<::api::StatsReply>(Arena*);
-template<> ::api::StatsRequest* Arena::CreateMaybeMessage<::api::StatsRequest>(Arena*);
+template<> ::shadowsocks::api::StatsReply* Arena::CreateMaybeMessage<::shadowsocks::api::StatsReply>(Arena*);
+template<> ::shadowsocks::api::StatsRequest* Arena::CreateMaybeMessage<::shadowsocks::api::StatsRequest>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
+namespace shadowsocks {
 namespace api {
 
 // ===================================================================
 
 class StatsRequest :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:api.StatsRequest) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:shadowsocks.api.StatsRequest) */ {
  public:
   StatsRequest();
   virtual ~StatsRequest();
@@ -151,7 +154,7 @@ class StatsRequest :
   void InternalSwap(StatsRequest* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "api.StatsRequest";
+    return "shadowsocks.api.StatsRequest";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -194,7 +197,7 @@ class StatsRequest :
   std::string* _internal_mutable_password();
   public:
 
-  // @@protoc_insertion_point(class_scope:api.StatsRequest)
+  // @@protoc_insertion_point(class_scope:shadowsocks.api.StatsRequest)
  private:
   class _Internal;
 
@@ -206,7 +209,7 @@ class StatsRequest :
 // -------------------------------------------------------------------
 
 class StatsReply :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:api.StatsReply) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:shadowsocks.api.StatsReply) */ {
  public:
   StatsReply();
   virtual ~StatsReply();
@@ -286,7 +289,7 @@ class StatsReply :
   void InternalSwap(StatsReply* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "api.StatsReply";
+    return "shadowsocks.api.StatsReply";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -352,7 +355,7 @@ class StatsReply :
   void _internal_set_download_speed(::PROTOBUF_NAMESPACE_ID::uint64 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:api.StatsReply)
+  // @@protoc_insertion_point(class_scope:shadowsocks.api.StatsReply)
  private:
   class _Internal;
 
@@ -380,15 +383,15 @@ inline void StatsRequest::clear_password() {
   password_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& StatsRequest::password() const {
-  // @@protoc_insertion_point(field_get:api.StatsRequest.password)
+  // @@protoc_insertion_point(field_get:shadowsocks.api.StatsRequest.password)
   return _internal_password();
 }
 inline void StatsRequest::set_password(const std::string& value) {
   _internal_set_password(value);
-  // @@protoc_insertion_point(field_set:api.StatsRequest.password)
+  // @@protoc_insertion_point(field_set:shadowsocks.api.StatsRequest.password)
 }
 inline std::string* StatsRequest::mutable_password() {
-  // @@protoc_insertion_point(field_mutable:api.StatsRequest.password)
+  // @@protoc_insertion_point(field_mutable:shadowsocks.api.StatsRequest.password)
   return _internal_mutable_password();
 }
 inline const std::string& StatsRequest::_internal_password() const {
@@ -402,26 +405,26 @@ inline void StatsRequest::set_password(std::string&& value) {
   
   password_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:api.StatsRequest.password)
+  // @@protoc_insertion_point(field_set_rvalue:shadowsocks.api.StatsRequest.password)
 }
 inline void StatsRequest::set_password(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   password_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:api.StatsRequest.password)
+  // @@protoc_insertion_point(field_set_char:shadowsocks.api.StatsRequest.password)
 }
 inline void StatsRequest::set_password(const char* value, size_t size) {
   
   password_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:api.StatsRequest.password)
+  // @@protoc_insertion_point(field_set_pointer:shadowsocks.api.StatsRequest.password)
 }
 inline std::string* StatsRequest::_internal_mutable_password() {
   
   return password_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* StatsRequest::release_password() {
-  // @@protoc_insertion_point(field_release:api.StatsRequest.password)
+  // @@protoc_insertion_point(field_release:shadowsocks.api.StatsRequest.password)
   
   return password_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -432,7 +435,7 @@ inline void StatsRequest::set_allocated_password(std::string* password) {
     
   }
   password_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), password);
-  // @@protoc_insertion_point(field_set_allocated:api.StatsRequest.password)
+  // @@protoc_insertion_point(field_set_allocated:shadowsocks.api.StatsRequest.password)
 }
 
 // -------------------------------------------------------------------
@@ -447,7 +450,7 @@ inline ::PROTOBUF_NAMESPACE_ID::uint64 StatsReply::_internal_upload_traffic() co
   return upload_traffic_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::uint64 StatsReply::upload_traffic() const {
-  // @@protoc_insertion_point(field_get:api.StatsReply.upload_traffic)
+  // @@protoc_insertion_point(field_get:shadowsocks.api.StatsReply.upload_traffic)
   return _internal_upload_traffic();
 }
 inline void StatsReply::_internal_set_upload_traffic(::PROTOBUF_NAMESPACE_ID::uint64 value) {
@@ -456,7 +459,7 @@ inline void StatsReply::_internal_set_upload_traffic(::PROTOBUF_NAMESPACE_ID::ui
 }
 inline void StatsReply::set_upload_traffic(::PROTOBUF_NAMESPACE_ID::uint64 value) {
   _internal_set_upload_traffic(value);
-  // @@protoc_insertion_point(field_set:api.StatsReply.upload_traffic)
+  // @@protoc_insertion_point(field_set:shadowsocks.api.StatsReply.upload_traffic)
 }
 
 // uint64 download_traffic = 2;
@@ -467,7 +470,7 @@ inline ::PROTOBUF_NAMESPACE_ID::uint64 StatsReply::_internal_download_traffic() 
   return download_traffic_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::uint64 StatsReply::download_traffic() const {
-  // @@protoc_insertion_point(field_get:api.StatsReply.download_traffic)
+  // @@protoc_insertion_point(field_get:shadowsocks.api.StatsReply.download_traffic)
   return _internal_download_traffic();
 }
 inline void StatsReply::_internal_set_download_traffic(::PROTOBUF_NAMESPACE_ID::uint64 value) {
@@ -476,7 +479,7 @@ inline void StatsReply::_internal_set_download_traffic(::PROTOBUF_NAMESPACE_ID::
 }
 inline void StatsReply::set_download_traffic(::PROTOBUF_NAMESPACE_ID::uint64 value) {
   _internal_set_download_traffic(value);
-  // @@protoc_insertion_point(field_set:api.StatsReply.download_traffic)
+  // @@protoc_insertion_point(field_set:shadowsocks.api.StatsReply.download_traffic)
 }
 
 // uint64 upload_speed = 3;
@@ -487,7 +490,7 @@ inline ::PROTOBUF_NAMESPACE_ID::uint64 StatsReply::_internal_upload_speed() cons
   return upload_speed_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::uint64 StatsReply::upload_speed() const {
-  // @@protoc_insertion_point(field_get:api.StatsReply.upload_speed)
+  // @@protoc_insertion_point(field_get:shadowsocks.api.StatsReply.upload_speed)
   return _internal_upload_speed();
 }
 inline void StatsReply::_internal_set_upload_speed(::PROTOBUF_NAMESPACE_ID::uint64 value) {
@@ -496,7 +499,7 @@ inline void StatsReply::_internal_set_upload_speed(::PROTOBUF_NAMESPACE_ID::uint
 }
 inline void StatsReply::set_upload_speed(::PROTOBUF_NAMESPACE_ID::uint64 value) {
   _internal_set_upload_speed(value);
-  // @@protoc_insertion_point(field_set:api.StatsReply.upload_speed)
+  // @@protoc_insertion_point(field_set:shadowsocks.api.StatsReply.upload_speed)
 }
 
 // uint64 download_speed = 4;
@@ -507,7 +510,7 @@ inline ::PROTOBUF_NAMESPACE_ID::uint64 StatsReply::_internal_download_speed() co
   return download_speed_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::uint64 StatsReply::download_speed() const {
-  // @@protoc_insertion_point(field_get:api.StatsReply.download_speed)
+  // @@protoc_insertion_point(field_get:shadowsocks.api.StatsReply.download_speed)
   return _internal_download_speed();
 }
 inline void StatsReply::_internal_set_download_speed(::PROTOBUF_NAMESPACE_ID::uint64 value) {
@@ -516,7 +519,7 @@ inline void StatsReply::_internal_set_download_speed(::PROTOBUF_NAMESPACE_ID::ui
 }
 inline void StatsReply::set_download_speed(::PROTOBUF_NAMESPACE_ID::uint64 value) {
   _internal_set_download_speed(value);
-  // @@protoc_insertion_point(field_set:api.StatsReply.download_speed)
+  // @@protoc_insertion_point(field_set:shadowsocks.api.StatsReply.download_speed)
 }
 
 #ifdef __GNUC__
@@ -528,6 +531,7 @@ inline void StatsReply::set_download_speed(::PROTOBUF_NAMESPACE_ID::uint64 value
 // @@protoc_insertion_point(namespace_scope)
 
 }  // namespace api
+}  // namespace shadowsocks
 
 // @@protoc_insertion_point(global_scope)
 

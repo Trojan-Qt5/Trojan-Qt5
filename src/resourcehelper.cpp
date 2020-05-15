@@ -9,7 +9,7 @@ ResourceHelper::ResourceHelper()
 {
 }
 
-void ResourceHelper::initPrivoxy()
+void ResourceHelper::installTAPDriver()
 {
     QDir configDir = QStandardPaths::writableLocation(QStandardPaths::TempLocation) + "/Trojan-Qt5";
     if (!configDir.exists()) {

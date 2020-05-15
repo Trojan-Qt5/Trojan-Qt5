@@ -4,6 +4,7 @@
 #include "systemproxyhelper.h"
 #include "subscribedialog.h"
 #include "subscribemanager.h"
+#include "resourcehelper.h"
 #include "speedplot.h"
 
 #include <QApplication>
@@ -182,6 +183,9 @@ void StatusNotifier::initConnections()
     connect(serverSpeedPlot, &QAction::triggered, this, [this]() { showServerSpeedPlot(); });
     connect(copyTerminalProxyCommand, &QAction::triggered, this, [this]() { onCopyTerminalProxy(); });
     connect(setProxyToTelegram, &QAction::triggered, this, [this]() { onSetProxyToTelegram(); });
+#if defined (Q_OS_WIN)
+    connect(installTapDriver, &QAction::triggered, this, [this]() { onInstallTAPDriver(); });
+#endif
 }
 
 void StatusNotifier::updateMenu()
@@ -294,6 +298,13 @@ void StatusNotifier::onSetProxyToTelegram()
 {
     QDesktopServices::openUrl(QString("tg://socks?server=127.0.0.1&port=%2").arg(helper->getSocks5Port()));
 }
+
+#if defined (Q_OS_WIN)
+void StatusNotifier::onInstallTAPDriver()
+{
+    ResourceHelper::installTAPDriver();
+}
+#endif
 
 void StatusNotifier::activate()
 {

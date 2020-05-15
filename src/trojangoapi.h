@@ -31,8 +31,8 @@ private:
     QThread *thread;
     QString password;
     std::shared_ptr<::grpc::Channel> Channel;
-    std::unique_ptr<::api::TrojanClientService::Stub> Stub;
-    ::api::User *User;
+    std::unique_ptr<::trojan::api::TrojanClientService::Stub> Stub;
+    ::trojan::api::User *User;
 
 };
 

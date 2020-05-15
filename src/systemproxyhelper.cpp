@@ -91,6 +91,7 @@ void SystemProxyHelper::setSystemProxy(int method)
               || name == "Wi-Fi"
               || name == "Ethernet"
               || name == "Thunderbolt Ethernet"
+              || name == "Thunderbolt Ethernet Slot  1"
               || name == "USB 10/100 LAN"
               || name == "USB 10/100/1000 LAN"
               || name == "802.11ac NIC")

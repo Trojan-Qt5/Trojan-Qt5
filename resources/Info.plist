@@ -23,11 +23,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>Trojan-Qt5 1.0.4</string>
+	<string>Trojan-Qt5 1.1.0</string>
 	<key>CFBundleSignature</key>
 	<string>trojan-qt5</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.4</string>
+	<string>1.1.0</string>
 	<key>CSResourcesFileMapped</key>
 	<true/>
 	<key>NSRequiresAquaSystemAppearance</key>
@@ -46,6 +46,66 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>trojan-qt5</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLIconFile</key>
+			<string>Icon</string>
+			<key>CFBundleURLName</key>
+			<string>com.thewanderingcoel.ss</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>ss</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLIconFile</key>
+			<string>Icon</string>
+			<key>CFBundleURLName</key>
+			<string>com.thewanderingcoel.ssr</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>ssr</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLIconFile</key>
+			<string>Icon</string>
+			<key>CFBundleURLName</key>
+			<string>com.thewanderingcoel.vmess</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>vmess</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLIconFile</key>
+			<string>Icon</string>
+			<key>CFBundleURLName</key>
+			<string>com.thewanderingcoel.trojan</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>trojan</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLIconFile</key>
+			<string>Icon</string>
+			<key>CFBundleURLName</key>
+			<string>com.thewanderingcoel.snell</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>snell</string>
 			</array>
 		</dict>
 	</array>

@@ -44,7 +44,7 @@ CONFIG += link_pkgconfig
 #DEFINES += QT_DEPRECATED_WARNINGS
 
 # Define App Version
-DEFINES += "APP_VERSION=\"\\\"1.0.4\\\"\""
+DEFINES += "APP_VERSION=\"\\\"1.1.0\\\"\""
 
 # Set Build Info String
 _TROJAN_QT5_BUILD_INFO_STR_=$$getenv(_TROJAN_QT5_BUILD_INFO_)
@@ -145,6 +145,10 @@ mac {
     QMAKE_INFO_PLIST = resources/Info.plist
     # Otherwise lupdate will not work
     TR_EXCLUDE += /usr/local/opt/boost/*
+    # copy .dat files
+    APP_QML_FILES.files = $$PWD/resources/dat/geoip.dat $$PWD/resources/dat/geosite.dat
+    APP_QML_FILES.path = Contents/MacOS
+    QMAKE_BUNDLE_DATA += APP_QML_FILES
 }
 
 unix:!mac {
@@ -182,6 +186,7 @@ unix {
 
 SOURCES += \
     src/connectionsortfilterproxymodel.cpp \
+    src/eventfilter.cpp \
     src/haproxythread.cpp \
     src/logger.cpp \
     src/midman.cpp \
@@ -197,6 +202,7 @@ SOURCES += \
     src/connectiontablemodel.cpp \
     src/speedplotview.cpp \
     src/speedwidget.cpp \
+    src/ssthread.cpp \
     src/trojaneditdialog.cpp \
     src/ip4validator.cpp \
     src/main.cpp \
@@ -212,6 +218,7 @@ SOURCES += \
     src/tqsubscribe.cpp \
     src/generalvalidator.cpp \
     src/trojangoapi.cpp \
+    src/trojanthread.cpp \
     src/tun2socksthread.cpp \
     src/urihelper.cpp \
     src/uriinputdialog.cpp \
@@ -227,10 +234,13 @@ SOURCES += \
     src/sseditdialog.cpp \
     src/snelleditdialog.cpp \
     src/vmesseditdialog.cpp \
-    src/ssgoapi.cpp
+    src/ssgoapi.cpp \
+    src/routewidget.cpp \
+    src/streamwidget.cpp
 
 HEADERS += \
     src/connectionsortfilterproxymodel.h \
+    src/eventfilter.h \
     src/haproxythread.h \
     src/logger.h \
     src/midman.h \
@@ -246,6 +256,7 @@ HEADERS += \
     src/connectiontablemodel.h \
     src/speedplotview.hpp \
     src/speedwidget.hpp \
+    src/ssthread.h \
     src/trojaneditdialog.h \
     src/ip4validator.h \
     src/mainwindow.h \
@@ -261,6 +272,7 @@ HEADERS += \
     src/tqsubscribe.h \
     src/generalvalidator.h \
     src/trojangoapi.h \
+    src/trojanthread.h \
     src/tun2socksthread.h \
     src/urihelper.h \
     src/uriinputdialog.h \
@@ -276,16 +288,20 @@ HEADERS += \
     src/sseditdialog.h \
     src/snelleditdialog.h \
     src/vmesseditdialog.h \
-    src/ssgoapi.h
+    src/ssgoapi.h \
+    src/routewidget.h \
+    src/streamwidget.h
 
 FORMS += \
     ui/aboutdialog.ui \
+    ui/routewidget.ui \
     ui/settingsdialog.ui \
     ui/mainwindow.ui \
     ui/sharedialog.ui \
     ui/speedplot.ui \
     ui/sseditdialog.ui \
     ui/ssreditdialog.ui \
+    ui/streamwidget.ui \
     ui/subscribedialog.ui \
     ui/trojaneditdialog.ui \
     ui/uriinputdialog.ui \

@@ -72,7 +72,7 @@ private:
     void initSparkle();
     void initSingleInstance();
 
-    void newProfile(QString type, Connection *newCon);
+    void newProfile(Connection *newCon);
     void editRow(int row);
     void blockChildrenSignals(bool);
     void checkCurrentIndex();

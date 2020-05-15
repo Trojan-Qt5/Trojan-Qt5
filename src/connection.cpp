@@ -62,8 +62,12 @@ QByteArray Connection::getURI(QString type) const
         uri = profile.toSSUri();
     else if (type == "ssr")
         uri = profile.toSSRUri();
+    else if (type == "vmess")
+        uri = profile.toVmessUri();
     else if (type == "trojan")
         uri = profile.toTrojanUri();
+    else if (type == "snell")
+        uri = profile.toSnellUri();
     return QByteArray(uri.toUtf8());
 }
 
@@ -74,7 +78,7 @@ void Connection::setProfile(TQProfile p)
 
 bool Connection::isValid() const
 {
-    if (profile.serverAddress.isEmpty() || profile.password.isEmpty()) {
+    if (profile.serverAddress.isEmpty() || (profile.password.isEmpty() && profile.uuid.isEmpty())) {
         return false;
     }
     else {
@@ -112,7 +116,7 @@ void Connection::start()
         PortValidator *pv = new PortValidator();
         QString errorString = pv->isInUse(conf->getSocks5Port());
         if (!errorString.isEmpty()) {
-            Logger::error(QString("can't bind socks5 port %1: %2").arg(QString::number(conf->getSocks5Port())).arg(errorString));
+            Logger::error(QString("[Connection] Can't bind socks5 port %1: %2").arg(QString::number(conf->getSocks5Port())).arg(errorString));
             return;
         }
 
@@ -120,14 +124,13 @@ void Connection::start()
         if (conf->isEnableHttpMode()) {
             QString errorString = pv->isInUse(conf->getHttpPort());
             if (!errorString.isEmpty()) {
-                Logger::error(QString("can't bind http port %1: %2").arg(QString::number(conf->getHttpPort())).arg(errorString));
+                Logger::error(QString("[Connection] Can't bind http port %1: %2").arg(QString::number(conf->getHttpPort())).arg(errorString));
                 return;
             }
         }
     }
 
     if (conf->isEnableHttpMode())
-        //MUST initialize there otherwise privoxy will not listen port
         http = new HttpProxy();
 
     if (conf->getSystemProxySettings() == "advance") {
@@ -143,55 +146,59 @@ void Connection::start()
     QString file = configDir.absolutePath() + "/config.json";
 #endif
 
-    if (profile.type == "ssr") {
-        //initalize ssr thread
-        ssr = std::make_unique<SSRThread>(conf->getSocks5Port(),
-                            profile.serverPort,
-                            6000,
-                            1500,
-                            SSRThread::SSR_WORK_MODE::TCP_AND_UDP,
-                            conf->isEnableIpv6Support() ? (conf->isShareOverLan() ? "::" : "::1") : (conf->isShareOverLan() ? "0.0.0.0" : "127.0.0.1"),
-                            profile.serverAddress.toStdString(),
-                            profile.method.toStdString(),
-                            profile.password.toStdString(),
-                            profile.obfs.toStdString(),
-                            profile.obfsParam.toStdString(),
-                            profile.protocol.toStdString(),
-                            profile.protocolParam.toStdString());
-        ssr->connect(ssr.get(), &SSRThread::OnDataReady, this, &Connection::onNewBytesTransmitted);
-        ssr->connect(ssr.get(), &SSRThread::onSSRThreadLog, this, &Connection::onLog);
-    } else if (profile.type == "trojan") {
-        //generate Config File that trojan will use
-        conf->connectionToJson(profile);
-    }
-
-    //set running status to true before we start proxy
-    running = true;
-
     QString localAddr = conf->isEnableIpv6Support() ? (conf->isShareOverLan() ? "::" : "::1") : (conf->isShareOverLan() ? "0.0.0.0" : "127.0.0.1");
 
     if (profile.type == "ss") {
         QString apiAddr = localAddr + ":" + QString::number(conf->getTrojanAPIPort());
         QString clientAddr = localAddr + ":" + QString::number(conf->getSocks5Port());
         QString serverAddr = profile.serverAddress + ":" + QString::number(profile.serverPort);
-        startShadowsocksGo(clientAddr.toUtf8().data(),
-                           serverAddr.toUtf8().data(),
-                           profile.method.toUtf8().data(),
-                           profile.password.toUtf8().data(),
-                           profile.plugin.toUtf8().data(),
-                           profile.pluginParam.toUtf8().data(),
-                           conf->isEnableTrojanAPI(),
-                           apiAddr.toUtf8().data());
+        ss = new SSThread(clientAddr.toUtf8().data(),
+                          serverAddr.toUtf8().data(),
+                          profile.method.toUtf8().data(),
+                          profile.password.toUtf8().data(),
+                          profile.plugin.toUtf8().data(),
+                          profile.pluginParam.toUtf8().data(),
+                          conf->isEnableTrojanAPI(),
+                          apiAddr.toUtf8().data());
+    } else if (profile.type == "ssr") {
+        //initalize ssr thread
+        ssr = std::make_unique<SSRThread>(conf->getSocks5Port(),
+                          profile.serverPort,
+                          6000,
+                          1500,
+                          SSRThread::SSR_WORK_MODE::TCP_AND_UDP,
+                          conf->isEnableIpv6Support() ? (conf->isShareOverLan() ? "::" : "::1") : (conf->isShareOverLan() ? "0.0.0.0" : "127.0.0.1"),
+                          profile.serverAddress.toStdString(),
+                          profile.method.toStdString(),
+                          profile.password.toStdString(),
+                          profile.obfs.toStdString(),
+                          profile.obfsParam.toStdString(),
+                          profile.protocol.toStdString(),
+                          profile.protocolParam.toStdString());
+        ssr->connect(ssr.get(), &SSRThread::OnDataReady, this, &Connection::onNewBytesTransmitted);
+        ssr->connect(ssr.get(), &SSRThread::onSSRThreadLog, this, &Connection::onLog);
+    } else if (profile.type == "vmess") {
+        conf->generateV2rayJson(profile);
+    } else if (profile.type == "trojan") {
+        //generate Config File that trojan will use
+        conf->connectionToJson(profile);
+        trojan = new TrojanThread(file);
+    }
+
+    //set running status to true before we start proxy
+    running = true;
+
+    if (profile.type == "ss") {
+        ss->start();
         if (conf->isEnableTrojanAPI()) {
             ssGoAPI = new SSGoAPI();
             ssGoAPI->start();
             connect(ssGoAPI, &SSGoAPI::OnDataReady, this, &Connection::onNewBytesTransmitted);
         }
-    }
-    else if (profile.type == "ssr") {
+    } else if (profile.type == "ssr") {
         ssr->start();
     } else if (profile.type == "trojan") {
-        startTrojanGo(file.toUtf8().data());
+        trojan->start();
         if (conf->isEnableTrojanAPI()) {
             trojanGoAPI = new TrojanGoAPI();
             trojanGoAPI->setPassword(profile.password);
@@ -207,9 +214,9 @@ void Connection::start()
     if (conf->isEnableHttpMode())
         if (conf->getSystemProxySettings() != "advance")
             http->httpListen(QHostAddress(localAddr),
-                             conf->getHttpPort(),
-                             localAddr,
-                             conf->getSocks5Port());
+                           conf->getHttpPort(),
+                           localAddr,
+                           conf->getSocks5Port());
 
     //start tun2socks if settings is configured to do so
     if (conf->getSystemProxySettings() == "advance") {
@@ -248,18 +255,17 @@ void Connection::stop()
         running = false;
 
         if (profile.type == "ss") {
-            stopShadowsocksGo();
-            ssGoAPI->stop();
-            ssGoAPI = nullptr;
-        }
-        else if (profile.type == "ssr") {
+            ss->stop();
+            if (conf->isEnableTrojanAPI()) {
+                ssGoAPI->stop();
+            }
+        } else if (profile.type == "ssr") {
             ssr->stop();
-            ssr = nullptr;
-        }
-        else if (profile.type == "trojan") {
-            stopTrojanGo();
-            trojanGoAPI->stop();
-            trojanGoAPI = nullptr;
+        } else if (profile.type == "trojan") {
+            trojan->stop();
+            if (conf->isEnableTrojanAPI()) {
+                trojanGoAPI->stop();
+            }
         }
 
         //if we have started http proxy, stop it
@@ -290,13 +296,18 @@ void Connection::onStartFailed()
 
     conf->setTrojanOn(running);
 
-    if (profile.type == "ssr") {
+    if (profile.type == "ss") {
+        ss->stop();
+        if (conf->isEnableTrojanAPI()) {
+            ssGoAPI->stop();
+        }
+    } else if (profile.type == "ssr") {
         ssr->stop();
-        ssr = nullptr;
-    }
-    else if (profile.type == "trojan") {
-        stopTrojanGo();
-        trojanGoAPI->stop();
+    } else if (profile.type == "trojan") {
+        trojan->stop();
+        if (conf->isEnableTrojanAPI()) {
+            trojanGoAPI->stop();
+        }
     }
 
     //if we have started http proxy, stop it

@@ -37,5 +37,11 @@
         <file>icons/mielink.png</file>
         <file>icons/donation.png</file>
         <file>icons/trojan-qt5_new.png</file>
+        <file>icons/snell_off.png</file>
+        <file>icons/snell_on.png</file>
+        <file>icons/ss_on.png</file>
+        <file>icons/ss_off.png</file>
+        <file>icons/vmess_on.png</file>
+        <file>icons/vmess_off.png</file>
     </qresource>
 </RCC>

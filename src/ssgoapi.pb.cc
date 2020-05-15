@@ -14,6 +14,7 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
+namespace shadowsocks {
 namespace api {
 class StatsRequestDefaultTypeInternal {
  public:
@@ -24,15 +25,16 @@ class StatsReplyDefaultTypeInternal {
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<StatsReply> _instance;
 } _StatsReply_default_instance_;
 }  // namespace api
+}  // namespace shadowsocks
 static void InitDefaultsscc_info_StatsReply_ssgoapi_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::api::_StatsReply_default_instance_;
-    new (ptr) ::api::StatsReply();
+    void* ptr = &::shadowsocks::api::_StatsReply_default_instance_;
+    new (ptr) ::shadowsocks::api::StatsReply();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::api::StatsReply::InitAsDefaultInstance();
+  ::shadowsocks::api::StatsReply::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_StatsReply_ssgoapi_2eproto =
@@ -42,11 +44,11 @@ static void InitDefaultsscc_info_StatsRequest_ssgoapi_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::api::_StatsRequest_default_instance_;
-    new (ptr) ::api::StatsRequest();
+    void* ptr = &::shadowsocks::api::_StatsRequest_default_instance_;
+    new (ptr) ::shadowsocks::api::StatsRequest();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::api::StatsRequest::InitAsDefaultInstance();
+  ::shadowsocks::api::StatsRequest::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_StatsRequest_ssgoapi_2eproto =
@@ -58,38 +60,39 @@ static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_s
 
 const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ssgoapi_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::api::StatsRequest, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::shadowsocks::api::StatsRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::api::StatsRequest, password_),
+  PROTOBUF_FIELD_OFFSET(::shadowsocks::api::StatsRequest, password_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::api::StatsReply, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::shadowsocks::api::StatsReply, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::api::StatsReply, upload_traffic_),
-  PROTOBUF_FIELD_OFFSET(::api::StatsReply, download_traffic_),
-  PROTOBUF_FIELD_OFFSET(::api::StatsReply, upload_speed_),
-  PROTOBUF_FIELD_OFFSET(::api::StatsReply, download_speed_),
+  PROTOBUF_FIELD_OFFSET(::shadowsocks::api::StatsReply, upload_traffic_),
+  PROTOBUF_FIELD_OFFSET(::shadowsocks::api::StatsReply, download_traffic_),
+  PROTOBUF_FIELD_OFFSET(::shadowsocks::api::StatsReply, upload_speed_),
+  PROTOBUF_FIELD_OFFSET(::shadowsocks::api::StatsReply, download_speed_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(::api::StatsRequest)},
-  { 6, -1, sizeof(::api::StatsReply)},
+  { 0, -1, sizeof(::shadowsocks::api::StatsRequest)},
+  { 6, -1, sizeof(::shadowsocks::api::StatsReply)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::api::_StatsRequest_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::api::_StatsReply_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::shadowsocks::api::_StatsRequest_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::shadowsocks::api::_StatsReply_default_instance_),
 };
 
 const char descriptor_table_protodef_ssgoapi_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\rssgoapi.proto\022\003api\" \n\014StatsRequest\022\020\n\010"
-  "password\030\001 \001(\t\"l\n\nStatsReply\022\026\n\016upload_t"
-  "raffic\030\001 \001(\004\022\030\n\020download_traffic\030\002 \001(\004\022\024"
-  "\n\014upload_speed\030\003 \001(\004\022\026\n\016download_speed\030\004"
-  " \001(\0042\?\n\tSSService\0222\n\nQueryStats\022\021.api.St"
-  "atsRequest\032\017.api.StatsReply\"\000b\006proto3"
+  "\n\rssgoapi.proto\022\017shadowsocks.api\" \n\014Stat"
+  "sRequest\022\020\n\010password\030\001 \001(\t\"l\n\nStatsReply"
+  "\022\026\n\016upload_traffic\030\001 \001(\004\022\030\n\020download_tra"
+  "ffic\030\002 \001(\004\022\024\n\014upload_speed\030\003 \001(\004\022\026\n\016down"
+  "load_speed\030\004 \001(\0042W\n\tSSService\022J\n\nQuerySt"
+  "ats\022\035.shadowsocks.api.StatsRequest\032\033.sha"
+  "dowsocks.api.StatsReply\"\000B\005Z\003apib\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_ssgoapi_2eproto_deps[1] = {
 };
@@ -100,7 +103,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_ssg
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_ssgoapi_2eproto_once;
 static bool descriptor_table_ssgoapi_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_ssgoapi_2eproto = {
-  &descriptor_table_ssgoapi_2eproto_initialized, descriptor_table_protodef_ssgoapi_2eproto, "ssgoapi.proto", 237,
+  &descriptor_table_ssgoapi_2eproto_initialized, descriptor_table_protodef_ssgoapi_2eproto, "ssgoapi.proto", 280,
   &descriptor_table_ssgoapi_2eproto_once, descriptor_table_ssgoapi_2eproto_sccs, descriptor_table_ssgoapi_2eproto_deps, 2, 0,
   schemas, file_default_instances, TableStruct_ssgoapi_2eproto::offsets,
   file_level_metadata_ssgoapi_2eproto, 2, file_level_enum_descriptors_ssgoapi_2eproto, file_level_service_descriptors_ssgoapi_2eproto,
@@ -108,6 +111,7 @@ const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_ssgoap
 
 // Force running AddDescriptors() at dynamic initialization time.
 static bool dynamic_init_dummy_ssgoapi_2eproto = (  ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_ssgoapi_2eproto), true);
+namespace shadowsocks {
 namespace api {
 
 // ===================================================================
@@ -121,7 +125,7 @@ class StatsRequest::_Internal {
 StatsRequest::StatsRequest()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:api.StatsRequest)
+  // @@protoc_insertion_point(constructor:shadowsocks.api.StatsRequest)
 }
 StatsRequest::StatsRequest(const StatsRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
@@ -131,7 +135,7 @@ StatsRequest::StatsRequest(const StatsRequest& from)
   if (!from._internal_password().empty()) {
     password_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.password_);
   }
-  // @@protoc_insertion_point(copy_constructor:api.StatsRequest)
+  // @@protoc_insertion_point(copy_constructor:shadowsocks.api.StatsRequest)
 }
 
 void StatsRequest::SharedCtor() {
@@ -140,7 +144,7 @@ void StatsRequest::SharedCtor() {
 }
 
 StatsRequest::~StatsRequest() {
-  // @@protoc_insertion_point(destructor:api.StatsRequest)
+  // @@protoc_insertion_point(destructor:shadowsocks.api.StatsRequest)
   SharedDtor();
 }
 
@@ -158,7 +162,7 @@ const StatsRequest& StatsRequest::default_instance() {
 
 
 void StatsRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:api.StatsRequest)
+// @@protoc_insertion_point(message_clear_start:shadowsocks.api.StatsRequest)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -179,7 +183,7 @@ const char* StatsRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
           auto str = _internal_mutable_password();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "api.StatsRequest.password"));
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "shadowsocks.api.StatsRequest.password"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -205,7 +209,7 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* StatsRequest::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:api.StatsRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:shadowsocks.api.StatsRequest)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -214,7 +218,7 @@ failure:
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_password().data(), static_cast<int>(this->_internal_password().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "api.StatsRequest.password");
+      "shadowsocks.api.StatsRequest.password");
     target = stream->WriteStringMaybeAliased(
         1, this->_internal_password(), target);
   }
@@ -223,12 +227,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:api.StatsRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:shadowsocks.api.StatsRequest)
   return target;
 }
 
 size_t StatsRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:api.StatsRequest)
+// @@protoc_insertion_point(message_byte_size_start:shadowsocks.api.StatsRequest)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -252,22 +256,22 @@ size_t StatsRequest::ByteSizeLong() const {
 }
 
 void StatsRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:api.StatsRequest)
+// @@protoc_insertion_point(generalized_merge_from_start:shadowsocks.api.StatsRequest)
   GOOGLE_DCHECK_NE(&from, this);
   const StatsRequest* source =
       ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<StatsRequest>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:api.StatsRequest)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:shadowsocks.api.StatsRequest)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:api.StatsRequest)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:shadowsocks.api.StatsRequest)
     MergeFrom(*source);
   }
 }
 
 void StatsRequest::MergeFrom(const StatsRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:api.StatsRequest)
+// @@protoc_insertion_point(class_specific_merge_from_start:shadowsocks.api.StatsRequest)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -280,14 +284,14 @@ void StatsRequest::MergeFrom(const StatsRequest& from) {
 }
 
 void StatsRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:api.StatsRequest)
+// @@protoc_insertion_point(generalized_copy_from_start:shadowsocks.api.StatsRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void StatsRequest::CopyFrom(const StatsRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:api.StatsRequest)
+// @@protoc_insertion_point(class_specific_copy_from_start:shadowsocks.api.StatsRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -320,7 +324,7 @@ class StatsReply::_Internal {
 StatsReply::StatsReply()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:api.StatsReply)
+  // @@protoc_insertion_point(constructor:shadowsocks.api.StatsReply)
 }
 StatsReply::StatsReply(const StatsReply& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
@@ -329,7 +333,7 @@ StatsReply::StatsReply(const StatsReply& from)
   ::memcpy(&upload_traffic_, &from.upload_traffic_,
     static_cast<size_t>(reinterpret_cast<char*>(&download_speed_) -
     reinterpret_cast<char*>(&upload_traffic_)) + sizeof(download_speed_));
-  // @@protoc_insertion_point(copy_constructor:api.StatsReply)
+  // @@protoc_insertion_point(copy_constructor:shadowsocks.api.StatsReply)
 }
 
 void StatsReply::SharedCtor() {
@@ -339,7 +343,7 @@ void StatsReply::SharedCtor() {
 }
 
 StatsReply::~StatsReply() {
-  // @@protoc_insertion_point(destructor:api.StatsReply)
+  // @@protoc_insertion_point(destructor:shadowsocks.api.StatsReply)
   SharedDtor();
 }
 
@@ -356,7 +360,7 @@ const StatsReply& StatsReply::default_instance() {
 
 
 void StatsReply::Clear() {
-// @@protoc_insertion_point(message_clear_start:api.StatsReply)
+// @@protoc_insertion_point(message_clear_start:shadowsocks.api.StatsReply)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -424,7 +428,7 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* StatsReply::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:api.StatsReply)
+  // @@protoc_insertion_point(serialize_to_array_start:shadowsocks.api.StatsReply)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -456,12 +460,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:api.StatsReply)
+  // @@protoc_insertion_point(serialize_to_array_end:shadowsocks.api.StatsReply)
   return target;
 }
 
 size_t StatsReply::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:api.StatsReply)
+// @@protoc_insertion_point(message_byte_size_start:shadowsocks.api.StatsReply)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -506,22 +510,22 @@ size_t StatsReply::ByteSizeLong() const {
 }
 
 void StatsReply::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:api.StatsReply)
+// @@protoc_insertion_point(generalized_merge_from_start:shadowsocks.api.StatsReply)
   GOOGLE_DCHECK_NE(&from, this);
   const StatsReply* source =
       ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<StatsReply>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:api.StatsReply)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:shadowsocks.api.StatsReply)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:api.StatsReply)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:shadowsocks.api.StatsReply)
     MergeFrom(*source);
   }
 }
 
 void StatsReply::MergeFrom(const StatsReply& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:api.StatsReply)
+// @@protoc_insertion_point(class_specific_merge_from_start:shadowsocks.api.StatsReply)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -542,14 +546,14 @@ void StatsReply::MergeFrom(const StatsReply& from) {
 }
 
 void StatsReply::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:api.StatsReply)
+// @@protoc_insertion_point(generalized_copy_from_start:shadowsocks.api.StatsReply)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void StatsReply::CopyFrom(const StatsReply& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:api.StatsReply)
+// @@protoc_insertion_point(class_specific_copy_from_start:shadowsocks.api.StatsReply)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -575,12 +579,13 @@ void StatsReply::InternalSwap(StatsReply* other) {
 
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace api
+}  // namespace shadowsocks
 PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::api::StatsRequest* Arena::CreateMaybeMessage< ::api::StatsRequest >(Arena* arena) {
-  return Arena::CreateInternal< ::api::StatsRequest >(arena);
+template<> PROTOBUF_NOINLINE ::shadowsocks::api::StatsRequest* Arena::CreateMaybeMessage< ::shadowsocks::api::StatsRequest >(Arena* arena) {
+  return Arena::CreateInternal< ::shadowsocks::api::StatsRequest >(arena);
 }
-template<> PROTOBUF_NOINLINE ::api::StatsReply* Arena::CreateMaybeMessage< ::api::StatsReply >(Arena* arena) {
-  return Arena::CreateInternal< ::api::StatsReply >(arena);
+template<> PROTOBUF_NOINLINE ::shadowsocks::api::StatsReply* Arena::CreateMaybeMessage< ::shadowsocks::api::StatsReply >(Arena* arena) {
+  return Arena::CreateInternal< ::shadowsocks::api::StatsReply >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

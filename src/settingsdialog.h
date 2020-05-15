@@ -21,6 +21,7 @@
 
 #include <QDialog>
 #include "confighelper.h"
+#include "routewidget.h"
 
 namespace Ui {
 class SettingsDialog;
@@ -37,6 +38,7 @@ public:
 private:
     Ui::SettingsDialog *ui;
     ConfigHelper *helper;
+    RouteWidget *routeWidget;
 
 private slots:
     void onAccepted();

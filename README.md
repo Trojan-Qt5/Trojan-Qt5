@@ -18,16 +18,18 @@ A cross-platform Trojan GUI client
 - Full PAC Control
 - Cross-platform
 - User Rule Support
-- Http Privoxy Support(privoxy)
+- Http Privoxy Support
 - Subscription Support
 - Import Servers from many methods
 - Mutiple servers Support
-- SSR,Trojan Support
+- SS/SSR/Vmess/Trojan(go) Support
 - ....and more
 
 ## Install
 
-You can download from [release](https://github.com/Trojan-Qt5/Trojan-Qt5/releases) page
+- You can download from [release](https://github.com/Trojan-Qt5/Trojan-Qt5/releases) page
+
+- Or using homebrew: ``brew cask install trojan-qt5``
 
 ## Compiling
 
@@ -69,7 +71,7 @@ This project is based on:
 ## UI Design
 - [@eejworks]()
 - [@erdongchan]()
-- [westworldss]()
+- [westworldss](https://westworldss.com/)
 - [MieLink](https://www.mielink.cc)
 - [shadowsocksRR-windows](https://github.com/shadowsocksrr/shadowsocksr-csharp)
 - [Qv2ray](https://github.com/qv2ray/qv2ray)
@@ -77,5 +79,11 @@ This project is based on:
 Trojan-Qt5's icon is owned by [mielink] and [erdongchan], any unanthorized usage will be blamed.
 
 ## Sponsors
+
+### 1.MieLink
 ![MieLink](https://i.imgur.com/XmvuOOi.png)
 Use this [link](http://rakuten-co-jp.club/register?aff=COELWU) to get 10RMB initial balance!
+
+### 2.WestWorldSS
+![WestWordSS](https://i.imgur.com/IyzIFrFg.png)
+Use this [link](https://xbsj5673.xyz) to register now!

@@ -148,6 +148,10 @@ int main(int argc, char *argv[])
     MainWindow w(&conf);
     mainWindow = &w;
 
+    if (conf.isOnlyOneInstance() && w.isInstanceRunning()) {
+        return -1;
+    }
+
 #if defined (Q_OS_MAC)
     setupDockClickHandler();
 #endif

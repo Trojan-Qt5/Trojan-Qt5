@@ -199,15 +199,9 @@ void StatusNotifier::updateServersMenu()
     for (int i=0; i<serverList.size(); i++) {
         QAction *action = new QAction(serverList[i].name, ServerGroup);
         action->setCheckable(false);
-        if (serverList[i].type == "ssr") {
-            action->setIcon(QIcon(":/icons/icons/ssr_off.png"));
-            if (serverList[i].equals(actived))
-                action->setIcon(QIcon(":/icons/icons/ssr_on.png"));
-        } else if (serverList[i].type == "trojan") {
-            action->setIcon(QIcon(":/icons/icons/trojan_off.png"));
-            if (serverList[i].equals(actived))
-                action->setIcon(QIcon(":/icons/icons/trojan_on.png"));
-        }
+        action->setIcon(QIcon(QString(":/icons/icons/%1_off.png").arg(serverList[i].type)));
+        if (serverList[i].equals(actived))
+            action->setIcon(QIcon(QString(":/icons/icons/%1_on.png").arg(serverList[i].type)));
         serverMenu->addAction(action);
     }
 }

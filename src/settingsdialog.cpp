@@ -53,6 +53,10 @@ SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
     ui->cipherLineEdit->setText(helper->getTrojanCipher());
     ui->cipherTLS13LineEdit->setText(helper->getTrojanCipherTLS13());
 
+    routeWidget = new RouteWidget();
+    routeWidget->setConfig(helper->getRoute());
+    ui->routeSettingsLayout->addWidget(routeWidget);
+
     connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &SettingsDialog::onAccepted);
     this->adjustSize();
 }
@@ -109,6 +113,8 @@ void SettingsDialog::onAccepted()
                                ui->certLineEdit->text(),
                                ui->cipherLineEdit->text(),
                                ui->cipherTLS13LineEdit->text());
+
+    helper->setRoute(routeWidget->getConfig());
 
     QApplication::setStyle(ui->themeComboBox->currentText());
 

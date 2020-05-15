@@ -17,6 +17,7 @@
 extern PROTOBUF_INTERNAL_EXPORT_trojangoapi_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Speed_trojangoapi_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_trojangoapi_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Traffic_trojangoapi_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_trojangoapi_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_User_trojangoapi_2eproto;
+namespace trojan {
 namespace api {
 class TrafficDefaultTypeInternal {
  public:
@@ -55,15 +56,16 @@ class SetUserResponseDefaultTypeInternal {
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<SetUserResponse> _instance;
 } _SetUserResponse_default_instance_;
 }  // namespace api
+}  // namespace trojan
 static void InitDefaultsscc_info_GetTrafficRequest_trojangoapi_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::api::_GetTrafficRequest_default_instance_;
-    new (ptr) ::api::GetTrafficRequest();
+    void* ptr = &::trojan::api::_GetTrafficRequest_default_instance_;
+    new (ptr) ::trojan::api::GetTrafficRequest();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::api::GetTrafficRequest::InitAsDefaultInstance();
+  ::trojan::api::GetTrafficRequest::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_GetTrafficRequest_trojangoapi_2eproto =
@@ -74,11 +76,11 @@ static void InitDefaultsscc_info_GetTrafficResponse_trojangoapi_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::api::_GetTrafficResponse_default_instance_;
-    new (ptr) ::api::GetTrafficResponse();
+    void* ptr = &::trojan::api::_GetTrafficResponse_default_instance_;
+    new (ptr) ::trojan::api::GetTrafficResponse();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::api::GetTrafficResponse::InitAsDefaultInstance();
+  ::trojan::api::GetTrafficResponse::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_GetTrafficResponse_trojangoapi_2eproto =
@@ -90,11 +92,11 @@ static void InitDefaultsscc_info_ListUserRequest_trojangoapi_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::api::_ListUserRequest_default_instance_;
-    new (ptr) ::api::ListUserRequest();
+    void* ptr = &::trojan::api::_ListUserRequest_default_instance_;
+    new (ptr) ::trojan::api::ListUserRequest();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::api::ListUserRequest::InitAsDefaultInstance();
+  ::trojan::api::ListUserRequest::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ListUserRequest_trojangoapi_2eproto =
@@ -104,11 +106,11 @@ static void InitDefaultsscc_info_ListUserResponse_trojangoapi_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::api::_ListUserResponse_default_instance_;
-    new (ptr) ::api::ListUserResponse();
+    void* ptr = &::trojan::api::_ListUserResponse_default_instance_;
+    new (ptr) ::trojan::api::ListUserResponse();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::api::ListUserResponse::InitAsDefaultInstance();
+  ::trojan::api::ListUserResponse::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<3> scc_info_ListUserResponse_trojangoapi_2eproto =
@@ -121,11 +123,11 @@ static void InitDefaultsscc_info_SetUserRequest_trojangoapi_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::api::_SetUserRequest_default_instance_;
-    new (ptr) ::api::SetUserRequest();
+    void* ptr = &::trojan::api::_SetUserRequest_default_instance_;
+    new (ptr) ::trojan::api::SetUserRequest();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::api::SetUserRequest::InitAsDefaultInstance();
+  ::trojan::api::SetUserRequest::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_SetUserRequest_trojangoapi_2eproto =
@@ -137,11 +139,11 @@ static void InitDefaultsscc_info_SetUserResponse_trojangoapi_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::api::_SetUserResponse_default_instance_;
-    new (ptr) ::api::SetUserResponse();
+    void* ptr = &::trojan::api::_SetUserResponse_default_instance_;
+    new (ptr) ::trojan::api::SetUserResponse();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::api::SetUserResponse::InitAsDefaultInstance();
+  ::trojan::api::SetUserResponse::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_SetUserResponse_trojangoapi_2eproto =
@@ -151,11 +153,11 @@ static void InitDefaultsscc_info_Speed_trojangoapi_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::api::_Speed_default_instance_;
-    new (ptr) ::api::Speed();
+    void* ptr = &::trojan::api::_Speed_default_instance_;
+    new (ptr) ::trojan::api::Speed();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::api::Speed::InitAsDefaultInstance();
+  ::trojan::api::Speed::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Speed_trojangoapi_2eproto =
@@ -165,11 +167,11 @@ static void InitDefaultsscc_info_Traffic_trojangoapi_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::api::_Traffic_default_instance_;
-    new (ptr) ::api::Traffic();
+    void* ptr = &::trojan::api::_Traffic_default_instance_;
+    new (ptr) ::trojan::api::Traffic();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::api::Traffic::InitAsDefaultInstance();
+  ::trojan::api::Traffic::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Traffic_trojangoapi_2eproto =
@@ -179,11 +181,11 @@ static void InitDefaultsscc_info_User_trojangoapi_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::api::_User_default_instance_;
-    new (ptr) ::api::User();
+    void* ptr = &::trojan::api::_User_default_instance_;
+    new (ptr) ::trojan::api::User();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::api::User::InitAsDefaultInstance();
+  ::trojan::api::User::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_User_trojangoapi_2eproto =
@@ -195,126 +197,130 @@ static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_s
 
 const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_trojangoapi_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::api::Traffic, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::trojan::api::Traffic, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::api::Traffic, upload_traffic_),
-  PROTOBUF_FIELD_OFFSET(::api::Traffic, download_traffic_),
+  PROTOBUF_FIELD_OFFSET(::trojan::api::Traffic, upload_traffic_),
+  PROTOBUF_FIELD_OFFSET(::trojan::api::Traffic, download_traffic_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::api::Speed, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::trojan::api::Speed, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::api::Speed, upload_speed_),
-  PROTOBUF_FIELD_OFFSET(::api::Speed, download_speed_),
+  PROTOBUF_FIELD_OFFSET(::trojan::api::Speed, upload_speed_),
+  PROTOBUF_FIELD_OFFSET(::trojan::api::Speed, download_speed_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::api::User, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::trojan::api::User, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::api::User, password_),
-  PROTOBUF_FIELD_OFFSET(::api::User, hash_),
+  PROTOBUF_FIELD_OFFSET(::trojan::api::User, password_),
+  PROTOBUF_FIELD_OFFSET(::trojan::api::User, hash_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::api::GetTrafficRequest, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::trojan::api::GetTrafficRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::api::GetTrafficRequest, user_),
+  PROTOBUF_FIELD_OFFSET(::trojan::api::GetTrafficRequest, user_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::api::GetTrafficResponse, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::trojan::api::GetTrafficResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::api::GetTrafficResponse, success_),
-  PROTOBUF_FIELD_OFFSET(::api::GetTrafficResponse, traffic_total_),
-  PROTOBUF_FIELD_OFFSET(::api::GetTrafficResponse, speed_current_),
-  PROTOBUF_FIELD_OFFSET(::api::GetTrafficResponse, speed_limit_),
-  PROTOBUF_FIELD_OFFSET(::api::GetTrafficResponse, info_),
+  PROTOBUF_FIELD_OFFSET(::trojan::api::GetTrafficResponse, success_),
+  PROTOBUF_FIELD_OFFSET(::trojan::api::GetTrafficResponse, traffic_total_),
+  PROTOBUF_FIELD_OFFSET(::trojan::api::GetTrafficResponse, speed_current_),
+  PROTOBUF_FIELD_OFFSET(::trojan::api::GetTrafficResponse, speed_limit_),
+  PROTOBUF_FIELD_OFFSET(::trojan::api::GetTrafficResponse, info_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::api::ListUserRequest, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::trojan::api::ListUserRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::api::ListUserResponse, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::trojan::api::ListUserResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::api::ListUserResponse, user_),
-  PROTOBUF_FIELD_OFFSET(::api::ListUserResponse, online_),
-  PROTOBUF_FIELD_OFFSET(::api::ListUserResponse, traffic_total_),
-  PROTOBUF_FIELD_OFFSET(::api::ListUserResponse, speed_current_),
-  PROTOBUF_FIELD_OFFSET(::api::ListUserResponse, speed_limit_),
+  PROTOBUF_FIELD_OFFSET(::trojan::api::ListUserResponse, user_),
+  PROTOBUF_FIELD_OFFSET(::trojan::api::ListUserResponse, online_),
+  PROTOBUF_FIELD_OFFSET(::trojan::api::ListUserResponse, traffic_total_),
+  PROTOBUF_FIELD_OFFSET(::trojan::api::ListUserResponse, speed_current_),
+  PROTOBUF_FIELD_OFFSET(::trojan::api::ListUserResponse, speed_limit_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::api::SetUserRequest, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::trojan::api::SetUserRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::api::SetUserRequest, user_),
-  PROTOBUF_FIELD_OFFSET(::api::SetUserRequest, speed_limit_),
-  PROTOBUF_FIELD_OFFSET(::api::SetUserRequest, operation_),
+  PROTOBUF_FIELD_OFFSET(::trojan::api::SetUserRequest, user_),
+  PROTOBUF_FIELD_OFFSET(::trojan::api::SetUserRequest, speed_limit_),
+  PROTOBUF_FIELD_OFFSET(::trojan::api::SetUserRequest, operation_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::api::SetUserResponse, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::trojan::api::SetUserResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::api::SetUserResponse, success_),
-  PROTOBUF_FIELD_OFFSET(::api::SetUserResponse, info_),
+  PROTOBUF_FIELD_OFFSET(::trojan::api::SetUserResponse, success_),
+  PROTOBUF_FIELD_OFFSET(::trojan::api::SetUserResponse, info_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(::api::Traffic)},
-  { 7, -1, sizeof(::api::Speed)},
-  { 14, -1, sizeof(::api::User)},
-  { 21, -1, sizeof(::api::GetTrafficRequest)},
-  { 27, -1, sizeof(::api::GetTrafficResponse)},
-  { 37, -1, sizeof(::api::ListUserRequest)},
-  { 42, -1, sizeof(::api::ListUserResponse)},
-  { 52, -1, sizeof(::api::SetUserRequest)},
-  { 60, -1, sizeof(::api::SetUserResponse)},
+  { 0, -1, sizeof(::trojan::api::Traffic)},
+  { 7, -1, sizeof(::trojan::api::Speed)},
+  { 14, -1, sizeof(::trojan::api::User)},
+  { 21, -1, sizeof(::trojan::api::GetTrafficRequest)},
+  { 27, -1, sizeof(::trojan::api::GetTrafficResponse)},
+  { 37, -1, sizeof(::trojan::api::ListUserRequest)},
+  { 42, -1, sizeof(::trojan::api::ListUserResponse)},
+  { 52, -1, sizeof(::trojan::api::SetUserRequest)},
+  { 60, -1, sizeof(::trojan::api::SetUserResponse)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::api::_Traffic_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::api::_Speed_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::api::_User_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::api::_GetTrafficRequest_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::api::_GetTrafficResponse_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::api::_ListUserRequest_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::api::_ListUserResponse_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::api::_SetUserRequest_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::api::_SetUserResponse_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::trojan::api::_Traffic_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::trojan::api::_Speed_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::trojan::api::_User_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::trojan::api::_GetTrafficRequest_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::trojan::api::_GetTrafficResponse_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::trojan::api::_ListUserRequest_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::trojan::api::_ListUserResponse_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::trojan::api::_SetUserRequest_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::trojan::api::_SetUserResponse_default_instance_),
 };
 
 const char descriptor_table_protodef_trojangoapi_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\021trojangoapi.proto\022\003api\";\n\007Traffic\022\026\n\016u"
-  "pload_traffic\030\001 \001(\004\022\030\n\020download_traffic\030"
-  "\002 \001(\004\"5\n\005Speed\022\024\n\014upload_speed\030\001 \001(\004\022\026\n\016"
-  "download_speed\030\002 \001(\004\"&\n\004User\022\020\n\010password"
-  "\030\001 \001(\t\022\014\n\004hash\030\002 \001(\t\",\n\021GetTrafficReques"
-  "t\022\027\n\004user\030\001 \001(\0132\t.api.User\"\234\001\n\022GetTraffi"
-  "cResponse\022\017\n\007success\030\001 \001(\010\022#\n\rtraffic_to"
-  "tal\030\002 \001(\0132\014.api.Traffic\022!\n\rspeed_current"
-  "\030\003 \001(\0132\n.api.Speed\022\037\n\013speed_limit\030\004 \001(\0132"
-  "\n.api.Speed\022\014\n\004info\030\005 \001(\t\"\021\n\017ListUserReq"
-  "uest\"\244\001\n\020ListUserResponse\022\027\n\004user\030\001 \001(\0132"
-  "\t.api.User\022\016\n\006online\030\002 \001(\010\022#\n\rtraffic_to"
-  "tal\030\003 \001(\0132\014.api.Traffic\022!\n\rspeed_current"
-  "\030\004 \001(\0132\n.api.Speed\022\037\n\013speed_limit\030\005 \001(\0132"
-  "\n.api.Speed\"\252\001\n\016SetUserRequest\022\027\n\004user\030\001"
-  " \001(\0132\t.api.User\022\037\n\013speed_limit\030\002 \001(\0132\n.a"
-  "pi.Speed\0220\n\toperation\030\003 \001(\0162\035.api.SetUse"
-  "rRequest.Operation\",\n\tOperation\022\007\n\003Add\020\000"
-  "\022\n\n\006Delete\020\001\022\n\n\006Modify\020\002\"0\n\017SetUserRespo"
-  "nse\022\017\n\007success\030\001 \001(\010\022\014\n\004info\030\002 \001(\t2V\n\023Tr"
-  "ojanClientService\022\?\n\nGetTraffic\022\026.api.Ge"
-  "tTrafficRequest\032\027.api.GetTrafficResponse"
-  "\"\0002\325\001\n\023TrojanServerService\022<\n\tListUsers\022"
-  "\024.api.ListUserRequest\032\025.api.ListUserResp"
-  "onse\"\0000\001\022C\n\nGetTraffic\022\026.api.GetTrafficR"
-  "equest\032\027.api.GetTrafficResponse\"\000(\0010\001\022;\n"
-  "\010SetUsers\022\023.api.SetUserRequest\032\024.api.Set"
-  "UserResponse\"\000(\0010\001b\006proto3"
+  "\n\021trojangoapi.proto\022\ntrojan.api\";\n\007Traff"
+  "ic\022\026\n\016upload_traffic\030\001 \001(\004\022\030\n\020download_t"
+  "raffic\030\002 \001(\004\"5\n\005Speed\022\024\n\014upload_speed\030\001 "
+  "\001(\004\022\026\n\016download_speed\030\002 \001(\004\"&\n\004User\022\020\n\010p"
+  "assword\030\001 \001(\t\022\014\n\004hash\030\002 \001(\t\"3\n\021GetTraffi"
+  "cRequest\022\036\n\004user\030\001 \001(\0132\020.trojan.api.User"
+  "\"\261\001\n\022GetTrafficResponse\022\017\n\007success\030\001 \001(\010"
+  "\022*\n\rtraffic_total\030\002 \001(\0132\023.trojan.api.Tra"
+  "ffic\022(\n\rspeed_current\030\003 \001(\0132\021.trojan.api"
+  ".Speed\022&\n\013speed_limit\030\004 \001(\0132\021.trojan.api"
+  ".Speed\022\014\n\004info\030\005 \001(\t\"\021\n\017ListUserRequest\""
+  "\300\001\n\020ListUserResponse\022\036\n\004user\030\001 \001(\0132\020.tro"
+  "jan.api.User\022\016\n\006online\030\002 \001(\010\022*\n\rtraffic_"
+  "total\030\003 \001(\0132\023.trojan.api.Traffic\022(\n\rspee"
+  "d_current\030\004 \001(\0132\021.trojan.api.Speed\022&\n\013sp"
+  "eed_limit\030\005 \001(\0132\021.trojan.api.Speed\"\277\001\n\016S"
+  "etUserRequest\022\036\n\004user\030\001 \001(\0132\020.trojan.api"
+  ".User\022&\n\013speed_limit\030\002 \001(\0132\021.trojan.api."
+  "Speed\0227\n\toperation\030\003 \001(\0162$.trojan.api.Se"
+  "tUserRequest.Operation\",\n\tOperation\022\007\n\003A"
+  "dd\020\000\022\n\n\006Delete\020\001\022\n\n\006Modify\020\002\"0\n\017SetUserR"
+  "esponse\022\017\n\007success\030\001 \001(\010\022\014\n\004info\030\002 \001(\t2d"
+  "\n\023TrojanClientService\022M\n\nGetTraffic\022\035.tr"
+  "ojan.api.GetTrafficRequest\032\036.trojan.api."
+  "GetTrafficResponse\"\0002\377\001\n\023TrojanServerSer"
+  "vice\022J\n\tListUsers\022\033.trojan.api.ListUserR"
+  "equest\032\034.trojan.api.ListUserResponse\"\0000\001"
+  "\022Q\n\nGetTraffic\022\035.trojan.api.GetTrafficRe"
+  "quest\032\036.trojan.api.GetTrafficResponse\"\000("
+  "\0010\001\022I\n\010SetUsers\022\032.trojan.api.SetUserRequ"
+  "est\032\033.trojan.api.SetUserResponse\"\000(\0010\001B\005"
+  "Z\003apib\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_trojangoapi_2eproto_deps[1] = {
 };
@@ -332,7 +338,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tro
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_trojangoapi_2eproto_once;
 static bool descriptor_table_trojangoapi_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_trojangoapi_2eproto = {
-  &descriptor_table_trojangoapi_2eproto_initialized, descriptor_table_protodef_trojangoapi_2eproto, "trojangoapi.proto", 1106,
+  &descriptor_table_trojangoapi_2eproto_initialized, descriptor_table_protodef_trojangoapi_2eproto, "trojangoapi.proto", 1253,
   &descriptor_table_trojangoapi_2eproto_once, descriptor_table_trojangoapi_2eproto_sccs, descriptor_table_trojangoapi_2eproto_deps, 9, 0,
   schemas, file_default_instances, TableStruct_trojangoapi_2eproto::offsets,
   file_level_metadata_trojangoapi_2eproto, 9, file_level_enum_descriptors_trojangoapi_2eproto, file_level_service_descriptors_trojangoapi_2eproto,
@@ -340,6 +346,7 @@ const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_trojan
 
 // Force running AddDescriptors() at dynamic initialization time.
 static bool dynamic_init_dummy_trojangoapi_2eproto = (  ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_trojangoapi_2eproto), true);
+namespace trojan {
 namespace api {
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* SetUserRequest_Operation_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_trojangoapi_2eproto);
@@ -376,7 +383,7 @@ class Traffic::_Internal {
 Traffic::Traffic()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:api.Traffic)
+  // @@protoc_insertion_point(constructor:trojan.api.Traffic)
 }
 Traffic::Traffic(const Traffic& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
@@ -385,7 +392,7 @@ Traffic::Traffic(const Traffic& from)
   ::memcpy(&upload_traffic_, &from.upload_traffic_,
     static_cast<size_t>(reinterpret_cast<char*>(&download_traffic_) -
     reinterpret_cast<char*>(&upload_traffic_)) + sizeof(download_traffic_));
-  // @@protoc_insertion_point(copy_constructor:api.Traffic)
+  // @@protoc_insertion_point(copy_constructor:trojan.api.Traffic)
 }
 
 void Traffic::SharedCtor() {
@@ -395,7 +402,7 @@ void Traffic::SharedCtor() {
 }
 
 Traffic::~Traffic() {
-  // @@protoc_insertion_point(destructor:api.Traffic)
+  // @@protoc_insertion_point(destructor:trojan.api.Traffic)
   SharedDtor();
 }
 
@@ -412,7 +419,7 @@ const Traffic& Traffic::default_instance() {
 
 
 void Traffic::Clear() {
-// @@protoc_insertion_point(message_clear_start:api.Traffic)
+// @@protoc_insertion_point(message_clear_start:trojan.api.Traffic)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -466,7 +473,7 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* Traffic::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:api.Traffic)
+  // @@protoc_insertion_point(serialize_to_array_start:trojan.api.Traffic)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -486,12 +493,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:api.Traffic)
+  // @@protoc_insertion_point(serialize_to_array_end:trojan.api.Traffic)
   return target;
 }
 
 size_t Traffic::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:api.Traffic)
+// @@protoc_insertion_point(message_byte_size_start:trojan.api.Traffic)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -522,22 +529,22 @@ size_t Traffic::ByteSizeLong() const {
 }
 
 void Traffic::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:api.Traffic)
+// @@protoc_insertion_point(generalized_merge_from_start:trojan.api.Traffic)
   GOOGLE_DCHECK_NE(&from, this);
   const Traffic* source =
       ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<Traffic>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:api.Traffic)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:trojan.api.Traffic)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:api.Traffic)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:trojan.api.Traffic)
     MergeFrom(*source);
   }
 }
 
 void Traffic::MergeFrom(const Traffic& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:api.Traffic)
+// @@protoc_insertion_point(class_specific_merge_from_start:trojan.api.Traffic)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -552,14 +559,14 @@ void Traffic::MergeFrom(const Traffic& from) {
 }
 
 void Traffic::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:api.Traffic)
+// @@protoc_insertion_point(generalized_copy_from_start:trojan.api.Traffic)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void Traffic::CopyFrom(const Traffic& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:api.Traffic)
+// @@protoc_insertion_point(class_specific_copy_from_start:trojan.api.Traffic)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -592,7 +599,7 @@ class Speed::_Internal {
 Speed::Speed()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:api.Speed)
+  // @@protoc_insertion_point(constructor:trojan.api.Speed)
 }
 Speed::Speed(const Speed& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
@@ -601,7 +608,7 @@ Speed::Speed(const Speed& from)
   ::memcpy(&upload_speed_, &from.upload_speed_,
     static_cast<size_t>(reinterpret_cast<char*>(&download_speed_) -
     reinterpret_cast<char*>(&upload_speed_)) + sizeof(download_speed_));
-  // @@protoc_insertion_point(copy_constructor:api.Speed)
+  // @@protoc_insertion_point(copy_constructor:trojan.api.Speed)
 }
 
 void Speed::SharedCtor() {
@@ -611,7 +618,7 @@ void Speed::SharedCtor() {
 }
 
 Speed::~Speed() {
-  // @@protoc_insertion_point(destructor:api.Speed)
+  // @@protoc_insertion_point(destructor:trojan.api.Speed)
   SharedDtor();
 }
 
@@ -628,7 +635,7 @@ const Speed& Speed::default_instance() {
 
 
 void Speed::Clear() {
-// @@protoc_insertion_point(message_clear_start:api.Speed)
+// @@protoc_insertion_point(message_clear_start:trojan.api.Speed)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -682,7 +689,7 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* Speed::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:api.Speed)
+  // @@protoc_insertion_point(serialize_to_array_start:trojan.api.Speed)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -702,12 +709,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:api.Speed)
+  // @@protoc_insertion_point(serialize_to_array_end:trojan.api.Speed)
   return target;
 }
 
 size_t Speed::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:api.Speed)
+// @@protoc_insertion_point(message_byte_size_start:trojan.api.Speed)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -738,22 +745,22 @@ size_t Speed::ByteSizeLong() const {
 }
 
 void Speed::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:api.Speed)
+// @@protoc_insertion_point(generalized_merge_from_start:trojan.api.Speed)
   GOOGLE_DCHECK_NE(&from, this);
   const Speed* source =
       ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<Speed>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:api.Speed)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:trojan.api.Speed)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:api.Speed)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:trojan.api.Speed)
     MergeFrom(*source);
   }
 }
 
 void Speed::MergeFrom(const Speed& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:api.Speed)
+// @@protoc_insertion_point(class_specific_merge_from_start:trojan.api.Speed)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -768,14 +775,14 @@ void Speed::MergeFrom(const Speed& from) {
 }
 
 void Speed::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:api.Speed)
+// @@protoc_insertion_point(generalized_copy_from_start:trojan.api.Speed)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void Speed::CopyFrom(const Speed& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:api.Speed)
+// @@protoc_insertion_point(class_specific_copy_from_start:trojan.api.Speed)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -808,7 +815,7 @@ class User::_Internal {
 User::User()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:api.User)
+  // @@protoc_insertion_point(constructor:trojan.api.User)
 }
 User::User(const User& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
@@ -822,7 +829,7 @@ User::User(const User& from)
   if (!from._internal_hash().empty()) {
     hash_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.hash_);
   }
-  // @@protoc_insertion_point(copy_constructor:api.User)
+  // @@protoc_insertion_point(copy_constructor:trojan.api.User)
 }
 
 void User::SharedCtor() {
@@ -832,7 +839,7 @@ void User::SharedCtor() {
 }
 
 User::~User() {
-  // @@protoc_insertion_point(destructor:api.User)
+  // @@protoc_insertion_point(destructor:trojan.api.User)
   SharedDtor();
 }
 
@@ -851,7 +858,7 @@ const User& User::default_instance() {
 
 
 void User::Clear() {
-// @@protoc_insertion_point(message_clear_start:api.User)
+// @@protoc_insertion_point(message_clear_start:trojan.api.User)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -873,7 +880,7 @@ const char* User::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inter
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
           auto str = _internal_mutable_password();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "api.User.password"));
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "trojan.api.User.password"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -882,7 +889,7 @@ const char* User::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inter
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
           auto str = _internal_mutable_hash();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "api.User.hash"));
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "trojan.api.User.hash"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -908,7 +915,7 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* User::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:api.User)
+  // @@protoc_insertion_point(serialize_to_array_start:trojan.api.User)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -917,7 +924,7 @@ failure:
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_password().data(), static_cast<int>(this->_internal_password().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "api.User.password");
+      "trojan.api.User.password");
     target = stream->WriteStringMaybeAliased(
         1, this->_internal_password(), target);
   }
@@ -927,7 +934,7 @@ failure:
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_hash().data(), static_cast<int>(this->_internal_hash().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "api.User.hash");
+      "trojan.api.User.hash");
     target = stream->WriteStringMaybeAliased(
         2, this->_internal_hash(), target);
   }
@@ -936,12 +943,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:api.User)
+  // @@protoc_insertion_point(serialize_to_array_end:trojan.api.User)
   return target;
 }
 
 size_t User::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:api.User)
+// @@protoc_insertion_point(message_byte_size_start:trojan.api.User)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -972,22 +979,22 @@ size_t User::ByteSizeLong() const {
 }
 
 void User::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:api.User)
+// @@protoc_insertion_point(generalized_merge_from_start:trojan.api.User)
   GOOGLE_DCHECK_NE(&from, this);
   const User* source =
       ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<User>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:api.User)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:trojan.api.User)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:api.User)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:trojan.api.User)
     MergeFrom(*source);
   }
 }
 
 void User::MergeFrom(const User& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:api.User)
+// @@protoc_insertion_point(class_specific_merge_from_start:trojan.api.User)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -1004,14 +1011,14 @@ void User::MergeFrom(const User& from) {
 }
 
 void User::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:api.User)
+// @@protoc_insertion_point(generalized_copy_from_start:trojan.api.User)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void User::CopyFrom(const User& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:api.User)
+// @@protoc_insertion_point(class_specific_copy_from_start:trojan.api.User)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -1038,33 +1045,33 @@ void User::InternalSwap(User* other) {
 // ===================================================================
 
 void GetTrafficRequest::InitAsDefaultInstance() {
-  ::api::_GetTrafficRequest_default_instance_._instance.get_mutable()->user_ = const_cast< ::api::User*>(
-      ::api::User::internal_default_instance());
+  ::trojan::api::_GetTrafficRequest_default_instance_._instance.get_mutable()->user_ = const_cast< ::trojan::api::User*>(
+      ::trojan::api::User::internal_default_instance());
 }
 class GetTrafficRequest::_Internal {
  public:
-  static const ::api::User& user(const GetTrafficRequest* msg);
+  static const ::trojan::api::User& user(const GetTrafficRequest* msg);
 };
 
-const ::api::User&
+const ::trojan::api::User&
 GetTrafficRequest::_Internal::user(const GetTrafficRequest* msg) {
   return *msg->user_;
 }
 GetTrafficRequest::GetTrafficRequest()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:api.GetTrafficRequest)
+  // @@protoc_insertion_point(constructor:trojan.api.GetTrafficRequest)
 }
 GetTrafficRequest::GetTrafficRequest(const GetTrafficRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   if (from._internal_has_user()) {
-    user_ = new ::api::User(*from.user_);
+    user_ = new ::trojan::api::User(*from.user_);
   } else {
     user_ = nullptr;
   }
-  // @@protoc_insertion_point(copy_constructor:api.GetTrafficRequest)
+  // @@protoc_insertion_point(copy_constructor:trojan.api.GetTrafficRequest)
 }
 
 void GetTrafficRequest::SharedCtor() {
@@ -1073,7 +1080,7 @@ void GetTrafficRequest::SharedCtor() {
 }
 
 GetTrafficRequest::~GetTrafficRequest() {
-  // @@protoc_insertion_point(destructor:api.GetTrafficRequest)
+  // @@protoc_insertion_point(destructor:trojan.api.GetTrafficRequest)
   SharedDtor();
 }
 
@@ -1091,7 +1098,7 @@ const GetTrafficRequest& GetTrafficRequest::default_instance() {
 
 
 void GetTrafficRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:api.GetTrafficRequest)
+// @@protoc_insertion_point(message_clear_start:trojan.api.GetTrafficRequest)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -1110,7 +1117,7 @@ const char* GetTrafficRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESP
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // .api.User user = 1;
+      // .trojan.api.User user = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_user(), ptr);
@@ -1139,11 +1146,11 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* GetTrafficRequest::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:api.GetTrafficRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:trojan.api.GetTrafficRequest)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .api.User user = 1;
+  // .trojan.api.User user = 1;
   if (this->has_user()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
@@ -1155,19 +1162,19 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:api.GetTrafficRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:trojan.api.GetTrafficRequest)
   return target;
 }
 
 size_t GetTrafficRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:api.GetTrafficRequest)
+// @@protoc_insertion_point(message_byte_size_start:trojan.api.GetTrafficRequest)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .api.User user = 1;
+  // .trojan.api.User user = 1;
   if (this->has_user()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
@@ -1184,41 +1191,41 @@ size_t GetTrafficRequest::ByteSizeLong() const {
 }
 
 void GetTrafficRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:api.GetTrafficRequest)
+// @@protoc_insertion_point(generalized_merge_from_start:trojan.api.GetTrafficRequest)
   GOOGLE_DCHECK_NE(&from, this);
   const GetTrafficRequest* source =
       ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<GetTrafficRequest>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:api.GetTrafficRequest)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:trojan.api.GetTrafficRequest)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:api.GetTrafficRequest)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:trojan.api.GetTrafficRequest)
     MergeFrom(*source);
   }
 }
 
 void GetTrafficRequest::MergeFrom(const GetTrafficRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:api.GetTrafficRequest)
+// @@protoc_insertion_point(class_specific_merge_from_start:trojan.api.GetTrafficRequest)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.has_user()) {
-    _internal_mutable_user()->::api::User::MergeFrom(from._internal_user());
+    _internal_mutable_user()->::trojan::api::User::MergeFrom(from._internal_user());
   }
 }
 
 void GetTrafficRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:api.GetTrafficRequest)
+// @@protoc_insertion_point(generalized_copy_from_start:trojan.api.GetTrafficRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void GetTrafficRequest::CopyFrom(const GetTrafficRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:api.GetTrafficRequest)
+// @@protoc_insertion_point(class_specific_copy_from_start:trojan.api.GetTrafficRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -1242,36 +1249,36 @@ void GetTrafficRequest::InternalSwap(GetTrafficRequest* other) {
 // ===================================================================
 
 void GetTrafficResponse::InitAsDefaultInstance() {
-  ::api::_GetTrafficResponse_default_instance_._instance.get_mutable()->traffic_total_ = const_cast< ::api::Traffic*>(
-      ::api::Traffic::internal_default_instance());
-  ::api::_GetTrafficResponse_default_instance_._instance.get_mutable()->speed_current_ = const_cast< ::api::Speed*>(
-      ::api::Speed::internal_default_instance());
-  ::api::_GetTrafficResponse_default_instance_._instance.get_mutable()->speed_limit_ = const_cast< ::api::Speed*>(
-      ::api::Speed::internal_default_instance());
+  ::trojan::api::_GetTrafficResponse_default_instance_._instance.get_mutable()->traffic_total_ = const_cast< ::trojan::api::Traffic*>(
+      ::trojan::api::Traffic::internal_default_instance());
+  ::trojan::api::_GetTrafficResponse_default_instance_._instance.get_mutable()->speed_current_ = const_cast< ::trojan::api::Speed*>(
+      ::trojan::api::Speed::internal_default_instance());
+  ::trojan::api::_GetTrafficResponse_default_instance_._instance.get_mutable()->speed_limit_ = const_cast< ::trojan::api::Speed*>(
+      ::trojan::api::Speed::internal_default_instance());
 }
 class GetTrafficResponse::_Internal {
  public:
-  static const ::api::Traffic& traffic_total(const GetTrafficResponse* msg);
-  static const ::api::Speed& speed_current(const GetTrafficResponse* msg);
-  static const ::api::Speed& speed_limit(const GetTrafficResponse* msg);
+  static const ::trojan::api::Traffic& traffic_total(const GetTrafficResponse* msg);
+  static const ::trojan::api::Speed& speed_current(const GetTrafficResponse* msg);
+  static const ::trojan::api::Speed& speed_limit(const GetTrafficResponse* msg);
 };
 
-const ::api::Traffic&
+const ::trojan::api::Traffic&
 GetTrafficResponse::_Internal::traffic_total(const GetTrafficResponse* msg) {
   return *msg->traffic_total_;
 }
-const ::api::Speed&
+const ::trojan::api::Speed&
 GetTrafficResponse::_Internal::speed_current(const GetTrafficResponse* msg) {
   return *msg->speed_current_;
 }
-const ::api::Speed&
+const ::trojan::api::Speed&
 GetTrafficResponse::_Internal::speed_limit(const GetTrafficResponse* msg) {
   return *msg->speed_limit_;
 }
 GetTrafficResponse::GetTrafficResponse()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:api.GetTrafficResponse)
+  // @@protoc_insertion_point(constructor:trojan.api.GetTrafficResponse)
 }
 GetTrafficResponse::GetTrafficResponse(const GetTrafficResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
@@ -1282,22 +1289,22 @@ GetTrafficResponse::GetTrafficResponse(const GetTrafficResponse& from)
     info_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.info_);
   }
   if (from._internal_has_traffic_total()) {
-    traffic_total_ = new ::api::Traffic(*from.traffic_total_);
+    traffic_total_ = new ::trojan::api::Traffic(*from.traffic_total_);
   } else {
     traffic_total_ = nullptr;
   }
   if (from._internal_has_speed_current()) {
-    speed_current_ = new ::api::Speed(*from.speed_current_);
+    speed_current_ = new ::trojan::api::Speed(*from.speed_current_);
   } else {
     speed_current_ = nullptr;
   }
   if (from._internal_has_speed_limit()) {
-    speed_limit_ = new ::api::Speed(*from.speed_limit_);
+    speed_limit_ = new ::trojan::api::Speed(*from.speed_limit_);
   } else {
     speed_limit_ = nullptr;
   }
   success_ = from.success_;
-  // @@protoc_insertion_point(copy_constructor:api.GetTrafficResponse)
+  // @@protoc_insertion_point(copy_constructor:trojan.api.GetTrafficResponse)
 }
 
 void GetTrafficResponse::SharedCtor() {
@@ -1309,7 +1316,7 @@ void GetTrafficResponse::SharedCtor() {
 }
 
 GetTrafficResponse::~GetTrafficResponse() {
-  // @@protoc_insertion_point(destructor:api.GetTrafficResponse)
+  // @@protoc_insertion_point(destructor:trojan.api.GetTrafficResponse)
   SharedDtor();
 }
 
@@ -1330,7 +1337,7 @@ const GetTrafficResponse& GetTrafficResponse::default_instance() {
 
 
 void GetTrafficResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:api.GetTrafficResponse)
+// @@protoc_insertion_point(message_clear_start:trojan.api.GetTrafficResponse)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -1366,21 +1373,21 @@ const char* GetTrafficResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMES
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // .api.Traffic traffic_total = 2;
+      // .trojan.api.Traffic traffic_total = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
           ptr = ctx->ParseMessage(_internal_mutable_traffic_total(), ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // .api.Speed speed_current = 3;
+      // .trojan.api.Speed speed_current = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
           ptr = ctx->ParseMessage(_internal_mutable_speed_current(), ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // .api.Speed speed_limit = 4;
+      // .trojan.api.Speed speed_limit = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
           ptr = ctx->ParseMessage(_internal_mutable_speed_limit(), ptr);
@@ -1392,7 +1399,7 @@ const char* GetTrafficResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMES
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
           auto str = _internal_mutable_info();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "api.GetTrafficResponse.info"));
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "trojan.api.GetTrafficResponse.info"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -1418,7 +1425,7 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* GetTrafficResponse::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:api.GetTrafficResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:trojan.api.GetTrafficResponse)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -1428,7 +1435,7 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_success(), target);
   }
 
-  // .api.Traffic traffic_total = 2;
+  // .trojan.api.Traffic traffic_total = 2;
   if (this->has_traffic_total()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
@@ -1436,7 +1443,7 @@ failure:
         2, _Internal::traffic_total(this), target, stream);
   }
 
-  // .api.Speed speed_current = 3;
+  // .trojan.api.Speed speed_current = 3;
   if (this->has_speed_current()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
@@ -1444,7 +1451,7 @@ failure:
         3, _Internal::speed_current(this), target, stream);
   }
 
-  // .api.Speed speed_limit = 4;
+  // .trojan.api.Speed speed_limit = 4;
   if (this->has_speed_limit()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
@@ -1457,7 +1464,7 @@ failure:
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_info().data(), static_cast<int>(this->_internal_info().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "api.GetTrafficResponse.info");
+      "trojan.api.GetTrafficResponse.info");
     target = stream->WriteStringMaybeAliased(
         5, this->_internal_info(), target);
   }
@@ -1466,12 +1473,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:api.GetTrafficResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:trojan.api.GetTrafficResponse)
   return target;
 }
 
 size_t GetTrafficResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:api.GetTrafficResponse)
+// @@protoc_insertion_point(message_byte_size_start:trojan.api.GetTrafficResponse)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -1485,21 +1492,21 @@ size_t GetTrafficResponse::ByteSizeLong() const {
         this->_internal_info());
   }
 
-  // .api.Traffic traffic_total = 2;
+  // .trojan.api.Traffic traffic_total = 2;
   if (this->has_traffic_total()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *traffic_total_);
   }
 
-  // .api.Speed speed_current = 3;
+  // .trojan.api.Speed speed_current = 3;
   if (this->has_speed_current()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *speed_current_);
   }
 
-  // .api.Speed speed_limit = 4;
+  // .trojan.api.Speed speed_limit = 4;
   if (this->has_speed_limit()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
@@ -1521,22 +1528,22 @@ size_t GetTrafficResponse::ByteSizeLong() const {
 }
 
 void GetTrafficResponse::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:api.GetTrafficResponse)
+// @@protoc_insertion_point(generalized_merge_from_start:trojan.api.GetTrafficResponse)
   GOOGLE_DCHECK_NE(&from, this);
   const GetTrafficResponse* source =
       ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<GetTrafficResponse>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:api.GetTrafficResponse)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:trojan.api.GetTrafficResponse)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:api.GetTrafficResponse)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:trojan.api.GetTrafficResponse)
     MergeFrom(*source);
   }
 }
 
 void GetTrafficResponse::MergeFrom(const GetTrafficResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:api.GetTrafficResponse)
+// @@protoc_insertion_point(class_specific_merge_from_start:trojan.api.GetTrafficResponse)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -1547,13 +1554,13 @@ void GetTrafficResponse::MergeFrom(const GetTrafficResponse& from) {
     info_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.info_);
   }
   if (from.has_traffic_total()) {
-    _internal_mutable_traffic_total()->::api::Traffic::MergeFrom(from._internal_traffic_total());
+    _internal_mutable_traffic_total()->::trojan::api::Traffic::MergeFrom(from._internal_traffic_total());
   }
   if (from.has_speed_current()) {
-    _internal_mutable_speed_current()->::api::Speed::MergeFrom(from._internal_speed_current());
+    _internal_mutable_speed_current()->::trojan::api::Speed::MergeFrom(from._internal_speed_current());
   }
   if (from.has_speed_limit()) {
-    _internal_mutable_speed_limit()->::api::Speed::MergeFrom(from._internal_speed_limit());
+    _internal_mutable_speed_limit()->::trojan::api::Speed::MergeFrom(from._internal_speed_limit());
   }
   if (from.success() != 0) {
     _internal_set_success(from._internal_success());
@@ -1561,14 +1568,14 @@ void GetTrafficResponse::MergeFrom(const GetTrafficResponse& from) {
 }
 
 void GetTrafficResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:api.GetTrafficResponse)
+// @@protoc_insertion_point(generalized_copy_from_start:trojan.api.GetTrafficResponse)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void GetTrafficResponse::CopyFrom(const GetTrafficResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:api.GetTrafficResponse)
+// @@protoc_insertion_point(class_specific_copy_from_start:trojan.api.GetTrafficResponse)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -1605,20 +1612,20 @@ class ListUserRequest::_Internal {
 ListUserRequest::ListUserRequest()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:api.ListUserRequest)
+  // @@protoc_insertion_point(constructor:trojan.api.ListUserRequest)
 }
 ListUserRequest::ListUserRequest(const ListUserRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  // @@protoc_insertion_point(copy_constructor:api.ListUserRequest)
+  // @@protoc_insertion_point(copy_constructor:trojan.api.ListUserRequest)
 }
 
 void ListUserRequest::SharedCtor() {
 }
 
 ListUserRequest::~ListUserRequest() {
-  // @@protoc_insertion_point(destructor:api.ListUserRequest)
+  // @@protoc_insertion_point(destructor:trojan.api.ListUserRequest)
   SharedDtor();
 }
 
@@ -1635,7 +1642,7 @@ const ListUserRequest& ListUserRequest::default_instance() {
 
 
 void ListUserRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:api.ListUserRequest)
+// @@protoc_insertion_point(message_clear_start:trojan.api.ListUserRequest)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -1667,7 +1674,7 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* ListUserRequest::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:api.ListUserRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:trojan.api.ListUserRequest)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -1675,12 +1682,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:api.ListUserRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:trojan.api.ListUserRequest)
   return target;
 }
 
 size_t ListUserRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:api.ListUserRequest)
+// @@protoc_insertion_point(message_byte_size_start:trojan.api.ListUserRequest)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -1697,22 +1704,22 @@ size_t ListUserRequest::ByteSizeLong() const {
 }
 
 void ListUserRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:api.ListUserRequest)
+// @@protoc_insertion_point(generalized_merge_from_start:trojan.api.ListUserRequest)
   GOOGLE_DCHECK_NE(&from, this);
   const ListUserRequest* source =
       ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ListUserRequest>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:api.ListUserRequest)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:trojan.api.ListUserRequest)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:api.ListUserRequest)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:trojan.api.ListUserRequest)
     MergeFrom(*source);
   }
 }
 
 void ListUserRequest::MergeFrom(const ListUserRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:api.ListUserRequest)
+// @@protoc_insertion_point(class_specific_merge_from_start:trojan.api.ListUserRequest)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -1721,14 +1728,14 @@ void ListUserRequest::MergeFrom(const ListUserRequest& from) {
 }
 
 void ListUserRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:api.ListUserRequest)
+// @@protoc_insertion_point(generalized_copy_from_start:trojan.api.ListUserRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void ListUserRequest::CopyFrom(const ListUserRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:api.ListUserRequest)
+// @@protoc_insertion_point(class_specific_copy_from_start:trojan.api.ListUserRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -1751,70 +1758,70 @@ void ListUserRequest::InternalSwap(ListUserRequest* other) {
 // ===================================================================
 
 void ListUserResponse::InitAsDefaultInstance() {
-  ::api::_ListUserResponse_default_instance_._instance.get_mutable()->user_ = const_cast< ::api::User*>(
-      ::api::User::internal_default_instance());
-  ::api::_ListUserResponse_default_instance_._instance.get_mutable()->traffic_total_ = const_cast< ::api::Traffic*>(
-      ::api::Traffic::internal_default_instance());
-  ::api::_ListUserResponse_default_instance_._instance.get_mutable()->speed_current_ = const_cast< ::api::Speed*>(
-      ::api::Speed::internal_default_instance());
-  ::api::_ListUserResponse_default_instance_._instance.get_mutable()->speed_limit_ = const_cast< ::api::Speed*>(
-      ::api::Speed::internal_default_instance());
+  ::trojan::api::_ListUserResponse_default_instance_._instance.get_mutable()->user_ = const_cast< ::trojan::api::User*>(
+      ::trojan::api::User::internal_default_instance());
+  ::trojan::api::_ListUserResponse_default_instance_._instance.get_mutable()->traffic_total_ = const_cast< ::trojan::api::Traffic*>(
+      ::trojan::api::Traffic::internal_default_instance());
+  ::trojan::api::_ListUserResponse_default_instance_._instance.get_mutable()->speed_current_ = const_cast< ::trojan::api::Speed*>(
+      ::trojan::api::Speed::internal_default_instance());
+  ::trojan::api::_ListUserResponse_default_instance_._instance.get_mutable()->speed_limit_ = const_cast< ::trojan::api::Speed*>(
+      ::trojan::api::Speed::internal_default_instance());
 }
 class ListUserResponse::_Internal {
  public:
-  static const ::api::User& user(const ListUserResponse* msg);
-  static const ::api::Traffic& traffic_total(const ListUserResponse* msg);
-  static const ::api::Speed& speed_current(const ListUserResponse* msg);
-  static const ::api::Speed& speed_limit(const ListUserResponse* msg);
+  static const ::trojan::api::User& user(const ListUserResponse* msg);
+  static const ::trojan::api::Traffic& traffic_total(const ListUserResponse* msg);
+  static const ::trojan::api::Speed& speed_current(const ListUserResponse* msg);
+  static const ::trojan::api::Speed& speed_limit(const ListUserResponse* msg);
 };
 
-const ::api::User&
+const ::trojan::api::User&
 ListUserResponse::_Internal::user(const ListUserResponse* msg) {
   return *msg->user_;
 }
-const ::api::Traffic&
+const ::trojan::api::Traffic&
 ListUserResponse::_Internal::traffic_total(const ListUserResponse* msg) {
   return *msg->traffic_total_;
 }
-const ::api::Speed&
+const ::trojan::api::Speed&
 ListUserResponse::_Internal::speed_current(const ListUserResponse* msg) {
   return *msg->speed_current_;
 }
-const ::api::Speed&
+const ::trojan::api::Speed&
 ListUserResponse::_Internal::speed_limit(const ListUserResponse* msg) {
   return *msg->speed_limit_;
 }
 ListUserResponse::ListUserResponse()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:api.ListUserResponse)
+  // @@protoc_insertion_point(constructor:trojan.api.ListUserResponse)
 }
 ListUserResponse::ListUserResponse(const ListUserResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   if (from._internal_has_user()) {
-    user_ = new ::api::User(*from.user_);
+    user_ = new ::trojan::api::User(*from.user_);
   } else {
     user_ = nullptr;
   }
   if (from._internal_has_traffic_total()) {
-    traffic_total_ = new ::api::Traffic(*from.traffic_total_);
+    traffic_total_ = new ::trojan::api::Traffic(*from.traffic_total_);
   } else {
     traffic_total_ = nullptr;
   }
   if (from._internal_has_speed_current()) {
-    speed_current_ = new ::api::Speed(*from.speed_current_);
+    speed_current_ = new ::trojan::api::Speed(*from.speed_current_);
   } else {
     speed_current_ = nullptr;
   }
   if (from._internal_has_speed_limit()) {
-    speed_limit_ = new ::api::Speed(*from.speed_limit_);
+    speed_limit_ = new ::trojan::api::Speed(*from.speed_limit_);
   } else {
     speed_limit_ = nullptr;
   }
   online_ = from.online_;
-  // @@protoc_insertion_point(copy_constructor:api.ListUserResponse)
+  // @@protoc_insertion_point(copy_constructor:trojan.api.ListUserResponse)
 }
 
 void ListUserResponse::SharedCtor() {
@@ -1825,7 +1832,7 @@ void ListUserResponse::SharedCtor() {
 }
 
 ListUserResponse::~ListUserResponse() {
-  // @@protoc_insertion_point(destructor:api.ListUserResponse)
+  // @@protoc_insertion_point(destructor:trojan.api.ListUserResponse)
   SharedDtor();
 }
 
@@ -1846,7 +1853,7 @@ const ListUserResponse& ListUserResponse::default_instance() {
 
 
 void ListUserResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:api.ListUserResponse)
+// @@protoc_insertion_point(message_clear_start:trojan.api.ListUserResponse)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -1878,7 +1885,7 @@ const char* ListUserResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPA
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // .api.User user = 1;
+      // .trojan.api.User user = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_user(), ptr);
@@ -1892,21 +1899,21 @@ const char* ListUserResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPA
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // .api.Traffic traffic_total = 3;
+      // .trojan.api.Traffic traffic_total = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
           ptr = ctx->ParseMessage(_internal_mutable_traffic_total(), ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // .api.Speed speed_current = 4;
+      // .trojan.api.Speed speed_current = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
           ptr = ctx->ParseMessage(_internal_mutable_speed_current(), ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // .api.Speed speed_limit = 5;
+      // .trojan.api.Speed speed_limit = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
           ptr = ctx->ParseMessage(_internal_mutable_speed_limit(), ptr);
@@ -1935,11 +1942,11 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* ListUserResponse::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:api.ListUserResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:trojan.api.ListUserResponse)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .api.User user = 1;
+  // .trojan.api.User user = 1;
   if (this->has_user()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
@@ -1953,7 +1960,7 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(2, this->_internal_online(), target);
   }
 
-  // .api.Traffic traffic_total = 3;
+  // .trojan.api.Traffic traffic_total = 3;
   if (this->has_traffic_total()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
@@ -1961,7 +1968,7 @@ failure:
         3, _Internal::traffic_total(this), target, stream);
   }
 
-  // .api.Speed speed_current = 4;
+  // .trojan.api.Speed speed_current = 4;
   if (this->has_speed_current()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
@@ -1969,7 +1976,7 @@ failure:
         4, _Internal::speed_current(this), target, stream);
   }
 
-  // .api.Speed speed_limit = 5;
+  // .trojan.api.Speed speed_limit = 5;
   if (this->has_speed_limit()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
@@ -1981,40 +1988,40 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:api.ListUserResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:trojan.api.ListUserResponse)
   return target;
 }
 
 size_t ListUserResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:api.ListUserResponse)
+// @@protoc_insertion_point(message_byte_size_start:trojan.api.ListUserResponse)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .api.User user = 1;
+  // .trojan.api.User user = 1;
   if (this->has_user()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *user_);
   }
 
-  // .api.Traffic traffic_total = 3;
+  // .trojan.api.Traffic traffic_total = 3;
   if (this->has_traffic_total()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *traffic_total_);
   }
 
-  // .api.Speed speed_current = 4;
+  // .trojan.api.Speed speed_current = 4;
   if (this->has_speed_current()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *speed_current_);
   }
 
-  // .api.Speed speed_limit = 5;
+  // .trojan.api.Speed speed_limit = 5;
   if (this->has_speed_limit()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
@@ -2036,38 +2043,38 @@ size_t ListUserResponse::ByteSizeLong() const {
 }
 
 void ListUserResponse::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:api.ListUserResponse)
+// @@protoc_insertion_point(generalized_merge_from_start:trojan.api.ListUserResponse)
   GOOGLE_DCHECK_NE(&from, this);
   const ListUserResponse* source =
       ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ListUserResponse>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:api.ListUserResponse)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:trojan.api.ListUserResponse)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:api.ListUserResponse)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:trojan.api.ListUserResponse)
     MergeFrom(*source);
   }
 }
 
 void ListUserResponse::MergeFrom(const ListUserResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:api.ListUserResponse)
+// @@protoc_insertion_point(class_specific_merge_from_start:trojan.api.ListUserResponse)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.has_user()) {
-    _internal_mutable_user()->::api::User::MergeFrom(from._internal_user());
+    _internal_mutable_user()->::trojan::api::User::MergeFrom(from._internal_user());
   }
   if (from.has_traffic_total()) {
-    _internal_mutable_traffic_total()->::api::Traffic::MergeFrom(from._internal_traffic_total());
+    _internal_mutable_traffic_total()->::trojan::api::Traffic::MergeFrom(from._internal_traffic_total());
   }
   if (from.has_speed_current()) {
-    _internal_mutable_speed_current()->::api::Speed::MergeFrom(from._internal_speed_current());
+    _internal_mutable_speed_current()->::trojan::api::Speed::MergeFrom(from._internal_speed_current());
   }
   if (from.has_speed_limit()) {
-    _internal_mutable_speed_limit()->::api::Speed::MergeFrom(from._internal_speed_limit());
+    _internal_mutable_speed_limit()->::trojan::api::Speed::MergeFrom(from._internal_speed_limit());
   }
   if (from.online() != 0) {
     _internal_set_online(from._internal_online());
@@ -2075,14 +2082,14 @@ void ListUserResponse::MergeFrom(const ListUserResponse& from) {
 }
 
 void ListUserResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:api.ListUserResponse)
+// @@protoc_insertion_point(generalized_copy_from_start:trojan.api.ListUserResponse)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void ListUserResponse::CopyFrom(const ListUserResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:api.ListUserResponse)
+// @@protoc_insertion_point(class_specific_copy_from_start:trojan.api.ListUserResponse)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -2110,46 +2117,46 @@ void ListUserResponse::InternalSwap(ListUserResponse* other) {
 // ===================================================================
 
 void SetUserRequest::InitAsDefaultInstance() {
-  ::api::_SetUserRequest_default_instance_._instance.get_mutable()->user_ = const_cast< ::api::User*>(
-      ::api::User::internal_default_instance());
-  ::api::_SetUserRequest_default_instance_._instance.get_mutable()->speed_limit_ = const_cast< ::api::Speed*>(
-      ::api::Speed::internal_default_instance());
+  ::trojan::api::_SetUserRequest_default_instance_._instance.get_mutable()->user_ = const_cast< ::trojan::api::User*>(
+      ::trojan::api::User::internal_default_instance());
+  ::trojan::api::_SetUserRequest_default_instance_._instance.get_mutable()->speed_limit_ = const_cast< ::trojan::api::Speed*>(
+      ::trojan::api::Speed::internal_default_instance());
 }
 class SetUserRequest::_Internal {
  public:
-  static const ::api::User& user(const SetUserRequest* msg);
-  static const ::api::Speed& speed_limit(const SetUserRequest* msg);
+  static const ::trojan::api::User& user(const SetUserRequest* msg);
+  static const ::trojan::api::Speed& speed_limit(const SetUserRequest* msg);
 };
 
-const ::api::User&
+const ::trojan::api::User&
 SetUserRequest::_Internal::user(const SetUserRequest* msg) {
   return *msg->user_;
 }
-const ::api::Speed&
+const ::trojan::api::Speed&
 SetUserRequest::_Internal::speed_limit(const SetUserRequest* msg) {
   return *msg->speed_limit_;
 }
 SetUserRequest::SetUserRequest()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:api.SetUserRequest)
+  // @@protoc_insertion_point(constructor:trojan.api.SetUserRequest)
 }
 SetUserRequest::SetUserRequest(const SetUserRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   if (from._internal_has_user()) {
-    user_ = new ::api::User(*from.user_);
+    user_ = new ::trojan::api::User(*from.user_);
   } else {
     user_ = nullptr;
   }
   if (from._internal_has_speed_limit()) {
-    speed_limit_ = new ::api::Speed(*from.speed_limit_);
+    speed_limit_ = new ::trojan::api::Speed(*from.speed_limit_);
   } else {
     speed_limit_ = nullptr;
   }
   operation_ = from.operation_;
-  // @@protoc_insertion_point(copy_constructor:api.SetUserRequest)
+  // @@protoc_insertion_point(copy_constructor:trojan.api.SetUserRequest)
 }
 
 void SetUserRequest::SharedCtor() {
@@ -2160,7 +2167,7 @@ void SetUserRequest::SharedCtor() {
 }
 
 SetUserRequest::~SetUserRequest() {
-  // @@protoc_insertion_point(destructor:api.SetUserRequest)
+  // @@protoc_insertion_point(destructor:trojan.api.SetUserRequest)
   SharedDtor();
 }
 
@@ -2179,7 +2186,7 @@ const SetUserRequest& SetUserRequest::default_instance() {
 
 
 void SetUserRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:api.SetUserRequest)
+// @@protoc_insertion_point(message_clear_start:trojan.api.SetUserRequest)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -2203,26 +2210,26 @@ const char* SetUserRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // .api.User user = 1;
+      // .trojan.api.User user = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_user(), ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // .api.Speed speed_limit = 2;
+      // .trojan.api.Speed speed_limit = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
           ptr = ctx->ParseMessage(_internal_mutable_speed_limit(), ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // .api.SetUserRequest.Operation operation = 3;
+      // .trojan.api.SetUserRequest.Operation operation = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
           ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
           CHK_(ptr);
-          _internal_set_operation(static_cast<::api::SetUserRequest_Operation>(val));
+          _internal_set_operation(static_cast<::trojan::api::SetUserRequest_Operation>(val));
         } else goto handle_unusual;
         continue;
       default: {
@@ -2247,11 +2254,11 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* SetUserRequest::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:api.SetUserRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:trojan.api.SetUserRequest)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .api.User user = 1;
+  // .trojan.api.User user = 1;
   if (this->has_user()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
@@ -2259,7 +2266,7 @@ failure:
         1, _Internal::user(this), target, stream);
   }
 
-  // .api.Speed speed_limit = 2;
+  // .trojan.api.Speed speed_limit = 2;
   if (this->has_speed_limit()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
@@ -2267,7 +2274,7 @@ failure:
         2, _Internal::speed_limit(this), target, stream);
   }
 
-  // .api.SetUserRequest.Operation operation = 3;
+  // .trojan.api.SetUserRequest.Operation operation = 3;
   if (this->operation() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
@@ -2278,33 +2285,33 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:api.SetUserRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:trojan.api.SetUserRequest)
   return target;
 }
 
 size_t SetUserRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:api.SetUserRequest)
+// @@protoc_insertion_point(message_byte_size_start:trojan.api.SetUserRequest)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .api.User user = 1;
+  // .trojan.api.User user = 1;
   if (this->has_user()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *user_);
   }
 
-  // .api.Speed speed_limit = 2;
+  // .trojan.api.Speed speed_limit = 2;
   if (this->has_speed_limit()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *speed_limit_);
   }
 
-  // .api.SetUserRequest.Operation operation = 3;
+  // .trojan.api.SetUserRequest.Operation operation = 3;
   if (this->operation() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_operation());
@@ -2320,32 +2327,32 @@ size_t SetUserRequest::ByteSizeLong() const {
 }
 
 void SetUserRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:api.SetUserRequest)
+// @@protoc_insertion_point(generalized_merge_from_start:trojan.api.SetUserRequest)
   GOOGLE_DCHECK_NE(&from, this);
   const SetUserRequest* source =
       ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<SetUserRequest>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:api.SetUserRequest)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:trojan.api.SetUserRequest)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:api.SetUserRequest)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:trojan.api.SetUserRequest)
     MergeFrom(*source);
   }
 }
 
 void SetUserRequest::MergeFrom(const SetUserRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:api.SetUserRequest)
+// @@protoc_insertion_point(class_specific_merge_from_start:trojan.api.SetUserRequest)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.has_user()) {
-    _internal_mutable_user()->::api::User::MergeFrom(from._internal_user());
+    _internal_mutable_user()->::trojan::api::User::MergeFrom(from._internal_user());
   }
   if (from.has_speed_limit()) {
-    _internal_mutable_speed_limit()->::api::Speed::MergeFrom(from._internal_speed_limit());
+    _internal_mutable_speed_limit()->::trojan::api::Speed::MergeFrom(from._internal_speed_limit());
   }
   if (from.operation() != 0) {
     _internal_set_operation(from._internal_operation());
@@ -2353,14 +2360,14 @@ void SetUserRequest::MergeFrom(const SetUserRequest& from) {
 }
 
 void SetUserRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:api.SetUserRequest)
+// @@protoc_insertion_point(generalized_copy_from_start:trojan.api.SetUserRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void SetUserRequest::CopyFrom(const SetUserRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:api.SetUserRequest)
+// @@protoc_insertion_point(class_specific_copy_from_start:trojan.api.SetUserRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -2394,7 +2401,7 @@ class SetUserResponse::_Internal {
 SetUserResponse::SetUserResponse()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:api.SetUserResponse)
+  // @@protoc_insertion_point(constructor:trojan.api.SetUserResponse)
 }
 SetUserResponse::SetUserResponse(const SetUserResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
@@ -2405,7 +2412,7 @@ SetUserResponse::SetUserResponse(const SetUserResponse& from)
     info_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.info_);
   }
   success_ = from.success_;
-  // @@protoc_insertion_point(copy_constructor:api.SetUserResponse)
+  // @@protoc_insertion_point(copy_constructor:trojan.api.SetUserResponse)
 }
 
 void SetUserResponse::SharedCtor() {
@@ -2415,7 +2422,7 @@ void SetUserResponse::SharedCtor() {
 }
 
 SetUserResponse::~SetUserResponse() {
-  // @@protoc_insertion_point(destructor:api.SetUserResponse)
+  // @@protoc_insertion_point(destructor:trojan.api.SetUserResponse)
   SharedDtor();
 }
 
@@ -2433,7 +2440,7 @@ const SetUserResponse& SetUserResponse::default_instance() {
 
 
 void SetUserResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:api.SetUserResponse)
+// @@protoc_insertion_point(message_clear_start:trojan.api.SetUserResponse)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -2462,7 +2469,7 @@ const char* SetUserResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPAC
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
           auto str = _internal_mutable_info();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "api.SetUserResponse.info"));
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "trojan.api.SetUserResponse.info"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -2488,7 +2495,7 @@ failure:
 
 ::PROTOBUF_NAMESPACE_ID::uint8* SetUserResponse::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:api.SetUserResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:trojan.api.SetUserResponse)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -2503,7 +2510,7 @@ failure:
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_info().data(), static_cast<int>(this->_internal_info().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "api.SetUserResponse.info");
+      "trojan.api.SetUserResponse.info");
     target = stream->WriteStringMaybeAliased(
         2, this->_internal_info(), target);
   }
@@ -2512,12 +2519,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:api.SetUserResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:trojan.api.SetUserResponse)
   return target;
 }
 
 size_t SetUserResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:api.SetUserResponse)
+// @@protoc_insertion_point(message_byte_size_start:trojan.api.SetUserResponse)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -2546,22 +2553,22 @@ size_t SetUserResponse::ByteSizeLong() const {
 }
 
 void SetUserResponse::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:api.SetUserResponse)
+// @@protoc_insertion_point(generalized_merge_from_start:trojan.api.SetUserResponse)
   GOOGLE_DCHECK_NE(&from, this);
   const SetUserResponse* source =
       ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<SetUserResponse>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:api.SetUserResponse)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:trojan.api.SetUserResponse)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:api.SetUserResponse)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:trojan.api.SetUserResponse)
     MergeFrom(*source);
   }
 }
 
 void SetUserResponse::MergeFrom(const SetUserResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:api.SetUserResponse)
+// @@protoc_insertion_point(class_specific_merge_from_start:trojan.api.SetUserResponse)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -2577,14 +2584,14 @@ void SetUserResponse::MergeFrom(const SetUserResponse& from) {
 }
 
 void SetUserResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:api.SetUserResponse)
+// @@protoc_insertion_point(generalized_copy_from_start:trojan.api.SetUserResponse)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void SetUserResponse::CopyFrom(const SetUserResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:api.SetUserResponse)
+// @@protoc_insertion_point(class_specific_copy_from_start:trojan.api.SetUserResponse)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -2609,33 +2616,34 @@ void SetUserResponse::InternalSwap(SetUserResponse* other) {
 
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace api
+}  // namespace trojan
 PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::api::Traffic* Arena::CreateMaybeMessage< ::api::Traffic >(Arena* arena) {
-  return Arena::CreateInternal< ::api::Traffic >(arena);
+template<> PROTOBUF_NOINLINE ::trojan::api::Traffic* Arena::CreateMaybeMessage< ::trojan::api::Traffic >(Arena* arena) {
+  return Arena::CreateInternal< ::trojan::api::Traffic >(arena);
 }
-template<> PROTOBUF_NOINLINE ::api::Speed* Arena::CreateMaybeMessage< ::api::Speed >(Arena* arena) {
-  return Arena::CreateInternal< ::api::Speed >(arena);
+template<> PROTOBUF_NOINLINE ::trojan::api::Speed* Arena::CreateMaybeMessage< ::trojan::api::Speed >(Arena* arena) {
+  return Arena::CreateInternal< ::trojan::api::Speed >(arena);
 }
-template<> PROTOBUF_NOINLINE ::api::User* Arena::CreateMaybeMessage< ::api::User >(Arena* arena) {
-  return Arena::CreateInternal< ::api::User >(arena);
+template<> PROTOBUF_NOINLINE ::trojan::api::User* Arena::CreateMaybeMessage< ::trojan::api::User >(Arena* arena) {
+  return Arena::CreateInternal< ::trojan::api::User >(arena);
 }
-template<> PROTOBUF_NOINLINE ::api::GetTrafficRequest* Arena::CreateMaybeMessage< ::api::GetTrafficRequest >(Arena* arena) {
-  return Arena::CreateInternal< ::api::GetTrafficRequest >(arena);
+template<> PROTOBUF_NOINLINE ::trojan::api::GetTrafficRequest* Arena::CreateMaybeMessage< ::trojan::api::GetTrafficRequest >(Arena* arena) {
+  return Arena::CreateInternal< ::trojan::api::GetTrafficRequest >(arena);
 }
-template<> PROTOBUF_NOINLINE ::api::GetTrafficResponse* Arena::CreateMaybeMessage< ::api::GetTrafficResponse >(Arena* arena) {
-  return Arena::CreateInternal< ::api::GetTrafficResponse >(arena);
+template<> PROTOBUF_NOINLINE ::trojan::api::GetTrafficResponse* Arena::CreateMaybeMessage< ::trojan::api::GetTrafficResponse >(Arena* arena) {
+  return Arena::CreateInternal< ::trojan::api::GetTrafficResponse >(arena);
 }
-template<> PROTOBUF_NOINLINE ::api::ListUserRequest* Arena::CreateMaybeMessage< ::api::ListUserRequest >(Arena* arena) {
-  return Arena::CreateInternal< ::api::ListUserRequest >(arena);
+template<> PROTOBUF_NOINLINE ::trojan::api::ListUserRequest* Arena::CreateMaybeMessage< ::trojan::api::ListUserRequest >(Arena* arena) {
+  return Arena::CreateInternal< ::trojan::api::ListUserRequest >(arena);
 }
-template<> PROTOBUF_NOINLINE ::api::ListUserResponse* Arena::CreateMaybeMessage< ::api::ListUserResponse >(Arena* arena) {
-  return Arena::CreateInternal< ::api::ListUserResponse >(arena);
+template<> PROTOBUF_NOINLINE ::trojan::api::ListUserResponse* Arena::CreateMaybeMessage< ::trojan::api::ListUserResponse >(Arena* arena) {
+  return Arena::CreateInternal< ::trojan::api::ListUserResponse >(arena);
 }
-template<> PROTOBUF_NOINLINE ::api::SetUserRequest* Arena::CreateMaybeMessage< ::api::SetUserRequest >(Arena* arena) {
-  return Arena::CreateInternal< ::api::SetUserRequest >(arena);
+template<> PROTOBUF_NOINLINE ::trojan::api::SetUserRequest* Arena::CreateMaybeMessage< ::trojan::api::SetUserRequest >(Arena* arena) {
+  return Arena::CreateInternal< ::trojan::api::SetUserRequest >(arena);
 }
-template<> PROTOBUF_NOINLINE ::api::SetUserResponse* Arena::CreateMaybeMessage< ::api::SetUserResponse >(Arena* arena) {
-  return Arena::CreateInternal< ::api::SetUserResponse >(arena);
+template<> PROTOBUF_NOINLINE ::trojan::api::SetUserResponse* Arena::CreateMaybeMessage< ::trojan::api::SetUserResponse >(Arena* arena) {
+  return Arena::CreateInternal< ::trojan::api::SetUserResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

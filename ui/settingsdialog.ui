@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>586</width>
-    <height>397</height>
+    <height>430</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <x>10</x>
      <y>10</y>
      <width>571</width>
-     <height>351</height>
+     <height>381</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -41,7 +41,7 @@
        <x>0</x>
        <y>0</y>
        <width>561</width>
-       <height>321</height>
+       <height>351</height>
       </rect>
      </property>
      <layout class="QFormLayout" name="formLayout">
@@ -290,7 +290,7 @@
        <x>0</x>
        <y>0</y>
        <width>561</width>
-       <height>321</height>
+       <height>351</height>
       </rect>
      </property>
      <layout class="QFormLayout" name="formLayout_2">
@@ -402,7 +402,7 @@
        <x>0</x>
        <y>0</y>
        <width>561</width>
-       <height>321</height>
+       <height>351</height>
       </rect>
      </property>
      <layout class="QFormLayout" name="formLayout_4">
@@ -517,7 +517,7 @@
        <x>0</x>
        <y>0</y>
        <width>561</width>
-       <height>321</height>
+       <height>351</height>
       </rect>
      </property>
      <layout class="QFormLayout" name="formLayout_5">
@@ -589,6 +589,22 @@
      </layout>
     </widget>
    </widget>
+   <widget class="QWidget" name="tab_5">
+    <attribute name="title">
+     <string>Router Settings</string>
+    </attribute>
+    <widget class="QWidget" name="gridLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>571</width>
+       <height>351</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="routeSettingsLayout"/>
+    </widget>
+   </widget>
    <widget class="QWidget" name="tab_3">
     <attribute name="title">
      <string>Trojan Settings</string>
@@ -599,7 +615,7 @@
        <x>0</x>
        <y>0</y>
        <width>561</width>
-       <height>321</height>
+       <height>351</height>
       </rect>
      </property>
      <layout class="QFormLayout" name="formLayout_3">
@@ -739,7 +755,7 @@
    <property name="geometry">
     <rect>
      <x>417</x>
-     <y>360</y>
+     <y>390</y>
      <width>164</width>
      <height>32</height>
     </rect>

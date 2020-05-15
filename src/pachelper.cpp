@@ -19,7 +19,7 @@ PACHelper::PACHelper()
     configDir = QDir::toNativeSeparators(QCoreApplication::applicationDirPath()) + "\\pac";
     configFile = QCoreApplication::applicationDirPath() + "/config.ini";
 #else
-    configDir = QDir::homePath() + "/.config/trojan-qt5/pac";
+    configDir.setPath(QDir::homePath() + "/.config/trojan-qt5/pac");
     configFile = QDir::homePath() + "/.config/trojan-qt5/config.ini";
 #endif
 

@@ -123,7 +123,7 @@ QString ConnectionItem::convertType(TQProfile profile)
     else if (profile.type == "trojan")
         return "TROJAN";
     else if (profile.type == "vmess")
-        return "VMESS";
+        return QString("VMESS / %1").arg(profile.vmessSettings["network"].toString() == "ws" ? "WEBSOCKET" : profile.vmessSettings["network"].toString().toUpper());
     else if (profile.type == "snell")
         return QString("SNELL / %1").arg(profile.obfs.toUpper());
     else

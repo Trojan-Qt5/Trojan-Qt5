@@ -25,8 +25,10 @@
 #include <memory>
 #include "httpproxy.h"
 #include "pachelper.h"
+#include "ssthread.h"
 #include "SSRThread.hpp"
 #include "tun2socksthread.h"
+#include "trojanthread.h"
 #include "systemproxyhelper.h"
 #include "tqprofile.h"
 #include "routetablehelper.h"
@@ -43,7 +45,7 @@ public:
     ~Connection();
 
     Connection(const Connection&) = delete;
-    Connection(Connection&&) = default;
+    //Connection(Connection&&) = default;
 
     const TQProfile &getProfile() const;
     const QString &getName() const;
@@ -75,8 +77,10 @@ public slots:
 private:
     QString configFile;
     HttpProxy *http;
+    SSThread *ss;
     std::unique_ptr<SSRThread> ssr;
     Tun2socksThread *tun2socks;
+    TrojanThread *trojan;
     RouteTableHelper *rhelper;
     SSGoAPI *ssGoAPI;
     TrojanGoAPI *trojanGoAPI;

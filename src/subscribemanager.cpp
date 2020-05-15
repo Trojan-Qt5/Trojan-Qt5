@@ -5,7 +5,6 @@
 #include <QNetworkProxy>
 #include <QNetworkReply>
 #include <QEventLoop>
-#include <QDebug>
 
 SubscribeManager::SubscribeManager(ConfigHelper *ch, QObject *parent) : QObject(parent), helper(ch)
 {}
@@ -15,6 +14,7 @@ QString SubscribeManager::checkUpdate(QString url, bool useProxy)
     Logger::debug(QString("[Subscribe] Subscribe Link: %1").arg(url));
     QNetworkAccessManager* manager = new QNetworkAccessManager();
     QNetworkRequest request(url);
+    request.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::NoLessSafeRedirectPolicy);
     request.setAttribute(QNetworkRequest::HTTP2AllowedAttribute, true);
     request.setRawHeader("User-Agent", helper->getUpdateUserAgent().toUtf8().data());
     if (useProxy) {
@@ -50,7 +50,7 @@ void SubscribeManager::updateAllSubscribes(bool useProxy)
             if (list[x].isEmpty()) {
                 continue;
             }
-            if (GeneralValidator::validateSSR(list[x]) || GeneralValidator::validateTrojan(list[x])) {
+            if (GeneralValidator::validateSS(list[x]) || GeneralValidator::validateSSR(list[x]) || GeneralValidator::validateTrojan(list[x])) {
                 if (!isFiltered(TQProfile(list[x]).name) && (x < helper->getMaximumSubscribe() || helper->getMaximumSubscribe() == 0)) {
                     emit addUri(list[x]);
                 }

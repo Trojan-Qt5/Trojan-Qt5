@@ -22,6 +22,9 @@ public:
 private:
     Ui::SnellEditDialog *ui;
     Connection *connection;
+
+private slots:
+    void save();
 };
 
 #endif // SNELLEDITDIALOG_H

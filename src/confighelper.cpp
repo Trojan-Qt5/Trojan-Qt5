@@ -11,6 +11,7 @@
 
 #include "logger.h"
 #include "yaml-cpp/yaml.h"
+#include "utils.h"
 
 using namespace std;
 
@@ -101,12 +102,12 @@ void ConfigHelper::importGuiConfigJson(ConnectionTableModel *model, const QStrin
     JSONFile.open(QIODevice::ReadOnly | QIODevice::Text);
     if (!JSONFile.isOpen()) {
         qCritical() << "Error: cannot open " << file;
-        Logger::error(QString("cannot open %1").arg(file));
+        Logger::error(QString("[Import] cannot open %1").arg(file));
         return;
     }
     if(!JSONFile.isReadable()) {
         qCritical() << "Error: cannot read " << file;
-        Logger::error(QString("cannot read %1").arg(file));
+        Logger::error(QString("[Import] cannot read %1").arg(file));
         return;
     }
 
@@ -118,27 +119,34 @@ void ConfigHelper::importGuiConfigJson(ConnectionTableModel *model, const QStrin
         Logger::error(pe.errorString());
     }
     if (JSONDoc.isEmpty()) {
-        qCritical() << "JSON Document" << file << "is empty!";
-        Logger::error(QString("JSON Document %1 is empty!").arg(file));
+        Logger::error(QString("[Import] JSON Document %1 is empty!").arg(file));
         return;
     }
     QJsonObject JSONObj = JSONDoc.object();
     QJsonArray CONFArray = JSONObj["configs"].toArray();
     if (CONFArray.isEmpty()) {
-        qWarning() << "configs in " << file << " is empty.";
-        Logger::error(QString("configs in %1 is empty!").arg(file));
+        Logger::error(QString("[Import] configs in %1 is empty!").arg(file));
         return;
     }
 
     for (QJsonArray::iterator it = CONFArray.begin(); it != CONFArray.end(); ++it) {
         QJsonObject json = (*it).toObject();
         TQProfile p;
+        p.type = json["type"].toString();
         p.name = json["remarks"].toString();
         p.serverPort = json["server_port"].toInt();
         p.serverAddress = json["server"].toString();
         p.verifyCertificate = json["verify_certificate"].toBool();
         p.verifyHostname = json["verify_hostname"].toBool();
+        p.method = json["method"].toString();
         p.password = json["password"].toString();
+        p.uuid = json["uuid"].toString();
+        p.protocol = json["protocol"].toString();
+        p.protocolParam = json["protocolParam"].toString();
+        p.obfs = json["obfs"].toString();
+        p.obfsParam = json["obfsParam"].toString();
+        p.plugin = json["plugin"].toString();
+        p.pluginParam = json["pluginParam"].toString();
         p.sni = json["sni"].toString();
         p.reuseSession = json["reuse_session"].toBool();
         p.sessionTicket = json["session_ticket"].toBool();
@@ -164,7 +172,15 @@ void ConfigHelper::exportGuiConfigJson(const ConnectionTableModel &model, const 
         json["server_port"] = QJsonValue(con->profile.serverPort);
         json["verify_certificate"] = QJsonValue(con->profile.verifyCertificate);
         json["verify_hostname"] = QJsonValue(con->profile.verifyHostname);
+        json["method"] = QJsonValue(con->profile.method);
         json["password"] = QJsonValue(con->profile.password);
+        json["uuid"] = QJsonValue(con->profile.uuid);
+        json["protocol"] = QJsonValue(con->profile.password);
+        json["protocolParam"] = QJsonValue(con->profile.password);
+        json["obfs"] = QJsonValue(con->profile.obfs);
+        json["obfsParam"] = QJsonValue(con->profile.obfsParam);
+        json["plugin"] = QJsonValue(con->profile.plugin);
+        json["pluginParam"] = QJsonValue(con->profile.pluginParam);
         json["sni"] = QJsonValue(con->profile.sni);
         json["reuse_session"] = QJsonValue(con->profile.reuseSession);
         json["session_ticket"] = QJsonValue(con->profile.sessionTicket);
@@ -183,12 +199,12 @@ void ConfigHelper::exportGuiConfigJson(const ConnectionTableModel &model, const 
     JSONFile.open(QIODevice::WriteOnly | QIODevice::Text);
     if (!JSONFile.isOpen()) {
         qCritical() << "Error: cannot open " << file;
-        Logger::error(QString("cannot open %1").arg(file));
+        Logger::error(QString("[Export] cannot open %1").arg(file));
         return;
     }
     if(!JSONFile.isWritable()) {
         qCritical() << "Error: cannot write into " << file;
-        Logger::error(QString("cannot write into %1").arg(file));
+        Logger::error(QString("[Export] cannot write into %1").arg(file));
         return;
     }
 
@@ -202,16 +218,14 @@ void ConfigHelper::importConfigYaml(ConnectionTableModel *model, const QString &
     const YAML::Node& proxies = config["Proxy"];
     for (std::size_t i = 0; i < proxies.size(); i++) {
         const YAML::Node& proxy = proxies[i];
-        if (QString::fromStdString(proxy["type"].as<string>()) == "trojan") {
-            TQProfile p;
-            p.name = QString::fromStdString(proxy["name"].as<string>());
-            p.serverAddress = QString::fromStdString(proxy["server"].as<string>());
-            p.serverPort = proxy["skip-cert-verify"].as<int>();
-            p.password = QString::fromStdString(proxy["password"].as<string>());
-            p.verifyCertificate = !proxy["skip-cert-verify"].as<bool>();
-            Connection *con = new Connection(p, this);
-            model->appendConnection(con);
-        }
+        TQProfile p;
+        p.name = QString::fromStdString(proxy["name"].as<string>());
+        p.serverAddress = QString::fromStdString(proxy["server"].as<string>());
+        p.serverPort = proxy["skip-cert-verify"].as<int>();
+        p.password = QString::fromStdString(proxy["password"].as<string>());
+        p.verifyCertificate = !proxy["skip-cert-verify"].as<bool>();
+        Connection *con = new Connection(p, this);
+        model->appendConnection(con);
     }
 }
 
@@ -220,13 +234,11 @@ void ConfigHelper::importShadowrocketJson(ConnectionTableModel *model, const QSt
     QFile JSONFile(file);
     JSONFile.open(QIODevice::ReadOnly | QIODevice::Text);
     if (!JSONFile.isOpen()) {
-        qCritical() << "Error: cannot open " << file;
-        Logger::error(QString("cannot open %1").arg(file));
+        Logger::error(QString("[Import] cannot open %1").arg(file));
         return;
     }
     if(!JSONFile.isReadable()) {
-        qCritical() << "Error: cannot read " << file;
-        Logger::error(QString("cannot read %1").arg(file));
+        Logger::error(QString("[Import] cannot read %1").arg(file));
         return;
     }
 
@@ -238,8 +250,7 @@ void ConfigHelper::importShadowrocketJson(ConnectionTableModel *model, const QSt
         Logger::error(pe.errorString());
     }
     if (JSONDoc.isEmpty()) {
-        qCritical() << "JSON Document" << file << "is empty!";
-        Logger::error(QString("JSON Document %1 is empty!").arg(file));
+        Logger::error(QString("[Import] JSON Document %1 is empty!").arg(file));
         return;
     }
 
@@ -268,11 +279,17 @@ void ConfigHelper::exportShadowrocketJson(const ConnectionTableModel &model, con
     for (int i = 0; i < size; ++i) {
         Connection *con = model.getItem(i)->getConnection();
         QJsonObject json;
-        json["type"] = "Trojan";
+        json["type"] = QJsonValue(Utils::toCamelCase(con->profile.type));
         json["title"] = QJsonValue(con->profile.name);
         json["host"] = QJsonValue(con->profile.serverAddress);
         json["port"] = QJsonValue(con->profile.serverPort);
+        json["method"] = QJsonValue(con->profile.method);
         json["password"] = QJsonValue(con->profile.password);
+        json["uuid"] = QJsonValue(con->profile.uuid);
+        json["proto"] = QJsonValue(con->profile.protocol);
+        json["protoParam"] = QJsonValue(con->profile.protocolParam);
+        json["obfs"] = QJsonValue(con->profile.obfs);
+        json["obfsParam"] = QJsonValue(con->profile.obfsParam);
         confArray.append(QJsonValue(json));
     }
 
@@ -281,13 +298,11 @@ void ConfigHelper::exportShadowrocketJson(const ConnectionTableModel &model, con
     QFile JSONFile(file);
     JSONFile.open(QIODevice::WriteOnly | QIODevice::Text);
     if (!JSONFile.isOpen()) {
-        qCritical() << "Error: cannot open " << file;
-        Logger::error(QString("cannot open %1").arg(file));
+        Logger::error(QString("[Export] cannot open %1").arg(file));
         return;
     }
     if(!JSONFile.isWritable()) {
-        qCritical() << "Error: cannot write into " << file;
-        Logger::error(QString("cannot write into %1").arg(file));
+        Logger::error(QString("[Export] cannot write into %1").arg(file));
         return;
     }
 
@@ -308,13 +323,11 @@ void ConfigHelper::exportTrojanSubscribe(const ConnectionTableModel &model, cons
     QFile Subscribe(file);
     Subscribe.open(QIODevice::WriteOnly | QIODevice::Text);
     if (!Subscribe.isOpen()) {
-        qCritical() << "Error: cannot open " << file;
-        Logger::error(QString("cannot open %1").arg(file));
+        Logger::error(QString("[Export] cannot open %1").arg(file));
         return;
     }
     if(!Subscribe.isWritable()) {
-        qCritical() << "Error: cannot write into " << file;
-        Logger::error(QString("cannot write into %1").arg(file));
+        Logger::error(QString("[Export] cannot write into %1").arg(file));
         return;
     }
 
@@ -322,17 +335,53 @@ void ConfigHelper::exportTrojanSubscribe(const ConnectionTableModel &model, cons
     Subscribe.close();
 }
 
+QJsonObject ConfigHelper::generateVmessSettings()
+{
+    QJsonObject object;
+    object["network"] = "tcp";
+    QJsonObject tcp;
+    QJsonObject tcpHeader;
+    tcpHeader["type"] = "none";
+    tcpHeader["request"] = "{\n    \"version\": \"1.1\",\n    \"method\": \"GET\",\n    \"path\": [],\n    \"headers\": {}\n}";
+    tcpHeader["response"] = "{\n    \"version\": \"1.1\",\n    \"status\": \"200\",\n    \"reason\": \"OK\",\n    \"headers\": {}\n}";
+    tcp["header"] = tcpHeader;
+    object["tcp"] = QJsonValue(tcp);
+    QJsonObject http;
+    http["path"] = "/";
+    object["http"] = QJsonValue(http);
+    QJsonObject ws;
+    ws["path"] = "/";
+    object["ws"] = QJsonValue(ws);
+    QJsonObject kcp;
+    kcp["mtu"] = 1460;
+    kcp["tti"] = 20;
+    kcp["uplinkCapacity"] = 5;
+    kcp["congestion"] = false;
+    kcp["downlinkCapacity"] = 20;
+    kcp["readBufferSize"] = 1;
+    kcp["writeBufferSize"] = 1;
+    QJsonObject kcpHeader;
+    kcpHeader["type"] = "none";
+    kcp["header"] = kcpHeader;
+    object["kcp"] = kcp;
+    QJsonObject tls;
+    tls["enable"] = false;
+    tls["allowInsecure"] = false;
+    tls["allowInsecureCiphers"] = false;
+    tls["serverName"] = "";
+    object["tls"] = QJsonValue(tls);
+    return object;
+}
+
 Connection* ConfigHelper::configJsonToConnection(const QString &file)
 {
     QFile JSONFile(file);
     JSONFile.open(QIODevice::ReadOnly | QIODevice::Text);
     if (!JSONFile.isOpen()) {
-        qCritical() << "Error: cannot open " << file;
-        Logger::error(QString("cannot open %1").arg(file));
+        Logger::error(QString("[Connection] cannot open %1").arg(file));
     }
     if(!JSONFile.isReadable()) {
-        qCritical() << "Error: cannot read " << file;
-        Logger::error(QString("cannot read %1").arg(file));
+        Logger::error(QString("[Connection] cannot read %1").arg(file));
     }
 
     QJsonParseError pe;
@@ -342,8 +391,7 @@ Connection* ConfigHelper::configJsonToConnection(const QString &file)
         qCritical() << pe.errorString();
     }
     if (JSONDoc.isEmpty()) {
-        qCritical() << "JSON Document" << file << "is empty!";
-        Logger::error(QString("JSON Document %1 is empty!").arg(file));
+        Logger::error(QString("[Connection] JSON Document %1 is empty!").arg(file));
         return nullptr;
     }
     QJsonObject configObj = JSONDoc.object();
@@ -411,6 +459,14 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
     websocket["obfuscation_password"] = profile.websocketObfsPassword;
     websocket["double_tls"] = profile.websocketDoubleTLS;
     configObj["websocket"] = QJsonValue(websocket);
+    QJsonObject router;
+    router["enabled"] = enableTrojanRouter;
+    if (enableTrojanRouter) {
+        router["direct"] = route["domain"].toObject()["direct"].toArray() + route["ip"].toObject()["direct"].toArray();
+        router["proxy"] = route["domain"].toObject()["proxy"].toArray() + route["ip"].toObject()["proxy"].toArray();
+        router["block"] = route["domain"].toObject()["block"].toArray() + route["ip"].toObject()["block"].toArray();
+    }
+    configObj["router"] = router;
     QJsonObject api;
     api["enabled"] = enableTrojanAPI;
     api["api_addr"] = "127.0.0.1";
@@ -437,12 +493,10 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
     QFile JSONFile(file);
     JSONFile.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate);
     if (!JSONFile.isOpen()) {
-        qCritical() << "Error: cannot open " << file;
         Logger::error(QString("cannot open %1").arg(file));
         return;
     }
     if(!JSONFile.isWritable()) {
-        qCritical() << "Error: cannot write into " << file;
         Logger::error(QString("cannot write into %1").arg(file));
         return;
     }
@@ -452,10 +506,16 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
 
 }
 
-/*
 void ConfigHelper::generateV2rayJson(TQProfile &profile)
 {
     QJsonObject configObj;
+    QJsonObject stats;
+    configObj["stats"] = stats;
+    QJsonObject api;
+    api["tag"] = "api";
+    QJsonArray apiServices;
+    apiServices.append("StatsService");
+    configObj["api"] = api;
     QJsonArray inboundsArray;
     QJsonObject inbound;
     QJsonObject inboundSettings;
@@ -474,21 +534,80 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
     outbound["tag"] = "out-0";
     QJsonArray vnetArray;
     QJsonObject vnet;
-    vnet["address"] = serverAddress;
-    vnet["port"] = serverPort;
+    vnet["address"] = profile.serverAddress;
+    vnet["port"] = profile.serverPort;
     QJsonArray usersArray;
     QJsonObject users;
-    users["id"] = ;
-    users["alterId"] = ;
+    users["id"] = profile.uuid;
+    users["alterId"] = profile.alterID;
     usersArray.append(users);
     vnet["users"] = usersArray;
+    vnetArray.append(vnet);
     QJsonObject streamSettings;
-    streamSettings["network"] = "";
-    streamSettings["security"] = "";
-    streamSettings[""];
+    streamSettings["network"] = profile.vmessSettings["network"].toString();
+    streamSettings["security"] = profile.vmessSettings["tls"].toObject()["enable"].toBool() ? "tls" : "none";
+    if (streamSettings["network"] == "tcp") {
+        QJsonObject tcpSettings;
+        streamSettings["tcpSettings"] = tcpSettings;
+    } else if (streamSettings["network"] == "kcp") {
+        QJsonObject kcpSettings;
+        kcpSettings["mtu"] = profile.vmessSettings["kcp"].toObject()["mtu"].toInt();
+        kcpSettings["tti"] = profile.vmessSettings["kcp"].toObject()["tti"].toInt();
+        kcpSettings["uplinkCapacity"] = profile.vmessSettings["kcp"].toObject()["uplinkCapacity"].toInt();
+        kcpSettings["downlinkCapacity"] = profile.vmessSettings["kcp"].toObject()["downlinkCapacity"].toInt();
+        kcpSettings["congestion"] = profile.vmessSettings["kcp"].toObject()["congestion"].toBool();
+        kcpSettings["readBufferSize"] = profile.vmessSettings["kcp"].toObject()["readBufferSize"].toInt();
+        kcpSettings["downlinkCapacity"] = profile.vmessSettings["kcp"].toObject()["downlinkCapacity"].toInt();
+        QJsonObject kcpHeader;
+        kcpHeader["type"] = profile.vmessSettings["kcp"].toObject()["header"].toObject()["type"].toString();
+        kcpSettings["header"] = kcpHeader;
+        streamSettings["kcpSettings"] = kcpSettings;
+    } else if (streamSettings["network"] == "ws") {
+        QJsonObject wsSettings;
+        wsSettings["path"] = profile.vmessSettings["ws"].toObject()["path"];
+        wsSettings["headers"] = profile.vmessSettings["ws"].toObject()["header"];
+        streamSettings["wsSettings"] = wsSettings;
+    } else if (streamSettings["network"] == "http") {
+        QJsonObject httpSettings;
+        httpSettings["host"] = profile.vmessSettings["http"].toObject()["host"].toArray();
+        httpSettings["path"] = profile.vmessSettings["http"].toObject()["path"].toString();
+        streamSettings["httpSettings"] = httpSettings;
+    } else if (streamSettings["network"] == "quic") {
+        QJsonObject quicSettings;
+        quicSettings["security"] = profile.vmessSettings["quic"].toObject()["security"].toString();
+        quicSettings["key"] = profile.vmessSettings["quic"].toObject()["key"].toString();
+        QJsonObject quicHeader;
+        quicHeader["type"] = profile.vmessSettings["quic"].toObject()["header"].toObject()["type"].toString();
+        streamSettings["quicSettings"] = quicSettings;
+    }
+    outbound["vnet"] = vnetArray;
+    outbound["streamSettings"] = streamSettings;
+    outboundsArray.append(outbound);
+    configObj["outbound"] = outboundsArray;
 
+    QJsonDocument JSONDoc(configObj);
+
+#ifdef Q_OS_WIN
+        QString file = QCoreApplication::applicationDirPath() + "/config.json";
+#else
+        QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
+        QString file = configDir.absolutePath() + "/config.json";
+#endif
+
+    QFile JSONFile(file);
+    JSONFile.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate);
+    if (!JSONFile.isOpen()) {
+        Logger::error(QString("cannot open %1").arg(file));
+        return;
+    }
+    if(!JSONFile.isWritable()) {
+        Logger::error(QString("cannot write into %1").arg(file));
+        return;
+    }
+
+    JSONFile.write(JSONDoc.toJson());
+    JSONFile.close();
 }
-*/
 
 void ConfigHelper::generateHaproxyConf(const ConnectionTableModel &model)
 {
@@ -545,6 +664,11 @@ QString ConfigHelper::parseTLSFingerprint(int choice) const
 QString ConfigHelper::getTheme() const
 {
     return theme;
+}
+
+QJsonObject ConfigHelper::getRoute() const
+{
+    return route;
 }
 
 int ConfigHelper::getFLSFingerPrint() const
@@ -750,6 +874,11 @@ bool ConfigHelper::isShowFilterBar() const
 bool ConfigHelper::isNativeMenuBar() const
 {
     return nativeMenuBar;
+}
+
+void ConfigHelper::setRoute(QJsonObject r)
+{
+    route = r;
 }
 
 void ConfigHelper::setGeneralSettings(int ts, bool hide, QString th, bool sal, bool oneInstance, bool cpa, bool en, bool hdi, bool nativeMB, int ll, bool hm, bool eis, bool sol, int sp, int hp, int pp, int ap, int hsp, bool efp, int fpt, QString fpa, int fpp, bool efpa, QString fpu, QString fppa, int glu, QString uua, QString fkw, int ms, int fp, bool eta, bool etr, int tap, QString tcp, QString tc, QString tct13)

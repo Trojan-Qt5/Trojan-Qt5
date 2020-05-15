@@ -29,7 +29,7 @@ private:
     QThread *thread;
     QString password;
     std::shared_ptr<::grpc::Channel> Channel;
-    std::unique_ptr<::api::SSService::Stub> Stub;
+    std::unique_ptr<::shadowsocks::api::SSService::Stub> Stub;
 };
 
 #endif // SSGOAPI_H

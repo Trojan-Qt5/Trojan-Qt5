@@ -5,7 +5,7 @@
 #include <QCoreApplication>
 #endif
 
-using namespace api;
+using namespace trojan::api;
 using grpc::Channel;
 using grpc::ClientContext;
 using grpc::Status;
@@ -57,14 +57,14 @@ void TrojanGoAPI::run()
         Stub = service.NewStub(Channel);
         GetTrafficResponse reply;
         GetTrafficRequest request;
-        User = new ::api::User;
+        User = new ::trojan::api::User;
         User->set_password(password.toUtf8().data());
         request.set_allocated_user(User);
         ClientContext context;
         Status status = Stub->GetTraffic(&context, request, &reply);
 
         if (!status.ok()) {
-            Logger::error(QString("Trojan API Request failed: %1 (%2)").arg(status.error_code()).arg(QString::fromStdString(status.error_message())));
+            Logger::error(QString("[API] Trojan API Request failed: %1 (%2)").arg(status.error_code()).arg(QString::fromStdString(status.error_message())));
         }
 
         quint64 up = reply.speed_current().upload_speed();

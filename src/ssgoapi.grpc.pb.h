@@ -26,37 +26,38 @@
 #include <grpcpp/impl/codegen/stub_options.h>
 #include <grpcpp/impl/codegen/sync_stream.h>
 
+namespace shadowsocks {
 namespace api {
 
 class SSService final {
  public:
   static constexpr char const* service_full_name() {
-    return "api.SSService";
+    return "shadowsocks.api.SSService";
   }
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status QueryStats(::grpc::ClientContext* context, const ::api::StatsRequest& request, ::api::StatsReply* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::api::StatsReply>> AsyncQueryStats(::grpc::ClientContext* context, const ::api::StatsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::api::StatsReply>>(AsyncQueryStatsRaw(context, request, cq));
+    virtual ::grpc::Status QueryStats(::grpc::ClientContext* context, const ::shadowsocks::api::StatsRequest& request, ::shadowsocks::api::StatsReply* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::shadowsocks::api::StatsReply>> AsyncQueryStats(::grpc::ClientContext* context, const ::shadowsocks::api::StatsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::shadowsocks::api::StatsReply>>(AsyncQueryStatsRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::api::StatsReply>> PrepareAsyncQueryStats(::grpc::ClientContext* context, const ::api::StatsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::api::StatsReply>>(PrepareAsyncQueryStatsRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::shadowsocks::api::StatsReply>> PrepareAsyncQueryStats(::grpc::ClientContext* context, const ::shadowsocks::api::StatsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::shadowsocks::api::StatsReply>>(PrepareAsyncQueryStatsRaw(context, request, cq));
     }
     class experimental_async_interface {
      public:
       virtual ~experimental_async_interface() {}
-      virtual void QueryStats(::grpc::ClientContext* context, const ::api::StatsRequest* request, ::api::StatsReply* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void QueryStats(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::StatsReply* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void QueryStats(::grpc::ClientContext* context, const ::shadowsocks::api::StatsRequest* request, ::shadowsocks::api::StatsReply* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void QueryStats(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::shadowsocks::api::StatsReply* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void QueryStats(::grpc::ClientContext* context, const ::api::StatsRequest* request, ::api::StatsReply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void QueryStats(::grpc::ClientContext* context, const ::shadowsocks::api::StatsRequest* request, ::shadowsocks::api::StatsReply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
-      virtual void QueryStats(::grpc::ClientContext* context, const ::api::StatsRequest* request, ::api::StatsReply* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void QueryStats(::grpc::ClientContext* context, const ::shadowsocks::api::StatsRequest* request, ::shadowsocks::api::StatsReply* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void QueryStats(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::StatsReply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void QueryStats(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::shadowsocks::api::StatsReply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
-      virtual void QueryStats(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::StatsReply* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void QueryStats(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::shadowsocks::api::StatsReply* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
     };
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -67,33 +68,33 @@ class SSService final {
     #endif
     virtual class experimental_async_interface* experimental_async() { return nullptr; }
   private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::api::StatsReply>* AsyncQueryStatsRaw(::grpc::ClientContext* context, const ::api::StatsRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::api::StatsReply>* PrepareAsyncQueryStatsRaw(::grpc::ClientContext* context, const ::api::StatsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::shadowsocks::api::StatsReply>* AsyncQueryStatsRaw(::grpc::ClientContext* context, const ::shadowsocks::api::StatsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::shadowsocks::api::StatsReply>* PrepareAsyncQueryStatsRaw(::grpc::ClientContext* context, const ::shadowsocks::api::StatsRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
-    ::grpc::Status QueryStats(::grpc::ClientContext* context, const ::api::StatsRequest& request, ::api::StatsReply* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::api::StatsReply>> AsyncQueryStats(::grpc::ClientContext* context, const ::api::StatsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::api::StatsReply>>(AsyncQueryStatsRaw(context, request, cq));
+    ::grpc::Status QueryStats(::grpc::ClientContext* context, const ::shadowsocks::api::StatsRequest& request, ::shadowsocks::api::StatsReply* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::shadowsocks::api::StatsReply>> AsyncQueryStats(::grpc::ClientContext* context, const ::shadowsocks::api::StatsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::shadowsocks::api::StatsReply>>(AsyncQueryStatsRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::api::StatsReply>> PrepareAsyncQueryStats(::grpc::ClientContext* context, const ::api::StatsRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::api::StatsReply>>(PrepareAsyncQueryStatsRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::shadowsocks::api::StatsReply>> PrepareAsyncQueryStats(::grpc::ClientContext* context, const ::shadowsocks::api::StatsRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::shadowsocks::api::StatsReply>>(PrepareAsyncQueryStatsRaw(context, request, cq));
     }
     class experimental_async final :
       public StubInterface::experimental_async_interface {
      public:
-      void QueryStats(::grpc::ClientContext* context, const ::api::StatsRequest* request, ::api::StatsReply* response, std::function<void(::grpc::Status)>) override;
-      void QueryStats(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::StatsReply* response, std::function<void(::grpc::Status)>) override;
+      void QueryStats(::grpc::ClientContext* context, const ::shadowsocks::api::StatsRequest* request, ::shadowsocks::api::StatsReply* response, std::function<void(::grpc::Status)>) override;
+      void QueryStats(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::shadowsocks::api::StatsReply* response, std::function<void(::grpc::Status)>) override;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void QueryStats(::grpc::ClientContext* context, const ::api::StatsRequest* request, ::api::StatsReply* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void QueryStats(::grpc::ClientContext* context, const ::shadowsocks::api::StatsRequest* request, ::shadowsocks::api::StatsReply* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
-      void QueryStats(::grpc::ClientContext* context, const ::api::StatsRequest* request, ::api::StatsReply* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void QueryStats(::grpc::ClientContext* context, const ::shadowsocks::api::StatsRequest* request, ::shadowsocks::api::StatsReply* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void QueryStats(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::StatsReply* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void QueryStats(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::shadowsocks::api::StatsReply* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
-      void QueryStats(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::StatsReply* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void QueryStats(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::shadowsocks::api::StatsReply* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
      private:
       friend class Stub;
@@ -106,8 +107,8 @@ class SSService final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class experimental_async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::api::StatsReply>* AsyncQueryStatsRaw(::grpc::ClientContext* context, const ::api::StatsRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::api::StatsReply>* PrepareAsyncQueryStatsRaw(::grpc::ClientContext* context, const ::api::StatsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::shadowsocks::api::StatsReply>* AsyncQueryStatsRaw(::grpc::ClientContext* context, const ::shadowsocks::api::StatsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::shadowsocks::api::StatsReply>* PrepareAsyncQueryStatsRaw(::grpc::ClientContext* context, const ::shadowsocks::api::StatsRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_QueryStats_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
@@ -116,7 +117,7 @@ class SSService final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status QueryStats(::grpc::ServerContext* context, const ::api::StatsRequest* request, ::api::StatsReply* response);
+    virtual ::grpc::Status QueryStats(::grpc::ServerContext* context, const ::shadowsocks::api::StatsRequest* request, ::shadowsocks::api::StatsReply* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_QueryStats : public BaseClass {
@@ -130,11 +131,11 @@ class SSService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status QueryStats(::grpc::ServerContext* /*context*/, const ::api::StatsRequest* /*request*/, ::api::StatsReply* /*response*/) override {
+    ::grpc::Status QueryStats(::grpc::ServerContext* /*context*/, const ::shadowsocks::api::StatsRequest* /*request*/, ::shadowsocks::api::StatsReply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestQueryStats(::grpc::ServerContext* context, ::api::StatsRequest* request, ::grpc::ServerAsyncResponseWriter< ::api::StatsReply>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestQueryStats(::grpc::ServerContext* context, ::shadowsocks::api::StatsRequest* request, ::grpc::ServerAsyncResponseWriter< ::shadowsocks::api::StatsReply>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -151,38 +152,38 @@ class SSService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodCallback(0,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::api::StatsRequest, ::api::StatsReply>(
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::shadowsocks::api::StatsRequest, ::shadowsocks::api::StatsReply>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
     #else
                    ::grpc::experimental::CallbackServerContext*
     #endif
-                     context, const ::api::StatsRequest* request, ::api::StatsReply* response) { return this->QueryStats(context, request, response); }));}
+                     context, const ::shadowsocks::api::StatsRequest* request, ::shadowsocks::api::StatsReply* response) { return this->QueryStats(context, request, response); }));}
     void SetMessageAllocatorFor_QueryStats(
-        ::grpc::experimental::MessageAllocator< ::api::StatsRequest, ::api::StatsReply>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::shadowsocks::api::StatsRequest, ::shadowsocks::api::StatsReply>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
     #else
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(0);
     #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::api::StatsRequest, ::api::StatsReply>*>(handler)
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::shadowsocks::api::StatsRequest, ::shadowsocks::api::StatsReply>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~ExperimentalWithCallbackMethod_QueryStats() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status QueryStats(::grpc::ServerContext* /*context*/, const ::api::StatsRequest* /*request*/, ::api::StatsReply* /*response*/) override {
+    ::grpc::Status QueryStats(::grpc::ServerContext* /*context*/, const ::shadowsocks::api::StatsRequest* /*request*/, ::shadowsocks::api::StatsReply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* QueryStats(
-      ::grpc::CallbackServerContext* /*context*/, const ::api::StatsRequest* /*request*/, ::api::StatsReply* /*response*/)
+      ::grpc::CallbackServerContext* /*context*/, const ::shadowsocks::api::StatsRequest* /*request*/, ::shadowsocks::api::StatsReply* /*response*/)
     #else
     virtual ::grpc::experimental::ServerUnaryReactor* QueryStats(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::api::StatsRequest* /*request*/, ::api::StatsReply* /*response*/)
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::shadowsocks::api::StatsRequest* /*request*/, ::shadowsocks::api::StatsReply* /*response*/)
     #endif
       { return nullptr; }
   };
@@ -203,7 +204,7 @@ class SSService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status QueryStats(::grpc::ServerContext* /*context*/, const ::api::StatsRequest* /*request*/, ::api::StatsReply* /*response*/) override {
+    ::grpc::Status QueryStats(::grpc::ServerContext* /*context*/, const ::shadowsocks::api::StatsRequest* /*request*/, ::shadowsocks::api::StatsReply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -220,7 +221,7 @@ class SSService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status QueryStats(::grpc::ServerContext* /*context*/, const ::api::StatsRequest* /*request*/, ::api::StatsReply* /*response*/) override {
+    ::grpc::Status QueryStats(::grpc::ServerContext* /*context*/, const ::shadowsocks::api::StatsRequest* /*request*/, ::shadowsocks::api::StatsReply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -253,7 +254,7 @@ class SSService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status QueryStats(::grpc::ServerContext* /*context*/, const ::api::StatsRequest* /*request*/, ::api::StatsReply* /*response*/) override {
+    ::grpc::Status QueryStats(::grpc::ServerContext* /*context*/, const ::shadowsocks::api::StatsRequest* /*request*/, ::shadowsocks::api::StatsReply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -273,18 +274,18 @@ class SSService final {
    public:
     WithStreamedUnaryMethod_QueryStats() {
       ::grpc::Service::MarkMethodStreamed(0,
-        new ::grpc::internal::StreamedUnaryHandler< ::api::StatsRequest, ::api::StatsReply>(std::bind(&WithStreamedUnaryMethod_QueryStats<BaseClass>::StreamedQueryStats, this, std::placeholders::_1, std::placeholders::_2)));
+        new ::grpc::internal::StreamedUnaryHandler< ::shadowsocks::api::StatsRequest, ::shadowsocks::api::StatsReply>(std::bind(&WithStreamedUnaryMethod_QueryStats<BaseClass>::StreamedQueryStats, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_QueryStats() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status QueryStats(::grpc::ServerContext* /*context*/, const ::api::StatsRequest* /*request*/, ::api::StatsReply* /*response*/) override {
+    ::grpc::Status QueryStats(::grpc::ServerContext* /*context*/, const ::shadowsocks::api::StatsRequest* /*request*/, ::shadowsocks::api::StatsReply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedQueryStats(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::api::StatsRequest,::api::StatsReply>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedQueryStats(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::shadowsocks::api::StatsRequest,::shadowsocks::api::StatsReply>* server_unary_streamer) = 0;
   };
   typedef WithStreamedUnaryMethod_QueryStats<Service > StreamedUnaryService;
   typedef Service SplitStreamedService;
@@ -292,6 +293,7 @@ class SSService final {
 };
 
 }  // namespace api
+}  // namespace shadowsocks
 
 
 #endif  // GRPC_ssgoapi_2eproto__INCLUDED

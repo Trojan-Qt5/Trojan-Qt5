@@ -40,6 +40,9 @@ public:
     void onCopyTerminalProxy();
     void onSetProxyToTelegram();
     void onTrojanSubscribeSettings();
+#if defined (Q_OS_WIN)
+    void onInstallTAPDriver();
+#endif
     void showServerSpeedPlot();
 
 signals:

@@ -99,7 +99,7 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>24</pointsize>
+        <pointsize>23</pointsize>
        </font>
       </property>
       <property name="text">
@@ -120,7 +120,7 @@
         <widget class="QLabel" name="label_24">
          <property name="font">
           <font>
-           <pointsize>15</pointsize>
+           <pointsize>14</pointsize>
           </font>
          </property>
          <property name="text">
@@ -132,7 +132,7 @@
         <widget class="QLabel" name="version">
          <property name="font">
           <font>
-           <pointsize>15</pointsize>
+           <pointsize>14</pointsize>
           </font>
          </property>
          <property name="cursor">

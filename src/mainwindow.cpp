@@ -4,6 +4,7 @@
 #include "connection.h"
 #include "sseditdialog.h"
 #include "ssreditdialog.h"
+#include "vmesseditdialog.h"
 #include "trojaneditdialog.h"
 #include "snelleditdialog.h"
 #include "urihelper.h"
@@ -132,6 +133,8 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
             this, [this]() { onAddManually("ss"); });
     connect(ui->actionManuallySSR, &QAction::triggered,
             this, [this]() { onAddManually("ssr"); });
+    connect(ui->actionManuallyVmess, &QAction::triggered,
+            this, [this]() { onAddManually("vmess"); });
     connect(ui->actionManuallyTrojan, &QAction::triggered,
             this, [this]() { onAddManually("trojan"); });
     connect(ui->actionManuallySnell, &QAction::triggered,
@@ -268,6 +271,12 @@ void MainWindow::onToggleConnection(bool status)
     }
 }
 
+/*
+void MainWindow::onHandleDataFromUrlScheme(const QString &data)
+{
+
+}*/
+
 void MainWindow::onAddServerFromSystemTray(QString type)
 {
     if (type == "manually")
@@ -368,7 +377,10 @@ void MainWindow::onSaveManually()
 void MainWindow::onAddManually(QString type)
 {
     Connection *newCon = new Connection;
-    newProfile(type, newCon);
+    TQProfile p;
+    p.type = type;
+    newCon->setProfile(p);
+    newProfile(newCon);
 }
 
 void MainWindow::onAddScreenQRCode()
@@ -383,7 +395,7 @@ void MainWindow::onAddScreenQRCode()
         Logger::warning("Can't find any QR code image that contains valid URI on your screen");
     } else {
         Connection *newCon = new Connection(uri, this);
-        newProfile("trojan", newCon);
+        newProfile(newCon);
     }
 }
 
@@ -416,7 +428,7 @@ void MainWindow::onAddQRCodeFile()
             Logger::warning("Can't find any QR code image that contains valid URI on your screen");
         } else {
             Connection *newCon = new Connection(uri, this);
-            newProfile("trojan", newCon);
+            newProfile(newCon);
         }
     }
 }
@@ -428,7 +440,7 @@ void MainWindow::onAddFromURI()
             inputDlg, &URIInputDialog::deleteLater);
     connect(inputDlg, &URIInputDialog::acceptedURI, [&](const QString &uri){
             Connection *newCon = new Connection(uri, this);
-            newProfile(newCon->getProfile().type, newCon);
+            newProfile(newCon);
     });
     inputDlg->exec();
 }
@@ -453,7 +465,7 @@ void MainWindow::onAddFromConfigJSON()
     if (!file.isNull()) {
         Connection *con = configHelper->configJsonToConnection(file);
         if (con) {
-            newProfile("trojan", con);
+            newProfile(con);
         }
     }
 }
@@ -483,17 +495,11 @@ void MainWindow::onEdit()
 
 void MainWindow::onShare()
 {
-    QByteArray uri = "";
     Connection *con = model->getItem(
                 proxyModel->mapToSource(ui->connectionView->currentIndex()).
                 row())->getConnection();
 
-    if (con->getProfile().type == "ss")
-        uri = con->getURI("ss");
-    else if (con->getProfile().type == "ssr")
-        uri = con->getURI("ssr");
-    else if (con->getProfile().type == "trojan")
-        uri = con->getURI("trojan");
+    QByteArray uri = con->getURI(con->getProfile().type);
 
     ShareDialog *shareDlg = new ShareDialog(uri, this);
     connect(shareDlg, &ShareDialog::finished,
@@ -612,19 +618,22 @@ void MainWindow::onUserRuleSettings()
     userRule->exec();
 }
 
-void MainWindow::newProfile(QString type, Connection *newCon)
+void MainWindow::newProfile(Connection *newCon)
 {
     QDialog *editDlg = new QDialog(this);
-    if (type == "ss") {
+    if (newCon->getProfile().type == "ss") {
         editDlg = new SSEditDialog(newCon, this);
         connect(editDlg, &SSEditDialog::finished, editDlg, &SSREditDialog::deleteLater);
-    } else if (type == "ssr") {
+    } else if (newCon->getProfile().type == "ssr") {
         editDlg = new SSREditDialog(newCon, this);
         connect(editDlg, &SSREditDialog::finished, editDlg, &SSREditDialog::deleteLater);
-    } else if (type == "trojan") {
+    } else if (newCon->getProfile().type == "vmess") {
+        editDlg = new VmessEditDialog(newCon, this);
+        connect(editDlg, &VmessEditDialog::finished, editDlg, &VmessEditDialog::deleteLater);
+    } else if (newCon->getProfile().type == "trojan") {
         editDlg = new TrojanEditDialog(newCon, this);
         connect(editDlg, &TrojanEditDialog::finished, editDlg, &TrojanEditDialog::deleteLater);
-    } else if (type == "snell") {
+    } else if (newCon->getProfile().type == "snell") {
         editDlg = new SnellEditDialog(newCon, this);
         connect(editDlg, &SnellEditDialog::finished, editDlg, &SnellEditDialog::deleteLater);
     }
@@ -645,13 +654,18 @@ void MainWindow::editRow(int row)
     if (con->getProfile().type == "ss") {
         editDlg = new SSEditDialog(con, this);
         connect(editDlg, &SSEditDialog::finished, editDlg, &TrojanEditDialog::deleteLater);
-    }
-    else if (con->getProfile().type == "ssr") {
+    } else if (con->getProfile().type == "ssr") {
         editDlg = new SSREditDialog(con, this);
         connect(editDlg, &SSREditDialog::finished, editDlg, &TrojanEditDialog::deleteLater);
+    } else if (con->getProfile().type == "vmess") {
+        editDlg = new VmessEditDialog(con, this);
+        connect(editDlg, &VmessEditDialog::finished, editDlg, &VmessEditDialog::deleteLater);
     } else if (con->getProfile().type == "trojan") {
         editDlg = new TrojanEditDialog(con, this);
         connect(editDlg, &TrojanEditDialog::finished, editDlg, &TrojanEditDialog::deleteLater);
+    } else if (con->getProfile().type == "snell") {
+        editDlg = new SnellEditDialog(con, this);
+        connect(editDlg, &SnellEditDialog::finished, editDlg, &SnellEditDialog::deleteLater);
     }
 
     if (editDlg->exec()) {
@@ -741,7 +755,7 @@ void MainWindow::onQRCodeCapturerResultFound(const QString &uri)
     disconnect(capturer, &QRCodeCapturer::qrCodeFound,
                this, &MainWindow::onQRCodeCapturerResultFound);
     Connection *newCon = new Connection(uri, this);
-    newProfile("trojan", newCon);
+    newProfile(newCon);
 }
 
 void MainWindow::onCheckUpdate()
@@ -899,7 +913,7 @@ void MainWindow::initSingleInstance()
         instanceRunning = true;
         if (configHelper->isOnlyOneInstance()) {
             qWarning() << "An instance of trojan-qt5 is already running";
-            Logger::warning("An instance of trojan-qt5 is already running");
+            Logger::warning("[Instance] An instance of trojan-qt5 is already running");
         }
         QByteArray username = qgetenv("USER");
         if (username.isEmpty()) {
@@ -944,7 +958,7 @@ void MainWindow::onSingleInstanceConnect()
             show();
         } else {
             qWarning("Another user is trying to run another instance of trojan-qt5");
-            Logger::warning("Another user is trying to run another instance of trojan-qt5");
+            Logger::warning("[Instance] Another user is trying to run another instance of trojan-qt5");
         }
     }
     socket->deleteLater();

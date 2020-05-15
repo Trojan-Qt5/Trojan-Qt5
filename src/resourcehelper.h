@@ -7,7 +7,7 @@ class ResourceHelper
 {
 public:
     ResourceHelper();
-    static void initPrivoxy();
+    static void installTAPDriver();
 };
 
 #endif // RESOURCEHELPER_H

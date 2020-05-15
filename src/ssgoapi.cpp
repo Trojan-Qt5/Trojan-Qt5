@@ -5,7 +5,7 @@
 #include <QCoreApplication>
 #endif
 
-using namespace api;
+using namespace shadowsocks::api;
 using grpc::Channel;
 using grpc::ClientContext;
 using grpc::Status;
@@ -16,7 +16,6 @@ SSGoAPI::SSGoAPI()
     this->moveToThread(thread);
     connect(thread, SIGNAL(started()), this, SLOT(run()));
 }
-
 
 SSGoAPI::~SSGoAPI()
 {
@@ -56,7 +55,7 @@ void SSGoAPI::run()
         Status status = Stub->QueryStats(&context, request, &reply);
 
         if (!status.ok()) {
-            Logger::error(QString("Shadowsocks API Request failed: %1 (%2)").arg(status.error_code()).arg(QString::fromStdString(status.error_message())));
+            Logger::error(QString("[API] Shadowsocks API Request failed: %1 (%2)").arg(status.error_code()).arg(QString::fromStdString(status.error_message())));
         }
 
         quint64 up = reply.upload_speed();

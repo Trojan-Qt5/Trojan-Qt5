@@ -55,6 +55,7 @@ struct TableStruct_trojangoapi_2eproto {
   static const ::PROTOBUF_NAMESPACE_ID::uint32 offsets[];
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_trojangoapi_2eproto;
+namespace trojan {
 namespace api {
 class GetTrafficRequest;
 class GetTrafficRequestDefaultTypeInternal;
@@ -84,17 +85,19 @@ class User;
 class UserDefaultTypeInternal;
 extern UserDefaultTypeInternal _User_default_instance_;
 }  // namespace api
+}  // namespace trojan
 PROTOBUF_NAMESPACE_OPEN
-template<> ::api::GetTrafficRequest* Arena::CreateMaybeMessage<::api::GetTrafficRequest>(Arena*);
-template<> ::api::GetTrafficResponse* Arena::CreateMaybeMessage<::api::GetTrafficResponse>(Arena*);
-template<> ::api::ListUserRequest* Arena::CreateMaybeMessage<::api::ListUserRequest>(Arena*);
-template<> ::api::ListUserResponse* Arena::CreateMaybeMessage<::api::ListUserResponse>(Arena*);
-template<> ::api::SetUserRequest* Arena::CreateMaybeMessage<::api::SetUserRequest>(Arena*);
-template<> ::api::SetUserResponse* Arena::CreateMaybeMessage<::api::SetUserResponse>(Arena*);
-template<> ::api::Speed* Arena::CreateMaybeMessage<::api::Speed>(Arena*);
-template<> ::api::Traffic* Arena::CreateMaybeMessage<::api::Traffic>(Arena*);
-template<> ::api::User* Arena::CreateMaybeMessage<::api::User>(Arena*);
+template<> ::trojan::api::GetTrafficRequest* Arena::CreateMaybeMessage<::trojan::api::GetTrafficRequest>(Arena*);
+template<> ::trojan::api::GetTrafficResponse* Arena::CreateMaybeMessage<::trojan::api::GetTrafficResponse>(Arena*);
+template<> ::trojan::api::ListUserRequest* Arena::CreateMaybeMessage<::trojan::api::ListUserRequest>(Arena*);
+template<> ::trojan::api::ListUserResponse* Arena::CreateMaybeMessage<::trojan::api::ListUserResponse>(Arena*);
+template<> ::trojan::api::SetUserRequest* Arena::CreateMaybeMessage<::trojan::api::SetUserRequest>(Arena*);
+template<> ::trojan::api::SetUserResponse* Arena::CreateMaybeMessage<::trojan::api::SetUserResponse>(Arena*);
+template<> ::trojan::api::Speed* Arena::CreateMaybeMessage<::trojan::api::Speed>(Arena*);
+template<> ::trojan::api::Traffic* Arena::CreateMaybeMessage<::trojan::api::Traffic>(Arena*);
+template<> ::trojan::api::User* Arena::CreateMaybeMessage<::trojan::api::User>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
+namespace trojan {
 namespace api {
 
 enum SetUserRequest_Operation : int {
@@ -126,7 +129,7 @@ inline bool SetUserRequest_Operation_Parse(
 // ===================================================================
 
 class Traffic :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:api.Traffic) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:trojan.api.Traffic) */ {
  public:
   Traffic();
   virtual ~Traffic();
@@ -206,7 +209,7 @@ class Traffic :
   void InternalSwap(Traffic* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "api.Traffic";
+    return "trojan.api.Traffic";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -252,7 +255,7 @@ class Traffic :
   void _internal_set_download_traffic(::PROTOBUF_NAMESPACE_ID::uint64 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:api.Traffic)
+  // @@protoc_insertion_point(class_scope:trojan.api.Traffic)
  private:
   class _Internal;
 
@@ -265,7 +268,7 @@ class Traffic :
 // -------------------------------------------------------------------
 
 class Speed :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:api.Speed) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:trojan.api.Speed) */ {
  public:
   Speed();
   virtual ~Speed();
@@ -345,7 +348,7 @@ class Speed :
   void InternalSwap(Speed* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "api.Speed";
+    return "trojan.api.Speed";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -391,7 +394,7 @@ class Speed :
   void _internal_set_download_speed(::PROTOBUF_NAMESPACE_ID::uint64 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:api.Speed)
+  // @@protoc_insertion_point(class_scope:trojan.api.Speed)
  private:
   class _Internal;
 
@@ -404,7 +407,7 @@ class Speed :
 // -------------------------------------------------------------------
 
 class User :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:api.User) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:trojan.api.User) */ {
  public:
   User();
   virtual ~User();
@@ -484,7 +487,7 @@ class User :
   void InternalSwap(User* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "api.User";
+    return "trojan.api.User";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -544,7 +547,7 @@ class User :
   std::string* _internal_mutable_hash();
   public:
 
-  // @@protoc_insertion_point(class_scope:api.User)
+  // @@protoc_insertion_point(class_scope:trojan.api.User)
  private:
   class _Internal;
 
@@ -557,7 +560,7 @@ class User :
 // -------------------------------------------------------------------
 
 class GetTrafficRequest :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:api.GetTrafficRequest) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:trojan.api.GetTrafficRequest) */ {
  public:
   GetTrafficRequest();
   virtual ~GetTrafficRequest();
@@ -637,7 +640,7 @@ class GetTrafficRequest :
   void InternalSwap(GetTrafficRequest* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "api.GetTrafficRequest";
+    return "trojan.api.GetTrafficRequest";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -664,34 +667,34 @@ class GetTrafficRequest :
   enum : int {
     kUserFieldNumber = 1,
   };
-  // .api.User user = 1;
+  // .trojan.api.User user = 1;
   bool has_user() const;
   private:
   bool _internal_has_user() const;
   public:
   void clear_user();
-  const ::api::User& user() const;
-  ::api::User* release_user();
-  ::api::User* mutable_user();
-  void set_allocated_user(::api::User* user);
+  const ::trojan::api::User& user() const;
+  ::trojan::api::User* release_user();
+  ::trojan::api::User* mutable_user();
+  void set_allocated_user(::trojan::api::User* user);
   private:
-  const ::api::User& _internal_user() const;
-  ::api::User* _internal_mutable_user();
+  const ::trojan::api::User& _internal_user() const;
+  ::trojan::api::User* _internal_mutable_user();
   public:
 
-  // @@protoc_insertion_point(class_scope:api.GetTrafficRequest)
+  // @@protoc_insertion_point(class_scope:trojan.api.GetTrafficRequest)
  private:
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::api::User* user_;
+  ::trojan::api::User* user_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trojangoapi_2eproto;
 };
 // -------------------------------------------------------------------
 
 class GetTrafficResponse :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:api.GetTrafficResponse) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:trojan.api.GetTrafficResponse) */ {
  public:
   GetTrafficResponse();
   virtual ~GetTrafficResponse();
@@ -771,7 +774,7 @@ class GetTrafficResponse :
   void InternalSwap(GetTrafficResponse* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "api.GetTrafficResponse";
+    return "trojan.api.GetTrafficResponse";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -818,49 +821,49 @@ class GetTrafficResponse :
   std::string* _internal_mutable_info();
   public:
 
-  // .api.Traffic traffic_total = 2;
+  // .trojan.api.Traffic traffic_total = 2;
   bool has_traffic_total() const;
   private:
   bool _internal_has_traffic_total() const;
   public:
   void clear_traffic_total();
-  const ::api::Traffic& traffic_total() const;
-  ::api::Traffic* release_traffic_total();
-  ::api::Traffic* mutable_traffic_total();
-  void set_allocated_traffic_total(::api::Traffic* traffic_total);
+  const ::trojan::api::Traffic& traffic_total() const;
+  ::trojan::api::Traffic* release_traffic_total();
+  ::trojan::api::Traffic* mutable_traffic_total();
+  void set_allocated_traffic_total(::trojan::api::Traffic* traffic_total);
   private:
-  const ::api::Traffic& _internal_traffic_total() const;
-  ::api::Traffic* _internal_mutable_traffic_total();
+  const ::trojan::api::Traffic& _internal_traffic_total() const;
+  ::trojan::api::Traffic* _internal_mutable_traffic_total();
   public:
 
-  // .api.Speed speed_current = 3;
+  // .trojan.api.Speed speed_current = 3;
   bool has_speed_current() const;
   private:
   bool _internal_has_speed_current() const;
   public:
   void clear_speed_current();
-  const ::api::Speed& speed_current() const;
-  ::api::Speed* release_speed_current();
-  ::api::Speed* mutable_speed_current();
-  void set_allocated_speed_current(::api::Speed* speed_current);
+  const ::trojan::api::Speed& speed_current() const;
+  ::trojan::api::Speed* release_speed_current();
+  ::trojan::api::Speed* mutable_speed_current();
+  void set_allocated_speed_current(::trojan::api::Speed* speed_current);
   private:
-  const ::api::Speed& _internal_speed_current() const;
-  ::api::Speed* _internal_mutable_speed_current();
+  const ::trojan::api::Speed& _internal_speed_current() const;
+  ::trojan::api::Speed* _internal_mutable_speed_current();
   public:
 
-  // .api.Speed speed_limit = 4;
+  // .trojan.api.Speed speed_limit = 4;
   bool has_speed_limit() const;
   private:
   bool _internal_has_speed_limit() const;
   public:
   void clear_speed_limit();
-  const ::api::Speed& speed_limit() const;
-  ::api::Speed* release_speed_limit();
-  ::api::Speed* mutable_speed_limit();
-  void set_allocated_speed_limit(::api::Speed* speed_limit);
+  const ::trojan::api::Speed& speed_limit() const;
+  ::trojan::api::Speed* release_speed_limit();
+  ::trojan::api::Speed* mutable_speed_limit();
+  void set_allocated_speed_limit(::trojan::api::Speed* speed_limit);
   private:
-  const ::api::Speed& _internal_speed_limit() const;
-  ::api::Speed* _internal_mutable_speed_limit();
+  const ::trojan::api::Speed& _internal_speed_limit() const;
+  ::trojan::api::Speed* _internal_mutable_speed_limit();
   public:
 
   // bool success = 1;
@@ -872,15 +875,15 @@ class GetTrafficResponse :
   void _internal_set_success(bool value);
   public:
 
-  // @@protoc_insertion_point(class_scope:api.GetTrafficResponse)
+  // @@protoc_insertion_point(class_scope:trojan.api.GetTrafficResponse)
  private:
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr info_;
-  ::api::Traffic* traffic_total_;
-  ::api::Speed* speed_current_;
-  ::api::Speed* speed_limit_;
+  ::trojan::api::Traffic* traffic_total_;
+  ::trojan::api::Speed* speed_current_;
+  ::trojan::api::Speed* speed_limit_;
   bool success_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trojangoapi_2eproto;
@@ -888,7 +891,7 @@ class GetTrafficResponse :
 // -------------------------------------------------------------------
 
 class ListUserRequest :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:api.ListUserRequest) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:trojan.api.ListUserRequest) */ {
  public:
   ListUserRequest();
   virtual ~ListUserRequest();
@@ -968,7 +971,7 @@ class ListUserRequest :
   void InternalSwap(ListUserRequest* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "api.ListUserRequest";
+    return "trojan.api.ListUserRequest";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -992,7 +995,7 @@ class ListUserRequest :
 
   // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:api.ListUserRequest)
+  // @@protoc_insertion_point(class_scope:trojan.api.ListUserRequest)
  private:
   class _Internal;
 
@@ -1003,7 +1006,7 @@ class ListUserRequest :
 // -------------------------------------------------------------------
 
 class ListUserResponse :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:api.ListUserResponse) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:trojan.api.ListUserResponse) */ {
  public:
   ListUserResponse();
   virtual ~ListUserResponse();
@@ -1083,7 +1086,7 @@ class ListUserResponse :
   void InternalSwap(ListUserResponse* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "api.ListUserResponse";
+    return "trojan.api.ListUserResponse";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -1114,64 +1117,64 @@ class ListUserResponse :
     kSpeedLimitFieldNumber = 5,
     kOnlineFieldNumber = 2,
   };
-  // .api.User user = 1;
+  // .trojan.api.User user = 1;
   bool has_user() const;
   private:
   bool _internal_has_user() const;
   public:
   void clear_user();
-  const ::api::User& user() const;
-  ::api::User* release_user();
-  ::api::User* mutable_user();
-  void set_allocated_user(::api::User* user);
+  const ::trojan::api::User& user() const;
+  ::trojan::api::User* release_user();
+  ::trojan::api::User* mutable_user();
+  void set_allocated_user(::trojan::api::User* user);
   private:
-  const ::api::User& _internal_user() const;
-  ::api::User* _internal_mutable_user();
+  const ::trojan::api::User& _internal_user() const;
+  ::trojan::api::User* _internal_mutable_user();
   public:
 
-  // .api.Traffic traffic_total = 3;
+  // .trojan.api.Traffic traffic_total = 3;
   bool has_traffic_total() const;
   private:
   bool _internal_has_traffic_total() const;
   public:
   void clear_traffic_total();
-  const ::api::Traffic& traffic_total() const;
-  ::api::Traffic* release_traffic_total();
-  ::api::Traffic* mutable_traffic_total();
-  void set_allocated_traffic_total(::api::Traffic* traffic_total);
+  const ::trojan::api::Traffic& traffic_total() const;
+  ::trojan::api::Traffic* release_traffic_total();
+  ::trojan::api::Traffic* mutable_traffic_total();
+  void set_allocated_traffic_total(::trojan::api::Traffic* traffic_total);
   private:
-  const ::api::Traffic& _internal_traffic_total() const;
-  ::api::Traffic* _internal_mutable_traffic_total();
+  const ::trojan::api::Traffic& _internal_traffic_total() const;
+  ::trojan::api::Traffic* _internal_mutable_traffic_total();
   public:
 
-  // .api.Speed speed_current = 4;
+  // .trojan.api.Speed speed_current = 4;
   bool has_speed_current() const;
   private:
   bool _internal_has_speed_current() const;
   public:
   void clear_speed_current();
-  const ::api::Speed& speed_current() const;
-  ::api::Speed* release_speed_current();
-  ::api::Speed* mutable_speed_current();
-  void set_allocated_speed_current(::api::Speed* speed_current);
+  const ::trojan::api::Speed& speed_current() const;
+  ::trojan::api::Speed* release_speed_current();
+  ::trojan::api::Speed* mutable_speed_current();
+  void set_allocated_speed_current(::trojan::api::Speed* speed_current);
   private:
-  const ::api::Speed& _internal_speed_current() const;
-  ::api::Speed* _internal_mutable_speed_current();
+  const ::trojan::api::Speed& _internal_speed_current() const;
+  ::trojan::api::Speed* _internal_mutable_speed_current();
   public:
 
-  // .api.Speed speed_limit = 5;
+  // .trojan.api.Speed speed_limit = 5;
   bool has_speed_limit() const;
   private:
   bool _internal_has_speed_limit() const;
   public:
   void clear_speed_limit();
-  const ::api::Speed& speed_limit() const;
-  ::api::Speed* release_speed_limit();
-  ::api::Speed* mutable_speed_limit();
-  void set_allocated_speed_limit(::api::Speed* speed_limit);
+  const ::trojan::api::Speed& speed_limit() const;
+  ::trojan::api::Speed* release_speed_limit();
+  ::trojan::api::Speed* mutable_speed_limit();
+  void set_allocated_speed_limit(::trojan::api::Speed* speed_limit);
   private:
-  const ::api::Speed& _internal_speed_limit() const;
-  ::api::Speed* _internal_mutable_speed_limit();
+  const ::trojan::api::Speed& _internal_speed_limit() const;
+  ::trojan::api::Speed* _internal_mutable_speed_limit();
   public:
 
   // bool online = 2;
@@ -1183,15 +1186,15 @@ class ListUserResponse :
   void _internal_set_online(bool value);
   public:
 
-  // @@protoc_insertion_point(class_scope:api.ListUserResponse)
+  // @@protoc_insertion_point(class_scope:trojan.api.ListUserResponse)
  private:
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::api::User* user_;
-  ::api::Traffic* traffic_total_;
-  ::api::Speed* speed_current_;
-  ::api::Speed* speed_limit_;
+  ::trojan::api::User* user_;
+  ::trojan::api::Traffic* traffic_total_;
+  ::trojan::api::Speed* speed_current_;
+  ::trojan::api::Speed* speed_limit_;
   bool online_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trojangoapi_2eproto;
@@ -1199,7 +1202,7 @@ class ListUserResponse :
 // -------------------------------------------------------------------
 
 class SetUserRequest :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:api.SetUserRequest) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:trojan.api.SetUserRequest) */ {
  public:
   SetUserRequest();
   virtual ~SetUserRequest();
@@ -1279,7 +1282,7 @@ class SetUserRequest :
   void InternalSwap(SetUserRequest* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "api.SetUserRequest";
+    return "trojan.api.SetUserRequest";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -1340,52 +1343,52 @@ class SetUserRequest :
     kSpeedLimitFieldNumber = 2,
     kOperationFieldNumber = 3,
   };
-  // .api.User user = 1;
+  // .trojan.api.User user = 1;
   bool has_user() const;
   private:
   bool _internal_has_user() const;
   public:
   void clear_user();
-  const ::api::User& user() const;
-  ::api::User* release_user();
-  ::api::User* mutable_user();
-  void set_allocated_user(::api::User* user);
+  const ::trojan::api::User& user() const;
+  ::trojan::api::User* release_user();
+  ::trojan::api::User* mutable_user();
+  void set_allocated_user(::trojan::api::User* user);
   private:
-  const ::api::User& _internal_user() const;
-  ::api::User* _internal_mutable_user();
+  const ::trojan::api::User& _internal_user() const;
+  ::trojan::api::User* _internal_mutable_user();
   public:
 
-  // .api.Speed speed_limit = 2;
+  // .trojan.api.Speed speed_limit = 2;
   bool has_speed_limit() const;
   private:
   bool _internal_has_speed_limit() const;
   public:
   void clear_speed_limit();
-  const ::api::Speed& speed_limit() const;
-  ::api::Speed* release_speed_limit();
-  ::api::Speed* mutable_speed_limit();
-  void set_allocated_speed_limit(::api::Speed* speed_limit);
+  const ::trojan::api::Speed& speed_limit() const;
+  ::trojan::api::Speed* release_speed_limit();
+  ::trojan::api::Speed* mutable_speed_limit();
+  void set_allocated_speed_limit(::trojan::api::Speed* speed_limit);
   private:
-  const ::api::Speed& _internal_speed_limit() const;
-  ::api::Speed* _internal_mutable_speed_limit();
+  const ::trojan::api::Speed& _internal_speed_limit() const;
+  ::trojan::api::Speed* _internal_mutable_speed_limit();
   public:
 
-  // .api.SetUserRequest.Operation operation = 3;
+  // .trojan.api.SetUserRequest.Operation operation = 3;
   void clear_operation();
-  ::api::SetUserRequest_Operation operation() const;
-  void set_operation(::api::SetUserRequest_Operation value);
+  ::trojan::api::SetUserRequest_Operation operation() const;
+  void set_operation(::trojan::api::SetUserRequest_Operation value);
   private:
-  ::api::SetUserRequest_Operation _internal_operation() const;
-  void _internal_set_operation(::api::SetUserRequest_Operation value);
+  ::trojan::api::SetUserRequest_Operation _internal_operation() const;
+  void _internal_set_operation(::trojan::api::SetUserRequest_Operation value);
   public:
 
-  // @@protoc_insertion_point(class_scope:api.SetUserRequest)
+  // @@protoc_insertion_point(class_scope:trojan.api.SetUserRequest)
  private:
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::api::User* user_;
-  ::api::Speed* speed_limit_;
+  ::trojan::api::User* user_;
+  ::trojan::api::Speed* speed_limit_;
   int operation_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trojangoapi_2eproto;
@@ -1393,7 +1396,7 @@ class SetUserRequest :
 // -------------------------------------------------------------------
 
 class SetUserResponse :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:api.SetUserResponse) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:trojan.api.SetUserResponse) */ {
  public:
   SetUserResponse();
   virtual ~SetUserResponse();
@@ -1473,7 +1476,7 @@ class SetUserResponse :
   void InternalSwap(SetUserResponse* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "api.SetUserResponse";
+    return "trojan.api.SetUserResponse";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -1526,7 +1529,7 @@ class SetUserResponse :
   void _internal_set_success(bool value);
   public:
 
-  // @@protoc_insertion_point(class_scope:api.SetUserResponse)
+  // @@protoc_insertion_point(class_scope:trojan.api.SetUserResponse)
  private:
   class _Internal;
 
@@ -1555,7 +1558,7 @@ inline ::PROTOBUF_NAMESPACE_ID::uint64 Traffic::_internal_upload_traffic() const
   return upload_traffic_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::uint64 Traffic::upload_traffic() const {
-  // @@protoc_insertion_point(field_get:api.Traffic.upload_traffic)
+  // @@protoc_insertion_point(field_get:trojan.api.Traffic.upload_traffic)
   return _internal_upload_traffic();
 }
 inline void Traffic::_internal_set_upload_traffic(::PROTOBUF_NAMESPACE_ID::uint64 value) {
@@ -1564,7 +1567,7 @@ inline void Traffic::_internal_set_upload_traffic(::PROTOBUF_NAMESPACE_ID::uint6
 }
 inline void Traffic::set_upload_traffic(::PROTOBUF_NAMESPACE_ID::uint64 value) {
   _internal_set_upload_traffic(value);
-  // @@protoc_insertion_point(field_set:api.Traffic.upload_traffic)
+  // @@protoc_insertion_point(field_set:trojan.api.Traffic.upload_traffic)
 }
 
 // uint64 download_traffic = 2;
@@ -1575,7 +1578,7 @@ inline ::PROTOBUF_NAMESPACE_ID::uint64 Traffic::_internal_download_traffic() con
   return download_traffic_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::uint64 Traffic::download_traffic() const {
-  // @@protoc_insertion_point(field_get:api.Traffic.download_traffic)
+  // @@protoc_insertion_point(field_get:trojan.api.Traffic.download_traffic)
   return _internal_download_traffic();
 }
 inline void Traffic::_internal_set_download_traffic(::PROTOBUF_NAMESPACE_ID::uint64 value) {
@@ -1584,7 +1587,7 @@ inline void Traffic::_internal_set_download_traffic(::PROTOBUF_NAMESPACE_ID::uin
 }
 inline void Traffic::set_download_traffic(::PROTOBUF_NAMESPACE_ID::uint64 value) {
   _internal_set_download_traffic(value);
-  // @@protoc_insertion_point(field_set:api.Traffic.download_traffic)
+  // @@protoc_insertion_point(field_set:trojan.api.Traffic.download_traffic)
 }
 
 // -------------------------------------------------------------------
@@ -1599,7 +1602,7 @@ inline ::PROTOBUF_NAMESPACE_ID::uint64 Speed::_internal_upload_speed() const {
   return upload_speed_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::uint64 Speed::upload_speed() const {
-  // @@protoc_insertion_point(field_get:api.Speed.upload_speed)
+  // @@protoc_insertion_point(field_get:trojan.api.Speed.upload_speed)
   return _internal_upload_speed();
 }
 inline void Speed::_internal_set_upload_speed(::PROTOBUF_NAMESPACE_ID::uint64 value) {
@@ -1608,7 +1611,7 @@ inline void Speed::_internal_set_upload_speed(::PROTOBUF_NAMESPACE_ID::uint64 va
 }
 inline void Speed::set_upload_speed(::PROTOBUF_NAMESPACE_ID::uint64 value) {
   _internal_set_upload_speed(value);
-  // @@protoc_insertion_point(field_set:api.Speed.upload_speed)
+  // @@protoc_insertion_point(field_set:trojan.api.Speed.upload_speed)
 }
 
 // uint64 download_speed = 2;
@@ -1619,7 +1622,7 @@ inline ::PROTOBUF_NAMESPACE_ID::uint64 Speed::_internal_download_speed() const {
   return download_speed_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::uint64 Speed::download_speed() const {
-  // @@protoc_insertion_point(field_get:api.Speed.download_speed)
+  // @@protoc_insertion_point(field_get:trojan.api.Speed.download_speed)
   return _internal_download_speed();
 }
 inline void Speed::_internal_set_download_speed(::PROTOBUF_NAMESPACE_ID::uint64 value) {
@@ -1628,7 +1631,7 @@ inline void Speed::_internal_set_download_speed(::PROTOBUF_NAMESPACE_ID::uint64 
 }
 inline void Speed::set_download_speed(::PROTOBUF_NAMESPACE_ID::uint64 value) {
   _internal_set_download_speed(value);
-  // @@protoc_insertion_point(field_set:api.Speed.download_speed)
+  // @@protoc_insertion_point(field_set:trojan.api.Speed.download_speed)
 }
 
 // -------------------------------------------------------------------
@@ -1640,15 +1643,15 @@ inline void User::clear_password() {
   password_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& User::password() const {
-  // @@protoc_insertion_point(field_get:api.User.password)
+  // @@protoc_insertion_point(field_get:trojan.api.User.password)
   return _internal_password();
 }
 inline void User::set_password(const std::string& value) {
   _internal_set_password(value);
-  // @@protoc_insertion_point(field_set:api.User.password)
+  // @@protoc_insertion_point(field_set:trojan.api.User.password)
 }
 inline std::string* User::mutable_password() {
-  // @@protoc_insertion_point(field_mutable:api.User.password)
+  // @@protoc_insertion_point(field_mutable:trojan.api.User.password)
   return _internal_mutable_password();
 }
 inline const std::string& User::_internal_password() const {
@@ -1662,26 +1665,26 @@ inline void User::set_password(std::string&& value) {
   
   password_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:api.User.password)
+  // @@protoc_insertion_point(field_set_rvalue:trojan.api.User.password)
 }
 inline void User::set_password(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   password_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:api.User.password)
+  // @@protoc_insertion_point(field_set_char:trojan.api.User.password)
 }
 inline void User::set_password(const char* value, size_t size) {
   
   password_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:api.User.password)
+  // @@protoc_insertion_point(field_set_pointer:trojan.api.User.password)
 }
 inline std::string* User::_internal_mutable_password() {
   
   return password_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* User::release_password() {
-  // @@protoc_insertion_point(field_release:api.User.password)
+  // @@protoc_insertion_point(field_release:trojan.api.User.password)
   
   return password_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -1692,7 +1695,7 @@ inline void User::set_allocated_password(std::string* password) {
     
   }
   password_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), password);
-  // @@protoc_insertion_point(field_set_allocated:api.User.password)
+  // @@protoc_insertion_point(field_set_allocated:trojan.api.User.password)
 }
 
 // string hash = 2;
@@ -1700,15 +1703,15 @@ inline void User::clear_hash() {
   hash_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& User::hash() const {
-  // @@protoc_insertion_point(field_get:api.User.hash)
+  // @@protoc_insertion_point(field_get:trojan.api.User.hash)
   return _internal_hash();
 }
 inline void User::set_hash(const std::string& value) {
   _internal_set_hash(value);
-  // @@protoc_insertion_point(field_set:api.User.hash)
+  // @@protoc_insertion_point(field_set:trojan.api.User.hash)
 }
 inline std::string* User::mutable_hash() {
-  // @@protoc_insertion_point(field_mutable:api.User.hash)
+  // @@protoc_insertion_point(field_mutable:trojan.api.User.hash)
   return _internal_mutable_hash();
 }
 inline const std::string& User::_internal_hash() const {
@@ -1722,26 +1725,26 @@ inline void User::set_hash(std::string&& value) {
   
   hash_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:api.User.hash)
+  // @@protoc_insertion_point(field_set_rvalue:trojan.api.User.hash)
 }
 inline void User::set_hash(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   hash_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:api.User.hash)
+  // @@protoc_insertion_point(field_set_char:trojan.api.User.hash)
 }
 inline void User::set_hash(const char* value, size_t size) {
   
   hash_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:api.User.hash)
+  // @@protoc_insertion_point(field_set_pointer:trojan.api.User.hash)
 }
 inline std::string* User::_internal_mutable_hash() {
   
   return hash_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* User::release_hash() {
-  // @@protoc_insertion_point(field_release:api.User.hash)
+  // @@protoc_insertion_point(field_release:trojan.api.User.hash)
   
   return hash_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -1752,14 +1755,14 @@ inline void User::set_allocated_hash(std::string* hash) {
     
   }
   hash_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), hash);
-  // @@protoc_insertion_point(field_set_allocated:api.User.hash)
+  // @@protoc_insertion_point(field_set_allocated:trojan.api.User.hash)
 }
 
 // -------------------------------------------------------------------
 
 // GetTrafficRequest
 
-// .api.User user = 1;
+// .trojan.api.User user = 1;
 inline bool GetTrafficRequest::_internal_has_user() const {
   return this != internal_default_instance() && user_ != nullptr;
 }
@@ -1772,35 +1775,35 @@ inline void GetTrafficRequest::clear_user() {
   }
   user_ = nullptr;
 }
-inline const ::api::User& GetTrafficRequest::_internal_user() const {
-  const ::api::User* p = user_;
-  return p != nullptr ? *p : *reinterpret_cast<const ::api::User*>(
-      &::api::_User_default_instance_);
+inline const ::trojan::api::User& GetTrafficRequest::_internal_user() const {
+  const ::trojan::api::User* p = user_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::trojan::api::User*>(
+      &::trojan::api::_User_default_instance_);
 }
-inline const ::api::User& GetTrafficRequest::user() const {
-  // @@protoc_insertion_point(field_get:api.GetTrafficRequest.user)
+inline const ::trojan::api::User& GetTrafficRequest::user() const {
+  // @@protoc_insertion_point(field_get:trojan.api.GetTrafficRequest.user)
   return _internal_user();
 }
-inline ::api::User* GetTrafficRequest::release_user() {
-  // @@protoc_insertion_point(field_release:api.GetTrafficRequest.user)
+inline ::trojan::api::User* GetTrafficRequest::release_user() {
+  // @@protoc_insertion_point(field_release:trojan.api.GetTrafficRequest.user)
   
-  ::api::User* temp = user_;
+  ::trojan::api::User* temp = user_;
   user_ = nullptr;
   return temp;
 }
-inline ::api::User* GetTrafficRequest::_internal_mutable_user() {
+inline ::trojan::api::User* GetTrafficRequest::_internal_mutable_user() {
   
   if (user_ == nullptr) {
-    auto* p = CreateMaybeMessage<::api::User>(GetArenaNoVirtual());
+    auto* p = CreateMaybeMessage<::trojan::api::User>(GetArenaNoVirtual());
     user_ = p;
   }
   return user_;
 }
-inline ::api::User* GetTrafficRequest::mutable_user() {
-  // @@protoc_insertion_point(field_mutable:api.GetTrafficRequest.user)
+inline ::trojan::api::User* GetTrafficRequest::mutable_user() {
+  // @@protoc_insertion_point(field_mutable:trojan.api.GetTrafficRequest.user)
   return _internal_mutable_user();
 }
-inline void GetTrafficRequest::set_allocated_user(::api::User* user) {
+inline void GetTrafficRequest::set_allocated_user(::trojan::api::User* user) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
   if (message_arena == nullptr) {
     delete user_;
@@ -1816,7 +1819,7 @@ inline void GetTrafficRequest::set_allocated_user(::api::User* user) {
     
   }
   user_ = user;
-  // @@protoc_insertion_point(field_set_allocated:api.GetTrafficRequest.user)
+  // @@protoc_insertion_point(field_set_allocated:trojan.api.GetTrafficRequest.user)
 }
 
 // -------------------------------------------------------------------
@@ -1831,7 +1834,7 @@ inline bool GetTrafficResponse::_internal_success() const {
   return success_;
 }
 inline bool GetTrafficResponse::success() const {
-  // @@protoc_insertion_point(field_get:api.GetTrafficResponse.success)
+  // @@protoc_insertion_point(field_get:trojan.api.GetTrafficResponse.success)
   return _internal_success();
 }
 inline void GetTrafficResponse::_internal_set_success(bool value) {
@@ -1840,10 +1843,10 @@ inline void GetTrafficResponse::_internal_set_success(bool value) {
 }
 inline void GetTrafficResponse::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:api.GetTrafficResponse.success)
+  // @@protoc_insertion_point(field_set:trojan.api.GetTrafficResponse.success)
 }
 
-// .api.Traffic traffic_total = 2;
+// .trojan.api.Traffic traffic_total = 2;
 inline bool GetTrafficResponse::_internal_has_traffic_total() const {
   return this != internal_default_instance() && traffic_total_ != nullptr;
 }
@@ -1856,35 +1859,35 @@ inline void GetTrafficResponse::clear_traffic_total() {
   }
   traffic_total_ = nullptr;
 }
-inline const ::api::Traffic& GetTrafficResponse::_internal_traffic_total() const {
-  const ::api::Traffic* p = traffic_total_;
-  return p != nullptr ? *p : *reinterpret_cast<const ::api::Traffic*>(
-      &::api::_Traffic_default_instance_);
+inline const ::trojan::api::Traffic& GetTrafficResponse::_internal_traffic_total() const {
+  const ::trojan::api::Traffic* p = traffic_total_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::trojan::api::Traffic*>(
+      &::trojan::api::_Traffic_default_instance_);
 }
-inline const ::api::Traffic& GetTrafficResponse::traffic_total() const {
-  // @@protoc_insertion_point(field_get:api.GetTrafficResponse.traffic_total)
+inline const ::trojan::api::Traffic& GetTrafficResponse::traffic_total() const {
+  // @@protoc_insertion_point(field_get:trojan.api.GetTrafficResponse.traffic_total)
   return _internal_traffic_total();
 }
-inline ::api::Traffic* GetTrafficResponse::release_traffic_total() {
-  // @@protoc_insertion_point(field_release:api.GetTrafficResponse.traffic_total)
+inline ::trojan::api::Traffic* GetTrafficResponse::release_traffic_total() {
+  // @@protoc_insertion_point(field_release:trojan.api.GetTrafficResponse.traffic_total)
   
-  ::api::Traffic* temp = traffic_total_;
+  ::trojan::api::Traffic* temp = traffic_total_;
   traffic_total_ = nullptr;
   return temp;
 }
-inline ::api::Traffic* GetTrafficResponse::_internal_mutable_traffic_total() {
+inline ::trojan::api::Traffic* GetTrafficResponse::_internal_mutable_traffic_total() {
   
   if (traffic_total_ == nullptr) {
-    auto* p = CreateMaybeMessage<::api::Traffic>(GetArenaNoVirtual());
+    auto* p = CreateMaybeMessage<::trojan::api::Traffic>(GetArenaNoVirtual());
     traffic_total_ = p;
   }
   return traffic_total_;
 }
-inline ::api::Traffic* GetTrafficResponse::mutable_traffic_total() {
-  // @@protoc_insertion_point(field_mutable:api.GetTrafficResponse.traffic_total)
+inline ::trojan::api::Traffic* GetTrafficResponse::mutable_traffic_total() {
+  // @@protoc_insertion_point(field_mutable:trojan.api.GetTrafficResponse.traffic_total)
   return _internal_mutable_traffic_total();
 }
-inline void GetTrafficResponse::set_allocated_traffic_total(::api::Traffic* traffic_total) {
+inline void GetTrafficResponse::set_allocated_traffic_total(::trojan::api::Traffic* traffic_total) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
   if (message_arena == nullptr) {
     delete traffic_total_;
@@ -1900,10 +1903,10 @@ inline void GetTrafficResponse::set_allocated_traffic_total(::api::Traffic* traf
     
   }
   traffic_total_ = traffic_total;
-  // @@protoc_insertion_point(field_set_allocated:api.GetTrafficResponse.traffic_total)
+  // @@protoc_insertion_point(field_set_allocated:trojan.api.GetTrafficResponse.traffic_total)
 }
 
-// .api.Speed speed_current = 3;
+// .trojan.api.Speed speed_current = 3;
 inline bool GetTrafficResponse::_internal_has_speed_current() const {
   return this != internal_default_instance() && speed_current_ != nullptr;
 }
@@ -1916,35 +1919,35 @@ inline void GetTrafficResponse::clear_speed_current() {
   }
   speed_current_ = nullptr;
 }
-inline const ::api::Speed& GetTrafficResponse::_internal_speed_current() const {
-  const ::api::Speed* p = speed_current_;
-  return p != nullptr ? *p : *reinterpret_cast<const ::api::Speed*>(
-      &::api::_Speed_default_instance_);
+inline const ::trojan::api::Speed& GetTrafficResponse::_internal_speed_current() const {
+  const ::trojan::api::Speed* p = speed_current_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::trojan::api::Speed*>(
+      &::trojan::api::_Speed_default_instance_);
 }
-inline const ::api::Speed& GetTrafficResponse::speed_current() const {
-  // @@protoc_insertion_point(field_get:api.GetTrafficResponse.speed_current)
+inline const ::trojan::api::Speed& GetTrafficResponse::speed_current() const {
+  // @@protoc_insertion_point(field_get:trojan.api.GetTrafficResponse.speed_current)
   return _internal_speed_current();
 }
-inline ::api::Speed* GetTrafficResponse::release_speed_current() {
-  // @@protoc_insertion_point(field_release:api.GetTrafficResponse.speed_current)
+inline ::trojan::api::Speed* GetTrafficResponse::release_speed_current() {
+  // @@protoc_insertion_point(field_release:trojan.api.GetTrafficResponse.speed_current)
   
-  ::api::Speed* temp = speed_current_;
+  ::trojan::api::Speed* temp = speed_current_;
   speed_current_ = nullptr;
   return temp;
 }
-inline ::api::Speed* GetTrafficResponse::_internal_mutable_speed_current() {
+inline ::trojan::api::Speed* GetTrafficResponse::_internal_mutable_speed_current() {
   
   if (speed_current_ == nullptr) {
-    auto* p = CreateMaybeMessage<::api::Speed>(GetArenaNoVirtual());
+    auto* p = CreateMaybeMessage<::trojan::api::Speed>(GetArenaNoVirtual());
     speed_current_ = p;
   }
   return speed_current_;
 }
-inline ::api::Speed* GetTrafficResponse::mutable_speed_current() {
-  // @@protoc_insertion_point(field_mutable:api.GetTrafficResponse.speed_current)
+inline ::trojan::api::Speed* GetTrafficResponse::mutable_speed_current() {
+  // @@protoc_insertion_point(field_mutable:trojan.api.GetTrafficResponse.speed_current)
   return _internal_mutable_speed_current();
 }
-inline void GetTrafficResponse::set_allocated_speed_current(::api::Speed* speed_current) {
+inline void GetTrafficResponse::set_allocated_speed_current(::trojan::api::Speed* speed_current) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
   if (message_arena == nullptr) {
     delete speed_current_;
@@ -1960,10 +1963,10 @@ inline void GetTrafficResponse::set_allocated_speed_current(::api::Speed* speed_
     
   }
   speed_current_ = speed_current;
-  // @@protoc_insertion_point(field_set_allocated:api.GetTrafficResponse.speed_current)
+  // @@protoc_insertion_point(field_set_allocated:trojan.api.GetTrafficResponse.speed_current)
 }
 
-// .api.Speed speed_limit = 4;
+// .trojan.api.Speed speed_limit = 4;
 inline bool GetTrafficResponse::_internal_has_speed_limit() const {
   return this != internal_default_instance() && speed_limit_ != nullptr;
 }
@@ -1976,35 +1979,35 @@ inline void GetTrafficResponse::clear_speed_limit() {
   }
   speed_limit_ = nullptr;
 }
-inline const ::api::Speed& GetTrafficResponse::_internal_speed_limit() const {
-  const ::api::Speed* p = speed_limit_;
-  return p != nullptr ? *p : *reinterpret_cast<const ::api::Speed*>(
-      &::api::_Speed_default_instance_);
+inline const ::trojan::api::Speed& GetTrafficResponse::_internal_speed_limit() const {
+  const ::trojan::api::Speed* p = speed_limit_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::trojan::api::Speed*>(
+      &::trojan::api::_Speed_default_instance_);
 }
-inline const ::api::Speed& GetTrafficResponse::speed_limit() const {
-  // @@protoc_insertion_point(field_get:api.GetTrafficResponse.speed_limit)
+inline const ::trojan::api::Speed& GetTrafficResponse::speed_limit() const {
+  // @@protoc_insertion_point(field_get:trojan.api.GetTrafficResponse.speed_limit)
   return _internal_speed_limit();
 }
-inline ::api::Speed* GetTrafficResponse::release_speed_limit() {
-  // @@protoc_insertion_point(field_release:api.GetTrafficResponse.speed_limit)
+inline ::trojan::api::Speed* GetTrafficResponse::release_speed_limit() {
+  // @@protoc_insertion_point(field_release:trojan.api.GetTrafficResponse.speed_limit)
   
-  ::api::Speed* temp = speed_limit_;
+  ::trojan::api::Speed* temp = speed_limit_;
   speed_limit_ = nullptr;
   return temp;
 }
-inline ::api::Speed* GetTrafficResponse::_internal_mutable_speed_limit() {
+inline ::trojan::api::Speed* GetTrafficResponse::_internal_mutable_speed_limit() {
   
   if (speed_limit_ == nullptr) {
-    auto* p = CreateMaybeMessage<::api::Speed>(GetArenaNoVirtual());
+    auto* p = CreateMaybeMessage<::trojan::api::Speed>(GetArenaNoVirtual());
     speed_limit_ = p;
   }
   return speed_limit_;
 }
-inline ::api::Speed* GetTrafficResponse::mutable_speed_limit() {
-  // @@protoc_insertion_point(field_mutable:api.GetTrafficResponse.speed_limit)
+inline ::trojan::api::Speed* GetTrafficResponse::mutable_speed_limit() {
+  // @@protoc_insertion_point(field_mutable:trojan.api.GetTrafficResponse.speed_limit)
   return _internal_mutable_speed_limit();
 }
-inline void GetTrafficResponse::set_allocated_speed_limit(::api::Speed* speed_limit) {
+inline void GetTrafficResponse::set_allocated_speed_limit(::trojan::api::Speed* speed_limit) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
   if (message_arena == nullptr) {
     delete speed_limit_;
@@ -2020,7 +2023,7 @@ inline void GetTrafficResponse::set_allocated_speed_limit(::api::Speed* speed_li
     
   }
   speed_limit_ = speed_limit;
-  // @@protoc_insertion_point(field_set_allocated:api.GetTrafficResponse.speed_limit)
+  // @@protoc_insertion_point(field_set_allocated:trojan.api.GetTrafficResponse.speed_limit)
 }
 
 // string info = 5;
@@ -2028,15 +2031,15 @@ inline void GetTrafficResponse::clear_info() {
   info_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& GetTrafficResponse::info() const {
-  // @@protoc_insertion_point(field_get:api.GetTrafficResponse.info)
+  // @@protoc_insertion_point(field_get:trojan.api.GetTrafficResponse.info)
   return _internal_info();
 }
 inline void GetTrafficResponse::set_info(const std::string& value) {
   _internal_set_info(value);
-  // @@protoc_insertion_point(field_set:api.GetTrafficResponse.info)
+  // @@protoc_insertion_point(field_set:trojan.api.GetTrafficResponse.info)
 }
 inline std::string* GetTrafficResponse::mutable_info() {
-  // @@protoc_insertion_point(field_mutable:api.GetTrafficResponse.info)
+  // @@protoc_insertion_point(field_mutable:trojan.api.GetTrafficResponse.info)
   return _internal_mutable_info();
 }
 inline const std::string& GetTrafficResponse::_internal_info() const {
@@ -2050,26 +2053,26 @@ inline void GetTrafficResponse::set_info(std::string&& value) {
   
   info_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:api.GetTrafficResponse.info)
+  // @@protoc_insertion_point(field_set_rvalue:trojan.api.GetTrafficResponse.info)
 }
 inline void GetTrafficResponse::set_info(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   info_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:api.GetTrafficResponse.info)
+  // @@protoc_insertion_point(field_set_char:trojan.api.GetTrafficResponse.info)
 }
 inline void GetTrafficResponse::set_info(const char* value, size_t size) {
   
   info_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:api.GetTrafficResponse.info)
+  // @@protoc_insertion_point(field_set_pointer:trojan.api.GetTrafficResponse.info)
 }
 inline std::string* GetTrafficResponse::_internal_mutable_info() {
   
   return info_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* GetTrafficResponse::release_info() {
-  // @@protoc_insertion_point(field_release:api.GetTrafficResponse.info)
+  // @@protoc_insertion_point(field_release:trojan.api.GetTrafficResponse.info)
   
   return info_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -2080,7 +2083,7 @@ inline void GetTrafficResponse::set_allocated_info(std::string* info) {
     
   }
   info_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), info);
-  // @@protoc_insertion_point(field_set_allocated:api.GetTrafficResponse.info)
+  // @@protoc_insertion_point(field_set_allocated:trojan.api.GetTrafficResponse.info)
 }
 
 // -------------------------------------------------------------------
@@ -2091,7 +2094,7 @@ inline void GetTrafficResponse::set_allocated_info(std::string* info) {
 
 // ListUserResponse
 
-// .api.User user = 1;
+// .trojan.api.User user = 1;
 inline bool ListUserResponse::_internal_has_user() const {
   return this != internal_default_instance() && user_ != nullptr;
 }
@@ -2104,35 +2107,35 @@ inline void ListUserResponse::clear_user() {
   }
   user_ = nullptr;
 }
-inline const ::api::User& ListUserResponse::_internal_user() const {
-  const ::api::User* p = user_;
-  return p != nullptr ? *p : *reinterpret_cast<const ::api::User*>(
-      &::api::_User_default_instance_);
+inline const ::trojan::api::User& ListUserResponse::_internal_user() const {
+  const ::trojan::api::User* p = user_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::trojan::api::User*>(
+      &::trojan::api::_User_default_instance_);
 }
-inline const ::api::User& ListUserResponse::user() const {
-  // @@protoc_insertion_point(field_get:api.ListUserResponse.user)
+inline const ::trojan::api::User& ListUserResponse::user() const {
+  // @@protoc_insertion_point(field_get:trojan.api.ListUserResponse.user)
   return _internal_user();
 }
-inline ::api::User* ListUserResponse::release_user() {
-  // @@protoc_insertion_point(field_release:api.ListUserResponse.user)
+inline ::trojan::api::User* ListUserResponse::release_user() {
+  // @@protoc_insertion_point(field_release:trojan.api.ListUserResponse.user)
   
-  ::api::User* temp = user_;
+  ::trojan::api::User* temp = user_;
   user_ = nullptr;
   return temp;
 }
-inline ::api::User* ListUserResponse::_internal_mutable_user() {
+inline ::trojan::api::User* ListUserResponse::_internal_mutable_user() {
   
   if (user_ == nullptr) {
-    auto* p = CreateMaybeMessage<::api::User>(GetArenaNoVirtual());
+    auto* p = CreateMaybeMessage<::trojan::api::User>(GetArenaNoVirtual());
     user_ = p;
   }
   return user_;
 }
-inline ::api::User* ListUserResponse::mutable_user() {
-  // @@protoc_insertion_point(field_mutable:api.ListUserResponse.user)
+inline ::trojan::api::User* ListUserResponse::mutable_user() {
+  // @@protoc_insertion_point(field_mutable:trojan.api.ListUserResponse.user)
   return _internal_mutable_user();
 }
-inline void ListUserResponse::set_allocated_user(::api::User* user) {
+inline void ListUserResponse::set_allocated_user(::trojan::api::User* user) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
   if (message_arena == nullptr) {
     delete user_;
@@ -2148,7 +2151,7 @@ inline void ListUserResponse::set_allocated_user(::api::User* user) {
     
   }
   user_ = user;
-  // @@protoc_insertion_point(field_set_allocated:api.ListUserResponse.user)
+  // @@protoc_insertion_point(field_set_allocated:trojan.api.ListUserResponse.user)
 }
 
 // bool online = 2;
@@ -2159,7 +2162,7 @@ inline bool ListUserResponse::_internal_online() const {
   return online_;
 }
 inline bool ListUserResponse::online() const {
-  // @@protoc_insertion_point(field_get:api.ListUserResponse.online)
+  // @@protoc_insertion_point(field_get:trojan.api.ListUserResponse.online)
   return _internal_online();
 }
 inline void ListUserResponse::_internal_set_online(bool value) {
@@ -2168,10 +2171,10 @@ inline void ListUserResponse::_internal_set_online(bool value) {
 }
 inline void ListUserResponse::set_online(bool value) {
   _internal_set_online(value);
-  // @@protoc_insertion_point(field_set:api.ListUserResponse.online)
+  // @@protoc_insertion_point(field_set:trojan.api.ListUserResponse.online)
 }
 
-// .api.Traffic traffic_total = 3;
+// .trojan.api.Traffic traffic_total = 3;
 inline bool ListUserResponse::_internal_has_traffic_total() const {
   return this != internal_default_instance() && traffic_total_ != nullptr;
 }
@@ -2184,35 +2187,35 @@ inline void ListUserResponse::clear_traffic_total() {
   }
   traffic_total_ = nullptr;
 }
-inline const ::api::Traffic& ListUserResponse::_internal_traffic_total() const {
-  const ::api::Traffic* p = traffic_total_;
-  return p != nullptr ? *p : *reinterpret_cast<const ::api::Traffic*>(
-      &::api::_Traffic_default_instance_);
+inline const ::trojan::api::Traffic& ListUserResponse::_internal_traffic_total() const {
+  const ::trojan::api::Traffic* p = traffic_total_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::trojan::api::Traffic*>(
+      &::trojan::api::_Traffic_default_instance_);
 }
-inline const ::api::Traffic& ListUserResponse::traffic_total() const {
-  // @@protoc_insertion_point(field_get:api.ListUserResponse.traffic_total)
+inline const ::trojan::api::Traffic& ListUserResponse::traffic_total() const {
+  // @@protoc_insertion_point(field_get:trojan.api.ListUserResponse.traffic_total)
   return _internal_traffic_total();
 }
-inline ::api::Traffic* ListUserResponse::release_traffic_total() {
-  // @@protoc_insertion_point(field_release:api.ListUserResponse.traffic_total)
+inline ::trojan::api::Traffic* ListUserResponse::release_traffic_total() {
+  // @@protoc_insertion_point(field_release:trojan.api.ListUserResponse.traffic_total)
   
-  ::api::Traffic* temp = traffic_total_;
+  ::trojan::api::Traffic* temp = traffic_total_;
   traffic_total_ = nullptr;
   return temp;
 }
-inline ::api::Traffic* ListUserResponse::_internal_mutable_traffic_total() {
+inline ::trojan::api::Traffic* ListUserResponse::_internal_mutable_traffic_total() {
   
   if (traffic_total_ == nullptr) {
-    auto* p = CreateMaybeMessage<::api::Traffic>(GetArenaNoVirtual());
+    auto* p = CreateMaybeMessage<::trojan::api::Traffic>(GetArenaNoVirtual());
     traffic_total_ = p;
   }
   return traffic_total_;
 }
-inline ::api::Traffic* ListUserResponse::mutable_traffic_total() {
-  // @@protoc_insertion_point(field_mutable:api.ListUserResponse.traffic_total)
+inline ::trojan::api::Traffic* ListUserResponse::mutable_traffic_total() {
+  // @@protoc_insertion_point(field_mutable:trojan.api.ListUserResponse.traffic_total)
   return _internal_mutable_traffic_total();
 }
-inline void ListUserResponse::set_allocated_traffic_total(::api::Traffic* traffic_total) {
+inline void ListUserResponse::set_allocated_traffic_total(::trojan::api::Traffic* traffic_total) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
   if (message_arena == nullptr) {
     delete traffic_total_;
@@ -2228,10 +2231,10 @@ inline void ListUserResponse::set_allocated_traffic_total(::api::Traffic* traffi
     
   }
   traffic_total_ = traffic_total;
-  // @@protoc_insertion_point(field_set_allocated:api.ListUserResponse.traffic_total)
+  // @@protoc_insertion_point(field_set_allocated:trojan.api.ListUserResponse.traffic_total)
 }
 
-// .api.Speed speed_current = 4;
+// .trojan.api.Speed speed_current = 4;
 inline bool ListUserResponse::_internal_has_speed_current() const {
   return this != internal_default_instance() && speed_current_ != nullptr;
 }
@@ -2244,35 +2247,35 @@ inline void ListUserResponse::clear_speed_current() {
   }
   speed_current_ = nullptr;
 }
-inline const ::api::Speed& ListUserResponse::_internal_speed_current() const {
-  const ::api::Speed* p = speed_current_;
-  return p != nullptr ? *p : *reinterpret_cast<const ::api::Speed*>(
-      &::api::_Speed_default_instance_);
+inline const ::trojan::api::Speed& ListUserResponse::_internal_speed_current() const {
+  const ::trojan::api::Speed* p = speed_current_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::trojan::api::Speed*>(
+      &::trojan::api::_Speed_default_instance_);
 }
-inline const ::api::Speed& ListUserResponse::speed_current() const {
-  // @@protoc_insertion_point(field_get:api.ListUserResponse.speed_current)
+inline const ::trojan::api::Speed& ListUserResponse::speed_current() const {
+  // @@protoc_insertion_point(field_get:trojan.api.ListUserResponse.speed_current)
   return _internal_speed_current();
 }
-inline ::api::Speed* ListUserResponse::release_speed_current() {
-  // @@protoc_insertion_point(field_release:api.ListUserResponse.speed_current)
+inline ::trojan::api::Speed* ListUserResponse::release_speed_current() {
+  // @@protoc_insertion_point(field_release:trojan.api.ListUserResponse.speed_current)
   
-  ::api::Speed* temp = speed_current_;
+  ::trojan::api::Speed* temp = speed_current_;
   speed_current_ = nullptr;
   return temp;
 }
-inline ::api::Speed* ListUserResponse::_internal_mutable_speed_current() {
+inline ::trojan::api::Speed* ListUserResponse::_internal_mutable_speed_current() {
   
   if (speed_current_ == nullptr) {
-    auto* p = CreateMaybeMessage<::api::Speed>(GetArenaNoVirtual());
+    auto* p = CreateMaybeMessage<::trojan::api::Speed>(GetArenaNoVirtual());
     speed_current_ = p;
   }
   return speed_current_;
 }
-inline ::api::Speed* ListUserResponse::mutable_speed_current() {
-  // @@protoc_insertion_point(field_mutable:api.ListUserResponse.speed_current)
+inline ::trojan::api::Speed* ListUserResponse::mutable_speed_current() {
+  // @@protoc_insertion_point(field_mutable:trojan.api.ListUserResponse.speed_current)
   return _internal_mutable_speed_current();
 }
-inline void ListUserResponse::set_allocated_speed_current(::api::Speed* speed_current) {
+inline void ListUserResponse::set_allocated_speed_current(::trojan::api::Speed* speed_current) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
   if (message_arena == nullptr) {
     delete speed_current_;
@@ -2288,10 +2291,10 @@ inline void ListUserResponse::set_allocated_speed_current(::api::Speed* speed_cu
     
   }
   speed_current_ = speed_current;
-  // @@protoc_insertion_point(field_set_allocated:api.ListUserResponse.speed_current)
+  // @@protoc_insertion_point(field_set_allocated:trojan.api.ListUserResponse.speed_current)
 }
 
-// .api.Speed speed_limit = 5;
+// .trojan.api.Speed speed_limit = 5;
 inline bool ListUserResponse::_internal_has_speed_limit() const {
   return this != internal_default_instance() && speed_limit_ != nullptr;
 }
@@ -2304,35 +2307,35 @@ inline void ListUserResponse::clear_speed_limit() {
   }
   speed_limit_ = nullptr;
 }
-inline const ::api::Speed& ListUserResponse::_internal_speed_limit() const {
-  const ::api::Speed* p = speed_limit_;
-  return p != nullptr ? *p : *reinterpret_cast<const ::api::Speed*>(
-      &::api::_Speed_default_instance_);
+inline const ::trojan::api::Speed& ListUserResponse::_internal_speed_limit() const {
+  const ::trojan::api::Speed* p = speed_limit_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::trojan::api::Speed*>(
+      &::trojan::api::_Speed_default_instance_);
 }
-inline const ::api::Speed& ListUserResponse::speed_limit() const {
-  // @@protoc_insertion_point(field_get:api.ListUserResponse.speed_limit)
+inline const ::trojan::api::Speed& ListUserResponse::speed_limit() const {
+  // @@protoc_insertion_point(field_get:trojan.api.ListUserResponse.speed_limit)
   return _internal_speed_limit();
 }
-inline ::api::Speed* ListUserResponse::release_speed_limit() {
-  // @@protoc_insertion_point(field_release:api.ListUserResponse.speed_limit)
+inline ::trojan::api::Speed* ListUserResponse::release_speed_limit() {
+  // @@protoc_insertion_point(field_release:trojan.api.ListUserResponse.speed_limit)
   
-  ::api::Speed* temp = speed_limit_;
+  ::trojan::api::Speed* temp = speed_limit_;
   speed_limit_ = nullptr;
   return temp;
 }
-inline ::api::Speed* ListUserResponse::_internal_mutable_speed_limit() {
+inline ::trojan::api::Speed* ListUserResponse::_internal_mutable_speed_limit() {
   
   if (speed_limit_ == nullptr) {
-    auto* p = CreateMaybeMessage<::api::Speed>(GetArenaNoVirtual());
+    auto* p = CreateMaybeMessage<::trojan::api::Speed>(GetArenaNoVirtual());
     speed_limit_ = p;
   }
   return speed_limit_;
 }
-inline ::api::Speed* ListUserResponse::mutable_speed_limit() {
-  // @@protoc_insertion_point(field_mutable:api.ListUserResponse.speed_limit)
+inline ::trojan::api::Speed* ListUserResponse::mutable_speed_limit() {
+  // @@protoc_insertion_point(field_mutable:trojan.api.ListUserResponse.speed_limit)
   return _internal_mutable_speed_limit();
 }
-inline void ListUserResponse::set_allocated_speed_limit(::api::Speed* speed_limit) {
+inline void ListUserResponse::set_allocated_speed_limit(::trojan::api::Speed* speed_limit) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
   if (message_arena == nullptr) {
     delete speed_limit_;
@@ -2348,14 +2351,14 @@ inline void ListUserResponse::set_allocated_speed_limit(::api::Speed* speed_limi
     
   }
   speed_limit_ = speed_limit;
-  // @@protoc_insertion_point(field_set_allocated:api.ListUserResponse.speed_limit)
+  // @@protoc_insertion_point(field_set_allocated:trojan.api.ListUserResponse.speed_limit)
 }
 
 // -------------------------------------------------------------------
 
 // SetUserRequest
 
-// .api.User user = 1;
+// .trojan.api.User user = 1;
 inline bool SetUserRequest::_internal_has_user() const {
   return this != internal_default_instance() && user_ != nullptr;
 }
@@ -2368,35 +2371,35 @@ inline void SetUserRequest::clear_user() {
   }
   user_ = nullptr;
 }
-inline const ::api::User& SetUserRequest::_internal_user() const {
-  const ::api::User* p = user_;
-  return p != nullptr ? *p : *reinterpret_cast<const ::api::User*>(
-      &::api::_User_default_instance_);
+inline const ::trojan::api::User& SetUserRequest::_internal_user() const {
+  const ::trojan::api::User* p = user_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::trojan::api::User*>(
+      &::trojan::api::_User_default_instance_);
 }
-inline const ::api::User& SetUserRequest::user() const {
-  // @@protoc_insertion_point(field_get:api.SetUserRequest.user)
+inline const ::trojan::api::User& SetUserRequest::user() const {
+  // @@protoc_insertion_point(field_get:trojan.api.SetUserRequest.user)
   return _internal_user();
 }
-inline ::api::User* SetUserRequest::release_user() {
-  // @@protoc_insertion_point(field_release:api.SetUserRequest.user)
+inline ::trojan::api::User* SetUserRequest::release_user() {
+  // @@protoc_insertion_point(field_release:trojan.api.SetUserRequest.user)
   
-  ::api::User* temp = user_;
+  ::trojan::api::User* temp = user_;
   user_ = nullptr;
   return temp;
 }
-inline ::api::User* SetUserRequest::_internal_mutable_user() {
+inline ::trojan::api::User* SetUserRequest::_internal_mutable_user() {
   
   if (user_ == nullptr) {
-    auto* p = CreateMaybeMessage<::api::User>(GetArenaNoVirtual());
+    auto* p = CreateMaybeMessage<::trojan::api::User>(GetArenaNoVirtual());
     user_ = p;
   }
   return user_;
 }
-inline ::api::User* SetUserRequest::mutable_user() {
-  // @@protoc_insertion_point(field_mutable:api.SetUserRequest.user)
+inline ::trojan::api::User* SetUserRequest::mutable_user() {
+  // @@protoc_insertion_point(field_mutable:trojan.api.SetUserRequest.user)
   return _internal_mutable_user();
 }
-inline void SetUserRequest::set_allocated_user(::api::User* user) {
+inline void SetUserRequest::set_allocated_user(::trojan::api::User* user) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
   if (message_arena == nullptr) {
     delete user_;
@@ -2412,10 +2415,10 @@ inline void SetUserRequest::set_allocated_user(::api::User* user) {
     
   }
   user_ = user;
-  // @@protoc_insertion_point(field_set_allocated:api.SetUserRequest.user)
+  // @@protoc_insertion_point(field_set_allocated:trojan.api.SetUserRequest.user)
 }
 
-// .api.Speed speed_limit = 2;
+// .trojan.api.Speed speed_limit = 2;
 inline bool SetUserRequest::_internal_has_speed_limit() const {
   return this != internal_default_instance() && speed_limit_ != nullptr;
 }
@@ -2428,35 +2431,35 @@ inline void SetUserRequest::clear_speed_limit() {
   }
   speed_limit_ = nullptr;
 }
-inline const ::api::Speed& SetUserRequest::_internal_speed_limit() const {
-  const ::api::Speed* p = speed_limit_;
-  return p != nullptr ? *p : *reinterpret_cast<const ::api::Speed*>(
-      &::api::_Speed_default_instance_);
+inline const ::trojan::api::Speed& SetUserRequest::_internal_speed_limit() const {
+  const ::trojan::api::Speed* p = speed_limit_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::trojan::api::Speed*>(
+      &::trojan::api::_Speed_default_instance_);
 }
-inline const ::api::Speed& SetUserRequest::speed_limit() const {
-  // @@protoc_insertion_point(field_get:api.SetUserRequest.speed_limit)
+inline const ::trojan::api::Speed& SetUserRequest::speed_limit() const {
+  // @@protoc_insertion_point(field_get:trojan.api.SetUserRequest.speed_limit)
   return _internal_speed_limit();
 }
-inline ::api::Speed* SetUserRequest::release_speed_limit() {
-  // @@protoc_insertion_point(field_release:api.SetUserRequest.speed_limit)
+inline ::trojan::api::Speed* SetUserRequest::release_speed_limit() {
+  // @@protoc_insertion_point(field_release:trojan.api.SetUserRequest.speed_limit)
   
-  ::api::Speed* temp = speed_limit_;
+  ::trojan::api::Speed* temp = speed_limit_;
   speed_limit_ = nullptr;
   return temp;
 }
-inline ::api::Speed* SetUserRequest::_internal_mutable_speed_limit() {
+inline ::trojan::api::Speed* SetUserRequest::_internal_mutable_speed_limit() {
   
   if (speed_limit_ == nullptr) {
-    auto* p = CreateMaybeMessage<::api::Speed>(GetArenaNoVirtual());
+    auto* p = CreateMaybeMessage<::trojan::api::Speed>(GetArenaNoVirtual());
     speed_limit_ = p;
   }
   return speed_limit_;
 }
-inline ::api::Speed* SetUserRequest::mutable_speed_limit() {
-  // @@protoc_insertion_point(field_mutable:api.SetUserRequest.speed_limit)
+inline ::trojan::api::Speed* SetUserRequest::mutable_speed_limit() {
+  // @@protoc_insertion_point(field_mutable:trojan.api.SetUserRequest.speed_limit)
   return _internal_mutable_speed_limit();
 }
-inline void SetUserRequest::set_allocated_speed_limit(::api::Speed* speed_limit) {
+inline void SetUserRequest::set_allocated_speed_limit(::trojan::api::Speed* speed_limit) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
   if (message_arena == nullptr) {
     delete speed_limit_;
@@ -2472,27 +2475,27 @@ inline void SetUserRequest::set_allocated_speed_limit(::api::Speed* speed_limit)
     
   }
   speed_limit_ = speed_limit;
-  // @@protoc_insertion_point(field_set_allocated:api.SetUserRequest.speed_limit)
+  // @@protoc_insertion_point(field_set_allocated:trojan.api.SetUserRequest.speed_limit)
 }
 
-// .api.SetUserRequest.Operation operation = 3;
+// .trojan.api.SetUserRequest.Operation operation = 3;
 inline void SetUserRequest::clear_operation() {
   operation_ = 0;
 }
-inline ::api::SetUserRequest_Operation SetUserRequest::_internal_operation() const {
-  return static_cast< ::api::SetUserRequest_Operation >(operation_);
+inline ::trojan::api::SetUserRequest_Operation SetUserRequest::_internal_operation() const {
+  return static_cast< ::trojan::api::SetUserRequest_Operation >(operation_);
 }
-inline ::api::SetUserRequest_Operation SetUserRequest::operation() const {
-  // @@protoc_insertion_point(field_get:api.SetUserRequest.operation)
+inline ::trojan::api::SetUserRequest_Operation SetUserRequest::operation() const {
+  // @@protoc_insertion_point(field_get:trojan.api.SetUserRequest.operation)
   return _internal_operation();
 }
-inline void SetUserRequest::_internal_set_operation(::api::SetUserRequest_Operation value) {
+inline void SetUserRequest::_internal_set_operation(::trojan::api::SetUserRequest_Operation value) {
   
   operation_ = value;
 }
-inline void SetUserRequest::set_operation(::api::SetUserRequest_Operation value) {
+inline void SetUserRequest::set_operation(::trojan::api::SetUserRequest_Operation value) {
   _internal_set_operation(value);
-  // @@protoc_insertion_point(field_set:api.SetUserRequest.operation)
+  // @@protoc_insertion_point(field_set:trojan.api.SetUserRequest.operation)
 }
 
 // -------------------------------------------------------------------
@@ -2507,7 +2510,7 @@ inline bool SetUserResponse::_internal_success() const {
   return success_;
 }
 inline bool SetUserResponse::success() const {
-  // @@protoc_insertion_point(field_get:api.SetUserResponse.success)
+  // @@protoc_insertion_point(field_get:trojan.api.SetUserResponse.success)
   return _internal_success();
 }
 inline void SetUserResponse::_internal_set_success(bool value) {
@@ -2516,7 +2519,7 @@ inline void SetUserResponse::_internal_set_success(bool value) {
 }
 inline void SetUserResponse::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:api.SetUserResponse.success)
+  // @@protoc_insertion_point(field_set:trojan.api.SetUserResponse.success)
 }
 
 // string info = 2;
@@ -2524,15 +2527,15 @@ inline void SetUserResponse::clear_info() {
   info_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& SetUserResponse::info() const {
-  // @@protoc_insertion_point(field_get:api.SetUserResponse.info)
+  // @@protoc_insertion_point(field_get:trojan.api.SetUserResponse.info)
   return _internal_info();
 }
 inline void SetUserResponse::set_info(const std::string& value) {
   _internal_set_info(value);
-  // @@protoc_insertion_point(field_set:api.SetUserResponse.info)
+  // @@protoc_insertion_point(field_set:trojan.api.SetUserResponse.info)
 }
 inline std::string* SetUserResponse::mutable_info() {
-  // @@protoc_insertion_point(field_mutable:api.SetUserResponse.info)
+  // @@protoc_insertion_point(field_mutable:trojan.api.SetUserResponse.info)
   return _internal_mutable_info();
 }
 inline const std::string& SetUserResponse::_internal_info() const {
@@ -2546,26 +2549,26 @@ inline void SetUserResponse::set_info(std::string&& value) {
   
   info_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:api.SetUserResponse.info)
+  // @@protoc_insertion_point(field_set_rvalue:trojan.api.SetUserResponse.info)
 }
 inline void SetUserResponse::set_info(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   info_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:api.SetUserResponse.info)
+  // @@protoc_insertion_point(field_set_char:trojan.api.SetUserResponse.info)
 }
 inline void SetUserResponse::set_info(const char* value, size_t size) {
   
   info_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:api.SetUserResponse.info)
+  // @@protoc_insertion_point(field_set_pointer:trojan.api.SetUserResponse.info)
 }
 inline std::string* SetUserResponse::_internal_mutable_info() {
   
   return info_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* SetUserResponse::release_info() {
-  // @@protoc_insertion_point(field_release:api.SetUserResponse.info)
+  // @@protoc_insertion_point(field_release:trojan.api.SetUserResponse.info)
   
   return info_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -2576,7 +2579,7 @@ inline void SetUserResponse::set_allocated_info(std::string* info) {
     
   }
   info_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), info);
-  // @@protoc_insertion_point(field_set_allocated:api.SetUserResponse.info)
+  // @@protoc_insertion_point(field_set_allocated:trojan.api.SetUserResponse.info)
 }
 
 #ifdef __GNUC__
@@ -2602,13 +2605,14 @@ inline void SetUserResponse::set_allocated_info(std::string* info) {
 // @@protoc_insertion_point(namespace_scope)
 
 }  // namespace api
+}  // namespace trojan
 
 PROTOBUF_NAMESPACE_OPEN
 
-template <> struct is_proto_enum< ::api::SetUserRequest_Operation> : ::std::true_type {};
+template <> struct is_proto_enum< ::trojan::api::SetUserRequest_Operation> : ::std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::api::SetUserRequest_Operation>() {
-  return ::api::SetUserRequest_Operation_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor< ::trojan::api::SetUserRequest_Operation>() {
+  return ::trojan::api::SetUserRequest_Operation_descriptor();
 }
 
 PROTOBUF_NAMESPACE_CLOSE

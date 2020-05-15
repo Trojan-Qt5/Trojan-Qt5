@@ -1,6 +1,5 @@
 #include "portvalidator.h"
 #include "generalvalidator.h"
-#include "logger.h"
 
 #include <QTcpServer>
 

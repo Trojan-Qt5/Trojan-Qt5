@@ -27,14 +27,25 @@ bool GeneralValidator::validateSSR(const QString &input)
     return valid;
 }
 
+bool GeneralValidator::validateVmess(const QString &input)
+{
+    bool valid = true;
+    try {
+        TQProfile tqprofile;
+        tqprofile.fromVmessUri(input.toStdString());
+    } catch(const std::exception&) {
+        valid = false;
+    }
+    return valid;
+}
+
 bool GeneralValidator::validateTrojan(const QString &input)
 {
     bool valid = true;
     try {
         TQProfile tqprofile;
         tqprofile.fromTrojanUri(input.toStdString());
-    } catch(const std::exception& e) {
-        qDebug() << e.what();
+    } catch(const std::exception&) {
         valid = false;
     }
     return valid;

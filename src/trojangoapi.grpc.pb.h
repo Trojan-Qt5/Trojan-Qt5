@@ -26,37 +26,38 @@
 #include <grpcpp/impl/codegen/stub_options.h>
 #include <grpcpp/impl/codegen/sync_stream.h>
 
+namespace trojan {
 namespace api {
 
 class TrojanClientService final {
  public:
   static constexpr char const* service_full_name() {
-    return "api.TrojanClientService";
+    return "trojan.api.TrojanClientService";
   }
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status GetTraffic(::grpc::ClientContext* context, const ::api::GetTrafficRequest& request, ::api::GetTrafficResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::api::GetTrafficResponse>> AsyncGetTraffic(::grpc::ClientContext* context, const ::api::GetTrafficRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::api::GetTrafficResponse>>(AsyncGetTrafficRaw(context, request, cq));
+    virtual ::grpc::Status GetTraffic(::grpc::ClientContext* context, const ::trojan::api::GetTrafficRequest& request, ::trojan::api::GetTrafficResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::trojan::api::GetTrafficResponse>> AsyncGetTraffic(::grpc::ClientContext* context, const ::trojan::api::GetTrafficRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::trojan::api::GetTrafficResponse>>(AsyncGetTrafficRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::api::GetTrafficResponse>> PrepareAsyncGetTraffic(::grpc::ClientContext* context, const ::api::GetTrafficRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::api::GetTrafficResponse>>(PrepareAsyncGetTrafficRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::trojan::api::GetTrafficResponse>> PrepareAsyncGetTraffic(::grpc::ClientContext* context, const ::trojan::api::GetTrafficRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::trojan::api::GetTrafficResponse>>(PrepareAsyncGetTrafficRaw(context, request, cq));
     }
     class experimental_async_interface {
      public:
       virtual ~experimental_async_interface() {}
-      virtual void GetTraffic(::grpc::ClientContext* context, const ::api::GetTrafficRequest* request, ::api::GetTrafficResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetTraffic(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::GetTrafficResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetTraffic(::grpc::ClientContext* context, const ::trojan::api::GetTrafficRequest* request, ::trojan::api::GetTrafficResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetTraffic(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::trojan::api::GetTrafficResponse* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetTraffic(::grpc::ClientContext* context, const ::api::GetTrafficRequest* request, ::api::GetTrafficResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetTraffic(::grpc::ClientContext* context, const ::trojan::api::GetTrafficRequest* request, ::trojan::api::GetTrafficResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
-      virtual void GetTraffic(::grpc::ClientContext* context, const ::api::GetTrafficRequest* request, ::api::GetTrafficResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void GetTraffic(::grpc::ClientContext* context, const ::trojan::api::GetTrafficRequest* request, ::trojan::api::GetTrafficResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetTraffic(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::GetTrafficResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetTraffic(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::trojan::api::GetTrafficResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
-      virtual void GetTraffic(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::GetTrafficResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void GetTraffic(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::trojan::api::GetTrafficResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
     };
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -67,33 +68,33 @@ class TrojanClientService final {
     #endif
     virtual class experimental_async_interface* experimental_async() { return nullptr; }
   private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::api::GetTrafficResponse>* AsyncGetTrafficRaw(::grpc::ClientContext* context, const ::api::GetTrafficRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::api::GetTrafficResponse>* PrepareAsyncGetTrafficRaw(::grpc::ClientContext* context, const ::api::GetTrafficRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::trojan::api::GetTrafficResponse>* AsyncGetTrafficRaw(::grpc::ClientContext* context, const ::trojan::api::GetTrafficRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::trojan::api::GetTrafficResponse>* PrepareAsyncGetTrafficRaw(::grpc::ClientContext* context, const ::trojan::api::GetTrafficRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
-    ::grpc::Status GetTraffic(::grpc::ClientContext* context, const ::api::GetTrafficRequest& request, ::api::GetTrafficResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::api::GetTrafficResponse>> AsyncGetTraffic(::grpc::ClientContext* context, const ::api::GetTrafficRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::api::GetTrafficResponse>>(AsyncGetTrafficRaw(context, request, cq));
+    ::grpc::Status GetTraffic(::grpc::ClientContext* context, const ::trojan::api::GetTrafficRequest& request, ::trojan::api::GetTrafficResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::trojan::api::GetTrafficResponse>> AsyncGetTraffic(::grpc::ClientContext* context, const ::trojan::api::GetTrafficRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::trojan::api::GetTrafficResponse>>(AsyncGetTrafficRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::api::GetTrafficResponse>> PrepareAsyncGetTraffic(::grpc::ClientContext* context, const ::api::GetTrafficRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::api::GetTrafficResponse>>(PrepareAsyncGetTrafficRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::trojan::api::GetTrafficResponse>> PrepareAsyncGetTraffic(::grpc::ClientContext* context, const ::trojan::api::GetTrafficRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::trojan::api::GetTrafficResponse>>(PrepareAsyncGetTrafficRaw(context, request, cq));
     }
     class experimental_async final :
       public StubInterface::experimental_async_interface {
      public:
-      void GetTraffic(::grpc::ClientContext* context, const ::api::GetTrafficRequest* request, ::api::GetTrafficResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetTraffic(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::GetTrafficResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetTraffic(::grpc::ClientContext* context, const ::trojan::api::GetTrafficRequest* request, ::trojan::api::GetTrafficResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetTraffic(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::trojan::api::GetTrafficResponse* response, std::function<void(::grpc::Status)>) override;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetTraffic(::grpc::ClientContext* context, const ::api::GetTrafficRequest* request, ::api::GetTrafficResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetTraffic(::grpc::ClientContext* context, const ::trojan::api::GetTrafficRequest* request, ::trojan::api::GetTrafficResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
-      void GetTraffic(::grpc::ClientContext* context, const ::api::GetTrafficRequest* request, ::api::GetTrafficResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void GetTraffic(::grpc::ClientContext* context, const ::trojan::api::GetTrafficRequest* request, ::trojan::api::GetTrafficResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetTraffic(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::GetTrafficResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetTraffic(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::trojan::api::GetTrafficResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
-      void GetTraffic(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::api::GetTrafficResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void GetTraffic(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::trojan::api::GetTrafficResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
      private:
       friend class Stub;
@@ -106,8 +107,8 @@ class TrojanClientService final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class experimental_async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::api::GetTrafficResponse>* AsyncGetTrafficRaw(::grpc::ClientContext* context, const ::api::GetTrafficRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::api::GetTrafficResponse>* PrepareAsyncGetTrafficRaw(::grpc::ClientContext* context, const ::api::GetTrafficRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::trojan::api::GetTrafficResponse>* AsyncGetTrafficRaw(::grpc::ClientContext* context, const ::trojan::api::GetTrafficRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::trojan::api::GetTrafficResponse>* PrepareAsyncGetTrafficRaw(::grpc::ClientContext* context, const ::trojan::api::GetTrafficRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetTraffic_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
@@ -116,7 +117,7 @@ class TrojanClientService final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status GetTraffic(::grpc::ServerContext* context, const ::api::GetTrafficRequest* request, ::api::GetTrafficResponse* response);
+    virtual ::grpc::Status GetTraffic(::grpc::ServerContext* context, const ::trojan::api::GetTrafficRequest* request, ::trojan::api::GetTrafficResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_GetTraffic : public BaseClass {
@@ -130,11 +131,11 @@ class TrojanClientService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, const ::api::GetTrafficRequest* /*request*/, ::api::GetTrafficResponse* /*response*/) override {
+    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, const ::trojan::api::GetTrafficRequest* /*request*/, ::trojan::api::GetTrafficResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetTraffic(::grpc::ServerContext* context, ::api::GetTrafficRequest* request, ::grpc::ServerAsyncResponseWriter< ::api::GetTrafficResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestGetTraffic(::grpc::ServerContext* context, ::trojan::api::GetTrafficRequest* request, ::grpc::ServerAsyncResponseWriter< ::trojan::api::GetTrafficResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -151,38 +152,38 @@ class TrojanClientService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodCallback(0,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::api::GetTrafficRequest, ::api::GetTrafficResponse>(
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::trojan::api::GetTrafficRequest, ::trojan::api::GetTrafficResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
     #else
                    ::grpc::experimental::CallbackServerContext*
     #endif
-                     context, const ::api::GetTrafficRequest* request, ::api::GetTrafficResponse* response) { return this->GetTraffic(context, request, response); }));}
+                     context, const ::trojan::api::GetTrafficRequest* request, ::trojan::api::GetTrafficResponse* response) { return this->GetTraffic(context, request, response); }));}
     void SetMessageAllocatorFor_GetTraffic(
-        ::grpc::experimental::MessageAllocator< ::api::GetTrafficRequest, ::api::GetTrafficResponse>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::trojan::api::GetTrafficRequest, ::trojan::api::GetTrafficResponse>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
     #else
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(0);
     #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::api::GetTrafficRequest, ::api::GetTrafficResponse>*>(handler)
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::trojan::api::GetTrafficRequest, ::trojan::api::GetTrafficResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~ExperimentalWithCallbackMethod_GetTraffic() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, const ::api::GetTrafficRequest* /*request*/, ::api::GetTrafficResponse* /*response*/) override {
+    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, const ::trojan::api::GetTrafficRequest* /*request*/, ::trojan::api::GetTrafficResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetTraffic(
-      ::grpc::CallbackServerContext* /*context*/, const ::api::GetTrafficRequest* /*request*/, ::api::GetTrafficResponse* /*response*/)
+      ::grpc::CallbackServerContext* /*context*/, const ::trojan::api::GetTrafficRequest* /*request*/, ::trojan::api::GetTrafficResponse* /*response*/)
     #else
     virtual ::grpc::experimental::ServerUnaryReactor* GetTraffic(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::api::GetTrafficRequest* /*request*/, ::api::GetTrafficResponse* /*response*/)
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::trojan::api::GetTrafficRequest* /*request*/, ::trojan::api::GetTrafficResponse* /*response*/)
     #endif
       { return nullptr; }
   };
@@ -203,7 +204,7 @@ class TrojanClientService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, const ::api::GetTrafficRequest* /*request*/, ::api::GetTrafficResponse* /*response*/) override {
+    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, const ::trojan::api::GetTrafficRequest* /*request*/, ::trojan::api::GetTrafficResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -220,7 +221,7 @@ class TrojanClientService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, const ::api::GetTrafficRequest* /*request*/, ::api::GetTrafficResponse* /*response*/) override {
+    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, const ::trojan::api::GetTrafficRequest* /*request*/, ::trojan::api::GetTrafficResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -253,7 +254,7 @@ class TrojanClientService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, const ::api::GetTrafficRequest* /*request*/, ::api::GetTrafficResponse* /*response*/) override {
+    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, const ::trojan::api::GetTrafficRequest* /*request*/, ::trojan::api::GetTrafficResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -273,18 +274,18 @@ class TrojanClientService final {
    public:
     WithStreamedUnaryMethod_GetTraffic() {
       ::grpc::Service::MarkMethodStreamed(0,
-        new ::grpc::internal::StreamedUnaryHandler< ::api::GetTrafficRequest, ::api::GetTrafficResponse>(std::bind(&WithStreamedUnaryMethod_GetTraffic<BaseClass>::StreamedGetTraffic, this, std::placeholders::_1, std::placeholders::_2)));
+        new ::grpc::internal::StreamedUnaryHandler< ::trojan::api::GetTrafficRequest, ::trojan::api::GetTrafficResponse>(std::bind(&WithStreamedUnaryMethod_GetTraffic<BaseClass>::StreamedGetTraffic, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_GetTraffic() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, const ::api::GetTrafficRequest* /*request*/, ::api::GetTrafficResponse* /*response*/) override {
+    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, const ::trojan::api::GetTrafficRequest* /*request*/, ::trojan::api::GetTrafficResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetTraffic(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::api::GetTrafficRequest,::api::GetTrafficResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedGetTraffic(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::trojan::api::GetTrafficRequest,::trojan::api::GetTrafficResponse>* server_unary_streamer) = 0;
   };
   typedef WithStreamedUnaryMethod_GetTraffic<Service > StreamedUnaryService;
   typedef Service SplitStreamedService;
@@ -294,55 +295,55 @@ class TrojanClientService final {
 class TrojanServerService final {
  public:
   static constexpr char const* service_full_name() {
-    return "api.TrojanServerService";
+    return "trojan.api.TrojanServerService";
   }
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    std::unique_ptr< ::grpc::ClientReaderInterface< ::api::ListUserResponse>> ListUsers(::grpc::ClientContext* context, const ::api::ListUserRequest& request) {
-      return std::unique_ptr< ::grpc::ClientReaderInterface< ::api::ListUserResponse>>(ListUsersRaw(context, request));
+    std::unique_ptr< ::grpc::ClientReaderInterface< ::trojan::api::ListUserResponse>> ListUsers(::grpc::ClientContext* context, const ::trojan::api::ListUserRequest& request) {
+      return std::unique_ptr< ::grpc::ClientReaderInterface< ::trojan::api::ListUserResponse>>(ListUsersRaw(context, request));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::api::ListUserResponse>> AsyncListUsers(::grpc::ClientContext* context, const ::api::ListUserRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::api::ListUserResponse>>(AsyncListUsersRaw(context, request, cq, tag));
+    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::trojan::api::ListUserResponse>> AsyncListUsers(::grpc::ClientContext* context, const ::trojan::api::ListUserRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::trojan::api::ListUserResponse>>(AsyncListUsersRaw(context, request, cq, tag));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::api::ListUserResponse>> PrepareAsyncListUsers(::grpc::ClientContext* context, const ::api::ListUserRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::api::ListUserResponse>>(PrepareAsyncListUsersRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::trojan::api::ListUserResponse>> PrepareAsyncListUsers(::grpc::ClientContext* context, const ::trojan::api::ListUserRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::trojan::api::ListUserResponse>>(PrepareAsyncListUsersRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::api::GetTrafficRequest, ::api::GetTrafficResponse>> GetTraffic(::grpc::ClientContext* context) {
-      return std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::api::GetTrafficRequest, ::api::GetTrafficResponse>>(GetTrafficRaw(context));
+    std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::trojan::api::GetTrafficRequest, ::trojan::api::GetTrafficResponse>> GetTraffic(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::trojan::api::GetTrafficRequest, ::trojan::api::GetTrafficResponse>>(GetTrafficRaw(context));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::api::GetTrafficRequest, ::api::GetTrafficResponse>> AsyncGetTraffic(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::api::GetTrafficRequest, ::api::GetTrafficResponse>>(AsyncGetTrafficRaw(context, cq, tag));
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::trojan::api::GetTrafficRequest, ::trojan::api::GetTrafficResponse>> AsyncGetTraffic(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::trojan::api::GetTrafficRequest, ::trojan::api::GetTrafficResponse>>(AsyncGetTrafficRaw(context, cq, tag));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::api::GetTrafficRequest, ::api::GetTrafficResponse>> PrepareAsyncGetTraffic(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::api::GetTrafficRequest, ::api::GetTrafficResponse>>(PrepareAsyncGetTrafficRaw(context, cq));
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::trojan::api::GetTrafficRequest, ::trojan::api::GetTrafficResponse>> PrepareAsyncGetTraffic(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::trojan::api::GetTrafficRequest, ::trojan::api::GetTrafficResponse>>(PrepareAsyncGetTrafficRaw(context, cq));
     }
-    std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::api::SetUserRequest, ::api::SetUserResponse>> SetUsers(::grpc::ClientContext* context) {
-      return std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::api::SetUserRequest, ::api::SetUserResponse>>(SetUsersRaw(context));
+    std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::trojan::api::SetUserRequest, ::trojan::api::SetUserResponse>> SetUsers(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::trojan::api::SetUserRequest, ::trojan::api::SetUserResponse>>(SetUsersRaw(context));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::api::SetUserRequest, ::api::SetUserResponse>> AsyncSetUsers(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::api::SetUserRequest, ::api::SetUserResponse>>(AsyncSetUsersRaw(context, cq, tag));
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::trojan::api::SetUserRequest, ::trojan::api::SetUserResponse>> AsyncSetUsers(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::trojan::api::SetUserRequest, ::trojan::api::SetUserResponse>>(AsyncSetUsersRaw(context, cq, tag));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::api::SetUserRequest, ::api::SetUserResponse>> PrepareAsyncSetUsers(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::api::SetUserRequest, ::api::SetUserResponse>>(PrepareAsyncSetUsersRaw(context, cq));
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::trojan::api::SetUserRequest, ::trojan::api::SetUserResponse>> PrepareAsyncSetUsers(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::trojan::api::SetUserRequest, ::trojan::api::SetUserResponse>>(PrepareAsyncSetUsersRaw(context, cq));
     }
     class experimental_async_interface {
      public:
       virtual ~experimental_async_interface() {}
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void ListUsers(::grpc::ClientContext* context, ::api::ListUserRequest* request, ::grpc::ClientReadReactor< ::api::ListUserResponse>* reactor) = 0;
+      virtual void ListUsers(::grpc::ClientContext* context, ::trojan::api::ListUserRequest* request, ::grpc::ClientReadReactor< ::trojan::api::ListUserResponse>* reactor) = 0;
       #else
-      virtual void ListUsers(::grpc::ClientContext* context, ::api::ListUserRequest* request, ::grpc::experimental::ClientReadReactor< ::api::ListUserResponse>* reactor) = 0;
+      virtual void ListUsers(::grpc::ClientContext* context, ::trojan::api::ListUserRequest* request, ::grpc::experimental::ClientReadReactor< ::trojan::api::ListUserResponse>* reactor) = 0;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetTraffic(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::api::GetTrafficRequest,::api::GetTrafficResponse>* reactor) = 0;
+      virtual void GetTraffic(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::trojan::api::GetTrafficRequest,::trojan::api::GetTrafficResponse>* reactor) = 0;
       #else
-      virtual void GetTraffic(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::api::GetTrafficRequest,::api::GetTrafficResponse>* reactor) = 0;
+      virtual void GetTraffic(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::trojan::api::GetTrafficRequest,::trojan::api::GetTrafficResponse>* reactor) = 0;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void SetUsers(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::api::SetUserRequest,::api::SetUserResponse>* reactor) = 0;
+      virtual void SetUsers(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::trojan::api::SetUserRequest,::trojan::api::SetUserResponse>* reactor) = 0;
       #else
-      virtual void SetUsers(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::api::SetUserRequest,::api::SetUserResponse>* reactor) = 0;
+      virtual void SetUsers(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::trojan::api::SetUserRequest,::trojan::api::SetUserResponse>* reactor) = 0;
       #endif
     };
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -353,63 +354,63 @@ class TrojanServerService final {
     #endif
     virtual class experimental_async_interface* experimental_async() { return nullptr; }
   private:
-    virtual ::grpc::ClientReaderInterface< ::api::ListUserResponse>* ListUsersRaw(::grpc::ClientContext* context, const ::api::ListUserRequest& request) = 0;
-    virtual ::grpc::ClientAsyncReaderInterface< ::api::ListUserResponse>* AsyncListUsersRaw(::grpc::ClientContext* context, const ::api::ListUserRequest& request, ::grpc::CompletionQueue* cq, void* tag) = 0;
-    virtual ::grpc::ClientAsyncReaderInterface< ::api::ListUserResponse>* PrepareAsyncListUsersRaw(::grpc::ClientContext* context, const ::api::ListUserRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientReaderWriterInterface< ::api::GetTrafficRequest, ::api::GetTrafficResponse>* GetTrafficRaw(::grpc::ClientContext* context) = 0;
-    virtual ::grpc::ClientAsyncReaderWriterInterface< ::api::GetTrafficRequest, ::api::GetTrafficResponse>* AsyncGetTrafficRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
-    virtual ::grpc::ClientAsyncReaderWriterInterface< ::api::GetTrafficRequest, ::api::GetTrafficResponse>* PrepareAsyncGetTrafficRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientReaderWriterInterface< ::api::SetUserRequest, ::api::SetUserResponse>* SetUsersRaw(::grpc::ClientContext* context) = 0;
-    virtual ::grpc::ClientAsyncReaderWriterInterface< ::api::SetUserRequest, ::api::SetUserResponse>* AsyncSetUsersRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
-    virtual ::grpc::ClientAsyncReaderWriterInterface< ::api::SetUserRequest, ::api::SetUserResponse>* PrepareAsyncSetUsersRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderInterface< ::trojan::api::ListUserResponse>* ListUsersRaw(::grpc::ClientContext* context, const ::trojan::api::ListUserRequest& request) = 0;
+    virtual ::grpc::ClientAsyncReaderInterface< ::trojan::api::ListUserResponse>* AsyncListUsersRaw(::grpc::ClientContext* context, const ::trojan::api::ListUserRequest& request, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderInterface< ::trojan::api::ListUserResponse>* PrepareAsyncListUsersRaw(::grpc::ClientContext* context, const ::trojan::api::ListUserRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderWriterInterface< ::trojan::api::GetTrafficRequest, ::trojan::api::GetTrafficResponse>* GetTrafficRaw(::grpc::ClientContext* context) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::trojan::api::GetTrafficRequest, ::trojan::api::GetTrafficResponse>* AsyncGetTrafficRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::trojan::api::GetTrafficRequest, ::trojan::api::GetTrafficResponse>* PrepareAsyncGetTrafficRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderWriterInterface< ::trojan::api::SetUserRequest, ::trojan::api::SetUserResponse>* SetUsersRaw(::grpc::ClientContext* context) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::trojan::api::SetUserRequest, ::trojan::api::SetUserResponse>* AsyncSetUsersRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::trojan::api::SetUserRequest, ::trojan::api::SetUserResponse>* PrepareAsyncSetUsersRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
-    std::unique_ptr< ::grpc::ClientReader< ::api::ListUserResponse>> ListUsers(::grpc::ClientContext* context, const ::api::ListUserRequest& request) {
-      return std::unique_ptr< ::grpc::ClientReader< ::api::ListUserResponse>>(ListUsersRaw(context, request));
+    std::unique_ptr< ::grpc::ClientReader< ::trojan::api::ListUserResponse>> ListUsers(::grpc::ClientContext* context, const ::trojan::api::ListUserRequest& request) {
+      return std::unique_ptr< ::grpc::ClientReader< ::trojan::api::ListUserResponse>>(ListUsersRaw(context, request));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReader< ::api::ListUserResponse>> AsyncListUsers(::grpc::ClientContext* context, const ::api::ListUserRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
-      return std::unique_ptr< ::grpc::ClientAsyncReader< ::api::ListUserResponse>>(AsyncListUsersRaw(context, request, cq, tag));
+    std::unique_ptr< ::grpc::ClientAsyncReader< ::trojan::api::ListUserResponse>> AsyncListUsers(::grpc::ClientContext* context, const ::trojan::api::ListUserRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReader< ::trojan::api::ListUserResponse>>(AsyncListUsersRaw(context, request, cq, tag));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReader< ::api::ListUserResponse>> PrepareAsyncListUsers(::grpc::ClientContext* context, const ::api::ListUserRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncReader< ::api::ListUserResponse>>(PrepareAsyncListUsersRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncReader< ::trojan::api::ListUserResponse>> PrepareAsyncListUsers(::grpc::ClientContext* context, const ::trojan::api::ListUserRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReader< ::trojan::api::ListUserResponse>>(PrepareAsyncListUsersRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientReaderWriter< ::api::GetTrafficRequest, ::api::GetTrafficResponse>> GetTraffic(::grpc::ClientContext* context) {
-      return std::unique_ptr< ::grpc::ClientReaderWriter< ::api::GetTrafficRequest, ::api::GetTrafficResponse>>(GetTrafficRaw(context));
+    std::unique_ptr< ::grpc::ClientReaderWriter< ::trojan::api::GetTrafficRequest, ::trojan::api::GetTrafficResponse>> GetTraffic(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriter< ::trojan::api::GetTrafficRequest, ::trojan::api::GetTrafficResponse>>(GetTrafficRaw(context));
     }
-    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::api::GetTrafficRequest, ::api::GetTrafficResponse>> AsyncGetTraffic(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::api::GetTrafficRequest, ::api::GetTrafficResponse>>(AsyncGetTrafficRaw(context, cq, tag));
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::trojan::api::GetTrafficRequest, ::trojan::api::GetTrafficResponse>> AsyncGetTraffic(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::trojan::api::GetTrafficRequest, ::trojan::api::GetTrafficResponse>>(AsyncGetTrafficRaw(context, cq, tag));
     }
-    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::api::GetTrafficRequest, ::api::GetTrafficResponse>> PrepareAsyncGetTraffic(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::api::GetTrafficRequest, ::api::GetTrafficResponse>>(PrepareAsyncGetTrafficRaw(context, cq));
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::trojan::api::GetTrafficRequest, ::trojan::api::GetTrafficResponse>> PrepareAsyncGetTraffic(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::trojan::api::GetTrafficRequest, ::trojan::api::GetTrafficResponse>>(PrepareAsyncGetTrafficRaw(context, cq));
     }
-    std::unique_ptr< ::grpc::ClientReaderWriter< ::api::SetUserRequest, ::api::SetUserResponse>> SetUsers(::grpc::ClientContext* context) {
-      return std::unique_ptr< ::grpc::ClientReaderWriter< ::api::SetUserRequest, ::api::SetUserResponse>>(SetUsersRaw(context));
+    std::unique_ptr< ::grpc::ClientReaderWriter< ::trojan::api::SetUserRequest, ::trojan::api::SetUserResponse>> SetUsers(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriter< ::trojan::api::SetUserRequest, ::trojan::api::SetUserResponse>>(SetUsersRaw(context));
     }
-    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::api::SetUserRequest, ::api::SetUserResponse>> AsyncSetUsers(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::api::SetUserRequest, ::api::SetUserResponse>>(AsyncSetUsersRaw(context, cq, tag));
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::trojan::api::SetUserRequest, ::trojan::api::SetUserResponse>> AsyncSetUsers(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::trojan::api::SetUserRequest, ::trojan::api::SetUserResponse>>(AsyncSetUsersRaw(context, cq, tag));
     }
-    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::api::SetUserRequest, ::api::SetUserResponse>> PrepareAsyncSetUsers(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::api::SetUserRequest, ::api::SetUserResponse>>(PrepareAsyncSetUsersRaw(context, cq));
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::trojan::api::SetUserRequest, ::trojan::api::SetUserResponse>> PrepareAsyncSetUsers(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::trojan::api::SetUserRequest, ::trojan::api::SetUserResponse>>(PrepareAsyncSetUsersRaw(context, cq));
     }
     class experimental_async final :
       public StubInterface::experimental_async_interface {
      public:
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void ListUsers(::grpc::ClientContext* context, ::api::ListUserRequest* request, ::grpc::ClientReadReactor< ::api::ListUserResponse>* reactor) override;
+      void ListUsers(::grpc::ClientContext* context, ::trojan::api::ListUserRequest* request, ::grpc::ClientReadReactor< ::trojan::api::ListUserResponse>* reactor) override;
       #else
-      void ListUsers(::grpc::ClientContext* context, ::api::ListUserRequest* request, ::grpc::experimental::ClientReadReactor< ::api::ListUserResponse>* reactor) override;
+      void ListUsers(::grpc::ClientContext* context, ::trojan::api::ListUserRequest* request, ::grpc::experimental::ClientReadReactor< ::trojan::api::ListUserResponse>* reactor) override;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetTraffic(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::api::GetTrafficRequest,::api::GetTrafficResponse>* reactor) override;
+      void GetTraffic(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::trojan::api::GetTrafficRequest,::trojan::api::GetTrafficResponse>* reactor) override;
       #else
-      void GetTraffic(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::api::GetTrafficRequest,::api::GetTrafficResponse>* reactor) override;
+      void GetTraffic(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::trojan::api::GetTrafficRequest,::trojan::api::GetTrafficResponse>* reactor) override;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void SetUsers(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::api::SetUserRequest,::api::SetUserResponse>* reactor) override;
+      void SetUsers(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::trojan::api::SetUserRequest,::trojan::api::SetUserResponse>* reactor) override;
       #else
-      void SetUsers(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::api::SetUserRequest,::api::SetUserResponse>* reactor) override;
+      void SetUsers(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::trojan::api::SetUserRequest,::trojan::api::SetUserResponse>* reactor) override;
       #endif
      private:
       friend class Stub;
@@ -422,15 +423,15 @@ class TrojanServerService final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class experimental_async async_stub_{this};
-    ::grpc::ClientReader< ::api::ListUserResponse>* ListUsersRaw(::grpc::ClientContext* context, const ::api::ListUserRequest& request) override;
-    ::grpc::ClientAsyncReader< ::api::ListUserResponse>* AsyncListUsersRaw(::grpc::ClientContext* context, const ::api::ListUserRequest& request, ::grpc::CompletionQueue* cq, void* tag) override;
-    ::grpc::ClientAsyncReader< ::api::ListUserResponse>* PrepareAsyncListUsersRaw(::grpc::ClientContext* context, const ::api::ListUserRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientReaderWriter< ::api::GetTrafficRequest, ::api::GetTrafficResponse>* GetTrafficRaw(::grpc::ClientContext* context) override;
-    ::grpc::ClientAsyncReaderWriter< ::api::GetTrafficRequest, ::api::GetTrafficResponse>* AsyncGetTrafficRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
-    ::grpc::ClientAsyncReaderWriter< ::api::GetTrafficRequest, ::api::GetTrafficResponse>* PrepareAsyncGetTrafficRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientReaderWriter< ::api::SetUserRequest, ::api::SetUserResponse>* SetUsersRaw(::grpc::ClientContext* context) override;
-    ::grpc::ClientAsyncReaderWriter< ::api::SetUserRequest, ::api::SetUserResponse>* AsyncSetUsersRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
-    ::grpc::ClientAsyncReaderWriter< ::api::SetUserRequest, ::api::SetUserResponse>* PrepareAsyncSetUsersRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReader< ::trojan::api::ListUserResponse>* ListUsersRaw(::grpc::ClientContext* context, const ::trojan::api::ListUserRequest& request) override;
+    ::grpc::ClientAsyncReader< ::trojan::api::ListUserResponse>* AsyncListUsersRaw(::grpc::ClientContext* context, const ::trojan::api::ListUserRequest& request, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReader< ::trojan::api::ListUserResponse>* PrepareAsyncListUsersRaw(::grpc::ClientContext* context, const ::trojan::api::ListUserRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReaderWriter< ::trojan::api::GetTrafficRequest, ::trojan::api::GetTrafficResponse>* GetTrafficRaw(::grpc::ClientContext* context) override;
+    ::grpc::ClientAsyncReaderWriter< ::trojan::api::GetTrafficRequest, ::trojan::api::GetTrafficResponse>* AsyncGetTrafficRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReaderWriter< ::trojan::api::GetTrafficRequest, ::trojan::api::GetTrafficResponse>* PrepareAsyncGetTrafficRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReaderWriter< ::trojan::api::SetUserRequest, ::trojan::api::SetUserResponse>* SetUsersRaw(::grpc::ClientContext* context) override;
+    ::grpc::ClientAsyncReaderWriter< ::trojan::api::SetUserRequest, ::trojan::api::SetUserResponse>* AsyncSetUsersRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReaderWriter< ::trojan::api::SetUserRequest, ::trojan::api::SetUserResponse>* PrepareAsyncSetUsersRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_ListUsers_;
     const ::grpc::internal::RpcMethod rpcmethod_GetTraffic_;
     const ::grpc::internal::RpcMethod rpcmethod_SetUsers_;
@@ -441,9 +442,9 @@ class TrojanServerService final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status ListUsers(::grpc::ServerContext* context, const ::api::ListUserRequest* request, ::grpc::ServerWriter< ::api::ListUserResponse>* writer);
-    virtual ::grpc::Status GetTraffic(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::api::GetTrafficResponse, ::api::GetTrafficRequest>* stream);
-    virtual ::grpc::Status SetUsers(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::api::SetUserResponse, ::api::SetUserRequest>* stream);
+    virtual ::grpc::Status ListUsers(::grpc::ServerContext* context, const ::trojan::api::ListUserRequest* request, ::grpc::ServerWriter< ::trojan::api::ListUserResponse>* writer);
+    virtual ::grpc::Status GetTraffic(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::trojan::api::GetTrafficResponse, ::trojan::api::GetTrafficRequest>* stream);
+    virtual ::grpc::Status SetUsers(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::trojan::api::SetUserResponse, ::trojan::api::SetUserRequest>* stream);
   };
   template <class BaseClass>
   class WithAsyncMethod_ListUsers : public BaseClass {
@@ -457,11 +458,11 @@ class TrojanServerService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ListUsers(::grpc::ServerContext* /*context*/, const ::api::ListUserRequest* /*request*/, ::grpc::ServerWriter< ::api::ListUserResponse>* /*writer*/) override {
+    ::grpc::Status ListUsers(::grpc::ServerContext* /*context*/, const ::trojan::api::ListUserRequest* /*request*/, ::grpc::ServerWriter< ::trojan::api::ListUserResponse>* /*writer*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestListUsers(::grpc::ServerContext* context, ::api::ListUserRequest* request, ::grpc::ServerAsyncWriter< ::api::ListUserResponse>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestListUsers(::grpc::ServerContext* context, ::trojan::api::ListUserRequest* request, ::grpc::ServerAsyncWriter< ::trojan::api::ListUserResponse>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncServerStreaming(0, context, request, writer, new_call_cq, notification_cq, tag);
     }
   };
@@ -477,11 +478,11 @@ class TrojanServerService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::GetTrafficResponse, ::api::GetTrafficRequest>* /*stream*/)  override {
+    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::trojan::api::GetTrafficResponse, ::trojan::api::GetTrafficRequest>* /*stream*/)  override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetTraffic(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::api::GetTrafficResponse, ::api::GetTrafficRequest>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestGetTraffic(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::trojan::api::GetTrafficResponse, ::trojan::api::GetTrafficRequest>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncBidiStreaming(1, context, stream, new_call_cq, notification_cq, tag);
     }
   };
@@ -497,11 +498,11 @@ class TrojanServerService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SetUsers(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::SetUserResponse, ::api::SetUserRequest>* /*stream*/)  override {
+    ::grpc::Status SetUsers(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::trojan::api::SetUserResponse, ::trojan::api::SetUserRequest>* /*stream*/)  override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestSetUsers(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::api::SetUserResponse, ::api::SetUserRequest>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestSetUsers(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::trojan::api::SetUserResponse, ::trojan::api::SetUserRequest>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncBidiStreaming(2, context, stream, new_call_cq, notification_cq, tag);
     }
   };
@@ -518,29 +519,29 @@ class TrojanServerService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodCallback(0,
-          new ::grpc_impl::internal::CallbackServerStreamingHandler< ::api::ListUserRequest, ::api::ListUserResponse>(
+          new ::grpc_impl::internal::CallbackServerStreamingHandler< ::trojan::api::ListUserRequest, ::trojan::api::ListUserResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
     #else
                    ::grpc::experimental::CallbackServerContext*
     #endif
-                     context, const ::api::ListUserRequest* request) { return this->ListUsers(context, request); }));
+                     context, const ::trojan::api::ListUserRequest* request) { return this->ListUsers(context, request); }));
     }
     ~ExperimentalWithCallbackMethod_ListUsers() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ListUsers(::grpc::ServerContext* /*context*/, const ::api::ListUserRequest* /*request*/, ::grpc::ServerWriter< ::api::ListUserResponse>* /*writer*/) override {
+    ::grpc::Status ListUsers(::grpc::ServerContext* /*context*/, const ::trojan::api::ListUserRequest* /*request*/, ::grpc::ServerWriter< ::trojan::api::ListUserResponse>* /*writer*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerWriteReactor< ::api::ListUserResponse>* ListUsers(
-      ::grpc::CallbackServerContext* /*context*/, const ::api::ListUserRequest* /*request*/)
+    virtual ::grpc::ServerWriteReactor< ::trojan::api::ListUserResponse>* ListUsers(
+      ::grpc::CallbackServerContext* /*context*/, const ::trojan::api::ListUserRequest* /*request*/)
     #else
-    virtual ::grpc::experimental::ServerWriteReactor< ::api::ListUserResponse>* ListUsers(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::api::ListUserRequest* /*request*/)
+    virtual ::grpc::experimental::ServerWriteReactor< ::trojan::api::ListUserResponse>* ListUsers(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::trojan::api::ListUserRequest* /*request*/)
     #endif
       { return nullptr; }
   };
@@ -556,7 +557,7 @@ class TrojanServerService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodCallback(1,
-          new ::grpc_impl::internal::CallbackBidiHandler< ::api::GetTrafficRequest, ::api::GetTrafficResponse>(
+          new ::grpc_impl::internal::CallbackBidiHandler< ::trojan::api::GetTrafficRequest, ::trojan::api::GetTrafficResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -569,15 +570,15 @@ class TrojanServerService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::GetTrafficResponse, ::api::GetTrafficRequest>* /*stream*/)  override {
+    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::trojan::api::GetTrafficResponse, ::trojan::api::GetTrafficRequest>* /*stream*/)  override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerBidiReactor< ::api::GetTrafficRequest, ::api::GetTrafficResponse>* GetTraffic(
+    virtual ::grpc::ServerBidiReactor< ::trojan::api::GetTrafficRequest, ::trojan::api::GetTrafficResponse>* GetTraffic(
       ::grpc::CallbackServerContext* /*context*/)
     #else
-    virtual ::grpc::experimental::ServerBidiReactor< ::api::GetTrafficRequest, ::api::GetTrafficResponse>* GetTraffic(
+    virtual ::grpc::experimental::ServerBidiReactor< ::trojan::api::GetTrafficRequest, ::trojan::api::GetTrafficResponse>* GetTraffic(
       ::grpc::experimental::CallbackServerContext* /*context*/)
     #endif
       { return nullptr; }
@@ -594,7 +595,7 @@ class TrojanServerService final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodCallback(2,
-          new ::grpc_impl::internal::CallbackBidiHandler< ::api::SetUserRequest, ::api::SetUserResponse>(
+          new ::grpc_impl::internal::CallbackBidiHandler< ::trojan::api::SetUserRequest, ::trojan::api::SetUserResponse>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -607,15 +608,15 @@ class TrojanServerService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SetUsers(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::SetUserResponse, ::api::SetUserRequest>* /*stream*/)  override {
+    ::grpc::Status SetUsers(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::trojan::api::SetUserResponse, ::trojan::api::SetUserRequest>* /*stream*/)  override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerBidiReactor< ::api::SetUserRequest, ::api::SetUserResponse>* SetUsers(
+    virtual ::grpc::ServerBidiReactor< ::trojan::api::SetUserRequest, ::trojan::api::SetUserResponse>* SetUsers(
       ::grpc::CallbackServerContext* /*context*/)
     #else
-    virtual ::grpc::experimental::ServerBidiReactor< ::api::SetUserRequest, ::api::SetUserResponse>* SetUsers(
+    virtual ::grpc::experimental::ServerBidiReactor< ::trojan::api::SetUserRequest, ::trojan::api::SetUserResponse>* SetUsers(
       ::grpc::experimental::CallbackServerContext* /*context*/)
     #endif
       { return nullptr; }
@@ -637,7 +638,7 @@ class TrojanServerService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ListUsers(::grpc::ServerContext* /*context*/, const ::api::ListUserRequest* /*request*/, ::grpc::ServerWriter< ::api::ListUserResponse>* /*writer*/) override {
+    ::grpc::Status ListUsers(::grpc::ServerContext* /*context*/, const ::trojan::api::ListUserRequest* /*request*/, ::grpc::ServerWriter< ::trojan::api::ListUserResponse>* /*writer*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -654,7 +655,7 @@ class TrojanServerService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::GetTrafficResponse, ::api::GetTrafficRequest>* /*stream*/)  override {
+    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::trojan::api::GetTrafficResponse, ::trojan::api::GetTrafficRequest>* /*stream*/)  override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -671,7 +672,7 @@ class TrojanServerService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SetUsers(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::SetUserResponse, ::api::SetUserRequest>* /*stream*/)  override {
+    ::grpc::Status SetUsers(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::trojan::api::SetUserResponse, ::trojan::api::SetUserRequest>* /*stream*/)  override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -688,7 +689,7 @@ class TrojanServerService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ListUsers(::grpc::ServerContext* /*context*/, const ::api::ListUserRequest* /*request*/, ::grpc::ServerWriter< ::api::ListUserResponse>* /*writer*/) override {
+    ::grpc::Status ListUsers(::grpc::ServerContext* /*context*/, const ::trojan::api::ListUserRequest* /*request*/, ::grpc::ServerWriter< ::trojan::api::ListUserResponse>* /*writer*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -708,7 +709,7 @@ class TrojanServerService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::GetTrafficResponse, ::api::GetTrafficRequest>* /*stream*/)  override {
+    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::trojan::api::GetTrafficResponse, ::trojan::api::GetTrafficRequest>* /*stream*/)  override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -728,7 +729,7 @@ class TrojanServerService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SetUsers(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::SetUserResponse, ::api::SetUserRequest>* /*stream*/)  override {
+    ::grpc::Status SetUsers(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::trojan::api::SetUserResponse, ::trojan::api::SetUserRequest>* /*stream*/)  override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -761,7 +762,7 @@ class TrojanServerService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ListUsers(::grpc::ServerContext* /*context*/, const ::api::ListUserRequest* /*request*/, ::grpc::ServerWriter< ::api::ListUserResponse>* /*writer*/) override {
+    ::grpc::Status ListUsers(::grpc::ServerContext* /*context*/, const ::trojan::api::ListUserRequest* /*request*/, ::grpc::ServerWriter< ::trojan::api::ListUserResponse>* /*writer*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -799,7 +800,7 @@ class TrojanServerService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::GetTrafficResponse, ::api::GetTrafficRequest>* /*stream*/)  override {
+    ::grpc::Status GetTraffic(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::trojan::api::GetTrafficResponse, ::trojan::api::GetTrafficRequest>* /*stream*/)  override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -837,7 +838,7 @@ class TrojanServerService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SetUsers(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::api::SetUserResponse, ::api::SetUserRequest>* /*stream*/)  override {
+    ::grpc::Status SetUsers(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::trojan::api::SetUserResponse, ::trojan::api::SetUserRequest>* /*stream*/)  override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -858,24 +859,25 @@ class TrojanServerService final {
    public:
     WithSplitStreamingMethod_ListUsers() {
       ::grpc::Service::MarkMethodStreamed(0,
-        new ::grpc::internal::SplitServerStreamingHandler< ::api::ListUserRequest, ::api::ListUserResponse>(std::bind(&WithSplitStreamingMethod_ListUsers<BaseClass>::StreamedListUsers, this, std::placeholders::_1, std::placeholders::_2)));
+        new ::grpc::internal::SplitServerStreamingHandler< ::trojan::api::ListUserRequest, ::trojan::api::ListUserResponse>(std::bind(&WithSplitStreamingMethod_ListUsers<BaseClass>::StreamedListUsers, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithSplitStreamingMethod_ListUsers() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status ListUsers(::grpc::ServerContext* /*context*/, const ::api::ListUserRequest* /*request*/, ::grpc::ServerWriter< ::api::ListUserResponse>* /*writer*/) override {
+    ::grpc::Status ListUsers(::grpc::ServerContext* /*context*/, const ::trojan::api::ListUserRequest* /*request*/, ::grpc::ServerWriter< ::trojan::api::ListUserResponse>* /*writer*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with split streamed
-    virtual ::grpc::Status StreamedListUsers(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::api::ListUserRequest,::api::ListUserResponse>* server_split_streamer) = 0;
+    virtual ::grpc::Status StreamedListUsers(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::trojan::api::ListUserRequest,::trojan::api::ListUserResponse>* server_split_streamer) = 0;
   };
   typedef WithSplitStreamingMethod_ListUsers<Service > SplitStreamedService;
   typedef WithSplitStreamingMethod_ListUsers<Service > StreamedService;
 };
 
 }  // namespace api
+}  // namespace trojan
 
 
 #endif  // GRPC_trojangoapi_2eproto__INCLUDED
