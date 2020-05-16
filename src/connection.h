@@ -28,6 +28,7 @@
 #include "ssthread.h"
 #include "SSRThread.hpp"
 #include "tun2socksthread.h"
+#include "v2raythread.h"
 #include "trojanthread.h"
 #include "systemproxyhelper.h"
 #include "tqprofile.h"
@@ -80,9 +81,11 @@ private:
     SSThread *ss;
     std::unique_ptr<SSRThread> ssr;
     Tun2socksThread *tun2socks;
+    V2rayThread *v2ray;
     TrojanThread *trojan;
     RouteTableHelper *rhelper;
     SSGoAPI *ssGoAPI;
+
     TrojanGoAPI *trojanGoAPI;
     TQProfile profile;
     bool running;

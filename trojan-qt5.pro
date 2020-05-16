@@ -233,6 +233,7 @@ SOURCES += \
     src/clickablelabel.cpp \
     src/sseditdialog.cpp \
     src/snelleditdialog.cpp \
+    src/v2raythread.cpp \
     src/vmesseditdialog.cpp \
     src/ssgoapi.cpp \
     src/routewidget.cpp \
@@ -287,6 +288,7 @@ HEADERS += \
     src/clickablelabel.h \
     src/sseditdialog.h \
     src/snelleditdialog.h \
+    src/v2raythread.h \
     src/vmesseditdialog.h \
     src/ssgoapi.h \
     src/routewidget.h \
@@ -327,8 +329,9 @@ headers.path = /usr/include
 headers.CONFIG = no_check_exist
 headers.files = $${PROTOBUF_HEADERS}
 
-INCLUDEPATH += $$PWD/3rd/yaml-cpp/include
 INCLUDEPATH += $$PWD/src
+INCLUDEPATH += $$PWD/3rd/trojan-qt5-core
+INCLUDEPATH += $$PWD/3rd/yaml-cpp/include
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

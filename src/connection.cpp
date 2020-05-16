@@ -179,6 +179,7 @@ void Connection::start()
         ssr->connect(ssr.get(), &SSRThread::onSSRThreadLog, this, &Connection::onLog);
     } else if (profile.type == "vmess") {
         conf->generateV2rayJson(profile);
+        v2ray = new V2rayThread(file);
     } else if (profile.type == "trojan") {
         //generate Config File that trojan will use
         conf->connectionToJson(profile);
@@ -198,7 +199,7 @@ void Connection::start()
     } else if (profile.type == "ssr") {
         ssr->start();
     } else if (profile.type == "vmess") {
-        startV2rayGo(file.toUtf8().data());
+       v2ray->start();
     } else if (profile.type == "trojan") {
         trojan->start();
         if (conf->isEnableTrojanAPI()) {
@@ -263,6 +264,8 @@ void Connection::stop()
             }
         } else if (profile.type == "ssr") {
             ssr->stop();
+        } else if (profile.type == "vmess") {
+            v2ray->stop();
         } else if (profile.type == "trojan") {
             trojan->stop();
             if (conf->isEnableTrojanAPI()) {
@@ -305,6 +308,8 @@ void Connection::onStartFailed()
         }
     } else if (profile.type == "ssr") {
         ssr->stop();
+    } else if (profile.type == "vmess") {
+        v2ray->stop();
     } else if (profile.type == "trojan") {
         trojan->stop();
         if (conf->isEnableTrojanAPI()) {
