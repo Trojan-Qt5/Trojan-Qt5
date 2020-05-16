@@ -61,7 +61,9 @@ TQProfile::TQProfile(const QString &uri)
 
 bool TQProfile::equals(const TQProfile &profile) const
 {
-    return (serverPort == profile.serverPort
+    return (type == profile.type
+         && serverPort == profile.serverPort
+         && group == profile.group
          && name == profile.name
          && verifyCertificate == profile.verifyCertificate
          && verifyHostname == profile.verifyHostname
@@ -156,13 +158,13 @@ TQProfile TQProfile::fromSSRUri(const std::string& ssrUri) const
 
     result.password = Utils::Base64UrlDecode(decoded2[0]);
 
-    QUrl url(decoded2[1]);
+    QUrl url(decodedUri);
     QUrlQuery query(url.query());
 
-    result.protocolParam = query.queryItemValue("protoparam");
-    result.obfsParam = query.queryItemValue("obfsparam");
-    result.name = query.queryItemValue("remarks");
-    result.group = query.queryItemValue("group");
+    result.protocolParam = Utils::Base64UrlDecode(query.queryItemValue("protoparam"));
+    result.obfsParam = Utils::Base64UrlDecode(query.queryItemValue("obfsparam"));
+    result.name = Utils::Base64UrlDecode(query.queryItemValue("remarks"));
+    result.group = Utils::Base64UrlDecode(query.queryItemValue("group"));
 
     return result;
 }

@@ -179,10 +179,21 @@ void ConnectionTableModel::replace(Connection *newCon)
         if (con->getProfile().serverAddress == newCon->getProfile().serverAddress &&
             con->getProfile().serverPort == newCon->getProfile().serverPort) {
             TQProfile p;
+            p.type = newCon->getProfile().type;
             p.serverAddress = newCon->getProfile().serverAddress;
             p.serverPort = newCon->getProfile().serverPort;
             p.password = newCon->getProfile().password;
+            p.method = newCon->getProfile().method;
+            p.uuid = newCon->getProfile().uuid;
+            p.alterID = newCon->getProfile().alterID;
+            p.protocol = newCon->getProfile().method;
+            p.protocolParam = newCon->getProfile().protocolParam;
+            p.obfs = newCon->getProfile().obfs;
+            p.obfsParam = newCon->getProfile().obfsParam;
+            p.mux = newCon->getProfile().mux;
+            p.websocket = newCon->getProfile().websocket;
             p.name = newCon->getProfile().name;
+            p.vmessSettings = newCon->getProfile().vmessSettings;
             con->setProfile(p);
         }
 
