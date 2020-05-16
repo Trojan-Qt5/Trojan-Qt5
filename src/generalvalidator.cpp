@@ -54,6 +54,8 @@ bool GeneralValidator::validateTrojan(const QString &input)
 bool GeneralValidator::validatePort(const QString &port)
 {
     bool ok;
+    if (port.isEmpty())
+        return true;
     port.toUShort(&ok);
     return ok;
 }

@@ -368,7 +368,7 @@ QString TQProfile::toVmessUri() const
  */
 QString TQProfile::toTrojanUri() const
 {
-    QString trojanUri = password.toUtf8().toPercentEncoding() + "@" + serverAddress + ":" + QString::number(serverPort) + "?allowinsecure=" + QString::number(int(!verifyCertificate)) + "&tfo=" + QString::number(tcpFastOpen) + "&sni=" + sni + "&mux" + mux + "&group=" + group.toUtf8().toPercentEncoding();
+    QString trojanUri = password.toUtf8().toPercentEncoding() + "@" + serverAddress + ":" + QString::number(serverPort) + "?allowinsecure=" + QString::number(int(!verifyCertificate)) + "&tfo=" + QString::number(tcpFastOpen) + "&sni=" + sni + "&mux" + mux + "&ws" + websocket + "&group=" + group.toUtf8().toPercentEncoding();
     QByteArray uri = QByteArray(trojanUri.toUtf8());
     uri.prepend("trojan://");
     uri.append("#");

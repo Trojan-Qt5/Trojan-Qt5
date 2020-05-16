@@ -197,6 +197,8 @@ void Connection::start()
         }
     } else if (profile.type == "ssr") {
         ssr->start();
+    } else if (profile.type == "vmess") {
+        startV2rayGo(file.toUtf8().data());
     } else if (profile.type == "trojan") {
         trojan->start();
         if (conf->isEnableTrojanAPI()) {

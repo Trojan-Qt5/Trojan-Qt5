@@ -82,6 +82,7 @@ void ConfigHelper::save(const ConnectionTableModel &model)
     settings->setValue("TrojanCertPath", QVariant(trojanCertPath));
     settings->setValue("TrojanCipher", QVariant(trojanCipher));
     settings->setValue("TrojanCipherTLS13", QVariant(trojanCipherTLS13));
+    settings->setValue("Route", QVariant(route));
 }
 
 void ConfigHelper::saveSubscribes(QList<TQSubscribe> subscribes)
@@ -508,7 +509,14 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
 
 void ConfigHelper::generateV2rayJson(TQProfile &profile)
 {
+    QDir path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Library/Logs/Trojan-Qt5";
+
     QJsonObject configObj;
+    QJsonObject log;
+    log["access"] = path.path() + "/core.log";
+    log["error"] = path.path() + "/core.log";
+    log["level"] = "info";
+    configObj["log"] = log;
     QJsonObject stats;
     configObj["stats"] = stats;
     QJsonObject api;
@@ -516,33 +524,86 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
     QJsonArray apiServices;
     apiServices.append("StatsService");
     configObj["api"] = api;
+    QJsonObject policy;
+    QJsonObject system;
+    system["statsInboundUplink"] = true;
+    system["statsInboundDownlink"] = true;
+    policy["system"] = system;
+    configObj["policy"] = policy;
+    QJsonObject routing;
+    routing["domainStrategy"] = route["domainStrategy"].toString();
+    QJsonArray rules;
+    QJsonObject apiRule;
+    apiRule["type"] = "field";
+    apiRule["outboundTag"] = "api";
+    QJsonArray apiRuleInboundTag;
+    apiRuleInboundTag.append("api_in");
+    apiRule["inboundTag"] = apiRuleInboundTag;
+    QJsonObject direct;
+    direct["type"] = "field";
+    if (route["domain"].toObject()["direct"].toArray().size() != 0 && route["ip"].toObject()["direct"].toArray().size() != 0)
+        direct["domain"] = route["domain"].toObject()["direct"].toArray();
+    if (route["domain"].toObject()["direct"].toArray().size() != 0 && route["ip"].toObject()["direct"].toArray().size() != 0)
+        direct["ip"] = route["ip"].toObject()["direct"].toArray();
+    direct["outboundTag"] = "direct";
+    QJsonObject proxy;
+    proxy["type"] = "field";
+    if (route["domain"].toObject()["proxy"].toArray().size() != 0)
+        proxy["domain"] = route["domain"].toObject()["proxy"].toArray();
+    if (route["ip"].toObject()["proxy"].toArray().size() != 0)
+        proxy["ip"] = route["ip"].toObject()["proxy"].toArray();
+    proxy["outboundTag"] = "proxy";
+    QJsonObject block;
+    block["type"] = "field";
+    if (route["ip"].toObject()["block"].toArray().size() != 0)
+     block["domain"] = route["domain"].toObject()["block"].toArray();
+    if (route["ip"].toObject()["block"].toArray().size() != 0)
+        block["ip"] = route["ip"].toObject()["block"].toArray();
+    block["outboundTag"] = "block";
+    rules.append(apiRule);
+    if (route["domain"].toObject()["direct"].toArray().size() != 0 && route["ip"].toObject()["direct"].toArray().size() != 0)
+        rules.append(direct);
+    if (route["domain"].toObject()["proxy"].toArray().size() != 0 && route["ip"].toObject()["proxy"].toArray().size() != 0)
+        rules.append(proxy);
+    if (route["domain"].toObject()["block"].toArray().size() != 0 && route["ip"].toObject()["block"].toArray().size() != 0)
+        rules.append(block);
+    routing["rules"] = rules;
+    configObj["routing"] = routing;
     QJsonArray inboundsArray;
-    QJsonObject inbound;
-    QJsonObject inboundSettings;
-    inbound["port"] = socks5Port;
-    inbound["protocol"] = "socks";
-    inboundSettings["udp"] = true;
-    inboundSettings["auth"] = "noauth";
-    inboundSettings["ip"] = isEnableIpv6Support() ? (isShareOverLan() ? "::" : "::1") : (isShareOverLan() ? "0.0.0.0" : "127.0.0.1");
-    inbound["settings"] = inboundSettings;
-    inbound["tag"] = "in-0";
-    inboundsArray.append(inbound);
-    configObj["inbound"] = inboundsArray;
+    QJsonObject socks;
+    QJsonObject socksSettings;
+    socks["port"] = socks5Port;
+    socks["protocol"] = "socks";
+    socksSettings["udp"] = true;
+    socksSettings["auth"] = "noauth";
+    socksSettings["ip"] = isEnableIpv6Support() ? (isShareOverLan() ? "::" : "::1") : (isShareOverLan() ? "0.0.0.0" : "127.0.0.1");
+    socks["settings"] = socksSettings;
+    socks["tag"] = "inbound";
+    QJsonObject apiIn;
+    apiIn["port"] = trojanAPIPort;
+    apiIn["protocol"] = "dokodemo-door";
+    QJsonObject apiInSettings;
+    apiInSettings["ip"] = "127.0.0.1";
+    apiIn["settings"] = apiInSettings;
+    apiIn["tag"] = "api_in";
+    inboundsArray.append(apiIn);
+    inboundsArray.append(socks);
+    configObj["inbounds"] = inboundsArray;
     QJsonArray outboundsArray;
     QJsonObject outbound;
     outbound["protocol"] = "vmess";
-    outbound["tag"] = "out-0";
-    QJsonArray vnetArray;
-    QJsonObject vnet;
-    vnet["address"] = profile.serverAddress;
-    vnet["port"] = profile.serverPort;
+    outbound["tag"] = "proxy";
+    QJsonArray vnextArray;
+    QJsonObject vnext;
+    vnext["address"] = profile.serverAddress;
+    vnext["port"] = profile.serverPort;
     QJsonArray usersArray;
     QJsonObject users;
     users["id"] = profile.uuid;
     users["alterId"] = profile.alterID;
     usersArray.append(users);
-    vnet["users"] = usersArray;
-    vnetArray.append(vnet);
+    vnext["users"] = usersArray;
+    vnextArray.append(vnext);
     QJsonObject streamSettings;
     streamSettings["network"] = profile.vmessSettings["network"].toString();
     streamSettings["security"] = profile.vmessSettings["tls"].toObject()["enable"].toBool() ? "tls" : "none";
@@ -580,10 +641,34 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
         quicHeader["type"] = profile.vmessSettings["quic"].toObject()["header"].toObject()["type"].toString();
         streamSettings["quicSettings"] = quicSettings;
     }
-    outbound["vnet"] = vnetArray;
+    QJsonObject vmessOutSettings;
+    vmessOutSettings["vnext"] = vnextArray;
+    outbound["settings"] = vmessOutSettings;
     outbound["streamSettings"] = streamSettings;
+    QJsonObject freedom;
+    freedom["protocol"] = "freedom";
+    freedom["sendThrough"] = "0.0.0.0";
+    QJsonObject settingsFreedom;
+    settingsFreedom["domainStrategy"] = "AsIs";
+    settingsFreedom["redirect"] = ":0";
+    settingsFreedom["userLevel"] = 0;
+    freedom["settings"] = settingsFreedom;
+    freedom["streamSettings"] = QJsonObject();
+    freedom["tag"] = "direct";
+    QJsonObject blackhole;
+    blackhole["protocol"] = "blackhole";
+    blackhole["sendThrough"] = "0.0.0.0";
+    QJsonObject response;
+    response["type"] = "none";
+    QJsonObject settingsBlackHole;
+    settingsBlackHole["response"] = response;
+    blackhole["settings"] = settingsBlackHole;
+    blackhole["streamSettings"] = QJsonObject();
+    blackhole["tag"] = "block";
+    outboundsArray.append(freedom);
+    outboundsArray.append(blackhole);
     outboundsArray.append(outbound);
-    configObj["outbound"] = outboundsArray;
+    configObj["outbounds"] = outboundsArray;
 
     QJsonDocument JSONDoc(configObj);
 
@@ -1032,6 +1117,9 @@ void ConfigHelper::readGeneralSettings()
     trojanCertPath = settings->value("TrojanCertPath", QVariant("")).toString();
     trojanCipher = settings->value("TrojanCipher", QVariant("ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES128-SHA:ECDHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA:AES128-SHA:AES256-SHA:DES-CBC3-SHA")).toString();
     trojanCipherTLS13 = settings->value("TrojanCipherTLS13", QVariant("TLS_AES_128_GCM_SHA256:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_256_GCM_SHA384")).toString();
+    QJsonObject temp;
+    temp["domainStrategy"] = "AsIs";
+    route = settings->value("Route", QVariant(temp)).toJsonObject();
 }
 
 void ConfigHelper::checkProfileDataUsageReset(TQProfile &profile)
