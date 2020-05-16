@@ -14,6 +14,7 @@ public:
     static QString Base64UrlDecode(QString encodedText);
     static QStringList splitLines(const QString &string);
     static QString toCamelCase(const QString& s);
+    static QString getLogDir();
 
 };
 

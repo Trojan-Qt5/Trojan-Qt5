@@ -2,6 +2,7 @@
 #include "confighelper.h"
 #include <QCoreApplication>
 #include <QDir>
+#include <QStandardPaths>
 
 Utils::Utils()
 {}
@@ -32,6 +33,18 @@ QString Utils::toCamelCase(const QString& s)
         parts[i].replace(0, 1, parts[i][0].toUpper());
 
     return parts.join(" ");
+}
+
+
+QString Utils::getLogDir()
+{
+#if defined (Q_OS_WIN)
+    return QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+#elif defined(Q_OS_MAC)
+    return QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Library/Logs/Trojan-Qt5";
+#elif defined (Q_OS_LINUX)
+    return QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + "/trojan-qt5";
+#endif
 }
 
 /*

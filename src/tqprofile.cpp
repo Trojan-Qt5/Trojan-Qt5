@@ -94,6 +94,12 @@ TQProfile TQProfile::fromSSUri(const std::string& ssUri) const
 
     //remove the prefix "ss://" from uri
     std::string uri(ssUri.data() + 5, ssUri.length() - 5);
+    size_t hashPos = uri.find_last_of('#');
+    if (hashPos != std::string::npos) {
+        // Get the name/remark
+        result.name = QUrl::fromPercentEncoding(QString::fromStdString(uri.substr(hashPos + 1)).toUtf8().data());
+        uri.erase(hashPos);
+    }
 
     size_t atPos = uri.find_first_of('@');
     if (atPos != std::string::npos) {
@@ -150,23 +156,13 @@ TQProfile TQProfile::fromSSRUri(const std::string& ssrUri) const
 
     result.password = Utils::Base64UrlDecode(decoded2[0]);
 
-    QStringList decoded3 = decoded2[1].split("&");
+    QUrl url(decoded2[1]);
+    QUrlQuery query(url.query());
 
-    for (QString data: decoded3) {
-        if (data.startsWith("obfs")) {
-            data = data.replace("obfsparam=", "");
-            result.obfsParam = Utils::Base64UrlDecode(data);
-        } else if (data.startsWith("proto")) {
-            data = data.replace("protoparam=", "");
-            result.protocolParam = Utils::Base64UrlDecode(data);
-        } else if (data.startsWith("remarks")) {
-            data = data.replace("remarks=", "");
-            result.name = Utils::Base64UrlDecode(data);
-        } else if (data.startsWith("group")) {
-            data = data.replace("group=", "");
-            result.group = Utils::Base64UrlDecode(data);
-        }
-    }
+    result.protocolParam = query.queryItemValue("protoparam");
+    result.obfsParam = query.queryItemValue("obfsparam");
+    result.name = query.queryItemValue("remarks");
+    result.group = query.queryItemValue("group");
 
     return result;
 }
@@ -196,7 +192,7 @@ TQProfile TQProfile::fromVmessUri(const std::string& vmessUri) const
 
     result.name = vmess["ps"].toString();
     result.serverAddress = vmess["add"].toString();
-    result.serverPort = vmess["port"].toString().toInt();
+    result.serverPort = vmess["port"].toVariant().toInt();
     result.uuid = vmess["id"].toString();
     result.alterID = vmess["aid"].toString().toInt();
 
@@ -302,7 +298,7 @@ TQProfile TQProfile::fromTrojanUri(const std::string& trojanUri) const
 QString TQProfile::toSSUri() const
 {
     QString userInfoBase64 = Utils::Base64UrlEncode(method + ":" + password);
-    return "ss://" + userInfoBase64 + "@" + serverAddress + ":" + QString::number(serverPort);
+    return "ss://" + userInfoBase64 + "@" + serverAddress + ":" + QString::number(serverPort) + "#" + name.toUtf8().toPercentEncoding();
 }
 
 /**

@@ -17,6 +17,7 @@
 #include "midman.h"
 #include "aboutdialog.h"
 #include "logger.h"
+#include "utils.h"
 #include "QtAwesome.h"
 
 #include <QClipboard>
@@ -892,12 +893,11 @@ void MainWindow::initSparkle()
 
 void MainWindow::initLog()
 {
-    QDir path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Library/Logs/Trojan-Qt5";
+    QDir path = Utils::getLogDir();
     if (!path.exists()) {
         path.mkpath(".");
     }
     QString guiLog = path.path() + "/gui.log";
-    QString trojanLog = path.path() + "/trojan.log";
 
     //Initialize the gui's log.
     Logger::init(guiLog);

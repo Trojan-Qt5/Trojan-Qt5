@@ -7,7 +7,6 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QDebug>
-#include <QStandardPaths>
 
 #include "logger.h"
 #include "yaml-cpp/yaml.h"
@@ -19,6 +18,7 @@ ConfigHelper::ConfigHelper(const QString &configuration, QObject *parent) :
     QObject(parent),
     configFile(configuration)
 {
+    QFile::setPermissions(configFile, QFile::ReadOwner | QFile::WriteOwner | QFile::ReadGroup | QFile::WriteGroup);
     settings = new QSettings(configFile, QSettings::IniFormat, this);
     readGeneralSettings();
 }
@@ -414,8 +414,6 @@ Connection* ConfigHelper::configJsonToConnection(const QString &file)
 
 void ConfigHelper::connectionToJson(TQProfile &profile)
 {
-    QDir path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Library/Logs/Trojan-Qt5";
-
     QJsonObject configObj;
     configObj["run_type"] = "client";
     configObj["local_addr"] = isEnableIpv6Support() ? (isShareOverLan() ? "::" : "::1") : (isShareOverLan() ? "0.0.0.0" : "127.0.0.1");
@@ -426,7 +424,7 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
     passwordArray.append(profile.password);
     configObj["password"] = QJsonValue(passwordArray);
     configObj["log_level"] = logLevel;
-    configObj["log_file"] = path.path() + "/trojan.log";
+    configObj["log_file"] = Utils::getLogDir() + "/trojan.log";
     QJsonObject ssl;
     ssl["verify"] = profile.verifyCertificate;
     ssl["verify_hostname"] = profile.verifyHostname;
@@ -509,12 +507,10 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
 
 void ConfigHelper::generateV2rayJson(TQProfile &profile)
 {
-    QDir path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Library/Logs/Trojan-Qt5";
-
     QJsonObject configObj;
     QJsonObject log;
-    log["access"] = path.path() + "/core.log";
-    log["error"] = path.path() + "/core.log";
+    log["access"] = Utils::getLogDir() + "/core.log";
+    log["error"] = Utils::getLogDir() + "/core.log";
     log["level"] = "info";
     configObj["log"] = log;
     QJsonObject stats;
@@ -609,6 +605,11 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
     streamSettings["security"] = profile.vmessSettings["tls"].toObject()["enable"].toBool() ? "tls" : "none";
     if (streamSettings["network"] == "tcp") {
         QJsonObject tcpSettings;
+        QJsonObject tcpHeader;
+        tcpHeader["type"] = profile.vmessSettings["tcp"].toObject()["header"].toObject()["type"].toString();
+        tcpHeader["request"] = QJsonDocument::fromJson(profile.vmessSettings["tcp"].toObject()["header"].toObject()["request"].toString().toUtf8().data()).object();
+        tcpHeader["response"] = QJsonDocument::fromJson(profile.vmessSettings["tcp"].toObject()["header"].toObject()["response"].toString().toUtf8().data()).object();
+        tcpSettings["header"] = tcpHeader;
         streamSettings["tcpSettings"] = tcpSettings;
     } else if (streamSettings["network"] == "kcp") {
         QJsonObject kcpSettings;
