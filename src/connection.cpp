@@ -136,7 +136,8 @@ void Connection::start()
     if (conf->getSystemProxySettings() == "advance") {
         //initialize tun2socks and route table helper
         tun2socks = new Tun2socksThread();
-        rhelper = new RouteTableHelper(profile.serverAddress);
+        QString serverAddress = profile.serverAddress;
+        rhelper = new RouteTableHelper(serverAddress);
     }
 
 #ifdef Q_OS_WIN
