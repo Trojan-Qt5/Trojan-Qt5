@@ -3,6 +3,11 @@
 #include <stdlib.h>
 #include <QProcess>
 #include <QHostInfo>
+#if defined (Q_OS_WIN)
+#include "Windows.h"
+#include "WinSock2.h"
+#include "iphlpapi.h"
+#endif
 
 RouteTableHelper::RouteTableHelper(QString serverAddress) : serverAddress(serverAddress)
 {
@@ -22,11 +27,14 @@ QString RouteTableHelper::getDefaultGateWay()
     QProcess *task = new QProcess;
     QStringList param;
 #if defined (Q_OS_WIN)
-    task->start("cmd /c \"FOR /F \"tokens=13\" %x IN ('\"ipconfig /renew * > nul & ipconfig | findstr \"Default Gateway\" | findstr \"[0-9]*\\.[0-9]*\\.[0-9]*\\.[0-9]*\"\"') DO echo %x\"");
-    task->waitForFinished();
-    QString gateway = task->readAllStandardOutput();
-    gateway = gateway.remove("\n");
-    return gateway;
+    QString gateway;
+    MIB_IPFORWARDROW BestRoute;
+    DWORD dwRet = GetBestRoute(QHostAddress("114.114.114.114").toIPv4Address(), 0, &BestRoute);
+    if (dwRet == NO_ERROR) {
+        gateway = QHostAddress(htonl(BestRoute.dwForwardNextHop)).toString();
+    } else {
+        gateway = "";
+    }
 #elif defined (Q_OS_MAC)
     param << "-c" << "route get default | grep gateway | awk '{print $2}'";
     task->start("bash", param);
@@ -68,7 +76,8 @@ void RouteTableHelper::setRouteTable()
     else
         ip = serverAddress;
 #if defined (Q_OS_WIN)
-    QProcess::execute("route add 0.0.0.0 mask 0.0.0.0 10.0.0.1 metric 6");
+    QProcess::execute(QString("route delete 0.0.0.0 mask 0.0.0.0"));
+    QProcess::execute(QString("route add 0.0.0.0 mask 0.0.0.0 10.0.0.1 metric 6"));
     QProcess::execute(QString("route add %1 %2 metric 5").arg(ip).arg(gateWay));
 #elif defined (Q_OS_MAC)
     QProcess::execute("route delete default");
@@ -89,7 +98,10 @@ void RouteTableHelper::setRouteTable()
 
 void RouteTableHelper::resetRouteTable()
 {
-#if defined (Q_OS_MAC)
+#if defined (Q_OS_WIN)
+    QProcess::execute("route delete 0.0.0.0 mask 0.0.0.0");
+    QProcess::execute(QString("route add 0.0.0.0 mask 0.0.0.0 %1 metric 50").arg(gateWay));
+#elif defined (Q_OS_MAC)
     QProcess::execute("route delete default");
     QProcess::execute("route delete 10.0.0.0/8");
     QProcess::execute("route delete 172.16.0.0/12");
