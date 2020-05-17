@@ -642,10 +642,6 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
         quicHeader["type"] = profile.vmessSettings["quic"].toObject()["header"].toObject()["type"].toString();
         streamSettings["quicSettings"] = quicSettings;
     }
-    QJsonObject vmessOutSettings;
-    vmessOutSettings["vnext"] = vnextArray;
-    outbound["settings"] = vmessOutSettings;
-    outbound["streamSettings"] = streamSettings;
     QJsonObject freedom;
     freedom["protocol"] = "freedom";
     freedom["sendThrough"] = "0.0.0.0";
@@ -666,9 +662,13 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
     blackhole["settings"] = settingsBlackHole;
     blackhole["streamSettings"] = QJsonObject();
     blackhole["tag"] = "block";
+    QJsonObject vmessOutSettings;
+    vmessOutSettings["vnext"] = vnextArray;
+    outbound["settings"] = vmessOutSettings;
+    outbound["streamSettings"] = streamSettings;
+    outboundsArray.append(outbound);
     outboundsArray.append(freedom);
     outboundsArray.append(blackhole);
-    outboundsArray.append(outbound);
     configObj["outbounds"] = outboundsArray;
 
     QJsonDocument JSONDoc(configObj);
