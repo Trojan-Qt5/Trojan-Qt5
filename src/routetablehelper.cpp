@@ -67,7 +67,8 @@ void RouteTableHelper::setRouteTable()
     }
     else
         ip = serverAddress;
-#if defined (Q_OS_WIM)
+#if defined (Q_OS_WIN)
+    QProcess::execute("route add 0.0.0.0 mask 0.0.0.0 10.0.0.1 metric 6");
     QProcess::execute(QString("route add %1 %2 metric 5").arg(ip).arg(gateWay));
 #elif defined (Q_OS_MAC)
     QProcess::execute("route delete default");

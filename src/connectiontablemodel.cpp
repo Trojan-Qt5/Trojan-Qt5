@@ -194,6 +194,7 @@ void ConnectionTableModel::replace(Connection *newCon)
             p.websocket = newCon->getProfile().websocket;
             p.name = newCon->getProfile().name;
             p.vmessSettings = newCon->getProfile().vmessSettings;
+            p.group = newCon->getProfile().group;
             con->setProfile(p);
         }
 
