@@ -233,6 +233,7 @@ SOURCES += \
     src/clickablelabel.cpp \
     src/sseditdialog.cpp \
     src/snelleditdialog.cpp \
+    src/v2rayapi.cpp \
     src/v2raythread.cpp \
     src/vmesseditdialog.cpp \
     src/ssgoapi.cpp \
@@ -288,6 +289,7 @@ HEADERS += \
     src/clickablelabel.h \
     src/sseditdialog.h \
     src/snelleditdialog.h \
+    src/v2rayapi.h \
     src/v2raythread.h \
     src/vmesseditdialog.h \
     src/ssgoapi.h \
@@ -318,7 +320,8 @@ TRANSLATIONS += \
 
 PROTOS += \
     $$PWD/src/trojangoapi.proto \
-    $$PWD/src/ssgoapi.proto
+    $$PWD/src/ssgoapi.proto \
+    $$PWD/src/v2rayapi.proto
 
 include($$PWD/src/protobuf.pri)
 include($$PWD/src/grpc.pri)

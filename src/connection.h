@@ -34,6 +34,7 @@
 #include "tqprofile.h"
 #include "routetablehelper.h"
 #include "ssgoapi.h"
+#include "v2rayapi.h"
 #include "trojangoapi.h"
 
 class Connection : public QObject
@@ -85,8 +86,9 @@ private:
     TrojanThread *trojan;
     RouteTableHelper *rhelper;
     SSGoAPI *ssGoAPI;
-
+    V2rayAPI *v2rayAPI;
     TrojanGoAPI *trojanGoAPI;
+
     TQProfile profile;
     bool running;
 

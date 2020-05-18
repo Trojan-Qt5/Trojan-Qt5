@@ -424,7 +424,7 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
     passwordArray.append(profile.password);
     configObj["password"] = QJsonValue(passwordArray);
     configObj["log_level"] = logLevel;
-    configObj["log_file"] = Utils::getLogDir() + "/trojan.log";
+    configObj["log_file"] = Utils::getLogDir() + "/core.log";
     QJsonObject ssl;
     ssl["verify"] = profile.verifyCertificate;
     ssl["verify_hostname"] = profile.verifyHostname;
@@ -519,6 +519,7 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
     api["tag"] = "api";
     QJsonArray apiServices;
     apiServices.append("StatsService");
+    api["services"] = apiServices;
     configObj["api"] = api;
     QJsonObject policy;
     QJsonObject system;
@@ -576,10 +577,11 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
     socks["settings"] = socksSettings;
     socks["tag"] = "inbound";
     QJsonObject apiIn;
+    apiIn["listen"] = "127.0.0.1";
     apiIn["port"] = trojanAPIPort;
     apiIn["protocol"] = "dokodemo-door";
     QJsonObject apiInSettings;
-    apiInSettings["ip"] = "127.0.0.1";
+    apiInSettings["address"] = "127.0.0.1";
     apiIn["settings"] = apiInSettings;
     apiIn["tag"] = "api_in";
     inboundsArray.append(apiIn);
@@ -588,6 +590,7 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
     QJsonArray outboundsArray;
     QJsonObject outbound;
     outbound["protocol"] = "vmess";
+    outbound["sendThrough"] = "0.0.0.0";
     outbound["tag"] = "proxy";
     QJsonArray vnextArray;
     QJsonObject vnext;
@@ -597,6 +600,7 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
     QJsonObject users;
     users["id"] = profile.uuid;
     users["alterId"] = profile.alterID;
+    users["security"] = profile.security;
     usersArray.append(users);
     vnext["users"] = usersArray;
     vnextArray.append(vnext);

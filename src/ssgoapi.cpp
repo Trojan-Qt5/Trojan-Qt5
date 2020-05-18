@@ -21,7 +21,6 @@ SSGoAPI::~SSGoAPI()
 {
     stop();
     thread->wait();
-    thread = nullptr;
     delete thread;
 }
 

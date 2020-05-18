@@ -5,8 +5,9 @@
 #include "portvalidator.h"
 #include "privilegeshelper.h"
 #include "ssgoapi.h"
+#include "v2rayapi.h"
 #include "trojangoapi.h"
-#include "3rd/trojan-qt5-core/trojan-qt5-core.h"
+#include "trojan-qt5-core.h"
 #include "SSRThread.hpp"
 #include <QCoreApplication>
 #include <QDir>
@@ -201,6 +202,11 @@ void Connection::start()
         ssr->start();
     } else if (profile.type == "vmess") {
        v2ray->start();
+       if (conf->isEnableTrojanAPI()) {
+           v2rayAPI = new V2rayAPI();
+           v2rayAPI->start();
+           connect(v2rayAPI, &V2rayAPI::OnDataReady, this, &Connection::onNewBytesTransmitted);
+       }
     } else if (profile.type == "trojan") {
         trojan->start();
         if (conf->isEnableTrojanAPI()) {
@@ -267,6 +273,9 @@ void Connection::stop()
             ssr->stop();
         } else if (profile.type == "vmess") {
             v2ray->stop();
+            if (conf->isEnableTrojanAPI()) {
+                v2rayAPI->stop();
+            }
         } else if (profile.type == "trojan") {
             trojan->stop();
             if (conf->isEnableTrojanAPI()) {
@@ -311,6 +320,9 @@ void Connection::onStartFailed()
         ssr->stop();
     } else if (profile.type == "vmess") {
         v2ray->stop();
+        if (conf->isEnableTrojanAPI()) {
+            v2rayAPI->stop();
+        }
     } else if (profile.type == "trojan") {
         trojan->stop();
         if (conf->isEnableTrojanAPI()) {

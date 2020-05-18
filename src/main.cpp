@@ -79,15 +79,15 @@ void setupDockClickHandler() {
         SEL shouldHandle = sel_registerName("applicationShouldHandleReopen:hasVisibleWindows:");
         if (class_getInstanceMethod(delClass, shouldHandle)) {
             if (class_replaceMethod(delClass, shouldHandle, (IMP)dockClickHandler, "B@:"))
-                Logger::debug("Registered dock click handler (replaced original method");
+                return;
             else
-                Logger::warning("Failed to replace method for dock click handler");
+                Logger::warning("[Dock] Failed to replace method for dock click handler");
         }
         else {
             if (class_addMethod(delClass, shouldHandle, (IMP)dockClickHandler,"B@:"))
-                Logger::debug("Registered dock click handler");
+                return;
             else
-                Logger::warning("Failed to register dock click handler");
+                Logger::warning("[Dock] Failed to register dock click handler");
         }
     }
 }
