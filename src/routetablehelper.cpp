@@ -35,6 +35,7 @@ QString RouteTableHelper::getDefaultGateWay()
     } else {
         gateway = "";
     }
+    return gateway;
 #elif defined (Q_OS_MAC)
     param << "-c" << "route get default | grep gateway | awk '{print $2}'";
     task->start("bash", param);

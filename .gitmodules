@@ -16,3 +16,6 @@
 [submodule "resources/pac"]
 	path = resources/pac
 	url = https://github.com/Trojan-Qt5/Trojan-Qt5-PAC.git
+[submodule "3rd/trojan-qt5-core"]
+	path = 3rd/trojan-qt5-core
+	url = https://github.com/Trojan-Qt5/Trojan-Qt5-Core.git
