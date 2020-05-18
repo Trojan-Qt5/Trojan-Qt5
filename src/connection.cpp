@@ -266,25 +266,25 @@ void Connection::stop()
 
         if (profile.type == "ss") {
             ss->stop();
-            if (conf->isEnableTrojanAPI()) {
+            if (ssGoAPI && conf->isEnableTrojanAPI()) {
                 ssGoAPI->stop();
             }
         } else if (profile.type == "ssr") {
             ssr->stop();
         } else if (profile.type == "vmess") {
             v2ray->stop();
-            if (conf->isEnableTrojanAPI()) {
+            if (v2rayAPI && conf->isEnableTrojanAPI()) {
                 v2rayAPI->stop();
             }
         } else if (profile.type == "trojan") {
             trojan->stop();
-            if (conf->isEnableTrojanAPI()) {
+            if (trojanGoAPI && conf->isEnableTrojanAPI()) {
                 trojanGoAPI->stop();
             }
         }
 
         //if we have started http proxy, stop it
-        if (conf->isEnableHttpMode()) {
+        if (http && conf->isEnableHttpMode()) {
             http->close();
         }
 
@@ -292,10 +292,9 @@ void Connection::stop()
 
         emit stateChanged(running);
 
-        if (conf->getSystemProxySettings() == "advance") {
+        if (tun2socks && conf->getSystemProxySettings() == "advance") {
             tun2socks->stop();
             rhelper->reset();
-            rhelper = nullptr;
         } else if (conf->getSystemProxySettings() != "direct") {
             //set proxy settings after emit the signal
             SystemProxyHelper::setSystemProxy(0);
