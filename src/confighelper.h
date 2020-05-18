@@ -111,6 +111,7 @@ public:
     QString getTrojanCertPath() const;
     QString getTrojanCipher() const;
     QString getTrojanCipherTLS13() const;
+    int getBufferSize() const;
     QString getSystemProxySettings() const;
     bool isTrojanOn() const;
     bool isEnableServerLoadBalance() const;
@@ -128,7 +129,7 @@ public:
     bool isShowFilterBar() const;
     bool isNativeMenuBar() const;
     void setRoute(QJsonObject r);
-    void setGeneralSettings(int ts, bool hide, QString th, bool sal, bool oneInstance, bool cpa, bool en, bool hdi, bool nativeMB, int ll, bool hm, bool eis, bool sol, int sp, int hp, int pp, int ap, int hsp, bool efp, int fpt, QString fpa, int fpp, bool efpa, QString fpu, QString fppa, int glu, QString uua, QString fkw, int ms, int fp, bool eta, bool etr, int tap, QString tcp, QString tc, QString tct13);
+    void setGeneralSettings(int ts, bool hide, QString th, bool sal, bool oneInstance, bool cpa, bool en, bool hdi, bool nativeMB, int ll, bool hm, bool eis, bool sol, int sp, int hp, int pp, int ap, int hsp, bool efp, int fpt, QString fpa, int fpp, bool efpa, QString fpu, QString fppa, int glu, QString uua, QString fkw, int ms, int fp, bool eta, bool etr, int tap, QString tcp, QString tc, QString tct13, int bs);
     void setSystemProxySettings(QString mode);
     void setTrojanOn(bool on);
     void setAutoUpdateSubscribes(bool update);
@@ -180,6 +181,7 @@ private:
     QString trojanCipher;
     QString trojanCipherTLS13;
     QString systemProxyMode;
+    int bufferSize;
     bool trojanOn;
     bool serverLoadBalance;
     bool shareOverLan;

@@ -52,6 +52,7 @@ SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
     ui->certLineEdit->setText(helper->getTrojanCertPath());
     ui->cipherLineEdit->setText(helper->getTrojanCipher());
     ui->cipherTLS13LineEdit->setText(helper->getTrojanCipherTLS13());
+    ui->bufferSizeLineEdit->setText(QString::number(helper->getBufferSize()));
 
     routeWidget = new RouteWidget();
     routeWidget->setConfig(helper->getRoute());
@@ -112,7 +113,8 @@ void SettingsDialog::onAccepted()
                                ui->apiPortLineEdit->text().toInt(),
                                ui->certLineEdit->text(),
                                ui->cipherLineEdit->text(),
-                               ui->cipherTLS13LineEdit->text());
+                               ui->cipherTLS13LineEdit->text(),
+                               ui->bufferSizeLineEdit->text().toInt());
 
     helper->setRoute(routeWidget->getConfig());
 

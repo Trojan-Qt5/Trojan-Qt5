@@ -82,6 +82,7 @@ void ConfigHelper::save(const ConnectionTableModel &model)
     settings->setValue("TrojanCertPath", QVariant(trojanCertPath));
     settings->setValue("TrojanCipher", QVariant(trojanCipher));
     settings->setValue("TrojanCipherTLS13", QVariant(trojanCipherTLS13));
+    settings->setValue("BufferSize", QVariant(bufferSize));
     settings->setValue("Route", QVariant(route));
 }
 
@@ -420,6 +421,7 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
     configObj["local_port"] = socks5Port;
     configObj["remote_addr"] = profile.serverAddress;
     configObj["remote_port"] = profile.serverPort;
+    configObj["buffer_size"] = bufferSize;
     QJsonArray passwordArray;
     passwordArray.append(profile.password);
     configObj["password"] = QJsonValue(passwordArray);
@@ -951,6 +953,11 @@ QString ConfigHelper::getTrojanCipherTLS13() const
     return trojanCipherTLS13;
 }
 
+int ConfigHelper::getBufferSize() const
+{
+    return bufferSize;
+}
+
 bool ConfigHelper::isAutoUpdateSubscribes() const
 {
     return autoUpdateSubscribes;
@@ -976,7 +983,7 @@ void ConfigHelper::setRoute(QJsonObject r)
     route = r;
 }
 
-void ConfigHelper::setGeneralSettings(int ts, bool hide, QString th, bool sal, bool oneInstance, bool cpa, bool en, bool hdi, bool nativeMB, int ll, bool hm, bool eis, bool sol, int sp, int hp, int pp, int ap, int hsp, bool efp, int fpt, QString fpa, int fpp, bool efpa, QString fpu, QString fppa, int glu, QString uua, QString fkw, int ms, int fp, bool eta, bool etr, int tap, QString tcp, QString tc, QString tct13)
+void ConfigHelper::setGeneralSettings(int ts, bool hide, QString th, bool sal, bool oneInstance, bool cpa, bool en, bool hdi, bool nativeMB, int ll, bool hm, bool eis, bool sol, int sp, int hp, int pp, int ap, int hsp, bool efp, int fpt, QString fpa, int fpp, bool efpa, QString fpu, QString fppa, int glu, QString uua, QString fkw, int ms, int fp, bool eta, bool etr, int tap, QString tcp, QString tc, QString tct13, int bs)
 {
     if (toolbarStyle != ts) {
         emit toolbarStyleChanged(static_cast<Qt::ToolButtonStyle>(ts));
@@ -1017,6 +1024,7 @@ void ConfigHelper::setGeneralSettings(int ts, bool hide, QString th, bool sal, b
     trojanCertPath = tcp;
     trojanCipher = tc;
     trojanCipherTLS13 = tct13;
+    bufferSize = bs;
 }
 
 void ConfigHelper::setSystemProxySettings(QString mode)
@@ -1127,6 +1135,7 @@ void ConfigHelper::readGeneralSettings()
     trojanCertPath = settings->value("TrojanCertPath", QVariant("")).toString();
     trojanCipher = settings->value("TrojanCipher", QVariant("ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES128-SHA:ECDHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA:AES128-SHA:AES256-SHA:DES-CBC3-SHA")).toString();
     trojanCipherTLS13 = settings->value("TrojanCipherTLS13", QVariant("TLS_AES_128_GCM_SHA256:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_256_GCM_SHA384")).toString();
+    bufferSize = settings->value("BufferSize", QVariant(32)).toInt();
     QJsonObject temp;
     temp["domainStrategy"] = "AsIs";
     route = settings->value("Route", QVariant(temp)).toJsonObject();

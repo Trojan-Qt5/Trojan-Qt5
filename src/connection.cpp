@@ -312,19 +312,19 @@ void Connection::onStartFailed()
 
     if (profile.type == "ss") {
         ss->stop();
-        if (conf->isEnableTrojanAPI()) {
+        if (ssGoAPI && conf->isEnableTrojanAPI()) {
             ssGoAPI->stop();
         }
     } else if (profile.type == "ssr") {
         ssr->stop();
     } else if (profile.type == "vmess") {
         v2ray->stop();
-        if (conf->isEnableTrojanAPI()) {
+        if (v2rayAPI && conf->isEnableTrojanAPI()) {
             v2rayAPI->stop();
         }
     } else if (profile.type == "trojan") {
         trojan->stop();
-        if (conf->isEnableTrojanAPI()) {
+        if (trojanGoAPI && conf->isEnableTrojanAPI()) {
             trojanGoAPI->stop();
         }
     }
