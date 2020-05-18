@@ -213,6 +213,9 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
     restoreState(configHelper->getMainWindowState());
     ui->connectionView->horizontalHeader()->restoreGeometry(configHelper->getTableGeometry());
     ui->connectionView->horizontalHeader()->restoreState(configHelper->getTableState());
+
+    if (configHelper->isAutoUpdateSubscribes())
+        sbMgr->updateAllSubscribesWithThread();
 }
 
 MainWindow::~MainWindow()

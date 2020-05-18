@@ -49,7 +49,7 @@ Any attempt to download of any branch or distribution of Trojan-Qt5 constitutes 
 Don't forget to checkout me and my friends channel.  
 - [ErdongChan](https://bit.ly/3bshXk6)  
 - [SuMi](https://bit.ly/2UlLN2M)  
-- [Trojan-Qt5](https://bit.ly/2UhPMhQ)  
+- [TheWanderingCoel](https://bit.ly/2UhPMhQ)  
 
 ## Special Thanks
 
@@ -85,5 +85,5 @@ Trojan-Qt5's icon is owned by [mielink] and [erdongchan], any unanthorized usage
 Use this [link](http://rakuten-co-jp.club/register?aff=COELWU) to get 10RMB initial balance!
 
 ### 2.WestWorldSS
-![WestWordSS](https://i.imgur.com/IyzIFrFg.png)
+![WestWordSS](https://i.imgur.com/IyzIFrFg.png)  
 Use this [link](https://xbsj5673.xyz) to register now!
