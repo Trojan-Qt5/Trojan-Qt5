@@ -27,6 +27,7 @@ TrojanEditDialog::TrojanEditDialog(Connection *_connection, QWidget *parent) :
     ui->reusePortCheckBox->setChecked(connection->profile.reusePort);
     ui->tcpFastOpenCheckBox->setChecked(connection->profile.tcpFastOpen);
     ui->muxCheckBox->setChecked(connection->profile.mux);
+    ui->muxConcurrencyEdit->setText(QString::number(connection->profile.muxConcurrency));
     ui->websocketCheckBox->setChecked(connection->profile.websocket);
     ui->websocketDoubleTLSCheckBox->setChecked(connection->profile.websocketDoubleTLS);
     ui->websocketPathEdit->setText(connection->profile.websocketPath);
@@ -59,6 +60,7 @@ void TrojanEditDialog::save()
     connection->profile.reusePort = ui->reusePortCheckBox->isChecked();
     connection->profile.tcpFastOpen = ui->tcpFastOpenCheckBox->isChecked();
     connection->profile.mux = ui->muxCheckBox->isChecked();
+    connection->profile.muxConcurrency = ui->muxConcurrencyEdit->text().toInt();
     connection->profile.websocket = ui->websocketCheckBox->isChecked();
     connection->profile.websocketDoubleTLS = ui->websocketDoubleTLSCheckBox->isChecked();
     connection->profile.websocketPath = ui->websocketPathEdit->text();

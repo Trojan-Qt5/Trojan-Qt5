@@ -54,7 +54,9 @@ struct TQProfile
     quint64 totalUsage;
     QDateTime lastTime; //last time this connection is used
     QDate nextResetDate; //next scheduled date to reset data usage
-    // ss/ssr only
+    bool mux;
+    int muxConcurrency;
+    // ss/ssr/snell only
     QString method;
     QString protocol;
     QString protocolParam;
@@ -69,7 +71,6 @@ struct TQProfile
     bool sessionTicket;
     bool reusePort;
     bool tcpFastOpen;
-    bool mux;
     bool websocket;
     bool websocketDoubleTLS;
     QString sni;

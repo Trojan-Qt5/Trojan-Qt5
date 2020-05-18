@@ -15,6 +15,8 @@ VmessEditDialog::VmessEditDialog(Connection *_connection, QWidget *parent) :
     ui->alterIDEdit->setText(QString::number(connection->profile.alterID));
     ui->securityComboBox->setCurrentText(connection->profile.security);
     ui->tcpFastOpenCheckBox->setChecked(connection->profile.tcpFastOpen);
+    ui->muxCheckBox->setChecked(connection->profile.mux);
+    ui->muxConcurrencyEdit->setText(QString::number(connection->profile.muxConcurrency));
     ui->resetDateEdit->setDate(connection->profile.nextResetDate);
     ui->resetDateEdit->setMinimumDate(QDate::currentDate());
     ui->autoStartCheckBox->setChecked(connection->profile.autoStart);
@@ -42,6 +44,8 @@ void VmessEditDialog::save()
     connection->profile.uuid = ui->uuidEdit->text();
     connection->profile.alterID = ui->alterIDEdit->text().toInt();
     connection->profile.tcpFastOpen = ui->tcpFastOpenCheckBox->isChecked();
+    connection->profile.mux = ui->muxCheckBox->isChecked();
+    connection->profile.muxConcurrency = ui->muxConcurrencyEdit->text().toInt();
     connection->profile.vmessSettings = streamWidget->getSettings();
     connection->profile.nextResetDate = ui->resetDateEdit->date();
     connection->profile.autoStart = ui->autoStartCheckBox->isChecked();

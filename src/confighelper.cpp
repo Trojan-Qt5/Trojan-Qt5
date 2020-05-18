@@ -450,6 +450,7 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
     configObj["tcp"] = QJsonValue(tcp);
     QJsonObject mux;
     mux["enabled"] = profile.mux;
+    mux["concurrency"] = profile.muxConcurrency;
     configObj["mux"] = QJsonValue(mux);
     QJsonObject websocket;
     websocket["enabled"] = profile.websocket;
@@ -668,6 +669,10 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
     blackhole["tag"] = "block";
     QJsonObject vmessOutSettings;
     vmessOutSettings["vnext"] = vnextArray;
+    QJsonObject mux;
+    mux["enabled"] = profile.mux;
+    mux["concurrency"] = profile.muxConcurrency;
+    outbound["mux"] = mux;
     outbound["settings"] = vmessOutSettings;
     outbound["streamSettings"] = streamSettings;
     outboundsArray.append(outbound);

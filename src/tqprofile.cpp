@@ -20,18 +20,13 @@ TQProfile::TQProfile()
     reusePort = false;
     tcpFastOpen = false;
     mux = false;
-    websocket = false;
-    websocketDoubleTLS = false;
-    sni = "";
-    websocketPath = "";
-    websocketHostname = "";
-    websocketObfsPassword = "";
+    muxConcurrency = 8;
     latency = LATENCY_UNKNOWN;
     currentUsage = 0;
     totalUsage = 0;
     QDate currentDate = QDate::currentDate();
     nextResetDate = QDate(currentDate.year(), currentDate.month() + 1, 1);
-    // ss/ssr only
+    // ss/ssr/snell only
     method = QString("aes-256-cfb");
     protocol = QString("origin");
     protocolParam = QString("");
@@ -44,7 +39,13 @@ TQProfile::TQProfile()
     alterID = 32;
     security = QString("auto");
     vmessSettings = ConfigHelper::generateVmessSettings();
-
+    // trojan only
+    sni = "";
+    websocket = false;
+    websocketDoubleTLS = false;
+    websocketPath = "";
+    websocketHostname = "";
+    websocketObfsPassword = "";
 }
 
 TQProfile::TQProfile(const QString &uri)
@@ -387,12 +388,12 @@ QString TQProfile::toSnellUri() const
 
 QDataStream& operator << (QDataStream &out, const TQProfile &p)
 {
-    out << p.type << p.autoStart << p.serverPort << p.name << p.serverAddress << p.verifyCertificate << p.verifyHostname << p.password << p.sni << p.reuseSession << p.sessionTicket << p.reusePort << p.tcpFastOpen << p.mux << p.websocket << p.websocketDoubleTLS << p.websocketPath << p.websocketHostname << p.websocketObfsPassword << p.method << p.protocol << p.protocolParam << p.obfs << p.obfsParam << p.plugin << p.pluginParam << p.uuid << p.alterID << p.security << p.vmessSettings << p.latency << p.currentUsage << p.totalUsage << p.lastTime << p.nextResetDate;
+    out << p.type << p.autoStart << p.serverPort << p.name << p.serverAddress << p.verifyCertificate << p.verifyHostname << p.password << p.sni << p.reuseSession << p.sessionTicket << p.reusePort << p.tcpFastOpen << p.mux << p.muxConcurrency << p.websocket << p.websocketDoubleTLS << p.websocketPath << p.websocketHostname << p.websocketObfsPassword << p.method << p.protocol << p.protocolParam << p.obfs << p.obfsParam << p.plugin << p.pluginParam << p.uuid << p.alterID << p.security << p.vmessSettings << p.latency << p.currentUsage << p.totalUsage << p.lastTime << p.nextResetDate;
     return out;
 }
 
 QDataStream& operator >> (QDataStream &in, TQProfile &p)
 {
-    in >> p.type >> p.autoStart >> p.serverPort >> p.name >> p.serverAddress >> p.verifyCertificate >> p.verifyHostname >> p.password >> p.sni >> p.reuseSession >> p.sessionTicket >> p.reusePort >> p.tcpFastOpen >> p.mux >> p.websocket >> p.websocketDoubleTLS >> p.websocketPath >> p.websocketHostname >> p.websocketObfsPassword >> p.method >> p.protocol >> p.protocolParam >> p.obfs >> p.obfsParam >> p.plugin >> p.pluginParam >> p.uuid >> p.alterID >> p.security >> p.vmessSettings >> p.latency >> p.currentUsage >> p.totalUsage >> p.lastTime >> p.nextResetDate;
+    in >> p.type >> p.autoStart >> p.serverPort >> p.name >> p.serverAddress >> p.verifyCertificate >> p.verifyHostname >> p.password >> p.sni >> p.reuseSession >> p.sessionTicket >> p.reusePort >> p.tcpFastOpen >> p.mux >> p.muxConcurrency >> p.websocket >> p.websocketDoubleTLS >> p.websocketPath >> p.websocketHostname >> p.websocketObfsPassword >> p.method >> p.protocol >> p.protocolParam >> p.obfs >> p.obfsParam >> p.plugin >> p.pluginParam >> p.uuid >> p.alterID >> p.security >> p.vmessSettings >> p.latency >> p.currentUsage >> p.totalUsage >> p.lastTime >> p.nextResetDate;
     return in;
 }
