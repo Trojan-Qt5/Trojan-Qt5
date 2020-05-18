@@ -12,6 +12,7 @@
 #include "resourcehelper.h"
 #include "logger.h"
 #include "midman.h"
+#include "eventfilter.h"
 
 #include "LetsMove/PFMoveApplication.h"
 
@@ -147,6 +148,8 @@ int main(int argc, char *argv[])
 
     MainWindow w(&conf);
     mainWindow = &w;
+
+    a.installEventFilter(new EventFilter(&w));
 
     if (conf.isOnlyOneInstance() && w.isInstanceRunning()) {
         return -1;

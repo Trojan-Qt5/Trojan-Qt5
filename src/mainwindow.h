@@ -54,6 +54,10 @@ public:
     void onToggleServerFromSystemTray(TQProfile profile);
     bool isInstanceRunning() const;
 
+public slots:
+    void onHandleDataFromUrlScheme(const QString &);
+    void onAddURIFromSubscribe(QString);
+
 private:
     Ui::MainWindow *ui;
 
@@ -82,7 +86,6 @@ private:
 
 private slots:
     void onToggleConnection(bool);
-    void onAddURIFromSubscribe(QString);
     void onImportGuiJson();
     void onImportConfigYaml();
     void onExportGuiJson();

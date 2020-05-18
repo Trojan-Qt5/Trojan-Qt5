@@ -2,8 +2,7 @@
 #define EVENTFILTER_H
 
 #include <QObject>
-
-class MainWindow;
+#include "mainwindow.h"
 
 class EventFilter: public QObject
 {

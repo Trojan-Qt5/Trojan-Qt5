@@ -1184,7 +1184,8 @@ void ConfigHelper::setStartAtLogin()
             "Exec=%2\n"
             "Type=Application\n"
             "Terminal=false\n"
-            "X-GNOME-Autostart-enabled=true\n");
+            "X-GNOME-Autostart-enabled=true\n"
+            "MimeType=x-scheme-handler/ss;x-scheme-handler/ssr;x-scheme-handler/vmess;x-scheme-handler/trojan;x-scheme-handler/snell;x-scheme-handler/trojan-qt5\n");
 #elif defined(Q_OS_MAC)
     QFile file(QDir::homePath() + "/Library/LaunchAgents/org.trojan.trojan-qt5.launcher.plist");
     QString fileContent(

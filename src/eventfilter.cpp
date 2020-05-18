@@ -4,7 +4,7 @@
 
 EventFilter::EventFilter(MainWindow *w) : window(w)
 {
-    //connect(this, &EventFilter::handleData, window, &MainWindow::onHandleDataFromUrlScheme);
+    connect(this, &EventFilter::handleData, window, &MainWindow::onHandleDataFromUrlScheme);
 }
 
 bool EventFilter::eventFilter(QObject* obj, QEvent* event)

@@ -50,6 +50,8 @@ signals:
 
 public slots:
     void activate();
+    void onUpdateSubscribeWithProxy();
+    void onUpdateSubscribe();
     void onToggleMode(QAction *action);
     void onToggleConnection();
     void onToggleServer(QAction *actived);

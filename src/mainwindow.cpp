@@ -76,7 +76,7 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
             .arg(QString::number(0))
             .arg(QString::number(0)));
 
-    sbMgr = new SubscribeManager(configHelper, this);
+    sbMgr = new SubscribeManager(this, configHelper);
     notifier = new StatusNotifier(this, configHelper, sbMgr, this);
 
     connect(configHelper, &ConfigHelper::toolbarStyleChanged,
@@ -272,11 +272,27 @@ void MainWindow::onToggleConnection(bool status)
     }
 }
 
-/*
 void MainWindow::onHandleDataFromUrlScheme(const QString &data)
 {
-
-}*/
+    if (data.startsWith("ss://") ||
+        data.startsWith("ssr://") ||
+        data.startsWith("vmess://") ||
+        data.startsWith("trojan://")) {
+        Connection *newCon = new Connection(data, this);
+        model->appendConnection(newCon);
+        configHelper->save(*model);
+    } else if (data.startsWith("trojan-qt5://")) {
+        QString splitData = data.split("add-subscribe?url=")[1];
+        QString url = QUrl::fromPercentEncoding(splitData.toUtf8().data()).toUtf8().data();
+        QList<TQSubscribe> subscribes = configHelper->readSubscribes();
+        TQSubscribe subscribe;
+        subscribe.url = url;
+        subscribes.append(subscribe);
+        configHelper->saveSubscribes(subscribes);
+        sbMgr->setUseProxy(false);
+        sbMgr->updateAllSubscribesWithThread();
+    }
+}
 
 void MainWindow::onAddServerFromSystemTray(QString type)
 {

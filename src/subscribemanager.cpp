@@ -5,11 +5,22 @@
 #include <QNetworkProxy>
 #include <QNetworkReply>
 #include <QEventLoop>
+#include "mainwindow.h"
 
-SubscribeManager::SubscribeManager(ConfigHelper *ch, QObject *parent) : QObject(parent), helper(ch)
-{}
+SubscribeManager::SubscribeManager(MainWindow *w, ConfigHelper *ch) : window(w), helper(ch)
+{
+    thread = new QThread();
+    this->moveToThread(thread);
+    connect(thread, SIGNAL(started()), this, SLOT(updateAllSubscribes()));
+    connect(this, &SubscribeManager::addUri, window, &MainWindow::onAddURIFromSubscribe);
+}
 
-QString SubscribeManager::checkUpdate(QString url, bool useProxy)
+void SubscribeManager::setUseProxy(bool value)
+{
+    useProxy = value;
+}
+
+QString SubscribeManager::checkUpdate(QString url)
 {
     Logger::debug(QString("[Subscribe] Subscribe Link: %1").arg(url));
     QNetworkAccessManager* manager = new QNetworkAccessManager();
@@ -32,13 +43,18 @@ QString SubscribeManager::checkUpdate(QString url, bool useProxy)
     return QString::fromUtf8(reply->readAll());
 }
 
-void SubscribeManager::updateAllSubscribes(bool useProxy)
+void SubscribeManager::updateAllSubscribesWithThread()
+{
+    thread->start();
+}
+
+void SubscribeManager::updateAllSubscribes()
 {
     Logger::debug(QString("[Subscribe] Check subscribe clicked, use proxy: %1").arg(useProxy));
     QList<TQSubscribe> subscribes = helper->readSubscribes();
     for (int i = 0; i < subscribes.size(); i++) {
         subscribes[i].lastUpdateTime = QDateTime::currentDateTime().toTime_t() - QDateTime::fromString("1970-01-01T00:00:00").toTime_t();
-        QString data = checkUpdate(subscribes[i].url, useProxy);
+        QString data = checkUpdate(subscribes[i].url);
         QByteArray decodeArray = QByteArray::fromBase64(data.toUtf8().data());
         QString decodeRes = QUrl::fromPercentEncoding(decodeArray); // remove percentage in uri
         decodeRes = decodeRes.replace("\\r", "\r"); // change \\r to \r

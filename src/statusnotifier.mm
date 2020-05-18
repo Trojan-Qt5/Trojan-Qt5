@@ -168,8 +168,8 @@ void StatusNotifier::initConnections()
     connect(editLocalPACFile, &QAction::triggered, pachelper, [=]() { pachelper->editLocalPACFile(); });
     connect(editGFWListUserRule, &QAction::triggered, pachelper, [=]() { pachelper->editUserRule(); });
     connect(subscribeSettings, &QAction::triggered, this, [this]() { onTrojanSubscribeSettings(); });
-    connect(updateSubscribe, &QAction::triggered, sbMgr, [=]() { sbMgr->updateAllSubscribes(true); });
-    connect(updateSubscribeBypass, &QAction::triggered, sbMgr, [=]() { sbMgr->updateAllSubscribes(false); });
+    connect(updateSubscribe, &QAction::triggered, this, &StatusNotifier::onUpdateSubscribeWithProxy);
+    connect(updateSubscribeBypass, &QAction::triggered, this, &StatusNotifier::onUpdateSubscribe);
     connect(serverSpeedPlot, &QAction::triggered, this, [this]() { showServerSpeedPlot(); });
     connect(copyTerminalProxyCommand, &QAction::triggered, this, [this]() { onCopyTerminalProxy(); });
     connect(setProxyToTelegram, &QAction::triggered, this, [this]() { onSetProxyToTelegram(); });
@@ -235,6 +235,20 @@ void StatusNotifier::onToggleMode(QAction *action)
         changeIcon(true);
     else
         changeIcon(false);
+}
+
+void StatusNotifier::onUpdateSubscribeWithProxy()
+{
+    sbMgr = new SubscribeManager(window, helper);
+    sbMgr->setUseProxy(true);
+    sbMgr->updateAllSubscribesWithThread();
+}
+
+void StatusNotifier::onUpdateSubscribe()
+{
+    sbMgr = new SubscribeManager(window, helper);
+    sbMgr->setUseProxy(false);
+    sbMgr->updateAllSubscribesWithThread();
 }
 
 void StatusNotifier::onToggleConnection()

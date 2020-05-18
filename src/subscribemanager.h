@@ -5,26 +5,35 @@
 
 #include "confighelper.h"
 
+class MainWindow;
+
 class SubscribeManager : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit SubscribeManager(ConfigHelper *ch, QObject *parent = nullptr);
+    explicit SubscribeManager(MainWindow *w, ConfigHelper *ch);
 
-    QString checkUpdate(QString url, bool useProxy);
+    void setUseProxy(bool);
+
+    QString checkUpdate(QString url);
 
     bool isFiltered(QString name);
+
+    void updateAllSubscribesWithThread();
 
 signals:
     void addUri(QString);
 
 public slots:
 
-    void updateAllSubscribes(bool useProxy);
+    void updateAllSubscribes();
 
 private:
+    QThread *thread;
     ConfigHelper *helper;
+    bool useProxy;
+    MainWindow *window;
 };
 
 #endif // SUBSCRIBEMANAGER_H
