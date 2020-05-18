@@ -222,6 +222,7 @@ SOURCES += \
     src/tun2socksthread.cpp \
     src/urihelper.cpp \
     src/uriinputdialog.cpp \
+    src/urlschemeregister.cpp \
     src/userrules.cpp \
     src/subscribedialog.cpp \
     src/httpproxy.cpp \
@@ -278,6 +279,7 @@ HEADERS += \
     src/tun2socksthread.h \
     src/urihelper.h \
     src/uriinputdialog.h \
+    src/urlschemeregister.h \
     src/userrules.h \
     src/subscribedialog.h \
     src/httpproxy.h \
