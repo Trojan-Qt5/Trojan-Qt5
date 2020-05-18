@@ -8,4 +8,4 @@ Terminal=false
 Type=Application
 Categories=Network;
 StartupNotify=true
-MimeType=x-scheme-handler/ss;x-scheme-handler/ssr;x-scheme-handler/vmess;x-scheme-handler/trojan;x-scheme-handler/snell;x-scheme-handler/trojan-qt5
+MimeType=x-scheme-handler/ss;x-scheme-handler/ssr;x-scheme-handler/vmess;x-scheme-handler/trojan;x-scheme-handler/snell;x-scheme-handler/trojan-qt5;x-scheme-handler/felix

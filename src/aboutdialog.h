@@ -4,7 +4,7 @@
 #include <QDialog>
 
 #define TROJAN_QT5_BUILD_INFO QString(_TROJAN_QT5_BUILD_INFO_STR_)
-#define TROJAN_QT5_BUILD_EXTRA_INFO QString("Aku seneng felix")
+#define TROJAN_QT5_BUILD_EXTRA_INFO QString("Aku seneng Felix Wang")
 
 namespace Ui {
 class AboutDialog;

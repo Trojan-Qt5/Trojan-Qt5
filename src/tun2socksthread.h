@@ -2,7 +2,6 @@
 #define TUN2SOCKSTHREAD_H
 
 #include <QThread>
-#include <QDebug>
 
 class Tun2socksThread : public QThread
 {

@@ -108,6 +108,18 @@
 				<string>snell</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLIconFile</key>
+			<string>Icon</string>
+			<key>CFBundleURLName</key>
+			<string>com.thewanderingcoel.felix</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>felix</string>
+			</array>
+		</dict>
 	</array>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2019-2020年 TheWanderingCoel. All rights reserved.</string>

@@ -114,7 +114,10 @@ int main(int argc, char *argv[])
     qRegisterMetaTypeStreamOperators<TQProfile>("TQProfile");
     qRegisterMetaTypeStreamOperators<TQSubscribe>("TQSubscribe");
 
-    QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+    QGuiApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
+#endif
 
     QApplication a(argc, argv);
     setupApplication(a);

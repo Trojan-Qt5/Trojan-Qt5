@@ -14,8 +14,7 @@ bool EventFilter::eventFilter(QObject* obj, QEvent* event)
         QFileOpenEvent* fileEvent = static_cast<QFileOpenEvent*>(event);
         if (!fileEvent->url().isEmpty())
         {
-            // Not call directly .toString to avoid getting strange data like: clash://0.1.226.63
-            QString data = QString::fromLatin1(fileEvent->url().toEncoded().data());
+            QString data = fileEvent->url().toString();
             emit handleData(data);
         }
 

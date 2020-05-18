@@ -278,9 +278,11 @@ void MainWindow::onHandleDataFromUrlScheme(const QString &data)
         data.startsWith("ssr://") ||
         data.startsWith("vmess://") ||
         data.startsWith("trojan://")) {
-        Connection *newCon = new Connection(data, this);
-        model->appendConnection(newCon);
-        configHelper->save(*model);
+        if (GeneralValidator::validateSS(data) || GeneralValidator::validateSSR(data) || GeneralValidator::validateVmess(data) ||GeneralValidator::validateTrojan(data)) {
+            Connection *newCon = new Connection(data, this);
+            model->appendConnection(newCon);
+            configHelper->save(*model);
+         }
     } else if (data.startsWith("trojan-qt5://")) {
         QString splitData = data.split("add-subscribe?url=")[1];
         QString url = QUrl::fromPercentEncoding(splitData.toUtf8().data()).toUtf8().data();
@@ -291,6 +293,8 @@ void MainWindow::onHandleDataFromUrlScheme(const QString &data)
         configHelper->saveSubscribes(subscribes);
         sbMgr->setUseProxy(false);
         sbMgr->updateAllSubscribesWithThread();
+    } else if (data.startsWith("felix://")) {
+        QMessageBox::information(this, "Aku seneng Felix Wang", "I love you Felix Wang\nCoel 2019-2020");
     }
 }
 

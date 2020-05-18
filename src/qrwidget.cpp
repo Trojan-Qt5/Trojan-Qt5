@@ -1,7 +1,7 @@
 #include <QPainter>
 #include <QStyleOption>
-#include <QDebug>
 #include <qrencode.h>
+#include <QDebug>
 #include "qrwidget.h"
 
 QRWidget::QRWidget(QWidget *parent) :
