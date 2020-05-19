@@ -1,6 +1,9 @@
 #include "urlschemeregister.h"
 
+#include <array>
 #include <QDir>
+
+using namespace std;
 
 UrlSchemeRegister::UrlSchemeRegister()
 {
@@ -180,8 +183,13 @@ bool UrlSchemeRegister::CheckUrlScheme(const UrlSchemeDescriptor &descriptor) {
     return FullRegister(Mode::Check, descriptor);
 }
 
-void UrlSchemeRegister::RegisterUrlScheme(const UrlSchemeDescriptor &descriptor) {
-    FullRegister(Mode::Write, descriptor);
+void UrlSchemeRegister::RegisterAllUrlScheme() {
+    QStringList protocols = {"ss", "ssr", "vmess", "trojan", "snell", "trojan-qt5", "felix"};
+    for (QString protocol : protocols) {
+        UrlSchemeDescriptor descriptor;
+        descriptor.protocol = protocol;
+        RegisterUrlScheme(descriptor);
+    }
 }
 
 void UrlSchemeRegister::UnregisterUrlScheme(const UrlSchemeDescriptor &descriptor) {
@@ -189,4 +197,24 @@ void UrlSchemeRegister::UnregisterUrlScheme(const UrlSchemeDescriptor &descripto
         UnregisterDefaultProgram(descriptor);
         UnregisterLegacy(descriptor);
     }
+}
+
+void UrlSchemeRegister::UnregisterAllUrlScheme() {
+    QStringList protocols = {"ss", "ssr", "vmess", "trojan", "snell", "trojan-qt5", "felix"};
+    for (QString protocol : protocols) {
+        UrlSchemeDescriptor descriptor;
+        descriptor.protocol = protocol;
+        UnregisterUrlScheme(descriptor);
+    }
+}
+
+bool UrlSchemeRegister::CheckAllUrlScheme() {
+    QStringList protocols = {"ss", "ssr", "vmess", "trojan", "snell", "trojan-qt5", "felix"};
+    QList<bool> result;
+    for (QString protocol : protocols) {
+        UrlSchemeDescriptor descriptor;
+        descriptor.protocol = protocol;
+        result.append(CheckUrlScheme(descriptor));
+    }
+    return !result.contains(false);
 }
