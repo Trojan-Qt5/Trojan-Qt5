@@ -180,7 +180,6 @@ unix:!mac {
 
 unix {
     PKGCONFIG += zbar libqrencode libuv libsodium grpc grpc++ protobuf gpr yaml-cpp
-    LIBS += $$PWD/3rd/yaml-cpp/libyaml-cpp.a
     LIBS += $$PWD/3rd/trojan-qt5-core/trojan-qt5-core.a
 }
 

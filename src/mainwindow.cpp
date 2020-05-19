@@ -886,7 +886,7 @@ void MainWindow::setupActionIcon()
                                          QIcon::fromTheme("preferences-desktop")));
     ui->actionGuiLog->setIcon(QIcon::fromTheme("view-list-text",
                               QIcon::fromTheme("text-x-preview")));
-    ui->actionTrojanLog->setIcon(QIcon::fromTheme("view-list-text",
+    ui->actionCoreLog->setIcon(QIcon::fromTheme("view-list-text",
                                  QIcon::fromTheme("text-x-preview")));
     ui->actionReportBug->setIcon(QIcon::fromTheme("tools-report-bug",
                                  QIcon::fromTheme("help-faq")));

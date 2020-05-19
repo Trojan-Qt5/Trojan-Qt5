@@ -69,5 +69,5 @@ void PrivilegesHelper::showWarning()
 #elif defined (Q_OS_LINUX)
     link = tr("https://askubuntu.com/questions/207466/how-to-run-applications-as-root");
 #endif
-    QMessageBox::warning(NULL, "Can't start tun2socks", QString("You need to run this application as admin/root\nSee the following link for a reference:\n%1").arg(link), QMessageBox::Ok);
+    QMessageBox::warning(NULL, tr("Can't start tun2socks"), QString(tr("You need to run this application as admin/root\nSee the following link for a reference:\n%1")).arg(link), QMessageBox::Ok);
 }
