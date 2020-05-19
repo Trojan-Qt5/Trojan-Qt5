@@ -474,7 +474,7 @@ void MainWindow::onAddFromPasteBoardURI()
     QClipboard *board = QApplication::clipboard();
     QString str = board->text();
     for (QString uri: str.split("\\r\\n")) {
-        if (GeneralValidator::validateSS(uri) || GeneralValidator::validateSSR(uri) || GeneralValidator::validateTrojan(uri)) {
+        if (GeneralValidator::validateSS(uri) || GeneralValidator::validateSSR(uri) || GeneralValidator::validateVmess(uri) ||GeneralValidator::validateTrojan(uri)) {
             Connection *newCon = new Connection(uri, this);
             model->appendConnection(newCon);
             configHelper->save(*model);
