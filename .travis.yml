@@ -30,6 +30,7 @@ before_install:
       sudo add-apt-repository ppa:ymshenyu/grpc -y;
       sudo add-apt-repository ppa:savoury1/backports -y;
       sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y;
+      sudo add-apt-repository ppa:ppa:carsten-uppenbrink-net/openssl -y;
       sudo apt-get update;
     fi
   - if [ "$BADGE" = "osx" ]; then
@@ -38,31 +39,15 @@ before_install:
 
 install:
   - if [ "$BADGE" = "linux" ]; then    
-      sudo apt-get install gcc-7 g++-7 libqrencode-dev libzbar-dev libgl-dev git build-essential python-dev autoconf autotools-dev libicu-dev libbz2-dev checkinstall zlib1g zlib1g-dev python3 pkg-config libprotobuf-dev libgrpc++-dev protobuf-compiler protobuf-c-compiler protobuf-compiler-grpc libsodium-dev libuv1-dev p7zip-full -y;
+      sudo apt-get install gcc-7 g++-7 libqrencode-dev libzbar-dev libgl-dev git build-essential python-dev autoconf autotools-dev libicu-dev libbz2-dev checkinstall zlib1g zlib1g-dev python3 pkg-config libprotobuf-dev libgrpc++-dev protobuf-compiler protobuf-c-compiler protobuf-compiler-grpc libsodium-dev libuv1-dev p7zip-full libssl-dev libyaml-cpp-dev -y;
       sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 60 --slave /usr/bin/g++ g++ /usr/bin/g++-7;
       git clone https://github.com/benlau/qtci.git;
       source qtci/path.env;
       install-qt 5.13.2 >/dev/null 2>&1;
       source qt-5.13.2.env;
-      echo "Installing Zlib 1.2.11...";
-      wget https://www.zlib.net/zlib-1.2.11.tar.gz >/dev/null 2>&1;
-      tar -xf zlib-1.2.11.tar.gz;
-      cd zlib-1.2.11;
-      ./configure --prefix=/usr/local/zlib >/dev/null 2>&1;
-      make -j$(nproc) >/dev/null 2>&1;
-      sudo make install >/dev/null 2>&1;
-      cd ..;
-      echo "Installing openssl 1.1.1g...";
-      wget https://www.openssl.org/source/openssl-1.1.1g.tar.gz >/dev/null 2>&1;
-      tar -xf openssl-1.1.1g.tar.gz;
-      cd openssl-1.1.1g;
-      ./config --prefix=/usr/local/openssl --openssldir=/usr/local/openssl shared zlib >/dev/null 2>&1;
-      make -j$(nproc) >/dev/null 2>&1;
-      sudo make install >/dev/null 2>&1;
-      cd ..;
     fi
   - if [ "$BADGE" = "osx" ]; then    
-      brew install zbar qrencode openssl@1.1 zlib pcre python3 libsodium libuv grpc pkg-config;
+      brew install zbar qrencode openssl@1.1 zlib pcre python3 libsodium libuv grpc pkg-config yaml-cpp;
       brew reinstall https://raw.githubusercontent.com/Homebrew/homebrew-core/8846805afc0cb8e5d114d5e222af1de3b35289df/Formula/qt.rb --verbose;
       rm -rf /usr/local/opt/protobuf/lib/libprotobuf-lite.*;
       cp -r framework/Sparkle.framework /usr/local/Cellar/qt/5.14.2/lib;
@@ -74,9 +59,6 @@ before_script:
 
 script:
   - git submodule update --init --recursive
-  - cd 3rd/yaml-cpp
-  - cmake . && make -j$(nproc)
-  - cd ../..
   - cd 3rd/trojan-qt5-core
   - go build --tags "api client router" -buildmode=c-archive
   - cd ../..

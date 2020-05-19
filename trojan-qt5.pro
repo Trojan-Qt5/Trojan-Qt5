@@ -157,12 +157,10 @@ mac {
 
 unix:!mac {
     QT += dbus
+    PKGCONFIG += openssl
     SOURCES += \
         src/statusnotifier.cpp
-    INCLUDEPATH += /usr/local/openssl/include
-    INCLUDEPATH += /usr/local/zlib/include
-    LIBS += -L/usr/local/openssl/lib -lcrypto -lssl
-    LIBS += -L/usr/local/zlib/lib -lz
+    LIBS += -lz
     # Otherwise lupdate will not work
     TR_EXCLUDE += /usr/local/boost/*
 
@@ -181,7 +179,7 @@ unix:!mac {
 }
 
 unix {
-    PKGCONFIG += zbar libqrencode libuv libsodium grpc grpc++ protobuf gpr
+    PKGCONFIG += zbar libqrencode libuv libsodium grpc grpc++ protobuf gpr yaml-cpp
     LIBS += $$PWD/3rd/yaml-cpp/libyaml-cpp.a
     LIBS += $$PWD/3rd/trojan-qt5-core/trojan-qt5-core.a
 }
