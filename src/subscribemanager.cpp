@@ -66,7 +66,7 @@ void SubscribeManager::updateAllSubscribes()
             if (list[x].isEmpty()) {
                 continue;
             }
-            if (GeneralValidator::validateSS(list[x]) || GeneralValidator::validateSSR(list[x]) || GeneralValidator::validateTrojan(list[x])) {
+            if (GeneralValidator::validateSS(list[x]) || GeneralValidator::validateSSR(list[x]) || GeneralValidator::validateVmess(list[x]) || GeneralValidator::validateTrojan(list[x])) {
                 if (!isFiltered(TQProfile(list[x]).name) && (x < helper->getMaximumSubscribe() || helper->getMaximumSubscribe() == 0)) {
                     emit addUri(list[x]);
                 }
