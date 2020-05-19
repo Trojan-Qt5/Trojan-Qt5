@@ -17,7 +17,7 @@ Tun2socksThread::~Tun2socksThread()
 void Tun2socksThread::run()
 {
 #ifdef Q_OS_WIN
-    QString configFile = QCoreApplication::applicationDirPath() + "/config.ini";
+    QString configFile = qApp->applicationDirPath() + "/config.ini";
 #else
     QString configFile = QDir::homePath() + "/.config/trojan-qt5/config.ini";
 #endif

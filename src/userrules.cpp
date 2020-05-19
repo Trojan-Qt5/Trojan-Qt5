@@ -11,7 +11,7 @@ UserRules::UserRules(QWidget *parent) :
     ui(new Ui::UserRules)
 {
 #ifdef Q_OS_WIN
-    configDir = QDir::toNativeSeparators(QCoreApplication::applicationDirPath()) + "\\pac";
+    configDir = QDir::toNativeSeparators(qApp->applicationDirPath()) + "\\pac";
 #else
     configDir = QDir::homePath() + "/.config/trojan-qt5/pac";
 #endif

@@ -1,7 +1,9 @@
+#include "confighelper.h"
 #include "portvalidator.h"
 #include "generalvalidator.h"
-
+#include <QApplication>
 #include <QTcpServer>
+#include <QDir>
 
 PortValidator::PortValidator(QObject *parent)
     : QValidator(parent)
@@ -18,8 +20,17 @@ QValidator::State PortValidator::validate(QString &input, int &) const
 
 QString PortValidator::isInUse(int port)
 {
+#ifdef Q_OS_WIN
+    QString configFile = qApp->applicationDirPath() + "/config.ini";
+#else
+    QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
+    QString configFile = configDir.absolutePath() + "/config.ini";
+#endif
+    ConfigHelper *conf = new ConfigHelper(configFile);
+    QString addr = conf->isEnableIpv6Support() ? (conf->isShareOverLan() ? "::" : "::1") : (conf->isShareOverLan() ? "0.0.0.0" : "127.0.0.1");
+
     QTcpServer *server = new QTcpServer(); // Use TcpServer to listen to the port specified
-    bool status = server->listen(QHostAddress::LocalHost, port);
+    bool status = server->listen(QHostAddress(addr), port);
     if (status) {
         server->close();
         server->deleteLater();

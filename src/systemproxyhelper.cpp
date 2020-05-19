@@ -58,7 +58,7 @@ std::string SystemProxyHelper::runShell(QString cmd)
 void SystemProxyHelper::setSystemProxy(int method)
 {
 #ifdef Q_OS_WIN
-    QString configFile = QCoreApplication::applicationDirPath() + "/config.ini";
+    QString configFile = qApp->applicationDirPath() + "/config.ini";
 #else
     QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
     QString configFile = configDir.absolutePath() + "/config.ini";

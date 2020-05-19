@@ -51,8 +51,8 @@ build_script:
   - curl -LO https://github.com/Trojan-Qt5/Trojan-Qt5/raw/master/resources/dat/geoip.dat
   - del /f /s /q vc_redist.x86.exe opengl32sw.dll d3dcompiler_47.dll libGLESV2.dll libEGL.dll Qt5Svg.dll move.py imageformats\qgif.dll iconengines\qsvgicon.dll imageformats\qtga.dll imageformats\qtiff.dll imageformats\qwbmp.dll imageformats\qwebp.dll imageformats\qjpeg.dll imageformats\qsvg.dll iconengines bearer
   - rmdir iconengines bearer
-  - 7z a Trojan-Qt5-Windows.zip *
-  - python ..\..\scripts\checksum.py Trojan-Qt5-Windows.zip Trojan-Qt5-Windows.hash
+  - 7z a Trojan-Qt5-Windows.7z *
+  - python ..\..\scripts\checksum.py Trojan-Qt5-Windows.7z Trojan-Qt5-Windows.hash
   - cd ..
   - cd ..
 
