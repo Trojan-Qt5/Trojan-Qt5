@@ -22,7 +22,7 @@ Connection::Connection(QObject *parent) :
     running(false)
 {
 #ifdef Q_OS_WIN
-    configFile = QCoreApplication::applicationDirPath() + "/config.ini";
+    configFile = qApp->applicationDirPath() + "/config.ini";
 #else
     QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
     configFile = configDir.absolutePath() + "/config.ini";
@@ -142,7 +142,7 @@ void Connection::start()
     }
 
 #ifdef Q_OS_WIN
-    QString file = QCoreApplication::applicationDirPath() + "/config.json";
+    QString file = qApp->applicationDirPath() + "/config.json";
 #else
     QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
     QString file = configDir.absolutePath() + "/config.json";

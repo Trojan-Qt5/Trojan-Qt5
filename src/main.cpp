@@ -16,6 +16,10 @@
 
 #include "LetsMove/PFMoveApplication.h"
 
+#if defined (Q_OS_WIN)
+#include "urlschemeregister.h"
+#endif
+
 #ifdef Q_OS_MAC
 #include <objc/objc.h>
 #include <objc/message.h>
@@ -148,6 +152,12 @@ int main(int argc, char *argv[])
 
     // setup the theme here
     a.setStyle(conf.getTheme());
+
+#if defined (Q_OS_WIN)
+    UrlSchemeRegister *reg;
+    if (!reg->CheckAllUrlScheme())
+        reg->RegisterAllUrlScheme();
+#endif
 
     MainWindow w(&conf);
     mainWindow = &w;

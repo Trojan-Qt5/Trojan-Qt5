@@ -24,7 +24,7 @@ PACServer::~PACServer()
 void PACServer::listen()
 {
 #ifdef Q_OS_WIN
-    QString configFile = QCoreApplication::applicationDirPath() + "/config.ini";
+    QString configFile = qApp->applicationDirPath() + "/config.ini";
 #else
     QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
     QString configFile = configDir.absolutePath() + "/config.ini";
@@ -38,7 +38,7 @@ void PACServer::listen()
 QString PACServer::loadPACFile()
 {
 #if defined (Q_OS_WIN)
-    QFile file(QCoreApplication::applicationDirPath() + "/pac/proxy.pac");
+    QFile file(qApp->applicationDirPath() + "/pac/proxy.pac");
 #else
     QFile file(QDir::homePath() + "/.config/trojan-qt5/pac/proxy.pac");
 #endif

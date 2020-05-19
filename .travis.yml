@@ -38,7 +38,7 @@ before_install:
 
 install:
   - if [ "$BADGE" = "linux" ]; then    
-      sudo apt-get install gcc-7 g++-7 libqrencode-dev libzbar-dev libgl-dev git build-essential python-dev autoconf autotools-dev libicu-dev libbz2-dev checkinstall zlib1g zlib1g-dev python3 pkg-config libprotobuf-dev libgrpc++-dev protobuf-compiler protobuf-c-compiler protobuf-compiler-grpc libsodium-dev libuv1-dev -y;
+      sudo apt-get install gcc-7 g++-7 libqrencode-dev libzbar-dev libgl-dev git build-essential python-dev autoconf autotools-dev libicu-dev libbz2-dev checkinstall zlib1g zlib1g-dev python3 pkg-config libprotobuf-dev libgrpc++-dev protobuf-compiler protobuf-c-compiler protobuf-compiler-grpc libsodium-dev libuv1-dev p7zip-full -y;
       sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 60 --slave /usr/bin/g++ g++ /usr/bin/g++-7;
       git clone https://github.com/benlau/qtci.git;
       source qtci/path.env;
@@ -101,7 +101,10 @@ script:
       export LD_LIBRARY_PATH=/usr/loal/zlib/lib:/usr/local/pcre/lib:/usr/local/zbar/lib/:/usr/local/qrencode/lib/:/usr/local/boost/lib/:/usr/local/openssl/lib/:$LD_LIBRARY_PATH;
       ./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -appimage;
       mv Trojan-Qt5*.AppImage Trojan-Qt5-Linux.AppImage;
-      python3 ../scripts/checksum.py Trojan-Qt5-Linux.AppImage Trojan-Qt5-Linux.hash;
+      curl -LO https://github.com/Trojan-Qt5/Trojan-Qt5/raw/master/resources/dat/geosite.dat;
+      curl -LO https://github.com/Trojan-Qt5/Trojan-Qt5/raw/master/resources/dat/geoip.dat;
+      7z a Trojan-Qt5-Linux.7z Trojan-Qt5-Linux.AppImage geosite.dat geoip.dat;
+      python3 ../scripts/checksum.py Trojan-Qt5-Linux.7z Trojan-Qt5-Linux.hash;
     fi
 
 defore_deploy:
@@ -112,7 +115,7 @@ deploy:
   file: 
     - build/Trojan-Qt5-macOS.dmg
     - build/Trojan-Qt5-macOS.hash
-    - build/Trojan-Qt5-Linux.AppImage
+    - build/Trojan-Qt5-Linux.7z
     - build/Trojan-Qt5-Linux.hash
   api_key: $GIT_REPO_TOKEN
   skip_cleanup: true

@@ -87,9 +87,11 @@ win32 {
     DEFINES += _WIN32_WINNT=0x600
     SOURCES += \
         src/sysproxy/windows.c \
-        src/statusnotifier.cpp
+        src/statusnotifier.cpp \
+        src/urlschemeregister.cpp
     HEADERS += \
-        src/sysproxy/windows.h
+        src/sysproxy/windows.h \
+        src/urlschemeregister.h
     INCLUDEPATH += C:\TQLibraries\ZBar\include
     INCLUDEPATH += C:\TQLibraries\OpenSSL-Win32\include
     INCLUDEPATH += C:\TQLibraries\QREncode\include
@@ -107,6 +109,8 @@ win32 {
     LIBS += -lCrypt32 -lkernel32 -lpsapi -luser32
     DEFINES += WIN32_LEAN_AND_MEAN
     LIBS += $$PWD\3rd\trojan-qt5-core\trojan-qt5-core.lib
+    QMAKE_CXXFLAGS_WARN_ON -= -w34100
+    QMAKE_CXXFLAGS += -wd4251 -wd4996
     # Otherwise lupdate will not work
     TR_EXCLUDE += C:\TQLibraries\boost_1_72_0\*
 }
