@@ -30,7 +30,7 @@ before_install:
       sudo add-apt-repository ppa:ymshenyu/grpc -y;
       sudo add-apt-repository ppa:savoury1/backports -y;
       sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y;
-      sudo add-apt-repository ppa:ppa:carsten-uppenbrink-net/openssl -y;
+      sudo add-apt-repository ppa:carsten-uppenbrink-net/openssl -y;
       sudo apt-get update;
     fi
   - if [ "$BADGE" = "osx" ]; then

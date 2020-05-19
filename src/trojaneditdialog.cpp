@@ -64,6 +64,7 @@ void TrojanEditDialog::save()
     connection->profile.websocket = ui->websocketCheckBox->isChecked();
     connection->profile.websocketDoubleTLS = ui->websocketDoubleTLSCheckBox->isChecked();
     connection->profile.websocketPath = ui->websocketPathEdit->text();
+    connection->profile.websocketHostname = ui->websocketHostnameEdit->isChecked();
     connection->profile.websocketObfsPassword = ui->websocketObfsPasswordEdit->text();
     connection->profile.password = ui->pwdEdit->text();
     connection->profile.sni = ui->sniEdit->text();
