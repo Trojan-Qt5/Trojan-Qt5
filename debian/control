@@ -1,0 +1,10 @@
+Package: trojan-qt5
+Version: 1.1.1
+Section: net
+Priority: optional
+Depends:
+Suggests:
+Architecture: i386
+Installed-Size: 4096
+Maintainer: TheWanderingCoel <thewanderingcoel@protonmail.com>
+Description: A cross-platform ss/ssr/vmess/trojan GUI client

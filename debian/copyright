@@ -1,0 +1,31 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: TheWanderingCoel
+Upstream-Contact: TheWanderingCoel <thewanderingcoel@protonmail.com>
+Source: https://github.com/Trojan-Qt5/Trojan-Qt5
+
+Files: *
+Copyright: 2019-2020, TheWanderingCoel <thewanderingcoel@protonmail.com>
+License: GPL-3+
+
+Files: debian/*
+Copyright: 2019-2020, TheWanderingCoel <thewanderingcoel@protonmail.com>
+License: permissive
+ Copying and distribution of this package, with or without
+ modification, are permitted in any medium without royalty
+ provided the copyright notice and this notice are
+ preserved.
+
+License: GPL-3.0+
+ Trojan-Qt5 is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published
+ by the Free Software Foundation; either version 3 of the License, or
+ (at your option) any later version.
+
+ Trojan-Qt5 is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with Trojan-Qt5; see the file LICENSE. If not, see
+ <http://www.gnu.org/licenses/>.
