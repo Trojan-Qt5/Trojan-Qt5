@@ -1929,17 +1929,15 @@ See the following link for a reference:
         <location filename="../../src/statusnotifier.cpp" line="120"/>
         <location filename="../../src/statusnotifier.mm" line="119"/>
         <source>Subscribe setting</source>
-        <translation>Trojan服务器订阅设置</translation>
+        <translation>服务器订阅设置</translation>
     </message>
     <message>
         <location filename="../../src/statusnotifier.cpp" line="121"/>
-        <location filename="../../src/statusnotifier.mm" line="120"/>
         <source>Update subscribe Trojan node</source>
         <translation>更新Trojan服务器订阅</translation>
     </message>
     <message>
         <location filename="../../src/statusnotifier.cpp" line="122"/>
-        <location filename="../../src/statusnotifier.mm" line="121"/>
         <source>Update subscribe Trojan node(bypass proxy)</source>
         <translation>更新Trojan服务器订阅（不通过代理）</translation>
     </message>
@@ -2002,6 +2000,16 @@ See the following link for a reference:
         <location filename="../../src/statusnotifier.mm" line="129"/>
         <source>Server Speed Plot</source>
         <translation>服务器速度图表</translation>
+    </message>
+    <message>
+        <location filename="../../src/statusnotifier.mm" line="120"/>
+        <source>Update subscribe node</source>
+        <translation>更新服务器订阅</translation>
+    </message>
+    <message>
+        <location filename="../../src/statusnotifier.mm" line="121"/>
+        <source>Update subscribe node(bypass proxy)</source>
+        <translation>更新服务器订阅（不通过代理）</translation>
     </message>
 </context>
 <context>

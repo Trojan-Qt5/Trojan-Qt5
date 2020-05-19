@@ -118,8 +118,8 @@ void StatusNotifier::initActions()
     //subscribe Menu
     subscribeMenu = new QMenu(tr("Servers Subscribe"));
     subscribeSettings = new QAction(tr("Subscribe setting"));
-    updateSubscribe = new QAction(tr("Update subscribe Trojan node"));
-    updateSubscribeBypass = new QAction(tr("Update subscribe Trojan node(bypass proxy)"));
+    updateSubscribe = new QAction(tr("Update subscribe node"));
+    updateSubscribeBypass = new QAction(tr("Update subscribe node(bypass proxy)"));
     subscribeMenu->addAction(subscribeSettings);
     subscribeMenu->addAction(updateSubscribe);
     subscribeMenu->addAction(updateSubscribeBypass);

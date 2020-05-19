@@ -1847,13 +1847,11 @@ See the following link for a reference:
     </message>
     <message>
         <location filename="../../src/statusnotifier.cpp" line="121"/>
-        <location filename="../../src/statusnotifier.mm" line="120"/>
         <source>Update subscribe Trojan node</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/statusnotifier.cpp" line="122"/>
-        <location filename="../../src/statusnotifier.mm" line="121"/>
         <source>Update subscribe Trojan node(bypass proxy)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1915,6 +1913,16 @@ See the following link for a reference:
         <location filename="../../src/statusnotifier.cpp" line="130"/>
         <location filename="../../src/statusnotifier.mm" line="129"/>
         <source>Server Speed Plot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/statusnotifier.mm" line="120"/>
+        <source>Update subscribe node</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/statusnotifier.mm" line="121"/>
+        <source>Update subscribe node(bypass proxy)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

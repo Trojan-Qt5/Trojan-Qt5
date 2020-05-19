@@ -100,7 +100,7 @@ void StreamWidget::on_tcpRespTxt_textChanged()
 {
     QJsonObject tcp = settings["tcp"].toObject();
     QJsonObject tcpHeader = tcp["header"].toObject();
-    tcpHeader["response"] = ui->tcpRequestTxt->toPlainText();
+    tcpHeader["response"] = ui->tcpRespTxt->toPlainText();
     tcp["header"] = tcpHeader;
     settings["tcp"] = tcp;
 }
