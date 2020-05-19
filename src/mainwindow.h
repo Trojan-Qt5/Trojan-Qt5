@@ -115,7 +115,7 @@ private slots:
     void checkCurrentIndex(const QModelIndex &index);
     void onAbout();
     void onGuiLog();
-    void onTrojanLog();
+    void onCoreLog();
     void onReportBug();
     void onCustomContextMenuRequested(const QPoint &pos);
     void onFilterToggled(bool);

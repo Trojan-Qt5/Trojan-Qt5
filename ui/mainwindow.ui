@@ -356,7 +356,7 @@ QMenu::item:selected {
     <addaction name="actionCheckUpdate"/>
     <addaction name="separator"/>
     <addaction name="actionGuiLog"/>
-    <addaction name="actionTrojanLog"/>
+    <addaction name="actionCoreLog"/>
     <addaction name="separator"/>
     <addaction name="actionReportBug"/>
    </widget>
@@ -798,9 +798,9 @@ QMenu::item:selected {
     </font>
    </property>
   </action>
-  <action name="actionTrojanLog">
+  <action name="actionCoreLog">
    <property name="text">
-    <string>Trojan Log</string>
+    <string>Core Log</string>
    </property>
    <property name="font">
     <font>

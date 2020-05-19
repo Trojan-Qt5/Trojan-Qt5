@@ -179,8 +179,8 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
             this, &MainWindow::onCheckUpdate);
     connect(ui->actionGuiLog, &QAction::triggered,
             this, &MainWindow::onGuiLog);
-    connect(ui->actionTrojanLog, &QAction::triggered,
-            this, &MainWindow::onTrojanLog);
+    connect(ui->actionCoreLog, &QAction::triggered,
+            this, &MainWindow::onCoreLog);
     connect(ui->actionReportBug, &QAction::triggered,
             this, &MainWindow::onReportBug);
     connect(ui->actionShowFilterBar, &QAction::toggled,
@@ -236,7 +236,7 @@ MainWindow::~MainWindow()
 }
 
 const QUrl MainWindow::issueUrl =
-        QUrl("https://github.com/Trojan-Qt5/Trojan-Qt5/issues");
+        QUrl("https://t.me/TrojanQt5");
 
 void MainWindow::startAutoStartConnections()
 {
@@ -737,15 +737,13 @@ void MainWindow::onAbout()
 
 void MainWindow::onGuiLog()
 {
-    QDir path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Library/Logs/Trojan-Qt5";
-    QString guiLog = path.path() + "/gui.log";
+    QString guiLog = Utils::getLogDir() + "/gui.log";
     QDesktopServices::openUrl(QUrl::fromLocalFile(guiLog));
 }
 
-void MainWindow::onTrojanLog()
+void MainWindow::onCoreLog()
 {
-    QDir path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Library/Logs/Trojan-Qt5";
-    QString trojanLog = path.path() + "/trojan.log";
+    QString trojanLog = Utils::getLogDir() + "/core.log";
     QDesktopServices::openUrl(QUrl::fromLocalFile(trojanLog));
 }
 
