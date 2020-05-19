@@ -195,6 +195,8 @@ TQProfile TQProfile::fromVmessUri(const std::string& vmessUri) const
 
     result.name = vmess["ps"].toString();
     result.serverAddress = vmess["add"].toString();
+    if (result.serverAddress.isEmpty())
+        result.serverAddress = vmess["addr"].toString();
     result.serverPort = vmess["port"].toVariant().toInt();
     result.uuid = vmess["id"].toString();
     result.alterID = vmess["aid"].toString().toInt();
@@ -329,7 +331,7 @@ QString TQProfile::toVmessUri() const
     QJsonObject vmessObject;
     vmessObject["v"] = "2";
     vmessObject["ps"] = name;
-    vmessObject["addr"] = serverAddress;
+    vmessObject["add"] = serverAddress;
     vmessObject["port"] = QString::number(serverPort);
     vmessObject["id"] = uuid;
     vmessObject["aid"] = alterID;
