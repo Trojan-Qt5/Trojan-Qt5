@@ -207,6 +207,10 @@ bool UrlSchemeRegister::CheckUrlScheme(const UrlSchemeDescriptor &descriptor) {
     return FullRegister(Mode::Check, descriptor);
 }
 
+void UrlSchemeRegister::RegisterUrlScheme(const UrlSchemeDescriptor &descriptor) {
+    FullRegister(Mode::Write, descriptor);
+}
+
 void UrlSchemeRegister::RegisterAllUrlScheme() {
     QStringList protocols = {"ss", "ssr", "vmess", "trojan", "snell", "trojan-qt5", "felix"};
     for (QString protocol : protocols) {
