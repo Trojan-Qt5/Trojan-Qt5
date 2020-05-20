@@ -23,6 +23,7 @@ SSREditDialog::SSREditDialog(Connection *_connection, QWidget *parent) :
     ui->obfsComboBox->setCurrentText(connection->profile.obfs);
     ui->obfsParamEdit->setText(connection->profile.obfsParam);
     ui->tcpFastOpenCheckBox->setChecked(connection->profile.tcpFastOpen);
+    ui->autoStartCheckBox->setChecked(connection->profile.autoStart);
 
     connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &SSREditDialog::save);
 
@@ -47,6 +48,7 @@ void SSREditDialog::save()
     connection->profile.obfs = ui->obfsComboBox->currentText();
     connection->profile.obfsParam = ui->obfsParamEdit->text();
     connection->profile.tcpFastOpen = ui->tcpFastOpenCheckBox->isChecked();
+    connection->profile.autoStart = ui->autoStartCheckBox->isChecked();
 
     this->accept();
 }

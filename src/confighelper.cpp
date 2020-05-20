@@ -649,6 +649,12 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
         quicHeader["type"] = profile.vmessSettings["quic"].toObject()["header"].toObject()["type"].toString();
         streamSettings["quicSettings"] = quicSettings;
     }
+    QJsonObject tlsSettings;
+    tlsSettings["allowInsecure"] = profile.vmessSettings["tls"].toObject()["allowInsecure"].toBool();
+    tlsSettings["allowInsecureCiphers"] = profile.vmessSettings["tls"].toObject()["allowInsecureCiphers"].toBool();
+    tlsSettings["serverName"] = profile.vmessSettings["tls"].toObject()["serverName"].toString();
+    tlsSettings["alpn"] = profile.vmessSettings["tls"].toObject()["alpn"].toArray();
+    streamSettings["tlsSettings"] = tlsSettings;
     QJsonObject freedom;
     freedom["protocol"] = "freedom";
     freedom["sendThrough"] = "0.0.0.0";

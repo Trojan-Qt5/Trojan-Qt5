@@ -66,6 +66,13 @@ void StreamWidget::setSettings(const QJsonObject &st)
     ui->allowInsecureCB->setChecked(settings["tls"].toObject()["allowInsecure"].toBool());
     ui->allowInsecureCiphersCB->setChecked(settings["tls"].toObject()["allowInsecureCiphers"].toBool());
     ui->serverNameTxt->setText(settings["tls"].toObject()["serverName"].toString());
+    QString alpns;
+    foreach (const QJsonValue& value, settings["tls"].toObject()["alpn"].toArray())
+    {
+        QString alpn = value.toString();
+        alpns = alpns % alpn % "\r\n";
+    }
+    ui->alpnTxt->setPlainText(alpns);
 }
 
 void StreamWidget::on_transportCombo_currentIndexChanged(int index)
@@ -265,5 +272,22 @@ void StreamWidget::on_allowInsecureCiphersCB_stateChanged(int arg1)
 {
     QJsonObject tls = settings["tls"].toObject();
     tls["allowInsecureCiphers"] = arg1 == Qt::Checked;
+    settings["tls"] = tls;
+}
+
+void StreamWidget::on_alpnTxt_textChanged()
+{
+    QJsonObject tls = settings["tls"].toObject();
+    QStringList alpnList = Utils::splitLines(ui->alpnTxt->toPlainText());
+    tls["alpn"] = "";
+    QJsonArray alpnArray;
+    for (auto alpn : alpnList)
+    {
+        if (!alpn.trimmed().isEmpty())
+        {
+            alpnArray.push_back(alpn);
+         }
+    }
+    tls["alpn"] = alpnArray;
     settings["tls"] = tls;
 }

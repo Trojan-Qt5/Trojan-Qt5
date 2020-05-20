@@ -21,6 +21,7 @@ SSEditDialog::SSEditDialog(Connection *_connection, QWidget *parent) :
     ui->pluginEdit->setText(connection->profile.plugin);
     ui->pluginOptionsEdit->setText(connection->profile.pluginParam);
     ui->tcpFastOpenCheckBox->setChecked(connection->profile.tcpFastOpen);
+    ui->autoStartCheckBox->setChecked(connection->profile.autoStart);
 
     connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &SSEditDialog::save);
 
@@ -43,6 +44,7 @@ void SSEditDialog::save()
     connection->profile.plugin = ui->pluginEdit->text();
     connection->profile.pluginParam = ui->pluginOptionsEdit->text();
     connection->profile.tcpFastOpen = ui->tcpFastOpenCheckBox->isChecked();
+    connection->profile.autoStart = ui->autoStartCheckBox->isChecked();
 
     this->accept();
 }

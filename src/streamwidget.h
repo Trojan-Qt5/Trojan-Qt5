@@ -67,6 +67,8 @@ private slots:
 
     void on_allowInsecureCiphersCB_stateChanged(int arg1);
 
+    void on_alpnTxt_textChanged();
+
 private:
     Ui::StreamWidget *ui;
     QJsonObject settings;
