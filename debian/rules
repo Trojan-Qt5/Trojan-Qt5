@@ -1,0 +1,21 @@
+#!/usr/bin/make -f
+# See debhelper(7) (uncomment to enable)
+# output every command that modifies files on the build system.
+#export DH_VERBOSE = 1
+
+
+# see FEATURE AREAS in dpkg-buildflags(1)
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+# package maintainers to append LDFLAGS
+export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+
+export QT_SELECT := 5
+
+%:
+	dh $@ --buildsystem=qmake
+
+override_dh_auto_configure:
+	dh_auto_configure -- CONFIG+=release QMAKE_CXXFLAGS+=-std=c++17
+
+override_dh_auto_test:

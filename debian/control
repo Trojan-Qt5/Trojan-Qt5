@@ -18,6 +18,7 @@ Build-Depends:  debhelper (>= 11),
                 zlib1g-dev (>= 1.2.11-2~),
                 libicu-dev (>= 60.2-6~),
                 libbz2-dev (>= 1.0.6-2~),
+                libyaml-cpp-dev (>= 0.6.2~4)
 
 Standards-Version: 4.5.0
 Homepage: https://github.com/Trojan-Qt5/Trojan-Qt5
