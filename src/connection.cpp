@@ -9,13 +9,14 @@
 #include "trojangoapi.h"
 #include "trojan-qt5-core.h"
 #include "SSRThread.hpp"
+#include "utils.h"
+#include "logger.h"
+#include "midman.h"
+
 #include <QCoreApplication>
 #include <QDir>
 #include <QHostInfo>
 #include <QHostAddress>
-
-#include "logger.h"
-#include "midman.h"
 
 Connection::Connection(QObject *parent) :
     QObject(parent),
@@ -187,6 +188,9 @@ void Connection::start()
         conf->connectionToJson(profile);
         trojan = new TrojanThread(file);
     }
+
+    //set the file permission as well
+    Utils::setPermisison(file);
 
     //set running status to true before we start proxy
     running = true;

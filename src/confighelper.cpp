@@ -18,7 +18,7 @@ ConfigHelper::ConfigHelper(const QString &configuration, QObject *parent) :
     QObject(parent),
     configFile(configuration)
 {
-    QFile::setPermissions(configFile, QFile::ReadOwner | QFile::WriteOwner | QFile::ReadGroup | QFile::WriteGroup);
+    Utils::setPermisison(configFile);
     settings = new QSettings(configFile, QSettings::IniFormat, this);
     readGeneralSettings();
 }

@@ -59,13 +59,13 @@ private slots:
 
     void on_quicHeaderTypeCB_currentIndexChanged(const QString &arg1);
 
-    void on_serverNameTxt_textEdited(const QString &arg1);
-
     void on_tlsCB_stateChanged(int arg1);
 
     void on_allowInsecureCB_stateChanged(int arg1);
 
     void on_allowInsecureCiphersCB_stateChanged(int arg1);
+
+    void on_serverNameTxt_textEdited(const QString &arg1);
 
     void on_alpnTxt_textChanged();
 

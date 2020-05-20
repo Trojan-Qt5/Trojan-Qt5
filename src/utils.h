@@ -15,6 +15,7 @@ public:
     static QStringList splitLines(const QString &string);
     static QString toCamelCase(const QString& s);
     static QString getLogDir();
+    static void setPermisison(QString &file);
 
 };
 

@@ -47,6 +47,11 @@ QString Utils::getLogDir()
 #endif
 }
 
+void Utils::setPermisison(QString &file)
+{
+    QFile::setPermissions(file, QFile::ReadOwner | QFile::WriteOwner | QFile::ReadGroup | QFile::WriteGroup);
+}
+
 /*
 QString Utils::getLocalAddr()
 {

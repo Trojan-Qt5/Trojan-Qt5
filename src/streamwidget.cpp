@@ -247,13 +247,6 @@ void StreamWidget::on_quicHeaderTypeCB_currentIndexChanged(const QString &arg1)
     settings["quic"] = quic;
 }
 
-void StreamWidget::on_serverNameTxt_textEdited(const QString &arg1)
-{
-    QJsonObject tls = settings["tls"].toObject();
-    tls["serverName"] = arg1;
-    settings["tls"] = tls;
-}
-
 void StreamWidget::on_tlsCB_stateChanged(int arg1)
 {
     QJsonObject tls = settings["tls"].toObject();
@@ -272,6 +265,13 @@ void StreamWidget::on_allowInsecureCiphersCB_stateChanged(int arg1)
 {
     QJsonObject tls = settings["tls"].toObject();
     tls["allowInsecureCiphers"] = arg1 == Qt::Checked;
+    settings["tls"] = tls;
+}
+
+void StreamWidget::on_serverNameTxt_textEdited(const QString &arg1)
+{
+    QJsonObject tls = settings["tls"].toObject();
+    tls["serverName"] = arg1;
     settings["tls"] = tls;
 }
 

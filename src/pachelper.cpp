@@ -12,6 +12,7 @@
 
 #include "confighelper.h"
 #include "userrules.h"
+#include "utils.h"
 
 PACHelper::PACHelper()
 {
@@ -43,7 +44,7 @@ PACHelper::PACHelper()
     QFile::copy(":/pac/trojan_white_advanced.pac", configDir.path() + "/trojan_white_advanced.pac");
     QFile::copy(":/pac/trojan_white_r.pac", configDir.path() + "/trojan_white_r.pac");
     QFile::copy(":/pac/trojan_cnip.pac", configDir.path() +"/trojan_cnip.pac");
-    QFile::setPermissions(userRule, QFile::WriteOwner | QFile::ReadOwner | QFile::ReadGroup | QFile::ReadOther);
+    Utils::setPermisison(userRule);
 
     //Initalize when first startup
     if (!QFile::exists(pac))
@@ -170,7 +171,7 @@ void PACHelper::modify(QString filename)
         QFile::remove(pac);
     }
     QFile::copy(filename, pac);
-    QFile::setPermissions(pac, QFile::WriteOwner | QFile::ReadOwner | QFile::ReadGroup | QFile::ReadOther);
+    Utils::setPermisison(pac);
     QByteArray fileData;
     QFile file(pac);
     file.open(QIODevice::ReadWrite); // open for read and write
