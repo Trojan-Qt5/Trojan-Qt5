@@ -441,14 +441,18 @@ QString TQProfile::toSnellUri() const
     return "snell://" + snellUri;
 }
 
+// https://stackoverflow.com/questions/61924590/no-match-for-operator-operand-types-are-qdatastream-and-qjsonobject/61926499#61926499
 QDataStream& operator << (QDataStream &out, const TQProfile &p)
 {
-    out << p.type << p.autoStart << p.serverPort << p.name << p.serverAddress << p.verifyCertificate << p.verifyHostname << p.password << p.sni << p.reuseSession << p.sessionTicket << p.reusePort << p.tcpFastOpen << p.mux << p.muxConcurrency << p.websocket << p.websocketDoubleTLS << p.websocketPath << p.websocketHostname << p.websocketObfsPassword << p.method << p.protocol << p.protocolParam << p.obfs << p.obfsParam << p.plugin << p.pluginParam << p.uuid << p.alterID << p.security << p.vmessSettings << p.latency << p.currentUsage << p.totalUsage << p.lastTime << p.nextResetDate;
+    QJsonDocument vmessSettingsDoc(p.vmessSettings);
+    out << p.type << p.autoStart << p.serverPort << p.name << p.serverAddress << p.verifyCertificate << p.verifyHostname << p.password << p.sni << p.reuseSession << p.sessionTicket << p.reusePort << p.tcpFastOpen << p.mux << p.muxConcurrency << p.websocket << p.websocketDoubleTLS << p.websocketPath << p.websocketHostname << p.websocketObfsPassword << p.method << p.protocol << p.protocolParam << p.obfs << p.obfsParam << p.plugin << p.pluginParam << p.uuid << p.alterID << p.security << vmessSettingsDoc.toJson(QJsonDocument::Compact) << p.latency << p.currentUsage << p.totalUsage << p.lastTime << p.nextResetDate;
     return out;
 }
 
 QDataStream& operator >> (QDataStream &in, TQProfile &p)
 {
-    in >> p.type >> p.autoStart >> p.serverPort >> p.name >> p.serverAddress >> p.verifyCertificate >> p.verifyHostname >> p.password >> p.sni >> p.reuseSession >> p.sessionTicket >> p.reusePort >> p.tcpFastOpen >> p.mux >> p.muxConcurrency >> p.websocket >> p.websocketDoubleTLS >> p.websocketPath >> p.websocketHostname >> p.websocketObfsPassword >> p.method >> p.protocol >> p.protocolParam >> p.obfs >> p.obfsParam >> p.plugin >> p.pluginParam >> p.uuid >> p.alterID >> p.security >> p.vmessSettings >> p.latency >> p.currentUsage >> p.totalUsage >> p.lastTime >> p.nextResetDate;
+    QByteArray vmessSettingsData;
+    in >> p.type >> p.autoStart >> p.serverPort >> p.name >> p.serverAddress >> p.verifyCertificate >> p.verifyHostname >> p.password >> p.sni >> p.reuseSession >> p.sessionTicket >> p.reusePort >> p.tcpFastOpen >> p.mux >> p.muxConcurrency >> p.websocket >> p.websocketDoubleTLS >> p.websocketPath >> p.websocketHostname >> p.websocketObfsPassword >> p.method >> p.protocol >> p.protocolParam >> p.obfs >> p.obfsParam >> p.plugin >> p.pluginParam >> p.uuid >> p.alterID >> p.security >> vmessSettingsData >> p.latency >> p.currentUsage >> p.totalUsage >> p.lastTime >> p.nextResetDate;
+    p.vmessSettings = QJsonDocument::fromJson(vmessSettingsData).object();
     return in;
 }
