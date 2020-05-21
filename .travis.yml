@@ -112,7 +112,7 @@ script:
   - if [ "$BADGE" = "linux" ] && [ "$ROLE" = "deb" ]; then
       sudo dpkg-buildpackage -us -uc -i -b;
       mv ../trojan-qt5_*.deb Trojan-Qt5-deb.deb;
-      python3 ./scripts/checksum.py trojan-qt5.deb Trojan-Qt5-deb.hash;
+      python3 ./scripts/checksum.py Trojan-Qt5-deb.deb Trojan-Qt5-deb.hash;
     fi
 
 defore_deploy:
