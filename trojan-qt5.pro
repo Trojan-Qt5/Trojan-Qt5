@@ -327,8 +327,6 @@ PROTOS += \
 include($$PWD/src/protobuf.pri)
 include($$PWD/src/grpc.pri)
 
-INSTALLS += headers
-
 headers.path = /usr/include
 headers.CONFIG = no_check_exist
 headers.files = $${PROTOBUF_HEADERS}

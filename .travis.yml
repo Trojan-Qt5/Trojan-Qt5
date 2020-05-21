@@ -17,7 +17,7 @@ matrix:
         - BADGE=linux
         - ROLE=appimage
         - QT_CI_PACKAGES=qt.qt5.5132.gcc_64,qt.qt5.5132.qtwebengine PATH=${TRAVIS_BUILD_DIR}/recipes:${TRAVIS_BUILD_DIR}/bin:${PATH}
-        - _TROJAN_QT5_BUILD_INFO_="Trojan-Qt5 build from Travis-CI"
+        - _TROJAN_QT5_BUILD_INFO_="Trojan-Qt5(AppImage) build from Travis-CI"
       addons:
         apt:
           packages:
@@ -31,17 +31,19 @@ matrix:
       env:
         - BADGE=linux
         - ROLE=deb
+        - _TROJAN_QT5_BUILD_INFO_="Trojan-Qt5(Deb) build from Travis-CI"
 
 before_install:
   - if [ "$BADGE" = "linux" ] && [ "$ROLE" = "appimage" ]; then
       sudo add-apt-repository ppa:ymshenyu/grpc -y;
-      sudo add-apt-repository ppa:ymshenyu/yaml-cpp-xenial -y;
+      sudo add-apt-repository ppa:ymshenyu/yaml-cpp -y;
       sudo add-apt-repository ppa:savoury1/backports -y;
       sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y;
       sudo add-apt-repository ppa:carsten-uppenbrink-net/openssl -y;
       sudo apt-get update;
     fi
   - if [ "$BADGE" = "linux" ] && [ "$ROLE" = "deb" ]; then
+      sudo add-apt-repository ppa:dominik-stadler/ppa -y;
       sudo add-apt-repository ppa:hnakamur/yaml-cpp -y;
       sudo add-apt-repository ppa:panfaust/qt3 -y;
       sudo add-apt-repository ppa:ymshenyu/grpc -y;
@@ -108,7 +110,9 @@ script:
       python3 ../scripts/checksum.py Trojan-Qt5-Linux.7z Trojan-Qt5-Linux.hash;
     fi
   - if [ "$BADGE" = "linux" ] && [ "$ROLE" = "deb" ]; then
-      dpkg-buildpackage -us -uc -i -b;
+      sudo dpkg-buildpackage -us -uc -i -b;
+      mv ../trojan-qt5_*.deb Trojan-Qt5-deb.deb;
+      python3 ./scripts/checksum.py trojan-qt5.deb Trojan-Qt5-deb.hash;
     fi
 
 defore_deploy:
@@ -121,6 +125,8 @@ deploy:
     - build/Trojan-Qt5-macOS.hash
     - build/Trojan-Qt5-Linux.7z
     - build/Trojan-Qt5-Linux.hash
+    - Trojan-Qt5-deb.deb
+    - Trojan-Qt5-deb.hash
   api_key: $GIT_REPO_TOKEN
   skip_cleanup: true
   overwrite: true
