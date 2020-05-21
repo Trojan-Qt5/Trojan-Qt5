@@ -15,6 +15,7 @@ matrix:
       sudo: required
       env: 
         - BADGE=linux
+        - ROLE=appimage
         - QT_CI_PACKAGES=qt.qt5.5132.gcc_64,qt.qt5.5132.qtwebengine PATH=${TRAVIS_BUILD_DIR}/recipes:${TRAVIS_BUILD_DIR}/bin:${PATH}
         - _TROJAN_QT5_BUILD_INFO_="Trojan-Qt5 build from Travis-CI"
       addons:
@@ -24,13 +25,28 @@ matrix:
             - libgl1-mesa-dev
       services:
         - xvfb
+    - os: linux
+      dist: bionic
+      sudo: required
+      env:
+        - BADGE=linux
+        - ROLE=deb
 
 before_install:
-  - if [ "$BADGE" = "linux" ]; then
+  - if [ "$BADGE" = "linux" ] && [ "$ROLE" = "appimage" ]; then
       sudo add-apt-repository ppa:ymshenyu/grpc -y;
+      sudo add-apt-repository ppa:ymshenyu/yaml-cpp-xenial -y;
       sudo add-apt-repository ppa:savoury1/backports -y;
       sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y;
       sudo add-apt-repository ppa:carsten-uppenbrink-net/openssl -y;
+      sudo apt-get update;
+    fi
+  - if [ "$BADGE" = "linux" ] && [ "$ROLE" = "deb" ]; then
+      sudo add-apt-repository ppa:hnakamur/yaml-cpp -y;
+      sudo add-apt-repository ppa:panfaust/qt3 -y;
+      sudo add-apt-repository ppa:ymshenyu/grpc -y;
+      sudo add-apt-repository ppa:savoury1/backports -y;
+      sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y;
       sudo apt-get update;
     fi
   - if [ "$BADGE" = "osx" ]; then
@@ -38,13 +54,16 @@ before_install:
     fi
 
 install:
-  - if [ "$BADGE" = "linux" ]; then    
-      sudo apt-get install gcc-7 g++-7 libqrencode-dev libzbar-dev libgl-dev git build-essential python-dev autoconf autotools-dev libicu-dev libbz2-dev checkinstall zlib1g zlib1g-dev python3 pkg-config libprotobuf-dev libgrpc++-dev protobuf-compiler protobuf-c-compiler protobuf-compiler-grpc libsodium-dev libuv1-dev p7zip-full libssl-dev libyaml-cpp-dev -y;
+  - if [ "$BADGE" = "linux" ] && [ "$ROLE" = "appimage" ]; then    
+      sudo apt-get install gcc-7 g++-7 libqrencode-dev libzbar-dev libgl-dev git build-essential python-dev autoconf autotools-dev libicu-dev libbz2-dev checkinstall zlib1g zlib1g-dev python3 pkg-config wlibsodium-dev libuv1-dev p7zip-full libssl-dev libyaml-cpp-dev -y;
       sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 60 --slave /usr/bin/g++ g++ /usr/bin/g++-7;
       git clone https://github.com/benlau/qtci.git;
       source qtci/path.env;
       install-qt 5.13.2 >/dev/null 2>&1;
       source qt-5.13.2.env;
+    fi
+  - if [ "$BADGE" = "linux" ] && [ "$ROLE" = "deb" ]; then
+      sudo apt-get install debhelper gcc-7 g++-7 libqrencode-dev libzbar-dev libgl-dev git build-essential python-dev autoconf autotools-dev libicu-dev libbz2-dev checkinstall zlib1g zlib1g-dev python3 pkg-config libprotobuf-dev libgrpc++-dev protobuf-compiler protobuf-c-compiler protobuf-compiler-grpc libsodium-dev libuv1-dev p7zip-full libssl-dev libyaml-cpp-dev qtbase5-dev qttools5-dev qt5-default -y;
     fi
   - if [ "$BADGE" = "osx" ]; then    
       brew install zbar qrencode openssl@1.1 zlib pcre python3 libsodium libuv grpc pkg-config yaml-cpp;
@@ -73,7 +92,7 @@ script:
       brew link --overwrite python;
       python3 ../scripts/checksum.py Trojan-Qt5-macOS.dmg Trojan-Qt5-macOS.hash;
     fi
-  - if [ "$BADGE" = "linux" ]; then
+  - if [ "$BADGE" = "linux" ] && [ "$ROLE" = "appimage" ]; then
       mkdir build && cd ./build;
       wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage";
       chmod a+x linuxdeployqt-continuous-x86_64.AppImage;
@@ -87,6 +106,9 @@ script:
       curl -LO https://github.com/Trojan-Qt5/Trojan-Qt5/raw/master/resources/dat/geoip.dat;
       7z a Trojan-Qt5-Linux.7z Trojan-Qt5-Linux.AppImage geosite.dat geoip.dat;
       python3 ../scripts/checksum.py Trojan-Qt5-Linux.7z Trojan-Qt5-Linux.hash;
+    fi
+  - if [ "$BADGE" = "linux" ] && [ "$ROLE" = "deb" ]; then
+      dpkg-buildpackage -us -uc -i -b;
     fi
 
 defore_deploy:

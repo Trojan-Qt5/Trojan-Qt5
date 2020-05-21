@@ -31,6 +31,7 @@ struct TQProfile
     TQProfile(const QString &uri);
 
     TQProfile fromSSUri(const std::string& ssUri) const;
+    TQProfile fromOldSSUri(const std::string& ssUri) const;
     TQProfile fromSSRUri(const std::string& trojanUri) const;
     TQProfile fromVmessUri(const std::string& vmessUri) const;
     TQProfile fromTrojanUri(const std::string& trojanUri) const;

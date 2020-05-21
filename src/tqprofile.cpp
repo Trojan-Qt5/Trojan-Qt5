@@ -51,7 +51,11 @@ TQProfile::TQProfile()
 TQProfile::TQProfile(const QString &uri)
 {
     if (uri.startsWith("ss://"))
-        *this = TQProfile::fromSSUri(uri.toStdString());
+        try {
+            *this = TQProfile::fromSSUri(uri.toStdString());
+        } catch (...) {
+            *this = TQProfile::fromOldSSUri(uri.toStdString());
+        }
     else if (uri.startsWith("ssr://"))
         *this = TQProfile::fromSSRUri(uri.toStdString());
     else if (uri.startsWith("vmess://"))
@@ -107,6 +111,55 @@ TQProfile TQProfile::fromSSUri(const std::string& ssUri) const
     size_t atPos = uri.find_first_of('@');
     if (atPos != std::string::npos) {
         QString userInfo = QByteArray::fromBase64(QString::fromStdString(uri.substr(0, atPos)).toUtf8().data());
+        result.method = userInfo.split(":")[0];
+        result.password = userInfo.split(":")[1];
+        uri.erase(0, atPos + 1);
+        size_t colonPos = uri.find_last_of(':');
+        if (colonPos == std::string::npos) {
+            throw std::invalid_argument("Can't find the colon separator between hostname and port");
+        }
+        result.serverAddress = QString::fromStdString(uri.substr(0, colonPos));
+        result.serverPort = std::stoi(uri.substr(colonPos + 1));
+        uri.erase(0, colonPos + 4);
+    } else {
+        throw std::invalid_argument("Can't find the at separator between userInfo and hostname");
+    }
+
+    return  result;
+}
+
+TQProfile TQProfile::fromOldSSUri(const std::string& ssUri) const
+{
+    std::string prefix = "ss://";
+
+    if (ssUri.length() < 5) {
+        throw std::invalid_argument("SS URI is too short");
+    }
+
+    if (!QString::fromStdString(ssUri).startsWith("ss://")) {
+        throw std::invalid_argument("Invalid SS URI");
+    }
+
+    TQProfile result;
+
+    result.type = "ss";
+
+    //remove the prefix "ss://" from uri
+    std::string uri(ssUri.data() + 5, ssUri.length() - 5);
+    //decode base64
+    uri = Utils::Base64UrlDecode(QString::fromStdString(uri)).toStdString();
+
+    size_t hashPos = uri.find_last_of('#');
+    if (hashPos != std::string::npos) {
+        // Get the name/remark
+        result.name = QUrl::fromPercentEncoding(QString::fromStdString(uri.substr(hashPos + 1)).toUtf8().data());
+        uri.erase(hashPos);
+    }
+
+    qDebug() << QString::fromStdString(uri);
+    size_t atPos = uri.find_first_of('@');
+    if (atPos != std::string::npos) {
+        QString userInfo = QString::fromStdString(uri.substr(0, atPos));
         result.method = userInfo.split(":")[0];
         result.password = userInfo.split(":")[1];
         uri.erase(0, atPos + 1);
