@@ -113,6 +113,8 @@ script:
       sudo dpkg-buildpackage -us -uc -i -b;
       mv ../trojan-qt5_*.deb Trojan-Qt5-deb.deb;
       python3 ./scripts/checksum.py Trojan-Qt5-deb.deb Trojan-Qt5-deb.hash;
+      mkdir build && cd build;
+      mv Trojan-Qt5-deb.deb build/ && mv Trojan-Qt5-deb.hash build/;
     fi
 
 defore_deploy:
@@ -125,8 +127,8 @@ deploy:
     - build/Trojan-Qt5-macOS.hash
     - build/Trojan-Qt5-Linux.7z
     - build/Trojan-Qt5-Linux.hash
-    - Trojan-Qt5-deb.deb
-    - Trojan-Qt5-deb.hash
+    - build/Trojan-Qt5-deb.deb
+    - build/Trojan-Qt5-deb.hash
   api_key: $GIT_REPO_TOKEN
   skip_cleanup: true
   overwrite: true
