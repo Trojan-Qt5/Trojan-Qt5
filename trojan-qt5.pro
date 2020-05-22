@@ -126,7 +126,7 @@ mac {
     INCLUDEPATH += /usr/local/opt/openssl@1.1/include
     LIBS += -L/usr/local/opt/zlib/lib -lz
     LIBS += -L/usr/local/opt/openssl@1.1/lib -lssl -lcrypto
-    LIBS += -L/usr/local/opt/grpc/lib -lupb
+    LIBS += -L/usr/local/opt/grpc/lib -lupb -laddress_sorting
     LIBS += -framework Security -framework Cocoa
     # For Sparkle Usage
     SOURCES += \

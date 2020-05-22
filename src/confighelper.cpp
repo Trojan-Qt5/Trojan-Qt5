@@ -155,6 +155,7 @@ void ConfigHelper::importGuiConfigJson(ConnectionTableModel *model, const QStrin
         p.reusePort = json["reuse_port"].toBool();
         p.tcpFastOpen = json["tcp_fast_open"].toBool();
         p.mux = json["mux"].toBool();
+        p.vmessSettings = json["vmessSettings"].toObject();
         Connection *con = new Connection(p, this);
         model->appendConnection(con);
     }
@@ -189,6 +190,7 @@ void ConfigHelper::exportGuiConfigJson(const ConnectionTableModel &model, const 
         json["reuse_port"] = QJsonValue(con->profile.reusePort);
         json["tcp_fast_open"] = QJsonValue(con->profile.tcpFastOpen);
         json["mux"] = QJsonValue(con->profile.mux);
+        json["vmessSettings"] = QJsonValue(con->profile.vmessSettings);
         confArray.append(QJsonValue(json));
     }
 

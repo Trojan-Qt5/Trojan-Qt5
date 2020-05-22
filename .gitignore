@@ -7,4 +7,5 @@ trojan-qt5-core.a
 trojan-qt5-core.h
 .DS_Store
 build
-wss.txt
+src/*.pb.h
+src/*.pb.cc

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>586</width>
-    <height>430</height>
+    <width>621</width>
+    <height>446</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>571</width>
-     <height>381</height>
+     <width>601</width>
+     <height>401</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -40,8 +40,8 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>561</width>
-       <height>351</height>
+       <width>591</width>
+       <height>371</height>
       </rect>
      </property>
      <layout class="QFormLayout" name="formLayout">
@@ -289,8 +289,8 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>561</width>
-       <height>351</height>
+       <width>591</width>
+       <height>371</height>
       </rect>
      </property>
      <layout class="QFormLayout" name="formLayout_2">
@@ -401,8 +401,8 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>561</width>
-       <height>351</height>
+       <width>591</width>
+       <height>371</height>
       </rect>
      </property>
      <layout class="QFormLayout" name="formLayout_4">
@@ -516,8 +516,8 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>561</width>
-       <height>351</height>
+       <width>591</width>
+       <height>371</height>
       </rect>
      </property>
      <layout class="QFormLayout" name="formLayout_5">
@@ -598,8 +598,8 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>571</width>
-       <height>351</height>
+       <width>591</width>
+       <height>371</height>
       </rect>
      </property>
      <layout class="QGridLayout" name="routeSettingsLayout"/>
@@ -614,8 +614,8 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>561</width>
-       <height>351</height>
+       <width>591</width>
+       <height>371</height>
       </rect>
      </property>
      <layout class="QFormLayout" name="formLayout_3">
@@ -754,8 +754,8 @@
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
-     <x>417</x>
-     <y>390</y>
+     <x>445</x>
+     <y>410</y>
      <width>164</width>
      <height>32</height>
     </rect>
