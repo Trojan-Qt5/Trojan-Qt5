@@ -166,7 +166,8 @@ bool ConnectionTableModel::isExisted(Connection *newCon)
     for (auto &i : items) {
         Connection *con = i->getConnection();
         if (con->getProfile().serverAddress == newCon->getProfile().serverAddress &&
-            con->getProfile().serverPort == newCon->getProfile().serverPort)
+            con->getProfile().serverPort == newCon->getProfile().serverPort &&
+            con->getProfile().name == newCon->getProfile().name)
             return true;
     }
     return false;

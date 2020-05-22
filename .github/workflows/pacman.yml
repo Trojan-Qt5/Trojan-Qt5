@@ -75,7 +75,7 @@ jobs:
           }
 
           package() {
-              cd "\${srcdir}/Trojan-Qt5"
+              cd "\${srcdir}/Trojan-Qt5/build"
               make install PREFIX="\${pkgdir}/usr"
           }
           PKGBUILD
