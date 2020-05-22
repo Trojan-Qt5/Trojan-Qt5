@@ -28,7 +28,7 @@ jobs:
     steps:
       - name: Setup Basic Environment
         run: |
-          pacman -Sy base-devel git --noconfirm
+          pacman -Sy base-devel git go --noconfirm
           sed -i '/E_ROOT/d' /usr/bin/makepkg
 
       - name: Checking out sources
