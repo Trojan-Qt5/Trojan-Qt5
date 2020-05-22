@@ -1,0 +1,103 @@
+name: Trojan-Qt5 pkg
+
+on:
+  push:
+  release:
+    types: [prereleased]
+
+jobs:
+  check_commit_msg:
+    outputs:
+      commit_message: ${{ steps.get_message.outputs.message }}
+    name: Check if the workflow has been disabled.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Get commit message
+        id: get_message
+        run: |
+          echo "::set-output name=message::$(git log --format=%B -n 1 ${{ github.event.after }})"
+          echo "::set-env name=message::$(git log --format=%B -n 1 ${{ github.event.after }})"
+  linux:
+    needs: check_commit_msg
+    if: ${{ !contains( needs.check_commit_msg.outputs.commit_message, 'NO_PACMAN') }}
+    name: Arch Linux
+    runs-on: ubuntu-latest
+    container: archlinux:latest
+    
+    steps:
+      - name: Setup Basic Environment
+        run: |
+          pacman -Sy base-devel git --noconfirm
+          sed -i '/E_ROOT/d' /usr/bin/makepkg
+
+      - name: Checking out sources
+        uses: actions/checkout@v2
+        with:
+          path: 'Trojan-Qt5'
+      
+      - name: Build
+        run: |
+          cat <<PKGBUILD > PKGBUILD
+          pkgname=trojan-qt5
+          pkgver=1.1.2
+          pkgrel=1
+          pkgdesc="A cross-platform ss/ssr/vmess/trojan GUI client"
+          arch=('x86_64')
+          url='https://github.com/Trojan-Qt5/Trojan-Qt5'
+          license=('GPL3')
+          depends=('qt5-base>5.11.0', 'grpc>=1.27.0', 'libuv>=1.34.2', 'libsodium>=1.0.17', 'qrencode>=3.4.4', 'zbar>=0.10.0', 'yaml-cpp>=0.6.2', 'openssl>=1.1.1d', 'zlib>=1.12.1', 'icu>=60.2', 'bzip2>=1.0.6')
+          makdedepends=('git', 'make', 'gcc', 'qt5-tools', 'go>=1.14.3', 'grpc-cli>=1.27.0', 'qt5-declarative', 'which')
+          provides=('trojan-qt5')
+          conflicts=('trojan-qt5')
+
+          source=(
+              'Trojan-Qt5::git+https://github.com/Trojan-Qt5/Trojan-Qt5'
+          )
+
+          sha512sums=(
+              'SKIP'
+          )
+
+          prepare() {
+              cd "\${srcdir}/Trojan-Qt5"
+              git submodule update --init --recursive
+          }
+
+          build() {
+              export _TROJAN_QT5_BUILD_INFO_='Trojan-Qt5 build from ArchLinux'
+              cd "\${srcdir}/Trojan-Qt5/3rd/trojan-qt5-core"
+              go build --tags 'api client router' -buildmode=c-archive
+              cd "\${srcdir}/Trojan-Qt5"
+              mkdir -p build && cd build
+              qmake .. CONFIG+=release PREFIX="\${pkgdir}/usr"
+              make
+          }
+
+          package() {
+              cd "\${srcdir}/Trojan-Qt5"
+              make install PREFIX="\${pkgdir}/usr"
+          }
+          PKGBUILD
+          makepkg -sf --noconfirm
+
+      - name: Get package name
+        id: get_package
+        run:
+          echo ::set-output name=NAME::$(basename trojan-qt5*.xz)
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2-preview
+        with:
+          name: ${{ steps.get_package.outputs.NAME }}
+          path: ${{ steps.get_package.outputs.NAME }}
+
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v1-release
+        if: github.event_name == 'release'
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ${{ steps.get_package.outputs.NAME }}
+          asset_name: ${{ steps.get_package.outputs.NAME }}
+          tag: ${{ github.ref }}
+          overwrite: true
