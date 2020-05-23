@@ -69,7 +69,6 @@ This project is based on:
 - [qbittorrent](https://github.com/qbittorrent/qBittorrent) GPL-2.0
 
 ## UI Design
-- [@eejworks]()
 - [@erdongchan]()
 - [westworldss](https://westworldss.com/)
 - [MieLink](https://www.mielink.cc)
