@@ -86,9 +86,11 @@ public:
     QString getTheme() const;
     QJsonObject getRoute() const;
     int getFLSFingerPrint() const;
+    QJsonArray appendJsonArray(QJsonArray array1, QJsonArray array2);
+    QString parseDomainStrategy(QString ds) const;
     QString parseTLSFingerprint(int choice) const;
-    int  getToolbarStyle() const;
-    int  getLogLevel() const;
+    int getToolbarStyle() const;
+    int getLogLevel() const;
     int getSocks5Port() const;
     int getHttpPort() const;
     int getPACPort() const;

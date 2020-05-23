@@ -466,9 +466,11 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
     QJsonObject router;
     router["enabled"] = enableTrojanRouter;
     if (enableTrojanRouter) {
-        router["direct"] = route["domain"].toObject()["direct"].toArray() + route["ip"].toObject()["direct"].toArray();
-        router["proxy"] = route["domain"].toObject()["proxy"].toArray() + route["ip"].toObject()["proxy"].toArray();
-        router["block"] = route["domain"].toObject()["block"].toArray() + route["ip"].toObject()["block"].toArray();
+        router["direct"] = appendJsonArray(route["domain"].toObject()["direct"].toArray(), route["ip"].toObject()["direct"].toArray());
+        router["proxy"] = appendJsonArray(route["domain"].toObject()["proxy"].toArray(), route["ip"].toObject()["proxy"].toArray());
+        router["block"] = appendJsonArray(route["domain"].toObject()["block"].toArray(), route["ip"].toObject()["block"].toArray());
+        router["default_policy"] = "proxy";
+        router["domain_strategy"] = parseDomainStrategy(route["domainStrategy"].toString());
     }
     configObj["router"] = router;
     QJsonObject api;
@@ -745,6 +747,27 @@ void ConfigHelper::generateHaproxyConf(const ConnectionTableModel &model)
     file.seek(0); // go to the beginning of the file
     file.write(text.toUtf8()); // write the new text back to the file
     file.close(); // close the file handle.
+}
+
+QJsonArray ConfigHelper::appendJsonArray(QJsonArray array1, QJsonArray array2)
+{
+    for (QJsonValue value : array2) {
+        array1.append(value);
+    }
+
+    return array1;
+}
+
+QString ConfigHelper::parseDomainStrategy(QString ds) const
+{
+    if (ds == "AsIs")
+        return "as_is";
+    else if (ds == "IPIfNonMatch")
+        return "ip_if_nonmatch";
+    else if (ds == "IPOnDemand")
+        return "ip_on_demand";
+    else
+        return "";
 }
 
 QString ConfigHelper::parseTLSFingerprint(int choice) const
