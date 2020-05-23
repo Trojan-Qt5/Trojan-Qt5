@@ -1136,7 +1136,7 @@ void ConfigHelper::readGeneralSettings()
     updateUserAgent = settings->value("UpdateUserAgent", QVariant(QString("Trojan-Qt5/%1").arg(APP_VERSION))).toString();
     filterKeyword = settings->value("FilterKeyword", QVariant("")).toString();
     maximumSubscribe = settings->value("MaximumSubscribe", QVariant(0)).toInt();
-    fingerprint = settings->value("Fingerprint", QVariant(0)).toInt();
+    fingerprint = settings->value("Fingerprint", QVariant(2)).toInt();
     enableTrojanAPI = settings->value("EnableTrojanAPI", QVariant(true)).toBool();
     enableTrojanRouter = settings->value("EnableTrojanRouter", QVariant(false)).toBool();
     trojanAPIPort = settings->value("TrojanAPIPort", QVariant(57721)).toInt();
