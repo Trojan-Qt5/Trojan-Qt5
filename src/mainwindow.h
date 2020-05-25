@@ -56,7 +56,7 @@ public:
 
 public slots:
     void onHandleDataFromUrlScheme(const QString &);
-    void onAddURIFromSubscribe(QString);
+    void onAddURIFromSubscribe(TQProfile);
 
 private:
     Ui::MainWindow *ui;
@@ -108,6 +108,7 @@ private slots:
     void onDisconnect();
     void onConnectionStatusChanged(const int row, const bool running);
     void onLatencyTest();
+    void onClearTrafficStats();
     void onMoveUp();
     void onMoveDown();
     void onGeneralSettings();

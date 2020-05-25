@@ -41,7 +41,7 @@ void SSGoAPI::run()
 
     ConfigHelper *conf = new ConfigHelper(configFile);
 
-    QString address = QString("127.0.0.1:%1").arg(conf->getTrojanAPIPort());
+    QString address = QString("127.0.0.1:%1").arg(conf->getTrojanSettings()["trojanAPIPort"].toInt());
 
     while (running) {
 

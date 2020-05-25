@@ -151,7 +151,7 @@ int main(int argc, char *argv[])
     ConfigHelper conf(configFile);
 
     // setup the theme here
-    a.setStyle(conf.getTheme());
+    a.setStyle(conf.getGeneralSettings()["theme"].toString());
 
 #if defined (Q_OS_WIN)
     UrlSchemeRegister *reg;
@@ -164,7 +164,7 @@ int main(int argc, char *argv[])
 
     a.installEventFilter(new EventFilter(&w));
 
-    if (conf.isOnlyOneInstance() && w.isInstanceRunning()) {
+    if (conf.getGeneralSettings()["onlyOneInstace"].toBool() && w.isInstanceRunning()) {
         return -1;
     }
 
@@ -179,7 +179,7 @@ int main(int argc, char *argv[])
     //start all servers which were configured to start at startup
     w.startAutoStartConnections();
 
-    if (!conf.isHideWindowOnStartup()) {
+    if (!conf.getGeneralSettings()["hideWindowOnStartup"].toBool()) {
         w.show();
     }
 

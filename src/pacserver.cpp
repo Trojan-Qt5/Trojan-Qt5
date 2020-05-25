@@ -31,8 +31,8 @@ void PACServer::listen()
 #endif
     ConfigHelper *conf = new ConfigHelper(configFile);
 
-    QString addr = conf->isEnableIpv6Support() ? (conf->isShareOverLan() ? "::" : "::1") : (conf->isShareOverLan() ? "0.0.0.0" : "127.0.0.1");
-    server.listen(QHostAddress(addr), conf->getPACPort());
+    QString addr = conf->getInboundSettings()["enableIpv6Support"].toBool() ? (conf->getInboundSettings()["shareOverLan"].toBool() ? "::" : "::1") : (conf->getInboundSettings()["shareOverLan"].toBool() ? "0.0.0.0" : "127.0.0.1");
+    server.listen(QHostAddress(addr), conf->getInboundSettings()["pacLocalPort"].toInt());
 }
 
 QString PACServer::loadPACFile()

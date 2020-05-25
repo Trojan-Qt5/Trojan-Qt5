@@ -27,7 +27,7 @@ QString PortValidator::isInUse(int port)
     QString configFile = configDir.absolutePath() + "/config.ini";
 #endif
     ConfigHelper *conf = new ConfigHelper(configFile);
-    QString addr = conf->isEnableIpv6Support() ? (conf->isShareOverLan() ? "::" : "::1") : (conf->isShareOverLan() ? "0.0.0.0" : "127.0.0.1");
+    QString addr = conf->getInboundSettings()["enableIpv6Support"].toBool() ? (conf->getInboundSettings()["shareOverLan"].toBool() ? "::" : "::1") : (conf->getInboundSettings()["shareOverLan"].toBool() ? "0.0.0.0" : "127.0.0.1");
 
     QTcpServer *server = new QTcpServer(); // Use TcpServer to listen to the port specified
     bool status = server->listen(QHostAddress(addr), port);

@@ -39,51 +39,18 @@ void ConfigHelper::save(const ConnectionTableModel &model)
     }
     settings->endArray();
 
-    settings->setValue("Theme", QVariant(theme));
-    settings->setValue("LogLevel", QVariant(logLevel));
-    settings->setValue("EnableHttpMode", QVariant(enableHttpMode));
-    settings->setValue("Socks5LocalPort", QVariant(socks5Port));
-    settings->setValue("HttpLocalPort", QVariant(httpPort));
-    settings->setValue("PACLocalPort", QVariant(pacPort));
-    settings->setValue("HaproxyStatusPort", QVariant(haproxyStatusPort));
-    settings->setValue("HaproxyPort", QVariant(haproxyPort));
-    settings->setValue("ToolbarStyle", QVariant(toolbarStyle));
     settings->setValue("AutoUpdateSubscribes", QVariant(autoUpdateSubscribes));
     settings->setValue("TrojanOn", QVariant(trojanOn));
     settings->setValue("SystemProxyMode", QVariant(systemProxyMode));
-    settings->setValue("EnableIPV6Support", QVariant(enableIpv6Support));
-    settings->setValue("ShareOverLan", QVariant(shareOverLan));
     settings->setValue("ServerLoadBalance", QVariant(serverLoadBalance));
-    settings->setValue("HideWindowOnStartup", QVariant(hideWindowOnStartup));
-    settings->setValue("StartAtLogin", QVariant(startAtLogin));
-    settings->setValue("OnlyOneInstance", QVariant(onlyOneInstace));
-    settings->setValue("CheckPortAvailability", QVariant(checkPortAvailability));
-    settings->setValue("EnableNotification", QVariant(enableNotification));
-    settings->setValue("HideDockIcon", QVariant(hideDockIcon));
+    settings->setValue("ConfigVersion", QVariant(2.6));
     settings->setValue("ShowToolbar", QVariant(showToolbar));
     settings->setValue("ShowFilterBar", QVariant(showFilterBar));
-    settings->setValue("NativeMenuBar", QVariant(nativeMenuBar));
-    settings->setValue("ConfigVersion", QVariant(2.6));
-    settings->setValue("ForwardProxy", QVariant(enableForwardProxy));
-    settings->setValue("ForwardProxyType", QVariant(forwardProxyType));
-    settings->setValue("ForwardProxyAddress", QVariant(forwardProxyAddress));
-    settings->setValue("ForwardProxyPort", QVariant(forwardProxyPort));
-    settings->setValue("ForwardProxyAuthentication", QVariant(enableForwardProxyAuthentication));
-    settings->setValue("ForwardProxyUsername", QVariant(forwardProxyUsername));
-    settings->setValue("ForwardProxyPassword", QVariant(forwardProxyPassword));
-    settings->setValue("GFWListUrl", QVariant(gfwlistUrl));
-    settings->setValue("UpdateUserAgent", QVariant(updateUserAgent));
-    settings->setValue("FilterKeyword", QVariant(filterKeyword));
-    settings->setValue("MaximumSubscribe", QVariant(maximumSubscribe));
-    settings->setValue("Fingerprint", QVariant(fingerprint));
-    settings->setValue("EnableTrojanAPI", QVariant(enableTrojanAPI));
-    settings->setValue("EnableTrojanRouter", QVariant(enableTrojanRouter));
-    settings->setValue("TrojanAPIPort", QVariant(trojanAPIPort));
-    settings->setValue("TrojanCertPath", QVariant(trojanCertPath));
-    settings->setValue("TrojanCipher", QVariant(trojanCipher));
-    settings->setValue("TrojanCipherTLS13", QVariant(trojanCipherTLS13));
-    settings->setValue("BufferSize", QVariant(bufferSize));
-    settings->setValue("Route", QVariant(route));
+    settings->setValue("GeneralSettings", QVariant(generalSettings));
+    settings->setValue("InboundSettings", QVariant(inboundSettings));
+    settings->setValue("OutboundSettings", QVariant(outboundSettings));
+    settings->setValue("RouterSettings", QVariant(routerSettings));
+    settings->setValue("SubscribeSettings", QVariant(subscribeSettings));
 }
 
 void ConfigHelper::saveSubscribes(QList<TQSubscribe> subscribes)
@@ -419,22 +386,22 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
 {
     QJsonObject configObj;
     configObj["run_type"] = "client";
-    configObj["local_addr"] = isEnableIpv6Support() ? (isShareOverLan() ? "::" : "::1") : (isShareOverLan() ? "0.0.0.0" : "127.0.0.1");
-    configObj["local_port"] = socks5Port;
+    configObj["local_addr"] = getInboundSettings()["enableIpv6Support"].toBool() ? (getInboundSettings()["shareOverLan"].toBool() ? "::" : "::1") : (getInboundSettings()["shareOverLan"].toBool() ? "0.0.0.0" : "127.0.0.1");
+    configObj["local_port"] = generalSettings["socks5LocalPort"];
     configObj["remote_addr"] = profile.serverAddress;
     configObj["remote_port"] = profile.serverPort;
-    configObj["buffer_size"] = bufferSize;
+    configObj["buffer_size"] = trojanSettings["bufferSize"];
     QJsonArray passwordArray;
     passwordArray.append(profile.password);
     configObj["password"] = QJsonValue(passwordArray);
-    configObj["log_level"] = logLevel;
+    configObj["log_level"] = generalSettings["logLevel"];
     configObj["log_file"] = Utils::getLogDir() + "/core.log";
     QJsonObject ssl;
     ssl["verify"] = profile.verifyCertificate;
     ssl["verify_hostname"] = profile.verifyHostname;
-    ssl["cert"] = trojanCertPath;
-    ssl["cipher"] = trojanCipher;
-    ssl["cipher_tls13"] = trojanCipherTLS13;
+    ssl["cert"] = trojanSettings["trojanCertPath"].toString();
+    ssl["cipher"] = trojanSettings["trojanCipher"].toString();
+    ssl["cipher_tls13"] = trojanSettings["trojanCipherTLS13"].toString();
     ssl["sni"] = profile.sni;
     QJsonArray alpnArray;
     alpnArray.append("h2");
@@ -443,7 +410,7 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
     ssl["reuse_session"] = profile.reuseSession;
     ssl["session_ticket"] = profile.sessionTicket;
     ssl["curves"] = "";
-    ssl["fingerprint"] = parseTLSFingerprint(fingerprint);
+    ssl["fingerprint"] = parseTLSFingerprint(trojanSettings["fingerprint"].toInt());
     configObj["ssl"] = QJsonValue(ssl);
     QJsonObject tcp;
     tcp["no_delay"] = true;
@@ -464,27 +431,27 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
     websocket["double_tls"] = profile.websocketDoubleTLS;
     configObj["websocket"] = QJsonValue(websocket);
     QJsonObject router;
-    router["enabled"] = enableTrojanRouter;
-    if (enableTrojanRouter) {
-        router["direct"] = appendJsonArray(route["domain"].toObject()["direct"].toArray(), route["ip"].toObject()["direct"].toArray());
-        router["proxy"] = appendJsonArray(route["domain"].toObject()["proxy"].toArray(), route["ip"].toObject()["proxy"].toArray());
-        router["block"] = appendJsonArray(route["domain"].toObject()["block"].toArray(), route["ip"].toObject()["block"].toArray());
+    router["enabled"] = trojanSettings["enableTrojanRouter"].toBool();
+    if (router["enabled"].toBool()) {
+        router["direct"] = appendJsonArray(routerSettings["domain"].toObject()["direct"].toArray(), routerSettings["ip"].toObject()["direct"].toArray());
+        router["proxy"] = appendJsonArray(routerSettings["domain"].toObject()["proxy"].toArray(), routerSettings["ip"].toObject()["proxy"].toArray());
+        router["block"] = appendJsonArray(routerSettings["domain"].toObject()["block"].toArray(), routerSettings["ip"].toObject()["block"].toArray());
         router["default_policy"] = "proxy";
-        router["domain_strategy"] = parseDomainStrategy(route["domainStrategy"].toString());
+        router["domain_strategy"] = parseDomainStrategy(routerSettings["domainStrategy"].toString());
     }
     configObj["router"] = router;
     QJsonObject api;
-    api["enabled"] = enableTrojanAPI;
+    api["enabled"] = trojanSettings["enableTrojanAPI"].toBool();
     api["api_addr"] = "127.0.0.1";
-    api["api_port"] = trojanAPIPort;
+    api["api_port"] = trojanSettings["trojanAPIPort"].toInt();
     configObj["api"] = QJsonValue(api);
     QJsonObject forward_proxy;
-    forward_proxy["enabled"] = enableForwardProxy;
-    forward_proxy["proxy_addr"] = forwardProxyAddress;
-    forward_proxy["proxy_port"] = forwardProxyPort;
-    if (enableForwardProxyAuthentication) {
-        forward_proxy["username"] = forwardProxyUsername;
-        forward_proxy["password"] = forwardProxyPassword;
+    forward_proxy["enabled"] = outboundSettings["forwardProxy"].toBool();
+    forward_proxy["proxy_addr"] = outboundSettings["forwardProxyAddress"].toString();
+    forward_proxy["proxy_port"] = outboundSettings["forwardProxyPort"].toInt();
+    if (outboundSettings["forwardProxyAuthentication"].toBool()) {
+        forward_proxy["username"] = outboundSettings["forwardProxyUsername"].toString();
+        forward_proxy["password"] = outboundSettings["forwardProxyPassword"].toString();
     }
     configObj["forward_proxy"] = QJsonValue(forward_proxy);
     QJsonDocument JSONDoc(configObj);
@@ -535,7 +502,7 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
     policy["system"] = system;
     configObj["policy"] = policy;
     QJsonObject routing;
-    routing["domainStrategy"] = route["domainStrategy"].toString();
+    routing["domainStrategy"] = routerSettings["domainStrategy"].toString();
     QJsonArray rules;
     QJsonObject apiRule;
     apiRule["type"] = "field";
@@ -545,47 +512,47 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
     apiRule["inboundTag"] = apiRuleInboundTag;
     QJsonObject direct;
     direct["type"] = "field";
-    if (route["domain"].toObject()["direct"].toArray().size() != 0 && route["ip"].toObject()["direct"].toArray().size() != 0)
-        direct["domain"] = route["domain"].toObject()["direct"].toArray();
-    if (route["domain"].toObject()["direct"].toArray().size() != 0 && route["ip"].toObject()["direct"].toArray().size() != 0)
-        direct["ip"] = route["ip"].toObject()["direct"].toArray();
+    if (routerSettings["domain"].toObject()["direct"].toArray().size() != 0 && routerSettings["ip"].toObject()["direct"].toArray().size() != 0)
+        direct["domain"] = routerSettings["domain"].toObject()["direct"].toArray();
+    if (routerSettings["domain"].toObject()["direct"].toArray().size() != 0 && routerSettings["ip"].toObject()["direct"].toArray().size() != 0)
+        direct["ip"] = routerSettings["ip"].toObject()["direct"].toArray();
     direct["outboundTag"] = "direct";
     QJsonObject proxy;
     proxy["type"] = "field";
-    if (route["domain"].toObject()["proxy"].toArray().size() != 0)
-        proxy["domain"] = route["domain"].toObject()["proxy"].toArray();
-    if (route["ip"].toObject()["proxy"].toArray().size() != 0)
-        proxy["ip"] = route["ip"].toObject()["proxy"].toArray();
+    if (routerSettings["domain"].toObject()["proxy"].toArray().size() != 0)
+        proxy["domain"] = routerSettings["domain"].toObject()["proxy"].toArray();
+    if (routerSettings["ip"].toObject()["proxy"].toArray().size() != 0)
+        proxy["ip"] = routerSettings["ip"].toObject()["proxy"].toArray();
     proxy["outboundTag"] = "proxy";
     QJsonObject block;
     block["type"] = "field";
-    if (route["ip"].toObject()["block"].toArray().size() != 0)
-     block["domain"] = route["domain"].toObject()["block"].toArray();
-    if (route["ip"].toObject()["block"].toArray().size() != 0)
-        block["ip"] = route["ip"].toObject()["block"].toArray();
+    if (routerSettings["ip"].toObject()["block"].toArray().size() != 0)
+     block["domain"] = routerSettings["domain"].toObject()["block"].toArray();
+    if (routerSettings["ip"].toObject()["block"].toArray().size() != 0)
+        block["ip"] = routerSettings["ip"].toObject()["block"].toArray();
     block["outboundTag"] = "block";
     rules.append(apiRule);
-    if (route["domain"].toObject()["direct"].toArray().size() != 0 && route["ip"].toObject()["direct"].toArray().size() != 0)
+    if (routerSettings["domain"].toObject()["direct"].toArray().size() != 0 && routerSettings["ip"].toObject()["direct"].toArray().size() != 0)
         rules.append(direct);
-    if (route["domain"].toObject()["proxy"].toArray().size() != 0 && route["ip"].toObject()["proxy"].toArray().size() != 0)
+    if (routerSettings["domain"].toObject()["proxy"].toArray().size() != 0 && routerSettings["ip"].toObject()["proxy"].toArray().size() != 0)
         rules.append(proxy);
-    if (route["domain"].toObject()["block"].toArray().size() != 0 && route["ip"].toObject()["block"].toArray().size() != 0)
+    if (routerSettings["domain"].toObject()["block"].toArray().size() != 0 && routerSettings["ip"].toObject()["block"].toArray().size() != 0)
         rules.append(block);
     routing["rules"] = rules;
     configObj["routing"] = routing;
     QJsonArray inboundsArray;
     QJsonObject socks;
     QJsonObject socksSettings;
-    socks["port"] = socks5Port;
+    socks["port"] = inboundSettings["socks5LocalPort"];
     socks["protocol"] = "socks";
     socksSettings["udp"] = true;
     socksSettings["auth"] = "noauth";
-    socksSettings["ip"] = isEnableIpv6Support() ? (isShareOverLan() ? "::" : "::1") : (isShareOverLan() ? "0.0.0.0" : "127.0.0.1");
+    socksSettings["ip"] = getInboundSettings()["enableIpv6Support"].toBool() ? (getInboundSettings()["shareOverLan"].toBool() ? "::" : "::1") : (getInboundSettings()["shareOverLan"].toBool() ? "0.0.0.0" : "127.0.0.1");
     socks["settings"] = socksSettings;
     socks["tag"] = "inbound";
     QJsonObject apiIn;
     apiIn["listen"] = "127.0.0.1";
-    apiIn["port"] = trojanAPIPort;
+    apiIn["port"] = trojanSettings["trojanAPIPort"].toInt();
     apiIn["protocol"] = "dokodemo-door";
     QJsonObject apiInSettings;
     apiInSettings["address"] = "127.0.0.1";
@@ -741,8 +708,8 @@ void ConfigHelper::generateHaproxyConf(const ConnectionTableModel &model)
         TQProfile p = model.getItem(i)->getConnection()->getProfile();
         text += QString("    server trojan%1 %2:%3 check inter 1000 weight 2\n").arg(QString::number(i)).arg(p.serverAddress).arg(i);
     }
-    text.replace(QString("__STATUS__"), QString("%1:%2").arg(isEnableIpv6Support() ? (isShareOverLan() ? "::" : "::1") : (isShareOverLan() ? "0.0.0.0" : "127.0.0.1")).arg(QString::number(haproxyStatusPort)));
-    text.replace(QString("__TROJAN__"), QString("%1:%2").arg(isEnableIpv6Support() ? (isShareOverLan() ? "::" : "::1") : (isShareOverLan() ? "0.0.0.0" : "127.0.0.1")).arg(QString::number(haproxyPort)));
+    text.replace(QString("__STATUS__"), QString("%1:%2").arg(getInboundSettings()["enableIpv6Support"].toBool() ? (getInboundSettings()["shareOverLan"].toBool() ? "::" : "::1") : (getInboundSettings()["shareOverLan"].toBool() ? "0.0.0.0" : "127.0.0.1")).arg(QString::number(inboundSettings["haproxyStatusPort"].toInt())));
+    text.replace(QString("__TROJAN__"), QString("%1:%2").arg(getInboundSettings()["enableIpv6Support"].toBool() ? (getInboundSettings()["shareOverLan"].toBool() ? "::" : "::1") : (getInboundSettings()["shareOverLan"].toBool() ? "0.0.0.0" : "127.0.0.1")).arg(QString::number(inboundSettings["haproxyPort"].toInt())));
     text.replace(QString("__MODE__"), QString("%1"));
     file.seek(0); // go to the beginning of the file
     file.write(text.toUtf8()); // write the new text back to the file
@@ -789,56 +756,6 @@ QString ConfigHelper::parseTLSFingerprint(int choice) const
     return "";
 }
 
-QString ConfigHelper::getTheme() const
-{
-    return theme;
-}
-
-QJsonObject ConfigHelper::getRoute() const
-{
-    return route;
-}
-
-int ConfigHelper::getFLSFingerPrint() const
-{
-    return fingerprint;
-}
-
-int ConfigHelper::getLogLevel() const
-{
-    return logLevel;
-}
-
-int ConfigHelper::getToolbarStyle() const
-{
-    return toolbarStyle;
-}
-
-int ConfigHelper::getSocks5Port() const
-{
-    return socks5Port;
-}
-
-int ConfigHelper::getHttpPort() const
-{
-    return httpPort;
-}
-
-int ConfigHelper::getPACPort() const
-{
-    return pacPort;
-}
-
-int ConfigHelper::getHaproxyPort() const
-{
-    return haproxyPort;
-}
-
-int ConfigHelper::getHaproxyStatusPort() const
-{
-    return haproxyStatusPort;
-}
-
 QString ConfigHelper::getSystemProxySettings() const
 {
     return systemProxyMode;
@@ -852,141 +769,6 @@ bool ConfigHelper::isTrojanOn() const
 bool ConfigHelper::isEnableServerLoadBalance() const
 {
     return serverLoadBalance;
-}
-
-bool ConfigHelper::isEnableIpv6Support() const
-{
-    return enableIpv6Support;
-}
-
-bool ConfigHelper::isShareOverLan() const
-{
-    return shareOverLan;
-}
-
-bool ConfigHelper::isEnableHttpMode() const
-{
-    return enableHttpMode;
-}
-
-bool ConfigHelper::isHideWindowOnStartup() const
-{
-    return hideWindowOnStartup;
-}
-
-bool ConfigHelper::isStartAtLogin() const
-{
-    return startAtLogin;
-}
-
-bool ConfigHelper::isOnlyOneInstance() const
-{
-    return onlyOneInstace;
-}
-
-bool ConfigHelper::isCheckPortAvailability() const
-{
-    return checkPortAvailability;
-}
-
-bool ConfigHelper::isEnableNotification() const
-{
-    return enableNotification;
-}
-
-bool ConfigHelper::isHideDockIcon() const
-{
-    return hideDockIcon;
-}
-
-bool ConfigHelper::isEnableForwardProxy() const
-{
-    return enableForwardProxy;
-}
-
-int ConfigHelper::getForwardProxyType() const
-{
-    return forwardProxyType;
-}
-
-QString ConfigHelper::getForwardProxyAddress() const
-{
-    return forwardProxyAddress;
-}
-
-int ConfigHelper::getForwardProxyPort() const
-{
-    return forwardProxyPort;
-}
-
-bool ConfigHelper::isEnableForwardProxyAuthentication() const
-{
-    return enableForwardProxyAuthentication;
-}
-
-QString ConfigHelper::getForwardProxyUsername() const
-{
-    return forwardProxyUsername;
-}
-
-QString ConfigHelper::getForwardProxyPassword() const
-{
-    return forwardProxyPassword;
-}
-
-int ConfigHelper::getGfwlistUrl() const
-{
-    return gfwlistUrl;
-}
-
-QString ConfigHelper::getUpdateUserAgent() const
-{
-    return updateUserAgent;
-}
-
-QString ConfigHelper::getFilterKeyword() const
-{
-    return filterKeyword;
-}
-
-int ConfigHelper::getMaximumSubscribe() const
-{
-    return maximumSubscribe;
-}
-
-bool ConfigHelper::isEnableTrojanAPI() const
-{
-    return enableTrojanAPI;
-}
-
-bool ConfigHelper::isEnableTrojanRouter() const
-{
-    return enableTrojanRouter;
-}
-
-int ConfigHelper::getTrojanAPIPort() const
-{
-    return trojanAPIPort;
-}
-
-QString ConfigHelper::getTrojanCertPath() const
-{
-    return trojanCertPath;
-}
-
-QString ConfigHelper::getTrojanCipher() const
-{
-    return trojanCipher;
-}
-
-QString ConfigHelper::getTrojanCipherTLS13() const
-{
-    return trojanCipherTLS13;
-}
-
-int ConfigHelper::getBufferSize() const
-{
-    return bufferSize;
 }
 
 bool ConfigHelper::isAutoUpdateSubscribes() const
@@ -1004,58 +786,47 @@ bool ConfigHelper::isShowFilterBar() const
     return showFilterBar;
 }
 
-bool ConfigHelper::isNativeMenuBar() const
+QJsonObject ConfigHelper::getGeneralSettings() const
 {
-    return nativeMenuBar;
+    return generalSettings;
 }
 
-void ConfigHelper::setRoute(QJsonObject r)
+QJsonObject ConfigHelper::getInboundSettings() const
 {
-    route = r;
+    return inboundSettings;
 }
 
-void ConfigHelper::setGeneralSettings(int ts, bool hide, QString th, bool sal, bool oneInstance, bool cpa, bool en, bool hdi, bool nativeMB, int ll, bool hm, bool eis, bool sol, int sp, int hp, int pp, int ap, int hsp, bool efp, int fpt, QString fpa, int fpp, bool efpa, QString fpu, QString fppa, int glu, QString uua, QString fkw, int ms, int fp, bool eta, bool etr, int tap, QString tcp, QString tc, QString tct13, int bs)
+QJsonObject ConfigHelper::getOutboundSettings() const
 {
-    if (toolbarStyle != ts) {
-        emit toolbarStyleChanged(static_cast<Qt::ToolButtonStyle>(ts));
+    return outboundSettings;
+}
+
+QJsonObject ConfigHelper::getSubscribeSettings() const
+{
+    return subscribeSettings;
+}
+
+QJsonObject ConfigHelper::getRouterSettings() const
+{
+    return routerSettings;
+}
+
+QJsonObject ConfigHelper::getTrojanSettings() const
+{
+    return trojanSettings;
+}
+
+void ConfigHelper::setGeneralSettings(QJsonObject gs, QJsonObject is, QJsonObject os, QJsonObject ss, QJsonObject rs, QJsonObject ts)
+{
+    if (gs["toolbarStyle"].toInt() != generalSettings["toolbarStyle"].toInt()) {
+        emit toolbarStyleChanged(static_cast<Qt::ToolButtonStyle>(gs["toolbarStyle"].toInt()));
     }
-    toolbarStyle = ts;
-    hideWindowOnStartup = hide;
-    theme = th;
-    startAtLogin = sal;
-    onlyOneInstace = oneInstance;
-    checkPortAvailability = cpa;
-    enableNotification = en;
-    hideDockIcon = hdi;
-    nativeMenuBar = nativeMB;
-    logLevel = ll;
-    enableHttpMode = hm;
-    enableIpv6Support = eis;
-    shareOverLan = sol;
-    socks5Port = sp;
-    httpPort = hp;
-    pacPort = pp;
-    haproxyPort = ap;
-    haproxyStatusPort = hsp;
-    enableForwardProxy = efp;
-    forwardProxyType = fpt;
-    forwardProxyAddress = fpa;
-    forwardProxyPort = fpp;
-    enableForwardProxyAuthentication = efpa;
-    forwardProxyUsername = fpu;
-    forwardProxyPassword = fppa;
-    gfwlistUrl = glu;
-    updateUserAgent = uua;
-    filterKeyword = fkw;
-    maximumSubscribe = ms;
-    fingerprint = fp;
-    enableTrojanAPI = eta;
-    enableTrojanRouter = etr;
-    trojanAPIPort = tap;
-    trojanCertPath = tcp;
-    trojanCipher = tc;
-    trojanCipherTLS13 = tct13;
-    bufferSize = bs;
+    generalSettings = gs;
+    inboundSettings = is;
+    outboundSettings = os;
+    subscribeSettings = ss;
+    routerSettings = rs;
+    trojanSettings = ts;
 }
 
 void ConfigHelper::setSystemProxySettings(QString mode)
@@ -1124,52 +895,68 @@ QList<TQSubscribe> ConfigHelper::readSubscribes()
 
 void ConfigHelper::readGeneralSettings()
 {
-    theme = settings->value("Theme", QVariant("Fusion")).toString();
     trojanOn = settings->value("TrojanOn", QVariant(false)).toBool();
-    toolbarStyle = settings->value("ToolbarStyle", QVariant(3)).toInt();
-    logLevel = settings->value("LogLevel", QVariant(1)).toInt();
-    startAtLogin = settings->value("StartAtLogin").toBool();
     autoUpdateSubscribes = settings->value("AutoUpdateSubscribes", QVariant(false)).toBool();
     systemProxyMode = settings->value("SystemProxyMode", QVariant("pac")).toString();
     serverLoadBalance = settings->value("ServerLoadBalance", QVariant(false)).toBool();
-    hideWindowOnStartup = settings->value("HideWindowOnStartup").toBool();
-    onlyOneInstace = settings->value("OnlyOneInstance", QVariant(true)).toBool();
-    checkPortAvailability = settings->value("CheckPortAvailability", QVariant(true)).toBool();
-    enableNotification = settings->value("EnableNotification", QVariant(true)).toBool();
-    hideDockIcon = settings->value("HideDockIcon", QVariant(false)).toBool();
     showToolbar = settings->value("ShowToolbar", QVariant(true)).toBool();
     showFilterBar = settings->value("ShowFilterBar", QVariant(true)).toBool();
-    nativeMenuBar = settings->value("NativeMenuBar", QVariant(false)).toBool();
-    enableHttpMode = settings->value("EnableHttpMode", QVariant(true)).toBool();
-    shareOverLan = settings->value("ShareOverLan", QVariant(false)).toBool();
-    enableIpv6Support = settings->value("EnableIpv6Support", QVariant(false)).toBool();
-    socks5Port = settings->value("Socks5LocalPort", QVariant(51837)).toInt();
-    httpPort = settings->value("HttpLocalPort", QVariant(58591)).toInt();
-    pacPort = settings->value("PACLocalPort", QVariant(8070)).toInt();
-    haproxyStatusPort = settings->value("HaproxyStatusPort", QVariant(2080)).toInt();
-    haproxyPort = settings->value("HaproxyPort", QVariant(7777)).toInt();
-    enableForwardProxy = settings->value("ForwardProxy", QVariant(false)).toBool();
-    forwardProxyType = settings->value("ForwardProxyType", QVariant(0)).toInt();
-    forwardProxyAddress = settings->value("ForwardProxyAddress", QVariant("127.0.0.1")).toString();
-    forwardProxyPort = settings->value("ForwardProxyPort", QVariant(1086)).toInt();
-    enableForwardProxyAuthentication = settings->value("ForwardProxyAuthentication", QVariant(false)).toBool();
-    forwardProxyUsername = settings->value("ForwardProxyUsername", QVariant("")).toString();
-    forwardProxyPassword = settings->value("ForwardProxyPassword", QVariant("")).toString();
-    gfwlistUrl = settings->value("GFWListUrl", QVariant(2)).toInt();
-    updateUserAgent = settings->value("UpdateUserAgent", QVariant(QString("Trojan-Qt5/%1").arg(APP_VERSION))).toString();
-    filterKeyword = settings->value("FilterKeyword", QVariant("")).toString();
-    maximumSubscribe = settings->value("MaximumSubscribe", QVariant(0)).toInt();
-    fingerprint = settings->value("Fingerprint", QVariant(2)).toInt();
-    enableTrojanAPI = settings->value("EnableTrojanAPI", QVariant(true)).toBool();
-    enableTrojanRouter = settings->value("EnableTrojanRouter", QVariant(false)).toBool();
-    trojanAPIPort = settings->value("TrojanAPIPort", QVariant(57721)).toInt();
-    trojanCertPath = settings->value("TrojanCertPath", QVariant("")).toString();
-    trojanCipher = settings->value("TrojanCipher", QVariant("ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES128-SHA:ECDHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA:AES128-SHA:AES256-SHA:DES-CBC3-SHA")).toString();
-    trojanCipherTLS13 = settings->value("TrojanCipherTLS13", QVariant("TLS_AES_128_GCM_SHA256:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_256_GCM_SHA384")).toString();
-    bufferSize = settings->value("BufferSize", QVariant(32)).toInt();
-    QJsonObject temp;
-    temp["domainStrategy"] = "AsIs";
-    route = settings->value("Route", QVariant(temp)).toJsonObject();
+    QJsonObject gtemp;
+    gtemp["theme"] = "Fusion";
+    gtemp["darkTheme"] = false;
+    gtemp["toolbarStyle"] = 3;
+    gtemp["logLevel"] = 1;
+    gtemp["startAtLogin"] = false;
+    gtemp["hideWindowOnStartup"] = false;
+    gtemp["onlyOneInstace"] = true;
+    gtemp["checkPortAvailability"] = true;
+    gtemp["enableNotification"] = true;
+    gtemp["hideDockIcon"] = false;
+    gtemp["showToolbar"] = true;
+    gtemp["showFilterBar"] = true;
+    gtemp["nativeMenuBar"] = false;
+    generalSettings = settings->value("GeneralSettings", QVariant(gtemp)).toJsonObject();
+    QJsonObject itemp;
+    itemp["enableHttpMode"] = true;
+    itemp["shareOverLan"] = false;
+    itemp["enableIpv6Support"] = false;
+    itemp["socks5LocalPort"] = 51837;
+    itemp["httpLocalPort"] = 58591;
+    itemp["pacLocalPort"] = 8070;
+    itemp["haproxyStatusPort"] = 2080;
+    itemp["haproxyPort"] = 7777;
+    inboundSettings = settings->value("InboundSettings", QVariant(itemp)).toJsonObject();
+    QJsonObject otemp;
+    otemp["forwardProxy"] = false;
+    otemp["forwardProxyType"] = 0;
+    otemp["forwardProxyAddress"] = "127.0.0.1";
+    otemp["forwardProxyPort"] = 1086;
+    otemp["forwardProxyAuthentication"] = false;
+    otemp["forwardProxyUsername"] = "";
+    otemp["forwardProxyPassword"] = "";
+    outboundSettings = settings->value("OutboundSettings", QVariant(otemp)).toJsonObject();
+    QJsonObject stemp;
+    stemp["gfwListUrl"] = 2;
+    stemp["updateUserAgent"] = QString("Trojan-Qt5/%1").arg(APP_VERSION);
+    stemp["filterKeyword"] = "";
+    stemp["maximumSubscribe"] = 0;
+    stemp["overwriteAllowInsecure"] = false;
+    stemp["overwriteAllowInsecureCiphers"] = false;
+    stemp["overwriteTcpFastOpen"] = false;
+    subscribeSettings = settings->value("SubscribeSettings", QVariant(stemp)).toJsonObject();
+    QJsonObject rtemp;
+    rtemp["domainStrategy"] = "AsIs";
+    routerSettings = settings->value("RouterSettings", QVariant(rtemp)).toJsonObject();
+    QJsonObject ttemp;
+    ttemp["fingerprint"] = 2;
+    ttemp["enableTrojanAPI"] = true;
+    ttemp["enableTrojanRouter"] = false;
+    ttemp["trojanAPIPort"] = 57721;
+    ttemp["trojanCertPath"] = "";
+    ttemp["trojanCipher"] = "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES128-SHA:ECDHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA:AES128-SHA:AES256-SHA:DES-CBC3-SHA";
+    ttemp["trojanCipherTLS13"] = "TLS_AES_128_GCM_SHA256:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_256_GCM_SHA384";
+    ttemp["bufferSize"] = 32;
+    trojanSettings = settings->value("TrojanSettings", QVariant(ttemp)).toJsonObject();
 }
 
 void ConfigHelper::checkProfileDataUsageReset(TQProfile &profile)
@@ -1245,7 +1032,7 @@ void ConfigHelper::setStartAtLogin()
     QString fileContent;
 #endif
 
-    if (this->isStartAtLogin()) {
+    if (this->getGeneralSettings()["startAtLogin"].toBool()) {
         // Create start up item
     #if defined(Q_OS_WIN)
         settings.setValue(applicationName, applicationFilePath);

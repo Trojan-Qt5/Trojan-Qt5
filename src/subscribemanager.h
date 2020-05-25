@@ -23,7 +23,7 @@ public:
     void updateAllSubscribesWithThread();
 
 signals:
-    void addUri(QString);
+    void addUri(TQProfile);
 
 public slots:
 

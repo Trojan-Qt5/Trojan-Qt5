@@ -63,16 +63,19 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
     proxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
     proxyModel->setFilterKeyColumn(-1);//read from all columns
     ui->connectionView->setModel(proxyModel);
+    ui->connectionView->setFocusPolicy(Qt::NoFocus);
+    ui->connectionView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->connectionView->setSelectionMode(QAbstractItemView::ExtendedSelection);
     ui->toolBar->setToolButtonStyle(static_cast<Qt::ToolButtonStyle>
-                                    (configHelper->getToolbarStyle()));
+                                    (configHelper->getGeneralSettings()["toolbarStyle"].toInt()));
 
     setupActionIcon();
 
     // setup statusbar
     ui->statusbar->showMessage(QString("  SOCKS5 127.0.0.1:%1           HTTP 127.0.0.1:%2            PAC 127.0.0.1:%3            SPEED Up: %4 | Down: %5")
-            .arg(configHelper->getSocks5Port())
-            .arg(configHelper->getHttpPort())
-            .arg(configHelper->getPACPort())
+            .arg(configHelper->getInboundSettings()["socks5LocalPort"].toInt())
+            .arg(configHelper->getInboundSettings()["httpLocalPort"].toInt())
+            .arg(configHelper->getInboundSettings()["pacLocalPort"].toInt())
             .arg(QString::number(0))
             .arg(QString::number(0)));
 
@@ -99,7 +102,7 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
     //some UI changes accoding to config
     ui->toolBar->setVisible(configHelper->isShowToolbar());
     ui->actionShowFilterBar->setChecked(configHelper->isShowFilterBar());
-    ui->menuBar->setNativeMenuBar(configHelper->isNativeMenuBar());
+    ui->menuBar->setNativeMenuBar(configHelper->getGeneralSettings()["nativeMenuBar"].toBool());
 
     ui->toolBar->setFixedHeight(92);
 
@@ -165,6 +168,8 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
             this, &MainWindow::onDisconnect);
     connect(ui->actionTestLatency, &QAction::triggered,
             this, &MainWindow::onLatencyTest);
+    connect(ui->actionClearTraffic, &QAction::triggered,
+                this, &MainWindow::onClearTrafficStats);
     connect(ui->actionMoveUp, &QAction::triggered, this, &MainWindow::onMoveUp);
     connect(ui->actionMoveDown, &QAction::triggered,
             this, &MainWindow::onMoveDown);
@@ -311,9 +316,9 @@ void MainWindow::onAddServerFromSystemTray(QString type)
         onAddFromPasteBoardURI();
 }
 
-void MainWindow::onAddURIFromSubscribe(QString uri)
+void MainWindow::onAddURIFromSubscribe(TQProfile profile)
 {
-    Connection *newCon = new Connection(uri, this);
+    Connection *newCon = new Connection(profile, this);
 
     bool dupResult = model->isDuplicated(newCon);
     bool existResult = model->isExisted(newCon);
@@ -591,6 +596,13 @@ void MainWindow::onConnectionStatusChanged(const int row, const bool running)
     }
 }
 
+void MainWindow::onClearTrafficStats()
+{
+    qDebug()<<ui->connectionView->selectionModel()->selectedIndexes();
+    model->getItem(proxyModel->mapToSource(ui->connectionView->currentIndex()).
+                   row())->clearTraffic();
+}
+
 void MainWindow::onLatencyTest()
 {
     model->getItem(proxyModel->mapToSource(ui->connectionView->currentIndex()).
@@ -816,9 +828,9 @@ void MainWindow::closeEvent(QCloseEvent *e)
 void MainWindow::onStatusAvailable(const quint64 &u, const quint64 &d)
 {
     ui->statusbar->showMessage(QString("  SOCKS5 127.0.0.1:%1                                       HTTP 127.0.0.1:%2                                       PAC 127.0.0.1:%3                                       SPEED Up: %4 | Down: %5")
-            .arg(configHelper->getSocks5Port())
-            .arg(configHelper->getHttpPort())
-            .arg(configHelper->getPACPort())
+            .arg(configHelper->getInboundSettings()["socks5LocalPort"].toInt())
+            .arg(configHelper->getInboundSettings()["httpLocalPort"].toInt())
+            .arg(configHelper->getInboundSettings()["pacLocalPort"].toInt())
             .arg(bytesConvertor(u))
             .arg(bytesConvertor(d)));
 }
@@ -932,8 +944,7 @@ void MainWindow::initSingleInstance()
     socket.connectToServer(serverName);
     if (socket.waitForConnected(500)) {
         instanceRunning = true;
-        if (configHelper->isOnlyOneInstance()) {
-            qWarning() << "An instance of trojan-qt5 is already running";
+        if (configHelper->getGeneralSettings()["onlyOneInstace"].toBool()) {
             Logger::warning("[Instance] An instance of trojan-qt5 is already running");
         }
         QByteArray username = qgetenv("USER");

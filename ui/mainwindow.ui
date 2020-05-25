@@ -303,6 +303,7 @@ QMenu::item:selected {
     <addaction name="actionDisconnect"/>
     <addaction name="actionTestLatency"/>
     <addaction name="actionTestAllLatency"/>
+    <addaction name="actionClearTraffic"/>
     <addaction name="separator"/>
     <addaction name="actionMoveUp"/>
     <addaction name="actionMoveDown"/>
@@ -621,6 +622,16 @@ QMenu::item:selected {
   <action name="actionTestAllLatency">
    <property name="text">
     <string>Test All C&amp;onnections Latency</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
+   </property>
+  </action>
+  <action name="actionClearTraffic">
+   <property name="text">
+    <string>Clear Traffic Stats</string>
    </property>
    <property name="font">
     <font>
