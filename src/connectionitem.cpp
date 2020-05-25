@@ -203,6 +203,15 @@ void ConnectionItem::testLatency()
     con->latencyTest();
 }
 
+void ConnectionItem::clearTraffic()
+{
+    TQProfile p;
+    p = con->getProfile();
+    p.currentUsage = 0;
+    p.totalUsage = 0;
+    con->setProfile(p);
+}
+
 Connection* ConnectionItem::getConnection()
 {
     return con;

@@ -36,6 +36,7 @@ public:
 
     Connection* getConnection();
     void testLatency();
+    void clearTraffic();
 
 signals:
     void message(const QString&);

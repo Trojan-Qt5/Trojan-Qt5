@@ -229,7 +229,7 @@ void Connection::start()
         if (conf->getSystemProxySettings() != "advance")
             http->httpListen(QHostAddress(localAddr),
                            conf->getHttpPort(),
-                           localAddr,
+                           "127.0.0.1",
                            conf->getSocks5Port());
 
     //start tun2socks if settings is configured to do so
