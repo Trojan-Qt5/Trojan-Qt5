@@ -343,6 +343,8 @@ TQProfile TQProfile::fromTrojanUri(const std::string& trojanUri) const
     result.sni = query.queryItemValue("sni");
     if (result.sni.isEmpty())
         result.sni = query.queryItemValue("peer");
+    result.mux = query.queryItemValue("mux").toInt();
+    result.websocket = query.queryItemValue("ws").toInt();
     result.group = query.queryItemValue("group");
 
     return result;
@@ -422,7 +424,7 @@ QString TQProfile::toVmessUri() const
  */
 QString TQProfile::toTrojanUri() const
 {
-    QString trojanUri = password.toUtf8().toPercentEncoding() + "@" + serverAddress + ":" + QString::number(serverPort) + "?allowinsecure=" + QString::number(int(!verifyCertificate)) + "&tfo=" + QString::number(tcpFastOpen) + "&sni=" + sni + "&mux" + mux + "&ws" + websocket + "&group=" + group.toUtf8().toPercentEncoding();
+    QString trojanUri = password.toUtf8().toPercentEncoding() + "@" + serverAddress + ":" + QString::number(serverPort) + "?allowinsecure=" + QString::number(int(!verifyCertificate)) + "&tfo=" + QString::number(tcpFastOpen) + "&sni=" + sni + "&mux=" + QString::number(mux) + "&ws=" + QString::number(websocket) + "&group=" + group.toUtf8().toPercentEncoding();
     QByteArray uri = QByteArray(trojanUri.toUtf8());
     uri.prepend("trojan://");
     uri.append("#");
