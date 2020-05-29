@@ -85,7 +85,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>:/icons/icons/trojan-qt5_new_white.png</normaloff>:/icons/icons/trojan-qt5_new_white.png</iconset>
+    <normaloff>:/icons/icons/trojan-qt5.png</normaloff>:/icons/icons/trojan-qt5.png</iconset>
   </property>
   <property name="toolButtonStyle">
    <enum>Qt::ToolButtonFollowStyle</enum>

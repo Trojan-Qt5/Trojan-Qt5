@@ -39,7 +39,7 @@ void UserRules::onAccepted()
      QTextStream out(&file);
      //must manually set utf-8 encoing otherwise the text will have garbled characters
      out.setCodec(QTextCodec::codecForName("utf-8"));
-     out << ui->textEdit->document()->toPlainText();
+     out << ui->textEdit->document()->toPlainText().replace("\r\n", "\n");
      file.close();
 
      this->accept();

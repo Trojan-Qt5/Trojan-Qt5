@@ -10,9 +10,11 @@ class ClickableLabel: public QLabel
     Q_OBJECT
 public:
     ClickableLabel(QWidget *parent = 0);
+    void setUrl(const QString&);
 
 private:
    void mousePressEvent(QMouseEvent* event);
+   QString url;
 };
 
 #endif // CLICKABLELABEL_H

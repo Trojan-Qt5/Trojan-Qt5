@@ -311,9 +311,9 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
-       <widget class="QLabel" name="label_2">
+       <widget class="ClickableLabel" name="mieLinkLabel">
         <property name="styleSheet">
-         <string notr="true">border-image: url(:/icons/icons/donation.png)</string>
+         <string notr="true">border-image: url(:/icons/icons/mielink.jpg)</string>
         </property>
         <property name="text">
          <string/>
@@ -321,9 +321,9 @@
        </widget>
       </item>
       <item>
-       <widget class="ClickableLabel" name="label" native="true">
+       <widget class="ClickableLabel" name="westWorldSSLabel" native="true">
         <property name="styleSheet">
-         <string notr="true">border-image: url(:/icons/icons/mielink.png)</string>
+         <string notr="true">border-image: url(:/icons/icons/westworldss.png)</string>
         </property>
         <property name="text" stdset="0">
          <string/>

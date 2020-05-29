@@ -131,6 +131,11 @@
         </item>
         <item>
          <property name="text">
+          <string>rc4-md5</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
           <string>chacha20</string>
          </property>
         </item>

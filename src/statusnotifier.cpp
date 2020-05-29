@@ -36,7 +36,7 @@ StatusNotifier::StatusNotifier(MainWindow *w, ConfigHelper *ch, SubscribeManager
             window->raise();
         }
     });
-    minimiseRestoreAction = new QAction(helper->isHideWindowOnStartup() ? tr("Restore") : tr("Minimise"), this);
+    minimiseRestoreAction = new QAction(helper->getGeneralSettings()["hideWindowOnStartup"].toBool() ? tr("Restore") : tr("Minimise"), this);
     connect(minimiseRestoreAction, &QAction::triggered, this, &StatusNotifier::activate);
     initActions();
     initConnections();
@@ -293,15 +293,15 @@ void StatusNotifier::onToggleServerLoadBalance(bool checked)
 void StatusNotifier::onCopyTerminalProxy()
 {
     QClipboard *board = QApplication::clipboard();
-    if (helper->isEnableHttpMode())
-        board->setText(QString("export HTTP_PROXY=http://127.0.0.1:%1; export HTTPS_PROXY=http://127.0.0.1:%1; export ALL_PROXY=socks5://127.0.0.1:%2").arg(helper->getHttpPort()).arg(helper->getSocks5Port()));
+    if (helper->getInboundSettings()["enableHttpMode"].toBool())
+        board->setText(QString("export HTTP_PROXY=http://127.0.0.1:%1; export HTTPS_PROXY=http://127.0.0.1:%1; export ALL_PROXY=socks5://127.0.0.1:%2").arg(helper->getInboundSettings()["httpLocalPort"].toInt()).arg(helper->getInboundSettings()["socks5LocalPort"].toInt()));
     else
-        board->setText(QString("export HTTP_PROXY=socks5://127.0.0.1:%1; export HTTPS_PROXY=socks5://127.0.0.1:%1; export ALL_PROXY=socks5://127.0.0.1:%1").arg(helper->getSocks5Port()));
+        board->setText(QString("export HTTP_PROXY=socks5://127.0.0.1:%1; export HTTPS_PROXY=socks5://127.0.0.1:%1; export ALL_PROXY=socks5://127.0.0.1:%1").arg(helper->getInboundSettings()["socks5LocalPort"].toInt()));
 }
 
 void StatusNotifier::onSetProxyToTelegram()
 {
-    QDesktopServices::openUrl(QString("tg://socks?server=127.0.0.1&port=%2").arg(helper->getSocks5Port()));
+    QDesktopServices::openUrl(QString("tg://socks?server=127.0.0.1&port=%2").arg(helper->getInboundSettings()["socks5LocalPort"].toInt()));
 }
 
 #if defined (Q_OS_WIN)
@@ -324,7 +324,7 @@ void StatusNotifier::activate()
 
 void StatusNotifier::showNotification(const QString &msg)
 {
-    if (helper->isEnableNotification()) {
+    if (helper->getGeneralSettings()["enableNotification"].toBool()) {
 #ifdef Q_OS_LINUX
         //Using DBus to send message.
         QDBusMessage method = QDBusMessage::createMethodCall("org.freedesktop.Notifications","/org/freedesktop/Notifications", "org.freedesktop.Notifications", "Notify");

@@ -512,9 +512,9 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
     apiRule["inboundTag"] = apiRuleInboundTag;
     QJsonObject direct;
     direct["type"] = "field";
-    if (routerSettings["domain"].toObject()["direct"].toArray().size() != 0 && routerSettings["ip"].toObject()["direct"].toArray().size() != 0)
+    if (routerSettings["domain"].toObject()["direct"].toArray().size() != 0)
         direct["domain"] = routerSettings["domain"].toObject()["direct"].toArray();
-    if (routerSettings["domain"].toObject()["direct"].toArray().size() != 0 && routerSettings["ip"].toObject()["direct"].toArray().size() != 0)
+    if (routerSettings["domain"].toObject()["direct"].toArray().size() != 0)
         direct["ip"] = routerSettings["ip"].toObject()["direct"].toArray();
     direct["outboundTag"] = "direct";
     QJsonObject proxy;
@@ -532,11 +532,11 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
         block["ip"] = routerSettings["ip"].toObject()["block"].toArray();
     block["outboundTag"] = "block";
     rules.append(apiRule);
-    if (routerSettings["domain"].toObject()["direct"].toArray().size() != 0 && routerSettings["ip"].toObject()["direct"].toArray().size() != 0)
+    if (routerSettings["domain"].toObject()["direct"].toArray().size() != 0 || routerSettings["ip"].toObject()["direct"].toArray().size() != 0)
         rules.append(direct);
-    if (routerSettings["domain"].toObject()["proxy"].toArray().size() != 0 && routerSettings["ip"].toObject()["proxy"].toArray().size() != 0)
+    if (routerSettings["domain"].toObject()["proxy"].toArray().size() != 0 || routerSettings["ip"].toObject()["proxy"].toArray().size() != 0)
         rules.append(proxy);
-    if (routerSettings["domain"].toObject()["block"].toArray().size() != 0 && routerSettings["ip"].toObject()["block"].toArray().size() != 0)
+    if (routerSettings["domain"].toObject()["block"].toArray().size() != 0 || routerSettings["ip"].toObject()["block"].toArray().size() != 0)
         rules.append(block);
     routing["rules"] = rules;
     configObj["routing"] = routing;

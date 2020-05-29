@@ -8,7 +8,12 @@ ClickableLabel::ClickableLabel(QWidget *parent) : QLabel(parent)
 
 }
 
+void ClickableLabel::setUrl(const QString &u)
+{
+    url = u;
+}
+
 void ClickableLabel::mousePressEvent(QMouseEvent *event)
 {
-    QDesktopServices::openUrl(QUrl("https://rakuten-co-jp.club/register?aff=COELWU"));
+    QDesktopServices::openUrl(QUrl(url));
 }

@@ -19,6 +19,9 @@ AboutDialog::AboutDialog(QWidget *parent) :
     ui->buildInfo->setText(TROJAN_QT5_BUILD_INFO);
     ui->buildExInfo->setText(TROJAN_QT5_BUILD_EXTRA_INFO);
     ui->buildTime->setText(__DATE__ " " __TIME__);
+
+    ui->mieLinkLabel->setUrl("https://rakuten-co-jp.club/register?aff=COELWU");
+    ui->westWorldSSLabel->setUrl("https://xbsj5673.xyz");
 }
 
 AboutDialog::~AboutDialog()
