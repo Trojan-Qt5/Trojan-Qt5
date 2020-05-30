@@ -386,15 +386,15 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
 {
     QJsonObject configObj;
     configObj["run_type"] = "client";
-    configObj["local_addr"] = getInboundSettings()["enableIpv6Support"].toBool() ? (getInboundSettings()["shareOverLan"].toBool() ? "::" : "::1") : (getInboundSettings()["shareOverLan"].toBool() ? "0.0.0.0" : "127.0.0.1");
-    configObj["local_port"] = generalSettings["socks5LocalPort"];
+    configObj["local_addr"] = inboundSettings["enableIpv6Support"].toBool() ? (inboundSettings["shareOverLan"].toBool() ? "::" : "::1") : (inboundSettings["shareOverLan"].toBool() ? "0.0.0.0" : "127.0.0.1");
+    configObj["local_port"] = inboundSettings["socks5LocalPort"].toInt();
     configObj["remote_addr"] = profile.serverAddress;
     configObj["remote_port"] = profile.serverPort;
     configObj["buffer_size"] = trojanSettings["bufferSize"];
     QJsonArray passwordArray;
     passwordArray.append(profile.password);
     configObj["password"] = QJsonValue(passwordArray);
-    configObj["log_level"] = generalSettings["logLevel"];
+    configObj["log_level"] = generalSettings["logLevel"].toInt();
     configObj["log_file"] = Utils::getLogDir() + "/core.log";
     QJsonObject ssl;
     ssl["verify"] = profile.verifyCertificate;

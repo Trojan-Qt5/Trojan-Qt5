@@ -10,6 +10,18 @@ bool GeneralValidator::validateSS(const QString &input)
         TQProfile tqprofile;
         tqprofile.fromSSUri(input.toStdString());
     } catch(const std::exception&) {
+        valid = validateSSOld(input);
+    }
+    return valid;
+}
+
+bool GeneralValidator::validateSSOld(const QString &input)
+{
+    bool valid = true;
+    try {
+        TQProfile tqprofile;
+        tqprofile.fromOldSSUri(input.toStdString());
+    } catch(const std::exception&) {
         valid = false;
     }
     return valid;

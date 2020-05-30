@@ -17,7 +17,6 @@ TrojanGoAPI::TrojanGoAPI()
     connect(thread, SIGNAL(started()), this, SLOT(run()));
 }
 
-
 TrojanGoAPI::~TrojanGoAPI()
 {
     stop();

@@ -171,14 +171,14 @@ namespace
 
 SpeedPlotView::SpeedPlotView(QWidget *parent) : QGraphicsView(parent), m_currentData(&m_datahalfMin)
 {
-    QPen greenPen;
-    greenPen.setWidthF(1.5);
-    greenPen.setColor(QColor(134, 196, 63));
-    QPen bluePen;
-    bluePen.setWidthF(1.5);
-    bluePen.setColor(QColor(50, 153, 255));
-    m_properties[UP] = GraphProperties(tr("Total Upload"), bluePen);
-    m_properties[DOWN] = GraphProperties(tr("Total Download"), greenPen);
+    QPen downPen;
+    downPen.setWidthF(1.5);
+    downPen.setColor(QColor(134, 196, 63));
+    QPen upPen;
+    upPen.setWidthF(1.5);
+    upPen.setColor(QColor(50, 153, 255));
+    m_properties[UP] = GraphProperties(tr("Total Upload"), upPen);
+    m_properties[DOWN] = GraphProperties(tr("Total Download"), downPen);
 }
 
 void SpeedPlotView::Clear()

@@ -146,8 +146,6 @@ TQProfile TQProfile::fromOldSSUri(const std::string& ssUri) const
 
     //remove the prefix "ss://" from uri
     std::string uri(ssUri.data() + 5, ssUri.length() - 5);
-    //decode base64
-    uri = Utils::Base64UrlDecode(QString::fromStdString(uri)).toStdString();
 
     size_t hashPos = uri.find_last_of('#');
     if (hashPos != std::string::npos) {
@@ -156,7 +154,9 @@ TQProfile TQProfile::fromOldSSUri(const std::string& ssUri) const
         uri.erase(hashPos);
     }
 
-    qDebug() << QString::fromStdString(uri);
+    //decode base64
+    uri = Utils::Base64UrlDecode(QString::fromStdString(uri)).toStdString();
+
     size_t atPos = uri.find_first_of('@');
     if (atPos != std::string::npos) {
         QString userInfo = QString::fromStdString(uri.substr(0, atPos));
