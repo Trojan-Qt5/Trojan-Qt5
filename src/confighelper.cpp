@@ -51,6 +51,7 @@ void ConfigHelper::save(const ConnectionTableModel &model)
     settings->setValue("OutboundSettings", QVariant(outboundSettings));
     settings->setValue("RouterSettings", QVariant(routerSettings));
     settings->setValue("SubscribeSettings", QVariant(subscribeSettings));
+    settings->setValue("TrojanSettings", QVariant(trojanSettings));
 }
 
 void ConfigHelper::saveSubscribes(QList<TQSubscribe> subscribes)

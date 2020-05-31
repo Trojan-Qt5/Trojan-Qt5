@@ -130,7 +130,7 @@ void SettingsDialog::onAccepted()
     QJsonObject routerSettings = routeWidget->getConfig();
 
     QJsonObject trojanSettings = helper->getTrojanSettings();
-    trojanSettings["fingerprint"] = ui->tlsFingerprintComboBox->currentText();
+    trojanSettings["fingerprint"] = ui->tlsFingerprintComboBox->currentIndex();
     trojanSettings["enableTrojanAPI"] = ui->enableAPICheckBox->isChecked();
     trojanSettings["enableTrojanRouter"] = ui->enableRouterCheckBox->isChecked();
     trojanSettings["trojanAPIPort"] = ui->apiPortLineEdit->text().toInt();

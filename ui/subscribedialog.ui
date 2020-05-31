@@ -75,16 +75,16 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="confirmButton">
+      <widget class="QPushButton" name="cancelButton">
        <property name="text">
-        <string>Confirm</string>
+        <string>Cancel</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="cancelButton">
+      <widget class="QPushButton" name="confirmButton">
        <property name="text">
-        <string>Cancel</string>
+        <string>Ok</string>
        </property>
       </widget>
      </item>
@@ -120,7 +120,7 @@
  <resources/>
  <connections>
   <connection>
-   <sender>confirmButton</sender>
+   <sender>cancelButton</sender>
    <signal>clicked()</signal>
    <receiver>SubscribeDialog</receiver>
    <slot>reject()</slot>
