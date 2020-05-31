@@ -82,7 +82,7 @@ void SubscribeDialog::UpdateSelected(int index)
         ui->urlLineEdit->setText(sb.url);
         ui->groupNameLineEdit->setText(sb.groupName);
         _old_select_index = index;
-        if (sb.lastUpdateTime != 0 )
+        if (sb.lastUpdateTime != 0)
         {
             QDateTime now;
             now.setTime_t(sb.lastUpdateTime + QDateTime::fromString("1970-01-01T00:00:00").toTime_t());
@@ -100,12 +100,15 @@ void SubscribeDialog::SaveSelected(int index)
 {
     if (index >= 0 && index < subscribes.size())
     {
-        TQSubscribe sb;
+        TQSubscribe sb = subscribes[index];
         if (sb.url != ui->urlLineEdit->text())
         {
             sb.url = ui->urlLineEdit->text();
             sb.groupName = ui->groupNameLineEdit->text();
             sb.lastUpdateTime = 0;
+        } else if (sb.groupName != ui->groupNameLineEdit->text())
+        {
+            sb.groupName = ui->groupNameLineEdit->text();
         }
         subscribes[index] = sb;
     }

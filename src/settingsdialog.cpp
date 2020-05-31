@@ -27,6 +27,7 @@ SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
     ui->enableNotificationCheckBox->setChecked(helper->getGeneralSettings()["enableNotification"].toBool());
     ui->hideDockIconCheckBox->setChecked(helper->getGeneralSettings()["hideDockIcon"].toBool());
     ui->nativeMenuBarCheckBox->setChecked(helper->getGeneralSettings()["nativeMenuBar"].toBool());
+    ui->showAirportAndDonationCB->setChecked(helper->getGeneralSettings()["showAirportAndDonation"].toBool());
     ui->enableHttpProxyCheckBox->setChecked(helper->getInboundSettings()["enableHttpMode"].toBool());
     ui->enableIPV6SupportCheckBox->setChecked(helper->getInboundSettings()["enableIpv6Support"].toBool());
     ui->shareOverLANCheckBox->setChecked(helper->getInboundSettings()["shareOverLan"].toBool());
@@ -46,6 +47,7 @@ SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
     ui->maximumSubscribe->setText(QString::number(helper->getSubscribeSettings()["maximumSubscribe"].toInt()));
     ui->updateUserAgentLineEdit->setText(helper->getSubscribeSettings()["updateUserAgent"].toString());
     ui->filterKeywordLineEdit->setText(helper->getSubscribeSettings()["filterKeyword"].toString());
+    ui->autoFetchGroupnameCB->setChecked(helper->getSubscribeSettings()["autoFetchGroupName"].toBool());
     ui->overwriteAllowInsecureCB->setChecked(helper->getSubscribeSettings()["overwriteAllowInsecure"].toBool());
     ui->overwriteAllowInsecureCiphersCB->setChecked(helper->getSubscribeSettings()["overwriteAllowInsecureCiphers"].toBool());
     ui->overwriteTcpFastOpenCB->setChecked(helper->getSubscribeSettings()["overwriteTcpFastOpen"].toBool());
@@ -94,6 +96,7 @@ void SettingsDialog::onAccepted()
     generalSettings["enableNotification"] = ui->enableNotificationCheckBox->isChecked();
     generalSettings["hideDockIcon"] = ui->hideDockIconCheckBox->isChecked();
     generalSettings["nativeMenuBar"] = ui->nativeMenuBarCheckBox->isChecked();
+    generalSettings["showAirportAndDonation"] = ui->showAirportAndDonationCB->isChecked();
 
     QJsonObject inboundSettings = helper->getInboundSettings();
     inboundSettings["enableHttpMode"] = ui->enableHttpProxyCheckBox->isChecked();
@@ -119,6 +122,7 @@ void SettingsDialog::onAccepted()
     subscribeSettings["updateUserAgent"] = ui->updateUserAgentLineEdit->text();
     subscribeSettings["filterKeyword"] = ui->filterKeywordLineEdit->text();
     subscribeSettings["maximumSubscribe"] = ui->maximumSubscribe->text().toInt();
+    subscribeSettings["autoFetchGroupName"] = ui->autoFetchGroupnameCB->isChecked();
     subscribeSettings["overwriteAllowInsecure"] = ui->overwriteAllowInsecureCB->isChecked();
     subscribeSettings["overwriteAllowInsecureCiphers"] = ui->overwriteAllowInsecureCiphersCB->isChecked();
     subscribeSettings["overwriteTcpFastOpen"] = ui->overwriteTcpFastOpenCB->isChecked();

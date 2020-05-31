@@ -287,7 +287,7 @@ void ConfigHelper::exportTrojanSubscribe(const ConnectionTableModel &model, cons
     int size = model.rowCount();
     for (int i = 0; i < size; ++i) {
         Connection *con = model.getItem(i)->getConnection();
-        uri += con->getURI("");
+        uri += con->getURI(con->getProfile().type);
     }
     uri = uri.toUtf8().toBase64();
 
@@ -915,6 +915,7 @@ void ConfigHelper::readGeneralSettings()
     gtemp["showToolbar"] = true;
     gtemp["showFilterBar"] = true;
     gtemp["nativeMenuBar"] = false;
+    gtemp["showAiportAndDonation"] = true;
     generalSettings = settings->value("GeneralSettings", QVariant(gtemp)).toJsonObject();
     QJsonObject itemp;
     itemp["enableHttpMode"] = true;
@@ -940,6 +941,7 @@ void ConfigHelper::readGeneralSettings()
     stemp["updateUserAgent"] = QString("Trojan-Qt5/%1").arg(APP_VERSION);
     stemp["filterKeyword"] = "";
     stemp["maximumSubscribe"] = 0;
+    stemp["autoFetchGroupName"] = true;
     stemp["overwriteAllowInsecure"] = false;
     stemp["overwriteAllowInsecureCiphers"] = false;
     stemp["overwriteTcpFastOpen"] = false;

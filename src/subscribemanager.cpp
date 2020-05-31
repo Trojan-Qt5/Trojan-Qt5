@@ -90,7 +90,9 @@ void SubscribeManager::updateAllSubscribes()
                 Logger::debug(QString("[Subscribe] Server %1 is not valid").arg(list[x]));
             }
         }
-        subscribes[i].groupName = TQProfile(list[0]).group;
+        if (helper->getSubscribeSettings()["autoFetchGroupName"].toBool())
+            if (!TQProfile(list[0]).group.isEmpty())
+                subscribes[i].groupName = TQProfile(list[0]).group;
     }
     helper->saveSubscribes(subscribes);
 }
