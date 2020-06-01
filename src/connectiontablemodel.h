@@ -54,6 +54,8 @@ public:
 
     QList<TQProfile> getAllServers();
 
+    TQProfile getConnectedServer();
+
 public slots:
     void testAllLatency();
 

@@ -8,14 +8,13 @@ install:
   - set GODIR=C:\go114-x86\bin
   - set GOROOT=C:\go114-x86
   - set MINGWDIR=C:\MinGW\bin
-  - set NSISDIR=C:\Program Files (x86)\NSIS\Bin
   - git clone https://github.com/Trojan-Qt5/Trojan-Qt5-Libraries.git C:\TQLibraries
   - cd C:\TQLibraries
   - 7z x Grpc.7z
   - cd C:\projects\trojan-qt5
   - curl -LO https://slproweb.com/download/Win32OpenSSL-1_1_1g.exe
   - powershell ".\\Win32OpenSSL-1_1_1g.exe /silent /sp- /suppressmsgboxes /DIR='C:\\TQLibraries\\OpenSSL-Win32'"
-  - set PATH=%QTDIR%;%GODIR%;%PYDIR%;%NSISDIR%;%MINGWDIR%;%PATH%;
+  - set PATH=%QTDIR%;%GODIR%;%PYDIR%;%MINGWDIR%;%PATH%;
   - git submodule update --init --recursive
   - cd 3rd\yaml-cpp && cmake -G "Visual Studio 16 2019" -A Win32 .
   - msbuild YAML_CPP.sln /p:Configuration=Release /p:Platform="Win32"
@@ -50,12 +49,14 @@ build_script:
   - curl -LO https://github.com/Trojan-Qt5/Trojan-Qt5-DLL/raw/master/zlib1.dll
   - curl -LO https://github.com/Trojan-Qt5/Trojan-Qt5/raw/master/resources/dat/geosite.dat
   - curl -LO https://github.com/Trojan-Qt5/Trojan-Qt5/raw/master/resources/dat/geoip.dat
-  - del /f /s /q trojan-qt5.exp trojan-qt5.lib trojan-qt5_resource.res vc_redist.x86.exe opengl32sw.dll d3dcompiler_47.dll libGLESV2.dll libEGL.dll Qt5Svg.dll move.py imageformats\qgif.dll iconengines\qsvgicon.dll imageformats\qtga.dll imageformats\qtiff.dll imageformats\qwbmp.dll imageformats\qwebp.dll imageformats\qjpeg.dll imageformats\qsvg.dll iconengines bearer
+  - del /f /s /q trojan-qt5.exp trojan-qt5.lib trojan-qt5_resource.res vc_redist.x86.exe opengl32sw.dll d3dcompiler_47.dll libGLESV2.dll libEGL.dll Qt5Svg.dll move.py imageformats\qgif.dll imageformats\qtga.dll imageformats\qtiff.dll imageformats\qwbmp.dll imageformats\qwebp.dll imageformats\qjpeg.dll imageformats\qsvg.dll iconengines bearer
   - rmdir iconengines bearer
   - 7z a Trojan-Qt5-Windows.7z *
   - 7z a Trojan-Qt5-Windows.zip * -xr!*.7z
   - curl -LO https://github.com/Trojan-Qt5/Trojan-Qt5/raw/master/LICENSE
   - curl -LO https://github.com/Trojan-Qt5/Trojan-Qt5/raw/master/resources/installer.nsi
+  - set NSISDIR=C:\Program Files (x86)\NSIS\Bin
+  - set PATH=%NSISDIR%;%PATH%;
   - makensis installer.nsi
   - dir
   - python ..\..\scripts\checksum.py Trojan-Qt5-Windows.7z Trojan-Qt5-Windows.7z.hash

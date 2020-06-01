@@ -44,5 +44,7 @@
         <file>icons/vmess_off.png</file>
         <file>icons/mielink.jpg</file>
         <file>icons/westworldss.png</file>
+        <file>icons/download.svg</file>
+        <file>icons/upload.svg</file>
     </qresource>
 </RCC>

@@ -13,17 +13,12 @@ TQProfile::TQProfile()
     autoStart = false;
     serverPort = 443;
     name = QObject::tr("Unnamed Profile");
-    verifyCertificate = true;
-    verifyHostname = true;
-    reuseSession = true;
-    sessionTicket = false;
-    reusePort = false;
     tcpFastOpen = false;
-    mux = false;
-    muxConcurrency = 8;
     latency = LATENCY_UNKNOWN;
-    currentUsage = 0;
-    totalUsage = 0;
+    currentDownloadUsage = 0;
+    currentUploadUsage = 0;
+    totalDownloadUsage = 0;
+    totalUploadUsage = 0;
     QDate currentDate = QDate::currentDate();
     nextResetDate = QDate(currentDate.year(), currentDate.month() + 1, 1);
     // ss/ssr/snell only
@@ -40,6 +35,13 @@ TQProfile::TQProfile()
     security = QString("auto");
     vmessSettings = ConfigHelper::generateVmessSettings();
     // trojan only
+    verifyCertificate = true;
+    verifyHostname = true;
+    reuseSession = true;
+    sessionTicket = false;
+    reusePort = false;
+    mux = false;
+    muxConcurrency = 8;
     sni = "";
     websocket = false;
     websocketDoubleTLS = false;
@@ -447,14 +449,14 @@ QString TQProfile::toSnellUri() const
 QDataStream& operator << (QDataStream &out, const TQProfile &p)
 {
     QJsonDocument vmessSettingsDoc(p.vmessSettings);
-    out << p.type << p.autoStart << p.serverPort << p.name << p.serverAddress << p.verifyCertificate << p.verifyHostname << p.password << p.sni << p.reuseSession << p.sessionTicket << p.reusePort << p.tcpFastOpen << p.mux << p.muxConcurrency << p.websocket << p.websocketDoubleTLS << p.websocketPath << p.websocketHostname << p.websocketObfsPassword << p.method << p.protocol << p.protocolParam << p.obfs << p.obfsParam << p.plugin << p.pluginParam << p.uuid << p.alterID << p.security << vmessSettingsDoc.toJson(QJsonDocument::Compact) << p.latency << p.currentUsage << p.totalUsage << p.lastTime << p.nextResetDate;
+    out << p.type << p.autoStart << p.serverPort << p.name << p.serverAddress << p.verifyCertificate << p.verifyHostname << p.password << p.sni << p.reuseSession << p.sessionTicket << p.reusePort << p.tcpFastOpen << p.mux << p.muxConcurrency << p.websocket << p.websocketDoubleTLS << p.websocketPath << p.websocketHostname << p.websocketObfsPassword << p.method << p.protocol << p.protocolParam << p.obfs << p.obfsParam << p.plugin << p.pluginParam << p.uuid << p.alterID << p.security << vmessSettingsDoc.toJson(QJsonDocument::Compact) << p.latency << p.currentDownloadUsage << p.currentUploadUsage << p.totalDownloadUsage << p.totalUploadUsage << p.lastTime << p.nextResetDate;
     return out;
 }
 
 QDataStream& operator >> (QDataStream &in, TQProfile &p)
 {
     QByteArray vmessSettingsData;
-    in >> p.type >> p.autoStart >> p.serverPort >> p.name >> p.serverAddress >> p.verifyCertificate >> p.verifyHostname >> p.password >> p.sni >> p.reuseSession >> p.sessionTicket >> p.reusePort >> p.tcpFastOpen >> p.mux >> p.muxConcurrency >> p.websocket >> p.websocketDoubleTLS >> p.websocketPath >> p.websocketHostname >> p.websocketObfsPassword >> p.method >> p.protocol >> p.protocolParam >> p.obfs >> p.obfsParam >> p.plugin >> p.pluginParam >> p.uuid >> p.alterID >> p.security >> vmessSettingsData >> p.latency >> p.currentUsage >> p.totalUsage >> p.lastTime >> p.nextResetDate;
+    in >> p.type >> p.autoStart >> p.serverPort >> p.name >> p.serverAddress >> p.verifyCertificate >> p.verifyHostname >> p.password >> p.sni >> p.reuseSession >> p.sessionTicket >> p.reusePort >> p.tcpFastOpen >> p.mux >> p.muxConcurrency >> p.websocket >> p.websocketDoubleTLS >> p.websocketPath >> p.websocketHostname >> p.websocketObfsPassword >> p.method >> p.protocol >> p.protocolParam >> p.obfs >> p.obfsParam >> p.plugin >> p.pluginParam >> p.uuid >> p.alterID >> p.security >> vmessSettingsData >> p.latency >> p.currentDownloadUsage >> p.currentUploadUsage >> p.totalDownloadUsage >> p.totalUploadUsage >> p.lastTime >> p.nextResetDate;
     p.vmessSettings = QJsonDocument::fromJson(vmessSettingsData).object();
     return in;
 }

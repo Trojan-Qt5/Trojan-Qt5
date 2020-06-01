@@ -20,6 +20,7 @@ SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
     ui->themeComboBox->addItems(QStyleFactory::keys());
     ui->themeComboBox->setCurrentText(helper->getGeneralSettings()["theme"].toString());
     ui->darkModeCB->setChecked(helper->getGeneralSettings()["darkTheme"].toBool());
+    ui->systemTrayMaximumServerEdit->setText(QString::number(helper->getGeneralSettings()["systemTrayMaximumServer"].toInt()));
     ui->hideCheckBox->setChecked(helper->getGeneralSettings()["hideWindowOnStartup"].toBool());
     ui->startAtLoginCheckbox->setChecked(helper->getGeneralSettings()["startAtLogin"].toBool());
     ui->oneInstanceCheckBox->setChecked(helper->getGeneralSettings()["onlyOneInstace"].toBool());
@@ -89,6 +90,7 @@ void SettingsDialog::onAccepted()
     generalSettings["darkTheme"] = ui->darkModeCB->isChecked();
     generalSettings["toolbarStyle"] = ui->toolbarStyleComboBox->currentIndex();
     generalSettings["logLevel"] = ui->logLevelComboBox->currentIndex();
+    generalSettings["systemTrayMaximumServer"] = ui->systemTrayMaximumServerEdit->text().toInt();
     generalSettings["startAtLogin"] = ui->startAtLoginCheckbox->isChecked();
     generalSettings["hideWindowOnStartup"] = ui->hideCheckBox->isChecked();
     generalSettings["onlyOneInstace"] = ui->oneInstanceCheckBox->isChecked();
@@ -127,6 +129,9 @@ void SettingsDialog::onAccepted()
     subscribeSettings["overwriteAllowInsecureCiphers"] = ui->overwriteAllowInsecureCiphersCB->isChecked();
     subscribeSettings["overwriteTcpFastOpen"] = ui->overwriteTcpFastOpenCB->isChecked();
 
+    QJsonObject graphSettings = helper->getGraphSettings();
+    //graphSettings["downloadSpeedColor"] =;
+    //graphSettings["uploadSpeedColor"] =;
     QJsonObject routerSettings = routeWidget->getConfig();
 
     QJsonObject trojanSettings = helper->getTrojanSettings();
@@ -139,7 +144,7 @@ void SettingsDialog::onAccepted()
     trojanSettings["trojanCipherTLS13"] = ui->cipherTLS13LineEdit->text();
     trojanSettings["bufferSize"] = ui->bufferSizeLineEdit->text().toInt();
 
-    helper->setGeneralSettings(generalSettings, inboundSettings, outboundSettings, subscribeSettings, routerSettings, trojanSettings);
+    helper->setGeneralSettings(generalSettings, inboundSettings, outboundSettings, subscribeSettings, graphSettings, routerSettings, trojanSettings);
 
     QApplication::setStyle(ui->themeComboBox->currentText());
 

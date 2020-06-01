@@ -1,8 +1,9 @@
 #include "utils.h"
 #include "confighelper.h"
-#include <QCoreApplication>
+#include <QApplication>
 #include <QDir>
 #include <QStandardPaths>
+#include <QStyle>
 
 Utils::Utils()
 {}
@@ -50,6 +51,42 @@ QString Utils::getLogDir()
 void Utils::setPermisison(QString &file)
 {
     QFile::setPermissions(file, QFile::ReadOwner | QFile::WriteOwner | QFile::ReadGroup | QFile::WriteGroup);
+}
+
+QSize Utils::smallIconSize(const QWidget *widget)
+{
+    // Get DPI scaled icon size (device-dependent), see QT source
+    // under a 1080p screen is usually 16x16
+    const int s = QApplication::style()->pixelMetric(QStyle::PM_SmallIconSize, nullptr, widget);
+    return {s, s};
+}
+
+QSize Utils::mediumIconSize(const QWidget *widget)
+{
+    // under a 1080p screen is usually 24x24
+    return ((smallIconSize(widget) + largeIconSize(widget)) / 2);
+}
+
+QSize Utils::largeIconSize(const QWidget *widget)
+{
+    // Get DPI scaled icon size (device-dependent), see QT source
+    // under a 1080p screen is usually 32x32
+    const int s = QApplication::style()->pixelMetric(QStyle::PM_LargeIconSize, nullptr, widget);
+    return {s, s};
+}
+
+QString Utils::bytesConvertor(const quint64 &t)
+{
+    if (t >= (double)1024L * (double)1024L * (double)1024L * (double)1024L)
+        return QString::number(t / (double)1024 / (double)1024 / (double)1024 / (double)1024, 'f', 2) + " TB";
+    else if (t >= (double)1024L * (double)1024L * (double)1024L)
+        return QString::number(t / (double)1024 / (double)1024 / (double)1024, 'f', 2) + " GB";
+    else if (t >= (double)1024 * (double)1024)
+        return QString::number(t / (double)1024 / (double)1024, 'f', 2) + " MB";
+    else if (t >= (double)1024)
+        return QString::number(t / (double)1024, 'f', 2) + " KB";
+    else
+        return QString::number(t, 'f', 2) + " B";
 }
 
 /*

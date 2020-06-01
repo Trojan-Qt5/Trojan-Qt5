@@ -204,6 +204,7 @@ SOURCES += \
     src/speedplotview.cpp \
     src/speedwidget.cpp \
     src/ssthread.cpp \
+    src/statusbar.cpp \
     src/trojaneditdialog.cpp \
     src/ip4validator.cpp \
     src/main.cpp \
@@ -239,7 +240,8 @@ SOURCES += \
     src/vmesseditdialog.cpp \
     src/ssgoapi.cpp \
     src/routewidget.cpp \
-    src/streamwidget.cpp
+    src/streamwidget.cpp \
+    src/qtcolorpicker.cpp
 
 HEADERS += \
     src/connectionsortfilterproxymodel.h \
@@ -260,6 +262,7 @@ HEADERS += \
     src/speedplotview.hpp \
     src/speedwidget.hpp \
     src/ssthread.h \
+    src/statusbar.h \
     src/trojaneditdialog.h \
     src/ip4validator.h \
     src/mainwindow.h \
@@ -295,7 +298,8 @@ HEADERS += \
     src/vmesseditdialog.h \
     src/ssgoapi.h \
     src/routewidget.h \
-    src/streamwidget.h
+    src/streamwidget.h \
+    src/qtcolorpicker.h
 
 FORMS += \
     ui/aboutdialog.ui \

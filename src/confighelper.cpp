@@ -49,6 +49,7 @@ void ConfigHelper::save(const ConnectionTableModel &model)
     settings->setValue("GeneralSettings", QVariant(generalSettings));
     settings->setValue("InboundSettings", QVariant(inboundSettings));
     settings->setValue("OutboundSettings", QVariant(outboundSettings));
+    settings->setValue("GraphSettings", QVariant(graphSettings));
     settings->setValue("RouterSettings", QVariant(routerSettings));
     settings->setValue("SubscribeSettings", QVariant(subscribeSettings));
     settings->setValue("TrojanSettings", QVariant(trojanSettings));
@@ -807,6 +808,11 @@ QJsonObject ConfigHelper::getSubscribeSettings() const
     return subscribeSettings;
 }
 
+QJsonObject ConfigHelper::getGraphSettings() const
+{
+    return graphSettings;
+}
+
 QJsonObject ConfigHelper::getRouterSettings() const
 {
     return routerSettings;
@@ -817,7 +823,7 @@ QJsonObject ConfigHelper::getTrojanSettings() const
     return trojanSettings;
 }
 
-void ConfigHelper::setGeneralSettings(QJsonObject gs, QJsonObject is, QJsonObject os, QJsonObject ss, QJsonObject rs, QJsonObject ts)
+void ConfigHelper::setGeneralSettings(QJsonObject gs, QJsonObject is, QJsonObject os, QJsonObject ss, QJsonObject fs, QJsonObject rs, QJsonObject ts)
 {
     if (gs["toolbarStyle"].toInt() != generalSettings["toolbarStyle"].toInt()) {
         emit toolbarStyleChanged(static_cast<Qt::ToolButtonStyle>(gs["toolbarStyle"].toInt()));
@@ -826,6 +832,7 @@ void ConfigHelper::setGeneralSettings(QJsonObject gs, QJsonObject is, QJsonObjec
     inboundSettings = is;
     outboundSettings = os;
     subscribeSettings = ss;
+    graphSettings = fs;
     routerSettings = rs;
     trojanSettings = ts;
 }
@@ -907,6 +914,7 @@ void ConfigHelper::readGeneralSettings()
     gtemp["darkTheme"] = false;
     gtemp["toolbarStyle"] = 3;
     gtemp["logLevel"] = 1;
+    gtemp["systemTrayMaximumServer"] = 0;
     gtemp["startAtLogin"] = false;
     gtemp["hideWindowOnStartup"] = false;
     gtemp["onlyOneInstace"] = true;
@@ -947,6 +955,10 @@ void ConfigHelper::readGeneralSettings()
     stemp["overwriteAllowInsecureCiphers"] = false;
     stemp["overwriteTcpFastOpen"] = false;
     subscribeSettings = settings->value("SubscribeSettings", QVariant(stemp)).toJsonObject();
+    QJsonObject ftemp;
+    ftemp["downloadSpeedColor"] = QColor::fromRgb(134, 196, 63).name();
+    ftemp["uploadSpeedColor"] = QColor::fromRgb(50, 153, 255).name();
+    graphSettings = settings->value("GraphSettings", QVariant(ftemp)).toJsonObject();
     QJsonObject rtemp;
     rtemp["domainStrategy"] = "AsIs";
     routerSettings = settings->value("RouterSettings", QVariant(rtemp)).toJsonObject();
@@ -969,11 +981,13 @@ void ConfigHelper::checkProfileDataUsageReset(TQProfile &profile)
         //the default reset day is 1 of every month
         profile.nextResetDate = QDate(currentDate.year(), currentDate.month(), 1);
         qDebug() << "config.ini upgraded from old version";
-        profile.totalUsage += profile.currentUsage;//we used to use sent and received
+        profile.totalDownloadUsage += profile.currentDownloadUsage;//we used to use received
+        profile.totalUploadUsage += profile.currentUploadUsage; //we used to use sent
     }
 
     if (profile.nextResetDate < currentDate) {//not <= because that'd casue multiple reset on this day
-        profile.currentUsage = 0;
+        profile.currentDownloadUsage = 0;
+        profile.currentUploadUsage = 0;
         while (profile.nextResetDate <= currentDate) {
             profile.nextResetDate = profile.nextResetDate.addMonths(1);
         }

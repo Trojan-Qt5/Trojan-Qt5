@@ -21,6 +21,8 @@
 
 #include <QMainWindow>
 #include <QLocalServer>
+#include <QPointer>
+
 #include "connectiontablemodel.h"
 #include "connectionsortfilterproxymodel.h"
 #include "confighelper.h"
@@ -33,6 +35,8 @@
 #include "sparkle/CocoaInitializer.h"
 #include "sparkle/SparkleAutoUpdater.h"
 #endif
+
+class StatusBar;
 
 
 QT_BEGIN_NAMESPACE
@@ -49,7 +53,7 @@ public:
 
     void startAutoStartConnections();
     QList<TQProfile> getAllServers();
-    TQProfile getSelectedServer();
+    TQProfile getConnectedServer();
     void onAddServerFromSystemTray(QString type);
     void onToggleServerFromSystemTray(TQProfile profile);
     bool isInstanceRunning() const;
@@ -60,6 +64,8 @@ public slots:
 
 private:
     Ui::MainWindow *ui;
+
+    QPointer<StatusBar> m_statusBar;
 
     ConnectionTableModel *model;
     ConnectionSortFilterProxyModel *proxyModel;
@@ -124,7 +130,6 @@ private slots:
     void onQRCodeCapturerResultFound(const QString &uris);
     void onCheckUpdate();
     void onStatusAvailable(const quint64 &u, const quint64 &d);
-    QString bytesConvertor(const quint64 &);
     void onSingleInstanceConnect();
 
 protected slots:

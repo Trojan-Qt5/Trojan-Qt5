@@ -51,12 +51,12 @@ struct TQProfile
     QString serverAddress;
     QString password;
     int latency;
-    quint64 currentUsage;
-    quint64 totalUsage;
+    quint64 currentDownloadUsage;
+    quint64 currentUploadUsage;
+    quint64 totalDownloadUsage;
+    quint64 totalUploadUsage;
     QDateTime lastTime; //last time this connection is used
     QDate nextResetDate; //next scheduled date to reset data usage
-    bool mux;
-    int muxConcurrency;
     // ss/ssr/snell only
     QString method;
     QString protocol;
@@ -74,6 +74,8 @@ struct TQProfile
     bool tcpFastOpen;
     bool websocket;
     bool websocketDoubleTLS;
+    bool mux;
+    int muxConcurrency;
     QString sni;
     QString websocketPath;
     QString websocketHostname;

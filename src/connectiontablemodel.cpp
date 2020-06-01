@@ -220,6 +220,18 @@ QList<TQProfile> ConnectionTableModel::getAllServers()
     return servers;
 }
 
+TQProfile ConnectionTableModel::getConnectedServer()
+{
+    for (auto &i : items) {
+        Connection *con = i->getConnection();
+        if (con->isRunning()) {
+            return con->getProfile();
+        }
+    }
+
+    return TQProfile();
+}
+
 void ConnectionTableModel::onConnectionStateChanged(bool running)
 {
     ConnectionItem *item = qobject_cast<ConnectionItem*>(sender());

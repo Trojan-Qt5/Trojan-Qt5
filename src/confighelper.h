@@ -89,6 +89,7 @@ public:
     QJsonObject getGeneralSettings() const;
     QJsonObject getInboundSettings() const;
     QJsonObject getOutboundSettings() const;
+    QJsonObject getGraphSettings() const;
     QJsonObject getRouterSettings() const;
     QJsonObject getSubscribeSettings() const;
     QJsonObject getTrojanSettings() const;
@@ -98,7 +99,7 @@ public:
     bool isAutoUpdateSubscribes() const;
     bool isShowToolbar() const;
     bool isShowFilterBar() const;
-    void setGeneralSettings(QJsonObject gs, QJsonObject is, QJsonObject os, QJsonObject ss, QJsonObject rs, QJsonObject ts);
+    void setGeneralSettings(QJsonObject gs, QJsonObject is, QJsonObject os, QJsonObject ss, QJsonObject fs, QJsonObject rs, QJsonObject ts);
     void setSystemProxySettings(QString mode);
     void setTrojanOn(bool on);
     void setAutoUpdateSubscribes(bool update);
@@ -124,6 +125,7 @@ private:
     QJsonObject generalSettings;
     QJsonObject inboundSettings;
     QJsonObject outboundSettings;
+    QJsonObject graphSettings;
     QJsonObject routerSettings;
     QJsonObject subscribeSettings;
     QJsonObject trojanSettings;

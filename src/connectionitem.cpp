@@ -69,17 +69,17 @@ QVariant ConnectionItem::data(int column, int role) const
             if (role == Qt::ForegroundRole) {
                 return QVariant(QColor::fromRgb(112, 112, 112));
             } else if (role == Qt::DisplayRole) {
-                return QVariant(convertBytesToHumanReadable(con->profile.currentUsage));
+                return QVariant(convertBytesToHumanReadable(con->profile.currentDownloadUsage + con->profile.currentUploadUsage));
             } else {
-                return QVariant(con->profile.currentUsage);
+                return QVariant(con->profile.currentDownloadUsage + con->profile.currentUploadUsage);
             }
         case 6://data usage (total)
             if (role == Qt::ForegroundRole) {
                 return QVariant(QColor::fromRgb(112, 112, 112));
             } else if (role == Qt::DisplayRole) {
-                return QVariant(convertBytesToHumanReadable(con->profile.totalUsage));
+                return QVariant(convertBytesToHumanReadable(con->profile.totalDownloadUsage + con->profile.totalUploadUsage));
             } else {
-                return QVariant(con->profile.totalUsage);
+                return QVariant(con->profile.totalDownloadUsage + con->profile.totalUploadUsage);
             }
         case 7://reset date
             if (role == Qt::ForegroundRole) {
@@ -207,8 +207,10 @@ void ConnectionItem::clearTraffic()
 {
     TQProfile p;
     p = con->getProfile();
-    p.currentUsage = 0;
-    p.totalUsage = 0;
+    p.currentDownloadUsage = 0;
+    p.currentUploadUsage = 0;
+    p.totalDownloadUsage = 0;
+    p.totalUploadUsage = 0;
     con->setProfile(p);
 }
 

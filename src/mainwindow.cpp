@@ -19,6 +19,7 @@
 #include "logger.h"
 #include "utils.h"
 #include "QtAwesome.h"
+#include "statusbar.h"
 
 #include <QClipboard>
 #include <QDesktopServices>
@@ -72,12 +73,20 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
     setupActionIcon();
 
     // setup statusbar
-    ui->statusbar->showMessage(QString("  SOCKS5 127.0.0.1:%1           HTTP 127.0.0.1:%2            PAC 127.0.0.1:%3            SPEED Up: %4 | Down: %5")
-            .arg(configHelper->getInboundSettings()["socks5LocalPort"].toInt())
-            .arg(configHelper->getInboundSettings()["httpLocalPort"].toInt())
-            .arg(configHelper->getInboundSettings()["pacLocalPort"].toInt())
-            .arg(QString::number(0))
-            .arg(QString::number(0)));
+    m_statusBar = new StatusBar;
+    setStatusBar(m_statusBar);
+    QList<int> ports;
+    ports.append(configHelper->getInboundSettings()["socks5LocalPort"].toInt());
+    ports.append(configHelper->getInboundSettings()["httpLocalPort"].toInt());
+    ports.append(configHelper->getInboundSettings()["pacLocalPort"].toInt());
+    QList<QString> stats;
+    stats.append("0 B");
+    stats.append("0 B");
+    stats.append("0 B");
+    stats.append("0 B");
+    m_statusBar->refresh(configHelper->getInboundSettings()["enableIpv6Support"].toBool() ? (configHelper->getInboundSettings()["shareOverLan"].toBool() ? "::" : "::1") : (configHelper->getInboundSettings()["shareOverLan"].toBool() ? "0.0.0.0" : "127.0.0.1"),
+    ports,
+    stats);
 
     sbMgr = new SubscribeManager(this, configHelper);
     notifier = new StatusNotifier(this, configHelper, sbMgr, this);
@@ -253,13 +262,9 @@ QList<TQProfile> MainWindow::getAllServers()
     return model->getAllServers();
 }
 
-TQProfile MainWindow::getSelectedServer()
+TQProfile MainWindow::getConnectedServer()
 {
-    int row = proxyModel->mapToSource(ui->connectionView->currentIndex()).row();
-    if (row < 0)
-        return TQProfile();
-    TQProfile profile = model->getItem(row)->getConnection()->getProfile();
-    return profile;
+    return model->getConnectedServer();
 }
 
 void MainWindow::onToggleConnection(bool status)
@@ -292,15 +297,17 @@ void MainWindow::onHandleDataFromUrlScheme(const QString &data)
             configHelper->save(*model);
          }
     } else if (data.startsWith("trojan-qt5://")) {
-        QString splitData = data.split("add-subscribe?url=")[1];
-        QString url = QUrl::fromPercentEncoding(splitData.toUtf8().data()).toUtf8().data();
-        QList<TQSubscribe> subscribes = configHelper->readSubscribes();
-        TQSubscribe subscribe;
-        subscribe.url = url;
-        subscribes.append(subscribe);
-        configHelper->saveSubscribes(subscribes);
-        sbMgr->setUseProxy(false);
-        sbMgr->updateAllSubscribesWithThread();
+        if (data.split("add-subscribe?url=").length() > 1) {
+            QString splitData = data.split("add-subscribe?url=")[1];
+            QString url = QUrl::fromPercentEncoding(splitData.toUtf8().data()).toUtf8().data();
+            QList<TQSubscribe> subscribes = configHelper->readSubscribes();
+            TQSubscribe subscribe;
+            subscribe.url = url;
+            subscribes.append(subscribe);
+            configHelper->saveSubscribes(subscribes);
+            sbMgr->setUseProxy(false);
+            sbMgr->updateAllSubscribesWithThread();
+        }
     } else if (data.startsWith("felix://")) {
         QMessageBox::information(this, "Aku seneng Felix Wang", "I love you Felix Wang\nCoel 2019-2020");
     }
@@ -827,26 +834,18 @@ void MainWindow::closeEvent(QCloseEvent *e)
 
 void MainWindow::onStatusAvailable(const quint64 &u, const quint64 &d)
 {
-    ui->statusbar->showMessage(QString("  SOCKS5 127.0.0.1:%1                                       HTTP 127.0.0.1:%2                                       PAC 127.0.0.1:%3                                       SPEED Up: %4 | Down: %5")
-            .arg(configHelper->getInboundSettings()["socks5LocalPort"].toInt())
-            .arg(configHelper->getInboundSettings()["httpLocalPort"].toInt())
-            .arg(configHelper->getInboundSettings()["pacLocalPort"].toInt())
-            .arg(bytesConvertor(u))
-            .arg(bytesConvertor(d)));
-}
-
-QString MainWindow::bytesConvertor(const quint64 &t)
-{
-    if (t >= (double)1024L * (double)1024L * (double)1024L * (double)1024L)
-        return QString::number(t / (double)1024 / (double)1024 / (double)1024 / (double)1024, 'f', 2) + "TB/s";
-    else if (t >= (double)1024L * (double)1024L * (double)1024L)
-        return QString::number(t / (double)1024 / (double)1024 / (double)1024, 'f', 2) + "GB/s";
-    else if (t >= (double)1024 * (double)1024)
-        return QString::number(t / (double)1024 / (double)1024, 'f', 2) + "MB/s";
-    else if (t >= (double)1024)
-        return QString::number(t / (double)1024, 'f', 2) + "KB/s";
-    else
-        return QString::number(t, 'f', 2) + "B/s";
+    QList<int> ports;
+    ports.append(configHelper->getInboundSettings()["socks5LocalPort"].toInt());
+    ports.append(configHelper->getInboundSettings()["httpLocalPort"].toInt());
+    ports.append(configHelper->getInboundSettings()["pacLocalPort"].toInt());
+    QList<QString> stats;
+    stats.append(Utils::bytesConvertor(d));
+    stats.append(Utils::bytesConvertor(u));
+    stats.append(Utils::bytesConvertor(MidMan::getConnection().getProfile().totalDownloadUsage));
+    stats.append(Utils::bytesConvertor(MidMan::getConnection().getProfile().totalUploadUsage));
+    m_statusBar->refresh(configHelper->getInboundSettings()["enableIpv6Support"].toBool() ? (configHelper->getInboundSettings()["shareOverLan"].toBool() ? "::" : "::1") : (configHelper->getInboundSettings()["shareOverLan"].toBool() ? "0.0.0.0" : "127.0.0.1"),
+    ports,
+    stats);
 }
 
 void MainWindow::setupActionIcon()

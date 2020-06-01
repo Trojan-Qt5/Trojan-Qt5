@@ -369,9 +369,11 @@ void Connection::onTrojanConnectionDestoryed(Connection& connection, const uint6
 
 void Connection::onNewBytesTransmitted(const quint64 &u, const quint64 &d)
 {
-    profile.currentUsage += u + d;
-    profile.totalUsage += u + d;
-    emit dataUsageChanged(profile.currentUsage, profile.totalUsage);
+    profile.currentDownloadUsage += d;
+    profile.currentUploadUsage += u;
+    profile.totalDownloadUsage += d;
+    profile.totalUploadUsage += u;
+    emit dataUsageChanged(profile.currentDownloadUsage + profile.currentUploadUsage, profile.totalDownloadUsage + profile.totalUploadUsage);
     emit dataTrafficAvailable(u, d);
 }
 

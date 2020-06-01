@@ -202,7 +202,7 @@ void StatusNotifier::updateMenu()
 void StatusNotifier::updateServersMenu()
 {
     QList<TQProfile> serverList = window->getAllServers();
-    TQProfile actived = window->getSelectedServer();
+    TQProfile connected = window->getConnectedServer();
     serverMenu->clear();
     serverMenu->addMenu(addServerMenu);
     serverMenu->addSeparator();
@@ -210,7 +210,7 @@ void StatusNotifier::updateServersMenu()
         QAction *action = new QAction(serverList[i].name, ServerGroup);
         action->setCheckable(false);
         action->setIcon(QIcon(QString(":/icons/icons/%1_off.png").arg(serverList[i].type)));
-        if (serverList[i].equals(actived))
+        if (serverList[i].equals(connected))
             action->setIcon(QIcon(QString(":/icons/icons/%1_on.png").arg(serverList[i].type)));
         serverMenu->addAction(action);
     }
