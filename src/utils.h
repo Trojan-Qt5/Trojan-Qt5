@@ -2,6 +2,7 @@
 #define UTILS_H
 
 #include <QObject>
+#include "confighelper.h"
 
 class Utils: public QObject
 {
@@ -23,6 +24,8 @@ public:
     static QSize largeIconSize(const QWidget *widget = nullptr);
 
     static QString bytesConvertor(const quint64 &t);
+
+    static ConfigHelper* getConfigHelper();
 
 };
 

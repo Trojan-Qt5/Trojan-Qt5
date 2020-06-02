@@ -1,9 +1,7 @@
 #include "aboutdialog.h"
 #include "ui_aboutdialog.h"
 #include "confighelper.h"
-
-#include <openssl/opensslv.h>
-#include <qrencode.h>
+#include "utils.h"
 
 #include <QFile>
 #include <QDesktopServices>
@@ -24,13 +22,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
     ui->buildExInfo->setText(TROJAN_QT5_BUILD_EXTRA_INFO);
     ui->buildTime->setText(__DATE__ " " __TIME__);
 
-#ifdef Q_OS_WIN
-    QString configFile = qApp->applicationDirPath() + "/config.ini";
-#else
-    QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
-    QString configFile = configDir.absolutePath() + "/config.ini";
-#endif
-    ConfigHelper *conf = new ConfigHelper(configFile);
+    ConfigHelper *conf = Utils::getConfigHelper();
 
     if (!conf->getGeneralSettings()["showAirportAndDonation"].toBool()) {
         ui->mieLinkLabel->setStyleSheet("");

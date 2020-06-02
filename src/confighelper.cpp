@@ -664,10 +664,10 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
     QJsonDocument JSONDoc(configObj);
 
 #ifdef Q_OS_WIN
-        QString file = QCoreApplication::applicationDirPath() + "/config.json";
+    QString file = QCoreApplication::applicationDirPath() + "/config.json";
 #else
-        QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
-        QString file = configDir.absolutePath() + "/config.json";
+    QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
+    QString file = configDir.absolutePath() + "/config.json";
 #endif
 
     QFile JSONFile(file);
@@ -688,10 +688,10 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
 void ConfigHelper::generateHaproxyConf(const ConnectionTableModel &model)
 {
 #ifdef Q_OS_WIN
-        QString haproxyConf = QCoreApplication::applicationDirPath() + "/haproxy.conf";
+    QString haproxyConf = QCoreApplication::applicationDirPath() + "/haproxy.conf";
 #else
-        QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
-        QString haproxyConf = configDir.absolutePath() + "/haproxy.conf";
+    QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
+    QString haproxyConf = configDir.absolutePath() + "/haproxy.conf";
 #endif
 
     if (QFile::exists(haproxyConf)) {

@@ -28,6 +28,7 @@
  */
 
 #include "speedplotview.hpp"
+#include "utils.h"
 
 #include <QCoreApplication>
 #include <QLocale>
@@ -171,12 +172,14 @@ namespace
 
 SpeedPlotView::SpeedPlotView(QWidget *parent) : QGraphicsView(parent), m_currentData(&m_datahalfMin)
 {
+    ConfigHelper *helper = Utils::getConfigHelper();
+
     QPen downPen;
     downPen.setWidthF(1.5);
-    downPen.setColor(QColor(134, 196, 63));
+    downPen.setColor(QColor(helper->getGraphSettings()["downloadSpeedColor"].toString()));
     QPen upPen;
     upPen.setWidthF(1.5);
-    upPen.setColor(QColor(50, 153, 255));
+    upPen.setColor(QColor(helper->getGraphSettings()["uploadSpeedColor"].toString()));
     m_properties[UP] = GraphProperties(tr("Total Upload"), upPen);
     m_properties[DOWN] = GraphProperties(tr("Total Download"), downPen);
 }

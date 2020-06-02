@@ -52,6 +52,8 @@ SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
     ui->overwriteAllowInsecureCB->setChecked(helper->getSubscribeSettings()["overwriteAllowInsecure"].toBool());
     ui->overwriteAllowInsecureCiphersCB->setChecked(helper->getSubscribeSettings()["overwriteAllowInsecureCiphers"].toBool());
     ui->overwriteTcpFastOpenCB->setChecked(helper->getSubscribeSettings()["overwriteTcpFastOpen"].toBool());
+    ui->downloadColorPicker->setCurrentColor(QColor(helper->getGraphSettings()["downloadSpeedColor"].toString()));
+    ui->uploadColorPicker->setCurrentColor(QColor(helper->getGraphSettings()["uploadSpeedColor"].toString()));
     ui->tlsFingerprintComboBox->setCurrentIndex(helper->getTrojanSettings()["fingerprint"].toInt());
     ui->enableAPICheckBox->setChecked(helper->getTrojanSettings()["enableTrojanAPI"].toBool());
     ui->enableRouterCheckBox->setChecked(helper->getTrojanSettings()["enableTrojanRouter"].toBool());
@@ -130,8 +132,9 @@ void SettingsDialog::onAccepted()
     subscribeSettings["overwriteTcpFastOpen"] = ui->overwriteTcpFastOpenCB->isChecked();
 
     QJsonObject graphSettings = helper->getGraphSettings();
-    //graphSettings["downloadSpeedColor"] =;
-    //graphSettings["uploadSpeedColor"] =;
+    graphSettings["downloadSpeedColor"] = ui->downloadColorPicker->currentColor().name();
+    graphSettings["uploadSpeedColor"] = ui->uploadColorPicker->currentColor().name();
+
     QJsonObject routerSettings = routeWidget->getConfig();
 
     QJsonObject trojanSettings = helper->getTrojanSettings();

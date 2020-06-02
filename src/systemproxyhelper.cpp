@@ -1,4 +1,4 @@
-#include "confighelper.h"
+#include "utils.h"
 #include "systemproxyhelper.h"
 #include <array>
 #include <stdio.h>
@@ -57,13 +57,7 @@ std::string SystemProxyHelper::runShell(QString cmd)
  */
 void SystemProxyHelper::setSystemProxy(int method)
 {
-#ifdef Q_OS_WIN
-    QString configFile = qApp->applicationDirPath() + "/config.ini";
-#else
-    QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
-    QString configFile = configDir.absolutePath() + "/config.ini";
-#endif
-    ConfigHelper *conf = new ConfigHelper(configFile);
+    ConfigHelper *conf = Utils::getConfigHelper();
 
 #if defined(Q_OS_WIN)
     if (method == 1 && conf->getInboundSettings()["enableHttpMode"].toBool()) {

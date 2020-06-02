@@ -120,7 +120,7 @@ void Connection::start()
         QString errorString = pv->isInUse(conf->getInboundSettings()["socks5LocalPort"].toInt());
         if (!errorString.isEmpty()) {
             Logger::error(QString("[Connection] Can't bind socks5 port %1: %2").arg(QString::number(conf->getInboundSettings()["socks5LocalPort"].toInt())).arg(errorString));
-            QMessageBox::critical(NULL, tr("Unable to start connection"), QString(tr("Socks5 port %1 is already in use")).arg(conf->getInboundSettings()["httpLocalPort"].toInt()));
+            QMessageBox::critical(NULL, tr("Unable to start connection"), QString(tr("Socks5 port %1 is already in use")).arg(conf->getInboundSettings()["socks5LocalPort"].toInt()));
             return;
         }
 

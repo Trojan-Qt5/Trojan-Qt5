@@ -1,15 +1,9 @@
 #include "pacserver.h"
-
-#include <QDir>
-#include <QFile>
-#if defined (Q_OS_WIN)
-#include <QCoreApplication>
-#endif
-
 #include "qhttprequest.h"
 #include "qhttpresponse.h"
 #include "qhttpserver.h"
 #include "confighelper.h"
+#include "utils.h"
 
 PACServer::PACServer()
 {
@@ -23,13 +17,7 @@ PACServer::~PACServer()
 
 void PACServer::listen()
 {
-#ifdef Q_OS_WIN
-    QString configFile = qApp->applicationDirPath() + "/config.ini";
-#else
-    QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
-    QString configFile = configDir.absolutePath() + "/config.ini";
-#endif
-    ConfigHelper *conf = new ConfigHelper(configFile);
+    ConfigHelper *conf = Utils::getConfigHelper();
 
     QString addr = conf->getInboundSettings()["enableIpv6Support"].toBool() ? (conf->getInboundSettings()["shareOverLan"].toBool() ? "::" : "::1") : (conf->getInboundSettings()["shareOverLan"].toBool() ? "0.0.0.0" : "127.0.0.1");
     server.listen(QHostAddress(addr), conf->getInboundSettings()["pacLocalPort"].toInt());

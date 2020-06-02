@@ -1,5 +1,4 @@
 #include "utils.h"
-#include "confighelper.h"
 #include <QApplication>
 #include <QDir>
 #include <QStandardPaths>
@@ -35,7 +34,6 @@ QString Utils::toCamelCase(const QString& s)
 
     return parts.join(" ");
 }
-
 
 QString Utils::getLogDir()
 {
@@ -87,6 +85,18 @@ QString Utils::bytesConvertor(const quint64 &t)
         return QString::number(t / (double)1024, 'f', 2) + " KB";
     else
         return QString::number(t, 'f', 2) + " B";
+}
+
+ConfigHelper* Utils::getConfigHelper()
+{
+#ifdef Q_OS_WIN
+    QString configFile = qApp->applicationDirPath() + "/config.ini";
+#else
+    QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
+    QString configFile = configDir.absolutePath() + "/config.ini";
+#endif
+    ConfigHelper *helper = new ConfigHelper(configFile);
+    return helper;
 }
 
 /*
