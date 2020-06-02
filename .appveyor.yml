@@ -47,8 +47,6 @@ build_script:
   - curl -LO https://github.com/Trojan-Qt5/Trojan-Qt5-DLL/raw/master/libprotobuf.dll
   - curl -LO https://github.com/Trojan-Qt5/Trojan-Qt5-DLL/raw/master/libgcc_s_dw2-1.dll
   - curl -LO https://github.com/Trojan-Qt5/Trojan-Qt5-DLL/raw/master/zlib1.dll
-  - curl -LO https://github.com/Trojan-Qt5/Trojan-Qt5/raw/master/resources/dat/geosite.dat
-  - curl -LO https://github.com/Trojan-Qt5/Trojan-Qt5/raw/master/resources/dat/geoip.dat
   - del /f /s /q trojan-qt5.exp trojan-qt5.lib trojan-qt5_resource.res vc_redist.x86.exe opengl32sw.dll d3dcompiler_47.dll libGLESV2.dll libEGL.dll Qt5Svg.dll move.py imageformats\qgif.dll imageformats\qtga.dll imageformats\qtiff.dll imageformats\qwbmp.dll imageformats\qwebp.dll imageformats\qjpeg.dll imageformats\qsvg.dll iconengines bearer
   - rmdir iconengines bearer
   - 7z a Trojan-Qt5-Windows.7z *

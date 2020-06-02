@@ -966,6 +966,8 @@ void ConfigHelper::readGeneralSettings()
     ttemp["fingerprint"] = 2;
     ttemp["enableTrojanAPI"] = true;
     ttemp["enableTrojanRouter"] = false;
+    ttemp["geoipPath"] = Utils::getConfigPath() + QDir::toNativeSeparators("/dat/geoip.dat");
+    ttemp["geositePath"] = Utils::getConfigPath() + QDir::toNativeSeparators("/dat/geosite.dat");
     ttemp["trojanAPIPort"] = 57721;
     ttemp["trojanCertPath"] = "";
     ttemp["trojanCipher"] = "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES128-SHA:ECDHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA:AES128-SHA:AES256-SHA:DES-CBC3-SHA";

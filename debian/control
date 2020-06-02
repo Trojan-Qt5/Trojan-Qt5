@@ -26,4 +26,4 @@ Package: trojan-qt5
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Recommends: trojan
-Description: A cross-platform ss/ssr/vmess/trojan GUI client
+Description: A cross-platform ss/ssr/vmess/trojan(go) GUI client

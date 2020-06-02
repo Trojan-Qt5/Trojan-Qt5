@@ -1,9 +1,7 @@
 #include "ssgoapi.h"
 #include "logger.h"
 #include "confighelper.h"
-#if defined (Q_OS_WIN)
-#include <QCoreApplication>
-#endif
+#include "utils.h"
 
 using namespace shadowsocks::api;
 using grpc::Channel;
@@ -32,14 +30,8 @@ void SSGoAPI::start()
 
 void SSGoAPI::run()
 {
-#ifdef Q_OS_WIN
-    QString configFile = qApp->applicationDirPath() + "/config.ini";
-#else
-    QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
-    QString configFile = configDir.absolutePath() + "/config.ini";
-#endif
 
-    ConfigHelper *conf = new ConfigHelper(configFile);
+    ConfigHelper *conf = Utils::getConfigHelper();
 
     QString address = QString("127.0.0.1:%1").arg(conf->getTrojanSettings()["trojanAPIPort"].toInt());
 

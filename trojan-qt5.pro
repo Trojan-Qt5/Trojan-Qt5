@@ -346,6 +346,7 @@ RESOURCES += \
     resources/bin.qrc \
     resources/conf.qrc \
     resources/credits.qrc \
+    resources/dat.qrc \
     resources/icons.qrc \
     resources/pac.qrc \
     resources/pem.qrc \

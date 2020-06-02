@@ -87,14 +87,21 @@ QString Utils::bytesConvertor(const quint64 &t)
         return QString::number(t, 'f', 2) + " B";
 }
 
-ConfigHelper* Utils::getConfigHelper()
+QString Utils::getConfigPath()
 {
 #ifdef Q_OS_WIN
-    QString configFile = qApp->applicationDirPath() + "/config.ini";
+    QString configPath = qApp->applicationDirPath();
 #else
     QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
-    QString configFile = configDir.absolutePath() + "/config.ini";
+    QString configPath = configDir.absolutePath();
 #endif
+
+    return configPath;
+}
+
+ConfigHelper* Utils::getConfigHelper()
+{
+    QString configFile = getConfigPath() + "/config.ini";
     ConfigHelper *helper = new ConfigHelper(configFile);
     return helper;
 }

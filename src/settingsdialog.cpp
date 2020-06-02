@@ -62,6 +62,8 @@ SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
     ui->cipherLineEdit->setText(helper->getTrojanSettings()["trojanCipher"].toString());
     ui->cipherTLS13LineEdit->setText(helper->getTrojanSettings()["trojanCipherTLS13"].toString());
     ui->bufferSizeLineEdit->setText(QString::number(helper->getTrojanSettings()["bufferSize"].toInt()));
+    ui->geoipPathEdit->setText(helper->getTrojanSettings()["geoipPath"].toString());
+    ui->geositePathEdit->setText(helper->getTrojanSettings()["geositePath"].toString());
 
     routeWidget = new RouteWidget();
     routeWidget->setConfig(helper->getRouterSettings());

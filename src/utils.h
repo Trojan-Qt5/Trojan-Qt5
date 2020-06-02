@@ -25,6 +25,7 @@ public:
 
     static QString bytesConvertor(const quint64 &t);
 
+    static QString getConfigPath();
     static ConfigHelper* getConfigHelper();
 
 };

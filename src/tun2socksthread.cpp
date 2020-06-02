@@ -1,9 +1,7 @@
 #include "confighelper.h"
 #include "tun2socksthread.h"
 #include <QProcess>
-#if defined (Q_OS_WIN)
-#include <QCoreApplication>
-#endif
+#include "utils.h"
 #include "trojan-qt5-core.h"
 
 Tun2socksThread::Tun2socksThread()
@@ -16,12 +14,7 @@ Tun2socksThread::~Tun2socksThread()
 
 void Tun2socksThread::run()
 {
-#ifdef Q_OS_WIN
-    QString configFile = qApp->applicationDirPath() + "/config.ini";
-#else
-    QString configFile = QDir::homePath() + "/.config/trojan-qt5/config.ini";
-#endif
-    ConfigHelper *conf = new ConfigHelper(configFile);
+    ConfigHelper *conf = Utils::getConfigHelper();
     QString tunName = "tun1";
     QString tunAddr = "240.0.0.2";
     QString tunGw = "240.0.0.1";

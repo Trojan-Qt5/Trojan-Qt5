@@ -104,9 +104,7 @@ script:
       export LD_LIBRARY_PATH=/usr/loal/zlib/lib:/usr/local/pcre/lib:/usr/local/zbar/lib/:/usr/local/qrencode/lib/:/usr/local/boost/lib/:/usr/local/openssl/lib/:$LD_LIBRARY_PATH;
       ./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -appimage;
       mv Trojan-Qt5*.AppImage Trojan-Qt5-Linux.AppImage;
-      curl -LO https://github.com/Trojan-Qt5/Trojan-Qt5/raw/master/resources/dat/geosite.dat;
-      curl -LO https://github.com/Trojan-Qt5/Trojan-Qt5/raw/master/resources/dat/geoip.dat;
-      7z a Trojan-Qt5-Linux.7z Trojan-Qt5-Linux.AppImage geosite.dat geoip.dat;
+      7z a Trojan-Qt5-Linux.7z Trojan-Qt5-Linux.AppImage;
       python3 ../scripts/checksum.py Trojan-Qt5-Linux.7z Trojan-Qt5-Linux.hash;
     fi
   - if [ "$BADGE" = "linux" ] && [ "$ROLE" = "deb" ]; then

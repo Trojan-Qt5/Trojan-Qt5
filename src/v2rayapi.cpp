@@ -1,9 +1,7 @@
 #include "v2rayapi.h"
 #include "logger.h"
 #include "confighelper.h"
-#if defined (Q_OS_WIN)
-#include <QCoreApplication>
-#endif
+#include "utils.h"
 
 using namespace v2ray::core::app::stats::command;
 using grpc::Channel;
@@ -32,14 +30,7 @@ void V2rayAPI::start()
 
 void V2rayAPI::run()
 {
-#ifdef Q_OS_WIN
-    QString configFile = qApp->applicationDirPath() + "/config.ini";
-#else
-    QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
-    QString configFile = configDir.absolutePath() + "/config.ini";
-#endif
-
-    ConfigHelper *conf = new ConfigHelper(configFile);
+    ConfigHelper *conf = Utils::getConfigHelper();
 
     QString address = QString("127.0.0.1:%1").arg(conf->getTrojanSettings()["trojanAPIPort"].toInt());
 
