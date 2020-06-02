@@ -435,6 +435,8 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
     QJsonObject router;
     router["enabled"] = trojanSettings["enableTrojanRouter"].toBool();
     if (router["enabled"].toBool()) {
+        router["geoip"] = trojanSettings["geoipPath"].toString();
+        router["geosite"] = trojanSettings["geositePath"].toString();
         router["direct"] = appendJsonArray(routerSettings["domain"].toObject()["direct"].toArray(), routerSettings["ip"].toObject()["direct"].toArray());
         router["proxy"] = appendJsonArray(routerSettings["domain"].toObject()["proxy"].toArray(), routerSettings["ip"].toObject()["proxy"].toArray());
         router["block"] = appendJsonArray(routerSettings["domain"].toObject()["block"].toArray(), routerSettings["ip"].toObject()["block"].toArray());

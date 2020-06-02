@@ -1792,12 +1792,12 @@ See the following link for a reference:
         <translation>從登錄開始</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="84"/>
+        <location filename="../../src/settingsdialog.cpp" line="86"/>
         <source>Invalid</source>
         <translation type="unfinished">無效</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="85"/>
+        <location filename="../../src/settingsdialog.cpp" line="87"/>
         <source>You can not hide dock Icon and use native menu bar at the same time</source>
         <translation type="unfinished"></translation>
     </message>

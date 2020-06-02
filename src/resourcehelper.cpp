@@ -1,4 +1,5 @@
 #include "resourcehelper.h"
+#include "utils.h"
 
 #include <QProcess>
 #include <QDir>
@@ -26,3 +27,22 @@ void ResourceHelper::installTAPDriver()
     QProcess::startDetached(tapInstallerPath, param);
 }
 
+void ResourceHelper::copyDatFiles()
+{
+    QDir fileDir = QDir::toNativeSeparators(Utils::getConfigPath() + "/dat");
+    if (!fileDir.exists()) {
+        fileDir.mkpath(".");
+    }
+
+    QFile geoipFile = fileDir.path() + "/geoip.dat";
+    QFile geositeFile = fileDir.path() + "/geosite.dat";
+
+    if (!geoipFile.exists()) {
+        QFile::copy(":/dat/geoip.dat", fileDir.path() + "/geoip.dat");
+    }
+
+    if (!geositeFile.exists()) {
+        QFile::copy(":/dat/geosite.dat", fileDir.path() + "/geosite.dat");
+    }
+
+}

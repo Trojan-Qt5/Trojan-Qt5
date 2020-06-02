@@ -46,5 +46,7 @@
         <file>icons/westworldss.png</file>
         <file>icons/download.svg</file>
         <file>icons/upload.svg</file>
+        <file>icons/qingwan.jpg</file>
+        <file>icons/youyun.jpg</file>
     </qresource>
 </RCC>

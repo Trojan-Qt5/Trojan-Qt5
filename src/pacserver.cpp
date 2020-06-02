@@ -4,6 +4,9 @@
 #include "qhttpserver.h"
 #include "confighelper.h"
 #include "utils.h"
+#if defined (Q_OS_WIN)
+#include <QApplication>
+#endif
 
 PACServer::PACServer()
 {

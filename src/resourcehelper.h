@@ -8,6 +8,8 @@ class ResourceHelper
 public:
     ResourceHelper();
     static void installTAPDriver();
+
+    static void copyDatFiles();
 };
 
 #endif // RESOURCEHELPER_H

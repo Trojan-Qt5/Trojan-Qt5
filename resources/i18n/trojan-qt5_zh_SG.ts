@@ -1870,12 +1870,12 @@ See the following link for a reference:
         <translation>登录时启动</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="84"/>
+        <location filename="../../src/settingsdialog.cpp" line="86"/>
         <source>Invalid</source>
         <translation>无效</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="85"/>
+        <location filename="../../src/settingsdialog.cpp" line="87"/>
         <source>You can not hide dock Icon and use native menu bar at the same time</source>
         <translation>你不能同时隐藏dock栏图标并使用原生菜单栏</translation>
     </message>

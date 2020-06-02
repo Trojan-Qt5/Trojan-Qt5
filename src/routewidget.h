@@ -16,10 +16,15 @@ class RouteWidget : public QWidget
 public:
     explicit RouteWidget(QWidget *parent = nullptr);
     ~RouteWidget();
-    QString getText(QString level1, QString level2);
-    void setText(QString input, QString level1, QString level2);
+    QString getText(QJsonObject object, QString level1, QString level2);
+    void setText(QJsonObject object, QString input, QString level1, QString level2);
     void setConfig(QJsonObject r);
     QJsonObject getConfig();
+
+private slots:
+    void on_importRulesBtn_clicked();
+
+    void on_exportRulesBtn_clicked();
 
 private:
     Ui::RouteWidget *ui;

@@ -80,19 +80,21 @@ Trojan-Qt5's icon is owned by [mielink] and [erdongchan], any unanthorized usage
 
 ## Sponsors
 
-### 1.MieLink
+WARNING, BETTER DO SOME RESEARCH BEFORE PURCHASE IT. I TAKE ABSOLUTELY ZERO RESPONSIBILITY.
+
+### 1.MieLink (IEPL, IPLC, CN2 GIA Fastest)
 ![MieLink](https://i.imgur.com/XmvuOOi.png)
 Use this [link](http://rakuten-co-jp.club/register?aff=COELWU) to get 10RMB initial balance!
 
-### 2.WestWorldSS
+### 2.WestWorldSS (Unlimited Devices, Unlimited Traffic)
 ![WestWordSS](https://i.imgur.com/IyzIFrFg.png)  
 Use this [link](https://xbsj5673.xyz) to register now!
 
-### 3.Qing Wan International Airline
-![QinWan](https://imgur.com/PNtT1H8.png) 
+### 3.Qing Wan International Airline (Small Airport, better reliability)
+![QinWan](https://i.imgur.com/o839GuN.png) 
 
-Use this [link](https://www.qwyun.vip/auth/register?code=COELWU) to register now!
+Use this [link](https://www.qwyun.vip/auth/register?code=COELWU) to register now! USE affMan75z to get discount!
 
-### 4.You Yun 666
+### 4.You Yun 666 (Full Transit Airport)
 ![YouYun](https://i.imgur.com/U4ue42O.jpg)  
-Use this [link]() to register now!
+Use this [link](https://youyun666.com/auth/register?code=FDqS) to register now!

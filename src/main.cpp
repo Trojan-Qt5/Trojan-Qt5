@@ -150,6 +150,8 @@ int main(int argc, char *argv[])
 
     ConfigHelper conf(configFile);
 
+    ResourceHelper::copyDatFiles();
+
     // setup the theme here
     a.setStyle(conf.getGeneralSettings()["theme"].toString());
 
