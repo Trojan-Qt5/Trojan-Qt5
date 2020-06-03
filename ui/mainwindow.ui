@@ -266,6 +266,16 @@ QMenu::item:selected {
     <property name="title">
      <string>&amp;Connection</string>
     </property>
+    <widget class="QMenu" name="menuManually">
+    <property name="title">
+      <string>&amp;Manually</string>
+     </property>
+     <addaction name="actionManuallySS"/>
+     <addaction name="actionManuallySSR"/>
+     <addaction name="actionManuallyVmess"/>
+     <addaction name="actionManuallyTrojan"/>
+     <addaction name="actionManuallySnell"/>
+    </widget>
     <widget class="QMenu" name="menuAdd">
      <property name="title">
       <string>&amp;Add</string>
@@ -274,6 +284,7 @@ QMenu::item:selected {
       <iconset theme="list-add">
        <normaloff>.</normaloff>.</iconset>
      </property>
+     <addaction name="menuManually"/>
      <addaction name="actionURI"/>
      <addaction name="actionPasteBoardURI"/>
      <addaction name="actionQRCodeFromFile"/>

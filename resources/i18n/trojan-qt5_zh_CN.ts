@@ -1666,7 +1666,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/settingsdialog.ui" line="550"/>
         <source>Download Speed Color</source>
-        <translation>下载速度颜色</translation>
+        <translation>下行速度颜色</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="557"/>

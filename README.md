@@ -62,12 +62,13 @@ This project is based on:
 - [ShadowsocksR-uvw](https://github.com/qv2ray/shadowsocksr-uvw) GPL-3.0
 - [Qv2ray](https://github.com/qv2ray/qv2ray) GPL-3.0
 - [go-tun2socks](https://github.com/eycorsican/go-tun2socks) MIT
-- [trojan](https://github.com/trojan-gfw/trojan) GPL-3.0
+- ~~[trojan](https://github.com/trojan-gfw/trojan) GPL-3.0~~
 - [trojan-qt](https://github.com/trojan-gfw/trojan-qt) GPL-3.0
 - [trojan-go](https://github.com/p4gefau1t/trojan-go/) GPL-3.0
-- [Privoxy](https://www.privoxy.org) GPL-2.0
+- ~~[Privoxy](https://www.privoxy.org) GPL-2.0~~
 - [sysproxy](https://github.com/Noisyfox/sysproxy/) Apache-2.0
 - [qbittorrent](https://github.com/qbittorrent/qBittorrent) GPL-2.0
+- [v2ray-core](https://github.com/v2ray/v2ray-core) MIT
 
 ## UI Design
 - [@erdongchan]()
@@ -87,7 +88,7 @@ WARNING, BETTER DO SOME RESEARCH BEFORE PURCHASE IT. I TAKE ABSOLUTELY ZERO RESP
 Use this [link](http://rakuten-co-jp.club/register?aff=COELWU) to get 10RMB initial balance!
 
 ### 2.WestWorldSS (Unlimited Devices, Unlimited Traffic)
-![WestWordSS](https://i.imgur.com/IyzIFrFg.png)  
+![WestWordSS](https://i.imgur.com/aZx1VnP.png)  
 Use this [link](https://xbsj5673.xyz) to register now!
 
 ### 3.Qing Wan International Airline (Small Airport, better reliability)
