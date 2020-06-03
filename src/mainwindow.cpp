@@ -65,8 +65,6 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
     proxyModel->setFilterKeyColumn(-1);//read from all columns
     ui->connectionView->setModel(proxyModel);
     ui->connectionView->setFocusPolicy(Qt::NoFocus);
-    ui->connectionView->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->connectionView->setSelectionMode(QAbstractItemView::ExtendedSelection);
     ui->toolBar->setToolButtonStyle(static_cast<Qt::ToolButtonStyle>
                                     (configHelper->getGeneralSettings()["toolbarStyle"].toInt()));
 
@@ -485,7 +483,8 @@ void MainWindow::onAddFromPasteBoardURI()
 {
     QClipboard *board = QApplication::clipboard();
     QString str = board->text();
-    for (QString uri: str.split("\\r\\n")) {
+    str = str.replace("\\r", "\r").replace("\\n", "\n").replace("\r\n", "\n");
+    for (QString uri: str.split("\n")) {
         if (GeneralValidator::validateSS(uri) || GeneralValidator::validateSSR(uri) || GeneralValidator::validateVmess(uri) ||GeneralValidator::validateTrojan(uri)) {
             Connection *newCon = new Connection(uri, this);
             model->appendConnection(newCon);
@@ -517,10 +516,9 @@ void MainWindow::onAddFromShadowrocketJSON()
 
 void MainWindow::onDelete()
 {
-    if (model->removeRow(proxyModel->mapToSource(
-                         ui->connectionView->currentIndex()).row())) {
-        configHelper->save(*model);
-    }
+    for (int i = ui->connectionView->selectionModel()->selectedRows().size() - 1; i >= 0; i--)
+        model->removeRow(proxyModel->mapToSource(ui->connectionView->selectionModel()->selectedRows()[i]).row());
+    configHelper->save(*model);
     checkCurrentIndex();
 }
 
@@ -605,15 +603,14 @@ void MainWindow::onConnectionStatusChanged(const int row, const bool running)
 
 void MainWindow::onClearTrafficStats()
 {
-    qDebug()<<ui->connectionView->selectionModel()->selectedIndexes();
-    model->getItem(proxyModel->mapToSource(ui->connectionView->currentIndex()).
-                   row())->clearTraffic();
+    for (int i = 0; i < ui->connectionView->selectionModel()->selectedRows().size(); i++)
+        model->getItem(proxyModel->mapToSource(ui->connectionView->selectionModel()->selectedRows()[i]).row())->clearTraffic();
 }
 
 void MainWindow::onLatencyTest()
 {
-    model->getItem(proxyModel->mapToSource(ui->connectionView->currentIndex()).
-                   row())->testLatency();
+    for (int i = 0; i < ui->connectionView->selectionModel()->selectedRows().size(); i++)
+        model->getItem(proxyModel->mapToSource(ui->connectionView->selectionModel()->selectedRows()[i]).row())->testLatency();
 }
 
 void MainWindow::onMoveUp()

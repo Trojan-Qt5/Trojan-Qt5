@@ -212,6 +212,7 @@ void ConnectionItem::clearTraffic()
     p.totalDownloadUsage = 0;
     p.totalUploadUsage = 0;
     con->setProfile(p);
+    emit dataUsageChanged(p.currentDownloadUsage + p.currentUploadUsage, p.totalDownloadUsage + p.totalUploadUsage);
 }
 
 Connection* ConnectionItem::getConnection()

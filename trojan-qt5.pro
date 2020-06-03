@@ -56,6 +56,9 @@ DEFINES += _TROJAN_QT5_BUILD_INFO_STR_=\"\\\"$${_TROJAN_QT5_BUILD_INFO_STR_}\\\"
 # QHttpServer
 DEFINES += QHTTPSERVER_EXPORT
 
+# QtColorPicker
+DEFINES += QT_QTCOLORPICKER_EXPORT
+
 # You can also make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
 # You can also select to disable deprecated APIs only up to a certain version of Qt.

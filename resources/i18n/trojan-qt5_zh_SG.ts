@@ -139,7 +139,7 @@
     <message>
         <location filename="../../src/qtcolorpicker.cpp" line="897"/>
         <source>Custom</source>
-        <translation type="unfinished"></translation>
+        <translation>自定义</translation>
     </message>
 </context>
 <context>
@@ -556,7 +556,7 @@
     <message>
         <location filename="../../ui/mainwindow.ui" line="634"/>
         <source>Clear Traffic Stats</source>
-        <translation type="unfinished"></translation>
+        <translation>清除流量统计信息</translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="814"/>
@@ -1561,7 +1561,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/settingsdialog.ui" line="307"/>
         <source>SystemTray Maximum Server</source>
-        <translation type="unfinished"></translation>
+        <translation>系统托盘最大服务器数量</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="320"/>
@@ -1661,12 +1661,12 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/settingsdialog.ui" line="535"/>
         <source>Graph Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>图表设置</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="550"/>
         <source>Download Speed Color</source>
-        <translation type="unfinished"></translation>
+        <translation>下载速度颜色</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="557"/>
@@ -1677,7 +1677,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/settingsdialog.ui" line="571"/>
         <source>Upload Speed Color</source>
-        <translation type="unfinished"></translation>
+        <translation>上行速度颜色</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="580"/>
@@ -1789,12 +1789,12 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/settingsdialog.ui" line="858"/>
         <source>Geoip Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Geoip路径</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="865"/>
         <source>Geosite Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Geosite路径</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="780"/>

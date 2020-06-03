@@ -24,13 +24,16 @@ AboutDialog::AboutDialog(QWidget *parent) :
 
     ConfigHelper *conf = Utils::getConfigHelper();
 
-    if (!conf->getGeneralSettings()["showAirportAndDonation"].toBool()) {
-        ui->mieLinkLabel->setStyleSheet("");
-        ui->westWorldSSLabel->setStyleSheet("");
-        ui->donationXMR->setStyleSheet("");
+    if (!conf->getGeneralSettings()["showAirportAndDonation"].toBool() && !conf->getGeneralSettings()["showAirportAndDonation"].isNull()) {
+        // remove them inversely to delete completely
+        ui->tabWidget->removeTab(3);
+        ui->tabWidget->removeTab(2);
+        ui->tabWidget->removeTab(1);
     } else {
         ui->mieLinkLabel->setUrl("https://rakuten-co-jp.club/register?aff=COELWU");
         ui->westWorldSSLabel->setUrl("https://xbsj5673.xyz");
+        ui->qingWanLabel->setUrl("https://www.qwyun.vip/auth/register?code=COELWU");
+        ui->youyun666Label->setUrl("https://youyun666.com/auth/register?code=FDqS");
     }
 }
 

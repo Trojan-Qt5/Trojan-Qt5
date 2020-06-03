@@ -84,7 +84,7 @@
    <string>Connection Manager</string>
   </property>
   <property name="windowIcon">
-   <iconset>
+   <iconset resource="../resources/icons.qrc">
     <normaloff>:/icons/icons/trojan-qt5.png</normaloff>:/icons/icons/trojan-qt5.png</iconset>
   </property>
   <property name="toolButtonStyle">
@@ -143,7 +143,7 @@ text-align: left;
        <bool>false</bool>
       </property>
       <property name="selectionMode">
-       <enum>QAbstractItemView::SingleSelection</enum>
+       <enum>QAbstractItemView::ExtendedSelection</enum>
       </property>
       <property name="selectionBehavior">
        <enum>QAbstractItemView::SelectRows</enum>
@@ -257,16 +257,6 @@ QMenu::item:selected {
     color: rgb(255,255,255);
 }</string>
    </property>
-   <widget class="QMenu" name="menuManually">
-    <property name="title">
-      <string>&amp;Manually</string>
-     </property>
-     <addaction name="actionManuallySS"/>
-     <addaction name="actionManuallySSR"/>
-     <addaction name="actionManuallyVmess"/>
-     <addaction name="actionManuallyTrojan"/>
-     <addaction name="actionManuallySnell"/>
-    </widget>
    <widget class="QMenu" name="menuConnection">
     <property name="font">
      <font>
@@ -284,7 +274,6 @@ QMenu::item:selected {
       <iconset theme="list-add">
        <normaloff>.</normaloff>.</iconset>
      </property>
-     <addaction name="menuManually"/>
      <addaction name="actionURI"/>
      <addaction name="actionPasteBoardURI"/>
      <addaction name="actionQRCodeFromFile"/>
@@ -841,7 +830,7 @@ QMenu::item:selected {
   </action>
   <action name="actionFromShadowrocketJson">
    <property name="icon">
-    <iconset theme="ui">
+    <iconset theme="ui" resource="../resources/icons.qrc">
      <normaloff>:/icons/actions/document-open.png</normaloff>:/icons/actions/document-open.png</iconset>
    </property>
    <property name="text">
@@ -860,7 +849,9 @@ QMenu::item:selected {
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="../resources/icons.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>actionShowFilterBar</sender>
