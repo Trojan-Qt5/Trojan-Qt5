@@ -53,12 +53,12 @@ build_script:
   - 7z a Trojan-Qt5-Windows.zip * -xr!*.7z
   - curl -LO https://github.com/Trojan-Qt5/Trojan-Qt5/raw/master/LICENSE
   - curl -LO https://github.com/Trojan-Qt5/Trojan-Qt5/raw/master/resources/installer.nsi
-  - set NSISDIR=C:\Program Files (x86)\NSIS\Bin
+  - set NSISDIR=C:\Program Files (x86)\NSIS
   - set PATH=%NSISDIR%;%PATH%;
   - makensis installer.nsi
-  - dir
   - python ..\..\scripts\checksum.py Trojan-Qt5-Windows.7z Trojan-Qt5-Windows.7z.hash
   - python ..\..\scripts\checksum.py Trojan-Qt5-Windows.zip Trojan-Qt5-Windows.zip.hash
+  - python ..\..\scripts\checksum.py Trojan-Qt5-Setup.exe Trojan-Qt5-Setup.exe.hash
   - cd ..
   - cd ..
 
