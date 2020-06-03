@@ -1,16 +1,25 @@
+trojan-qt5 (1.1.5-1) unstable; urgency=medium
+
+    * Update v2ray-core version
+    * Fix trojan-go stats
+    * Fix UI auto resize issue
+    * allow custom graph color
+
+ -- TheWanderingCoel <thewanderingcoel@protonmail.com>  Wed, 3 June 2020 11:00:29 +0800
+
 trojan-qt5 (1.1.4-1) unstable; urgency=medium
 
     * Fix V2ray Will be detected
     * Fix subscribe time issue
     * Fix UI auto resize issue
 
- -- TheWanderingCoel <thewanderingcoel@protonmail.com>  Wed, 31 May 2020 10:04:26 +0800
+ -- TheWanderingCoel <thewanderingcoel@protonmail.com>  Sun, 31 May 2020 10:04:26 +0800
 
 trojan-qt5 (1.1.2-1) unstable; urgency=medium
 
     * Fix V2ray TLS issue
 
- -- TheWanderingCoel <thewanderingcoel@protonmail.com>  Wed, 21 May 2020 19:23:49 +0800
+ -- TheWanderingCoel <thewanderingcoel@protonmail.com>  Thu, 21 May 2020 19:23:49 +0800
 
 trojan-qt5 (1.1.1-1) unstable; urgency=medium
 

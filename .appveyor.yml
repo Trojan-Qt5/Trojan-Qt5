@@ -58,7 +58,7 @@ build_script:
   - makensis installer.nsi
   - python ..\..\scripts\checksum.py Trojan-Qt5-Windows.7z Trojan-Qt5-Windows.7z.hash
   - python ..\..\scripts\checksum.py Trojan-Qt5-Windows.zip Trojan-Qt5-Windows.zip.hash
-  - python ..\..\scripts\checksum.py Trojan-Qt5-Setup.exe Trojan-Qt5-Setup.exe.hash
+  - python ..\..\scripts\checksum.py Trojan-Qt5-Windows.exe Trojan-Qt5-Windows.exe.hash
   - cd ..
   - cd ..
 

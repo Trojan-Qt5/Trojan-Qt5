@@ -3,7 +3,7 @@ name: Trojan-Qt5 pkg
 on:
   push:
   release:
-    types: [prereleased]
+    types: [released, prereleased]
 
 jobs:
   check_commit_msg:
@@ -28,7 +28,7 @@ jobs:
     steps:
       - name: Setup Basic Environment
         run: |
-          pacman -Sy base-devel git go --noconfirm
+          pacman -Sy base-devel git go python --noconfirm
           sed -i '/E_ROOT/d' /usr/bin/makepkg
 
       - name: Checking out sources
@@ -81,23 +81,28 @@ jobs:
           PKGBUILD
           makepkg -sf --noconfirm
 
-      - name: Get package name
-        id: get_package
+      - name: Change Package Name
+        id: change_name
         run:
-          echo ::set-output name=NAME::$(basename trojan-qt5*.xz)
+          mv trojan-qt5*.xz Trojan-Qt5-Arch.pkg.tar.xz
+
+      - name: Checksum
+        id: check_sum
+        run:
+          python ./scripts/checksum.py Trojan-Qt5-Arch.pkg.tar.xz Trojan-Qt5-Arch.pkg.tar.xz.hash
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2-preview
         with:
-          name: ${{ steps.get_package.outputs.NAME }}
-          path: ${{ steps.get_package.outputs.NAME }}
+          name: Trojan-Qt5-Arch
+          path: Trojan-Qt5-Arch.*
 
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v1-release
         if: github.event_name == 'release'
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ${{ steps.get_package.outputs.NAME }}
-          asset_name: ${{ steps.get_package.outputs.NAME }}
+          file: Trojan-Qt5-Arch.*
           tag: ${{ github.ref }}
+          file_glob: true
           overwrite: true

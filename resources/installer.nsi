@@ -38,7 +38,7 @@
 ; MUI end ------
 
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
-OutFile "Trojan-Qt5-Setup.exe"
+OutFile "Trojan-Qt5-Windows.exe"
 InstallDir "$PROGRAMFILES\Trojan-Qt5"
 InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" ""
 ShowInstDetails show
