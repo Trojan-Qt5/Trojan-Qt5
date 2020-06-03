@@ -55,7 +55,7 @@ Section "Trojan-Qt5" SEC01
   File "Qt5Core.dll"
   File "Qt5Network.dll"
   File "Qt5Widgets.dll"
-  File "licrypto-1_1.dll"
+  File "libcrypto-1_1.dll"
   File "libgcc_s_dw2-1.dll"
   File "libiconv-2.dll"
   File "libprotobuf.dll"
