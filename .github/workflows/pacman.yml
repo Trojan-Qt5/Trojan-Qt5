@@ -89,7 +89,7 @@ jobs:
       - name: Checksum
         id: check_sum
         run:
-          ls -lh && ls -lh src/Trojan-Qt5/
+          python src/Trojan-Qt5/scripts/checksum.py Trojan-Qt5-Arch.pkg.tar.xz Trojan-Qt5-Arch.pkg.tar.xz.hash
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2-preview
