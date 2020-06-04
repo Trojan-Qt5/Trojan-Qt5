@@ -28,7 +28,7 @@ TrojanEditDialog::TrojanEditDialog(Connection *_connection, QWidget *parent) :
     ui->tcpFastOpenCheckBox->setChecked(connection->profile.tcpFastOpen);
     ui->muxCheckBox->setChecked(connection->profile.mux);
     ui->muxConcurrencyEdit->setText(QString::number(connection->profile.muxConcurrency));
-    ui->muxIdleTimeoutEdit->setText(QString::number(connection->profile.muxIdelTimeout));
+    ui->muxIdleTimeoutEdit->setText(QString::number(connection->profile.muxIdleTimeout));
     ui->websocketCheckBox->setChecked(connection->profile.websocket);
     ui->websocketDoubleTLSCheckBox->setChecked(connection->profile.websocketDoubleTLS);
     ui->websocketPathEdit->setText(connection->profile.websocketPath);
@@ -62,7 +62,7 @@ void TrojanEditDialog::save()
     connection->profile.tcpFastOpen = ui->tcpFastOpenCheckBox->isChecked();
     connection->profile.mux = ui->muxCheckBox->isChecked();
     connection->profile.muxConcurrency = ui->muxConcurrencyEdit->text().toInt();
-    connection->profile.muxIdelTimeout = ui->muxIdleTimeoutEdit->text().toInt();
+    connection->profile.muxIdleTimeout = ui->muxIdleTimeoutEdit->text().toInt();
     connection->profile.websocket = ui->websocketCheckBox->isChecked();
     connection->profile.websocketDoubleTLS = ui->websocketDoubleTLSCheckBox->isChecked();
     connection->profile.websocketPath = ui->websocketPathEdit->text();

@@ -124,7 +124,9 @@ void ConfigHelper::importGuiConfigJson(ConnectionTableModel *model, const QStrin
         p.reusePort = json["reuse_port"].toBool();
         p.tcpFastOpen = json["tcp_fast_open"].toBool();
         p.mux = json["mux"].toBool();
-        p.vmessSettings = json["vmessSettings"].toObject();
+        p.muxConcurrency = !json["mux_concurrency"].isNull() ? json["mux_concurrency"].toInt() : 8;
+        p.muxIdleTimeout = !json["mux_idle_timeout"].isNull() ? json["mux_idle_timeout"].toInt() : 60;
+        p.vmessSettings = !json["vmessSettings"].isNull() ? json["vmessSettings"].toObject() : generateVmessSettings();
         Connection *con = new Connection(p, this);
         model->appendConnection(con);
     }
@@ -159,6 +161,8 @@ void ConfigHelper::exportGuiConfigJson(const ConnectionTableModel &model, const 
         json["reuse_port"] = QJsonValue(con->profile.reusePort);
         json["tcp_fast_open"] = QJsonValue(con->profile.tcpFastOpen);
         json["mux"] = QJsonValue(con->profile.mux);
+        json["mux_concurrency"] = QJsonValue(con->profile.muxConcurrency);
+        json["mux_idle_timeout"] = QJsonValue(con->profile.muxConcurrency);
         json["vmessSettings"] = QJsonValue(con->profile.vmessSettings);
         confArray.append(QJsonValue(json));
     }
@@ -424,7 +428,7 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
     QJsonObject mux;
     mux["enabled"] = profile.mux;
     mux["concurrency"] = profile.muxConcurrency;
-    mux["idle_timeout"] = profile.muxIdelTimeout;
+    mux["idle_timeout"] = profile.muxIdleTimeout;
     configObj["mux"] = QJsonValue(mux);
     QJsonObject websocket;
     websocket["enabled"] = profile.websocket;
@@ -927,7 +931,7 @@ void ConfigHelper::readGeneralSettings()
     gtemp["showToolbar"] = true;
     gtemp["showFilterBar"] = true;
     gtemp["nativeMenuBar"] = false;
-    gtemp["showAiportAndDonation"] = true;
+    gtemp["showAirportAndDonation"] = true;
     generalSettings = settings->value("GeneralSettings", QVariant(gtemp)).toJsonObject();
     QJsonObject itemp;
     itemp["enableHttpMode"] = true;
