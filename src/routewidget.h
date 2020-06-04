@@ -17,7 +17,7 @@ public:
     explicit RouteWidget(QWidget *parent = nullptr);
     ~RouteWidget();
     QString getText(QJsonObject object, QString level1, QString level2);
-    void setText(QJsonObject object, QString input, QString level1, QString level2);
+    QJsonObject setText(QJsonObject object, QString input, QString level1, QString level2);
     void setConfig(QJsonObject r);
     QJsonObject getConfig();
 

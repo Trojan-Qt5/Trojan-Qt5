@@ -5,6 +5,7 @@
 #include <QFile>
 #include <QJsonDocument>
 #include <QFileDialog>
+#include <QDebug>
 
 RouteWidget::RouteWidget(QWidget *parent) :
     QWidget(parent),
@@ -34,7 +35,7 @@ RouteWidget::~RouteWidget()
     delete ui;
 }
 
-void RouteWidget::setText(QJsonObject object, QString input, QString level1, QString level2)
+QJsonObject RouteWidget::setText(QJsonObject object, QString input, QString level1, QString level2)
 {
     QStringList datas = input.replace("\r", "").split("\n");
     QJsonArray array;
@@ -54,6 +55,7 @@ void RouteWidget::setText(QJsonObject object, QString input, QString level1, QSt
         domain[level2] = array;
         object[level1] = domain;
     }
+    return object;
 }
 
 QString RouteWidget::getText(QJsonObject object, QString level1, QString level2)
@@ -84,12 +86,12 @@ void RouteWidget::setConfig(QJsonObject r)
 QJsonObject RouteWidget::getConfig()
 {
     route["domainStrategy"] = ui->domainStrategyCombo->currentText();
-    setText(route, directDomainTxt->toPlainText(), "domain", "direct");
-    setText(route, proxyDomainTxt->toPlainText(), "domain", "proxy");
-    setText(route, blockDomainTxt->toPlainText(), "domain", "block");
-    setText(route, directIPTxt->toPlainText(), "ip", "direct");
-    setText(route, proxyIPTxt->toPlainText(), "ip", "proxy");
-    setText(route, blockIPTxt->toPlainText(), "ip", "block");
+    route = setText(route, directDomainTxt->toPlainText(), "domain", "direct");
+    route = setText(route, proxyDomainTxt->toPlainText(), "domain", "proxy");
+    route = setText(route, blockDomainTxt->toPlainText(), "domain", "block");
+    route = setText(route, directIPTxt->toPlainText(), "ip", "direct");
+    route = setText(route, proxyIPTxt->toPlainText(), "ip", "proxy");
+    route = setText(route, blockIPTxt->toPlainText(), "ip", "block");
     return route;
 }
 
@@ -131,13 +133,13 @@ void RouteWidget::on_exportRulesBtn_clicked()
 
     QJsonObject object;
 
-    setText(object, directDomainTxt->toPlainText(), "domain", "direct");
-    setText(object, proxyDomainTxt->toPlainText(), "domain", "proxy");
-    setText(object, blockDomainTxt->toPlainText(), "domain", "block");
+    object = setText(object, directDomainTxt->toPlainText(), "domain", "direct");
+    object = setText(object, proxyDomainTxt->toPlainText(), "domain", "proxy");
+    object = setText(object, blockDomainTxt->toPlainText(), "domain", "block");
 
-    setText(object, directIPTxt->toPlainText(), "ip", "direct");
-    setText(object, proxyIPTxt->toPlainText(), "ip", "proxy");
-    setText(object, blockIPTxt->toPlainText(), "ip", "block");
+    object = setText(object, directIPTxt->toPlainText(), "ip", "direct");
+    object = setText(object, proxyIPTxt->toPlainText(), "ip", "proxy");
+    object = setText(object, blockIPTxt->toPlainText(), "ip", "block");
 
     QJsonDocument doc = QJsonDocument(object);
 
