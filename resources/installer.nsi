@@ -55,6 +55,7 @@ Section "Trojan-Qt5" SEC01
   File "Qt5Core.dll"
   File "Qt5Network.dll"
   File "Qt5Widgets.dll"
+  File "Qt5Svg.dll"
   File "libcrypto-1_1.dll"
   File "libgcc_s_dw2-1.dll"
   File "libiconv-2.dll"
@@ -69,6 +70,8 @@ Section "Trojan-Qt5" SEC01
   File "platforms\qwindows.dll"
   File "imageformats\qicns.dll"
   File "imageformats\qico.dll"
+  File "imageformats\qsvg.dll"
+  File "iconengines\qsvgicon.dll"
   File "translations\qt_en.qm"
   File "translations\qt_zh_TW.qm"
 SectionEnd
