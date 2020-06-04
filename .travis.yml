@@ -112,7 +112,7 @@ script:
       mv ../trojan-qt5_*.deb Trojan-Qt5-Deb.deb;
       python3 ./scripts/checksum.py Trojan-Qt5-Deb.deb Trojan-Qt5-Deb.hash;
       mkdir build && cd build;
-      mv ../Trojan-Qt5-deb.deb . && mv ../Trojan-Qt5-deb.hash .;
+      mv ../Trojan-Qt5-Deb.deb . && mv ../Trojan-Qt5-Deb.hash .;
     fi
 
 defore_deploy:
