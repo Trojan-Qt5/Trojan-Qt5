@@ -109,8 +109,8 @@ script:
     fi
   - if [ "$BADGE" = "linux" ] && [ "$ROLE" = "deb" ]; then
       sudo dpkg-buildpackage -us -uc -i -b;
-      mv ../trojan-qt5_*.deb Trojan-Qt5-deb.deb;
-      python3 ./scripts/checksum.py Trojan-Qt5-deb.deb Trojan-Qt5-deb.hash;
+      mv ../trojan-qt5_*.deb Trojan-Qt5-Deb.deb;
+      python3 ./scripts/checksum.py Trojan-Qt5-Deb.deb Trojan-Qt5-Deb.hash;
       mkdir build && cd build;
       mv ../Trojan-Qt5-deb.deb . && mv ../Trojan-Qt5-deb.hash .;
     fi
@@ -125,8 +125,8 @@ deploy:
     - build/Trojan-Qt5-macOS.hash
     - build/Trojan-Qt5-Linux.7z
     - build/Trojan-Qt5-Linux.hash
-    - build/Trojan-Qt5-deb.deb
-    - build/Trojan-Qt5-deb.hash
+    - build/Trojan-Qt5-Deb.deb
+    - build/Trojan-Qt5-Deb.hash
   api_key: $GIT_REPO_TOKEN
   skip_cleanup: true
   overwrite: true
