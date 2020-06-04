@@ -92,9 +92,9 @@ Use this [link](http://rakuten-co-jp.club/register?aff=COELWU) to get 10RMB init
 Use this [link](https://xbsj5673.xyz) to register now!
 
 ### 3.Qing Wan International Airline (Small Airport, better reliability)
-![QinWan](https://i.imgur.com/o839GuN.png) 
+![QinWan](https://imgur.com/XQ2RN1m.png) 
 
-Use this [link](https://www.qwyun.vip/auth/register?code=COELWU) to register now! USE affMan75z to get discount!
+Use this [link](https://www.qwyun.vip/auth/register?code=COELWU) to register now! USE Long85z to get discount!
 
 ### 4.You Yun 666 (Full Transit Airport)
 ![YouYun](https://i.imgur.com/U4ue42O.jpg)  

@@ -2582,7 +2582,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/trojaneditdialog.ui" line="278"/>
         <source>Websocket Double TLS</source>
-        <translation>Websocket多重TLS</translation>
+        <translation>Websocket双重TLS</translation>
     </message>
     <message>
         <location filename="../../ui/trojaneditdialog.ui" line="298"/>
