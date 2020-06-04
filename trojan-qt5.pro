@@ -322,6 +322,7 @@ FORMS += \
     ui/vmesseditdialog.ui
 
 TRANSLATIONS += \
+    resources/i18n/trojan-qt5_en_US.ts \
     resources/i18n/trojan-qt5_zh_CN.ts \
     resources/i18n/trojan-qt5_zh_TW.ts \
     resources/i18n/trojan-qt5_zh_SG.ts

@@ -66,14 +66,23 @@ Section "Trojan-Qt5" SEC01
   File "WinSparkle.dll"
   File "zlib1.dll"
   File "cares.dll"
+  SetOutPath "$INSTDIR\styles"
   File "styles\qwindowsvistastyle.dll"
+  SetOutPath "$INSTDIR\platforms"
   File "platforms\qwindows.dll"
+  SetOutPath "$INSTDIR\imageformats"
   File "imageformats\qicns.dll"
   File "imageformats\qico.dll"
   File "imageformats\qsvg.dll"
+  SetOutPath "$INSTDIR\iconengines"
   File "iconengines\qsvgicon.dll"
+  SetOutPath "$INSTDIR\translations"
   File "translations\qt_en.qm"
   File "translations\qt_zh_TW.qm"
+  File "translations\qt_ru.qm"
+  File "translations\qt_ja.qm"
+  File "translations\qt_de.qm"
+  File "translations\qt_fr.qm"
 SectionEnd
 
 Section -AdditionalIcons

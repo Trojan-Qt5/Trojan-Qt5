@@ -55,6 +55,11 @@
     </message>
     <message>
         <location filename="../../ui/aboutdialog.ui" line="279"/>
+        <source>Airport Recommandation 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ui/aboutdialog.ui" line="310"/>
         <source>Donation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -131,27 +136,27 @@
         <translation type="vanished">毫秒</translation>
     </message>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="225"/>
+        <location filename="../../src/connectionitem.cpp" line="226"/>
         <source>connected</source>
         <translation>已連線</translation>
     </message>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="227"/>
+        <location filename="../../src/connectionitem.cpp" line="228"/>
         <source>disconnected</source>
         <translation>已斷線</translation>
     </message>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="234"/>
+        <location filename="../../src/connectionitem.cpp" line="235"/>
         <source>timed out</source>
         <translation>逾時</translation>
     </message>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="236"/>
+        <location filename="../../src/connectionitem.cpp" line="237"/>
         <source>latency test failed</source>
         <translation>延遲測試失敗</translation>
     </message>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="242"/>
+        <location filename="../../src/connectionitem.cpp" line="243"/>
         <source>Failed to start</source>
         <translation>啟動失敗</translation>
     </message>
@@ -238,66 +243,66 @@
         <translation type="vanished">關於</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="350"/>
+        <location filename="../../src/mainwindow.cpp" line="348"/>
         <source>Import Connections from gui-config.json</source>
         <translation>自 gui-config.json 匯入連線</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="363"/>
+        <location filename="../../src/mainwindow.cpp" line="361"/>
         <source>Export Connections as gui-config.json</source>
         <translation>匯出連線為 gui-config.json</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="375"/>
+        <location filename="../../src/mainwindow.cpp" line="373"/>
         <source>Import Connections from config.yaml</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="388"/>
+        <location filename="../../src/mainwindow.cpp" line="386"/>
         <source>Export Connections as shadowrocket.json</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="400"/>
+        <location filename="../../src/mainwindow.cpp" line="398"/>
         <source>Export Trojan Servers as subscribe.txt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="428"/>
-        <location filename="../../src/mainwindow.cpp" line="461"/>
+        <location filename="../../src/mainwindow.cpp" line="426"/>
+        <location filename="../../src/mainwindow.cpp" line="459"/>
         <source>QR Code Not Found</source>
         <translation>找不到 QR 碼</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="429"/>
-        <location filename="../../src/mainwindow.cpp" line="462"/>
+        <location filename="../../src/mainwindow.cpp" line="427"/>
+        <location filename="../../src/mainwindow.cpp" line="460"/>
         <source>Can&apos;t find any QR code image that contains valid URI on your screen(s).</source>
         <translation>在你的螢幕上無法找到任何包含有效 URI 的 QR 碼圖片。</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="453"/>
+        <location filename="../../src/mainwindow.cpp" line="451"/>
         <source>Open QR Code Image File</source>
         <translation>開啟 QR 碼圖檔</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="499"/>
+        <location filename="../../src/mainwindow.cpp" line="498"/>
         <source>Open config.json</source>
         <translation>開啟 config.json</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="511"/>
+        <location filename="../../src/mainwindow.cpp" line="510"/>
         <source>Open shadowrocket.json</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="556"/>
-        <location filename="../../src/mainwindow.cpp" line="572"/>
+        <location filename="../../src/mainwindow.cpp" line="554"/>
+        <location filename="../../src/mainwindow.cpp" line="570"/>
         <source>Invalid</source>
         <translation>無效</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="557"/>
-        <location filename="../../src/mainwindow.cpp" line="573"/>
+        <location filename="../../src/mainwindow.cpp" line="555"/>
+        <location filename="../../src/mainwindow.cpp" line="571"/>
         <source>The connection&apos;s profile is invalid!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -311,7 +316,7 @@
         <translation>連線管理員</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="277"/>
+        <location filename="../../ui/mainwindow.ui" line="267"/>
         <source>&amp;Connection</source>
         <translation>&amp;連線</translation>
     </message>
@@ -335,7 +340,7 @@
         <translation type="vanished">說明</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="262"/>
+        <location filename="../../ui/mainwindow.ui" line="271"/>
         <source>&amp;Manually</source>
         <translation>&amp;手動</translation>
     </message>
@@ -841,48 +846,68 @@ See the following link for a reference:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/routewidget.ui" line="35"/>
+        <location filename="../../ui/routewidget.ui" line="28"/>
         <source>Domain Stragery</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/routewidget.ui" line="43"/>
+        <location filename="../../ui/routewidget.ui" line="36"/>
         <source>AsIs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/routewidget.ui" line="48"/>
+        <location filename="../../ui/routewidget.ui" line="41"/>
         <source>IPIfNonMatch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/routewidget.ui" line="53"/>
+        <location filename="../../ui/routewidget.ui" line="46"/>
         <source>IPOnDemand</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/routewidget.ui" line="73"/>
+        <location filename="../../ui/routewidget.ui" line="58"/>
         <source>Block</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/routewidget.ui" line="86"/>
+        <location filename="../../ui/routewidget.ui" line="71"/>
         <source>Direct</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/routewidget.ui" line="96"/>
+        <location filename="../../ui/routewidget.ui" line="81"/>
         <source>Domain</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/routewidget.ui" line="112"/>
+        <location filename="../../ui/routewidget.ui" line="97"/>
         <source>Proxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/routewidget.ui" line="128"/>
+        <location filename="../../ui/routewidget.ui" line="113"/>
         <source>IP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ui/routewidget.ui" line="143"/>
+        <source>Import Rules</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ui/routewidget.ui" line="150"/>
+        <source>Export Rules</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/routewidget.cpp" line="102"/>
+        <source>Import Rules from rules.json</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/routewidget.cpp" line="127"/>
+        <source>Exports Rules to rules.json</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1383,9 +1408,9 @@ See the following link for a reference:
         <location filename="../../ui/settingsdialog.ui" line="366"/>
         <location filename="../../ui/settingsdialog.ui" line="492"/>
         <location filename="../../ui/settingsdialog.ui" line="525"/>
-        <location filename="../../ui/settingsdialog.ui" line="702"/>
-        <location filename="../../ui/settingsdialog.ui" line="787"/>
-        <location filename="../../ui/settingsdialog.ui" line="801"/>
+        <location filename="../../ui/settingsdialog.ui" line="696"/>
+        <location filename="../../ui/settingsdialog.ui" line="781"/>
+        <location filename="../../ui/settingsdialog.ui" line="795"/>
         <source>Enable</source>
         <translation type="unfinished">開啟</translation>
     </message>
@@ -1590,175 +1615,175 @@ See the following link for a reference:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="550"/>
+        <location filename="../../ui/settingsdialog.ui" line="543"/>
         <source>Download Speed Color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../ui/settingsdialog.ui" line="550"/>
         <location filename="../../ui/settingsdialog.ui" line="557"/>
-        <location filename="../../ui/settingsdialog.ui" line="564"/>
         <source>PushButton</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="571"/>
+        <location filename="../../ui/settingsdialog.ui" line="564"/>
         <source>Upload Speed Color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="580"/>
+        <location filename="../../ui/settingsdialog.ui" line="574"/>
         <source>Subscribe Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="591"/>
+        <location filename="../../ui/settingsdialog.ui" line="585"/>
         <source>GFWList Update Url</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="605"/>
+        <location filename="../../ui/settingsdialog.ui" line="599"/>
         <source>gfwlist/gfwlist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="610"/>
+        <location filename="../../ui/settingsdialog.ui" line="604"/>
         <source>Loukky/gfwlist-by-loukky</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="615"/>
+        <location filename="../../ui/settingsdialog.ui" line="609"/>
         <source>Local File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="623"/>
+        <location filename="../../ui/settingsdialog.ui" line="617"/>
         <source>Update User Agent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="633"/>
+        <location filename="../../ui/settingsdialog.ui" line="627"/>
         <source>Filter Keyword (,)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="643"/>
+        <location filename="../../ui/settingsdialog.ui" line="637"/>
         <source>Maximum</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="653"/>
+        <location filename="../../ui/settingsdialog.ui" line="647"/>
         <source>Overwrite AllowInsecure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="660"/>
-        <location filename="../../ui/settingsdialog.ui" line="674"/>
-        <location filename="../../ui/settingsdialog.ui" line="688"/>
+        <location filename="../../ui/settingsdialog.ui" line="654"/>
+        <location filename="../../ui/settingsdialog.ui" line="668"/>
+        <location filename="../../ui/settingsdialog.ui" line="682"/>
         <source>Overwrite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="667"/>
+        <location filename="../../ui/settingsdialog.ui" line="661"/>
         <source>Overwrite AllowInsecureCiphers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="681"/>
+        <location filename="../../ui/settingsdialog.ui" line="675"/>
         <source>Overwirte TcpFastOpen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="695"/>
+        <location filename="../../ui/settingsdialog.ui" line="689"/>
         <source>Auto fetch group name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="712"/>
+        <location filename="../../ui/settingsdialog.ui" line="706"/>
         <source>Router Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="722"/>
+        <location filename="../../ui/settingsdialog.ui" line="716"/>
         <source>Trojan Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="794"/>
+        <location filename="../../ui/settingsdialog.ui" line="788"/>
         <source>Enable API</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="808"/>
+        <location filename="../../ui/settingsdialog.ui" line="802"/>
         <source>API Port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="818"/>
+        <location filename="../../ui/settingsdialog.ui" line="812"/>
         <source>Cert</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="828"/>
+        <location filename="../../ui/settingsdialog.ui" line="822"/>
         <source>Cipher</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="838"/>
+        <location filename="../../ui/settingsdialog.ui" line="832"/>
         <source>Cipher TLS13</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="848"/>
+        <location filename="../../ui/settingsdialog.ui" line="842"/>
         <source>Buffer Size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="858"/>
+        <location filename="../../ui/settingsdialog.ui" line="852"/>
         <source>Geoip Path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="865"/>
+        <location filename="../../ui/settingsdialog.ui" line="859"/>
         <source>Geosite Path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="780"/>
+        <location filename="../../ui/settingsdialog.ui" line="774"/>
         <source>Enable Router</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="733"/>
+        <location filename="../../ui/settingsdialog.ui" line="727"/>
         <source>TLS Fingerprint</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="747"/>
+        <location filename="../../ui/settingsdialog.ui" line="741"/>
         <source>none</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="752"/>
+        <location filename="../../ui/settingsdialog.ui" line="746"/>
         <source>auto</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="757"/>
+        <location filename="../../ui/settingsdialog.ui" line="751"/>
         <source>firefox</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="762"/>
+        <location filename="../../ui/settingsdialog.ui" line="756"/>
         <source>chrome</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="767"/>
+        <location filename="../../ui/settingsdialog.ui" line="761"/>
         <source>ios</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="772"/>
+        <location filename="../../ui/settingsdialog.ui" line="766"/>
         <source>randomized</source>
         <translation type="unfinished"></translation>
     </message>
