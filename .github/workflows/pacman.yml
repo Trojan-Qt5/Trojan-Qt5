@@ -40,7 +40,7 @@ jobs:
         run: |
           cat <<PKGBUILD > PKGBUILD
           pkgname=trojan-qt5
-          pkgver=1.1.4
+          pkgver=1.1.6
           pkgrel=1
           pkgdesc="A cross-platform ss/ssr/vmess/trojan GUI client"
           arch=('x86_64')

@@ -2,7 +2,7 @@
 
 ; HM NIS Edit Wizard helper defines
 !define PRODUCT_NAME "Trojan-Qt5"
-!define PRODUCT_VERSION "1.1.5"
+!define PRODUCT_VERSION "1.1.6"
 !define PRODUCT_PUBLISHER "TheWanderingCoel"
 !define PRODUCT_WEB_SITE "https://trojan-qt5.github.io"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\trojan-qt5.exe"

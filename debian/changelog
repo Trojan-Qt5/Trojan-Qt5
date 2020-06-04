@@ -1,3 +1,10 @@
+trojan-qt5 (1.1.6-1) unstable; urgency=medium
+
+    * Fix Router issue
+    * Add some translation
+
+ -- TheWanderingCoel <thewanderingcoel@protonmail.com>  Thu, 4 June 2020 11:02:12 +0800
+
 trojan-qt5 (1.1.5-1) unstable; urgency=medium
 
     * Update v2ray-core version

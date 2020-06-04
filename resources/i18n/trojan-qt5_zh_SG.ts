@@ -56,7 +56,7 @@
     <message>
         <location filename="../../ui/aboutdialog.ui" line="279"/>
         <source>Airport Recommandation 2</source>
-        <translation type="unfinished"></translation>
+        <translation>机场推荐 2</translation>
     </message>
     <message>
         <location filename="../../ui/aboutdialog.ui" line="310"/>
