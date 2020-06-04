@@ -424,6 +424,7 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
     QJsonObject mux;
     mux["enabled"] = profile.mux;
     mux["concurrency"] = profile.muxConcurrency;
+    mux["idle_timeout"] = profile.muxIdelTimeout;
     configObj["mux"] = QJsonValue(mux);
     QJsonObject websocket;
     websocket["enabled"] = profile.websocket;

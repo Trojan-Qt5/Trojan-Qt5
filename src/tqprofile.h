@@ -76,6 +76,7 @@ struct TQProfile
     bool websocketDoubleTLS;
     bool mux;
     int muxConcurrency;
+    int muxIdelTimeout;
     QString sni;
     QString websocketPath;
     QString websocketHostname;
