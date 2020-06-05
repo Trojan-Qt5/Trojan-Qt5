@@ -46,11 +46,16 @@ public:
                     const QString &socks_addr,
                     uint16_t socks_port);
 
+    void httpClose();
+
 protected:
     void incomingConnection(qintptr handle);
 
 private:
     QNetworkProxy upstreamProxy;
+
+signals:
+    void closeAllSocket();
 
 private slots:
     void onSocketError(QAbstractSocket::SocketError);

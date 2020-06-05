@@ -149,8 +149,8 @@ void ConfigHelper::exportGuiConfigJson(const ConnectionTableModel &model, const 
         json["method"] = QJsonValue(con->profile.method);
         json["password"] = QJsonValue(con->profile.password);
         json["uuid"] = QJsonValue(con->profile.uuid);
-        json["protocol"] = QJsonValue(con->profile.password);
-        json["protocolParam"] = QJsonValue(con->profile.password);
+        json["protocol"] = QJsonValue(con->profile.protocol);
+        json["protocolParam"] = QJsonValue(con->profile.protocolParam);
         json["obfs"] = QJsonValue(con->profile.obfs);
         json["obfsParam"] = QJsonValue(con->profile.obfsParam);
         json["plugin"] = QJsonValue(con->profile.plugin);
@@ -535,7 +535,7 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
     proxy["outboundTag"] = "proxy";
     QJsonObject block;
     block["type"] = "field";
-    if (routerSettings["ip"].toObject()["block"].toArray().size() != 0)
+    if (routerSettings["domain"].toObject()["block"].toArray().size() != 0)
      block["domain"] = routerSettings["domain"].toObject()["block"].toArray();
     if (routerSettings["ip"].toObject()["block"].toArray().size() != 0)
         block["ip"] = routerSettings["ip"].toObject()["block"].toArray();

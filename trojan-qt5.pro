@@ -123,7 +123,8 @@ mac {
         src/LetsMove/PFMoveApplication.h
     SOURCES += \
         src/statusnotifier.mm \
-        src/LetsMove/PFMoveApplication.m
+        src/LetsMove/PFMoveApplication.m \
+        src/themehelper.mm
     PKG_CONFIG = /usr/local/bin/pkg-config
     INCLUDEPATH += /usr/local/opt/zlib/include
     INCLUDEPATH += /usr/local/opt/openssl@1.1/include
@@ -266,6 +267,7 @@ HEADERS += \
     src/speedwidget.hpp \
     src/ssthread.h \
     src/statusbar.h \
+    src/themehelper.h \
     src/trojaneditdialog.h \
     src/ip4validator.h \
     src/mainwindow.h \
@@ -354,4 +356,5 @@ RESOURCES += \
     resources/icons.qrc \
     resources/pac.qrc \
     resources/pem.qrc \
+    resources/qss.qrc \
     resources/translations.qrc

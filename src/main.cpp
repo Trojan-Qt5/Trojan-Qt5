@@ -13,6 +13,7 @@
 #include "logger.h"
 #include "midman.h"
 #include "eventfilter.h"
+#include "themehelper.h"
 
 #include "LetsMove/PFMoveApplication.h"
 
@@ -154,6 +155,9 @@ int main(int argc, char *argv[])
 
     // setup the theme here
     a.setStyle(conf.getGeneralSettings()["theme"].toString());
+
+    // apply light/dark theme
+    ThemeHelper::setupThemeOnStartup();
 
 #if defined (Q_OS_WIN)
     UrlSchemeRegister *reg;

@@ -22,6 +22,7 @@
 #include "statusbar.h"
 
 #include <QClipboard>
+#include <QScrollBar>
 #include <QDesktopServices>
 #include <QDesktopWidget>
 #include <QFileDialog>
@@ -65,6 +66,9 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
     proxyModel->setFilterKeyColumn(-1);//read from all columns
     ui->connectionView->setModel(proxyModel);
     ui->connectionView->setFocusPolicy(Qt::NoFocus);
+    ui->connectionView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->connectionView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
     ui->toolBar->setToolButtonStyle(static_cast<Qt::ToolButtonStyle>
                                     (configHelper->getGeneralSettings()["toolbarStyle"].toInt()));
 
@@ -111,6 +115,7 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
     ui->actionShowFilterBar->setChecked(configHelper->isShowFilterBar());
     ui->menuBar->setNativeMenuBar(configHelper->getGeneralSettings()["nativeMenuBar"].toBool());
 
+    ui->filterLineEdit->setObjectName("filterLineEdit");
     ui->toolBar->setFixedHeight(92);
 
     // set the minimum size

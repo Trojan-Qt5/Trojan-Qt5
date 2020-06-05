@@ -546,6 +546,12 @@
          </item>
          <item row="0" column="1">
           <widget class="QtColorPicker" name="downloadColorPicker" native="true">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="text" stdset="0">
             <string>PushButton</string>
            </property>
@@ -553,6 +559,12 @@
          </item>
          <item row="1" column="1">
           <widget class="QtColorPicker" name="uploadColorPicker" native="true">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="text" stdset="0">
             <string>PushButton</string>
            </property>

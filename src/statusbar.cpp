@@ -53,21 +53,25 @@ StatusBar::StatusBar(QWidget *parent)
     m_upSpeedLbl->setIconSize(Utils::smallIconSize());
 
     QFrame *statusSep1 = new QFrame(this);
+    statusSep1->setObjectName("statusFrame");
     statusSep1->setFrameStyle(QFrame::VLine);
 #ifndef Q_OS_MACOS
     statusSep1->setFrameShadow(QFrame::Raised);
 #endif
     QFrame *statusSep2 = new QFrame(this);
+    statusSep2->setObjectName("statusFrame");
     statusSep2->setFrameStyle(QFrame::VLine);
 #ifndef Q_OS_MACOS
     statusSep2->setFrameShadow(QFrame::Raised);
 #endif
     QFrame *statusSep3 = new QFrame(this);
+    statusSep3->setObjectName("statusFrame");
     statusSep3->setFrameStyle(QFrame::VLine);
 #ifndef Q_OS_MACOS
     statusSep3->setFrameShadow(QFrame::Raised);
 #endif
     QFrame *statusSep4 = new QFrame(this);
+    statusSep4->setObjectName("statusFrame");
     statusSep4->setFrameStyle(QFrame::VLine);
 #ifndef Q_OS_MACOS
     statusSep4->setFrameShadow(QFrame::Raised);

@@ -292,7 +292,7 @@ void Connection::stop()
 
         //if we have started http proxy, stop it
         if (http && conf->getInboundSettings()["enableHttpMode"].toBool()) {
-            http->close();
+            http->httpClose();
         }
 
         conf->setTrojanOn(running);
@@ -317,6 +317,11 @@ void Connection::onStartFailed()
 
     conf->setTrojanOn(running);
 
+    //if we have started http proxy, stop it
+    if (conf->getInboundSettings()["enableHttpMode"].toBool()) {
+        http->close();
+    }
+
     if (profile.type == "ss") {
         ss->stop();
         if (ssGoAPI && conf->getTrojanSettings()["enableTrojanAPI"].toBool()) {
@@ -334,11 +339,6 @@ void Connection::onStartFailed()
         if (trojanGoAPI && conf->getTrojanSettings()["enableTrojanAPI"].toBool()) {
             trojanGoAPI->stop();
         }
-    }
-
-    //if we have started http proxy, stop it
-    if (conf->getInboundSettings()["enableHttpMode"].toBool()) {
-        http->close();
     }
 
     emit stateChanged(running);

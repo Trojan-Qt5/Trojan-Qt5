@@ -106,12 +106,6 @@
         <pointsize>14</pointsize>
        </font>
       </property>
-      <property name="styleSheet">
-       <string notr="true">QLineEdit[text=&quot;&quot;]
-{ 
-color: rgb(181,181,181); 
-}</string>
-      </property>
       <property name="placeholderText">
        <string>Input to filter</string>
       </property>
@@ -122,20 +116,6 @@ color: rgb(181,181,181);
     </item>
     <item>
      <widget class="QTableView" name="connectionView">
-      <property name="styleSheet">
-       <string notr="true">QTableView
-{
-selection-background-color: rgb(0,147,255);
-}
-
-QHeaderView::section
-{
-background-color: white;
-border: 1px solid white;
-color: rgb(112,112,112);
-text-align: left;
-}</string>
-      </property>
       <property name="editTriggers">
        <set>QAbstractItemView::NoEditTriggers</set>
       </property>
@@ -167,19 +147,10 @@ text-align: left;
     </item>
    </layout>
   </widget>
-  <widget class="QStatusBar" name="statusbar">
-   <property name="styleSheet">
-    <string notr="true">background: rgb(247,247,247);</string>
-   </property>
-  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">
     <string>Show Toolbar</string>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background : rgb(255, 255, 255);
-border: none;
-spacing: 35px;</string>
    </property>
    <property name="movable">
     <bool>false</bool>
@@ -231,31 +202,6 @@ spacing: 35px;</string>
      <weight>75</weight>
      <bold>true</bold>
     </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QMenuBar
-{
-     background: rgb(247,247,247);
-}
-
-QMenuBar::item
-{
-	padding-top: 10px;
-	padding-bottom: 10px;
-	padding-left: 10px;
-	padding-right: 10px;
-}
-
-QMenuBar::item::pressed
-{
-	background : rgb(64,155,255);
-	color: rgb(255,255,255);
-}
-
-QMenu::item:selected { 
-	background : rgba(64,155,255,76%);
-    color: rgb(255,255,255);
-}</string>
    </property>
    <widget class="QMenu" name="menuConnection">
     <property name="font">
