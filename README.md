@@ -28,8 +28,12 @@ A cross-platform Trojan GUI client
 ## Install
 
 - You can download from [release](https://github.com/Trojan-Qt5/Trojan-Qt5/releases) page
-
-- Or using homebrew: ``brew cask install trojan-qt5``
+- Or using [Homebrew](https://brew.sh/): `brew cask install trojan-qt5`
+- Or using [Scoop](https://scoop.sh/):
+  ```powershell
+  scoop bucket add v2ray https://github.com/kidonng/scoop-v2ray
+  scoop install trojan-qt5
+  ```
 
 ## Compiling
 
