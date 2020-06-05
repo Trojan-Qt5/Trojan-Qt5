@@ -16,7 +16,13 @@
 
 ## 安装
 
-你可以在 [release](https://github.com/Trojan-Qt5/Trojan-Qt5/releases) 页面下载到编译好的二进制程序
+- 你可以在 [release](https://github.com/Trojan-Qt5/Trojan-Qt5/releases) 页面下载到编译好的二进制程序
+- 或使用 [Homebrew](https://brew.sh/)：`brew cask install trojan-qt5`
+- 或使用 [Scoop](https://scoop.sh/)：
+  ```powershell
+  scoop bucket add v2ray https://github.com/kidonng/scoop-v2ray
+  scoop install trojan-qt5
+  ```
 
 ## 编译
 
