@@ -1,7 +1,16 @@
+QMainWindow
+{
+    background: rgb(250,250,250);
+}
+
 QTableView
 {
     selection-background-color: rgb(0,147,255);
     border: 1px solid rgb(203,203,203);
+}
+
+QHeaderView {
+    background-color: rgb(255,255,255);
 }
 
 QHeaderView::section
@@ -55,10 +64,6 @@ QToolButton {
 
 #filterLineEdit {
     border: 1px solid rgb(203,203,203);
-}
-
-#filterLineEdit[text=&quot;&quot;]
-{ 
     padding-left: 10px;
     color: rgb(181,181,181); 
 }

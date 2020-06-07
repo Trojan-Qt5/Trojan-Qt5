@@ -5,11 +5,20 @@ QMainWindow
 
 QTableView
 {
-    selection-background-color: rgba(22,24,26,41%);
+    background-color: rgb(37,40,45);
     border: 1px solid rgb(70,73,80);
 }
 
 QTableView::item {
+    background-color: rgb(37,40,45);
+}
+
+QTableView::item:selected {
+    background: rgb(22,24,26);
+    color: rgb(255,255,255);
+}
+
+QHeaderView {
     background-color: rgb(37,40,45);
 }
 
@@ -33,13 +42,18 @@ QMenuBar::item
 	padding-bottom: 10px;
 	padding-left: 10px;
 	padding-right: 10px;
-    color: rgb(255,255,255)
+    color: rgb(255,255,255);
 }
 
 QMenuBar::item::pressed
 {
 	background : rgb(64,155,255);
 	color: rgb(255,255,255);
+}
+
+QMenu {
+    background-color: rgb(37,40,45);
+    color: rgb(255,255,255);
 }
 
 QMenu::item:selected { 
@@ -73,16 +87,16 @@ QToolButton {
     background : rgb(22,24,26);
     border: none;
     spacing: 35px;
-    color: rgb(255,255,255)
+    color: rgb(255,255,255);
 }
 
 #filterLineEdit {
     background: rgb(37,40,45);
     border: 1px solid rgb(70,73,80);
-}
-
-#filterLineEdit
-{ 
     padding-left: 10px;
     color: rgb(181,181,181); 
+}
+
+QComboBox {
+    color: rgb(255,255,255);
 }

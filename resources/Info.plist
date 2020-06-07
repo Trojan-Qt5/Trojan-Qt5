@@ -30,8 +30,6 @@
 	<string>1.1.6</string>
 	<key>CSResourcesFileMapped</key>
 	<true/>
-	<key>NSRequiresAquaSystemAppearance</key>
-	<true/>
 	<key>SUPublicEDKey</key>
 	<string>bmzcQnOMLLTdjgdXSyEpSDAw1Gv5wRraInICUMNOMkE=</string>
 	<key>CFBundleURLTypes</key>

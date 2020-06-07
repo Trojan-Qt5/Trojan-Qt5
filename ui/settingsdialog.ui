@@ -165,6 +165,26 @@
            </item>
           </widget>
          </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>Theme</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QComboBox" name="themeComboBox"/>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="label_23">
+           <property name="text">
+            <string>SystemTray Maximum Server</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QLineEdit" name="systemTrayMaximumServerEdit"/>
+         </item>
          <item row="6" column="0">
           <widget class="QLabel" name="onlyOneInstanceLabel">
            <property name="text">
@@ -263,30 +283,6 @@
            </property>
           </widget>
          </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="label_3">
-           <property name="text">
-            <string>Theme</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QComboBox" name="themeComboBox"/>
-         </item>
-         <item row="5" column="0">
-          <widget class="QLabel" name="label_8">
-           <property name="text">
-            <string>Enable DarkMode</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="1">
-          <widget class="QCheckBox" name="darkModeCB">
-           <property name="text">
-            <string>Enable</string>
-           </property>
-          </widget>
-         </item>
          <item row="13" column="0">
           <widget class="QLabel" name="label_13">
            <property name="text">
@@ -302,14 +298,30 @@
           </widget>
          </item>
          <item row="4" column="0">
-          <widget class="QLabel" name="label_23">
+          <widget class="QLabel" name="label_8">
            <property name="text">
-            <string>SystemTray Maximum Server</string>
+            <string>System Theme</string>
            </property>
           </widget>
          </item>
          <item row="4" column="1">
-          <widget class="QLineEdit" name="systemTrayMaximumServerEdit"/>
+          <widget class="QComboBox" name="systemThemeCB">
+           <item>
+            <property name="text">
+             <string>Light</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Dark</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Follow System</string>
+            </property>
+           </item>
+          </widget>
          </item>
         </layout>
        </item>

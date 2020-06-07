@@ -19,7 +19,7 @@ SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
     //ui->haproxyModeComboBox->setCurrentIndex();
     ui->themeComboBox->addItems(QStyleFactory::keys());
     ui->themeComboBox->setCurrentText(helper->getGeneralSettings()["theme"].toString());
-    ui->darkModeCB->setChecked(helper->getGeneralSettings()["darkTheme"].toBool());
+    ui->systemThemeCB->setCurrentIndex(helper->getGeneralSettings()["systemTheme"].toInt());
     ui->systemTrayMaximumServerEdit->setText(QString::number(helper->getGeneralSettings()["systemTrayMaximumServer"].toInt()));
     ui->hideCheckBox->setChecked(helper->getGeneralSettings()["hideWindowOnStartup"].toBool());
     ui->startAtLoginCheckbox->setChecked(helper->getGeneralSettings()["startAtLogin"].toBool());
@@ -91,7 +91,7 @@ void SettingsDialog::onAccepted()
 
     QJsonObject generalSettings = helper->getGeneralSettings();
     generalSettings["theme"] = ui->themeComboBox->currentText();
-    generalSettings["darkTheme"] = ui->darkModeCB->isChecked();
+    generalSettings["systemTheme"] = ui->systemThemeCB->currentIndex();
     generalSettings["toolbarStyle"] = ui->toolbarStyleComboBox->currentIndex();
     generalSettings["logLevel"] = ui->logLevelComboBox->currentIndex();
     generalSettings["systemTrayMaximumServer"] = ui->systemTrayMaximumServerEdit->text().toInt();

@@ -918,7 +918,7 @@ void ConfigHelper::readGeneralSettings()
     showFilterBar = settings->value("ShowFilterBar", QVariant(true)).toBool();
     QJsonObject gtemp;
     gtemp["theme"] = "Fusion";
-    gtemp["darkTheme"] = false;
+    gtemp["systemTheme"] = 2;
     gtemp["toolbarStyle"] = 3;
     gtemp["logLevel"] = 1;
     gtemp["systemTrayMaximumServer"] = 0;

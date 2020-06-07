@@ -15,13 +15,12 @@ ThemeHelper::ThemeHelper(QObject *parent) : QObject(parent)
 
 bool ThemeHelper::isSystemDarkTheme()
 {
-    NSString *osxMode = [[NSUserDefaults standardUserDefaults] stringForKey:@"AppleInterfaceStyle"];
-    std::string mode;
-    if (osxMode.length == 0)
-        mode = "";
-    else
-        mode = [osxMode UTF8String];
-    return QString::fromStdString(mode).toLower() == "dark";
+#if defined (Q_OS_WIN)
+    QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",QSettings::NativeFormat);
+    return settings.value("AppsUseLightTheme") == 0;
+#elif defined (Q_OS_LINUX)
+    return false;
+#endif
 }
 
 void ThemeHelper::setupThemeOnStartup()
