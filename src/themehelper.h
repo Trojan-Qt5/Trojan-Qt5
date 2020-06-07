@@ -13,6 +13,9 @@ public:
 
     static void setupThemeOnStartup();
 
+    static void applyLightPalette();
+    static void applyDarkPalette();
+
     static void applyLightQss();
     static void applyDarkQss();
 

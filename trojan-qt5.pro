@@ -91,7 +91,8 @@ win32 {
     SOURCES += \
         src/sysproxy/windows.c \
         src/statusnotifier.cpp \
-        src/urlschemeregister.cpp
+        src/urlschemeregister.cpp \
+        src/src/themehelper.cpp
     HEADERS += \
         src/sysproxy/windows.h \
         src/urlschemeregister.h
@@ -163,7 +164,8 @@ unix:!mac {
     QT += dbus
     PKGCONFIG += openssl
     SOURCES += \
-        src/statusnotifier.cpp
+        src/statusnotifier.cpp \
+        src/themehelper.cpp
     LIBS += -lz
     # Otherwise lupdate will not work
     TR_EXCLUDE += /usr/local/boost/*

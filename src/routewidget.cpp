@@ -129,7 +129,7 @@ void RouteWidget::on_exportRulesBtn_clicked()
         "Trojan-Qt5 Route Rules Configuration (rules.json)");
 
     QFile JSONFile(file);
-    JSONFile.open(QIODevice::ReadOnly | QIODevice::Text);
+    JSONFile.open(QIODevice::WriteOnly | QIODevice::Text);
 
     QJsonObject object;
 
