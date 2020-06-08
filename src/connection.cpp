@@ -185,6 +185,12 @@ void Connection::start()
         ssr->connect(ssr.get(), &SSRThread::onSSRThreadLog, this, &Connection::onLog);
     } else if (profile.type == "vmess") {
         conf->generateV2rayJson(profile);
+        testV2rayGo_return v2rayStatus = testV2rayGo(file.toStdString().data());
+        if (!v2rayStatus.r0) {
+            QMessageBox::critical(NULL, "Failed to start V2Ray", v2rayStatus.r1);
+            emit startFailed();
+            return;
+        }
         v2ray = new V2rayThread(file);
     } else if (profile.type == "trojan") {
         //generate Config File that trojan will use

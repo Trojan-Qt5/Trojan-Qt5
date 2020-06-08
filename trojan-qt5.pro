@@ -92,7 +92,7 @@ win32 {
         src/sysproxy/windows.c \
         src/statusnotifier.cpp \
         src/urlschemeregister.cpp \
-        src/src/themehelper.cpp
+        src/themehelper.cpp
     HEADERS += \
         src/sysproxy/windows.h \
         src/urlschemeregister.h
