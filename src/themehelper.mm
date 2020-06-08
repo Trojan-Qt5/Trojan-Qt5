@@ -3,9 +3,6 @@
 
 #include <QApplication>
 #include <QFile>
-#include <QPalette>
-#include <QStyle>
-#include <QStyleFactory>
 
 #import <Foundation/Foundation.h>
 
