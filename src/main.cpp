@@ -64,10 +64,6 @@ void setupApplication(QApplication &a)
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     QIcon::setThemeName("Breeze");
 #endif
-
-    QTranslator *trojanqt5t = new QTranslator(&a);
-    trojanqt5t->load(QString(":/i18n/trojan-qt5_%1").arg(QLocale::system().name()));
-    a.installTranslator(trojanqt5t);
 }
 
 #if defined (Q_OS_MAC)
@@ -156,8 +152,19 @@ int main(int argc, char *argv[])
     // setup the theme here
     a.setStyle(conf.getGeneralSettings()["theme"].toString());
 
+    // register theme dynamic changer
+    ThemeHelper::registerListen();
+
     // apply light/dark theme
-    ThemeHelper::setupThemeOnStartup();
+    ThemeHelper::setupTheme();
+
+    // apply language according to settings
+    QTranslator *trojanqt5t = new QTranslator(&a);
+    if (conf.getGeneralSettings()["language"].toString() == "Follow System")
+        trojanqt5t->load(QString(":/i18n/trojan-qt5_%1").arg(QLocale::system().name()));
+    else
+        trojanqt5t->load(QString(":/i18n/trojan-qt5_%1").arg(conf.getGeneralSettings()["language"].toString()));
+    a.installTranslator(trojanqt5t);
 
 #if defined (Q_OS_WIN)
     UrlSchemeRegister *reg;

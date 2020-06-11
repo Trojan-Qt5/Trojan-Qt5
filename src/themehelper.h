@@ -11,7 +11,9 @@ public:
 
     static bool isSystemDarkTheme();
 
-    static void setupThemeOnStartup();
+    static void registerListen();
+    static void setupTheme();
+    static void setupThemeOnChange(int);
 
     static void applyLightPalette();
     static void applyDarkPalette();
@@ -19,7 +21,6 @@ public:
     static void applyLightQss();
     static void applyDarkQss();
 
-signals:
 
 };
 

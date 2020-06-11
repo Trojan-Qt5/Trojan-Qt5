@@ -44,7 +44,7 @@ CONFIG += link_pkgconfig
 #DEFINES += QT_DEPRECATED_WARNINGS
 
 # Define App Version
-DEFINES += "APP_VERSION=\"\\\"1.1.6\\\"\""
+DEFINES += "APP_VERSION=\"\\\"1.2.0\\\"\""
 
 # Set Build Info String
 _TROJAN_QT5_BUILD_INFO_STR_=$$getenv(_TROJAN_QT5_BUILD_INFO_)
@@ -154,10 +154,6 @@ mac {
     QMAKE_INFO_PLIST = resources/Info.plist
     # Otherwise lupdate will not work
     TR_EXCLUDE += /usr/local/opt/boost/*
-    # copy .dat files
-    APP_QML_FILES.files = $$PWD/resources/dat/geoip.dat $$PWD/resources/dat/geosite.dat
-    APP_QML_FILES.path = Contents/MacOS
-    QMAKE_BUNDLE_DATA += APP_QML_FILES
 }
 
 unix:!mac {
@@ -195,6 +191,7 @@ SOURCES += \
     src/connectionsortfilterproxymodel.cpp \
     src/eventfilter.cpp \
     src/haproxythread.cpp \
+    src/httpeditdialog.cpp \
     src/logger.cpp \
     src/midman.cpp \
     src/pacserver.cpp \
@@ -207,6 +204,7 @@ SOURCES += \
     src/connection.cpp \
     src/connectionitem.cpp \
     src/connectiontablemodel.cpp \
+    src/socks5editdialog.cpp \
     src/speedplotview.cpp \
     src/speedwidget.cpp \
     src/ssthread.cpp \
@@ -253,6 +251,7 @@ HEADERS += \
     src/connectionsortfilterproxymodel.h \
     src/eventfilter.h \
     src/haproxythread.h \
+    src/httpeditdialog.h \
     src/logger.h \
     src/midman.h \
     src/pacserver.h \
@@ -265,6 +264,7 @@ HEADERS += \
     src/connection.h \
     src/connectionitem.h \
     src/connectiontablemodel.h \
+    src/socks5editdialog.h \
     src/speedplotview.hpp \
     src/speedwidget.hpp \
     src/ssthread.h \
@@ -309,6 +309,8 @@ HEADERS += \
     src/qtcolorpicker.h
 
 FORMS += \
+    src/httpeditdialog.ui \
+    src/socks5editdialog.ui \
     ui/aboutdialog.ui \
     ui/routewidget.ui \
     ui/settingsdialog.ui \

@@ -98,4 +98,5 @@ bool ConnectionSortFilterProxyModel::lessThan(const QModelIndex &left, const QMo
             return false;
     }
 
+    return false;
 }

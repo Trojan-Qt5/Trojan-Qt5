@@ -94,6 +94,8 @@ private:
 
     void testAddressLatency(const QHostAddress &addr);
 
+    friend class Socks5EditDialog;
+    friend class HttpEditDialog;
     friend class SSEditDialog;
     friend class SSREditDialog;
     friend class VmessEditDialog;

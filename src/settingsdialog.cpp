@@ -1,9 +1,12 @@
 #include "settingsdialog.h"
 #include "ui_settingsdialog.h"
+#include "themehelper.h"
+
 #include <QPushButton>
 #include <QMessageBox>
 #include <QStyleFactory>
 #include <QApplication>
+#include <QTranslator>
 
 SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
     QDialog(parent),
@@ -20,6 +23,7 @@ SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
     ui->themeComboBox->addItems(QStyleFactory::keys());
     ui->themeComboBox->setCurrentText(helper->getGeneralSettings()["theme"].toString());
     ui->systemThemeCB->setCurrentIndex(helper->getGeneralSettings()["systemTheme"].toInt());
+    ui->languageCB->setCurrentText(helper->getGeneralSettings()["language"].toString());
     ui->systemTrayMaximumServerEdit->setText(QString::number(helper->getGeneralSettings()["systemTrayMaximumServer"].toInt()));
     ui->hideCheckBox->setChecked(helper->getGeneralSettings()["hideWindowOnStartup"].toBool());
     ui->startAtLoginCheckbox->setChecked(helper->getGeneralSettings()["startAtLogin"].toBool());
@@ -62,8 +66,7 @@ SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
     ui->cipherLineEdit->setText(helper->getTrojanSettings()["trojanCipher"].toString());
     ui->cipherTLS13LineEdit->setText(helper->getTrojanSettings()["trojanCipherTLS13"].toString());
     ui->bufferSizeLineEdit->setText(QString::number(helper->getTrojanSettings()["bufferSize"].toInt()));
-    ui->geoipPathEdit->setText(helper->getTrojanSettings()["geoipPath"].toString());
-    ui->geositePathEdit->setText(helper->getTrojanSettings()["geositePath"].toString());
+    ui->geoPathEdit->setText(helper->getTrojanSettings()["geoPath"].toString());
 
     routeWidget = new RouteWidget();
     routeWidget->setConfig(helper->getRouterSettings());
@@ -92,6 +95,7 @@ void SettingsDialog::onAccepted()
     QJsonObject generalSettings = helper->getGeneralSettings();
     generalSettings["theme"] = ui->themeComboBox->currentText();
     generalSettings["systemTheme"] = ui->systemThemeCB->currentIndex();
+    generalSettings["language"] = ui->languageCB->currentText();
     generalSettings["toolbarStyle"] = ui->toolbarStyleComboBox->currentIndex();
     generalSettings["logLevel"] = ui->logLevelComboBox->currentIndex();
     generalSettings["systemTrayMaximumServer"] = ui->systemTrayMaximumServerEdit->text().toInt();
@@ -147,11 +151,16 @@ void SettingsDialog::onAccepted()
     trojanSettings["trojanCertPath"] = ui->certLineEdit->text();
     trojanSettings["trojanCipher"] = ui->cipherLineEdit->text();
     trojanSettings["trojanCipherTLS13"] = ui->cipherTLS13LineEdit->text();
+    trojanSettings["geoPath"] = ui->geoPathEdit->text();
     trojanSettings["bufferSize"] = ui->bufferSizeLineEdit->text().toInt();
 
     helper->setGeneralSettings(generalSettings, inboundSettings, outboundSettings, subscribeSettings, graphSettings, routerSettings, trojanSettings);
 
+    // setup style
     QApplication::setStyle(ui->themeComboBox->currentText());
+
+    // apply light/dark theme
+    ThemeHelper::setupThemeOnChange(ui->systemThemeCB->currentIndex());
 
     this->accept();
 }

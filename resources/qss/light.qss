@@ -3,6 +3,46 @@ QMainWindow
     background: rgb(250,250,250);
 }
 
+QDialog QLabel
+{
+    font-weight: normal;
+}
+
+QDialog QTextEdit
+{
+    font-weight: normal;
+}
+
+QDialog QCheckBox
+{
+    font-weight: normal;
+}
+
+QDialog QPushButton
+{
+    font-weight: normal;
+}
+
+QDialog QDateEdit
+{
+    font-weight: normal;
+}
+
+QDialog QLineEdit
+{
+    font-weight: normal;
+}
+
+QDialog QTabBar::tab
+{
+    font-weight: normal;
+}
+
+QDialog QPlainTextEdit
+{
+    font-weight: normal;
+}
+
 QTableView
 {
     selection-background-color: rgb(0,147,255);
@@ -25,6 +65,7 @@ QMenuBar
 {
     background: rgb(247,247,247);
     border: 1px solid rgba(0,0,0,15%);
+    font-weight: bold;
 }
 
 QMenuBar::item
@@ -50,6 +91,20 @@ QStatusBar {
     background: rgb(247,247,247);
 }
 
+QStatusBar QLabel {
+    font-weight: normal;
+    color: rgb(0,0,0);
+}
+
+QStatusBar QPushButton {
+    font-weight: normal;
+    color: rgb(0,0,0);
+}
+
+#statusFrame {
+    color: rgb(0,0,0);
+}
+
 QToolBar {
     background : rgb(255,255,255);
     border: none;
@@ -63,7 +118,13 @@ QToolButton {
 }
 
 #filterLineEdit {
+    background: rgb(255,255,255);
     border: 1px solid rgb(203,203,203);
     padding-left: 10px;
     color: rgb(181,181,181); 
+}
+
+QComboBox {
+    font-weight: normal;
+    color: rgb(0,0,0);
 }

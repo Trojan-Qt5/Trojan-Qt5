@@ -8,8 +8,27 @@
 
 using namespace std;
 
+@interface NotificationCenter : NSObject {
+}
+@end
+
+@implementation NotificationCenter
+
+- (void)themeChanged:(NSNotification *) notification {
+    ThemeHelper::setupTheme();
+}
+
+@end
+
 ThemeHelper::ThemeHelper(QObject *parent) : QObject(parent)
 {}
+
+
+void ThemeHelper::registerListen()
+{
+    NotificationCenter *self = [[NotificationCenter alloc] init];
+    [NSDistributedNotificationCenter.defaultCenter addObserver:self selector:@selector(themeChanged:) name:@"AppleInterfaceThemeChangedNotification" object: nil];
+}
 
 bool ThemeHelper::isSystemDarkTheme()
 {
@@ -22,11 +41,22 @@ bool ThemeHelper::isSystemDarkTheme()
     return QString::fromStdString(mode).toLower() == "dark";
 }
 
-void ThemeHelper::setupThemeOnStartup()
+void ThemeHelper::setupTheme()
 {
     ConfigHelper *helper = Utils::getConfigHelper();
 
     if ((isSystemDarkTheme() && helper->getGeneralSettings()["systemTheme"] == 2) || helper->getGeneralSettings()["systemTheme"] == 1) {
+        applyDarkQss();
+    }
+    else {
+        applyLightQss();
+    }
+}
+
+void ThemeHelper::setupThemeOnChange(int index)
+{
+
+    if ((isSystemDarkTheme() && index == 2) || index == 1) {
         applyDarkQss();
     }
     else {

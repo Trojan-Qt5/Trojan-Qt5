@@ -3,6 +3,7 @@
 #include "qhttpresponse.h"
 #include "qhttpserver.h"
 #include "confighelper.h"
+#include "logger.h"
 #include "utils.h"
 #if defined (Q_OS_WIN)
 #include <QApplication>
@@ -23,7 +24,9 @@ void PACServer::listen()
     ConfigHelper *conf = Utils::getConfigHelper();
 
     QString addr = conf->getInboundSettings()["enableIpv6Support"].toBool() ? (conf->getInboundSettings()["shareOverLan"].toBool() ? "::" : "::1") : (conf->getInboundSettings()["shareOverLan"].toBool() ? "0.0.0.0" : "127.0.0.1");
-    server.listen(QHostAddress(addr), conf->getInboundSettings()["pacLocalPort"].toInt());
+    bool status = server.listen(QHostAddress(addr), conf->getInboundSettings()["pacLocalPort"].toInt());
+    if (!status)
+        Logger::warning(QString("[PAC Server] failed to listen on %1:%2, PAC will not be functional").arg(addr).arg(conf->getInboundSettings()["pacLocalPort"].toInt()));
 }
 
 QString PACServer::loadPACFile()
