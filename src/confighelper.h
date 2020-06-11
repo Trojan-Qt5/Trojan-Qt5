@@ -72,6 +72,7 @@ public:
 
     void connectionToJson(TQProfile &profile);
 
+    void generateSocks5Json(TQProfile &profile);
     void generateV2rayJson(TQProfile &profile);
 
     void generateHaproxyConf(const ConnectionTableModel &model);

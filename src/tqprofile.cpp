@@ -21,6 +21,8 @@ TQProfile::TQProfile()
     totalUploadUsage = 0;
     QDate currentDate = QDate::currentDate();
     nextResetDate = QDate(currentDate.year(), currentDate.month() + 1, 1);
+    // socks5/http only
+    username = "";
     // ss/ssr/snell only
     method = QString("aes-256-cfb");
     protocol = QString("origin");
@@ -342,7 +344,7 @@ TQProfile TQProfile::fromTrojanUri(const std::string& trojanUri) const
     QUrl url(QString::fromStdString(trojanUri));
     QUrlQuery query(url.query());
     result.tcpFastOpen = query.queryItemValue("tfo").toInt();
-    result.verifyCertificate = !query.queryItemValue("allowInsecure").toInt();
+    result.verifyCertificate = !query.queryItemValue("allowinsecure").toInt();
     result.sni = query.queryItemValue("sni");
     if (result.sni.isEmpty())
         result.sni = query.queryItemValue("peer");
@@ -427,7 +429,7 @@ QString TQProfile::toVmessUri() const
  */
 QString TQProfile::toTrojanUri() const
 {
-    QString trojanUri = password.toUtf8().toPercentEncoding() + "@" + serverAddress + ":" + QString::number(serverPort) + "?allowinsecure=" + QString::number(int(!verifyCertificate)) + "&tfo=" + QString::number(tcpFastOpen) + "&sni=" + sni + "&mux=" + QString::number(mux) + "&ws=" + QString::number(websocket) + "&group=" + group.toUtf8().toPercentEncoding();
+    QString trojanUri = password.toUtf8().toPercentEncoding() + "@" + serverAddress + ":" + QString::number(serverPort) + "?allowinsecure=" + QString::number(int(!verifyCertificate)) + "&tfo=" + QString::number(tcpFastOpen) + "&sni=" + sni + "&mux=" + QString::number(mux) + "&ws=" + QString::number(websocket) + "&wss=" + QString::number(websocketDoubleTLS) + "&wsPath=" + websocketPath + "&wsHostname=" + websocketHostname + "&wsObfsPassword=" + websocketObfsPassword.toUtf8().toPercentEncoding() + "&group=" + group.toUtf8().toPercentEncoding();
     QByteArray uri = QByteArray(trojanUri.toUtf8());
     uri.prepend("trojan://");
     uri.append("#");

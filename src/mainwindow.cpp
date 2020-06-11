@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 
 #include "connection.h"
+#include "socks5editdialog.h"
+#include "httpeditdialog.h"
 #include "sseditdialog.h"
 #include "ssreditdialog.h"
 #include "vmesseditdialog.h"
@@ -145,15 +147,19 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
     connect(ui->actionExportSubscribe, &QAction::triggered,
             this, &MainWindow::onExportTrojanSubscribe);
     connect(ui->actionQuit, &QAction::triggered, qApp, &QApplication::quit);
-    connect(ui->actionManuallySS, &QAction::triggered,
+    connect(ui->actionAdd_SOCKS5_Manually, &QAction::triggered,
+            this, [this]() { onAddManually("socks5"); });
+    connect(ui->actionAdd_HTTP_Manually, &QAction::triggered,
+            this, [this]() { onAddManually("http"); });
+    connect(ui->actionAdd_SS_Manually, &QAction::triggered,
             this, [this]() { onAddManually("ss"); });
-    connect(ui->actionManuallySSR, &QAction::triggered,
+    connect(ui->actionAdd_SSR_Manually, &QAction::triggered,
             this, [this]() { onAddManually("ssr"); });
-    connect(ui->actionManuallyVmess, &QAction::triggered,
+    connect(ui->actionAdd_Vmess_Manually, &QAction::triggered,
             this, [this]() { onAddManually("vmess"); });
-    connect(ui->actionManuallyTrojan, &QAction::triggered,
+    connect(ui->actionAdd_Trojan_Manually, &QAction::triggered,
             this, [this]() { onAddManually("trojan"); });
-    connect(ui->actionManuallySnell, &QAction::triggered,
+    connect(ui->actionAdd_Snell_Manually, &QAction::triggered,
             this, [this]() { onAddManually("snell"); });
     connect(ui->actionQRCode, &QAction::triggered,
             this, &MainWindow::onAddScreenQRCode);
@@ -666,9 +672,15 @@ void MainWindow::onUserRuleSettings()
 void MainWindow::newProfile(Connection *newCon)
 {
     QDialog *editDlg = new QDialog(this);
-    if (newCon->getProfile().type == "ss") {
+    if (newCon->getProfile().type == "socks5") {
+        editDlg = new Socks5EditDialog(newCon, this);
+        connect(editDlg, &Socks5EditDialog::finished, editDlg, &Socks5EditDialog::deleteLater);
+    } else if (newCon->getProfile().type == "http") {
+        editDlg = new HttpEditDialog(newCon, this);
+        connect(editDlg, &HttpEditDialog::finished, editDlg, &HttpEditDialog::deleteLater);
+    } else if (newCon->getProfile().type == "ss") {
         editDlg = new SSEditDialog(newCon, this);
-        connect(editDlg, &SSEditDialog::finished, editDlg, &SSREditDialog::deleteLater);
+        connect(editDlg, &SSEditDialog::finished, editDlg, &SSEditDialog::deleteLater);
     } else if (newCon->getProfile().type == "ssr") {
         editDlg = new SSREditDialog(newCon, this);
         connect(editDlg, &SSREditDialog::finished, editDlg, &SSREditDialog::deleteLater);
@@ -696,12 +708,18 @@ void MainWindow::editRow(int row)
     Connection *con = model->getItem(row)->getConnection();
 
     QDialog *editDlg = new QDialog(this);
-    if (con->getProfile().type == "ss") {
+    if (con->getProfile().type == "socks5") {
+        editDlg = new Socks5EditDialog(con, this);
+        connect(editDlg, &Socks5EditDialog::finished, editDlg, &Socks5EditDialog::deleteLater);
+    } else if (con->getProfile().type == "http") {
+        editDlg = new HttpEditDialog(con, this);
+        connect(editDlg, &HttpEditDialog::finished, editDlg, &HttpEditDialog::deleteLater);
+    } else if (con->getProfile().type == "ss") {
         editDlg = new SSEditDialog(con, this);
-        connect(editDlg, &SSEditDialog::finished, editDlg, &TrojanEditDialog::deleteLater);
+        connect(editDlg, &SSEditDialog::finished, editDlg, &SSEditDialog::deleteLater);
     } else if (con->getProfile().type == "ssr") {
         editDlg = new SSREditDialog(con, this);
-        connect(editDlg, &SSREditDialog::finished, editDlg, &TrojanEditDialog::deleteLater);
+        connect(editDlg, &SSREditDialog::finished, editDlg, &SSREditDialog::deleteLater);
     } else if (con->getProfile().type == "vmess") {
         editDlg = new VmessEditDialog(con, this);
         connect(editDlg, &VmessEditDialog::finished, editDlg, &VmessEditDialog::deleteLater);
@@ -876,15 +894,21 @@ void MainWindow::setupActionIcon()
                                        QIcon::fromTheme("document-save-as")));
     ui->menuManually->setIcon(QIcon::fromTheme("edit-guides",
                                           QIcon::fromTheme("accessories-text-editor")));
-    ui->actionManuallySS->setIcon(QIcon::fromTheme("edit-guides",
+    ui->actionAdd_SOCKS5_Manually->setIcon(QIcon::fromTheme("edit-guides",
                                 QIcon::fromTheme("accessories-text-editor")));
-    ui->actionManuallySSR->setIcon(QIcon::fromTheme("edit-guides",
+    ui->actionAdd_HTTP_Manually->setIcon(QIcon::fromTheme("edit-guides",
                                 QIcon::fromTheme("accessories-text-editor")));
-    ui->actionManuallyVmess->setIcon(QIcon::fromTheme("edit-guides",
+    ui->actionAdd_SS_Manually->setIcon(QIcon::fromTheme("edit-guides",
                                 QIcon::fromTheme("accessories-text-editor")));
-    ui->actionManuallyTrojan->setIcon(QIcon::fromTheme("edit-guides",
+    ui->actionAdd_SSR_Manually->setIcon(QIcon::fromTheme("edit-guides",
                                 QIcon::fromTheme("accessories-text-editor")));
-    ui->actionManuallySnell->setIcon(QIcon::fromTheme("edit-guides",
+    ui->actionAdd_Vmess_Manually->setIcon(QIcon::fromTheme("edit-guides",
+                                QIcon::fromTheme("accessories-text-editor")));
+    ui->actionAdd_Trojan_Manually->setIcon(QIcon::fromTheme("edit-guides",
+                                QIcon::fromTheme("accessories-text-editor")));
+    ui->actionAdd_Snell_Manually->setIcon(QIcon::fromTheme("edit-guides",
+                                QIcon::fromTheme("accessories-text-editor")));
+    ui->actionAdd_NaiveProxy_Manually->setIcon(QIcon::fromTheme("edit-guides",
                                 QIcon::fromTheme("accessories-text-editor")));
     ui->actionURI->setIcon(QIcon::fromTheme("text-field",
                            QIcon::fromTheme("insert-link")));
@@ -990,7 +1014,6 @@ void MainWindow::onSingleInstanceConnect()
             // Only show the window if it's the same user
             show();
         } else {
-            qWarning("Another user is trying to run another instance of trojan-qt5");
             Logger::warning("[Instance] Another user is trying to run another instance of trojan-qt5");
         }
     }

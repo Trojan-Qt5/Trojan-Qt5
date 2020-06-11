@@ -57,6 +57,8 @@ struct TQProfile
     quint64 totalUploadUsage;
     QDateTime lastTime; //last time this connection is used
     QDate nextResetDate; //next scheduled date to reset data usage
+    // socks5/http only
+    QString username;
     // ss/ssr/snell only
     QString method;
     QString protocol;

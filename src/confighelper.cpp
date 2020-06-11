@@ -440,8 +440,8 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
     QJsonObject router;
     router["enabled"] = trojanSettings["enableTrojanRouter"].toBool();
     if (router["enabled"].toBool()) {
-        router["geoip"] = trojanSettings["geoipPath"].toString();
-        router["geosite"] = trojanSettings["geositePath"].toString();
+        router["geoip"] = trojanSettings["geoPath"].toString() + "/geoip.dat";
+        router["geosite"] = trojanSettings["geoPath"].toString() + "/geosite.dat";
         router["direct"] = appendJsonArray(routerSettings["domain"].toObject()["direct"].toArray(), routerSettings["ip"].toObject()["direct"].toArray());
         router["proxy"] = appendJsonArray(routerSettings["domain"].toObject()["proxy"].toArray(), routerSettings["ip"].toObject()["proxy"].toArray());
         router["block"] = appendJsonArray(routerSettings["domain"].toObject()["block"].toArray(), routerSettings["ip"].toObject()["block"].toArray());
@@ -486,6 +486,160 @@ void ConfigHelper::connectionToJson(TQProfile &profile)
     JSONFile.write(JSONDoc.toJson());
     JSONFile.close();
 
+}
+
+void ConfigHelper::generateSocks5Json(TQProfile &profile)
+{
+    QJsonObject configObj;
+    QJsonObject log;
+    log["access"] = Utils::getLogDir() + "/core.log";
+    log["error"] = Utils::getLogDir() + "/core.log";
+    log["level"] = "info";
+    configObj["log"] = log;
+    QJsonObject stats;
+    configObj["stats"] = stats;
+    QJsonObject api;
+    api["tag"] = "api";
+    QJsonArray apiServices;
+    apiServices.append("StatsService");
+    api["services"] = apiServices;
+    configObj["api"] = api;
+    QJsonObject policy;
+    QJsonObject system;
+    system["statsInboundUplink"] = true;
+    system["statsInboundDownlink"] = true;
+    policy["system"] = system;
+    configObj["policy"] = policy;
+    QJsonObject routing;
+    routing["domainStrategy"] = routerSettings["domainStrategy"].toString();
+    QJsonArray rules;
+    QJsonObject apiRule;
+    apiRule["type"] = "field";
+    apiRule["outboundTag"] = "api";
+    QJsonArray apiRuleInboundTag;
+    apiRuleInboundTag.append("api_in");
+    apiRule["inboundTag"] = apiRuleInboundTag;
+    QJsonObject direct;
+    direct["type"] = "field";
+    if (routerSettings["domain"].toObject()["direct"].toArray().size() != 0)
+        direct["domain"] = routerSettings["domain"].toObject()["direct"].toArray();
+    if (routerSettings["domain"].toObject()["direct"].toArray().size() != 0)
+        direct["ip"] = routerSettings["ip"].toObject()["direct"].toArray();
+    direct["outboundTag"] = "direct";
+    QJsonObject proxy;
+    proxy["type"] = "field";
+    if (routerSettings["domain"].toObject()["proxy"].toArray().size() != 0)
+        proxy["domain"] = routerSettings["domain"].toObject()["proxy"].toArray();
+    if (routerSettings["ip"].toObject()["proxy"].toArray().size() != 0)
+        proxy["ip"] = routerSettings["ip"].toObject()["proxy"].toArray();
+    proxy["outboundTag"] = "proxy";
+    QJsonObject block;
+    block["type"] = "field";
+    if (routerSettings["domain"].toObject()["block"].toArray().size() != 0)
+     block["domain"] = routerSettings["domain"].toObject()["block"].toArray();
+    if (routerSettings["ip"].toObject()["block"].toArray().size() != 0)
+        block["ip"] = routerSettings["ip"].toObject()["block"].toArray();
+    block["outboundTag"] = "block";
+    rules.append(apiRule);
+    if (routerSettings["domain"].toObject()["direct"].toArray().size() != 0 || routerSettings["ip"].toObject()["direct"].toArray().size() != 0)
+        rules.append(direct);
+    if (routerSettings["domain"].toObject()["proxy"].toArray().size() != 0 || routerSettings["ip"].toObject()["proxy"].toArray().size() != 0)
+        rules.append(proxy);
+    if (routerSettings["domain"].toObject()["block"].toArray().size() != 0 || routerSettings["ip"].toObject()["block"].toArray().size() != 0)
+        rules.append(block);
+    routing["rules"] = rules;
+    configObj["routing"] = routing;
+    QJsonArray inboundsArray;
+    QJsonObject socks;
+    QJsonObject socksSettings;
+    socks["port"] = inboundSettings["socks5LocalPort"];
+    socks["protocol"] = "socks";
+    socksSettings["udp"] = true;
+    socksSettings["auth"] = "noauth";
+    socksSettings["ip"] = getInboundSettings()["enableIpv6Support"].toBool() ? (getInboundSettings()["shareOverLan"].toBool() ? "::" : "::1") : (getInboundSettings()["shareOverLan"].toBool() ? "0.0.0.0" : "127.0.0.1");
+    socks["settings"] = socksSettings;
+    socks["tag"] = "inbound";
+    QJsonObject apiIn;
+    apiIn["listen"] = "127.0.0.1";
+    apiIn["port"] = trojanSettings["trojanAPIPort"].toInt();
+    apiIn["protocol"] = "dokodemo-door";
+    QJsonObject apiInSettings;
+    apiInSettings["address"] = "127.0.0.1";
+    apiIn["settings"] = apiInSettings;
+    apiIn["tag"] = "api_in";
+    inboundsArray.append(apiIn);
+    inboundsArray.append(socks);
+    configObj["inbounds"] = inboundsArray;
+    QJsonArray outboundsArray;
+    QJsonObject outbound;
+    outbound["protocol"] = "socks";
+    outbound["sendThrough"] = "0.0.0.0";
+    outbound["tag"] = "proxy";
+    QJsonArray serversArray;
+    QJsonObject server;
+    server["address"] = profile.serverAddress;
+    server["port"] = profile.serverPort;
+    QJsonArray usersArray;
+    QJsonObject user;
+    if (!profile.username.isEmpty())
+        user["username"] = "";
+    if (!profile.password.isEmpty())
+        user["password"] = profile.password;
+    user["level"] = 0;
+    usersArray.append(user);
+    if (!profile.password.isEmpty() || !profile.username.isEmpty())
+        server["users"] = usersArray;
+    serversArray.append(server);
+    QJsonObject serverObject;
+    serverObject["servers"] = serversArray;
+    outbound["settings"] = serverObject;
+    QJsonObject freedom;
+    freedom["protocol"] = "freedom";
+    freedom["sendThrough"] = "0.0.0.0";
+    QJsonObject settingsFreedom;
+    settingsFreedom["domainStrategy"] = "AsIs";
+    settingsFreedom["redirect"] = ":0";
+    settingsFreedom["userLevel"] = 0;
+    freedom["settings"] = settingsFreedom;
+    freedom["streamSettings"] = QJsonObject();
+    freedom["tag"] = "direct";
+    QJsonObject blackhole;
+    blackhole["protocol"] = "blackhole";
+    blackhole["sendThrough"] = "0.0.0.0";
+    QJsonObject response;
+    response["type"] = "none";
+    QJsonObject settingsBlackHole;
+    settingsBlackHole["response"] = response;
+    blackhole["settings"] = settingsBlackHole;
+    blackhole["streamSettings"] = QJsonObject();
+    blackhole["tag"] = "block";
+    outboundsArray.append(outbound);
+    outboundsArray.append(freedom);
+    outboundsArray.append(blackhole);
+    configObj["outbounds"] = outboundsArray;
+
+    QJsonDocument JSONDoc(configObj);
+
+#ifdef Q_OS_WIN
+    QString file = QCoreApplication::applicationDirPath() + "/config.json";
+#else
+    QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
+    QString file = configDir.absolutePath() + "/config.json";
+#endif
+
+    QFile JSONFile(file);
+    JSONFile.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate);
+    if (!JSONFile.isOpen()) {
+        Logger::error(QString("cannot open %1").arg(file));
+        return;
+    }
+    if(!JSONFile.isWritable()) {
+        Logger::error(QString("cannot write into %1").arg(file));
+        return;
+    }
+
+    JSONFile.write(JSONDoc.toJson());
+    JSONFile.close();
 }
 
 void ConfigHelper::generateV2rayJson(TQProfile &profile)
@@ -920,6 +1074,7 @@ void ConfigHelper::readGeneralSettings()
     gtemp["theme"] = "Fusion";
     gtemp["systemTheme"] = 2;
     gtemp["toolbarStyle"] = 3;
+    gtemp["language"] = "Follow System";
     gtemp["logLevel"] = 1;
     gtemp["systemTrayMaximumServer"] = 0;
     gtemp["startAtLogin"] = false;
@@ -973,8 +1128,7 @@ void ConfigHelper::readGeneralSettings()
     ttemp["fingerprint"] = 2;
     ttemp["enableTrojanAPI"] = true;
     ttemp["enableTrojanRouter"] = false;
-    ttemp["geoipPath"] = Utils::getConfigPath() + QDir::toNativeSeparators("/dat/geoip.dat");
-    ttemp["geositePath"] = Utils::getConfigPath() + QDir::toNativeSeparators("/dat/geosite.dat");
+    ttemp["geoPath"] = Utils::getConfigPath() + "/dat";
     ttemp["trojanAPIPort"] = 57721;
     ttemp["trojanCertPath"] = "";
     ttemp["trojanCipher"] = "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES128-SHA:ECDHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA:AES128-SHA:AES256-SHA:DES-CBC3-SHA";

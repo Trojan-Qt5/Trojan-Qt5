@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>HttpEditDialog</class>
+ <widget class="QDialog" name="HttpEditDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>462</width>
+    <height>494</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Profile Editor</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QFrame" name="editFrame">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QFormLayout" name="formLayout">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetMaximumSize</enum>
+      </property>
+      <property name="fieldGrowthPolicy">
+       <enum>QFormLayout::ExpandingFieldsGrow</enum>
+      </property>
+      <property name="rowWrapPolicy">
+       <enum>QFormLayout::WrapLongRows</enum>
+      </property>
+      <property name="labelAlignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+      <item row="1" column="0">
+       <widget class="QLabel" name="nameLabel">
+        <property name="text">
+         <string>Profile Name</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="nameEdit"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="serverAddrLabel">
+        <property name="text">
+         <string>Server Address</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="serverAddrEdit"/>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="serverPortLabel">
+        <property name="text">
+         <string>Server Port</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="serverPortEdit">
+        <property name="inputMethodHints">
+         <set>Qt::ImhDigitsOnly|Qt::ImhPreferNumbers</set>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>Username</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="pwdLabel">
+        <property name="text">
+         <string>Password</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QLineEdit" name="pwdEdit">
+        <property name="inputMethodHints">
+         <set>Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData</set>
+        </property>
+        <property name="echoMode">
+         <enum>QLineEdit::PasswordEchoOnEdit</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="resetDateLabel">
+        <property name="text">
+         <string>Reset Data Usage after</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QDateEdit" name="resetDateEdit">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="calendarPopup">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0">
+       <widget class="QLabel" name="autoStartLabel">
+        <property name="text">
+         <string>Automation</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1">
+       <widget class="QCheckBox" name="autoStartCheckBox">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Auto connect on application start</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QLineEdit" name="usernameEdit"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>0</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>nameEdit</tabstop>
+  <tabstop>serverAddrEdit</tabstop>
+  <tabstop>serverPortEdit</tabstop>
+  <tabstop>pwdEdit</tabstop>
+  <tabstop>resetDateEdit</tabstop>
+  <tabstop>autoStartCheckBox</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>HttpEditDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>230</x>
+     <y>473</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>230</x>
+     <y>246</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

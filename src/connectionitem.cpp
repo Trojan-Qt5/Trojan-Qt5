@@ -116,7 +116,11 @@ QVariant ConnectionItem::data(int column, int role) const
 
 QString ConnectionItem::convertType(TQProfile profile)
 {
-    if (profile.type == "ss")
+    if (profile.type == "socks5")
+        return "SOCKS5";
+    else if (profile.type == "http")
+        return "HTTP";
+    else if (profile.type == "ss")
         return QString("SS / %1").arg(profile.plugin.split(".")[0].length() == 0 ? "NONE" : profile.plugin.split(".")[0].toUpper());
     else if (profile.type == "ssr")
         return QString("SSR / %1").arg(profile.obfs.toUpper());
@@ -201,6 +205,7 @@ QString ConnectionItem::convertBytesToHumanReadable(quint64 quot)
 void ConnectionItem::testLatency()
 {
     con->latencyTest();
+    emit latencyChanged();
 }
 
 void ConnectionItem::clearTraffic()

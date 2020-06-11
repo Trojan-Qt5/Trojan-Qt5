@@ -1,10 +1,10 @@
-#include "ssreditdialog.h"
-#include "ui_ssreditdialog.h"
+#include "socks5editdialog.h"
+#include "ui_socks5editdialog.h"
 #include "portvalidator.h"
 
-SSREditDialog::SSREditDialog(Connection *_connection, QWidget *parent) :
+Socks5EditDialog::Socks5EditDialog(Connection *_connection, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::SSREditDialog),
+    ui(new Ui::Socks5EditDialog),
     connection(_connection)
 {
     ui->setupUi(this);
@@ -16,40 +16,29 @@ SSREditDialog::SSREditDialog(Connection *_connection, QWidget *parent) :
     ui->nameEdit->setText(connection->profile.name);
     ui->serverAddrEdit->setText(connection->profile.serverAddress);
     ui->serverPortEdit->setText(QString::number(connection->profile.serverPort));
-    ui->methodComboBox->setCurrentText(connection->profile.method);
+    ui->usernameEdit->setText(connection->profile.username);
     ui->pwdEdit->setText(connection->profile.password);
-    ui->protocolComboBox->setCurrentText(connection->profile.protocol);
-    ui->protocolParamEdit->setText(connection->profile.protocolParam);
-    ui->obfsComboBox->setCurrentText(connection->profile.obfs);
-    ui->obfsParamEdit->setText(connection->profile.obfsParam);
-    ui->tcpFastOpenCheckBox->setChecked(connection->profile.tcpFastOpen);
     ui->resetDateEdit->setDate(connection->profile.nextResetDate);
     ui->resetDateEdit->setMinimumDate(QDate::currentDate());
     ui->autoStartCheckBox->setChecked(connection->profile.autoStart);
 
-    connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &SSREditDialog::save);
+    connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &Socks5EditDialog::save);
 
     this->adjustSize();
 }
 
-SSREditDialog::~SSREditDialog()
+Socks5EditDialog::~Socks5EditDialog()
 {
     delete ui;
 }
 
-void SSREditDialog::save()
+void Socks5EditDialog::save()
 {
-    connection->profile.type = "ssr";
+    connection->profile.type = "socks5";
     connection->profile.name = ui->nameEdit->text();
     connection->profile.serverAddress = ui->serverAddrEdit->text().trimmed();
     connection->profile.serverPort = ui->serverPortEdit->text().toUShort();
-    connection->profile.method = ui->methodComboBox->currentText();
     connection->profile.password = ui->pwdEdit->text();
-    connection->profile.protocol = ui->protocolComboBox->currentText();
-    connection->profile.protocolParam = ui->protocolParamEdit->text();
-    connection->profile.obfs = ui->obfsComboBox->currentText();
-    connection->profile.obfsParam = ui->obfsParamEdit->text();
-    connection->profile.tcpFastOpen = ui->tcpFastOpenCheckBox->isChecked();
     connection->profile.nextResetDate = ui->resetDateEdit->date();
     connection->profile.autoStart = ui->autoStartCheckBox->isChecked();
 

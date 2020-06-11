@@ -81,7 +81,7 @@ void Connection::setProfile(TQProfile p)
 
 bool Connection::isValid() const
 {
-    if (profile.serverAddress.isEmpty() || (profile.password.isEmpty() && profile.uuid.isEmpty())) {
+    if (profile.serverAddress.isEmpty() || ((profile.password.isEmpty() && profile.uuid.isEmpty()) && (profile.type != "socks5" && profile.type != "http"))) {
         return false;
     }
     else {
@@ -154,7 +154,25 @@ void Connection::start()
 
     QString localAddr = conf->getInboundSettings()["enableIpv6Support"].toBool() ? (conf->getInboundSettings()["shareOverLan"].toBool() ? "::" : "::1") : (conf->getInboundSettings()["shareOverLan"].toBool() ? "0.0.0.0" : "127.0.0.1");
 
-    if (profile.type == "ss") {
+    if (profile.type == "socks5") {
+        conf->generateSocks5Json(profile);
+        testV2rayGo_return v2rayStatus = testV2rayGo(file.toStdString().data());
+        if (!v2rayStatus.r0) {
+            QMessageBox::critical(NULL, tr("Failed to start V2Ray"), v2rayStatus.r1);
+            emit startFailed();
+            return;
+        }
+        v2ray = new V2rayThread(file);
+    } else if (profile.type == "http") {
+        conf->generateSocks5Json(profile);
+        testV2rayGo_return v2rayStatus = testV2rayGo(file.toStdString().data());
+        if (!v2rayStatus.r0) {
+            QMessageBox::critical(NULL, tr("Failed to start V2Ray"), v2rayStatus.r1);
+            emit startFailed();
+            return;
+        }
+        v2ray = new V2rayThread(file);
+    } else if (profile.type == "ss") {
         QString apiAddr = localAddr + ":" + QString::number(conf->getTrojanSettings()["trojanAPIPort"].toInt());
         QString clientAddr = localAddr + ":" + QString::number(conf->getInboundSettings()["socks5LocalPort"].toInt());
         QString serverAddr = profile.serverAddress + ":" + QString::number(profile.serverPort);
@@ -187,7 +205,7 @@ void Connection::start()
         conf->generateV2rayJson(profile);
         testV2rayGo_return v2rayStatus = testV2rayGo(file.toStdString().data());
         if (!v2rayStatus.r0) {
-            QMessageBox::critical(NULL, "Failed to start V2Ray", v2rayStatus.r1);
+            QMessageBox::critical(NULL, tr("Failed to start V2Ray"), v2rayStatus.r1);
             emit startFailed();
             return;
         }
@@ -213,13 +231,13 @@ void Connection::start()
         }
     } else if (profile.type == "ssr") {
         ssr->start();
-    } else if (profile.type == "vmess") {
-       v2ray->start();
-       if (conf->getTrojanSettings()["enableTrojanAPI"].toBool()) {
-           v2rayAPI = new V2rayAPI();
-           v2rayAPI->start();
-           connect(v2rayAPI, &V2rayAPI::OnDataReady, this, &Connection::onNewBytesTransmitted);
-       }
+    } else if ((profile.type == "socks5" || profile.type == "http" ) || profile.type == "vmess") {
+        v2ray->start();
+        if (conf->getTrojanSettings()["enableTrojanAPI"].toBool()) {
+            v2rayAPI = new V2rayAPI();
+            v2rayAPI->start();
+            connect(v2rayAPI, &V2rayAPI::OnDataReady, this, &Connection::onNewBytesTransmitted);
+        }
     } else if (profile.type == "trojan") {
         trojan->start();
         if (conf->getTrojanSettings()["enableTrojanAPI"].toBool()) {
@@ -284,7 +302,7 @@ void Connection::stop()
             }
         } else if (profile.type == "ssr") {
             ssr->stop();
-        } else if (profile.type == "vmess") {
+        } else if ((profile.type == "socks5" || profile.type == "http" ) || profile.type == "vmess") {
             v2ray->stop();
             if (v2rayAPI && conf->getTrojanSettings()["enableTrojanAPI"].toBool()) {
                 v2rayAPI->stop();
@@ -335,7 +353,7 @@ void Connection::onStartFailed()
         }
     } else if (profile.type == "ssr") {
         ssr->stop();
-    } else if (profile.type == "vmess") {
+    } else if ((profile.type == "socks5" || profile.type == "http" ) || profile.type == "vmess") {
         v2ray->stop();
         if (v2rayAPI && conf->getTrojanSettings()["enableTrojanAPI"].toBool()) {
             v2rayAPI->stop();

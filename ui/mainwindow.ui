@@ -210,18 +210,8 @@
      </font>
     </property>
     <property name="title">
-     <string>&amp;Connection</string>
+     <string>Connection</string>
     </property>
-    <widget class="QMenu" name="menuManually">
-    <property name="title">
-      <string>&amp;Manually</string>
-     </property>
-     <addaction name="actionManuallySS"/>
-     <addaction name="actionManuallySSR"/>
-     <addaction name="actionManuallyVmess"/>
-     <addaction name="actionManuallyTrojan"/>
-     <addaction name="actionManuallySnell"/>
-    </widget>
     <widget class="QMenu" name="menuAdd">
      <property name="title">
       <string>&amp;Add</string>
@@ -230,6 +220,19 @@
       <iconset theme="list-add">
        <normaloff>.</normaloff>.</iconset>
      </property>
+     <widget class="QMenu" name="menuManually">
+      <property name="title">
+       <string>Manually</string>
+      </property>
+      <addaction name="actionAdd_SOCKS5_Manually"/>
+      <addaction name="actionAdd_HTTP_Manually"/>
+      <addaction name="actionAdd_SS_Manually"/>
+      <addaction name="actionAdd_SSR_Manually"/>
+      <addaction name="actionAdd_Vmess_Manually"/>
+      <addaction name="actionAdd_Trojan_Manually"/>
+      <addaction name="actionAdd_Snell_Manually"/>
+      <addaction name="actionAdd_NaiveProxy_Manually"/>
+     </widget>
      <addaction name="menuManually"/>
      <addaction name="actionURI"/>
      <addaction name="actionPasteBoardURI"/>
@@ -263,7 +266,7 @@
      </font>
     </property>
     <property name="title">
-     <string>Fi&amp;le</string>
+     <string>File</string>
     </property>
     <addaction name="actionImportGUIJson"/>
     <addaction name="actionImportConfigYaml"/>
@@ -281,7 +284,7 @@
      </font>
     </property>
     <property name="title">
-     <string>Settin&amp;gs</string>
+     <string>Settings</string>
     </property>
     <addaction name="actionGeneralSettings"/>
     <addaction name="actionUserRuleSerttings"/>
@@ -295,7 +298,7 @@
      </font>
     </property>
     <property name="title">
-     <string>&amp;Help</string>
+     <string>Help</string>
     </property>
     <addaction name="actionAbout"/>
     <addaction name="actionAboutQt"/>
@@ -802,6 +805,46 @@
   <action name="actionPasteBoardURI">
    <property name="text">
     <string>PasteBoardURI</string>
+   </property>
+  </action>
+  <action name="actionAdd_SOCKS5_Manually">
+   <property name="text">
+    <string>Add SOCKS5 Manually</string>
+   </property>
+  </action>
+  <action name="actionAdd_HTTP_Manually">
+   <property name="text">
+    <string>Add HTTP Manually</string>
+   </property>
+  </action>
+  <action name="actionAdd_SS_Manually">
+   <property name="text">
+    <string>Add SS Manually</string>
+   </property>
+  </action>
+  <action name="actionAdd_SSR_Manually">
+   <property name="text">
+    <string>Add SSR Manually</string>
+   </property>
+  </action>
+  <action name="actionAdd_Vmess_Manually">
+   <property name="text">
+    <string>Add Vmess Manually</string>
+   </property>
+  </action>
+  <action name="actionAdd_Trojan_Manually">
+   <property name="text">
+    <string>Add Trojan Manually</string>
+   </property>
+  </action>
+  <action name="actionAdd_Snell_Manually">
+   <property name="text">
+    <string>Add Snell Manually</string>
+   </property>
+  </action>
+  <action name="actionAdd_NaiveProxy_Manually">
+   <property name="text">
+    <string>Add NaiveProxy Manually</string>
    </property>
   </action>
  </widget>
