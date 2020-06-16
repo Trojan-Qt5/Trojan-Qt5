@@ -3,6 +3,37 @@
 
 #include <QDebug>
 
+bool GeneralValidator::validateAll(const QString &input)
+{
+    if (validateSocks5(input) || validateHttp(input) || validateSS(input) || validateSSR(input) || validateVmess(input) || validateTrojan(input) || validateSnell(input))
+        return true;
+    return false;
+}
+
+bool GeneralValidator::validateSocks5(const QString &input)
+{
+    bool valid = true;
+    try {
+        TQProfile tqprofile;
+        tqprofile.fromSocks5Uri(input.toStdString());
+    } catch(const std::exception&) {
+        valid = false;
+    }
+    return valid;
+}
+
+bool GeneralValidator::validateHttp(const QString &input)
+{
+    bool valid = true;
+    try {
+        TQProfile tqprofile;
+        tqprofile.fromHttpUri(input.toStdString());
+    } catch(const std::exception&) {
+        valid = false;
+    }
+    return valid;
+}
+
 bool GeneralValidator::validateSS(const QString &input)
 {
     bool valid = true;
@@ -57,6 +88,18 @@ bool GeneralValidator::validateTrojan(const QString &input)
     try {
         TQProfile tqprofile;
         tqprofile.fromTrojanUri(input.toStdString());
+    } catch(const std::exception&) {
+        valid = false;
+    }
+    return valid;
+}
+
+bool GeneralValidator::validateSnell(const QString &input)
+{
+    bool valid = true;
+    try {
+        TQProfile tqprofile;
+        tqprofile.fromSnellUri(input.toStdString());
     } catch(const std::exception&) {
         valid = false;
     }

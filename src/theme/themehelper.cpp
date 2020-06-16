@@ -19,11 +19,11 @@ bool ThemeHelper::isSystemDarkTheme()
     QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",QSettings::NativeFormat);
     return settings.value("AppsUseLightTheme") == 0;
 #elif defined (Q_OS_LINUX)
-    return false;
+    return qApp->style()->standardPalette().color(QPalette::Window).toHsl().lightness() < 110;
 #endif
 }
 
-void ThemeHelper::setupThemeOnStartup()
+void ThemeHelper::setupTheme()
 {
     ConfigHelper *helper = Utils::getConfigHelper();
 

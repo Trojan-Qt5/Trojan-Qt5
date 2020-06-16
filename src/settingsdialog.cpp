@@ -17,6 +17,7 @@ SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
 
     helper->readGeneralSettings();
 
+    // general settings
     ui->toolbarStyleComboBox->setCurrentIndex(helper->getGeneralSettings()["toolbarStyle"].toInt());
     ui->logLevelComboBox->setCurrentIndex(helper->getGeneralSettings()["logLevel"].toInt());
     //ui->haproxyModeComboBox->setCurrentIndex();
@@ -33,6 +34,7 @@ SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
     ui->hideDockIconCheckBox->setChecked(helper->getGeneralSettings()["hideDockIcon"].toBool());
     ui->nativeMenuBarCheckBox->setChecked(helper->getGeneralSettings()["nativeMenuBar"].toBool());
     ui->showAirportAndDonationCB->setChecked(helper->getGeneralSettings()["showAirportAndDonation"].toBool());
+    // inbound settings
     ui->enableHttpProxyCheckBox->setChecked(helper->getInboundSettings()["enableHttpMode"].toBool());
     ui->enableIPV6SupportCheckBox->setChecked(helper->getInboundSettings()["enableIpv6Support"].toBool());
     ui->shareOverLANCheckBox->setChecked(helper->getInboundSettings()["shareOverLan"].toBool());
@@ -41,6 +43,7 @@ SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
     ui->pacPortLineEdit->setText(QString::number(helper->getInboundSettings()["pacLocalPort"].toInt()));
     ui->haproxyPortLineEdit->setText(QString::number(helper->getInboundSettings()["haproxyPort"].toInt()));
     ui->haproxyStatusPortLineEdit->setText(QString::number(helper->getInboundSettings()["haproxyStatusPort"].toInt()));
+    // outbound settings
     ui->forwardProxyCheckBox->setChecked(helper->getOutboundSettings()["forwardProxy"].toBool());
     ui->forwardProxyTypeComboBox->setCurrentIndex(helper->getOutboundSettings()["forwardProxyType"].toInt());
     ui->forwardProxyIpAddressLineEdit->setText(helper->getOutboundSettings()["forwardProxyAddress"].toString());
@@ -48,6 +51,11 @@ SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
     ui->forwardProxyAuthenticationCheckBox->setChecked(helper->getOutboundSettings()["forwardProxyAuthentication"].toBool());
     ui->forwardProxyUsername->setText(helper->getOutboundSettings()["forwardProxyUsername"].toString());
     ui->forwardProxyPassword->setText(helper->getOutboundSettings()["forwardProxyPassword"].toString());
+    // test settings
+    ui->latencyTestMethodCB->setCurrentIndex(helper->getTestSettings()["method"].toInt());
+    ui->realLatencyTestUrlEdit->setText(helper->getTestSettings()["latencyTestUrl"].toString());
+    ui->speedTestUrlEdit->setText(helper->getTestSettings()["speedTestUrl"].toString());
+    // subscribe settings
     ui->gfwlistUpdateUrlComboBox->setCurrentText(helper->getSubscribeSettings()["gfwListUrl"].toString());
     ui->maximumSubscribe->setText(QString::number(helper->getSubscribeSettings()["maximumSubscribe"].toInt()));
     ui->updateUserAgentLineEdit->setText(helper->getSubscribeSettings()["updateUserAgent"].toString());
@@ -56,8 +64,10 @@ SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
     ui->overwriteAllowInsecureCB->setChecked(helper->getSubscribeSettings()["overwriteAllowInsecure"].toBool());
     ui->overwriteAllowInsecureCiphersCB->setChecked(helper->getSubscribeSettings()["overwriteAllowInsecureCiphers"].toBool());
     ui->overwriteTcpFastOpenCB->setChecked(helper->getSubscribeSettings()["overwriteTcpFastOpen"].toBool());
+    // graph settings
     ui->downloadColorPicker->setCurrentColor(QColor(helper->getGraphSettings()["downloadSpeedColor"].toString()));
     ui->uploadColorPicker->setCurrentColor(QColor(helper->getGraphSettings()["uploadSpeedColor"].toString()));
+    // trojan settings
     ui->tlsFingerprintComboBox->setCurrentIndex(helper->getTrojanSettings()["fingerprint"].toInt());
     ui->enableAPICheckBox->setChecked(helper->getTrojanSettings()["enableTrojanAPI"].toBool());
     ui->enableRouterCheckBox->setChecked(helper->getTrojanSettings()["enableTrojanRouter"].toBool());
@@ -127,6 +137,11 @@ void SettingsDialog::onAccepted()
     outboundSettings["forwardProxyUsername"] = ui->forwardProxyUsername->text();
     outboundSettings["forwardProxyPassword"] = ui->forwardProxyPassword->text();
 
+    QJsonObject testSettings = helper->getTestSettings();
+    testSettings["method"] = ui->latencyTestMethodCB->currentIndex();
+    testSettings["latencyTestUrl"] = ui->realLatencyTestUrlEdit->text();
+    testSettings["speedTestUrl"] = ui->speedTestUrlEdit->text();
+
     QJsonObject subscribeSettings = helper->getSubscribeSettings();
     subscribeSettings["gfwListUrl"] = ui->gfwlistUpdateUrlComboBox->currentIndex();
     subscribeSettings["updateUserAgent"] = ui->updateUserAgentLineEdit->text();
@@ -154,7 +169,7 @@ void SettingsDialog::onAccepted()
     trojanSettings["geoPath"] = ui->geoPathEdit->text();
     trojanSettings["bufferSize"] = ui->bufferSizeLineEdit->text().toInt();
 
-    helper->setGeneralSettings(generalSettings, inboundSettings, outboundSettings, subscribeSettings, graphSettings, routerSettings, trojanSettings);
+    helper->setGeneralSettings(generalSettings, inboundSettings, outboundSettings, testSettings, subscribeSettings, graphSettings, routerSettings, trojanSettings);
 
     // setup style
     QApplication::setStyle(ui->themeComboBox->currentText());

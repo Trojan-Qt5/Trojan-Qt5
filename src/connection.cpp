@@ -61,7 +61,11 @@ const QString& Connection::getName() const
 QByteArray Connection::getURI(QString type) const
 {
     QString uri = "";
-    if (type == "ss")
+    if (type == "socks5")
+        uri = profile.toSocks5Uri();
+    else if (type == "http")
+        uri = profile.toHttpUri();
+    else if (type == "ss")
         uri = profile.toSSUri();
     else if (type == "ssr")
         uri = profile.toSSRUri();
@@ -155,7 +159,7 @@ void Connection::start()
     QString localAddr = conf->getInboundSettings()["enableIpv6Support"].toBool() ? (conf->getInboundSettings()["shareOverLan"].toBool() ? "::" : "::1") : (conf->getInboundSettings()["shareOverLan"].toBool() ? "0.0.0.0" : "127.0.0.1");
 
     if (profile.type == "socks5") {
-        conf->generateSocks5Json(profile);
+        conf->generateSocks5HttpJson("socks", profile);
         testV2rayGo_return v2rayStatus = testV2rayGo(file.toStdString().data());
         if (!v2rayStatus.r0) {
             QMessageBox::critical(NULL, tr("Failed to start V2Ray"), v2rayStatus.r1);
@@ -164,7 +168,7 @@ void Connection::start()
         }
         v2ray = new V2rayThread(file);
     } else if (profile.type == "http") {
-        conf->generateSocks5Json(profile);
+        conf->generateSocks5HttpJson("http", profile);
         testV2rayGo_return v2rayStatus = testV2rayGo(file.toStdString().data());
         if (!v2rayStatus.r0) {
             QMessageBox::critical(NULL, tr("Failed to start V2Ray"), v2rayStatus.r1);
@@ -200,7 +204,6 @@ void Connection::start()
                           profile.protocol.toStdString(),
                           profile.protocolParam.toStdString());
         ssr->connect(ssr.get(), &SSRThread::OnDataReady, this, &Connection::onNewBytesTransmitted);
-        ssr->connect(ssr.get(), &SSRThread::onSSRThreadLog, this, &Connection::onLog);
     } else if (profile.type == "vmess") {
         conf->generateV2rayJson(profile);
         testV2rayGo_return v2rayStatus = testV2rayGo(file.toStdString().data());
@@ -211,9 +214,11 @@ void Connection::start()
         }
         v2ray = new V2rayThread(file);
     } else if (profile.type == "trojan") {
-        //generate Config File that trojan will use
-        conf->connectionToJson(profile);
+        conf->generateTrojanJson(profile);
         trojan = new TrojanThread(file);
+    } else if (profile.type == "snell") {
+        conf->generateSnellJson(profile);
+        snell = new SnellThread(file);
     }
 
     //set the file permission as well
@@ -245,6 +250,13 @@ void Connection::start()
             trojanGoAPI->setPassword(profile.password);
             trojanGoAPI->start();
             connect(trojanGoAPI, &TrojanGoAPI::OnDataReady, this, &Connection::onNewBytesTransmitted);
+        }
+    } else if (profile.type == "snell") {
+        snell->start();
+        if (conf->getTrojanSettings()["enableTrojanAPI"].toBool()) {
+            snellGoAPI = new SnellGoAPI();
+            snellGoAPI->start();
+            connect(snellGoAPI, &SnellGoAPI::OnDataReady, this, &Connection::onNewBytesTransmitted);
         }
     }
 
@@ -312,6 +324,11 @@ void Connection::stop()
             if (trojanGoAPI && conf->getTrojanSettings()["enableTrojanAPI"].toBool()) {
                 trojanGoAPI->stop();
             }
+        } else if (profile.type == "snell") {
+            snell->stop();
+            if (snellGoAPI && conf->getTrojanSettings()["enableTrojanAPI"].toBool()) {
+                snellGoAPI->stop();
+            }
         }
 
         //if we have started http proxy, stop it
@@ -362,6 +379,11 @@ void Connection::onStartFailed()
         trojan->stop();
         if (trojanGoAPI && conf->getTrojanSettings()["enableTrojanAPI"].toBool()) {
             trojanGoAPI->stop();
+        }
+    } else if (profile.type == "snell") {
+        snell->stop();
+        if (snellGoAPI && conf->getTrojanSettings()["enableTrojanAPI"].toBool()) {
+            snellGoAPI->stop();
         }
     }
 
@@ -414,9 +436,4 @@ void Connection::onLatencyAvailable(const int latency)
 {
     profile.latency = latency;
     emit latencyAvailable(latency);
-}
-
-void Connection::onLog(QString string)
-{
-    qDebug() << string;
 }

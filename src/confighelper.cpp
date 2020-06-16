@@ -49,6 +49,7 @@ void ConfigHelper::save(const ConnectionTableModel &model)
     settings->setValue("GeneralSettings", QVariant(generalSettings));
     settings->setValue("InboundSettings", QVariant(inboundSettings));
     settings->setValue("OutboundSettings", QVariant(outboundSettings));
+    settings->setValue("TestSettings", QVariant(testSettings));
     settings->setValue("GraphSettings", QVariant(graphSettings));
     settings->setValue("RouterSettings", QVariant(routerSettings));
     settings->setValue("SubscribeSettings", QVariant(subscribeSettings));
@@ -388,107 +389,7 @@ Connection* ConfigHelper::configJsonToConnection(const QString &file)
     return con;
 }
 
-void ConfigHelper::connectionToJson(TQProfile &profile)
-{
-    QJsonObject configObj;
-    configObj["run_type"] = "client";
-    configObj["local_addr"] = inboundSettings["enableIpv6Support"].toBool() ? (inboundSettings["shareOverLan"].toBool() ? "::" : "::1") : (inboundSettings["shareOverLan"].toBool() ? "0.0.0.0" : "127.0.0.1");
-    configObj["local_port"] = inboundSettings["socks5LocalPort"].toInt();
-    configObj["remote_addr"] = profile.serverAddress;
-    configObj["remote_port"] = profile.serverPort;
-    configObj["buffer_size"] = trojanSettings["bufferSize"];
-    QJsonArray passwordArray;
-    passwordArray.append(profile.password);
-    configObj["password"] = QJsonValue(passwordArray);
-    configObj["log_level"] = generalSettings["logLevel"].toInt();
-    configObj["log_file"] = Utils::getLogDir() + "/core.log";
-    QJsonObject ssl;
-    ssl["verify"] = profile.verifyCertificate;
-    ssl["verify_hostname"] = profile.verifyHostname;
-    ssl["cert"] = trojanSettings["trojanCertPath"].toString();
-    ssl["cipher"] = trojanSettings["trojanCipher"].toString();
-    ssl["cipher_tls13"] = trojanSettings["trojanCipherTLS13"].toString();
-    ssl["sni"] = profile.sni;
-    QJsonArray alpnArray;
-    alpnArray.append("h2");
-    alpnArray.append("http/1.1");
-    ssl["alpn"] = QJsonValue(alpnArray);
-    ssl["reuse_session"] = profile.reuseSession;
-    ssl["session_ticket"] = profile.sessionTicket;
-    ssl["curves"] = "";
-    ssl["fingerprint"] = parseTLSFingerprint(trojanSettings["fingerprint"].toInt());
-    configObj["ssl"] = QJsonValue(ssl);
-    QJsonObject tcp;
-    tcp["no_delay"] = true;
-    tcp["keep_alive"] = true;
-    tcp["reuse_port"] = profile.reusePort;
-    tcp["fast_open"] = profile.tcpFastOpen;
-    tcp["fast_open_qlen"] = 20;
-    configObj["tcp"] = QJsonValue(tcp);
-    QJsonObject mux;
-    mux["enabled"] = profile.mux;
-    mux["concurrency"] = profile.muxConcurrency;
-    mux["idle_timeout"] = profile.muxIdleTimeout;
-    configObj["mux"] = QJsonValue(mux);
-    QJsonObject websocket;
-    websocket["enabled"] = profile.websocket;
-    websocket["path"] = profile.websocketPath;
-    websocket["hostname"] = profile.websocketHostname;
-    websocket["obfuscation_password"] = profile.websocketObfsPassword;
-    websocket["double_tls"] = profile.websocketDoubleTLS;
-    configObj["websocket"] = QJsonValue(websocket);
-    QJsonObject router;
-    router["enabled"] = trojanSettings["enableTrojanRouter"].toBool();
-    if (router["enabled"].toBool()) {
-        router["geoip"] = trojanSettings["geoPath"].toString() + "/geoip.dat";
-        router["geosite"] = trojanSettings["geoPath"].toString() + "/geosite.dat";
-        router["direct"] = appendJsonArray(routerSettings["domain"].toObject()["direct"].toArray(), routerSettings["ip"].toObject()["direct"].toArray());
-        router["proxy"] = appendJsonArray(routerSettings["domain"].toObject()["proxy"].toArray(), routerSettings["ip"].toObject()["proxy"].toArray());
-        router["block"] = appendJsonArray(routerSettings["domain"].toObject()["block"].toArray(), routerSettings["ip"].toObject()["block"].toArray());
-        router["default_policy"] = "proxy";
-        router["domain_strategy"] = parseDomainStrategy(routerSettings["domainStrategy"].toString());
-    }
-    configObj["router"] = router;
-    QJsonObject api;
-    api["enabled"] = trojanSettings["enableTrojanAPI"].toBool();
-    api["api_addr"] = "127.0.0.1";
-    api["api_port"] = trojanSettings["trojanAPIPort"].toInt();
-    configObj["api"] = QJsonValue(api);
-    QJsonObject forward_proxy;
-    forward_proxy["enabled"] = outboundSettings["forwardProxy"].toBool();
-    forward_proxy["proxy_addr"] = outboundSettings["forwardProxyAddress"].toString();
-    forward_proxy["proxy_port"] = outboundSettings["forwardProxyPort"].toInt();
-    if (outboundSettings["forwardProxyAuthentication"].toBool()) {
-        forward_proxy["username"] = outboundSettings["forwardProxyUsername"].toString();
-        forward_proxy["password"] = outboundSettings["forwardProxyPassword"].toString();
-    }
-    configObj["forward_proxy"] = QJsonValue(forward_proxy);
-    QJsonDocument JSONDoc(configObj);
-
-#ifdef Q_OS_WIN
-        QString file = QCoreApplication::applicationDirPath() + "/config.json";
-#else
-        QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
-        QString file = configDir.absolutePath() + "/config.json";
-#endif
-
-    QFile JSONFile(file);
-    JSONFile.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate);
-    if (!JSONFile.isOpen()) {
-        Logger::error(QString("cannot open %1").arg(file));
-        return;
-    }
-    if(!JSONFile.isWritable()) {
-        Logger::error(QString("cannot write into %1").arg(file));
-        return;
-    }
-
-    JSONFile.write(JSONDoc.toJson());
-    JSONFile.close();
-
-}
-
-void ConfigHelper::generateSocks5Json(TQProfile &profile)
+void ConfigHelper::generateSocks5HttpJson(QString type, TQProfile &profile)
 {
     QJsonObject configObj;
     QJsonObject log;
@@ -572,7 +473,7 @@ void ConfigHelper::generateSocks5Json(TQProfile &profile)
     configObj["inbounds"] = inboundsArray;
     QJsonArray outboundsArray;
     QJsonObject outbound;
-    outbound["protocol"] = "socks";
+    outbound["protocol"] = type;
     outbound["sendThrough"] = "0.0.0.0";
     outbound["tag"] = "proxy";
     QJsonArray serversArray;
@@ -585,7 +486,8 @@ void ConfigHelper::generateSocks5Json(TQProfile &profile)
         user["username"] = "";
     if (!profile.password.isEmpty())
         user["password"] = profile.password;
-    user["level"] = 0;
+    if (type == "socks")
+        user["level"] = 0;
     usersArray.append(user);
     if (!profile.password.isEmpty() || !profile.username.isEmpty())
         server["users"] = usersArray;
@@ -846,6 +748,149 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
     JSONFile.close();
 }
 
+void ConfigHelper::generateTrojanJson(TQProfile &profile)
+{
+    QJsonObject configObj;
+    configObj["run_type"] = "client";
+    configObj["local_addr"] = inboundSettings["enableIpv6Support"].toBool() ? (inboundSettings["shareOverLan"].toBool() ? "::" : "::1") : (inboundSettings["shareOverLan"].toBool() ? "0.0.0.0" : "127.0.0.1");
+    configObj["local_port"] = inboundSettings["socks5LocalPort"].toInt();
+    configObj["remote_addr"] = profile.serverAddress;
+    configObj["remote_port"] = profile.serverPort;
+    configObj["buffer_size"] = trojanSettings["bufferSize"];
+    QJsonArray passwordArray;
+    passwordArray.append(profile.password);
+    configObj["password"] = QJsonValue(passwordArray);
+    configObj["log_level"] = generalSettings["logLevel"].toInt();
+    configObj["log_file"] = Utils::getLogDir() + "/core.log";
+    QJsonObject ssl;
+    ssl["verify"] = profile.verifyCertificate;
+    ssl["verify_hostname"] = profile.verifyHostname;
+    ssl["cert"] = trojanSettings["trojanCertPath"].toString();
+    ssl["cipher"] = trojanSettings["trojanCipher"].toString();
+    ssl["cipher_tls13"] = trojanSettings["trojanCipherTLS13"].toString();
+    ssl["sni"] = profile.sni;
+    QJsonArray alpnArray;
+    alpnArray.append("h2");
+    alpnArray.append("http/1.1");
+    ssl["alpn"] = QJsonValue(alpnArray);
+    ssl["reuse_session"] = profile.reuseSession;
+    ssl["session_ticket"] = profile.sessionTicket;
+    ssl["curves"] = "";
+    ssl["fingerprint"] = parseTLSFingerprint(trojanSettings["fingerprint"].toInt());
+    configObj["ssl"] = QJsonValue(ssl);
+    QJsonObject tcp;
+    tcp["no_delay"] = true;
+    tcp["keep_alive"] = true;
+    tcp["reuse_port"] = profile.reusePort;
+    tcp["fast_open"] = profile.tcpFastOpen;
+    tcp["fast_open_qlen"] = 20;
+    configObj["tcp"] = QJsonValue(tcp);
+    QJsonObject mux;
+    mux["enabled"] = profile.mux;
+    mux["concurrency"] = profile.muxConcurrency;
+    mux["idle_timeout"] = profile.muxIdleTimeout;
+    configObj["mux"] = QJsonValue(mux);
+    QJsonObject websocket;
+    websocket["enabled"] = profile.websocket;
+    websocket["path"] = profile.websocketPath;
+    websocket["hostname"] = profile.websocketHostname;
+    websocket["obfuscation_password"] = profile.websocketObfsPassword;
+    websocket["double_tls"] = profile.websocketDoubleTLS;
+    configObj["websocket"] = QJsonValue(websocket);
+    QJsonObject router;
+    router["enabled"] = trojanSettings["enableTrojanRouter"].toBool();
+    if (router["enabled"].toBool()) {
+        router["geoip"] = trojanSettings["geoPath"].toString() + "/geoip.dat";
+        router["geosite"] = trojanSettings["geoPath"].toString() + "/geosite.dat";
+        router["direct"] = appendJsonArray(routerSettings["domain"].toObject()["direct"].toArray(), routerSettings["ip"].toObject()["direct"].toArray());
+        router["proxy"] = appendJsonArray(routerSettings["domain"].toObject()["proxy"].toArray(), routerSettings["ip"].toObject()["proxy"].toArray());
+        router["block"] = appendJsonArray(routerSettings["domain"].toObject()["block"].toArray(), routerSettings["ip"].toObject()["block"].toArray());
+        router["default_policy"] = "proxy";
+        router["domain_strategy"] = parseDomainStrategy(routerSettings["domainStrategy"].toString());
+    }
+    configObj["router"] = router;
+    QJsonObject api;
+    api["enabled"] = trojanSettings["enableTrojanAPI"].toBool();
+    api["api_addr"] = "127.0.0.1";
+    api["api_port"] = trojanSettings["trojanAPIPort"].toInt();
+    configObj["api"] = QJsonValue(api);
+    QJsonObject forward_proxy;
+    forward_proxy["enabled"] = outboundSettings["forwardProxy"].toBool();
+    forward_proxy["proxy_addr"] = outboundSettings["forwardProxyAddress"].toString();
+    forward_proxy["proxy_port"] = outboundSettings["forwardProxyPort"].toInt();
+    if (outboundSettings["forwardProxyAuthentication"].toBool()) {
+        forward_proxy["username"] = outboundSettings["forwardProxyUsername"].toString();
+        forward_proxy["password"] = outboundSettings["forwardProxyPassword"].toString();
+    }
+    configObj["forward_proxy"] = QJsonValue(forward_proxy);
+    QJsonDocument JSONDoc(configObj);
+
+#ifdef Q_OS_WIN
+    QString file = QCoreApplication::applicationDirPath() + "/config.json";
+#else
+    QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
+    QString file = configDir.absolutePath() + "/config.json";
+#endif
+
+    QFile JSONFile(file);
+    JSONFile.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate);
+    if (!JSONFile.isOpen()) {
+        Logger::error(QString("cannot open %1").arg(file));
+        return;
+    }
+    if(!JSONFile.isWritable()) {
+        Logger::error(QString("cannot write into %1").arg(file));
+        return;
+    }
+
+    JSONFile.write(JSONDoc.toJson());
+    JSONFile.close();
+
+}
+
+void ConfigHelper::generateSnellJson(TQProfile &profile)
+{
+    QJsonObject configObj;
+    configObj["local_addr"] = inboundSettings["enableIpv6Support"].toBool() ? (inboundSettings["shareOverLan"].toBool() ? "::" : "::1") : (inboundSettings["shareOverLan"].toBool() ? "0.0.0.0" : "127.0.0.1");
+    configObj["local_port"] = inboundSettings["socks5LocalPort"].toInt();
+    configObj["remote_addr"] = profile.serverAddress;
+    configObj["remote_port"] = profile.serverPort;
+    configObj["log_level"] = generalSettings["logLevel"].toInt();
+    configObj["buffer_size"] = trojanSettings["bufferSize"];
+    configObj["psk"] = profile.password;
+    QJsonObject api;
+    api["enabled"] = trojanSettings["enableTrojanAPI"].toBool();
+    api["api_addr"] = "127.0.0.1";
+    api["api_port"] = trojanSettings["trojanAPIPort"].toInt();
+    configObj["api"] = QJsonValue(api);
+    QJsonObject obfs;
+    obfs["obfs_type"] = profile.obfs;
+    obfs["obfs_host"] = profile.obfsParam;
+    configObj["obfs"] = QJsonValue(obfs);
+    QJsonDocument JSONDoc(configObj);
+
+#ifdef Q_OS_WIN
+    QString file = QCoreApplication::applicationDirPath() + "/config.json";
+#else
+    QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
+    QString file = configDir.absolutePath() + "/config.json";
+#endif
+
+    QFile JSONFile(file);
+    JSONFile.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate);
+    if (!JSONFile.isOpen()) {
+        Logger::error(QString("cannot open %1").arg(file));
+        return;
+    }
+    if(!JSONFile.isWritable()) {
+        Logger::error(QString("cannot write into %1").arg(file));
+        return;
+    }
+
+    JSONFile.write(JSONDoc.toJson());
+    JSONFile.close();
+}
+
 void ConfigHelper::generateHaproxyConf(const ConnectionTableModel &model)
 {
 #ifdef Q_OS_WIN
@@ -964,6 +1009,11 @@ QJsonObject ConfigHelper::getOutboundSettings() const
     return outboundSettings;
 }
 
+QJsonObject ConfigHelper::getTestSettings() const
+{
+    return testSettings;
+}
+
 QJsonObject ConfigHelper::getSubscribeSettings() const
 {
     return subscribeSettings;
@@ -984,7 +1034,7 @@ QJsonObject ConfigHelper::getTrojanSettings() const
     return trojanSettings;
 }
 
-void ConfigHelper::setGeneralSettings(QJsonObject gs, QJsonObject is, QJsonObject os, QJsonObject ss, QJsonObject fs, QJsonObject rs, QJsonObject ts)
+void ConfigHelper::setGeneralSettings(QJsonObject gs, QJsonObject is, QJsonObject os, QJsonObject es, QJsonObject ss, QJsonObject fs, QJsonObject rs, QJsonObject ts)
 {
     if (gs["toolbarStyle"].toInt() != generalSettings["toolbarStyle"].toInt()) {
         emit toolbarStyleChanged(static_cast<Qt::ToolButtonStyle>(gs["toolbarStyle"].toInt()));
@@ -992,6 +1042,7 @@ void ConfigHelper::setGeneralSettings(QJsonObject gs, QJsonObject is, QJsonObjec
     generalSettings = gs;
     inboundSettings = is;
     outboundSettings = os;
+    testSettings = es;
     subscribeSettings = ss;
     graphSettings = fs;
     routerSettings = rs;
@@ -1070,6 +1121,7 @@ void ConfigHelper::readGeneralSettings()
     serverLoadBalance = settings->value("ServerLoadBalance", QVariant(false)).toBool();
     showToolbar = settings->value("ShowToolbar", QVariant(true)).toBool();
     showFilterBar = settings->value("ShowFilterBar", QVariant(true)).toBool();
+    // general settings
     QJsonObject gtemp;
     gtemp["theme"] = "Fusion";
     gtemp["systemTheme"] = 2;
@@ -1088,6 +1140,7 @@ void ConfigHelper::readGeneralSettings()
     gtemp["nativeMenuBar"] = false;
     gtemp["showAirportAndDonation"] = true;
     generalSettings = settings->value("GeneralSettings", QVariant(gtemp)).toJsonObject();
+    // inbound settings
     QJsonObject itemp;
     itemp["enableHttpMode"] = true;
     itemp["shareOverLan"] = false;
@@ -1098,6 +1151,7 @@ void ConfigHelper::readGeneralSettings()
     itemp["haproxyStatusPort"] = 2080;
     itemp["haproxyPort"] = 7777;
     inboundSettings = settings->value("InboundSettings", QVariant(itemp)).toJsonObject();
+    // outbound settings
     QJsonObject otemp;
     otemp["forwardProxy"] = false;
     otemp["forwardProxyType"] = 0;
@@ -1107,6 +1161,13 @@ void ConfigHelper::readGeneralSettings()
     otemp["forwardProxyUsername"] = "";
     otemp["forwardProxyPassword"] = "";
     outboundSettings = settings->value("OutboundSettings", QVariant(otemp)).toJsonObject();
+    // test settings
+    QJsonObject etemp;
+    etemp["method"] = 1;
+    etemp["latencyTestUrl"] = "https://www.google.com/generate_204";
+    etemp["speedTestUrl"] = "http://speedtest-sgp1.digitalocean.com/10mb.test";
+    testSettings = settings->value("TestSettings", QVariant(etemp)).toJsonObject();
+    // subscribe settings
     QJsonObject stemp;
     stemp["gfwListUrl"] = 2;
     stemp["updateUserAgent"] = QString("Trojan-Qt5/%1").arg(APP_VERSION);
@@ -1117,13 +1178,16 @@ void ConfigHelper::readGeneralSettings()
     stemp["overwriteAllowInsecureCiphers"] = false;
     stemp["overwriteTcpFastOpen"] = false;
     subscribeSettings = settings->value("SubscribeSettings", QVariant(stemp)).toJsonObject();
+    // graph settings
     QJsonObject ftemp;
     ftemp["downloadSpeedColor"] = QColor::fromRgb(134, 196, 63).name();
     ftemp["uploadSpeedColor"] = QColor::fromRgb(50, 153, 255).name();
     graphSettings = settings->value("GraphSettings", QVariant(ftemp)).toJsonObject();
+    // route settings
     QJsonObject rtemp;
     rtemp["domainStrategy"] = "AsIs";
     routerSettings = settings->value("RouterSettings", QVariant(rtemp)).toJsonObject();
+    // trojan settings
     QJsonObject ttemp;
     ttemp["fingerprint"] = 2;
     ttemp["enableTrojanAPI"] = true;
