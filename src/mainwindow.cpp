@@ -299,14 +299,21 @@ void MainWindow::onHandleDataFromUrlScheme(const QString &data)
     if (data.startsWith("ss://") ||
         data.startsWith("ssr://") ||
         data.startsWith("vmess://") ||
-        data.startsWith("trojan://")) {
-        if (GeneralValidator::validateSS(data) || GeneralValidator::validateSSR(data) || GeneralValidator::validateVmess(data) ||GeneralValidator::validateTrojan(data)) {
+        data.startsWith("trojan://") ||
+        data.startsWith("snell://")) {
+        if (GeneralValidator::validateAll(data)) {
             Connection *newCon = new Connection(data, this);
             model->appendConnection(newCon);
             configHelper->save(*model);
          }
     } else if (data.startsWith("trojan-qt5://")) {
-        if (data.split("add-subscribe?url=").length() > 1) {
+        if (data.split("add-connection?url=").length() > 1) {
+            if (GeneralValidator::validateAll(data.split("add-subscribe?url=")[1])) {
+                Connection *newCon = new Connection(data.split("add-subscribe?url=")[1], this);
+                model->appendConnection(newCon);
+                configHelper->save(*model);
+             }
+        } else if (data.split("add-subscribe?url=").length() > 1) {
             QString splitData = data.split("add-subscribe?url=")[1];
             QString url = QUrl::fromPercentEncoding(splitData.toUtf8().data()).toUtf8().data();
             QList<TQSubscribe> subscribes = configHelper->readSubscribes();
@@ -496,7 +503,7 @@ void MainWindow::onAddFromPasteBoardURI()
     QString str = board->text();
     str = str.replace("\\r", "\r").replace("\\n", "\n").replace("\r\n", "\n");
     for (QString uri: str.split("\n")) {
-        if (GeneralValidator::validateSS(uri) || GeneralValidator::validateSSR(uri) || GeneralValidator::validateVmess(uri) ||GeneralValidator::validateTrojan(uri)) {
+        if (GeneralValidator::validateAll(uri)) {
             Connection *newCon = new Connection(uri, this);
             model->appendConnection(newCon);
             configHelper->save(*model);

@@ -30,11 +30,17 @@ struct TQProfile
     TQProfile();
     TQProfile(const QString &uri);
 
+    TQProfile fromSocks5Uri(const std::string& socks5Uri) const;
+    TQProfile fromHttpUri(const std::string& httpUri) const;
     TQProfile fromSSUri(const std::string& ssUri) const;
     TQProfile fromOldSSUri(const std::string& ssUri) const;
     TQProfile fromSSRUri(const std::string& trojanUri) const;
     TQProfile fromVmessUri(const std::string& vmessUri) const;
     TQProfile fromTrojanUri(const std::string& trojanUri) const;
+    TQProfile fromSnellUri(const std::string& snellUri) const;
+
+    QString toSocks5Uri() const;
+    QString toHttpUri() const;
     QString toSSUri() const;
     QString toSSRUri() const;
     QString toVmessUri() const;

@@ -55,7 +55,11 @@ TQProfile::TQProfile()
 
 TQProfile::TQProfile(const QString &uri)
 {
-    if (uri.startsWith("ss://"))
+    if (uri.startsWith("socks5://"))
+        *this = TQProfile::fromSocks5Uri(uri.toStdString());
+    else if (uri.startsWith("http://"))
+        *this = TQProfile::fromHttpUri(uri.toStdString());
+    else if (uri.startsWith("ss://"))
         try {
             *this = TQProfile::fromSSUri(uri.toStdString());
         } catch (...) {
@@ -67,6 +71,8 @@ TQProfile::TQProfile(const QString &uri)
         *this = TQProfile::fromVmessUri(uri.toStdString());
     else if (uri.startsWith("trojan://"))
         *this = TQProfile::fromTrojanUri(uri.toStdString());
+    else if (uri.startsWith("snell://"))
+        *this = TQProfile::fromSnellUri(uri.toStdString());
 }
 
 bool TQProfile::equals(const TQProfile &profile) const
@@ -88,10 +94,101 @@ bool TQProfile::equals(const TQProfile &profile) const
          && websocketObfsPassword == profile.websocketObfsPassword);
 }
 
+TQProfile TQProfile::fromSocks5Uri(const std::string& socks5Uri) const
+{
+    std::string prefix = "socks5://";
+
+    if (socks5Uri.length() < 9) {
+        throw std::invalid_argument("SOCKS5 URI is too short");
+    }
+
+    if (!QString::fromStdString(socks5Uri).startsWith("socks5://")) {
+        throw std::invalid_argument("Invalid SOCKS5 URI");
+    }
+
+    TQProfile result;
+
+    result.type = "socks5";
+
+    //remove the prefix "socks5://" from uri
+    std::string uri(socks5Uri.data() + 9, socks5Uri.length() - 9);
+
+    size_t hashPos = uri.find_last_of('#');
+    if (hashPos != std::string::npos) {
+        // Get the name/remark
+        result.name = QUrl::fromPercentEncoding(QString::fromStdString(uri.substr(hashPos + 1)).toUtf8().data());
+        uri.erase(hashPos);
+    }
+
+    size_t atPos = uri.find_first_of('@');
+    if (atPos != std::string::npos) {
+        QString userInfo = QByteArray::fromBase64(QString::fromStdString(uri.substr(0, atPos)).toUtf8().data());
+        result.username = userInfo.split(":")[0];
+        result.password = userInfo.split(":")[1];
+        uri.erase(0, atPos + 1);
+        size_t colonPos = uri.find_last_of(':');
+        if (colonPos == std::string::npos) {
+            throw std::invalid_argument("Can't find the colon separator between hostname and port");
+        }
+        result.serverAddress = QString::fromStdString(uri.substr(0, colonPos));
+        result.serverPort = std::stoi(uri.substr(colonPos + 1));
+        uri.erase(0, colonPos + 4);
+    } else {
+        throw std::invalid_argument("Can't find the at separator between userInfo and hostname");
+    }
+
+    return result;
+}
+
+TQProfile TQProfile::fromHttpUri(const std::string& httpUri) const
+{
+    std::string prefix = "http://";
+
+    if (httpUri.length() < 7) {
+        throw std::invalid_argument("HTTP URI is too short");
+    }
+
+    if (!QString::fromStdString(httpUri).startsWith("http://")) {
+        throw std::invalid_argument("Invalid HTTP URI");
+    }
+
+    TQProfile result;
+
+    result.type = "http";
+
+    //remove the prefix "http://" from uri
+    std::string uri(httpUri.data() + 7, httpUri.length() - 7);
+
+    size_t hashPos = uri.find_last_of('#');
+    if (hashPos != std::string::npos) {
+        // Get the name/remark
+        result.name = QUrl::fromPercentEncoding(QString::fromStdString(uri.substr(hashPos + 1)).toUtf8().data());
+        uri.erase(hashPos);
+    }
+
+    size_t atPos = uri.find_first_of('@');
+    if (atPos != std::string::npos) {
+        QString userInfo = QByteArray::fromBase64(QString::fromStdString(uri.substr(0, atPos)).toUtf8().data());
+        result.username = userInfo.split(":")[0];
+        result.password = userInfo.split(":")[1];
+        uri.erase(0, atPos + 1);
+        size_t colonPos = uri.find_last_of(':');
+        if (colonPos == std::string::npos) {
+            throw std::invalid_argument("Can't find the colon separator between hostname and port");
+        }
+        result.serverAddress = QString::fromStdString(uri.substr(0, colonPos));
+        result.serverPort = std::stoi(uri.substr(colonPos + 1));
+        uri.erase(0, colonPos + 4);
+    } else {
+        throw std::invalid_argument("Can't find the at separator between userInfo and hostname");
+    }
+
+    return result;
+}
+
 TQProfile TQProfile::fromSSUri(const std::string& ssUri) const
 {
     std::string prefix = "ss://";
-
     if (ssUri.length() < 5) {
         throw std::invalid_argument("SS URI is too short");
     }
@@ -355,6 +452,76 @@ TQProfile TQProfile::fromTrojanUri(const std::string& trojanUri) const
     return result;
 }
 
+TQProfile TQProfile::fromSnellUri(const std::string& snellUri) const
+{
+    std::string prefix = "snell://";
+
+    if (snellUri.length() < 8) {
+        throw std::invalid_argument("Snell URI is too short");
+    }
+
+    //prevent line separator casuing wrong password.
+    if (!QString::fromStdString(snellUri).startsWith("snell://")) {
+         throw std::invalid_argument("Invalid Snell URI");
+    }
+
+    TQProfile result;
+
+    result.type = "snell";
+
+    //remove the prefix "snell://" from uri
+    std::string uri(snellUri.data() + 9, snellUri.length() - 9);
+    size_t hashPos = uri.find_last_of('#');
+    if (hashPos != std::string::npos) {
+        // Get the name/remark
+        result.name = QUrl::fromPercentEncoding(QString::fromStdString(uri.substr(hashPos + 1)).toUtf8().data());
+        uri.erase(hashPos);
+    }
+
+    size_t atPos = uri.find_first_of('@');
+    if (atPos != std::string::npos) {
+        QString userInfo = QString::fromStdString(uri.substr(0, atPos));
+        result.method = userInfo.split(":")[0];
+        result.password = userInfo.split(":")[1];
+        uri.erase(0, atPos + 1);
+        size_t colonPos = uri.find_last_of(':');
+        if (colonPos == std::string::npos) {
+            throw std::invalid_argument("Can't find the colon separator between hostname and port");
+        }
+        result.serverAddress = QString::fromStdString(uri.substr(0, colonPos));
+        result.serverPort = std::stoi(uri.substr(colonPos + 1));
+        uri.erase(0, colonPos + 4);
+    } else {
+        throw std::invalid_argument("Can't find the at separator between userInfo and hostname");
+    }
+
+    QUrl url(QString::fromStdString(snellUri));
+    QUrlQuery query(url.query());
+    result.obfs = query.queryItemValue("obfs");
+    result.obfsParam = query.queryItemValue("obfs-host");
+
+    return result;
+}
+
+/**
+ * @brief TQProfile::toSocks5Uri
+ * @return QString uri of socks5 server
+ */
+QString TQProfile::toSocks5Uri() const
+{
+    QString userInfoBase64 = Utils::Base64UrlEncode(username + ":" + password);
+    return "socks5://" + userInfoBase64 + "@" + serverAddress + ":" + QString::number(serverPort) + "#" + name.toUtf8().toPercentEncoding();
+}
+
+/**
+ * @brief TQProfile::toHttpUri
+ * @return QString uri of socks5 server
+ */
+QString TQProfile::toHttpUri() const
+{
+    QString userInfoBase64 = Utils::Base64UrlEncode(username + ":" + password);
+    return "http://" + userInfoBase64 + "@" + serverAddress + ":" + QString::number(serverPort) + "#" + name.toUtf8().toPercentEncoding();
+}
 
 /**
  * @brief TQProfile::toSSUri
@@ -443,9 +610,12 @@ QString TQProfile::toTrojanUri() const
  */
 QString TQProfile::toSnellUri() const
 {
-    QString userInfoBase64 = Utils::Base64UrlEncode(method + ":" + password);
-    QString snellUri = userInfoBase64 + "@" + serverAddress + ":" + serverPort + "?plugin=obfs-local;obfs=" + obfs + ";obfs-host=" + obfsParam + ";obfs-uri=/";
-    return "snell://" + snellUri;
+    QString snellUri = "chacha20-ietf-poly1305:" + password + "@" + serverAddress + ":" + QString::number(serverPort) + "?obfs=" + obfs + "&obfs-host=" + obfsParam.toUtf8().toPercentEncoding();
+    QByteArray uri = QByteArray(snellUri.toUtf8());
+    uri.prepend("snell://");
+    uri.append("#");
+    uri.append(name.toUtf8().toPercentEncoding());
+    return uri;
 }
 
 // https://stackoverflow.com/questions/61924590/no-match-for-operator-operand-types-are-qdatastream-and-qjsonobject/61926499#61926499

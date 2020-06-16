@@ -1,0 +1,18 @@
+syntax = "proto3";
+package snell.api;
+option go_package = ".;snellapi";
+
+service SnellService {
+	rpc QueryStats(StatsRequest) returns(StatsReply){}
+}
+
+message StatsRequest{
+	string password = 1; //reserved for server api
+}
+
+message StatsReply {
+	uint64 upload_traffic = 1;
+	uint64 download_traffic = 2;
+	uint64 upload_speed = 3;
+	uint64 download_speed = 4;
+}

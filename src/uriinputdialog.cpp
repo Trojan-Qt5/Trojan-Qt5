@@ -22,7 +22,7 @@ URIInputDialog::~URIInputDialog()
 
 void URIInputDialog::onURIChanged(const QString &str)
 {
-    if (!GeneralValidator::validateSS(str) && !GeneralValidator::validateSSR(str) && !GeneralValidator::validateVmess(str) && !GeneralValidator::validateTrojan(str)) {
+    if (!GeneralValidator::validateAll(str)) {
         ui->uriEdit->setStyleSheet("background: pink");
         ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
     }

@@ -70,10 +70,10 @@ public:
 
     Connection* configJsonToConnection(const QString &file);
 
-    void connectionToJson(TQProfile &profile);
-
-    void generateSocks5Json(TQProfile &profile);
+    void generateSocks5HttpJson(QString type, TQProfile &profile);
     void generateV2rayJson(TQProfile &profile);
+    void generateTrojanJson(TQProfile &profile);
+    void generateSnellJson(TQProfile &profile);
 
     void generateHaproxyConf(const ConnectionTableModel &model);
 
@@ -90,6 +90,7 @@ public:
     QJsonObject getGeneralSettings() const;
     QJsonObject getInboundSettings() const;
     QJsonObject getOutboundSettings() const;
+    QJsonObject getTestSettings() const;
     QJsonObject getGraphSettings() const;
     QJsonObject getRouterSettings() const;
     QJsonObject getSubscribeSettings() const;
@@ -100,7 +101,7 @@ public:
     bool isAutoUpdateSubscribes() const;
     bool isShowToolbar() const;
     bool isShowFilterBar() const;
-    void setGeneralSettings(QJsonObject gs, QJsonObject is, QJsonObject os, QJsonObject ss, QJsonObject fs, QJsonObject rs, QJsonObject ts);
+    void setGeneralSettings(QJsonObject gs, QJsonObject is, QJsonObject os, QJsonObject es, QJsonObject ss, QJsonObject fs, QJsonObject rs, QJsonObject ts);
     void setSystemProxySettings(QString mode);
     void setTrojanOn(bool on);
     void setAutoUpdateSubscribes(bool update);
@@ -126,6 +127,7 @@ private:
     QJsonObject generalSettings;
     QJsonObject inboundSettings;
     QJsonObject outboundSettings;
+    QJsonObject testSettings;
     QJsonObject graphSettings;
     QJsonObject routerSettings;
     QJsonObject subscribeSettings;

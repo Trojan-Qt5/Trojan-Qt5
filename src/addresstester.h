@@ -68,6 +68,8 @@ public slots:
      * bind lagTestFinished() signal to get the test result
      */
     void startLagTest(int timeout = 3000);//3000 msec by default
+    void startTcpPingTest(int timeout);
+    void startRealPingTest(int timeout);
 
 private:
     QHostAddress m_address;

@@ -25,8 +25,13 @@
  */
 
 #include "addresstester.h"
+#include "confighelper.h"
+#include "utils.h"
 
+#include <QNetworkAccessManager>
 #include <QNetworkProxyFactory>
+#include <QEventLoop>
+#include <QNetworkReply>
 
 AddressTester::AddressTester(const QHostAddress &_address,
                              const uint16_t &_port,
@@ -61,7 +66,52 @@ void AddressTester::connectToServer(int timeout)
 
 void AddressTester::startLagTest(int timeout)
 {
+    ConfigHelper *helper = Utils::getConfigHelper();
+    if (helper->getTestSettings()["method"].toInt() == 0)
+        startTcpPingTest(timeout);
+    else if (helper->getTestSettings()["method"].toInt() == 1)
+        startRealPingTest(timeout);
+}
+
+void AddressTester::startTcpPingTest(int timeout)
+{
     connectToServer(timeout);
+}
+
+void AddressTester::startRealPingTest(int timeout)
+{
+    ConfigHelper *helper = Utils::getConfigHelper();
+    QNetworkAccessManager* manager = new QNetworkAccessManager();
+    QNetworkRequest request(helper->getTestSettings()["latencyTestUrl"].toString());
+    request.setRawHeader("User-Agent", helper->getSubscribeSettings()["updateUserAgent"].toString().toUtf8().data());
+    QNetworkProxy proxy;
+    proxy.setType(QNetworkProxy::Socks5Proxy);
+    proxy.setHostName("127.0.0.1");
+    proxy.setPort(helper->getInboundSettings()["socks5LocalPort"].toInt());
+    manager->setProxy(proxy);
+
+    m_time = QTime::currentTime();
+    QNetworkReply* reply = manager->get(request);
+    QEventLoop loop;
+    connect(&m_timer, &QTimer::timeout, &loop, &QEventLoop::quit);
+    connect(reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
+    m_timer.start(timeout);
+    loop.exec();
+
+    if (m_timer.isActive()) {
+        m_timer.stop();
+        if (reply->error() != QNetworkReply::NoError || reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() != 204) {
+            m_timer.stop();
+            emit lagTestFinished(LAG_ERROR);
+        } else {
+            m_timer.stop();
+            emit lagTestFinished(m_time.msecsTo(QTime::currentTime()));
+        }
+    } else {
+        disconnect(reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
+        reply->abort();
+        reply->deleteLater();
+    }
 }
 
 void AddressTester::onTimeout()

@@ -89,13 +89,13 @@ else:win32:CONFIG(release, debug|release) {
 win32 {
     DEFINES += _WIN32_WINNT=0x600
     SOURCES += \
-        src/sysproxy/windows.c \
+        src/systemproxy/windows.c \
         src/statusnotifier.cpp \
-        src/urlschemeregister.cpp \
-        src/themehelper.cpp
+        src/urlscheme/urlschemeregister.cpp \
+        src/theme/themehelper.cpp
     HEADERS += \
-        src/sysproxy/windows.h \
-        src/urlschemeregister.h
+        src/systemproxy/windows.h \
+        src/urlscheme/urlschemeregister.h
     INCLUDEPATH += C:\TQLibraries\ZBar\include
     INCLUDEPATH += C:\TQLibraries\OpenSSL-Win32\include
     INCLUDEPATH += C:\TQLibraries\QREncode\include
@@ -125,7 +125,7 @@ mac {
     SOURCES += \
         src/statusnotifier.mm \
         src/LetsMove/PFMoveApplication.m \
-        src/themehelper.mm
+        src/theme/themehelper.mm
     PKG_CONFIG = /usr/local/bin/pkg-config
     INCLUDEPATH += /usr/local/opt/zlib/include
     INCLUDEPATH += /usr/local/opt/openssl@1.1/include
@@ -188,14 +188,32 @@ unix {
 !isEmpty(target.path): INSTALLS += target
 
 SOURCES += \
+    src/widget/routewidget.cpp \
+    src/widget/streamwidget.cpp \
+    src/speedplot/speedplot.cpp \
+    src/proxy/snellthread.cpp \
+    src/proxyapi/snellgoapi.cpp \
+    src/urlscheme/eventfilter.cpp \
+    src/systemproxy/systemproxyhelper.cpp \
+    src/proxy/ssthread.cpp \
+    src/proxy/v2raythread.cpp \
+    src/proxy/trojanthread.cpp \
+    src/proxyapi/ssgoapi.cpp \
+    src/proxyapi/v2rayapi.cpp \
+    src/proxyapi/trojangoapi.cpp \
+    src/proxydialog/socks5editdialog.cpp \
+    src/proxydialog/httpeditdialog.cpp \
+    src/proxydialog/sseditdialog.cpp \
+    src/proxydialog/ssreditdialog.cpp \
+    src/proxydialog/vmesseditdialog.cpp \
+    src/proxydialog/trojaneditdialog.cpp \
+    src/proxydialog/snelleditdialog.cpp \
     src/connectionsortfilterproxymodel.cpp \
-    src/eventfilter.cpp \
     src/haproxythread.cpp \
-    src/httpeditdialog.cpp \
     src/logger.cpp \
     src/midman.cpp \
-    src/pacserver.cpp \
-    src/pachelper.cpp \
+    src/pac/pacserver.cpp \
+    src/pac/pachelper.cpp \
     src/privilegeshelper.cpp \
     src/resourcehelper.cpp \
     src/routetablehelper.cpp \
@@ -204,12 +222,9 @@ SOURCES += \
     src/connection.cpp \
     src/connectionitem.cpp \
     src/connectiontablemodel.cpp \
-    src/socks5editdialog.cpp \
-    src/speedplotview.cpp \
-    src/speedwidget.cpp \
-    src/ssthread.cpp \
+    src/speedplot/speedplotview.cpp \
+    src/speedplot/speedwidget.cpp \
     src/statusbar.cpp \
-    src/trojaneditdialog.cpp \
     src/ip4validator.cpp \
     src/main.cpp \
     src/mainwindow.cpp \
@@ -219,12 +234,9 @@ SOURCES += \
     src/settingsdialog.cpp \
     src/sharedialog.cpp \
     src/subscribemanager.cpp \
-    src/systemproxyhelper.cpp \
     src/tqprofile.cpp \
     src/tqsubscribe.cpp \
     src/generalvalidator.cpp \
-    src/trojangoapi.cpp \
-    src/trojanthread.cpp \
     src/tun2socksthread.cpp \
     src/urihelper.cpp \
     src/uriinputdialog.cpp \
@@ -232,30 +244,38 @@ SOURCES += \
     src/subscribedialog.cpp \
     src/httpproxy.cpp \
     src/socketstream.cpp \
-    src/ssreditdialog.cpp \
     src/utils.cpp \
-    src/speedplot.cpp \
     src/aboutdialog.cpp \
     src/clickablelabel.cpp \
-    src/sseditdialog.cpp \
-    src/snelleditdialog.cpp \
-    src/v2rayapi.cpp \
-    src/v2raythread.cpp \
-    src/vmesseditdialog.cpp \
-    src/ssgoapi.cpp \
-    src/routewidget.cpp \
-    src/streamwidget.cpp \
     src/qtcolorpicker.cpp
 
 HEADERS += \
+    src/widget/routewidget.h \
+    src/widget/streamwidget.h \
+    src/theme/themehelper.h \
+    src/proxy/snellthread.h \
+    src/proxyapi/snellgoapi.h \
+    src/urlscheme/eventfilter.h \
+    src/systemproxy/systemproxyhelper.h \
+    src/proxy/ssthread.h \
+    src/proxy/v2raythread.h \
+    src/proxy/trojanthread.h \
+    src/proxyapi/ssgoapi.h \
+    src/proxyapi/v2rayapi.h \
+    src/proxyapi/trojangoapi.h \
+    src/proxydialog/socks5editdialog.h \
+    src/proxydialog/httpeditdialog.h \
+    src/proxydialog/sseditdialog.h \
+    src/proxydialog/ssreditdialog.h \
+    src/proxydialog/vmesseditdialog.h \
+    src/proxydialog/trojaneditdialog.h \
+    src/proxydialog/snelleditdialog.h \
     src/connectionsortfilterproxymodel.h \
-    src/eventfilter.h \
     src/haproxythread.h \
-    src/httpeditdialog.h \
     src/logger.h \
     src/midman.h \
-    src/pacserver.h \
-    src/pachelper.h \
+    src/pac/pacserver.h \
+    src/pac/pachelper.h \
     src/privilegeshelper.h \
     src/resourcehelper.h \
     src/routetablehelper.h \
@@ -264,13 +284,9 @@ HEADERS += \
     src/connection.h \
     src/connectionitem.h \
     src/connectiontablemodel.h \
-    src/socks5editdialog.h \
-    src/speedplotview.hpp \
-    src/speedwidget.hpp \
-    src/ssthread.h \
+    src/speedplot/speedplotview.hpp \
+    src/speedplot/speedwidget.hpp \
     src/statusbar.h \
-    src/themehelper.h \
-    src/trojaneditdialog.h \
     src/ip4validator.h \
     src/mainwindow.h \
     src/portvalidator.h \
@@ -279,13 +295,10 @@ HEADERS += \
     src/settingsdialog.h \
     src/sharedialog.h \
     src/subscribemanager.h \
-    src/systemproxyhelper.h \
     src/tqprofile.h \
     src/statusnotifier.h \
     src/tqsubscribe.h \
     src/generalvalidator.h \
-    src/trojangoapi.h \
-    src/trojanthread.h \
     src/tun2socksthread.h \
     src/urihelper.h \
     src/uriinputdialog.h \
@@ -293,24 +306,15 @@ HEADERS += \
     src/subscribedialog.h \
     src/httpproxy.h \
     src/socketstream.h \
-    src/ssreditdialog.h \
     src/utils.h \
-    src/speedplot.h \
+    src/speedplot/speedplot.h \
     src/aboutdialog.h \
     src/clickablelabel.h \
-    src/sseditdialog.h \
-    src/snelleditdialog.h \
-    src/v2rayapi.h \
-    src/v2raythread.h \
-    src/vmesseditdialog.h \
-    src/ssgoapi.h \
-    src/routewidget.h \
-    src/streamwidget.h \
     src/qtcolorpicker.h
 
 FORMS += \
-    src/httpeditdialog.ui \
-    src/socks5editdialog.ui \
+    ui/httpeditdialog.ui \
+    ui/socks5editdialog.ui \
     ui/aboutdialog.ui \
     ui/routewidget.ui \
     ui/settingsdialog.ui \
@@ -334,9 +338,10 @@ TRANSLATIONS += \
     resources/i18n/trojan-qt5_zh_SG.ts
 
 PROTOS += \
-    $$PWD/src/trojangoapi.proto \
-    $$PWD/src/ssgoapi.proto \
-    $$PWD/src/v2rayapi.proto
+    $$PWD/src/proxyapi/ssgoapi.proto \
+    $$PWD/src/proxyapi/v2rayapi.proto \
+    $$PWD/src/proxyapi/trojangoapi.proto \
+    $$PWD/src/proxyapi/snellgoapi.proto
 
 include($$PWD/src/protobuf.pri)
 include($$PWD/src/grpc.pri)
@@ -345,9 +350,19 @@ headers.path = /usr/include
 headers.CONFIG = no_check_exist
 headers.files = $${PROTOBUF_HEADERS}
 
-INCLUDEPATH += $$PWD/src
-INCLUDEPATH += $$PWD/3rd/trojan-qt5-core
-INCLUDEPATH += $$PWD/3rd/yaml-cpp/include
+INCLUDEPATH += \
+    $$PWD/src \
+    $$PWD/src/proxy \
+    $$PWD/src/proxyapi \
+    $$PWD/src/proxydialog \
+    $$PWD/src/systemproxy \
+    $$PWD/src/urlscheme \
+    $$PWD/src/theme \
+    $$PWD/src/pac \
+    $$PWD/src/speedplot \
+    $$PWD/src/widget \
+    $$PWD/3rd/trojan-qt5-core \
+    $$PWD/3rd/yaml-cpp/include
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

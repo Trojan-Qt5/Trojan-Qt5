@@ -50,7 +50,7 @@ void SubscribeManager::updateAllSubscribesWithThread()
 
 void SubscribeManager::updateAllSubscribes()
 {
-    Logger::debug(QString("[Subscribe] Check subscribe clicked, use proxy: %1").arg(useProxy));
+    Logger::debug(QString("[Subscribe] Check subscribe clicked, use proxy: %1").arg(useProxy ? "true" : "false"));
     QList<TQSubscribe> subscribes = helper->readSubscribes();
     for (int i = 0; i < subscribes.size(); i++) {
         subscribes[i].lastUpdateTime = QDateTime::currentDateTime().toTime_t() - QDateTime::fromString("1970-01-01T00:00:00").toTime_t();
@@ -66,7 +66,7 @@ void SubscribeManager::updateAllSubscribes()
             if (list[x].isEmpty()) {
                 continue;
             }
-            if (GeneralValidator::validateSS(list[x]) || GeneralValidator::validateSSR(list[x]) || GeneralValidator::validateVmess(list[x]) || GeneralValidator::validateTrojan(list[x])) {
+            if (GeneralValidator::validateAll(list[x])) {
                 TQProfile profile = TQProfile(list[x]);
                 if (!isFiltered(profile.name) && (x < helper->getSubscribeSettings()["maximumSubscribe"].toInt() || helper->getSubscribeSettings()["maximumSubscribe"].toInt() == 0)) {
                     if (helper->getSubscribeSettings()["overwriteAllowInsecure"].toBool()) {
