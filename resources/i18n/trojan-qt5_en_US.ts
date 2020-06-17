@@ -73,27 +73,42 @@
     </message>
 </context>
 <context>
+    <name>ConfigHelper</name>
+    <message>
+        <location filename="../../src/confighelper.cpp" line="62"/>
+        <source>Failed to start Trojan-Qt5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/confighelper.cpp" line="62"/>
+        <source>Your config.ini was upgraded from old version of Trojan-Qt5.
+A clean install is required.
+Checkout wiki for instructions</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Connection</name>
     <message>
-        <location filename="../../src/connection.cpp" line="127"/>
-        <location filename="../../src/connection.cpp" line="136"/>
+        <location filename="../../src/connection.cpp" line="121"/>
+        <location filename="../../src/connection.cpp" line="130"/>
         <source>Unable to start connection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/connection.cpp" line="127"/>
+        <location filename="../../src/connection.cpp" line="121"/>
         <source>Socks5 port %1 is already in use</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/connection.cpp" line="136"/>
+        <location filename="../../src/connection.cpp" line="130"/>
         <source>Http port %1 is already in use</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/connection.cpp" line="165"/>
-        <location filename="../../src/connection.cpp" line="174"/>
-        <location filename="../../src/connection.cpp" line="211"/>
+        <location filename="../../src/connection.cpp" line="154"/>
+        <location filename="../../src/connection.cpp" line="163"/>
+        <location filename="../../src/connection.cpp" line="200"/>
         <source>Failed to start V2Ray</source>
         <translation type="unfinished"></translation>
     </message>
@@ -673,27 +688,27 @@
 <context>
     <name>PrivilegesHelper</name>
     <message>
-        <location filename="../../src/privilegeshelper.cpp" line="66"/>
+        <location filename="../../src/utils/privilegeshelper.cpp" line="66"/>
         <source>https://www.isumsoft.com/windows-10/run-an-app-as-administrator-in-windows-10.html</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/privilegeshelper.cpp" line="68"/>
+        <location filename="../../src/utils/privilegeshelper.cpp" line="68"/>
         <source>https://osxdaily.com/2013/02/06/how-to-run-gui-apps-as-root-in-mac-os-x/</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/privilegeshelper.cpp" line="70"/>
+        <location filename="../../src/utils/privilegeshelper.cpp" line="70"/>
         <source>https://askubuntu.com/questions/207466/how-to-run-applications-as-root</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/privilegeshelper.cpp" line="72"/>
+        <location filename="../../src/utils/privilegeshelper.cpp" line="72"/>
         <source>Can&apos;t start tun2socks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/privilegeshelper.cpp" line="72"/>
+        <location filename="../../src/utils/privilegeshelper.cpp" line="72"/>
         <source>You need to run this application as admin/root
 See the following link for a reference:
 %1</source>
@@ -844,7 +859,7 @@ See the following link for a reference:
     </message>
     <message>
         <location filename="../../ui/routewidget.ui" line="28"/>
-        <source>Domain Stragery</source>
+        <source>Domain Strategy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -898,12 +913,12 @@ See the following link for a reference:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/routewidget.cpp" line="102"/>
+        <location filename="../../src/widget/routewidget.cpp" line="102"/>
         <source>Import Rules from rules.json</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/routewidget.cpp" line="127"/>
+        <location filename="../../src/widget/routewidget.cpp" line="127"/>
         <source>Exports Rules to rules.json</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1509,7 +1524,7 @@ See the following link for a reference:
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="303"/>
-        <source>System Theme</source>
+        <source>Software Theme</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1620,7 +1635,7 @@ See the following link for a reference:
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="506"/>
-        <source>Authenticaton</source>
+        <source>authentication</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1857,12 +1872,12 @@ See the following link for a reference:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="99"/>
+        <location filename="../../src/dialog/settingsdialog.cpp" line="99"/>
         <source>Invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="100"/>
+        <location filename="../../src/dialog/settingsdialog.cpp" line="100"/>
         <source>You can not hide dock Icon and use native menu bar at the same time</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1880,7 +1895,7 @@ See the following link for a reference:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sharedialog.cpp" line="27"/>
+        <location filename="../../src/dialog/sharedialog.cpp" line="27"/>
         <source>Save QR Code</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2022,12 +2037,12 @@ See the following link for a reference:
 <context>
     <name>SpeedPlotView</name>
     <message>
-        <location filename="../../src/speedplotview.cpp" line="183"/>
+        <location filename="../../src/speedplot/speedplotview.cpp" line="183"/>
         <source>Total Upload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/speedplotview.cpp" line="184"/>
+        <location filename="../../src/speedplot/speedplotview.cpp" line="184"/>
         <source>Total Download</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2335,7 +2350,7 @@ See the following link for a reference:
     </message>
     <message>
         <location filename="../../ui/streamwidget.ui" line="239"/>
-        <location filename="../../ui/streamwidget.ui" line="525"/>
+        <location filename="../../ui/streamwidget.ui" line="515"/>
         <source>Headers</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2380,52 +2395,47 @@ See the following link for a reference:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="468"/>
-        <source>TextLabel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ui/streamwidget.ui" line="482"/>
+        <location filename="../../ui/streamwidget.ui" line="472"/>
         <source>Security</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="508"/>
+        <location filename="../../ui/streamwidget.ui" line="498"/>
         <source>Key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="518"/>
+        <location filename="../../ui/streamwidget.ui" line="508"/>
         <source>keys</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="584"/>
+        <location filename="../../ui/streamwidget.ui" line="574"/>
         <source>TLS Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="590"/>
+        <location filename="../../ui/streamwidget.ui" line="580"/>
         <source>Enable TLS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="597"/>
+        <location filename="../../ui/streamwidget.ui" line="587"/>
         <source>Allow Insecure Certificates</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="604"/>
+        <location filename="../../ui/streamwidget.ui" line="594"/>
         <source>Allow Insecure Ciphers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="611"/>
+        <location filename="../../ui/streamwidget.ui" line="601"/>
         <source>Server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="621"/>
+        <location filename="../../ui/streamwidget.ui" line="611"/>
         <source>Alpn</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2623,9 +2633,9 @@ See the following link for a reference:
     </message>
 </context>
 <context>
-    <name>UserRules</name>
+    <name>UserRulesDialog</name>
     <message>
-        <location filename="../../ui/userrules.ui" line="20"/>
+        <location filename="../../ui/userrulesdialog.ui" line="20"/>
         <source>User Rules</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2737,49 +2747,49 @@ See the following link for a reference:
 <context>
     <name>misc</name>
     <message>
-        <location filename="../../src/speedplotview.cpp" line="63"/>
+        <location filename="../../src/speedplot/speedplotview.cpp" line="63"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/speedplotview.cpp" line="64"/>
+        <location filename="../../src/speedplot/speedplotview.cpp" line="64"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/speedplotview.cpp" line="65"/>
+        <location filename="../../src/speedplot/speedplotview.cpp" line="65"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/speedplotview.cpp" line="66"/>
+        <location filename="../../src/speedplot/speedplotview.cpp" line="66"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/speedplotview.cpp" line="67"/>
+        <location filename="../../src/speedplot/speedplotview.cpp" line="67"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/speedplotview.cpp" line="68"/>
+        <location filename="../../src/speedplot/speedplotview.cpp" line="68"/>
         <source>PiB</source>
         <comment>pebibytes (1024 tebibytes)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/speedplotview.cpp" line="69"/>
+        <location filename="../../src/speedplot/speedplotview.cpp" line="69"/>
         <source>EiB</source>
         <comment>exbibytes (1024 pebibytes)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/speedplotview.cpp" line="78"/>
+        <location filename="../../src/speedplot/speedplotview.cpp" line="78"/>
         <source>/s</source>
         <comment>per second</comment>
         <translation type="unfinished"></translation>

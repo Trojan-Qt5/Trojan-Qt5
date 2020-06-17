@@ -148,27 +148,42 @@
     </message>
 </context>
 <context>
+    <name>ConfigHelper</name>
+    <message>
+        <location filename="../../src/confighelper.cpp" line="62"/>
+        <source>Failed to start Trojan-Qt5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/confighelper.cpp" line="62"/>
+        <source>Your config.ini was upgraded from old version of Trojan-Qt5.
+A clean install is required.
+Checkout wiki for instructions</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Connection</name>
     <message>
-        <location filename="../../src/connection.cpp" line="127"/>
-        <location filename="../../src/connection.cpp" line="136"/>
+        <location filename="../../src/connection.cpp" line="121"/>
+        <location filename="../../src/connection.cpp" line="130"/>
         <source>Unable to start connection</source>
         <translation>无法启动连接</translation>
     </message>
     <message>
-        <location filename="../../src/connection.cpp" line="127"/>
+        <location filename="../../src/connection.cpp" line="121"/>
         <source>Socks5 port %1 is already in use</source>
         <translation>Socks5端口 %1 已被占用</translation>
     </message>
     <message>
-        <location filename="../../src/connection.cpp" line="136"/>
+        <location filename="../../src/connection.cpp" line="130"/>
         <source>Http port %1 is already in use</source>
         <translation>Http端口 %1 已被占用</translation>
     </message>
     <message>
-        <location filename="../../src/connection.cpp" line="165"/>
-        <location filename="../../src/connection.cpp" line="174"/>
-        <location filename="../../src/connection.cpp" line="211"/>
+        <location filename="../../src/connection.cpp" line="154"/>
+        <location filename="../../src/connection.cpp" line="163"/>
+        <location filename="../../src/connection.cpp" line="200"/>
         <source>Failed to start V2Ray</source>
         <translation>启动V2Ray失败</translation>
     </message>
@@ -450,7 +465,7 @@
     <message>
         <location filename="../../ui/mainwindow.ui" line="301"/>
         <source>Help</source>
-        <translation>帮助(&amp;H)</translation>
+        <translation>帮助</translation>
     </message>
     <message>
         <source>&amp;Manually</source>
@@ -491,7 +506,7 @@
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation type="vanished">帮助(&amp;H)</translation>
+        <translation type="vanished">帮助</translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="320"/>
@@ -822,7 +837,7 @@
     <message>
         <location filename="../../ui/mainwindow.ui" line="269"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>文件</translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="287"/>
@@ -843,27 +858,27 @@
 <context>
     <name>PrivilegesHelper</name>
     <message>
-        <location filename="../../src/privilegeshelper.cpp" line="66"/>
+        <location filename="../../src/utils/privilegeshelper.cpp" line="66"/>
         <source>https://www.isumsoft.com/windows-10/run-an-app-as-administrator-in-windows-10.html</source>
         <translation>https://zhidao.baidu.com/question/266525818632505885.html</translation>
     </message>
     <message>
-        <location filename="../../src/privilegeshelper.cpp" line="68"/>
+        <location filename="../../src/utils/privilegeshelper.cpp" line="68"/>
         <source>https://osxdaily.com/2013/02/06/how-to-run-gui-apps-as-root-in-mac-os-x/</source>
         <translation>https://zh.wikihow.com/%E5%9C%A8Mac%E7%94%B5%E8%84%91%E4%B8%8A%E4%BD%BF%E7%94%A8Root%E6%9D%83%E9%99%90%E6%89%93%E5%BC%80%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F</translation>
     </message>
     <message>
-        <location filename="../../src/privilegeshelper.cpp" line="70"/>
+        <location filename="../../src/utils/privilegeshelper.cpp" line="70"/>
         <source>https://askubuntu.com/questions/207466/how-to-run-applications-as-root</source>
         <translation>https://www.cnblogs.com/bodhitree/p/6018369.html</translation>
     </message>
     <message>
-        <location filename="../../src/privilegeshelper.cpp" line="72"/>
+        <location filename="../../src/utils/privilegeshelper.cpp" line="72"/>
         <source>Can&apos;t start tun2socks</source>
         <translation>无法启动tun2socks</translation>
     </message>
     <message>
-        <location filename="../../src/privilegeshelper.cpp" line="72"/>
+        <location filename="../../src/utils/privilegeshelper.cpp" line="72"/>
         <source>You need to run this application as admin/root
 See the following link for a reference:
 %1</source>
@@ -1031,9 +1046,13 @@ See the following link for a reference:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/routewidget.ui" line="28"/>
         <source>Domain Stragery</source>
-        <translation>域名策略</translation>
+        <translation type="vanished">域名策略</translation>
+    </message>
+    <message>
+        <location filename="../../ui/routewidget.ui" line="28"/>
+        <source>Domain Strategy</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../ui/routewidget.ui" line="36"/>
@@ -1086,12 +1105,12 @@ See the following link for a reference:
         <translation>导出规则</translation>
     </message>
     <message>
-        <location filename="../../src/routewidget.cpp" line="102"/>
+        <location filename="../../src/widget/routewidget.cpp" line="102"/>
         <source>Import Rules from rules.json</source>
         <translation>从rules.json导入规则</translation>
     </message>
     <message>
-        <location filename="../../src/routewidget.cpp" line="127"/>
+        <location filename="../../src/widget/routewidget.cpp" line="127"/>
         <source>Exports Rules to rules.json</source>
         <translation>导出规则到rules.json</translation>
     </message>
@@ -1699,11 +1718,6 @@ See the following link for a reference:
         <translation>系统托盘最大服务器数量</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="303"/>
-        <source>System Theme</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../ui/settingsdialog.ui" line="311"/>
         <source>Light</source>
         <translation type="unfinished"></translation>
@@ -1722,7 +1736,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/settingsdialog.ui" line="329"/>
         <source>Software Language</source>
-        <translation type="unfinished"></translation>
+        <translation>软件语言</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="337"/>
@@ -1810,9 +1824,8 @@ See the following link for a reference:
         <translation>端口</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="506"/>
         <source>Authenticaton</source>
-        <translation>身份验证</translation>
+        <translation type="vanished">身份验证</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="513"/>
@@ -1842,17 +1855,17 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/settingsdialog.ui" line="580"/>
         <source>Bypass Bittorrent Traffic</source>
-        <translation type="unfinished"></translation>
+        <translation>绕过Bittorrent流量</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="597"/>
         <source>Test Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>测试设置</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="605"/>
         <source>Latency Test Method</source>
-        <translation type="unfinished"></translation>
+        <translation>延迟测试方法</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="613"/>
@@ -1867,12 +1880,12 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/settingsdialog.ui" line="626"/>
         <source>Real Lantency Test Url</source>
-        <translation type="unfinished"></translation>
+        <translation>真延迟测试Url</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="636"/>
         <source>Speed Test Url</source>
-        <translation type="unfinished"></translation>
+        <translation>速度测试Url</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="649"/>
@@ -1980,7 +1993,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/settingsdialog.ui" line="928"/>
         <source>Geo Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Geo文件路径</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="938"/>
@@ -2024,6 +2037,16 @@ See the following link for a reference:
         <location filename="../../ui/settingsdialog.ui" line="853"/>
         <source>TLS Fingerprint</source>
         <translation>TLS指纹</translation>
+    </message>
+    <message>
+        <location filename="../../ui/settingsdialog.ui" line="303"/>
+        <source>Software Theme</source>
+        <translation>软件主题</translation>
+    </message>
+    <message>
+        <location filename="../../ui/settingsdialog.ui" line="506"/>
+        <source>authentication</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="867"/>
@@ -2089,12 +2112,12 @@ See the following link for a reference:
         <translation>登录时启动</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="99"/>
+        <location filename="../../src/dialog/settingsdialog.cpp" line="99"/>
         <source>Invalid</source>
         <translation>无效</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="100"/>
+        <location filename="../../src/dialog/settingsdialog.cpp" line="100"/>
         <source>You can not hide dock Icon and use native menu bar at the same time</source>
         <translation>你不能同时隐藏dock栏图标并使用原生菜单栏</translation>
     </message>
@@ -2112,7 +2135,7 @@ See the following link for a reference:
         <translation>保存二维码为图像文件</translation>
     </message>
     <message>
-        <location filename="../../src/sharedialog.cpp" line="27"/>
+        <location filename="../../src/dialog/sharedialog.cpp" line="27"/>
         <source>Save QR Code</source>
         <translation>保存二维码</translation>
     </message>
@@ -2137,7 +2160,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/snelleditdialog.ui" line="61"/>
         <source>Server Port</source>
-        <translation type="unfinished">服务器端口</translation>
+        <translation>服务器端口</translation>
     </message>
     <message>
         <location filename="../../ui/snelleditdialog.ui" line="75"/>
@@ -2254,12 +2277,12 @@ See the following link for a reference:
 <context>
     <name>SpeedPlotView</name>
     <message>
-        <location filename="../../src/speedplotview.cpp" line="183"/>
+        <location filename="../../src/speedplot/speedplotview.cpp" line="183"/>
         <source>Total Upload</source>
         <translation>总上传</translation>
     </message>
     <message>
-        <location filename="../../src/speedplotview.cpp" line="184"/>
+        <location filename="../../src/speedplot/speedplotview.cpp" line="184"/>
         <source>Total Download</source>
         <translation>总下载</translation>
     </message>
@@ -2446,7 +2469,7 @@ See the following link for a reference:
         <location filename="../../src/statusnotifier.cpp" line="344"/>
         <location filename="../../src/statusnotifier.mm" line="321"/>
         <source>Trojan: On</source>
-        <translation type="unfinished"></translation>
+        <translation>Trojan: On</translation>
     </message>
     <message>
         <location filename="../../src/statusnotifier.cpp" line="119"/>
@@ -2587,7 +2610,7 @@ See the following link for a reference:
     </message>
     <message>
         <location filename="../../ui/streamwidget.ui" line="239"/>
-        <location filename="../../ui/streamwidget.ui" line="525"/>
+        <location filename="../../ui/streamwidget.ui" line="515"/>
         <source>Headers</source>
         <translation>请求头</translation>
     </message>
@@ -2632,52 +2655,47 @@ See the following link for a reference:
         <translation>写入缓冲区大小</translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="468"/>
-        <source>TextLabel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ui/streamwidget.ui" line="482"/>
+        <location filename="../../ui/streamwidget.ui" line="472"/>
         <source>Security</source>
         <translation>安全</translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="508"/>
+        <location filename="../../ui/streamwidget.ui" line="498"/>
         <source>Key</source>
         <translation>密钥</translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="518"/>
+        <location filename="../../ui/streamwidget.ui" line="508"/>
         <source>keys</source>
         <translation>密钥</translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="584"/>
+        <location filename="../../ui/streamwidget.ui" line="574"/>
         <source>TLS Settings</source>
         <translation>TLS设置</translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="590"/>
+        <location filename="../../ui/streamwidget.ui" line="580"/>
         <source>Enable TLS</source>
         <translation>启用TLS</translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="597"/>
+        <location filename="../../ui/streamwidget.ui" line="587"/>
         <source>Allow Insecure Certificates</source>
         <translation>允许不安全证书</translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="604"/>
+        <location filename="../../ui/streamwidget.ui" line="594"/>
         <source>Allow Insecure Ciphers</source>
         <translation>允许不安全加密方式</translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="611"/>
+        <location filename="../../ui/streamwidget.ui" line="601"/>
         <source>Server</source>
         <translation>服务器</translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="621"/>
+        <location filename="../../ui/streamwidget.ui" line="611"/>
         <source>Alpn</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2864,7 +2882,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/trojaneditdialog.ui" line="308"/>
         <source>Mux Idle Timeout</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mux</translation>
     </message>
     <message>
         <location filename="../../ui/trojaneditdialog.ui" line="75"/>
@@ -2945,7 +2963,14 @@ See the following link for a reference:
 <context>
     <name>UserRules</name>
     <message>
-        <location filename="../../ui/userrules.ui" line="20"/>
+        <source>User Rules</source>
+        <translation type="vanished">用户规则</translation>
+    </message>
+</context>
+<context>
+    <name>UserRulesDialog</name>
+    <message>
+        <location filename="../../ui/userrulesdialog.ui" line="20"/>
         <source>User Rules</source>
         <translation>用户规则</translation>
     </message>
@@ -3065,49 +3090,49 @@ See the following link for a reference:
 <context>
     <name>misc</name>
     <message>
-        <location filename="../../src/speedplotview.cpp" line="63"/>
+        <location filename="../../src/speedplot/speedplotview.cpp" line="63"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/speedplotview.cpp" line="64"/>
+        <location filename="../../src/speedplot/speedplotview.cpp" line="64"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/speedplotview.cpp" line="65"/>
+        <location filename="../../src/speedplot/speedplotview.cpp" line="65"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/speedplotview.cpp" line="66"/>
+        <location filename="../../src/speedplot/speedplotview.cpp" line="66"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/speedplotview.cpp" line="67"/>
+        <location filename="../../src/speedplot/speedplotview.cpp" line="67"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/speedplotview.cpp" line="68"/>
+        <location filename="../../src/speedplot/speedplotview.cpp" line="68"/>
         <source>PiB</source>
         <comment>pebibytes (1024 tebibytes)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/speedplotview.cpp" line="69"/>
+        <location filename="../../src/speedplot/speedplotview.cpp" line="69"/>
         <source>EiB</source>
         <comment>exbibytes (1024 pebibytes)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/speedplotview.cpp" line="78"/>
+        <location filename="../../src/speedplot/speedplotview.cpp" line="78"/>
         <source>/s</source>
         <comment>per second</comment>
         <translation type="unfinished"></translation>

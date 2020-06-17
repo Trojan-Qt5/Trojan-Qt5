@@ -11,7 +11,7 @@
 #include <QNetworkReply>
 
 #include "confighelper.h"
-#include "userrules.h"
+#include "userrulesdialog.h"
 #include "utils.h"
 
 PACHelper::PACHelper()
@@ -86,10 +86,10 @@ void PACHelper::editLocalPACFile()
 
 void PACHelper::editUserRule()
 {
-    UserRules *userRule = new UserRules();
-    connect(userRule, &UserRules::finished,
-            userRule, &UserRules::deleteLater);
-    userRule->exec();
+    UserRulesDialog *userRuleDlg = new UserRulesDialog();
+    connect(userRuleDlg, &UserRulesDialog::finished,
+            userRuleDlg, &UserRulesDialog::deleteLater);
+    userRuleDlg->exec();
 }
 
 QJsonDocument PACHelper::loadRules()
