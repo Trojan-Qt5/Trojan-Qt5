@@ -377,66 +377,66 @@ Checkout wiki for instructions</source>
         <translation type="vanished">关于</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="366"/>
+        <location filename="../../src/mainwindow.cpp" line="367"/>
         <source>Import Connections from gui-config.json</source>
         <translation>从gui-config.json导入连接</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="379"/>
+        <location filename="../../src/mainwindow.cpp" line="380"/>
         <source>Export Connections as gui-config.json</source>
         <translation>将所有连接信息导出为gui-config.json</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="391"/>
+        <location filename="../../src/mainwindow.cpp" line="392"/>
         <source>Import Connections from config.yaml</source>
         <translation>从config.yaml导入连接</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="404"/>
+        <location filename="../../src/mainwindow.cpp" line="405"/>
         <source>Export Connections as shadowrocket.json</source>
         <translation>将所有连接信息导出为shadowrocket.json</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="416"/>
+        <location filename="../../src/mainwindow.cpp" line="417"/>
         <source>Export Trojan Servers as subscribe.txt</source>
         <translation>将Trojan服务器导出为subscribe.txt</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="444"/>
-        <location filename="../../src/mainwindow.cpp" line="477"/>
+        <location filename="../../src/mainwindow.cpp" line="445"/>
+        <location filename="../../src/mainwindow.cpp" line="478"/>
         <source>QR Code Not Found</source>
         <translation>未找到二维码</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="445"/>
-        <location filename="../../src/mainwindow.cpp" line="478"/>
+        <location filename="../../src/mainwindow.cpp" line="446"/>
+        <location filename="../../src/mainwindow.cpp" line="479"/>
         <source>Can&apos;t find any QR code image that contains valid URI on your screen(s).</source>
         <translation>无法在您的屏幕上找到任何包含有效URI的二维码图像。</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="469"/>
+        <location filename="../../src/mainwindow.cpp" line="470"/>
         <source>Open QR Code Image File</source>
         <translation>打开二维码图像文件</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="516"/>
+        <location filename="../../src/mainwindow.cpp" line="517"/>
         <source>Open config.json</source>
         <translation>打开 config.json</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="528"/>
+        <location filename="../../src/mainwindow.cpp" line="529"/>
         <source>Open shadowrocket.json</source>
         <translation>打开 shadowrocket.json</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="572"/>
-        <location filename="../../src/mainwindow.cpp" line="588"/>
+        <location filename="../../src/mainwindow.cpp" line="573"/>
+        <location filename="../../src/mainwindow.cpp" line="589"/>
         <source>Invalid</source>
         <translation>无效</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="573"/>
-        <location filename="../../src/mainwindow.cpp" line="589"/>
+        <location filename="../../src/mainwindow.cpp" line="574"/>
+        <location filename="../../src/mainwindow.cpp" line="590"/>
         <source>The connection&apos;s profile is invalid!</source>
         <translation>当前连接的配置无效！</translation>
     </message>
@@ -450,7 +450,7 @@ Checkout wiki for instructions</source>
         <translation type="vanished">连接(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="217"/>
+        <location filename="../../ui/mainwindow.ui" line="221"/>
         <source>&amp;Add</source>
         <translation>添加(&amp;A)</translation>
     </message>
@@ -463,7 +463,7 @@ Checkout wiki for instructions</source>
         <translation type="vanished">设置(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="301"/>
+        <location filename="../../ui/mainwindow.ui" line="305"/>
         <source>Help</source>
         <translation>帮助</translation>
     </message>
@@ -476,12 +476,12 @@ Checkout wiki for instructions</source>
         <translation type="vanished">手动添加连接</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="399"/>
+        <location filename="../../ui/mainwindow.ui" line="403"/>
         <source>&amp;From QR Code Image File</source>
         <translation>自二维码图像文件(&amp;Q)</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="402"/>
+        <location filename="../../ui/mainwindow.ui" line="406"/>
         <source>From QR code image file</source>
         <translation>自二维码图像文件</translation>
     </message>
@@ -490,7 +490,7 @@ Checkout wiki for instructions</source>
         <translation type="vanished">查看日志(&amp;L)</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="385"/>
+        <location filename="../../ui/mainwindow.ui" line="389"/>
         <source>&amp;Scan QR Code on Screen</source>
         <translation>扫描屏幕上的二维码(&amp;S)</translation>
     </message>
@@ -500,7 +500,7 @@ Checkout wiki for instructions</source>
         <translation>输入以过滤</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="153"/>
+        <location filename="../../ui/mainwindow.ui" line="157"/>
         <source>Show Toolbar</source>
         <translation>显示工具栏</translation>
     </message>
@@ -509,168 +509,168 @@ Checkout wiki for instructions</source>
         <translation type="vanished">帮助</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="320"/>
+        <location filename="../../ui/mainwindow.ui" line="324"/>
         <source>&amp;Add SS Manually</source>
         <translation>&amp;手动添加SS连接</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="323"/>
+        <location filename="../../ui/mainwindow.ui" line="327"/>
         <source>Add SS connection manually</source>
         <translation>手动添加SS连接</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="333"/>
+        <location filename="../../ui/mainwindow.ui" line="337"/>
         <source>&amp;Add SSR Manually</source>
         <translation>&amp;手动添加SSR连接</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="336"/>
+        <location filename="../../ui/mainwindow.ui" line="340"/>
         <source>Add SSR connection manually</source>
         <translation>手动添加SSR连接</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="346"/>
+        <location filename="../../ui/mainwindow.ui" line="350"/>
         <source>&amp;Add Vmess Manually</source>
         <translation>&amp;手动添加VMESS连接</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="349"/>
+        <location filename="../../ui/mainwindow.ui" line="353"/>
         <source>Add Vmess connection manually</source>
         <translation>手动添加VMESS连接</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="359"/>
+        <location filename="../../ui/mainwindow.ui" line="363"/>
         <source>&amp;Add Trojan Manually</source>
         <translation>&amp;手动添加TROJAN连接</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="362"/>
+        <location filename="../../ui/mainwindow.ui" line="366"/>
         <source>Add Trojan connection manually</source>
         <translation>手动添加TROJAN连接</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="372"/>
+        <location filename="../../ui/mainwindow.ui" line="376"/>
         <source>&amp;Add Snell Manually</source>
         <translation>&amp;手动添加SNELL连接</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="375"/>
+        <location filename="../../ui/mainwindow.ui" line="379"/>
         <source>Add Snell connection manually</source>
         <translation>手动添加SNELL连接</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="412"/>
+        <location filename="../../ui/mainwindow.ui" line="416"/>
         <source>&amp;URI</source>
         <translation>&amp;URI</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="415"/>
+        <location filename="../../ui/mainwindow.ui" line="419"/>
         <source>Add connection from URI</source>
         <translation>从 URI 添加连接</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="429"/>
+        <location filename="../../ui/mainwindow.ui" line="433"/>
         <source>&amp;Delete</source>
         <translation>删除(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="439"/>
+        <location filename="../../ui/mainwindow.ui" line="443"/>
         <source>&amp;Edit</source>
         <translation>编辑(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="460"/>
+        <location filename="../../ui/mainwindow.ui" line="464"/>
         <source>&amp;Connect</source>
         <translation>连接(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="468"/>
-        <location filename="../../ui/mainwindow.ui" line="481"/>
+        <location filename="../../ui/mainwindow.ui" line="472"/>
+        <location filename="../../ui/mainwindow.ui" line="485"/>
         <source>Return</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="473"/>
+        <location filename="../../ui/mainwindow.ui" line="477"/>
         <source>D&amp;isconnect</source>
         <translation>断开连接(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="490"/>
+        <location filename="../../ui/mainwindow.ui" line="494"/>
         <source>&amp;Quit</source>
         <translation>退出(&amp;Q)</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="498"/>
+        <location filename="../../ui/mainwindow.ui" line="502"/>
         <source>Ctrl+Q</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="507"/>
+        <location filename="../../ui/mainwindow.ui" line="511"/>
         <source>&amp;About</source>
         <translation>关于(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="517"/>
+        <location filename="../../ui/mainwindow.ui" line="521"/>
         <source>About &amp;Qt</source>
         <translation>关于 &amp;Qt</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="527"/>
+        <location filename="../../ui/mainwindow.ui" line="531"/>
         <source>&amp;General Settings</source>
         <translation>常规设置(&amp;G)</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="535"/>
+        <location filename="../../ui/mainwindow.ui" line="539"/>
         <source>Ctrl+,</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="583"/>
+        <location filename="../../ui/mainwindow.ui" line="587"/>
         <source>Clear Traffic Stats</source>
         <translation>清除流量统计信息</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="763"/>
+        <location filename="../../ui/mainwindow.ui" line="767"/>
         <source>Core Log</source>
         <translation>核心日志</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="812"/>
+        <location filename="../../ui/mainwindow.ui" line="816"/>
         <source>Add SOCKS5 Manually</source>
         <translation>手动添加SOCKS5</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="817"/>
+        <location filename="../../ui/mainwindow.ui" line="821"/>
         <source>Add HTTP Manually</source>
         <translation>手动添加HTTP</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="822"/>
+        <location filename="../../ui/mainwindow.ui" line="826"/>
         <source>Add SS Manually</source>
         <translation>手动添加SS</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="827"/>
+        <location filename="../../ui/mainwindow.ui" line="831"/>
         <source>Add SSR Manually</source>
         <translation>手动添加SSR</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="832"/>
+        <location filename="../../ui/mainwindow.ui" line="836"/>
         <source>Add Vmess Manually</source>
         <translation>手动添加Vmess</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="837"/>
+        <location filename="../../ui/mainwindow.ui" line="841"/>
         <source>Add Trojan Manually</source>
         <translation>手动添加Trojan</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="842"/>
+        <location filename="../../ui/mainwindow.ui" line="846"/>
         <source>Add Snell Manually</source>
         <translation>手动添加Snell</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="847"/>
+        <location filename="../../ui/mainwindow.ui" line="851"/>
         <source>Add NaiveProxy Manually</source>
         <translation>手动添加NaiveProxy</translation>
     </message>
@@ -679,77 +679,77 @@ Checkout wiki for instructions</source>
         <translation type="vanished">高级设置</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="540"/>
+        <location filename="../../ui/mainwindow.ui" line="544"/>
         <source>&amp;Share</source>
         <translation>分享(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="550"/>
+        <location filename="../../ui/mainwindow.ui" line="554"/>
         <source>&amp;Report Bug</source>
         <translation>报告错误(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="563"/>
+        <location filename="../../ui/mainwindow.ui" line="567"/>
         <source>Test the latency of selected connection</source>
         <translation>测试所选连接的延迟</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="573"/>
+        <location filename="../../ui/mainwindow.ui" line="577"/>
         <source>Test All C&amp;onnections Latency</source>
         <translation>测试所有连接的延迟(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="606"/>
+        <location filename="../../ui/mainwindow.ui" line="610"/>
         <source>&amp;Import Connections from config.yaml</source>
         <translation>&amp;从Clash配置文件导入连接</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="609"/>
+        <location filename="../../ui/mainwindow.ui" line="613"/>
         <source>Import connections from clash configuration file</source>
         <translation>从Clash配置文件导入连接</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="684"/>
+        <location filename="../../ui/mainwindow.ui" line="688"/>
         <source>&amp;Show Filter Bar</source>
         <translation>显示过滤栏(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="692"/>
+        <location filename="../../ui/mainwindow.ui" line="696"/>
         <source>Ctrl+F</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="697"/>
+        <location filename="../../ui/mainwindow.ui" line="701"/>
         <source>&amp;Export as gui-config.json</source>
         <translation>导出为gui-config.json (&amp;E)</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="707"/>
+        <location filename="../../ui/mainwindow.ui" line="711"/>
         <source>&amp;Export as shadowrocket.json</source>
         <translation>&amp;导出为shadowrocket.json</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="717"/>
+        <location filename="../../ui/mainwindow.ui" line="721"/>
         <source>&amp;Export as subscribe.txt</source>
         <translation>&amp;导出为subscribe.txt</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="727"/>
+        <location filename="../../ui/mainwindow.ui" line="731"/>
         <source>Scan &amp;QR Code using Capturer</source>
         <translation>使用捕获器扫描二维码(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="730"/>
+        <location filename="../../ui/mainwindow.ui" line="734"/>
         <source>Scan QR Code using Capturer</source>
         <translation>使用捕获器扫描二维码</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="740"/>
+        <location filename="../../ui/mainwindow.ui" line="744"/>
         <source>&amp;Force Connect</source>
         <translation>强制连接(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="753"/>
+        <location filename="../../ui/mainwindow.ui" line="757"/>
         <source>Check Update</source>
         <translation>检查更新</translation>
     </message>
@@ -758,22 +758,22 @@ Checkout wiki for instructions</source>
         <translation type="vanished">Trojan日志</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="773"/>
+        <location filename="../../ui/mainwindow.ui" line="777"/>
         <source>Gui Log</source>
         <translation>Gui日志</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="783"/>
+        <location filename="../../ui/mainwindow.ui" line="787"/>
         <source>User Rule Settings</source>
         <translation>用户规则设置</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="797"/>
+        <location filename="../../ui/mainwindow.ui" line="801"/>
         <source>From shadowrocket.json</source>
         <translation>自 shadowrocket.json</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="807"/>
+        <location filename="../../ui/mainwindow.ui" line="811"/>
         <source>PasteBoardURI</source>
         <translation>从粘贴板导入URI</translation>
     </message>
@@ -782,12 +782,12 @@ Checkout wiki for instructions</source>
         <translation type="vanished">强制连接</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="743"/>
+        <location filename="../../ui/mainwindow.ui" line="747"/>
         <source>Connect to this connection and disconnect any connections currently using  the same local port</source>
         <translation>连接到该连接并断开占用了相同本地端口的连接</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="623"/>
+        <location filename="../../ui/mainwindow.ui" line="627"/>
         <source>From &amp;config.json</source>
         <translation>自 &amp;config.json</translation>
     </message>
@@ -800,57 +800,57 @@ Checkout wiki for instructions</source>
         <translation type="vanished">断开</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="637"/>
+        <location filename="../../ui/mainwindow.ui" line="641"/>
         <source>&amp;Save Manually</source>
         <translation>手动保存(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="645"/>
+        <location filename="../../ui/mainwindow.ui" line="649"/>
         <source>Ctrl+Shift+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="654"/>
+        <location filename="../../ui/mainwindow.ui" line="658"/>
         <source>&amp;Move Up</source>
         <translation>上移(&amp;U)</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="668"/>
+        <location filename="../../ui/mainwindow.ui" line="672"/>
         <source>Mo&amp;ve Down</source>
         <translation>下移(&amp;V)</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="593"/>
+        <location filename="../../ui/mainwindow.ui" line="597"/>
         <source>&amp;Import Connections from gui-config.json</source>
         <translation>从 gui-config.json导入连接(&amp;I)</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="213"/>
+        <location filename="../../ui/mainwindow.ui" line="217"/>
         <source>Connection</source>
         <translation>连接</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="225"/>
+        <location filename="../../ui/mainwindow.ui" line="229"/>
         <source>Manually</source>
         <translation>手动</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="269"/>
+        <location filename="../../ui/mainwindow.ui" line="273"/>
         <source>File</source>
         <translation>文件</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="287"/>
+        <location filename="../../ui/mainwindow.ui" line="291"/>
         <source>Settings</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="596"/>
+        <location filename="../../ui/mainwindow.ui" line="600"/>
         <source>Import connections from old version configuration file</source>
         <translation>从旧版配置文件导入连接</translation>
     </message>
     <message>
-        <location filename="../../ui/mainwindow.ui" line="560"/>
+        <location filename="../../ui/mainwindow.ui" line="564"/>
         <source>&amp;Test Latency</source>
         <translation>测试延迟(&amp;T)</translation>
     </message>
@@ -1830,7 +1830,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/settingsdialog.ui" line="506"/>
         <source>Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>身份验证</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="513"/>
@@ -2305,17 +2305,17 @@ See the following link for a reference:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusbar.cpp" line="108"/>
+        <location filename="../../src/statusbar.cpp" line="110"/>
         <source>SOCKS5   %1:%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusbar.cpp" line="109"/>
+        <location filename="../../src/statusbar.cpp" line="111"/>
         <source>HTTP   %1:%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusbar.cpp" line="110"/>
+        <location filename="../../src/statusbar.cpp" line="112"/>
         <source>PAC   %1:%2</source>
         <translation type="unfinished"></translation>
     </message>
