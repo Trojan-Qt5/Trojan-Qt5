@@ -111,7 +111,7 @@ QToolBar {
     spacing: 35px;
 }
 
-QToolButton {
+#toolBar QToolButton {
     background : rgb(255,255,255);
     border: none;
     spacing: 35px;

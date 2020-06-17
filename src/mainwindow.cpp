@@ -119,6 +119,7 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
 
     ui->filterLineEdit->setObjectName("filterLineEdit");
     ui->toolBar->setFixedHeight(92);
+    ui->toolBar->setObjectName("toolBar");
 
     // set the minimum size
     this->setMinimumSize(825, 562);
@@ -962,7 +963,22 @@ void MainWindow::initLog()
     if (!path.exists()) {
         path.mkpath(".");
     }
+
+    QString coreLog = path.path() + "/core.log";
+    QFile cfile(coreLog);
+    if (!cfile.exists()) {
+        cfile.open(QIODevice::WriteOnly);
+        cfile.close();
+    }
+    Utils::setPermisison(coreLog);
+
     QString guiLog = path.path() + "/gui.log";
+    QFile gfile(guiLog);
+    if (!gfile.exists()) {
+        gfile.open(QIODevice::WriteOnly);
+        gfile.close();
+    }
+    Utils::setPermisison(guiLog);
 
     //Initialize the gui's log.
     Logger::init(guiLog);

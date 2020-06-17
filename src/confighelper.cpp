@@ -861,6 +861,7 @@ void ConfigHelper::generateSnellJson(TQProfile &profile)
     configObj["remote_addr"] = profile.serverAddress;
     configObj["remote_port"] = profile.serverPort;
     configObj["log_level"] = generalSettings["logLevel"].toInt();
+    configObj["log_file"] = Utils::getLogDir() + "/core.log";
     configObj["buffer_size"] = trojanSettings["bufferSize"];
     configObj["psk"] = profile.password;
     QJsonObject api;
