@@ -1,6 +1,7 @@
 #include "addresstester.h"
 #include "connection.h"
 #include "confighelper.h"
+#include "utils.h"
 #include "pachelper.h"
 #include "portvalidator.h"
 #include "privilegeshelper.h"
@@ -22,14 +23,7 @@
 Connection::Connection(QObject *parent) :
     QObject(parent),
     running(false)
-{
-#ifdef Q_OS_WIN
-    configFile = qApp->applicationDirPath() + "/config.ini";
-#else
-    QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
-    configFile = configDir.absolutePath() + "/config.ini";
-#endif
-}
+{}
 
 Connection::Connection(const TQProfile &_profile, QObject *parent) :
     Connection(parent)
@@ -116,7 +110,7 @@ void Connection::start()
         latencyTest();
     }
 
-    ConfigHelper *conf = new ConfigHelper(configFile);
+    ConfigHelper *conf = Utils::getConfigHelper();
 
     //wait, let's check if port is in use
     if (conf->getGeneralSettings()["checkPortAvailability"].toBool()) {
@@ -149,12 +143,7 @@ void Connection::start()
         rhelper = new RouteTableHelper(serverAddress);
     }
 
-#ifdef Q_OS_WIN
-    QString file = qApp->applicationDirPath() + "/config.json";
-#else
-    QDir configDir = QDir::homePath() + "/.config/trojan-qt5";
-    QString file = configDir.absolutePath() + "/config.json";
-#endif
+    QString file = Utils::getConfigPath() + "/config.json";
 
     QString localAddr = conf->getInboundSettings()["enableIpv6Support"].toBool() ? (conf->getInboundSettings()["shareOverLan"].toBool() ? "::" : "::1") : (conf->getInboundSettings()["shareOverLan"].toBool() ? "0.0.0.0" : "127.0.0.1");
 
@@ -301,7 +290,7 @@ void Connection::start()
 
 void Connection::stop()
 {
-    ConfigHelper *conf = new ConfigHelper(configFile);
+    ConfigHelper *conf = Utils::getConfigHelper();
 
     if (running) {
         //set the running status to false first.
@@ -352,7 +341,7 @@ void Connection::stop()
 
 void Connection::onStartFailed()
 {
-    ConfigHelper *conf = new ConfigHelper(configFile);
+    ConfigHelper *conf = Utils::getConfigHelper();
 
     running = false;
 

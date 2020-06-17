@@ -1,14 +1,14 @@
-#include "userrules.h"
-#include "ui_userrules.h"
+#include "userrulesdialog.h"
+#include "ui_userrulesdialog.h"
 
 #include <QCoreApplication>
 #include <QDir>
 #include <QTextStream>
 #include <QTextCodec>
 
-UserRules::UserRules(QWidget *parent) :
+UserRulesDialog::UserRulesDialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::UserRules)
+    ui(new Ui::UserRulesDialog)
 {
 #ifdef Q_OS_WIN
     configDir = QDir::toNativeSeparators(qApp->applicationDirPath()) + "\\pac";
@@ -22,17 +22,17 @@ UserRules::UserRules(QWidget *parent) :
     QTextStream in(&file);
     in.setCodec(QTextCodec::codecForName("utf-8"));
     ui->setupUi(this);
-    connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &UserRules::onAccepted);
+    connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &UserRulesDialog::onAccepted);
     ui->textEdit->setText(in.readAll());
     file.close();
 }
 
-UserRules::~UserRules()
+UserRulesDialog::~UserRulesDialog()
 {
     delete ui;
 }
 
-void UserRules::onAccepted()
+void UserRulesDialog::onAccepted()
 {
      QFile file(userRule);
      file.open(QIODevice::Truncate | QIODevice::ReadWrite);

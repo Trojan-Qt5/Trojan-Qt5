@@ -188,9 +188,19 @@ unix {
 !isEmpty(target.path): INSTALLS += target
 
 SOURCES += \
+    src/dialog/aboutdialog.cpp \
+    src/dialog/userrulesdialog.cpp \
+    src/dialog/settingsdialog.cpp \
+    src/dialog/sharedialog.cpp \
+    src/dialog/uriinputdialog.cpp \
+    src/validator/generalvalidator.cpp \
+    src/validator/ip4validator.cpp \
+    src/validator/portvalidator.cpp \
+    src/speedplot/speedplotview.cpp \
+    src/speedplot/speedwidget.cpp \
+    src/speedplot/speedplot.cpp \
     src/widget/routewidget.cpp \
     src/widget/streamwidget.cpp \
-    src/speedplot/speedplot.cpp \
     src/proxy/snellthread.cpp \
     src/proxyapi/snellgoapi.cpp \
     src/urlscheme/eventfilter.cpp \
@@ -208,48 +218,54 @@ SOURCES += \
     src/proxydialog/vmesseditdialog.cpp \
     src/proxydialog/trojaneditdialog.cpp \
     src/proxydialog/snelleditdialog.cpp \
+    src/utils/urihelper.cpp \
+    src/utils/privilegeshelper.cpp \
+    src/utils/resourcehelper.cpp \
+    src/utils/routetablehelper.cpp \
+    src/utils/utils.cpp \
     src/connectionsortfilterproxymodel.cpp \
     src/haproxythread.cpp \
     src/logger.cpp \
     src/midman.cpp \
     src/pac/pacserver.cpp \
     src/pac/pachelper.cpp \
-    src/privilegeshelper.cpp \
-    src/resourcehelper.cpp \
-    src/routetablehelper.cpp \
     src/addresstester.cpp \
     src/confighelper.cpp \
     src/connection.cpp \
     src/connectionitem.cpp \
     src/connectiontablemodel.cpp \
-    src/speedplot/speedplotview.cpp \
-    src/speedplot/speedwidget.cpp \
     src/statusbar.cpp \
-    src/ip4validator.cpp \
     src/main.cpp \
     src/mainwindow.cpp \
-    src/portvalidator.cpp \
     src/qrcodecapturer.cpp \
     src/qrwidget.cpp \
-    src/settingsdialog.cpp \
-    src/sharedialog.cpp \
     src/subscribemanager.cpp \
     src/tqprofile.cpp \
     src/tqsubscribe.cpp \
-    src/generalvalidator.cpp \
     src/tun2socksthread.cpp \
-    src/urihelper.cpp \
-    src/uriinputdialog.cpp \
-    src/userrules.cpp \
     src/subscribedialog.cpp \
     src/httpproxy.cpp \
     src/socketstream.cpp \
-    src/utils.cpp \
-    src/aboutdialog.cpp \
     src/clickablelabel.cpp \
     src/qtcolorpicker.cpp
 
 HEADERS += \
+    src/dialog/aboutdialog.h \
+    src/dialog/userrulesdialog.h \
+    src/dialog/settingsdialog.h \
+    src/dialog/sharedialog.h \
+    src/dialog/uriinputdialog.h \
+    src/validator/ip4validator.h \
+    src/validator/portvalidator.h \
+    src/validator/generalvalidator.h \
+    src/utils/resourcehelper.h \
+    src/utils/privilegeshelper.h \
+    src/utils/routetablehelper.h \
+    src/utils/urihelper.h \
+    src/utils/utils.h \
+    src/speedplot/speedplotview.hpp \
+    src/speedplot/speedwidget.hpp \
+    src/speedplot/speedplot.h \
     src/widget/routewidget.h \
     src/widget/streamwidget.h \
     src/theme/themehelper.h \
@@ -276,39 +292,23 @@ HEADERS += \
     src/midman.h \
     src/pac/pacserver.h \
     src/pac/pachelper.h \
-    src/privilegeshelper.h \
-    src/resourcehelper.h \
-    src/routetablehelper.h \
     src/addresstester.h \
     src/confighelper.h \
     src/connection.h \
     src/connectionitem.h \
     src/connectiontablemodel.h \
-    src/speedplot/speedplotview.hpp \
-    src/speedplot/speedwidget.hpp \
     src/statusbar.h \
-    src/ip4validator.h \
     src/mainwindow.h \
-    src/portvalidator.h \
     src/qrcodecapturer.h \
     src/qrwidget.h \
-    src/settingsdialog.h \
-    src/sharedialog.h \
     src/subscribemanager.h \
     src/tqprofile.h \
     src/statusnotifier.h \
     src/tqsubscribe.h \
-    src/generalvalidator.h \
     src/tun2socksthread.h \
-    src/urihelper.h \
-    src/uriinputdialog.h \
-    src/userrules.h \
     src/subscribedialog.h \
     src/httpproxy.h \
     src/socketstream.h \
-    src/utils.h \
-    src/speedplot/speedplot.h \
-    src/aboutdialog.h \
     src/clickablelabel.h \
     src/qtcolorpicker.h
 
@@ -327,15 +327,15 @@ FORMS += \
     ui/subscribedialog.ui \
     ui/trojaneditdialog.ui \
     ui/uriinputdialog.ui \
-    ui/userrules.ui \
     ui/snelleditdialog.ui \
+    ui/userrulesdialog.ui \
     ui/vmesseditdialog.ui
 
 TRANSLATIONS += \
     resources/i18n/trojan-qt5_en_US.ts \
     resources/i18n/trojan-qt5_zh_CN.ts \
     resources/i18n/trojan-qt5_zh_TW.ts \
-    resources/i18n/trojan-qt5_zh_SG.ts
+    resources/i18n/trojan-qt5_ja_JP.ts
 
 PROTOS += \
     $$PWD/src/proxyapi/ssgoapi.proto \
@@ -352,6 +352,7 @@ headers.files = $${PROTOBUF_HEADERS}
 
 INCLUDEPATH += \
     $$PWD/src \
+    $$PWD/src/dialog \
     $$PWD/src/proxy \
     $$PWD/src/proxyapi \
     $$PWD/src/proxydialog \
@@ -361,6 +362,8 @@ INCLUDEPATH += \
     $$PWD/src/pac \
     $$PWD/src/speedplot \
     $$PWD/src/widget \
+    $$PWD/src/utils \
+    $$PWD/src/validator \
     $$PWD/3rd/trojan-qt5-core \
     $$PWD/3rd/yaml-cpp/include
 

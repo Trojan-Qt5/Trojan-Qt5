@@ -11,7 +11,7 @@
 #include "snelleditdialog.h"
 #include "urihelper.h"
 #include "uriinputdialog.h"
-#include "userrules.h"
+#include "userrulesdialog.h"
 #include "sharedialog.h"
 #include "settingsdialog.h"
 #include "qrcodecapturer.h"
@@ -670,10 +670,10 @@ void MainWindow::onGeneralSettings()
 
 void MainWindow::onUserRuleSettings()
 {
-    UserRules *userRule = new UserRules(this);
-    connect(userRule, &UserRules::finished,
-            userRule, &UserRules::deleteLater);
-    userRule->exec();
+    UserRulesDialog *userRuleDlg = new UserRulesDialog(this);
+    connect(userRuleDlg, &UserRulesDialog::finished,
+            userRuleDlg, &UserRulesDialog::deleteLater);
+    userRuleDlg->exec();
 }
 
 void MainWindow::newProfile(Connection *newCon)

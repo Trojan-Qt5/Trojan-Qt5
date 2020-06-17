@@ -35,6 +35,8 @@ public:
      */
     explicit ConfigHelper(const QString &configuration, QObject *parent = nullptr);
 
+    void onConfigUpdateFromOldVersion();
+
     /*
      * Call read() function to read all connection profiles into
      * specified ConnectionTableModel.

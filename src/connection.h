@@ -78,7 +78,6 @@ public slots:
     void onNotifyConnectionChanged();
 
 private:
-    QString configFile;
     HttpProxy *http;
     SSThread *ss;
     std::unique_ptr<SSRThread> ssr;

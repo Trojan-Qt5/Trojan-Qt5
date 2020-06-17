@@ -7,6 +7,8 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QDebug>
+#include <QMessageBox>
+#include <cstdlib>
 
 #include "logger.h"
 #include "yaml-cpp/yaml.h"
@@ -56,6 +58,12 @@ void ConfigHelper::save(const ConnectionTableModel &model)
     settings->setValue("TrojanSettings", QVariant(trojanSettings));
 }
 
+void ConfigHelper::onConfigUpdateFromOldVersion()
+{
+    QMessageBox::critical(NULL, tr("Failed to start Trojan-Qt5"), tr("Your config.ini was upgraded from old version of Trojan-Qt5.\nA clean install is required.\nCheckout wiki for instructions"));
+    exit(1);
+}
+
 void ConfigHelper::saveSubscribes(QList<TQSubscribe> subscribes)
 {
     int size = subscribes.size();
@@ -73,12 +81,10 @@ void ConfigHelper::importGuiConfigJson(ConnectionTableModel *model, const QStrin
     QFile JSONFile(file);
     JSONFile.open(QIODevice::ReadOnly | QIODevice::Text);
     if (!JSONFile.isOpen()) {
-        qCritical() << "Error: cannot open " << file;
         Logger::error(QString("[Import] cannot open %1").arg(file));
         return;
     }
     if(!JSONFile.isReadable()) {
-        qCritical() << "Error: cannot read " << file;
         Logger::error(QString("[Import] cannot read %1").arg(file));
         return;
     }
@@ -87,7 +93,6 @@ void ConfigHelper::importGuiConfigJson(ConnectionTableModel *model, const QStrin
     QJsonDocument JSONDoc = QJsonDocument::fromJson(JSONFile.readAll(), &pe);
     JSONFile.close();
     if (pe.error != QJsonParseError::NoError) {
-        qCritical() << pe.errorString();
         Logger::error(pe.errorString());
     }
     if (JSONDoc.isEmpty()) {
@@ -1207,7 +1212,7 @@ void ConfigHelper::checkProfileDataUsageReset(TQProfile &profile)
     if (profile.nextResetDate.isNull()){//invalid if the config.ini is old
         //the default reset day is 1 of every month
         profile.nextResetDate = QDate(currentDate.year(), currentDate.month(), 1);
-        qDebug() << "config.ini upgraded from old version";
+        onConfigUpdateFromOldVersion();
         profile.totalDownloadUsage += profile.currentDownloadUsage;//we used to use received
         profile.totalUploadUsage += profile.currentUploadUsage; //we used to use sent
     }
