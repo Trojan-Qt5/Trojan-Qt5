@@ -87,6 +87,8 @@ StatusBar::StatusBar(QWidget *parent)
     layout->addWidget(statusSep3);
     layout->addWidget(m_upSpeedLbl);
 
+    this->setSizeGripEnabled(false);
+
     addPermanentWidget(container);
     setStyleSheet("QWidget {margin: 0;}");
     container->adjustSize();
