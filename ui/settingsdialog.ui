@@ -32,7 +32,7 @@
       </sizepolicy>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -503,7 +503,7 @@
          <item row="5" column="0">
           <widget class="QLabel" name="label_28">
            <property name="text">
-            <string>authentication</string>
+            <string>Authentication</string>
            </property>
           </widget>
          </item>

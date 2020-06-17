@@ -75,12 +75,12 @@
 <context>
     <name>ConfigHelper</name>
     <message>
-        <location filename="../../src/confighelper.cpp" line="62"/>
+        <location filename="../../src/confighelper.cpp" line="63"/>
         <source>Failed to start Trojan-Qt5</source>
         <translation>Trojan-Qt5啟動失敗</translation>
     </message>
     <message>
-        <location filename="../../src/confighelper.cpp" line="62"/>
+        <location filename="../../src/confighelper.cpp" line="63"/>
         <source>Your config.ini was upgraded from old version of Trojan-Qt5.
 A clean install is required.
 Checkout wiki for instructions</source>
@@ -1638,9 +1638,13 @@ See the following link for a reference:
         <translation>連接埠</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="506"/>
         <source>authentication</source>
-        <translation>驗證</translation>
+        <translation type="vanished">驗證</translation>
+    </message>
+    <message>
+        <location filename="../../ui/settingsdialog.ui" line="506"/>
+        <source>Authentication</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="513"/>

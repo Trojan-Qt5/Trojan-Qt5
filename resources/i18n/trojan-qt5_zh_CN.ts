@@ -150,12 +150,12 @@
 <context>
     <name>ConfigHelper</name>
     <message>
-        <location filename="../../src/confighelper.cpp" line="62"/>
+        <location filename="../../src/confighelper.cpp" line="63"/>
         <source>Failed to start Trojan-Qt5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/confighelper.cpp" line="62"/>
+        <location filename="../../src/confighelper.cpp" line="63"/>
         <source>Your config.ini was upgraded from old version of Trojan-Qt5.
 A clean install is required.
 Checkout wiki for instructions</source>
@@ -1828,6 +1828,11 @@ See the following link for a reference:
         <translation type="vanished">身份验证</translation>
     </message>
     <message>
+        <location filename="../../ui/settingsdialog.ui" line="506"/>
+        <source>Authentication</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../ui/settingsdialog.ui" line="513"/>
         <source>Username</source>
         <translation>用户名</translation>
@@ -2042,11 +2047,6 @@ See the following link for a reference:
         <location filename="../../ui/settingsdialog.ui" line="303"/>
         <source>Software Theme</source>
         <translation>软件主题</translation>
-    </message>
-    <message>
-        <location filename="../../ui/settingsdialog.ui" line="506"/>
-        <source>authentication</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="867"/>

@@ -13,6 +13,12 @@ using namespace std;
 ThemeHelper::ThemeHelper(QObject *parent) : QObject(parent)
 {}
 
+void ThemeHelper::registerListen()
+{
+    // TODO to implement on Windows / Linux
+    return;
+}
+
 bool ThemeHelper::isSystemDarkTheme()
 {
 #if defined (Q_OS_WIN)
