@@ -55,7 +55,6 @@ void ThemeHelper::setupTheme()
 
 void ThemeHelper::setupThemeOnChange(int index)
 {
-
     if ((isSystemDarkTheme() && index == 2) || index == 1) {
         applyDarkQss();
     }
