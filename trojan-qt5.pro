@@ -89,13 +89,13 @@ else:win32:CONFIG(release, debug|release) {
 win32 {
     DEFINES += _WIN32_WINNT=0x600
     SOURCES += \
-        src/systemproxy/windows.c \
         src/statusnotifier.cpp \
         src/urlscheme/urlschemeregister.cpp \
-        src/theme/themehelper.cpp
+        src/theme/themehelper.cpp \
+        src/systemproxy/win.c
     HEADERS += \
-        src/systemproxy/windows.h \
-        src/urlscheme/urlschemeregister.h
+        src/urlscheme/urlschemeregister.h \
+        src/systemproxy/win.h
     INCLUDEPATH += C:\TQLibraries\ZBar\include
     INCLUDEPATH += C:\TQLibraries\OpenSSL-Win32\include
     INCLUDEPATH += C:\TQLibraries\QREncode\include
