@@ -1,11 +1,13 @@
+.DS_Store
 *.user
 *.autosave
 *.cmake
+build
 tun2socks.h
 tun2socks.a
 trojan-qt5-core.a
 trojan-qt5-core.h
-.DS_Store
-build
-src/*.pb.h
-src/*.pb.cc
+*.pb.h
+*.pb.cc
+src/proxyapi/*.pb.h
+src/proxyapi/*.pb.cc

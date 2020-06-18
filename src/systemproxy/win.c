@@ -4,13 +4,12 @@
  * Modified for Trojan-Qt5 Usage Only
  *
 */
-
+#include "win.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <io.h>
 #include <fcntl.h>
-#include <windows.h>
 #include <Wininet.h>
 #include <tchar.h>
 #include <ras.h>
