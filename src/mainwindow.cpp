@@ -601,10 +601,16 @@ void MainWindow::onDisconnect()
 void MainWindow::onToggleServerFromSystemTray(TQProfile profile)
 {
     for (int i=0; i < ui->connectionView->model()->rowCount(); i++) {
-        int row = proxyModel->mapToSource(ui->connectionView->model()->index(i,0)).row();
+        int row = proxyModel->mapToSource(ui->connectionView->model()->index(i, 0)).row();
         TQProfile p = model->getItem(row)->getConnection()->getProfile();
         if (p.equals(profile)) {
             ui->connectionView->selectRow(i);
+            Connection *con = model->getItem(row)->getConnection();
+            if (!profile.equals(model->getConnectedServer()) && configHelper->isTrojanOn()) {
+                model->disconnectConnections();
+                con->start();
+                connect(con, &Connection::dataTrafficAvailable, this, &MainWindow::onStatusAvailable);
+            }
         }
     }
     checkCurrentIndex();
