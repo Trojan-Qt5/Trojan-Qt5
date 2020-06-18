@@ -154,6 +154,10 @@ mac {
     QMAKE_INFO_PLIST = resources/Info.plist
     # Otherwise lupdate will not work
     TR_EXCLUDE += /usr/local/opt/boost/*
+    # copy .dat files
+    APP_QML_FILES.files = $$PWD/resources/dat/geoip.dat $$PWD/resources/dat/geosite.dat
+    APP_QML_FILES.path = Contents/MacOS
+    QMAKE_BUNDLE_DATA += APP_QML_FILES
 }
 
 unix:!mac {
@@ -161,7 +165,7 @@ unix:!mac {
     PKGCONFIG += openssl
     SOURCES += \
         src/statusnotifier.cpp \
-        src/themehelper.cpp
+        src/theme/themehelper.cpp
     LIBS += -lz
     # Otherwise lupdate will not work
     TR_EXCLUDE += /usr/local/boost/*
