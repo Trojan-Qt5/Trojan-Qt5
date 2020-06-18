@@ -7,7 +7,7 @@
 #include <QCoreApplication>
 #if defined (Q_OS_WIN)
 #include <Windows.h>
-#include "sysproxy/windows.h"
+#include "win.h"
 #endif
 
 SystemProxyHelper::SystemProxyHelper()

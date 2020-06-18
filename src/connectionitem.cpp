@@ -1,6 +1,4 @@
 #include "connectionitem.h"
-#include "confighelper.h"
-#include "utils.h"
 #include <QFont>
 #include <cmath>
 
@@ -206,9 +204,6 @@ QString ConnectionItem::convertBytesToHumanReadable(quint64 quot)
 
 void ConnectionItem::testLatency()
 {
-    ConfigHelper *helper = Utils::getConfigHelper();
-    if (helper->getTestSettings()["method"] == 1)
-        con->start();
     con->latencyTest();
     emit latencyChanged();
 }
