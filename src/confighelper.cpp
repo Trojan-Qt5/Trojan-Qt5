@@ -1169,7 +1169,7 @@ void ConfigHelper::readGeneralSettings()
     outboundSettings = settings->value("OutboundSettings", QVariant(otemp)).toJsonObject();
     // test settings
     QJsonObject etemp;
-    etemp["method"] = 1;
+    etemp["method"] = 0;
     etemp["latencyTestUrl"] = "https://www.google.com/generate_204";
     etemp["speedTestUrl"] = "http://speedtest-sgp1.digitalocean.com/10mb.test";
     testSettings = settings->value("TestSettings", QVariant(etemp)).toJsonObject();
