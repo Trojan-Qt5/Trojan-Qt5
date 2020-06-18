@@ -22,7 +22,7 @@ A cross-platform Trojan GUI client
 - Subscription Support
 - Import Servers from many methods
 - Mutiple servers Support
-- SS/SSR/Vmess/Trojan(go) Support
+- Socks5/Http/SS/SSR/Vmess/Trojan(go)/Snell Support
 - ....and more
 
 ## Install

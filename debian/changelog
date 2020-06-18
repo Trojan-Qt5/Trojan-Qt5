@@ -1,3 +1,12 @@
+trojan-qt5 (1.2.0-1) unstable; urgency=medium
+
+    * Dark mode support
+    * Socks5/Http/Snell Proxy support
+    * Add Real Latency Test support
+
+ -- TheWanderingCoel <thewanderingcoel@protonmail.com>  Thu, 18 June 2020 15:06:14 +0800
+
+
 trojan-qt5 (1.1.6-1) unstable; urgency=medium
 
     * Fix Router issue
