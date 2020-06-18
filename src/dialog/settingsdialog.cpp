@@ -24,6 +24,8 @@ SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
     ui->themeComboBox->addItems(QStyleFactory::keys());
     ui->themeComboBox->setCurrentText(helper->getGeneralSettings()["theme"].toString());
     ui->systemThemeCB->setCurrentIndex(helper->getGeneralSettings()["systemTheme"].toInt());
+    if (ui->systemThemeCB->currentIndex() == 1 || ui->systemThemeCB->currentIndex() == 2)
+        ui->themeComboBox->setDisabled(true);
     ui->languageCB->setCurrentText(helper->getGeneralSettings()["language"].toString());
     ui->systemTrayMaximumServerEdit->setText(QString::number(helper->getGeneralSettings()["systemTrayMaximumServer"].toInt()));
     ui->hideCheckBox->setChecked(helper->getGeneralSettings()["hideWindowOnStartup"].toBool());
@@ -82,6 +84,7 @@ SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
     routeWidget->setConfig(helper->getRouterSettings());
     ui->routeSettingsLayout->addWidget(routeWidget);
 
+    connect(ui->systemThemeCB, &QComboBox::currentTextChanged, this, &SettingsDialog::onThemeChanged);
     connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &SettingsDialog::onAccepted);
     this->adjustSize();
 }
@@ -89,6 +92,15 @@ SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
 SettingsDialog::~SettingsDialog()
 {
     delete ui;
+}
+
+void SettingsDialog::onThemeChanged()
+{
+    qDebug() << ui->systemThemeCB->currentIndex();
+    if (ui->systemThemeCB->currentIndex() == 1 || ui->systemThemeCB->currentIndex() == 2)
+        ui->themeComboBox->setDisabled(true);
+    else
+        ui->themeComboBox->setDisabled(false);
 }
 
 void SettingsDialog::onAccepted()

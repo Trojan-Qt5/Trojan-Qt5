@@ -41,6 +41,7 @@ private:
     RouteWidget *routeWidget;
 
 private slots:
+    void onThemeChanged();
     void onAccepted();
     void onChanged();
 };
