@@ -197,6 +197,7 @@ SOURCES += \
     src/dialog/settingsdialog.cpp \
     src/dialog/sharedialog.cpp \
     src/dialog/uriinputdialog.cpp \
+    src/proxydialog/naiveproxyeditdialog.cpp \
     src/validator/generalvalidator.cpp \
     src/validator/ip4validator.cpp \
     src/validator/portvalidator.cpp \
@@ -259,6 +260,7 @@ HEADERS += \
     src/dialog/settingsdialog.h \
     src/dialog/sharedialog.h \
     src/dialog/uriinputdialog.h \
+    src/proxydialog/naiveproxyeditdialog.h \
     src/validator/ip4validator.h \
     src/validator/portvalidator.h \
     src/validator/generalvalidator.h \
@@ -317,6 +319,7 @@ HEADERS += \
     src/qtcolorpicker.h
 
 FORMS += \
+    src/proxydialog/naiveproxyeditdialog.ui \
     ui/httpeditdialog.ui \
     ui/socks5editdialog.ui \
     ui/aboutdialog.ui \

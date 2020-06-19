@@ -24,8 +24,10 @@ SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
     ui->themeComboBox->addItems(QStyleFactory::keys());
     ui->themeComboBox->setCurrentText(helper->getGeneralSettings()["theme"].toString());
     ui->systemThemeCB->setCurrentIndex(helper->getGeneralSettings()["systemTheme"].toInt());
-    if (ui->systemThemeCB->currentIndex() == 1 || ui->systemThemeCB->currentIndex() == 2)
+    if (ui->systemThemeCB->currentIndex() == 1 || ui->systemThemeCB->currentIndex() == 2) {
         ui->themeComboBox->setDisabled(true);
+        ui->themeComboBox->setCurrentText("Fusion");
+    }
     ui->languageCB->setCurrentText(helper->getGeneralSettings()["language"].toString());
     ui->systemTrayMaximumServerEdit->setText(QString::number(helper->getGeneralSettings()["systemTrayMaximumServer"].toInt()));
     ui->hideCheckBox->setChecked(helper->getGeneralSettings()["hideWindowOnStartup"].toBool());
@@ -96,9 +98,10 @@ SettingsDialog::~SettingsDialog()
 
 void SettingsDialog::onThemeChanged()
 {
-    qDebug() << ui->systemThemeCB->currentIndex();
-    if (ui->systemThemeCB->currentIndex() == 1 || ui->systemThemeCB->currentIndex() == 2)
+    if (ui->systemThemeCB->currentIndex() == 1 || ui->systemThemeCB->currentIndex() == 2) {
         ui->themeComboBox->setDisabled(true);
+        ui->themeComboBox->setCurrentText("Fusion");
+    }
     else
         ui->themeComboBox->setDisabled(false);
 }

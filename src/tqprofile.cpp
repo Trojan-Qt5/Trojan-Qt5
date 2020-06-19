@@ -442,6 +442,8 @@ TQProfile TQProfile::fromTrojanUri(const std::string& trojanUri) const
     QUrlQuery query(url.query());
     result.tcpFastOpen = query.queryItemValue("tfo").toInt();
     result.verifyCertificate = !query.queryItemValue("allowinsecure").toInt();
+    if (query.queryItemValue("allowinsecure").isEmpty())
+         result.verifyCertificate = !query.queryItemValue("allowInsecure").toInt();
     result.sni = query.queryItemValue("sni");
     if (result.sni.isEmpty())
         result.sni = query.queryItemValue("peer");
