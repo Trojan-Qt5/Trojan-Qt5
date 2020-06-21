@@ -11,7 +11,11 @@
 #include <cstdlib>
 
 #include "logger.h"
-#include "yaml-cpp/yaml.h"
+#if defined (Q_OS_WIN)
+    #include "yaml-cpp/yaml.h"
+#else
+    #include <yaml-cpp/yaml.h>
+#endif
 #include "utils.h"
 
 using namespace std;
@@ -202,11 +206,42 @@ void ConfigHelper::importConfigYaml(ConnectionTableModel *model, const QString &
     for (std::size_t i = 0; i < proxies.size(); i++) {
         const YAML::Node& proxy = proxies[i];
         TQProfile p;
+        QString type = QString::fromStdString(proxy["type"].as<string>());
         p.name = QString::fromStdString(proxy["name"].as<string>());
         p.serverAddress = QString::fromStdString(proxy["server"].as<string>());
-        p.serverPort = proxy["skip-cert-verify"].as<int>();
-        p.password = QString::fromStdString(proxy["password"].as<string>());
-        p.verifyCertificate = !proxy["skip-cert-verify"].as<bool>();
+        p.serverPort = proxy["port"].as<int>();
+        if (type == "socks5") {
+            try {
+                p.username = QString::fromStdString(proxy["username"].as<string>());
+            } catch (...) {}
+            try {
+                p.password = QString::fromStdString(proxy["password"].as<string>());
+            } catch (...) {}
+        } else if (type == "http") {
+            try {
+                p.username = QString::fromStdString(proxy["username"].as<string>());
+            } catch (...) {}
+            try {
+                p.password = QString::fromStdString(proxy["password"].as<string>());
+            } catch (...) {}
+        } else if (type == "ssr") {
+            p.password = QString::fromStdString(proxy["password"].as<string>());
+            p.method = QString::fromStdString(proxy["cipher"].as<string>());
+            p.protocol = QString::fromStdString(proxy["protocol"].as<string>());
+            p.protocolParam = QString::fromStdString(proxy["protocolparam"].as<string>());
+            p.obfs = QString::fromStdString(proxy["obfs"].as<string>());
+            p.obfsParam = QString::fromStdString(proxy["obfsparam"].as<string>());
+        } else if (type == "trojan") {
+            p.password = QString::fromStdString(proxy["password"].as<string>());
+            try {
+                p.verifyCertificate = !proxy["skip-cert-verify"].as<bool>();
+            } catch (...) {}
+            try {
+                p.sni = QString::fromStdString(proxy["sni"].as<string>());
+            } catch (...) {}
+        } else if (type == "snell") {
+            p.password = QString::fromStdString(proxy["psk"].as<string>());
+        }
         Connection *con = new Connection(p, this);
         model->appendConnection(con);
     }

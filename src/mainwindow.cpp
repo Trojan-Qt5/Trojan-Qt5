@@ -9,6 +9,7 @@
 #include "vmesseditdialog.h"
 #include "trojaneditdialog.h"
 #include "snelleditdialog.h"
+#include "naiveproxyeditdialog.h"
 #include "urihelper.h"
 #include "uriinputdialog.h"
 #include "userrulesdialog.h"
@@ -162,6 +163,8 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
             this, [this]() { onAddManually("trojan"); });
     connect(ui->actionAdd_Snell_Manually, &QAction::triggered,
             this, [this]() { onAddManually("snell"); });
+    connect(ui->actionAdd_NaiveProxy_Manually, &QAction::triggered,
+            this, [this]() { onAddManually("naiveproxy"); });
     connect(ui->actionQRCode, &QAction::triggered,
             this, &MainWindow::onAddScreenQRCode);
     connect(ui->actionScanQRCodeCapturer, &QAction::triggered,
@@ -301,7 +304,8 @@ void MainWindow::onHandleDataFromUrlScheme(const QString &data)
         data.startsWith("ssr://") ||
         data.startsWith("vmess://") ||
         data.startsWith("trojan://") ||
-        data.startsWith("snell://")) {
+        data.startsWith("snell://") ||
+        data.startsWith("naiveproxy://")) {
         if (GeneralValidator::validateAll(data)) {
             Connection *newCon = new Connection(data, this);
             model->appendConnection(newCon);
@@ -707,6 +711,9 @@ void MainWindow::newProfile(Connection *newCon)
     } else if (newCon->getProfile().type == "snell") {
         editDlg = new SnellEditDialog(newCon, this);
         connect(editDlg, &SnellEditDialog::finished, editDlg, &SnellEditDialog::deleteLater);
+    } else if (newCon->getProfile().type == "naiveproxy") {
+        editDlg = new NaiveProxyEditDialog(newCon, this);
+        connect(editDlg, &NaiveProxyEditDialog::finished, editDlg, &NaiveProxyEditDialog::deleteLater);
     }
 
     if (editDlg->exec()) {//accepted
@@ -743,6 +750,9 @@ void MainWindow::editRow(int row)
     } else if (con->getProfile().type == "snell") {
         editDlg = new SnellEditDialog(con, this);
         connect(editDlg, &SnellEditDialog::finished, editDlg, &SnellEditDialog::deleteLater);
+    } else if (con->getProfile().type == "naiveproxy") {
+        editDlg = new NaiveProxyEditDialog(con, this);
+        connect(editDlg, &NaiveProxyEditDialog::finished, editDlg, &NaiveProxyEditDialog::deleteLater);
     }
 
     if (editDlg->exec()) {

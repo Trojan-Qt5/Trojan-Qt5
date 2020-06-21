@@ -101,6 +101,10 @@ QStatusBar QPushButton {
     color: rgb(0,0,0);
 }
 
+QStatusBar::item { 
+    border-width: 0;
+}
+
 #statusFrame {
     color: rgb(0,0,0);
 }
