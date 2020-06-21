@@ -103,6 +103,7 @@ win32 {
     INCLUDEPATH += C:\TQLibraries\Libsodium\include
     INCLUDEPATH += C:\TQLibraries\Libuv\include
     INCLUDEPATH += C:\TQLibraries\Grpc\include
+    INCLUDEPATH += $$PWD/3rd/yaml-cpp/include
     LIBS += -LC:\TQLibraries\ZBar\lib -llibzbar-0
     LIBS += -LC:\TQLibraries\OpenSSL-Win32\lib -llibcrypto -llibssl
     LIBS += -LC:\TQLibraries\QREncode\lib -lqrcodelib
@@ -371,8 +372,7 @@ INCLUDEPATH += \
     $$PWD/src/widget \
     $$PWD/src/utils \
     $$PWD/src/validator \
-    $$PWD/3rd/trojan-qt5-core \
-    $$PWD/3rd/yaml-cpp/include
+    $$PWD/3rd/trojan-qt5-core
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

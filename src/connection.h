@@ -103,6 +103,7 @@ private:
     friend class VmessEditDialog;
     friend class TrojanEditDialog;
     friend class SnellEditDialog;
+    friend class NaiveProxyEditDialog;
     friend class ConfigHelper;
     friend class StatusDialog;
     friend class ConnectionItem;
