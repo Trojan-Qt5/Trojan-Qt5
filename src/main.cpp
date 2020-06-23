@@ -147,6 +147,11 @@ int main(int argc, char *argv[])
 
     ConfigHelper conf(configFile);
 
+    // copy and install resources
+#if defined (Q_OS_MAC)
+    if (!ResourceHelper::isSystemProxyHelperExist())
+        ResourceHelper::installSystemProxyHelper();
+#endif
     ResourceHelper::copyDatFiles();
 
     // setup the theme here

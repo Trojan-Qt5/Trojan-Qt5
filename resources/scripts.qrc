@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>scripts/install_helper.sh</file>
+    </qresource>
+</RCC>

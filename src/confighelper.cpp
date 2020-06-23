@@ -328,13 +328,14 @@ void ConfigHelper::exportShadowrocketJson(const ConnectionTableModel &model, con
     JSONFile.close();
 }
 
-void ConfigHelper::exportTrojanSubscribe(const ConnectionTableModel &model, const QString &file)
+void ConfigHelper::exportSubscribe(const ConnectionTableModel &model, const QString &file)
 {
     QString uri;
     int size = model.rowCount();
     for (int i = 0; i < size; ++i) {
         Connection *con = model.getItem(i)->getConnection();
         uri += con->getURI(con->getProfile().type);
+        uri += "\r\n";
     }
     uri = uri.toUtf8().toBase64();
 

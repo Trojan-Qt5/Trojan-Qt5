@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file>bin/tap-windows-9.22.1-I602.exe</file>
+        <file>bin/tap-windows-9.21.2.exe</file>
+        <file>bin/proxy_conf_helper</file>
     </qresource>
 </RCC>
