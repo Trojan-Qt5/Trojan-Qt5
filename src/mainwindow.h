@@ -96,7 +96,7 @@ private slots:
     void onImportConfigYaml();
     void onExportGuiJson();
     void onExportShadowrocketJson();
-    void onExportTrojanSubscribe();
+    void onExportSubscribe();
     void onSaveManually();
     void onAddManually(QString type);
     void onAddScreenQRCode();

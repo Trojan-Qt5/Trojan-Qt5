@@ -8,6 +8,8 @@
 #if defined (Q_OS_WIN)
 #include <Windows.h>
 #include "win.h"
+#elif defined (Q_OS_MAC)
+#include "mac.h"
 #endif
 
 SystemProxyHelper::SystemProxyHelper()
@@ -72,45 +74,16 @@ void SystemProxyHelper::setSystemProxy(int method)
         int status = setProxy(0, NULL);
     }
 #elif defined (Q_OS_MAC)
-    std::istringstream s(runShell("networksetup -listnetworkserviceorder"));
-    std::vector<std::string> hardwarePorts;
-    std::string portName;
-    std::regex all("\\((\\d)*\\)\\s(.*)", std::regex_constants::ECMAScript | std::regex_constants::icase);
-    std::regex prefix("\\((\\d)*\\)\\s", std::regex_constants::ECMAScript | std::regex_constants::icase);
-    while(std::getline(s, portName))
-    {
-        if(std::regex_match(portName, all)) {
-            std::string name = std::regex_replace(portName, prefix, "");
-            if (name == "AirPort"
-              || name == "Wi-Fi"
-              || name == "Ethernet"
-              || name == "Thunderbolt Ethernet"
-              || name == "Thunderbolt Ethernet Slot  1"
-              || name == "USB 10/100 LAN"
-              || name == "USB 10/100/1000 LAN"
-              || name == "802.11ac NIC")
-                hardwarePorts.push_back(name);
-        }
-    }
 
-    for (auto &i : hardwarePorts) {
-        if (method == 1 && conf->getInboundSettings()["enableHttpMode"].toBool()) {
-            runShell(QString("networksetup -setwebproxy \"%1\" 127.0.0.1 %2").arg(QString::fromStdString(i)).arg(QString::number(conf->getInboundSettings()["httpLocalPort"].toInt())));
-            runShell(QString("networksetup -setsecurewebproxy \"%1\" 127.0.0.1 %2").arg(QString::fromStdString(i)).arg(QString::number(conf->getInboundSettings()["httpLocalPort"].toInt())));
-            runShell(QString("networksetup -setsocksfirewallproxy \"%1\" 127.0.0.1 %2").arg(QString::fromStdString(i)).arg(QString::number(conf->getInboundSettings()["socks5LocalPort"].toInt())));
-            runShell("networksetup -setproxybypassdomains 127.0.0.1 localhost");
-        } else if (method == 1) {
-            runShell(QString("networksetup -setsocksfirewallproxy \"%1\" 127.0.0.1 %2").arg(QString::fromStdString(i)).arg(QString::number(conf->getInboundSettings()["socks5LocalPort"].toInt())));
-            runShell("networksetup -setproxybypassdomains 127.0.0.1 localhost");
-        } else if (method == 2) {
-            runShell(QString("networksetup -setautoproxyurl \"%1\" http://127.0.0.1:%2/proxy.pac").arg(QString::fromStdString(i)).arg(QString::number(conf->getInboundSettings()["pacLocalPort"].toInt())));
-        } else if (method == 0) {
-            runShell(QString("networksetup -setautoproxystate \"%1\" off").arg(QString::fromStdString(i)));
-            runShell(QString("networksetup -setwebproxystate \"%1\" off").arg(QString::fromStdString(i)));
-            runShell(QString("networksetup -setsecurewebproxystate \"%1\" off").arg(QString::fromStdString(i)));
-            runShell(QString("networksetup -setsocksfirewallproxystate \"%1\" off").arg(QString::fromStdString(i)));
-          }
-        }
+    if (method == 1 && conf->getInboundSettings()["enableHttpMode"].toBool()) {
+        runShell(QString("/Library/Application\\ Support/Trojan-Qt5/proxy_conf_helper -m global -l 127.0.0.1 -p %1 -s 127.0.0.1 -r %2").arg(QString::number(conf->getInboundSettings()["socks5LocalPort"].toInt())).arg(QString::number(conf->getInboundSettings()["httpLocalPort"].toInt())));
+    } else if (method == 1) {
+        runShell(QString("/Library/Application\\ Support/Trojan-Qt5/proxy_conf_helper -m global -l 127.0.0.1 -p %1").arg(QString::number(conf->getInboundSettings()["socks5LocalPort"].toInt())));
+    } else if (method == 2) {
+        runShell(QString("/Library/Application\\ Support/Trojan-Qt5/proxy_conf_helper -m auto -u http://127.0.0.1:%1/proxy.pac").arg(QString::number(conf->getInboundSettings()["pacLocalPort"].toInt())));
+    } else if (method == 0) {
+        runShell(QString("/Library/Application\\ Support/Trojan-Qt5/proxy_conf_helper -m off"));
+    }
 
 #elif defined (Q_OS_LINUX)
     if (system("gsettings --version > /dev/null") == 0) {

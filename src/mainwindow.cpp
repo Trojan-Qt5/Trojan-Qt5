@@ -147,7 +147,7 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
     connect(ui->actionExportShadowrocketJson, &QAction::triggered,
             this, &MainWindow::onExportShadowrocketJson);
     connect(ui->actionExportSubscribe, &QAction::triggered,
-            this, &MainWindow::onExportTrojanSubscribe);
+            this, &MainWindow::onExportSubscribe);
     connect(ui->actionQuit, &QAction::triggered, qApp, &QApplication::quit);
     connect(ui->actionAdd_SOCKS5_Manually, &QAction::triggered,
             this, [this]() { onAddManually("socks5"); });
@@ -414,7 +414,7 @@ void MainWindow::onExportShadowrocketJson()
     }
 }
 
-void MainWindow::onExportTrojanSubscribe()
+void MainWindow::onExportSubscribe()
 {
     QString file = QFileDialog::getSaveFileName(
                    this,
@@ -422,7 +422,7 @@ void MainWindow::onExportTrojanSubscribe()
                    QString("subscribe.txt"),
                    "Trojan Subscribe (subscribe.txt)");
     if (!file.isNull()) {
-        configHelper->exportTrojanSubscribe(*model, file);
+        configHelper->exportSubscribe(*model, file);
     }
 }
 

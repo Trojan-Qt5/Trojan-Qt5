@@ -126,7 +126,8 @@ mac {
     SOURCES += \
         src/statusnotifier.mm \
         src/LetsMove/PFMoveApplication.m \
-        src/theme/themehelper.mm
+        src/theme/themehelper.mm \
+        src/systemproxy/mac.mm
     PKG_CONFIG = /usr/local/bin/pkg-config
     INCLUDEPATH += /usr/local/opt/zlib/include
     INCLUDEPATH += /usr/local/opt/openssl@1.1/include
@@ -150,6 +151,7 @@ mac {
     LIBS += -framework Carbon
     LIBS += -framework Foundation
     LIBS += -framework ApplicationServices
+    LIBS += -framework SystemConfiguration
     LIBS += -framework Sparkle
     LIBS += -framework LetsMove
     QMAKE_INFO_PLIST = resources/Info.plist
@@ -262,6 +264,7 @@ HEADERS += \
     src/dialog/sharedialog.h \
     src/dialog/uriinputdialog.h \
     src/proxydialog/naiveproxyeditdialog.h \
+    src/systemproxy/mac.h \
     src/validator/ip4validator.h \
     src/validator/portvalidator.h \
     src/validator/generalvalidator.h \
@@ -386,4 +389,5 @@ RESOURCES += \
     resources/pac.qrc \
     resources/pem.qrc \
     resources/qss.qrc \
+    resources/scripts.qrc \
     resources/translations.qrc

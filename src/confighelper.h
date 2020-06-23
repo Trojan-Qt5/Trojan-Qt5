@@ -66,7 +66,7 @@ public:
 
     void exportShadowrocketJson(const ConnectionTableModel &model, const QString &file);
 
-    void exportTrojanSubscribe(const ConnectionTableModel &model, const QString &file);
+    void exportSubscribe(const ConnectionTableModel &model, const QString &file);
 
     static QJsonObject generateVmessSettings();
 
