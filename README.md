@@ -5,20 +5,21 @@
   <br>
 </h1>
 
-A cross-platform Trojan GUI client
+A cross-platform Socks5/Http/SS/SSR/Vmess/Trojan(go)/Snell GUI client
 
 [![Build status](https://travis-ci.com/Trojan-Qt5/Trojan-Qt5.svg?branch=master)](https://travis-ci.com/Trojan-Qt5/Trojan-Qt5)
 [![Build status](https://ci.appveyor.com/api/projects/status/mbrhwcmufm0q9lba/branch/master?svg=true)](https://ci.appveyor.com/project/CoelWu/trojan-qt5)
 [![HitCount](http://hits.dwyl.io/Trojan-Qt5/Trojan-Qt5.svg)](http://hits.dwyl.io/Trojan-Qt5/Trojan-Qt5)
-![GitHub Releases](https://img.shields.io/github/downloads/Trojan-Qt5/Trojan-Qt5/latest/total?style=flat-square&logo=github)
-![GitHub All Releases](https://img.shields.io/github/downloads/Trojan-Qt5/Trojan-Qt5/total?label=downloads-total&logo=github&style=flat-square)
+![GitHub Releases](https://img.shields.io/github/downloads/Trojan-Qt5/Trojan-Qt5/latest/total?logo=github)
+![GitHub All Releases](https://img.shields.io/github/downloads/Trojan-Qt5/Trojan-Qt5/total?label=downloads-total&logo=github)
+[![LGBT-CN](https://img.shields.io/badge/Support-LGBTQIA-FF0000)](https://git.io/JfJiO)
 [![License](https://img.shields.io/badge/license-GPL%20V3-blue.svg?longCache=true)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 ## Feature
 - Full PAC Control
 - Cross-platform
 - User Rule Support
-- Http Privoxy Support
+- Http Support
 - Subscription Support
 - Import Servers from many methods
 - Mutiple servers Support

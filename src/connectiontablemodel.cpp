@@ -1,4 +1,5 @@
 #include "connectiontablemodel.h"
+#include "confighelper.h"
 
 ConnectionTableModel::ConnectionTableModel(QObject *parent) :
     QAbstractTableModel(parent)
@@ -167,7 +168,7 @@ bool ConnectionTableModel::isExisted(Connection *newCon)
         Connection *con = i->getConnection();
         if (con->getProfile().serverAddress == newCon->getProfile().serverAddress &&
             con->getProfile().serverPort == newCon->getProfile().serverPort &&
-            con->getProfile().vmessSettings == newCon->getProfile().vmessSettings)
+            ConfigHelper::exportVmessSettings(con->getProfile().vmessSettings) == ConfigHelper::exportVmessSettings(newCon->getProfile().vmessSettings))
             return true;
     }
     return false;

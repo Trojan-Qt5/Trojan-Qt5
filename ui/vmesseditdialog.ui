@@ -120,67 +120,88 @@
           <item row="5" column="1">
            <widget class="QLineEdit" name="alterIDEdit"/>
           </item>
-          <item row="6" column="0">
+          <item row="7" column="0">
            <widget class="QLabel" name="label_7">
             <property name="text">
              <string>Tcp Fast Open</string>
             </property>
            </widget>
           </item>
-          <item row="6" column="1">
+          <item row="7" column="1">
            <widget class="QCheckBox" name="tcpFastOpenCheckBox">
             <property name="text">
              <string>Enable</string>
             </property>
            </widget>
           </item>
-          <item row="7" column="0">
+          <item row="8" column="0">
            <widget class="QLabel" name="label_10">
             <property name="text">
              <string>Mux</string>
             </property>
            </widget>
           </item>
-          <item row="9" column="0">
+          <item row="10" column="0">
            <widget class="QLabel" name="label_8">
             <property name="text">
              <string>Reset Data Usage After</string>
             </property>
            </widget>
           </item>
-          <item row="9" column="1">
+          <item row="10" column="1">
            <widget class="QDateEdit" name="resetDateEdit"/>
           </item>
-          <item row="10" column="0">
+          <item row="11" column="0">
            <widget class="QLabel" name="label_9">
             <property name="text">
              <string>Automation</string>
             </property>
            </widget>
           </item>
-          <item row="10" column="1">
+          <item row="11" column="1">
            <widget class="QCheckBox" name="autoStartCheckBox">
             <property name="text">
              <string>Auto connect on application start</string>
             </property>
            </widget>
           </item>
-          <item row="7" column="1">
+          <item row="8" column="1">
            <widget class="QCheckBox" name="muxCheckBox">
             <property name="text">
              <string>Enable</string>
             </property>
            </widget>
           </item>
-          <item row="8" column="0">
+          <item row="9" column="0">
            <widget class="QLabel" name="label_11">
             <property name="text">
              <string>Mux concurrency</string>
             </property>
            </widget>
           </item>
-          <item row="8" column="1">
+          <item row="9" column="1">
            <widget class="QLineEdit" name="muxConcurrencyEdit"/>
+          </item>
+          <item row="6" column="0">
+           <widget class="QLabel" name="label_12">
+            <property name="text">
+             <string>Tests Enabled</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <widget class="QComboBox" name="comboBox">
+            <item>
+             <property name="text">
+              <string>none</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>VMessAEAD</string>
+             </property>
+            </item>
+           </widget>
           </item>
          </layout>
         </item>

@@ -21,7 +21,6 @@
 #include "aboutdialog.h"
 #include "logger.h"
 #include "utils.h"
-#include "QtAwesome.h"
 #include "statusbar.h"
 
 #include <QClipboard>
@@ -73,7 +72,7 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
     ui->connectionView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     ui->toolBar->setToolButtonStyle(static_cast<Qt::ToolButtonStyle>
-                                    (configHelper->getGeneralSettings()["toolbarStyle"].toInt()));
+                                    (configHelper->getGeneralSettings().toolBarStyle));
 
     setupActionIcon();
 
@@ -81,15 +80,15 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
     m_statusBar = new StatusBar;
     setStatusBar(m_statusBar);
     QList<int> ports;
-    ports.append(configHelper->getInboundSettings()["socks5LocalPort"].toInt());
-    ports.append(configHelper->getInboundSettings()["httpLocalPort"].toInt());
-    ports.append(configHelper->getInboundSettings()["pacLocalPort"].toInt());
+    ports.append(configHelper->getInboundSettings().socks5LocalPort);
+    ports.append(configHelper->getInboundSettings().httpLocalPort);
+    ports.append(configHelper->getInboundSettings().pacLocalPort);
     QList<QString> stats;
     stats.append("0 B");
     stats.append("0 B");
     stats.append("0 B");
     stats.append("0 B");
-    m_statusBar->refresh(configHelper->getInboundSettings()["enableIpv6Support"].toBool() ? (configHelper->getInboundSettings()["shareOverLan"].toBool() ? "::" : "::1") : (configHelper->getInboundSettings()["shareOverLan"].toBool() ? "0.0.0.0" : "127.0.0.1"),
+    m_statusBar->refresh(configHelper->getInboundSettings().enableIpv6Support ? (configHelper->getInboundSettings().shareOverLan ? "::" : "::1") : (configHelper->getInboundSettings().shareOverLan ? "0.0.0.0" : "127.0.0.1"),
     ports,
     stats);
 
@@ -116,7 +115,7 @@ MainWindow::MainWindow(ConfigHelper *confHelper, QWidget *parent) :
     //some UI changes accoding to config
     ui->toolBar->setVisible(configHelper->isShowToolbar());
     ui->actionShowFilterBar->setChecked(configHelper->isShowFilterBar());
-    ui->menuBar->setNativeMenuBar(configHelper->getGeneralSettings()["nativeMenuBar"].toBool());
+    ui->menuBar->setNativeMenuBar(configHelper->getGeneralSettings().nativeMenuBar);
 
     ui->filterLineEdit->setObjectName("filterLineEdit");
     ui->toolBar->setFixedHeight(92);
@@ -879,33 +878,29 @@ void MainWindow::closeEvent(QCloseEvent *e)
 void MainWindow::onStatusAvailable(const quint64 &u, const quint64 &d)
 {
     QList<int> ports;
-    ports.append(configHelper->getInboundSettings()["socks5LocalPort"].toInt());
-    ports.append(configHelper->getInboundSettings()["httpLocalPort"].toInt());
-    ports.append(configHelper->getInboundSettings()["pacLocalPort"].toInt());
+    ports.append(configHelper->getInboundSettings().socks5LocalPort);
+    ports.append(configHelper->getInboundSettings().httpLocalPort);
+    ports.append(configHelper->getInboundSettings().pacLocalPort);
     QList<QString> stats;
     stats.append(Utils::bytesConvertor(d));
     stats.append(Utils::bytesConvertor(u));
     stats.append(Utils::bytesConvertor(MidMan::getConnection().getProfile().totalDownloadUsage));
     stats.append(Utils::bytesConvertor(MidMan::getConnection().getProfile().totalUploadUsage));
-    m_statusBar->refresh(configHelper->getInboundSettings()["enableIpv6Support"].toBool() ? (configHelper->getInboundSettings()["shareOverLan"].toBool() ? "::" : "::1") : (configHelper->getInboundSettings()["shareOverLan"].toBool() ? "0.0.0.0" : "127.0.0.1"),
+    m_statusBar->refresh(configHelper->getInboundSettings().enableIpv6Support ? (configHelper->getInboundSettings().shareOverLan ? "::" : "::1") : (configHelper->getInboundSettings().shareOverLan ? "0.0.0.0" : "127.0.0.1"),
     ports,
     stats);
 }
 
 void MainWindow::setupActionIcon()
 {
-
-    QtAwesome* awesome = new QtAwesome(this);
-    awesome->initFontAwesome();
-
-    ui->actionConnect->setIcon(awesome->icon(fas::link));
-    ui->actionDisconnect->setIcon(awesome->icon(fas::unlink));
-    ui->actionEdit->setIcon(awesome->icon(fas::edit));
-    ui->actionShare->setIcon(awesome->icon(fas::share));
-    ui->actionTestLatency->setIcon(awesome->icon(fas::tachometer));
-    ui->actionDelete->setIcon(awesome->icon(fas::trash));
-    ui->actionMoveUp->setIcon(awesome->icon(fas::up));
-    ui->actionMoveDown->setIcon(awesome->icon(fas::down));
+    ui->actionConnect->setIcon(QIcon(":/icons/icons/network-connect.svg"));
+    ui->actionDisconnect->setIcon(QIcon(":/icons/icons/network-disconnect.svg"));
+    ui->actionEdit->setIcon(QIcon(":/icons/icons/profile-edit.svg"));
+    ui->actionShare->setIcon(QIcon(":/icons/icons/profile-share.svg"));
+    ui->actionTestLatency->setIcon(QIcon(":/icons/icons/network-test.svg"));
+    ui->actionDelete->setIcon(QIcon(":/icons/icons/profile-delete.svg"));
+    ui->actionMoveUp->setIcon(QIcon(":/icons/icons/profile-up.svg"));
+    ui->actionMoveDown->setIcon(QIcon(":/icons/icons/profile-down.svg"));
     ui->actionImportGUIJson->setIcon(QIcon::fromTheme("document-import",
                                      QIcon::fromTheme("insert-text")));
     ui->actionImportConfigYaml->setIcon(QIcon::fromTheme("document-import",
@@ -1008,7 +1003,7 @@ void MainWindow::initSingleInstance()
     socket.connectToServer(serverName);
     if (socket.waitForConnected(500)) {
         instanceRunning = true;
-        if (configHelper->getGeneralSettings()["onlyOneInstace"].toBool()) {
+        if (configHelper->getGeneralSettings().onlyOneInstace) {
             Logger::warning("[Instance] An instance of trojan-qt5 is already running");
         }
         QByteArray username = qgetenv("USER");

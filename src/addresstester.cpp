@@ -67,9 +67,9 @@ void AddressTester::connectToServer(int timeout)
 void AddressTester::startLagTest(int timeout)
 {
     ConfigHelper *helper = Utils::getConfigHelper();
-    if (helper->getTestSettings()["method"].toInt() == 0)
+    if (helper->getTestSettings().method == 0)
         startTcpPingTest(timeout);
-    else if (helper->getTestSettings()["method"].toInt() == 1)
+    else if (helper->getTestSettings().method == 1)
         startRealPingTest(timeout);
 }
 
@@ -82,12 +82,12 @@ void AddressTester::startRealPingTest(int timeout)
 {
     ConfigHelper *helper = Utils::getConfigHelper();
     QNetworkAccessManager* manager = new QNetworkAccessManager();
-    QNetworkRequest request(helper->getTestSettings()["latencyTestUrl"].toString());
-    request.setRawHeader("User-Agent", helper->getSubscribeSettings()["updateUserAgent"].toString().toUtf8().data());
+    QNetworkRequest request(helper->getTestSettings().latencyTestUrl);
+    request.setRawHeader("User-Agent", helper->getSubscribeSettings().updateUserAgent.toUtf8().data());
     QNetworkProxy proxy;
     proxy.setType(QNetworkProxy::Socks5Proxy);
     proxy.setHostName("127.0.0.1");
-    proxy.setPort(helper->getInboundSettings()["socks5LocalPort"].toInt());
+    proxy.setPort(helper->getInboundSettings().socks5LocalPort);
     manager->setProxy(proxy);
 
     m_time = QTime::currentTime();

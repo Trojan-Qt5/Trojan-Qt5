@@ -25,6 +25,8 @@
 #include <QUrl>
 #include <QJsonObject>
 
+#include "v2raystruct.h"
+
 struct TQProfile
 {
     TQProfile();
@@ -93,7 +95,7 @@ struct TQProfile
     QString uuid;
     int alterID;
     QString security;
-    QJsonObject vmessSettings;
+    VmessSettings vmessSettings;
 
     static const int LATENCY_TIMEOUT = -1;
     static const int LATENCY_ERROR = -2;

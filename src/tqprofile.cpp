@@ -1,6 +1,7 @@
 #include "tqprofile.h"
 #include "utils.h"
 #include "confighelper.h"
+#include "v2raystruct.h"
 
 #include <QJsonDocument>
 #include <QUrlQuery>
@@ -35,7 +36,6 @@ TQProfile::TQProfile()
     uuid = QString("");
     alterID = 32;
     security = QString("auto");
-    vmessSettings = ConfigHelper::generateVmessSettings();
     // trojan only
     verifyCertificate = true;
     verifyHostname = true;
@@ -356,41 +356,30 @@ TQProfile TQProfile::fromVmessUri(const std::string& vmessUri) const
     result.uuid = vmess["id"].toString();
     result.alterID = vmess["aid"].toString().toInt();
 
-    QJsonObject vmessSettings = result.vmessSettings;
-    vmessSettings["network"] = vmess["net"].toString();
+    VmessSettings vmessSettings = result.vmessSettings;
+    vmessSettings.network = vmess["net"].toString();
 
-    if (vmessSettings["network"].toString()  == "tcp") {
-        QJsonObject tcp = vmessSettings["tcp"].toObject();
-        QJsonObject tcpHeader = tcp["header"].toObject();
-        tcpHeader["type"] = vmess["type"].toString();
-        tcp["header"] = tcpHeader;
-        vmessSettings["tcp"] = tcp;
-    } else if (vmessSettings["network"].toString() == "http") {
-        QJsonObject http = vmessSettings["http"].toObject();
+    if (vmessSettings.network == "tcp") {
+        vmessSettings.tcp.type = vmess["type"].toString();
+    } else if (vmessSettings.network == "http") {
         QJsonArray array;
         foreach(const QString &host, vmess["host"].toString().split(",")) {
             array.push_back(host);
         }
-        http["host"] = array;
-        http["path"] = vmess["path"].toString();
-        vmessSettings["http"] = http;
-    } else if (vmessSettings["network"].toString() == "ws") {
-        QJsonObject ws = vmessSettings["ws"].toObject();
-        QJsonObject wsHeader = ws["host"].toObject()["header"].toObject();
+        vmessSettings.http.host = array;
+        vmessSettings.http.path = vmess["path"].toString();
+    } else if (vmessSettings.network == "ws") {
+        QJsonObject wsHeader;
         wsHeader["Host"] = vmess["host"].toString();
-        ws["header"] = wsHeader;
-        ws["path"] = vmess["path"].toString();
-        vmessSettings["ws"] = ws;
-    } else if (vmessSettings["network"].toString() == "quic") {
-        QJsonObject quic = vmessSettings["quic"].toObject();
-        quic["security"] = vmess["host"];
-        quic["key"] = vmess["path"];
-        vmessSettings["quic"] = quic;
+        vmessSettings.ws.header = wsHeader;
+        vmessSettings.ws.path = vmess["path"].toString();
+    } else if (vmessSettings.network == "quic") {
+        vmessSettings.quic.security = vmess["host"].toString();
+        vmessSettings.quic.key = vmess["path"].toString();
     }
 
     QJsonObject tls = vmess["tls"].toObject();
-    tls["enable"] = vmess["tls"] == "tls" ? true : false;
-    vmessSettings["tls"] = tls;
+    vmessSettings.tls.enable = vmess["tls"] == "tls" ? true : false;
 
     result.vmessSettings = vmessSettings;
 
@@ -564,27 +553,27 @@ QString TQProfile::toVmessUri() const
     vmessObject["port"] = QString::number(serverPort);
     vmessObject["id"] = uuid;
     vmessObject["aid"] = alterID;
-    vmessObject["net"] = vmessSettings["network"].toString();
-    if (vmessSettings["network"].toString() == "tcp") {
-        vmessObject["type"] = vmessSettings["tcp"].toObject()["header"].toObject()["type"].toString();
-    } if (vmessSettings["network"].toString() == "http") {
-        vmessObject["host"] = vmessSettings["http"].toObject()["host"].toString().replace("\r\n", "");
-        vmessObject["path"] = vmessSettings["http"].toObject()["path"].toString();
-    } else if (vmessSettings["network"].toString() == "kcp")
-        vmessObject["type"] = vmessSettings["kcp"].toObject()["header"].toObject()["type"].toString();
-    else if (vmessSettings["network"].toString() == "ws") {
-        foreach (const QString& key, vmessSettings["ws"].toObject()["header"].toObject().keys())
+    vmessObject["net"] = vmessSettings.network;
+    if (vmessSettings.network == "tcp") {
+        vmessObject["type"] = vmessSettings.tcp.type;
+    } if (vmessSettings.network == "http") {
+        vmessObject["host"] = vmessSettings.http.host;
+        vmessObject["path"] = vmessSettings.http.path;
+    } else if (vmessSettings.network == "kcp")
+        vmessObject["type"] = vmessSettings.kcp.type;
+    else if (vmessSettings.network == "ws") {
+        foreach (const QString& key, vmessSettings.ws.header.keys())
         {
-            QJsonValue value = vmessSettings["ws"].toObject()["header"].toObject().value(key);
+            QJsonValue value = vmessSettings.ws.header.value(key);
             if (key == "Host")
                 vmessObject["host"] = value.toString();
         }
-        vmessObject["path"] = vmessSettings["ws"].toObject()["path"].toString();
+        vmessObject["path"] = vmessSettings.ws.path;
     }
-    else if (vmessSettings["network"].toString() == "quic") {
-        vmessObject["type"] = vmessSettings["quic"].toObject()["header"].toObject()["type"].toString();
-        vmessObject["host"] = vmessSettings["quic"].toObject()["security"].toString();
-        vmessObject["path"] = vmessSettings["quic"].toObject()["key"].toString();
+    else if (vmessSettings.network == "quic") {
+        vmessObject["type"] = vmessSettings.quic.type;
+        vmessObject["host"] = vmessSettings.quic.security;
+        vmessObject["path"] = vmessSettings.quic.key;
     }
     vmessObject["tls"] = vmessObject["tls"].toObject()["enable"].toBool() ? "tls" : "none";
     QJsonDocument uri(vmessObject);
@@ -620,18 +609,14 @@ QString TQProfile::toSnellUri() const
     return uri;
 }
 
-// https://stackoverflow.com/questions/61924590/no-match-for-operator-operand-types-are-qdatastream-and-qjsonobject/61926499#61926499
 QDataStream& operator << (QDataStream &out, const TQProfile &p)
 {
-    QJsonDocument vmessSettingsDoc(p.vmessSettings);
-    out << p.type << p.autoStart << p.serverPort << p.name << p.serverAddress << p.verifyCertificate << p.verifyHostname << p.password << p.sni << p.reuseSession << p.sessionTicket << p.reusePort << p.tcpFastOpen << p.mux << p.muxConcurrency << p.muxIdleTimeout << p.websocket << p.websocketDoubleTLS << p.websocketPath << p.websocketHostname << p.websocketObfsPassword << p.method << p.protocol << p.protocolParam << p.obfs << p.obfsParam << p.plugin << p.pluginParam << p.uuid << p.alterID << p.security << vmessSettingsDoc.toJson(QJsonDocument::Compact) << p.latency << p.currentDownloadUsage << p.currentUploadUsage << p.totalDownloadUsage << p.totalUploadUsage << p.lastTime << p.nextResetDate;
+    out << p.type << p.autoStart << p.serverPort << p.name << p.serverAddress << p.verifyCertificate << p.verifyHostname << p.password << p.sni << p.reuseSession << p.sessionTicket << p.reusePort << p.tcpFastOpen << p.mux << p.muxConcurrency << p.muxIdleTimeout << p.websocket << p.websocketDoubleTLS << p.websocketPath << p.websocketHostname << p.websocketObfsPassword << p.method << p.protocol << p.protocolParam << p.obfs << p.obfsParam << p.plugin << p.pluginParam << p.uuid << p.alterID << p.security << p.vmessSettings << p.latency << p.currentDownloadUsage << p.currentUploadUsage << p.totalDownloadUsage << p.totalUploadUsage << p.lastTime << p.nextResetDate;
     return out;
 }
 
 QDataStream& operator >> (QDataStream &in, TQProfile &p)
 {
-    QByteArray vmessSettingsData;
-    in >> p.type >> p.autoStart >> p.serverPort >> p.name >> p.serverAddress >> p.verifyCertificate >> p.verifyHostname >> p.password >> p.sni >> p.reuseSession >> p.sessionTicket >> p.reusePort >> p.tcpFastOpen >> p.mux >> p.muxConcurrency >> p.muxIdleTimeout >> p.websocket >> p.websocketDoubleTLS >> p.websocketPath >> p.websocketHostname >> p.websocketObfsPassword >> p.method >> p.protocol >> p.protocolParam >> p.obfs >> p.obfsParam >> p.plugin >> p.pluginParam >> p.uuid >> p.alterID >> p.security >> vmessSettingsData >> p.latency >> p.currentDownloadUsage >> p.currentUploadUsage >> p.totalDownloadUsage >> p.totalUploadUsage >> p.lastTime >> p.nextResetDate;
-    p.vmessSettings = QJsonDocument::fromJson(vmessSettingsData).object();
+    in >> p.type >> p.autoStart >> p.serverPort >> p.name >> p.serverAddress >> p.verifyCertificate >> p.verifyHostname >> p.password >> p.sni >> p.reuseSession >> p.sessionTicket >> p.reusePort >> p.tcpFastOpen >> p.mux >> p.muxConcurrency >> p.muxIdleTimeout >> p.websocket >> p.websocketDoubleTLS >> p.websocketPath >> p.websocketHostname >> p.websocketObfsPassword >> p.method >> p.protocol >> p.protocolParam >> p.obfs >> p.obfsParam >> p.plugin >> p.pluginParam >> p.uuid >> p.alterID >> p.security >> p.vmessSettings >> p.latency >> p.currentDownloadUsage >> p.currentUploadUsage >> p.totalDownloadUsage >> p.totalUploadUsage >> p.lastTime >> p.nextResetDate;
     return in;
 }

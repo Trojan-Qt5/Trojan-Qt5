@@ -19,7 +19,7 @@ void Tun2socksThread::run()
     QString tunAddr = "240.0.0.2";
     QString tunGw = "240.0.0.1";
     QString tunDns = "8.8.4.4,8.8.8.8";
-    QString proxyServer = QString("%1:%2").arg("127.0.0.1").arg(conf->getInboundSettings()["socks5LocalPort"].toInt());
+    QString proxyServer = QString("%1:%2").arg("127.0.0.1").arg(conf->getInboundSettings().socks5LocalPort);
 
 #if defined (Q_OS_WIN)
     tunAddr = "10.0.0.2";

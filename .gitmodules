@@ -1,9 +1,6 @@
 [submodule "src/plog"]
 	path = src/plog
 	url = https://github.com/Trojan-Qt5/plog.git
-[submodule "src/QtAwesome"]
-	path = src/QtAwesome
-	url = https://github.com/Trojan-Qt5/QtAwesome.git
 [submodule "3rd/yaml-cpp"]
 	path = 3rd/yaml-cpp
 	url = https://github.com/jbeder/yaml-cpp.git

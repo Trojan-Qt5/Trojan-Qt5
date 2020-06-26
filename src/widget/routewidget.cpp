@@ -1,5 +1,6 @@
 #include "routewidget.h"
 #include "ui_routewidget.h"
+
 #include <QJsonArray>
 #include <QStringBuilder>
 #include <QFile>
@@ -35,64 +36,95 @@ RouteWidget::~RouteWidget()
     delete ui;
 }
 
-QJsonObject RouteWidget::setText(QJsonObject object, QString input, QString level1, QString level2)
+QStringList RouteWidget::jsonArraytoStringlist(const QJsonArray &array)
+{
+    QStringList list;
+    for (const QJsonValue &val: array) {
+        QString data = val.toString();
+        list.append(data);
+    }
+    return list;
+}
+
+RouterSettings RouteWidget::parseRouterSettings(const QJsonObject &object)
+{
+    RouterSettings routerSettings;
+    routerSettings.domainStrategy = object["domainStrategy"].toString();
+    routerSettings.domainDirect = jsonArraytoStringlist(object["domain"].toObject()["direct"].toArray());
+    routerSettings.domainProxy = jsonArraytoStringlist(object["domain"].toObject()["proxy"].toArray());
+    routerSettings.domainBlock = jsonArraytoStringlist(object["domain"].toObject()["block"].toArray());
+    routerSettings.ipDirect = jsonArraytoStringlist(object["ip"].toObject()["direct"].toArray());
+    routerSettings.ipProxy = jsonArraytoStringlist(object["ip"].toObject()["proxy"].toArray());
+    routerSettings.ipBlock = jsonArraytoStringlist(object["ip"].toObject()["block"].toArray());
+    return routerSettings;
+}
+
+QJsonObject RouteWidget::exportRouterSettings(const RouterSettings &settings)
+{
+    QJsonObject object;
+    object["domainStrategy"] = settings.domainStrategy;
+    QJsonObject domain;
+    domain["direct"] = QJsonArray::fromStringList(settings.domainDirect);
+    domain["proxy"] = QJsonArray::fromStringList(settings.domainProxy);
+    domain["block"] = QJsonArray::fromStringList(settings.domainBlock);
+    QJsonObject ip;
+    ip["direct"] = QJsonArray::fromStringList(settings.ipDirect);
+    ip["proxy"] = QJsonArray::fromStringList(settings.ipProxy);
+    ip["block"] = QJsonArray::fromStringList(settings.ipBlock);
+    object["domain"] = domain;
+    object["ip"] = ip;
+    return object;
+}
+
+QStringList RouteWidget::setText(QString input)
 {
     QStringList datas = input.replace("\r", "").split("\n");
-    QJsonArray array;
-    QJsonObject ip = object["ip"].toObject();
-    QJsonObject domain = object["domain"].toObject();
+    QStringList result;
     for (auto data : datas)
     {
         if (!data.trimmed().isEmpty())
         {
-            array.push_back(data);
+            result.push_back(data);
          }
     }
-    if (level1 == "ip") {
-        ip[level2] = array;
-        object[level1] = ip;
-    } else {
-        domain[level2] = array;
-        object[level1] = domain;
-    }
-    return object;
+    return result;
 }
 
-QString RouteWidget::getText(QJsonObject object, QString level1, QString level2)
+QString RouteWidget::getText(QStringList input)
 {
     QString datas;
-    foreach(const QJsonValue &var, object[level1].toObject()[level2].toArray()) {
-        QString data = var.toString();
+    foreach(const QString &data, input) {
         datas = datas % data % "\r\n";
     }
     return datas;
 }
 
-void RouteWidget::setConfig(QJsonObject r)
+void RouteWidget::setConfig(RouterSettings r)
 {
     route = r;
 
-    ui->domainStrategyCombo->setCurrentText(route["domainStrategy"].toString());
+    ui->domainStrategyCombo->setCurrentText(route.domainStrategy);
     // domain
-    directDomainTxt->setPlainText(getText(route, "domain", "direct"));
-    proxyDomainTxt->setPlainText(getText(route, "domain", "proxy"));
-    blockDomainTxt->setPlainText(getText(route, "domain", "block"));
+    directDomainTxt->setPlainText(getText(route.domainDirect));
+    proxyDomainTxt->setPlainText(getText(route.domainProxy));
+    blockDomainTxt->setPlainText(getText(route.domainBlock));
     // ip
-    directIPTxt->setPlainText(getText(route, "ip", "direct"));
-    proxyIPTxt->setPlainText(getText(route, "ip", "proxy"));
-    blockIPTxt->setPlainText(getText(route, "ip", "block"));
+    directIPTxt->setPlainText(getText(route.ipDirect));
+    proxyIPTxt->setPlainText(getText(route.ipProxy));
+    blockIPTxt->setPlainText(getText(route.ipBlock));
 }
 
-QJsonObject RouteWidget::getConfig()
+RouterSettings RouteWidget::getConfig()
 {
-    route["domainStrategy"] = ui->domainStrategyCombo->currentText();
-    route = setText(route, directDomainTxt->toPlainText(), "domain", "direct");
-    route = setText(route, proxyDomainTxt->toPlainText(), "domain", "proxy");
-    route = setText(route, blockDomainTxt->toPlainText(), "domain", "block");
-    route = setText(route, directIPTxt->toPlainText(), "ip", "direct");
-    route = setText(route, proxyIPTxt->toPlainText(), "ip", "proxy");
-    route = setText(route, blockIPTxt->toPlainText(), "ip", "block");
-    return route;
+    RouterSettings routerSettings;
+    routerSettings.domainStrategy = ui->domainStrategyCombo->currentText();
+    routerSettings.domainDirect = setText(directDomainTxt->toPlainText());
+    routerSettings.domainProxy = setText(proxyDomainTxt->toPlainText());
+    routerSettings.domainBlock = setText(blockDomainTxt->toPlainText());
+    routerSettings.ipDirect = setText(directIPTxt->toPlainText());
+    routerSettings.ipProxy = setText(proxyIPTxt->toPlainText());
+    routerSettings.ipBlock = setText(blockIPTxt->toPlainText());
+    return routerSettings;
 }
 
 void RouteWidget::on_importRulesBtn_clicked()
@@ -110,14 +142,17 @@ void RouteWidget::on_importRulesBtn_clicked()
     JSONFile.close();
     QJsonObject object = doc.object();
 
-    directDomainTxt->setText(getText(object, "domains", "direct"));
-    proxyDomainTxt->setText(getText(object, "domains", "proxy"));
-    blockDomainTxt->setText(getText(object, "domains", "block"));
+    RouterSettings routerSettings = parseRouterSettings(object);
 
-    directIPTxt->setText(getText(object, "ips", "direct"));
-    proxyIPTxt->setText(getText(object, "ips", "proxy"));
-    blockIPTxt->setText(getText(object, "ips", "block"));
+    ui->domainStrategyCombo->setCurrentText(routerSettings.domainStrategy);
 
+    directDomainTxt->setText(getText(routerSettings.domainDirect));
+    proxyDomainTxt->setText(getText(routerSettings.domainProxy));
+    blockDomainTxt->setText(getText(routerSettings.domainBlock));
+
+    directIPTxt->setText(getText(routerSettings.ipDirect));
+    proxyIPTxt->setText(getText(routerSettings.ipProxy));
+    blockIPTxt->setText(getText(routerSettings.ipBlock));
 }
 
 void RouteWidget::on_exportRulesBtn_clicked()
@@ -133,15 +168,19 @@ void RouteWidget::on_exportRulesBtn_clicked()
 
     QJsonObject object;
 
-    object = setText(object, directDomainTxt->toPlainText(), "domain", "direct");
-    object = setText(object, proxyDomainTxt->toPlainText(), "domain", "proxy");
-    object = setText(object, blockDomainTxt->toPlainText(), "domain", "block");
+    RouterSettings routerSettings;
 
-    object = setText(object, directIPTxt->toPlainText(), "ip", "direct");
-    object = setText(object, proxyIPTxt->toPlainText(), "ip", "proxy");
-    object = setText(object, blockIPTxt->toPlainText(), "ip", "block");
+    routerSettings.domainStrategy = ui->domainStrategyCombo->currentText();
 
-    QJsonDocument doc = QJsonDocument(object);
+    routerSettings.domainDirect = setText(directDomainTxt->toPlainText());
+    routerSettings.domainProxy = setText(proxyDomainTxt->toPlainText());
+    routerSettings.domainBlock = setText(blockDomainTxt->toPlainText());
+
+    routerSettings.ipDirect = setText(directIPTxt->toPlainText());
+    routerSettings.ipProxy = setText(proxyIPTxt->toPlainText());
+    routerSettings.ipBlock = setText(blockIPTxt->toPlainText());
+
+    QJsonDocument doc = QJsonDocument(exportRouterSettings(routerSettings));
 
     JSONFile.write(doc.toJson());
     JSONFile.close();

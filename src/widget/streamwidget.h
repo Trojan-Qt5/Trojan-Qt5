@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QJsonObject>
+#include "v2raystruct.h"
 
 namespace Ui {
 class StreamWidget;
@@ -15,8 +16,8 @@ class StreamWidget : public QWidget
 public:
     explicit StreamWidget(QWidget *parent = nullptr);
     ~StreamWidget();
-    QJsonObject getSettings();
-    void setSettings(const QJsonObject &st);
+    VmessSettings getSettings();
+    void setSettings(const VmessSettings &st);
 
 private slots:
     void on_transportCombo_currentIndexChanged(int index);
@@ -29,9 +30,9 @@ private slots:
 
     void on_tcpRespTxt_textChanged();
 
-    void on_httpPathTxt_textEdited(const QString &arg1);
-
     void on_httpHostTxt_textChanged();
+
+    void on_httpPathTxt_textEdited(const QString &arg1);
 
     void on_wsHeadersTxt_textChanged();
 
@@ -53,6 +54,8 @@ private slots:
 
     void on_kcpHeaderType_currentTextChanged(const QString &arg1);
 
+    void on_seedTxt_textEdited(const QString &arg1);
+
     void on_quicSecurityCB_currentTextChanged(const QString &arg1);
 
     void on_quicKeyTxt_textEdited(const QString &arg1);
@@ -71,7 +74,7 @@ private slots:
 
 private:
     Ui::StreamWidget *ui;
-    QJsonObject settings;
+    VmessSettings settings;
 };
 
 #endif // STREAMWIDGETS_H
