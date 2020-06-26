@@ -113,27 +113,27 @@ void Connection::start()
     ConfigHelper *conf = Utils::getConfigHelper();
 
     //wait, let's check if port is in use
-    if (conf->getGeneralSettings()["checkPortAvailability"].toBool()) {
+    if (conf->getGeneralSettings().checkPortAvailability) {
         PortValidator *pv = new PortValidator();
-        QString errorString = pv->isInUse(conf->getInboundSettings()["socks5LocalPort"].toInt());
+        QString errorString = pv->isInUse(conf->getInboundSettings().socks5LocalPort);
         if (!errorString.isEmpty()) {
-            Logger::error(QString("[Connection] Can't bind socks5 port %1: %2").arg(QString::number(conf->getInboundSettings()["socks5LocalPort"].toInt())).arg(errorString));
-            QMessageBox::critical(NULL, tr("Unable to start connection"), QString(tr("Socks5 port %1 is already in use")).arg(conf->getInboundSettings()["socks5LocalPort"].toInt()));
+            Logger::error(QString("[Connection] Can't bind socks5 port %1: %2").arg(QString::number(conf->getInboundSettings().socks5LocalPort)).arg(errorString));
+            QMessageBox::critical(NULL, tr("Unable to start connection"), QString(tr("Socks5 port %1 is already in use")).arg(conf->getInboundSettings().socks5LocalPort));
             return;
         }
 
         //don't check http mode if httpMode is not enabled
-        if (conf->getInboundSettings()["enableHttpMode"].toBool()) {
-            QString errorString = pv->isInUse(conf->getInboundSettings()["httpLocalPort"].toInt());
+        if (conf->getInboundSettings().enableHttpMode) {
+            QString errorString = pv->isInUse(conf->getInboundSettings().httpLocalPort);
             if (!errorString.isEmpty()) {
-                Logger::error(QString("[Connection] Can't bind http port %1: %2").arg(QString::number(conf->getInboundSettings()["httpLocalPort"].toInt())).arg(errorString));
-                QMessageBox::critical(NULL, tr("Unable to start connection"), QString(tr("Http port %1 is already in use")).arg(conf->getInboundSettings()["httpLocalPort"].toInt()));
+                Logger::error(QString("[Connection] Can't bind http port %1: %2").arg(QString::number(conf->getInboundSettings().httpLocalPort)).arg(errorString));
+                QMessageBox::critical(NULL, tr("Unable to start connection"), QString(tr("Http port %1 is already in use")).arg(conf->getInboundSettings().httpLocalPort));
                 return;
             }
         }
     }
 
-    if (conf->getInboundSettings()["enableHttpMode"].toBool())
+    if (conf->getInboundSettings().enableHttpMode)
         http = new HttpProxy();
 
     if (conf->getSystemProxySettings() == "advance") {
@@ -145,7 +145,7 @@ void Connection::start()
 
     QString file = Utils::getConfigPath() + "/config.json";
 
-    QString localAddr = conf->getInboundSettings()["enableIpv6Support"].toBool() ? (conf->getInboundSettings()["shareOverLan"].toBool() ? "::" : "::1") : (conf->getInboundSettings()["shareOverLan"].toBool() ? "0.0.0.0" : "127.0.0.1");
+    QString localAddr = conf->getInboundSettings().enableIpv6Support ? (conf->getInboundSettings().shareOverLan ? "::" : "::1") : (conf->getInboundSettings().shareOverLan ? "0.0.0.0" : "127.0.0.1");
 
     if (profile.type == "socks5") {
         conf->generateSocks5HttpJson("socks", profile);
@@ -166,8 +166,8 @@ void Connection::start()
         }
         v2ray = new V2rayThread(file);
     } else if (profile.type == "ss") {
-        QString apiAddr = localAddr + ":" + QString::number(conf->getTrojanSettings()["trojanAPIPort"].toInt());
-        QString clientAddr = localAddr + ":" + QString::number(conf->getInboundSettings()["socks5LocalPort"].toInt());
+        QString apiAddr = localAddr + ":" + QString::number(conf->getTrojanSettings().trojanAPIPort);
+        QString clientAddr = localAddr + ":" + QString::number(conf->getInboundSettings().socks5LocalPort);
         QString serverAddr = profile.serverAddress + ":" + QString::number(profile.serverPort);
         ss = new SSThread(clientAddr.toUtf8().data(),
                           serverAddr.toUtf8().data(),
@@ -175,16 +175,16 @@ void Connection::start()
                           profile.password.toUtf8().data(),
                           profile.plugin.toUtf8().data(),
                           profile.pluginParam.toUtf8().data(),
-                          conf->getTrojanSettings()["enableTrojanAPI"].toBool(),
+                          conf->getTrojanSettings().enableTrojanAPI,
                           apiAddr.toUtf8().data());
     } else if (profile.type == "ssr") {
         //initalize ssr thread
-        ssr = std::make_unique<SSRThread>(conf->getInboundSettings()["socks5LocalPort"].toInt(),
+        ssr = std::make_unique<SSRThread>(conf->getInboundSettings().socks5LocalPort,
                           profile.serverPort,
                           6000,
                           1500,
                           SSRThread::SSR_WORK_MODE::TCP_AND_UDP,
-                          conf->getInboundSettings()["enableIpv6Support"].toBool() ? (conf->getInboundSettings()["shareOverLan"].toBool() ? "::" : "::1") : (conf->getInboundSettings()["shareOverLan"].toBool() ? "0.0.0.0" : "127.0.0.1"),
+                          conf->getInboundSettings().enableIpv6Support ? (conf->getInboundSettings().shareOverLan ? "::" : "::1") : (conf->getInboundSettings().shareOverLan ? "0.0.0.0" : "127.0.0.1"),
                           profile.serverAddress.toStdString(),
                           profile.method.toStdString(),
                           profile.password.toStdString(),
@@ -218,7 +218,7 @@ void Connection::start()
 
     if (profile.type == "ss") {
         ss->start();
-        if (conf->getTrojanSettings()["enableTrojanAPI"].toBool()) {
+        if (conf->getTrojanSettings().enableTrojanAPI) {
             ssGoAPI = new SSGoAPI();
             ssGoAPI->start();
             connect(ssGoAPI, &SSGoAPI::OnDataReady, this, &Connection::onNewBytesTransmitted);
@@ -227,14 +227,14 @@ void Connection::start()
         ssr->start();
     } else if ((profile.type == "socks5" || profile.type == "http" ) || profile.type == "vmess") {
         v2ray->start();
-        if (conf->getTrojanSettings()["enableTrojanAPI"].toBool()) {
+        if (conf->getTrojanSettings().enableTrojanAPI) {
             v2rayAPI = new V2rayAPI();
             v2rayAPI->start();
             connect(v2rayAPI, &V2rayAPI::OnDataReady, this, &Connection::onNewBytesTransmitted);
         }
     } else if (profile.type == "trojan") {
         trojan->start();
-        if (conf->getTrojanSettings()["enableTrojanAPI"].toBool()) {
+        if (conf->getTrojanSettings().enableTrojanAPI) {
             trojanGoAPI = new TrojanGoAPI();
             trojanGoAPI->setPassword(profile.password);
             trojanGoAPI->start();
@@ -242,7 +242,7 @@ void Connection::start()
         }
     } else if (profile.type == "snell") {
         snell->start();
-        if (conf->getTrojanSettings()["enableTrojanAPI"].toBool()) {
+        if (conf->getTrojanSettings().enableTrojanAPI) {
             snellGoAPI = new SnellGoAPI();
             snellGoAPI->start();
             connect(snellGoAPI, &SnellGoAPI::OnDataReady, this, &Connection::onNewBytesTransmitted);
@@ -253,12 +253,12 @@ void Connection::start()
     MidMan::setConnection(this);
 
     //start http proxy if settings is configured to do so
-    if (conf->getInboundSettings()["enableHttpMode"].toBool())
+    if (conf->getInboundSettings().enableHttpMode)
         if (conf->getSystemProxySettings() != "advance")
             http->httpListen(QHostAddress(localAddr),
-                           conf->getInboundSettings()["httpLocalPort"].toInt(),
+                           conf->getInboundSettings().httpLocalPort,
                            "127.0.0.1",
-                           conf->getInboundSettings()["socks5LocalPort"].toInt());
+                           conf->getInboundSettings().socks5LocalPort);
 
     //start tun2socks if settings is configured to do so
     if (conf->getSystemProxySettings() == "advance") {
@@ -298,30 +298,30 @@ void Connection::stop()
 
         if (profile.type == "ss") {
             ss->stop();
-            if (ssGoAPI && conf->getTrojanSettings()["enableTrojanAPI"].toBool()) {
+            if (ssGoAPI && conf->getTrojanSettings().enableTrojanAPI) {
                 ssGoAPI->stop();
             }
         } else if (profile.type == "ssr") {
             ssr->stop();
         } else if ((profile.type == "socks5" || profile.type == "http" ) || profile.type == "vmess") {
             v2ray->stop();
-            if (v2rayAPI && conf->getTrojanSettings()["enableTrojanAPI"].toBool()) {
+            if (v2rayAPI && conf->getTrojanSettings().enableTrojanAPI) {
                 v2rayAPI->stop();
             }
         } else if (profile.type == "trojan") {
             trojan->stop();
-            if (trojanGoAPI && conf->getTrojanSettings()["enableTrojanAPI"].toBool()) {
+            if (trojanGoAPI && conf->getTrojanSettings().enableTrojanAPI) {
                 trojanGoAPI->stop();
             }
         } else if (profile.type == "snell") {
             snell->stop();
-            if (snellGoAPI && conf->getTrojanSettings()["enableTrojanAPI"].toBool()) {
+            if (snellGoAPI && conf->getTrojanSettings().enableTrojanAPI) {
                 snellGoAPI->stop();
             }
         }
 
         //if we have started http proxy, stop it
-        if (http && conf->getInboundSettings()["enableHttpMode"].toBool()) {
+        if (http && conf->getInboundSettings().enableHttpMode) {
             http->httpClose();
         }
 
@@ -348,30 +348,30 @@ void Connection::onStartFailed()
     conf->setTrojanOn(running);
 
     //if we have started http proxy, stop it
-    if (conf->getInboundSettings()["enableHttpMode"].toBool()) {
+    if (conf->getInboundSettings().enableHttpMode) {
         http->close();
     }
 
     if (profile.type == "ss") {
         ss->stop();
-        if (ssGoAPI && conf->getTrojanSettings()["enableTrojanAPI"].toBool()) {
+        if (ssGoAPI && conf->getTrojanSettings().enableTrojanAPI) {
             ssGoAPI->stop();
         }
     } else if (profile.type == "ssr") {
         ssr->stop();
     } else if ((profile.type == "socks5" || profile.type == "http" ) || profile.type == "vmess") {
         v2ray->stop();
-        if (v2rayAPI && conf->getTrojanSettings()["enableTrojanAPI"].toBool()) {
+        if (v2rayAPI && conf->getTrojanSettings().enableTrojanAPI) {
             v2rayAPI->stop();
         }
     } else if (profile.type == "trojan") {
         trojan->stop();
-        if (trojanGoAPI && conf->getTrojanSettings()["enableTrojanAPI"].toBool()) {
+        if (trojanGoAPI && conf->getTrojanSettings().enableTrojanAPI) {
             trojanGoAPI->stop();
         }
     } else if (profile.type == "snell") {
         snell->stop();
-        if (snellGoAPI && conf->getTrojanSettings()["enableTrojanAPI"].toBool()) {
+        if (snellGoAPI && conf->getTrojanSettings().enableTrojanAPI) {
             snellGoAPI->stop();
         }
     }

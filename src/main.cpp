@@ -111,7 +111,14 @@ bool dockClickHandler(id self,SEL _cmd,...)
 
 int main(int argc, char *argv[])
 {
-
+    qRegisterMetaTypeStreamOperators<GeneralSettings>("GeneralSettings");
+    qRegisterMetaTypeStreamOperators<InboundSettings>("InboundSettings");
+    qRegisterMetaTypeStreamOperators<OutboundSettings>("OutboundSettings");
+    qRegisterMetaTypeStreamOperators<TestSettings>("TestSettings");
+    qRegisterMetaTypeStreamOperators<SubscribeSettings>("SubscribeSettings");
+    qRegisterMetaTypeStreamOperators<GraphSettings>("GraphSettings");
+    qRegisterMetaTypeStreamOperators<RouterSettings>("RouterSettings");
+    qRegisterMetaTypeStreamOperators<TrojanSettings>("TrojanSettings");
     qRegisterMetaTypeStreamOperators<TQProfile>("TQProfile");
     qRegisterMetaTypeStreamOperators<TQSubscribe>("TQSubscribe");
 
@@ -155,7 +162,7 @@ int main(int argc, char *argv[])
     ResourceHelper::copyDatFiles();
 
     // setup the theme here
-    a.setStyle(conf.getGeneralSettings()["theme"].toString());
+    a.setStyle(conf.getGeneralSettings().theme);
 
     // register theme dynamic changer
     ThemeHelper::registerListen();
@@ -165,10 +172,10 @@ int main(int argc, char *argv[])
 
     // apply language according to settings
     QTranslator *trojanqt5t = new QTranslator(&a);
-    if (conf.getGeneralSettings()["language"].toString() == "Follow System")
+    if (conf.getGeneralSettings().language == "Follow System")
         trojanqt5t->load(QString(":/i18n/trojan-qt5_%1").arg(QLocale::system().name()));
     else
-        trojanqt5t->load(QString(":/i18n/trojan-qt5_%1").arg(conf.getGeneralSettings()["language"].toString()));
+        trojanqt5t->load(QString(":/i18n/trojan-qt5_%1").arg(conf.getGeneralSettings().language));
     a.installTranslator(trojanqt5t);
 
 #if defined (Q_OS_WIN)
@@ -182,7 +189,7 @@ int main(int argc, char *argv[])
 
     a.installEventFilter(new EventFilter(&w));
 
-    if (conf.getGeneralSettings()["onlyOneInstace"].toBool() && w.isInstanceRunning()) {
+    if (conf.getGeneralSettings().onlyOneInstace && w.isInstanceRunning()) {
         return -1;
     }
 
@@ -197,7 +204,7 @@ int main(int argc, char *argv[])
     //start all servers which were configured to start at startup
     w.startAutoStartConnections();
 
-    if (!conf.getGeneralSettings()["hideWindowOnStartup"].toBool()) {
+    if (!conf.getGeneralSettings().hideWindowOnStartup) {
         w.show();
     }
 

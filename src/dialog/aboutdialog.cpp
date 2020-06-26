@@ -24,7 +24,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
 
     ConfigHelper *conf = Utils::getConfigHelper();
 
-    if (!conf->getGeneralSettings()["showAirportAndDonation"].toBool() && !conf->getGeneralSettings()["showAirportAndDonation"].isNull()) {
+    if (!conf->getGeneralSettings().showAirportAndDonation) {
         // remove them inversely to delete completely
         ui->tabWidget->removeTab(3);
         ui->tabWidget->removeTab(2);

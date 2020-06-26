@@ -23,6 +23,7 @@
 #include "connectiontablemodel.h"
 #include "connection.h"
 #include "tqsubscribe.h"
+#include "configstruct.h"
 
 class ConfigHelper : public QObject
 {
@@ -60,6 +61,10 @@ public:
 
     void exportGuiConfigJson(const ConnectionTableModel& model, const QString &file);
 
+    static VmessSettings parseVmessSettings(const QJsonObject &settings);
+
+    static QJsonObject exportVmessSettings(const VmessSettings &settings);
+
     void importConfigYaml(ConnectionTableModel *model, const QString &file);
 
     void importShadowrocketJson(ConnectionTableModel *model, const QString &file);
@@ -67,8 +72,6 @@ public:
     void exportShadowrocketJson(const ConnectionTableModel &model, const QString &file);
 
     void exportSubscribe(const ConnectionTableModel &model, const QString &file);
-
-    static QJsonObject generateVmessSettings();
 
     Connection* configJsonToConnection(const QString &file);
 
@@ -89,21 +92,21 @@ public:
     QJsonArray appendJsonArray(QJsonArray array1, QJsonArray array2);
     QString parseDomainStrategy(QString ds) const;
     QString parseTLSFingerprint(int choice) const;
-    QJsonObject getGeneralSettings() const;
-    QJsonObject getInboundSettings() const;
-    QJsonObject getOutboundSettings() const;
-    QJsonObject getTestSettings() const;
-    QJsonObject getGraphSettings() const;
-    QJsonObject getRouterSettings() const;
-    QJsonObject getSubscribeSettings() const;
-    QJsonObject getTrojanSettings() const;
+    GeneralSettings getGeneralSettings() const;
+    InboundSettings getInboundSettings() const;
+    OutboundSettings getOutboundSettings() const;
+    TestSettings getTestSettings() const;
+    GraphSettings getGraphSettings() const;
+    RouterSettings getRouterSettings() const;
+    SubscribeSettings getSubscribeSettings() const;
+    TrojanSettings getTrojanSettings() const;
     QString getSystemProxySettings() const;
     bool isTrojanOn() const;
     bool isEnableServerLoadBalance() const;
     bool isAutoUpdateSubscribes() const;
     bool isShowToolbar() const;
     bool isShowFilterBar() const;
-    void setGeneralSettings(QJsonObject gs, QJsonObject is, QJsonObject os, QJsonObject es, QJsonObject ss, QJsonObject fs, QJsonObject rs, QJsonObject ts);
+    void setGeneralSettings(GeneralSettings gs, InboundSettings is, OutboundSettings os, TestSettings es, SubscribeSettings ss, GraphSettings fs, RouterSettings rs, TrojanSettings ts);
     void setSystemProxySettings(QString mode);
     void setTrojanOn(bool on);
     void setAutoUpdateSubscribes(bool update);
@@ -126,14 +129,14 @@ signals:
     void toolbarStyleChanged(const Qt::ToolButtonStyle);
 
 private:
-    QJsonObject generalSettings;
-    QJsonObject inboundSettings;
-    QJsonObject outboundSettings;
-    QJsonObject testSettings;
-    QJsonObject graphSettings;
-    QJsonObject routerSettings;
-    QJsonObject subscribeSettings;
-    QJsonObject trojanSettings;
+    GeneralSettings generalSettings;
+    InboundSettings inboundSettings;
+    OutboundSettings outboundSettings;
+    TestSettings testSettings;
+    GraphSettings graphSettings;
+    RouterSettings routerSettings;
+    SubscribeSettings subscribeSettings;
+    TrojanSettings trojanSettings;
     QString systemProxyMode;
     bool trojanOn;
     bool serverLoadBalance;

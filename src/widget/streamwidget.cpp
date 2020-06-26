@@ -16,58 +16,58 @@ StreamWidget::~StreamWidget()
     delete ui;
 }
 
-QJsonObject StreamWidget::getSettings()
+VmessSettings StreamWidget::getSettings()
 {
     return settings;
 }
 
-void StreamWidget::setSettings(const QJsonObject &st)
+void StreamWidget::setSettings(const VmessSettings &st)
 {
     settings = st;
 
-    ui->transportCombo->setCurrentText(settings["network"].toString());
+    ui->transportCombo->setCurrentText(st.network);
     // tcp settings
-    ui->tcpHeaderTypeCB->setCurrentText(settings["tcp"].toObject()["header"].toObject()["type"].toString());
-    ui->tcpRequestTxt->setPlainText(settings["tcp"].toObject()["header"].toObject()["request"].toString());
-    ui->tcpRespTxt->setPlainText(settings["tcp"].toObject()["header"].toObject()["response"].toString());
+    ui->tcpHeaderTypeCB->setCurrentText(st.tcp.type);
+    ui->tcpRequestTxt->setPlainText(st.tcp.request);
+    ui->tcpRespTxt->setPlainText(st.tcp.response);
     // http settings
     QString httpHosts;
-    foreach (const QJsonValue& value, settings["http"].toObject()["host"].toArray())
+    foreach (const QJsonValue& value, st.http.host)
     {
         QString host = value.toString();
         httpHosts = httpHosts % host % "\r\n";
     }
     ui->httpHostTxt->setPlainText(httpHosts);
-    ui->httpPathTxt->setText(settings["http"].toObject()["path"].toString());
+    ui->httpPathTxt->setText(st.http.path);
     // websocket settings
     QString wsHeaders;
-    foreach (const QString& key, settings["ws"].toObject()["header"].toObject().keys())
+    foreach (const QString& key, st.ws.header.keys())
     {
-        QJsonValue value = settings["ws"].toObject()["header"].toObject().value(key);
+        QJsonValue value = st.ws.header.value(key);
         wsHeaders = wsHeaders % key % "|" % value.toString() % "\r\n";
     }
     ui->wsHeadersTxt->setPlainText(wsHeaders);
-    ui->wsPathTxt->setText(settings["ws"].toObject()["path"].toString());
+    ui->wsPathTxt->setText(st.ws.path);
     // kcp settings
-    ui->kcpMTU->setValue(settings["kcp"].toObject()["mtu"].toInt());
-    ui->kcpTTI->setValue(settings["kcp"].toObject()["tti"].toInt());
-    ui->kcpUploadCapacSB->setValue(settings["kcp"].toObject()["uplinkCapacity"].toInt());
-    ui->kcpCongestionCB->setChecked(settings["kcp"].toObject()["congestion"].toBool());
-    ui->kcpDownCapacitySB->setValue(settings["kcp"].toObject()["downlinkCapacity"].toInt());
-    ui->kcpReadBufferSB->setValue(settings["kcp"].toObject()["readBufferSize"].toInt());
-    ui->kcpWriteBufferSB->setValue(settings["kcp"].toObject()["writeBufferSize"].toInt());
-    ui->kcpHeaderType->setCurrentText(settings["kcp"].toObject()["header"].toObject()["type"].toString());
+    ui->kcpMTU->setValue(st.kcp.mtu);
+    ui->kcpTTI->setValue(st.kcp.tti);
+    ui->kcpUploadCapacSB->setValue(st.kcp.uplinkCapacity);
+    ui->kcpCongestionCB->setChecked(st.kcp.congestion);
+    ui->kcpDownCapacitySB->setValue(st.kcp.downlinkCapacity);
+    ui->kcpReadBufferSB->setValue(st.kcp.readBufferSize);
+    ui->kcpWriteBufferSB->setValue(st.kcp.writeBufferSize);
+    ui->kcpHeaderType->setCurrentText(st.kcp.type);
     // quic settings
-    ui->quicSecurityCB->setCurrentText(settings["quic"].toObject()["security"].toString());
-    ui->quicKeyTxt->setText(settings["quic"].toObject()["key"].toString());
-    ui->quicHeaderTypeCB->setCurrentText(settings["quic"].toObject()["header"].toObject()["type"].toString());
+    ui->quicSecurityCB->setCurrentText(st.quic.security);
+    ui->quicKeyTxt->setText(st.quic.key);
+    ui->quicHeaderTypeCB->setCurrentText(st.quic.type);
     // tls settings
-    ui->tlsCB->setChecked(settings["tls"].toObject()["enable"].toBool());
-    ui->allowInsecureCB->setChecked(settings["tls"].toObject()["allowInsecure"].toBool());
-    ui->allowInsecureCiphersCB->setChecked(settings["tls"].toObject()["allowInsecureCiphers"].toBool());
-    ui->serverNameTxt->setText(settings["tls"].toObject()["serverName"].toString());
+    ui->tlsCB->setChecked(st.tls.enable);
+    ui->allowInsecureCB->setChecked(st.tls.allowInsecure);
+    ui->allowInsecureCiphersCB->setChecked(st.tls.allowInsecureCiphers);
+    ui->serverNameTxt->setText(st.tls.serverName);
     QString alpns;
-    foreach (const QJsonValue& value, settings["tls"].toObject()["alpn"].toArray())
+    foreach (const QJsonValue& value, st.tls.alpn)
     {
         QString alpn = value.toString();
         alpns = alpns % alpn % "\r\n";
@@ -82,48 +82,27 @@ void StreamWidget::on_transportCombo_currentIndexChanged(int index)
 
 void StreamWidget::on_transportCombo_currentIndexChanged(const QString &arg1)
 {
-    settings["network"] = arg1;
+    settings.network = arg1;
 }
 
 void StreamWidget::on_tcpHeaderTypeCB_currentIndexChanged(const QString &arg1)
 {
-    QJsonObject tcp = settings["tcp"].toObject();
-    QJsonObject tcpHeader = tcp["header"].toObject();
-    tcpHeader["type"] = arg1;
-    tcp["header"] = tcpHeader;
-    settings["tcp"] = tcp;
+    settings.tcp.type = arg1;
 }
 
 void StreamWidget::on_tcpRequestTxt_textChanged()
 {
-    QJsonObject tcp = settings["tcp"].toObject();
-    QJsonObject tcpHeader = tcp["header"].toObject();
-    tcpHeader["request"] = ui->tcpRequestTxt->toPlainText();
-    tcp["header"] = tcpHeader;
-    settings["tcp"] = tcp;
+    settings.tcp.request = ui->tcpRequestTxt->toPlainText();
 }
 
 void StreamWidget::on_tcpRespTxt_textChanged()
 {
-    QJsonObject tcp = settings["tcp"].toObject();
-    QJsonObject tcpHeader = tcp["header"].toObject();
-    tcpHeader["response"] = ui->tcpRespTxt->toPlainText();
-    tcp["header"] = tcpHeader;
-    settings["tcp"] = tcp;
-}
-
-void StreamWidget::on_httpPathTxt_textEdited(const QString &arg1)
-{
-    QJsonObject http = settings["http"].toObject();
-    http["path"] = arg1;
-    settings["http"] = http;
+    settings.tcp.response = ui->tcpRespTxt->toPlainText();
 }
 
 void StreamWidget::on_httpHostTxt_textChanged()
 {
-    QJsonObject http = settings["http"].toObject();
     QStringList hosts = ui->httpHostTxt->toPlainText().replace("\r", "").split("\n");
-    http["host"] = "";
     QJsonArray httpHost;
     for (auto host : hosts)
     {
@@ -132,13 +111,16 @@ void StreamWidget::on_httpHostTxt_textChanged()
             httpHost.push_back(host);
          }
     }
-    http["host"] = httpHost;
-    settings["http"] = http;
+    settings.http.host = httpHost;
+}
+
+void StreamWidget::on_httpPathTxt_textEdited(const QString &arg1)
+{
+    settings.http.path = arg1;
 }
 
 void StreamWidget::on_wsHeadersTxt_textChanged()
 {
-    QJsonObject ws = settings["ws"].toObject();
     QJsonObject wsHeader = QJsonObject();
     QStringList headers = Utils::splitLines(ui->wsHeadersTxt->toPlainText());
 
@@ -153,133 +135,97 @@ void StreamWidget::on_wsHeadersTxt_textChanged()
         auto value = header.right(header.length() - index - 1);
         wsHeader[key] = value;
     }
-    ws["header"] = wsHeader;
-    settings["ws"] = ws;
+    settings.ws.header = wsHeader;
 }
 
 void StreamWidget::on_wsPathTxt_textEdited(const QString &arg1)
 {
-    QJsonObject ws = settings["ws"].toObject();
-    ws["path"] = arg1;
-    settings["ws"] = ws;
+    settings.ws.path = arg1;
 }
 
 void StreamWidget::on_kcpMTU_valueChanged(int arg1)
 {
-    QJsonObject kcp = settings["kcp"].toObject();
-    kcp["mtu"] = arg1;
-    settings["kcp"] = kcp;
+    settings.kcp.mtu = arg1;
 }
 
 void StreamWidget::on_kcpTTI_valueChanged(int arg1)
 {
-    QJsonObject kcp = settings["kcp"].toObject();
-    kcp["tti"] = arg1;
-    settings["kcp"] = kcp;
+    settings.kcp.tti = arg1;
 }
 
 void StreamWidget::on_kcpUploadCapacSB_valueChanged(int arg1)
 {
-    QJsonObject kcp = settings["kcp"].toObject();
-    kcp["uplinkCapacity"] = arg1;
-    settings["kcp"] = kcp;
+    settings.kcp.uplinkCapacity = arg1;
 }
 
 void StreamWidget::on_kcpCongestionCB_stateChanged(int arg1)
 {
-    QJsonObject kcp = settings["kcp"].toObject();
-    kcp["congestion"] = arg1 == Qt::Checked;
-    settings["kcp"] = kcp;
+    settings.kcp.congestion = arg1;
 }
 
 void StreamWidget::on_kcpDownCapacitySB_valueChanged(int arg1)
 {
-    QJsonObject kcp = settings["kcp"].toObject();
-    kcp["downlinkCapacity"] = arg1;
-    settings["kcp"] = kcp;
+    settings.kcp.downlinkCapacity = arg1;
 }
 
 void StreamWidget::on_kcpReadBufferSB_valueChanged(int arg1)
 {
-    QJsonObject kcp = settings["kcp"].toObject();
-    kcp["readBufferSize"] = arg1;
-    settings["kcp"] = kcp;
+    settings.kcp.readBufferSize = arg1;
 }
 
 void StreamWidget::on_kcpWriteBufferSB_valueChanged(int arg1)
 {
-    QJsonObject kcp = settings["kcp"].toObject();
-    kcp["writeBufferSize"] = arg1;
-    settings["kcp"] = kcp;
+    settings.kcp.writeBufferSize = arg1;
 }
-
 
 void StreamWidget::on_kcpHeaderType_currentTextChanged(const QString &arg1)
 {
-    QJsonObject kcp = settings["kcp"].toObject();
-    QJsonObject kcpHeader = kcp["header"].toObject();
-    kcpHeader["type"] = arg1;
-    kcp["header"] = kcpHeader;
-    settings["kcp"] = kcp;
+    settings.kcp.type = arg1;
 }
 
+void StreamWidget::on_seedTxt_textEdited(const QString &arg1)
+{
+    settings.kcp.seed = arg1;
+}
 
 void StreamWidget::on_quicSecurityCB_currentTextChanged(const QString &arg1)
 {
-    QJsonObject quic = settings["quic"].toObject();
-    quic["security"] = arg1;
-    settings["quic"] = quic;
+    settings.quic.security = arg1;
 }
 
 void StreamWidget::on_quicKeyTxt_textEdited(const QString &arg1)
 {
-    QJsonObject quic = settings["quic"].toObject();
-    quic["key"] = arg1;
-    settings["quic"] = quic;
+    settings.quic.key = arg1;
 }
 
 void StreamWidget::on_quicHeaderTypeCB_currentIndexChanged(const QString &arg1)
 {
-    QJsonObject quic = settings["quic"].toObject();
-    QJsonObject quicHeader = quic["header"].toObject();
-    quicHeader["type"] = arg1;
-    quic["header"] = quicHeader;
-    settings["quic"] = quic;
+    settings.quic.type = arg1;
 }
 
 void StreamWidget::on_tlsCB_stateChanged(int arg1)
 {
-    QJsonObject tls = settings["tls"].toObject();
-    tls["enable"] = arg1 == Qt::Checked;
-    settings["tls"] = tls;
+    settings.tls.enable = arg1 == Qt::Checked;
 }
 
 void StreamWidget::on_allowInsecureCB_stateChanged(int arg1)
 {
-    QJsonObject tls = settings["tls"].toObject();
-    tls["allowInsecure"] = arg1 == Qt::Checked;
-    settings["tls"] = tls;
+    settings.tls.allowInsecure = arg1 == Qt::Checked;
 }
 
 void StreamWidget::on_allowInsecureCiphersCB_stateChanged(int arg1)
 {
-    QJsonObject tls = settings["tls"].toObject();
-    tls["allowInsecureCiphers"] = arg1 == Qt::Checked;
-    settings["tls"] = tls;
+    settings.tls.allowInsecureCiphers = arg1 == Qt::Checked;
 }
 
 void StreamWidget::on_serverNameTxt_textEdited(const QString &arg1)
 {
-    QJsonObject tls = settings["tls"].toObject();
-    tls["serverName"] = arg1;
-    settings["tls"] = tls;
+    settings.tls.serverName = arg1;
 }
 
 void StreamWidget::on_alpnTxt_textChanged()
 {
-    QJsonObject tls = settings["tls"].toObject();
     QStringList alpnList = Utils::splitLines(ui->alpnTxt->toPlainText());
-    tls["alpn"] = "";
     QJsonArray alpnArray;
     for (auto alpn : alpnList)
     {
@@ -288,6 +234,5 @@ void StreamWidget::on_alpnTxt_textChanged()
             alpnArray.push_back(alpn);
          }
     }
-    tls["alpn"] = alpnArray;
-    settings["tls"] = tls;
+    settings.tls.alpn = alpnArray;
 }

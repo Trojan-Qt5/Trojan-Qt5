@@ -37,7 +37,7 @@ void TrojanGoAPI::run()
 {
     ConfigHelper *conf = Utils::getConfigHelper();
 
-    QString address = QString("127.0.0.1:%1").arg(conf->getTrojanSettings()["trojanAPIPort"].toInt());
+    QString address = QString("127.0.0.1:%1").arg(conf->getTrojanSettings().trojanAPIPort);
 
     while (running) {
 

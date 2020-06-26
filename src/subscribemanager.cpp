@@ -27,12 +27,12 @@ QString SubscribeManager::checkUpdate(QString url)
     QNetworkRequest request(url);
     request.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::NoLessSafeRedirectPolicy);
     request.setAttribute(QNetworkRequest::HTTP2AllowedAttribute, true);
-    request.setRawHeader("User-Agent", helper->getSubscribeSettings()["updateUserAgent"].toString().toUtf8().data());
+    request.setRawHeader("User-Agent", helper->getSubscribeSettings().updateUserAgent.toUtf8().data());
     if (useProxy) {
         QNetworkProxy proxy;
         proxy.setType(QNetworkProxy::Socks5Proxy);
         proxy.setHostName("127.0.0.1");
-        proxy.setPort(helper->getInboundSettings()["socks5LocalPort"].toInt());
+        proxy.setPort(helper->getInboundSettings().socks5LocalPort);
         manager->setProxy(proxy);
     }
     QNetworkReply* reply = manager->get(request);
@@ -68,19 +68,15 @@ void SubscribeManager::updateAllSubscribes()
             }
             if (GeneralValidator::validateAll(list[x])) {
                 TQProfile profile = TQProfile(list[x]);
-                if (!isFiltered(profile.name) && (x < helper->getSubscribeSettings()["maximumSubscribe"].toInt() || helper->getSubscribeSettings()["maximumSubscribe"].toInt() == 0)) {
-                    if (helper->getSubscribeSettings()["overwriteAllowInsecure"].toBool()) {
+                if (!isFiltered(profile.name) && (x < helper->getSubscribeSettings().maximumSubscribe || helper->getSubscribeSettings().maximumSubscribe == 0)) {
+                    if (helper->getSubscribeSettings().overwriteAllowInsecure) {
                         profile.verifyCertificate = false;
-                        QJsonObject tlsSettings = profile.vmessSettings["tls"].toObject();
-                        tlsSettings["allowInsecure"] = true;
-                        profile.vmessSettings["tls"] = tlsSettings;
+                        profile.vmessSettings.tls.allowInsecure = true;
                      }
-                    if (helper->getSubscribeSettings()["overwriteAllowInsecureCiphers"].toBool()) {
-                        QJsonObject tlsSettings = profile.vmessSettings["tls"].toObject();
-                        tlsSettings["allowInsecureCiphers"] = true;
-                        profile.vmessSettings["tls"] = tlsSettings;
+                    if (helper->getSubscribeSettings().overwriteAllowInsecureCiphers) {
+                        profile.vmessSettings.tls.allowInsecureCiphers = true;
                     }
-                    if (helper->getSubscribeSettings()["overwriteTcpFastOpen"].toBool()) {
+                    if (helper->getSubscribeSettings().overwriteTcpFastOpen) {
                         profile.tcpFastOpen = true;
                     }
                     emit addUri(profile);
@@ -90,7 +86,7 @@ void SubscribeManager::updateAllSubscribes()
                 Logger::debug(QString("[Subscribe] Server %1 is not valid").arg(list[x]));
             }
         }
-        if (helper->getSubscribeSettings()["autoFetchGroupName"].toBool())
+        if (helper->getSubscribeSettings().autoFetchGroupName)
             if (!TQProfile(list[0]).group.isEmpty())
                 subscribes[i].groupName = TQProfile(list[0]).group;
     }
@@ -99,7 +95,7 @@ void SubscribeManager::updateAllSubscribes()
 
 bool SubscribeManager::isFiltered(QString name)
 {
-    QStringList keywords = helper->getSubscribeSettings()["filterKeyword"].toString().split(",");
+    QStringList keywords = helper->getSubscribeSettings().filterKeyword.split(",");
     if (keywords.size() == 1 && keywords[0] == "")
         return false;
 

@@ -75,12 +75,12 @@
 <context>
     <name>ConfigHelper</name>
     <message>
-        <location filename="../../src/confighelper.cpp" line="63"/>
+        <location filename="../../src/confighelper.cpp" line="67"/>
         <source>Failed to start Trojan-Qt5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/confighelper.cpp" line="63"/>
+        <location filename="../../src/confighelper.cpp" line="67"/>
         <source>Your config.ini was upgraded from old version of Trojan-Qt5.
 A clean install is required.
 Checkout wiki for instructions</source>
@@ -116,42 +116,42 @@ Checkout wiki for instructions</source>
 <context>
     <name>ConnectionItem</name>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="175"/>
+        <location filename="../../src/connectionitem.cpp" line="173"/>
         <source>Timeout</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="178"/>
+        <location filename="../../src/connectionitem.cpp" line="176"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="181"/>
+        <location filename="../../src/connectionitem.cpp" line="179"/>
         <source>Unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="236"/>
+        <location filename="../../src/connectionitem.cpp" line="231"/>
         <source>connected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="238"/>
+        <location filename="../../src/connectionitem.cpp" line="233"/>
         <source>disconnected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="245"/>
+        <location filename="../../src/connectionitem.cpp" line="240"/>
         <source>timed out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="247"/>
+        <location filename="../../src/connectionitem.cpp" line="242"/>
         <source>latency test failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="253"/>
+        <location filename="../../src/connectionitem.cpp" line="248"/>
         <source>Failed to start</source>
         <translation type="unfinished"></translation>
     </message>
@@ -621,67 +621,140 @@ Checkout wiki for instructions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="367"/>
+        <location filename="../../src/mainwindow.cpp" line="371"/>
         <source>Import Connections from gui-config.json</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="380"/>
+        <location filename="../../src/mainwindow.cpp" line="384"/>
         <source>Export Connections as gui-config.json</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="392"/>
+        <location filename="../../src/mainwindow.cpp" line="396"/>
         <source>Import Connections from config.yaml</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="405"/>
+        <location filename="../../src/mainwindow.cpp" line="409"/>
         <source>Export Connections as shadowrocket.json</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="417"/>
+        <location filename="../../src/mainwindow.cpp" line="421"/>
         <source>Export Trojan Servers as subscribe.txt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="445"/>
-        <location filename="../../src/mainwindow.cpp" line="478"/>
+        <location filename="../../src/mainwindow.cpp" line="449"/>
+        <location filename="../../src/mainwindow.cpp" line="482"/>
         <source>QR Code Not Found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="446"/>
-        <location filename="../../src/mainwindow.cpp" line="479"/>
+        <location filename="../../src/mainwindow.cpp" line="450"/>
+        <location filename="../../src/mainwindow.cpp" line="483"/>
         <source>Can&apos;t find any QR code image that contains valid URI on your screen(s).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="470"/>
+        <location filename="../../src/mainwindow.cpp" line="474"/>
         <source>Open QR Code Image File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="517"/>
+        <location filename="../../src/mainwindow.cpp" line="521"/>
         <source>Open config.json</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="529"/>
+        <location filename="../../src/mainwindow.cpp" line="533"/>
         <source>Open shadowrocket.json</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="573"/>
-        <location filename="../../src/mainwindow.cpp" line="589"/>
+        <location filename="../../src/mainwindow.cpp" line="577"/>
+        <location filename="../../src/mainwindow.cpp" line="593"/>
         <source>Invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="574"/>
-        <location filename="../../src/mainwindow.cpp" line="590"/>
+        <location filename="../../src/mainwindow.cpp" line="578"/>
+        <location filename="../../src/mainwindow.cpp" line="594"/>
         <source>The connection&apos;s profile is invalid!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>NaiveProxyEditDialog</name>
+    <message>
+        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="14"/>
+        <source>Profile Editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="41"/>
+        <source>Profile Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="51"/>
+        <source>Server Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="61"/>
+        <source>Server Port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="75"/>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="92"/>
+        <source>Padding</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="99"/>
+        <source>Enable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="106"/>
+        <source>Reset Data Usage after</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="126"/>
+        <source>Automation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="139"/>
+        <source>Auto connect on application start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="146"/>
+        <source>Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="156"/>
+        <source>Scheme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="165"/>
+        <source>HTTPS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="172"/>
+        <source>QUIC</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1872,12 +1945,12 @@ See the following link for a reference:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialog/settingsdialog.cpp" line="99"/>
+        <location filename="../../src/dialog/settingsdialog.cpp" line="114"/>
         <source>Invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialog/settingsdialog.cpp" line="100"/>
+        <location filename="../../src/dialog/settingsdialog.cpp" line="115"/>
         <source>You can not hide dock Icon and use native menu bar at the same time</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2050,32 +2123,32 @@ See the following link for a reference:
 <context>
     <name>StatusBar</name>
     <message>
-        <location filename="../../src/statusbar.cpp" line="40"/>
+        <location filename="../../src/statusbar.cpp" line="35"/>
         <source>SOCKS5   %1: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusbar.cpp" line="43"/>
+        <location filename="../../src/statusbar.cpp" line="38"/>
         <source>HTTP   %1: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusbar.cpp" line="46"/>
+        <location filename="../../src/statusbar.cpp" line="41"/>
         <source>PAC   %1: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusbar.cpp" line="110"/>
+        <location filename="../../src/statusbar.cpp" line="105"/>
         <source>SOCKS5   %1:%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusbar.cpp" line="111"/>
+        <location filename="../../src/statusbar.cpp" line="106"/>
         <source>HTTP   %1:%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusbar.cpp" line="112"/>
+        <location filename="../../src/statusbar.cpp" line="107"/>
         <source>PAC   %1:%2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2086,7 +2159,7 @@ See the following link for a reference:
         <location filename="../../src/statusnotifier.cpp" line="39"/>
         <location filename="../../src/statusnotifier.cpp" line="404"/>
         <location filename="../../src/statusnotifier.mm" line="34"/>
-        <location filename="../../src/statusnotifier.mm" line="381"/>
+        <location filename="../../src/statusnotifier.mm" line="394"/>
         <source>Restore</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2094,7 +2167,7 @@ See the following link for a reference:
         <location filename="../../src/statusnotifier.cpp" line="39"/>
         <location filename="../../src/statusnotifier.cpp" line="404"/>
         <location filename="../../src/statusnotifier.mm" line="34"/>
-        <location filename="../../src/statusnotifier.mm" line="381"/>
+        <location filename="../../src/statusnotifier.mm" line="394"/>
         <source>Minimise</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2108,7 +2181,7 @@ See the following link for a reference:
         <location filename="../../src/statusnotifier.cpp" line="52"/>
         <location filename="../../src/statusnotifier.cpp" line="388"/>
         <location filename="../../src/statusnotifier.mm" line="51"/>
-        <location filename="../../src/statusnotifier.mm" line="365"/>
+        <location filename="../../src/statusnotifier.mm" line="378"/>
         <source>Trojan: Off</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2116,7 +2189,7 @@ See the following link for a reference:
         <location filename="../../src/statusnotifier.cpp" line="54"/>
         <location filename="../../src/statusnotifier.cpp" line="389"/>
         <location filename="../../src/statusnotifier.mm" line="53"/>
-        <location filename="../../src/statusnotifier.mm" line="366"/>
+        <location filename="../../src/statusnotifier.mm" line="379"/>
         <source>Turn On Trojan</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2292,15 +2365,25 @@ See the following link for a reference:
     <message>
         <location filename="../../src/statusnotifier.cpp" line="266"/>
         <location filename="../../src/statusnotifier.cpp" line="345"/>
-        <location filename="../../src/statusnotifier.mm" line="260"/>
-        <location filename="../../src/statusnotifier.mm" line="322"/>
+        <location filename="../../src/statusnotifier.mm" line="267"/>
+        <location filename="../../src/statusnotifier.mm" line="335"/>
         <source>Turn Off Trojan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/statusnotifier.cpp" line="344"/>
-        <location filename="../../src/statusnotifier.mm" line="321"/>
+        <location filename="../../src/statusnotifier.mm" line="334"/>
         <source>Trojan: On</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/statusnotifier.mm" line="133"/>
+        <source>Copy as Windows Style</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/statusnotifier.mm" line="134"/>
+        <source>Copy as Unix Style</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2328,7 +2411,7 @@ See the following link for a reference:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="114"/>
+        <location filename="../../ui/streamwidget.ui" line="136"/>
         <source>Request</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2350,7 +2433,7 @@ See the following link for a reference:
     </message>
     <message>
         <location filename="../../ui/streamwidget.ui" line="239"/>
-        <location filename="../../ui/streamwidget.ui" line="515"/>
+        <location filename="../../ui/streamwidget.ui" line="525"/>
         <source>Headers</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2395,47 +2478,52 @@ See the following link for a reference:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="472"/>
+        <location filename="../../ui/streamwidget.ui" line="468"/>
+        <source>Seed (Experimental)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ui/streamwidget.ui" line="482"/>
         <source>Security</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="498"/>
+        <location filename="../../ui/streamwidget.ui" line="508"/>
         <source>Key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="508"/>
+        <location filename="../../ui/streamwidget.ui" line="518"/>
         <source>keys</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="574"/>
+        <location filename="../../ui/streamwidget.ui" line="584"/>
         <source>TLS Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="580"/>
+        <location filename="../../ui/streamwidget.ui" line="590"/>
         <source>Enable TLS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="587"/>
+        <location filename="../../ui/streamwidget.ui" line="597"/>
         <source>Allow Insecure Certificates</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="594"/>
+        <location filename="../../ui/streamwidget.ui" line="604"/>
         <source>Allow Insecure Ciphers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="601"/>
+        <location filename="../../ui/streamwidget.ui" line="611"/>
         <source>Server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="611"/>
+        <location filename="../../ui/streamwidget.ui" line="621"/>
         <source>Alpn</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2689,6 +2777,7 @@ See the following link for a reference:
     </message>
     <message>
         <location filename="../../ui/vmesseditdialog.ui" line="98"/>
+        <location filename="../../ui/vmesseditdialog.ui" line="196"/>
         <source>none</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2739,7 +2828,17 @@ See the following link for a reference:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/vmesseditdialog.ui" line="195"/>
+        <location filename="../../ui/vmesseditdialog.ui" line="188"/>
+        <source>Tests Enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ui/vmesseditdialog.ui" line="201"/>
+        <source>VMessAEAD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ui/vmesseditdialog.ui" line="216"/>
         <source>Stream Settings</source>
         <translation type="unfinished"></translation>
     </message>

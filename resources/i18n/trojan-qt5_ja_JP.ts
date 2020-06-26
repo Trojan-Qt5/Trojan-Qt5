@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ja_JP" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="ja_JP">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -73,12 +75,12 @@
 <context>
     <name>ConfigHelper</name>
     <message>
-        <location filename="../../src/confighelper.cpp" line="63"/>
+        <location filename="../../src/confighelper.cpp" line="67"/>
         <source>Failed to start Trojan-Qt5</source>
         <translation>Trojan-Qt5の起動に失敗しました</translation>
     </message>
     <message>
-        <location filename="../../src/confighelper.cpp" line="63"/>
+        <location filename="../../src/confighelper.cpp" line="67"/>
         <source>Your config.ini was upgraded from old version of Trojan-Qt5.
 A clean install is required.
 Checkout wiki for instructions</source>
@@ -116,42 +118,42 @@ wikiや説明ドキュメントをご確認ください</translation>
 <context>
     <name>ConnectionItem</name>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="175"/>
+        <location filename="../../src/connectionitem.cpp" line="173"/>
         <source>Timeout</source>
         <translation>タイムアウト</translation>
     </message>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="178"/>
+        <location filename="../../src/connectionitem.cpp" line="176"/>
         <source>Error</source>
         <translation>エラー</translation>
     </message>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="181"/>
+        <location filename="../../src/connectionitem.cpp" line="179"/>
         <source>Unknown</source>
         <translation>不明</translation>
     </message>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="236"/>
+        <location filename="../../src/connectionitem.cpp" line="231"/>
         <source>connected</source>
         <translation>接続されました</translation>
     </message>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="238"/>
+        <location filename="../../src/connectionitem.cpp" line="233"/>
         <source>disconnected</source>
         <translation>コネクトを切断されました</translation>
     </message>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="245"/>
+        <location filename="../../src/connectionitem.cpp" line="240"/>
         <source>timed out</source>
         <translation>タイムアウト</translation>
     </message>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="247"/>
+        <location filename="../../src/connectionitem.cpp" line="242"/>
         <source>latency test failed</source>
         <translation>レイテンシテストに失敗しました</translation>
     </message>
     <message>
-        <location filename="../../src/connectionitem.cpp" line="253"/>
+        <location filename="../../src/connectionitem.cpp" line="248"/>
         <source>Failed to start</source>
         <translation>起動に失敗しました</translation>
     </message>
@@ -621,68 +623,141 @@ wikiや説明ドキュメントをご確認ください</translation>
         <translation>手動でNaiveProxyを追加</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="367"/>
+        <location filename="../../src/mainwindow.cpp" line="371"/>
         <source>Import Connections from gui-config.json</source>
         <translation>gui-config.jsonから接続を取り込む</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="380"/>
+        <location filename="../../src/mainwindow.cpp" line="384"/>
         <source>Export Connections as gui-config.json</source>
         <translation>gui-config.json形式で接続をエクスポートする</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="392"/>
+        <location filename="../../src/mainwindow.cpp" line="396"/>
         <source>Import Connections from config.yaml</source>
         <translation>config.yamlから接続を取り込む</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="405"/>
+        <location filename="../../src/mainwindow.cpp" line="409"/>
         <source>Export Connections as shadowrocket.json</source>
         <translation>shadowrocket.json形式で接続をエクスポートする</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="417"/>
+        <location filename="../../src/mainwindow.cpp" line="421"/>
         <source>Export Trojan Servers as subscribe.txt</source>
         <translation>Trojanのサーバー情報をsubscribe.txt形式でエクスポートする</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="445"/>
-        <location filename="../../src/mainwindow.cpp" line="478"/>
+        <location filename="../../src/mainwindow.cpp" line="449"/>
+        <location filename="../../src/mainwindow.cpp" line="482"/>
         <source>QR Code Not Found</source>
         <translation>QRコードが見つかりません</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="446"/>
-        <location filename="../../src/mainwindow.cpp" line="479"/>
+        <location filename="../../src/mainwindow.cpp" line="450"/>
+        <location filename="../../src/mainwindow.cpp" line="483"/>
         <source>Can&apos;t find any QR code image that contains valid URI on your screen(s).</source>
         <translation>画面上に有効なURIの内包されたQRコードが見つかりません</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="470"/>
+        <location filename="../../src/mainwindow.cpp" line="474"/>
         <source>Open QR Code Image File</source>
         <translation>QRコードの画像を開く</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="517"/>
+        <location filename="../../src/mainwindow.cpp" line="521"/>
         <source>Open config.json</source>
         <translation>config.jsonを開く</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="529"/>
+        <location filename="../../src/mainwindow.cpp" line="533"/>
         <source>Open shadowrocket.json</source>
         <translation>shadowrocket.jsonを開く</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="573"/>
-        <location filename="../../src/mainwindow.cpp" line="589"/>
+        <location filename="../../src/mainwindow.cpp" line="577"/>
+        <location filename="../../src/mainwindow.cpp" line="593"/>
         <source>Invalid</source>
         <translation>無効です</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="574"/>
-        <location filename="../../src/mainwindow.cpp" line="590"/>
+        <location filename="../../src/mainwindow.cpp" line="578"/>
+        <location filename="../../src/mainwindow.cpp" line="594"/>
         <source>The connection&apos;s profile is invalid!</source>
         <translation>この接続プロファイルは無効です</translation>
+    </message>
+</context>
+<context>
+    <name>NaiveProxyEditDialog</name>
+    <message>
+        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="14"/>
+        <source>Profile Editor</source>
+        <translation type="unfinished">プロファイル編集</translation>
+    </message>
+    <message>
+        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="41"/>
+        <source>Profile Name</source>
+        <translation type="unfinished">プロファイル名</translation>
+    </message>
+    <message>
+        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="51"/>
+        <source>Server Address</source>
+        <translation type="unfinished">サーバーアドレス</translation>
+    </message>
+    <message>
+        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="61"/>
+        <source>Server Port</source>
+        <translation type="unfinished">サーバーポート</translation>
+    </message>
+    <message>
+        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="75"/>
+        <source>Password</source>
+        <translation type="unfinished">パスワード</translation>
+    </message>
+    <message>
+        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="92"/>
+        <source>Padding</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="99"/>
+        <source>Enable</source>
+        <translation type="unfinished">有効</translation>
+    </message>
+    <message>
+        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="106"/>
+        <source>Reset Data Usage after</source>
+        <translation type="unfinished">トラフィック使用量をリセット</translation>
+    </message>
+    <message>
+        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="126"/>
+        <source>Automation</source>
+        <translation type="unfinished">自動化</translation>
+    </message>
+    <message>
+        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="139"/>
+        <source>Auto connect on application start</source>
+        <translation type="unfinished">アプリケーション起動時に接続する</translation>
+    </message>
+    <message>
+        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="146"/>
+        <source>Username</source>
+        <translation type="unfinished">ユーザー名</translation>
+    </message>
+    <message>
+        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="156"/>
+        <source>Scheme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="165"/>
+        <source>HTTPS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="172"/>
+        <source>QUIC</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1874,12 +1949,12 @@ See the following link for a reference:
         <translation>バッファサイズ</translation>
     </message>
     <message>
-        <location filename="../../src/dialog/settingsdialog.cpp" line="99"/>
+        <location filename="../../src/dialog/settingsdialog.cpp" line="114"/>
         <source>Invalid</source>
         <translation>無効な情報</translation>
     </message>
     <message>
-        <location filename="../../src/dialog/settingsdialog.cpp" line="100"/>
+        <location filename="../../src/dialog/settingsdialog.cpp" line="115"/>
         <source>You can not hide dock Icon and use native menu bar at the same time</source>
         <translation>ドックのアイコンを非表示にしたままの状態で、ネイティブメニューバーを利用することはできません</translation>
     </message>
@@ -2052,32 +2127,32 @@ See the following link for a reference:
 <context>
     <name>StatusBar</name>
     <message>
-        <location filename="../../src/statusbar.cpp" line="40"/>
+        <location filename="../../src/statusbar.cpp" line="35"/>
         <source>SOCKS5   %1: %2</source>
         <translation>SOCKS5   %1: %2</translation>
     </message>
     <message>
-        <location filename="../../src/statusbar.cpp" line="43"/>
+        <location filename="../../src/statusbar.cpp" line="38"/>
         <source>HTTP   %1: %2</source>
         <translation>HTTP   %1: %2</translation>
     </message>
     <message>
-        <location filename="../../src/statusbar.cpp" line="46"/>
+        <location filename="../../src/statusbar.cpp" line="41"/>
         <source>PAC   %1: %2</source>
         <translation>PAC   %1: %2</translation>
     </message>
     <message>
-        <location filename="../../src/statusbar.cpp" line="110"/>
+        <location filename="../../src/statusbar.cpp" line="105"/>
         <source>SOCKS5   %1:%2</source>
         <translation>SOCKS5   %1:%2</translation>
     </message>
     <message>
-        <location filename="../../src/statusbar.cpp" line="111"/>
+        <location filename="../../src/statusbar.cpp" line="106"/>
         <source>HTTP   %1:%2</source>
         <translation>HTTP   %1:%2</translation>
     </message>
     <message>
-        <location filename="../../src/statusbar.cpp" line="112"/>
+        <location filename="../../src/statusbar.cpp" line="107"/>
         <source>PAC   %1:%2</source>
         <translation>PAC   %1:%2</translation>
     </message>
@@ -2088,7 +2163,7 @@ See the following link for a reference:
         <location filename="../../src/statusnotifier.cpp" line="39"/>
         <location filename="../../src/statusnotifier.cpp" line="404"/>
         <location filename="../../src/statusnotifier.mm" line="34"/>
-        <location filename="../../src/statusnotifier.mm" line="381"/>
+        <location filename="../../src/statusnotifier.mm" line="394"/>
         <source>Restore</source>
         <translation>復元</translation>
     </message>
@@ -2096,7 +2171,7 @@ See the following link for a reference:
         <location filename="../../src/statusnotifier.cpp" line="39"/>
         <location filename="../../src/statusnotifier.cpp" line="404"/>
         <location filename="../../src/statusnotifier.mm" line="34"/>
-        <location filename="../../src/statusnotifier.mm" line="381"/>
+        <location filename="../../src/statusnotifier.mm" line="394"/>
         <source>Minimise</source>
         <translation>最小化</translation>
     </message>
@@ -2110,7 +2185,7 @@ See the following link for a reference:
         <location filename="../../src/statusnotifier.cpp" line="52"/>
         <location filename="../../src/statusnotifier.cpp" line="388"/>
         <location filename="../../src/statusnotifier.mm" line="51"/>
-        <location filename="../../src/statusnotifier.mm" line="365"/>
+        <location filename="../../src/statusnotifier.mm" line="378"/>
         <source>Trojan: Off</source>
         <translation>Trojan: Off</translation>
     </message>
@@ -2118,7 +2193,7 @@ See the following link for a reference:
         <location filename="../../src/statusnotifier.cpp" line="54"/>
         <location filename="../../src/statusnotifier.cpp" line="389"/>
         <location filename="../../src/statusnotifier.mm" line="53"/>
-        <location filename="../../src/statusnotifier.mm" line="366"/>
+        <location filename="../../src/statusnotifier.mm" line="379"/>
         <source>Turn On Trojan</source>
         <translation>止める</translation>
     </message>
@@ -2294,16 +2369,26 @@ See the following link for a reference:
     <message>
         <location filename="../../src/statusnotifier.cpp" line="266"/>
         <location filename="../../src/statusnotifier.cpp" line="345"/>
-        <location filename="../../src/statusnotifier.mm" line="260"/>
-        <location filename="../../src/statusnotifier.mm" line="322"/>
+        <location filename="../../src/statusnotifier.mm" line="267"/>
+        <location filename="../../src/statusnotifier.mm" line="335"/>
         <source>Turn Off Trojan</source>
         <translation>止める</translation>
     </message>
     <message>
         <location filename="../../src/statusnotifier.cpp" line="344"/>
-        <location filename="../../src/statusnotifier.mm" line="321"/>
+        <location filename="../../src/statusnotifier.mm" line="334"/>
         <source>Trojan: On</source>
         <translation>Trojan: On</translation>
+    </message>
+    <message>
+        <location filename="../../src/statusnotifier.mm" line="133"/>
+        <source>Copy as Windows Style</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/statusnotifier.mm" line="134"/>
+        <source>Copy as Unix Style</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2330,7 +2415,7 @@ See the following link for a reference:
         <translation>タイプ</translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="114"/>
+        <location filename="../../ui/streamwidget.ui" line="136"/>
         <source>Request</source>
         <translation>リクエスト</translation>
     </message>
@@ -2352,7 +2437,7 @@ See the following link for a reference:
     </message>
     <message>
         <location filename="../../ui/streamwidget.ui" line="239"/>
-        <location filename="../../ui/streamwidget.ui" line="515"/>
+        <location filename="../../ui/streamwidget.ui" line="525"/>
         <source>Headers</source>
         <translation>リクエストヘッダー</translation>
     </message>
@@ -2397,47 +2482,52 @@ See the following link for a reference:
         <translation>書き込みバッファサイズ(MB)</translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="472"/>
+        <location filename="../../ui/streamwidget.ui" line="468"/>
+        <source>Seed (Experimental)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ui/streamwidget.ui" line="482"/>
         <source>Security</source>
         <translation>セキュリティ</translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="498"/>
+        <location filename="../../ui/streamwidget.ui" line="508"/>
         <source>Key</source>
         <translation>Key</translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="508"/>
+        <location filename="../../ui/streamwidget.ui" line="518"/>
         <source>keys</source>
         <translation>keys</translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="574"/>
+        <location filename="../../ui/streamwidget.ui" line="584"/>
         <source>TLS Settings</source>
         <translation>TLS設定</translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="580"/>
+        <location filename="../../ui/streamwidget.ui" line="590"/>
         <source>Enable TLS</source>
         <translation>TLSを有効にする</translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="587"/>
+        <location filename="../../ui/streamwidget.ui" line="597"/>
         <source>Allow Insecure Certificates</source>
         <translation>Insecure Certificatesを許可する</translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="594"/>
+        <location filename="../../ui/streamwidget.ui" line="604"/>
         <source>Allow Insecure Ciphers</source>
         <translation>Insecure Ciphersを許可する</translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="601"/>
+        <location filename="../../ui/streamwidget.ui" line="611"/>
         <source>Server</source>
         <translation>サーバー</translation>
     </message>
     <message>
-        <location filename="../../ui/streamwidget.ui" line="611"/>
+        <location filename="../../ui/streamwidget.ui" line="621"/>
         <source>Alpn</source>
         <translation>Alpn</translation>
     </message>
@@ -2691,6 +2781,7 @@ See the following link for a reference:
     </message>
     <message>
         <location filename="../../ui/vmesseditdialog.ui" line="98"/>
+        <location filename="../../ui/vmesseditdialog.ui" line="196"/>
         <source>none</source>
         <translation>none</translation>
     </message>
@@ -2741,7 +2832,17 @@ See the following link for a reference:
         <translation>Mux並行数</translation>
     </message>
     <message>
-        <location filename="../../ui/vmesseditdialog.ui" line="195"/>
+        <location filename="../../ui/vmesseditdialog.ui" line="188"/>
+        <source>Tests Enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ui/vmesseditdialog.ui" line="201"/>
+        <source>VMessAEAD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ui/vmesseditdialog.ui" line="216"/>
         <source>Stream Settings</source>
         <translation>ストリーム設定</translation>
     </message>

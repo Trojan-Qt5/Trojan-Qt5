@@ -1,6 +1,8 @@
 #ifndef ROUTEWIDGET_H
 #define ROUTEWIDGET_H
 
+#include "configstruct.h"
+
 #include <QWidget>
 #include <QTextEdit>
 #include <QJsonObject>
@@ -16,10 +18,17 @@ class RouteWidget : public QWidget
 public:
     explicit RouteWidget(QWidget *parent = nullptr);
     ~RouteWidget();
-    QString getText(QJsonObject object, QString level1, QString level2);
-    QJsonObject setText(QJsonObject object, QString input, QString level1, QString level2);
-    void setConfig(QJsonObject r);
-    QJsonObject getConfig();
+
+    QStringList jsonArraytoStringlist(const QJsonArray &array);
+
+    RouterSettings parseRouterSettings(const QJsonObject &object);
+    QJsonObject exportRouterSettings(const RouterSettings &settings);
+
+    QString getText(QStringList input);
+    QStringList setText(QString input);
+
+    void setConfig(RouterSettings r);
+    RouterSettings getConfig();
 
 private slots:
     void on_importRulesBtn_clicked();
@@ -28,7 +37,7 @@ private slots:
 
 private:
     Ui::RouteWidget *ui;
-    QJsonObject route;
+    RouterSettings route;
     QTextEdit *directDomainTxt;
     QTextEdit *proxyDomainTxt;
     QTextEdit *blockDomainTxt;

@@ -44,7 +44,7 @@ CONFIG += link_pkgconfig
 #DEFINES += QT_DEPRECATED_WARNINGS
 
 # Define App Version
-DEFINES += "APP_VERSION=\"\\\"1.2.0\\\"\""
+DEFINES += "APP_VERSION=\"\\\"1.3.0\\\"\""
 
 # Set Build Info String
 _TROJAN_QT5_BUILD_INFO_STR_=$$getenv(_TROJAN_QT5_BUILD_INFO_)
@@ -66,9 +66,6 @@ DEFINES += QT_QTCOLORPICKER_EXPORT
 
 # 3rdParty Headers
 INCLUDEPATH += $$PWD/src/plog/include
-
-# QtAwesome
-include($$PWD/src/QtAwesome/QtAwesome/QtAwesome.pri)
 
 # ShadowsocksR-uvw
 include($$PWD/src/shadowsocksr-uvw/Shadowsocksr-uvw.pri)
@@ -201,6 +198,8 @@ SOURCES += \
     src/dialog/sharedialog.cpp \
     src/dialog/uriinputdialog.cpp \
     src/proxydialog/naiveproxyeditdialog.cpp \
+    src/utils/configstruct.cpp \
+    src/utils/v2raystruct.cpp \
     src/validator/generalvalidator.cpp \
     src/validator/ip4validator.cpp \
     src/validator/portvalidator.cpp \
@@ -265,6 +264,8 @@ HEADERS += \
     src/dialog/uriinputdialog.h \
     src/proxydialog/naiveproxyeditdialog.h \
     src/systemproxy/mac.h \
+    src/utils/configstruct.h \
+    src/utils/v2raystruct.h \
     src/validator/ip4validator.h \
     src/validator/portvalidator.h \
     src/validator/generalvalidator.h \

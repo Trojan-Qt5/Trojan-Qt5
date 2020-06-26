@@ -176,10 +176,10 @@ SpeedPlotView::SpeedPlotView(QWidget *parent) : QGraphicsView(parent), m_current
 
     QPen downPen;
     downPen.setWidthF(1.5);
-    downPen.setColor(QColor(helper->getGraphSettings()["downloadSpeedColor"].toString()));
+    downPen.setColor(QColor(helper->getGraphSettings().downloadSpeedColor));
     QPen upPen;
     upPen.setWidthF(1.5);
-    upPen.setColor(QColor(helper->getGraphSettings()["uploadSpeedColor"].toString()));
+    upPen.setColor(QColor(helper->getGraphSettings().uploadSpeedColor));
     m_properties[UP] = GraphProperties(tr("Total Upload"), upPen);
     m_properties[DOWN] = GraphProperties(tr("Total Download"), downPen);
 }

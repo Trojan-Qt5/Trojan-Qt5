@@ -48,5 +48,13 @@
         <file>icons/upload.svg</file>
         <file>icons/qingwan.jpg</file>
         <file>icons/youyun.jpg</file>
+        <file>icons/network-connect.svg</file>
+        <file>icons/network-disconnect.svg</file>
+        <file>icons/network-test.svg</file>
+        <file>icons/profile-delete.svg</file>
+        <file>icons/profile-edit.svg</file>
+        <file>icons/profile-share.svg</file>
+        <file>icons/profile-up.svg</file>
+        <file>icons/profile-down.svg</file>
     </qresource>
 </RCC>
