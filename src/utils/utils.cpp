@@ -106,6 +106,27 @@ ConfigHelper* Utils::getConfigHelper()
     return helper;
 }
 
+QJsonObject Utils::convertWsHeader(QList<WsHeader> headers)
+{
+    QJsonObject object;
+    for (WsHeader header : headers)
+        object[header.key] = header.value;
+    return object;
+}
+
+QList<WsHeader> Utils::convertQJsonObject(const QJsonObject &object)
+{
+    QList<WsHeader> wsHeaders;
+    for (const QString &key : object.keys()) {
+        QJsonValue val = object.value(key);
+        WsHeader header;
+        header.key = key;
+        header.value = val.toString();
+        wsHeaders.append(header);
+    }
+    return wsHeaders;
+}
+
 /*
 QString Utils::getLocalAddr()
 {

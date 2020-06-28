@@ -28,6 +28,11 @@ public:
     static QString getConfigPath();
     static ConfigHelper* getConfigHelper();
 
+    static QList<WsHeader> convertQJsonObject(const QJsonObject &object);
+    static QJsonObject convertWsHeader(QList<WsHeader> headers);
+
+
+
 };
 
 #endif // UTILS_H

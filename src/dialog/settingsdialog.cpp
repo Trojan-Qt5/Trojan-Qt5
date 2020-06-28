@@ -42,12 +42,14 @@ SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
     ui->enableHttpProxyCheckBox->setChecked(helper->getInboundSettings().enableHttpMode);
     ui->enableIPV6SupportCheckBox->setChecked(helper->getInboundSettings().enableIpv6Support);
     ui->shareOverLANCheckBox->setChecked(helper->getInboundSettings().shareOverLan);
+    ui->inboundSniffingCB->setChecked(helper->getInboundSettings().inboundSniffing);
     ui->socks5PortLineEdit->setText(QString::number(helper->getInboundSettings().socks5LocalPort));
     ui->httpPortLineEdit->setText(QString::number(helper->getInboundSettings().httpLocalPort));
     ui->pacPortLineEdit->setText(QString::number(helper->getInboundSettings().pacLocalPort));
     ui->haproxyPortLineEdit->setText(QString::number(helper->getInboundSettings().haproxyPort));
     ui->haproxyStatusPortLineEdit->setText(QString::number(helper->getInboundSettings().haproxyStatusPort));
     // outbound settings
+    ui->bypassBittorrentCB->setChecked(helper->getOutboundSettings().bypassBittorrent);
     ui->forwardProxyCheckBox->setChecked(helper->getOutboundSettings().forwardProxy);
     ui->forwardProxyTypeComboBox->setCurrentIndex(helper->getOutboundSettings().forwardProxyType);
     ui->forwardProxyIpAddressLineEdit->setText(helper->getOutboundSettings().forwardProxyAddress);
@@ -137,6 +139,7 @@ void SettingsDialog::onAccepted()
     inboundSettings.enableHttpMode = ui->enableHttpProxyCheckBox->isChecked();
     inboundSettings.shareOverLan = ui->shareOverLANCheckBox->isChecked();
     inboundSettings.enableIpv6Support = ui->enableIPV6SupportCheckBox->isChecked();
+    inboundSettings.inboundSniffing = ui->inboundSniffingCB->isChecked();
     inboundSettings.socks5LocalPort = ui->socks5PortLineEdit->text().toInt();
     inboundSettings.httpLocalPort = ui->httpPortLineEdit->text().toInt();
     inboundSettings.pacLocalPort = ui->pacPortLineEdit->text().toInt();
@@ -144,6 +147,7 @@ void SettingsDialog::onAccepted()
     inboundSettings.haproxyPort = ui->haproxyPortLineEdit->text().toInt();
 
     OutboundSettings outboundSettings = helper->getOutboundSettings();
+    outboundSettings.bypassBittorrent = ui->bypassBittorrentCB->isChecked();
     outboundSettings.forwardProxy = ui->forwardProxyCheckBox->isChecked();
     outboundSettings.forwardProxyType = ui->forwardProxyTypeComboBox->currentIndex();
     outboundSettings.forwardProxyAddress = ui->forwardProxyIpAddressLineEdit->text();

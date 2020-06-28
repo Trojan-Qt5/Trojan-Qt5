@@ -362,16 +362,19 @@ TQProfile TQProfile::fromVmessUri(const std::string& vmessUri) const
     if (vmessSettings.network == "tcp") {
         vmessSettings.tcp.type = vmess["type"].toString();
     } else if (vmessSettings.network == "http") {
-        QJsonArray array;
+        QStringList list;
         foreach(const QString &host, vmess["host"].toString().split(",")) {
-            array.push_back(host);
+            list.push_back(host);
         }
-        vmessSettings.http.host = array;
+        vmessSettings.http.host = list;
         vmessSettings.http.path = vmess["path"].toString();
     } else if (vmessSettings.network == "ws") {
-        QJsonObject wsHeader;
-        wsHeader["Host"] = vmess["host"].toString();
-        vmessSettings.ws.header = wsHeader;
+        QList<WsHeader> wsHeaders;
+        WsHeader wsHeader;
+        wsHeader.key = "Host";
+        wsHeader.value = vmess["host"].toString();
+        wsHeaders.append(wsHeader);
+        vmessSettings.ws.header = wsHeaders;
         vmessSettings.ws.path = vmess["path"].toString();
     } else if (vmessSettings.network == "quic") {
         vmessSettings.quic.security = vmess["host"].toString();
@@ -557,16 +560,15 @@ QString TQProfile::toVmessUri() const
     if (vmessSettings.network == "tcp") {
         vmessObject["type"] = vmessSettings.tcp.type;
     } if (vmessSettings.network == "http") {
-        vmessObject["host"] = vmessSettings.http.host;
+        vmessObject["host"] = QJsonArray::fromStringList(vmessSettings.http.host);
         vmessObject["path"] = vmessSettings.http.path;
     } else if (vmessSettings.network == "kcp")
         vmessObject["type"] = vmessSettings.kcp.type;
     else if (vmessSettings.network == "ws") {
-        foreach (const QString& key, vmessSettings.ws.header.keys())
+        foreach (const WsHeader& header, vmessSettings.ws.header)
         {
-            QJsonValue value = vmessSettings.ws.header.value(key);
-            if (key == "Host")
-                vmessObject["host"] = value.toString();
+            if (header.key == "Host")
+                vmessObject["host"] = header.value;
         }
         vmessObject["path"] = vmessSettings.ws.path;
     }

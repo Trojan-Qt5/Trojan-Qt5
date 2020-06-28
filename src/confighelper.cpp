@@ -34,6 +34,16 @@ const QString ConfigHelper::profilePrefix = "Profile";
 
 const QString ConfigHelper::subscribePrefix = "Subscribe";
 
+QStringList ConfigHelper::jsonArraytoStringlist(const QJsonArray &array)
+{
+    QStringList list;
+    for (const QJsonValue &val: array) {
+        QString data = val.toString();
+        list.append(data);
+    }
+    return list;
+}
+
 void ConfigHelper::save(const ConnectionTableModel &model)
 {
     int size = model.rowCount();
@@ -362,9 +372,9 @@ VmessSettings ConfigHelper::parseVmessSettings(const QJsonObject &settings)
     vmessSettings.tcp.type = settings["tcp"].toObject()["header"].toObject()["type"].toString();
     vmessSettings.tcp.request = settings["tcp"].toObject()["header"].toObject()["request"].toString();
     vmessSettings.tcp.response = settings["tcp"].toObject()["header"].toObject()["response"].toString();
-    vmessSettings.http.host = settings["http"].toObject()["host"].toArray();
+    vmessSettings.http.host = jsonArraytoStringlist(settings["http"].toObject()["host"].toArray());
     vmessSettings.http.path = settings["http"].toObject()["path"].toString();
-    vmessSettings.ws.header = settings["ws"].toObject()["header"].toObject();
+    vmessSettings.ws.header = Utils::convertQJsonObject(settings["ws"].toObject()["header"].toObject());
     vmessSettings.ws.path = settings["ws"].toObject()["path"].toString();
     vmessSettings.kcp.mtu = settings["kcp"].toObject()["mtu"].toInt();
     vmessSettings.kcp.tti = settings["kcp"].toObject()["tti"].toInt();
@@ -382,7 +392,7 @@ VmessSettings ConfigHelper::parseVmessSettings(const QJsonObject &settings)
     vmessSettings.tls.allowInsecure = settings["tls"].toObject()["allowInsecure"].toBool();
     vmessSettings.tls.allowInsecureCiphers = settings["tls"].toObject()["allowInsecureCiphers"].toBool();
     vmessSettings.tls.serverName = settings["tls"].toObject()["serverName"].toString();
-    vmessSettings.tls.alpn = settings["tls"].toObject()["alpn"].toArray();
+    vmessSettings.tls.alpn = jsonArraytoStringlist(settings["tls"].toObject()["alpn"].toArray());
     return vmessSettings;
 }
 
@@ -398,11 +408,11 @@ QJsonObject ConfigHelper::exportVmessSettings(const VmessSettings &settings)
     tcp["header"] = tcpHeader;
     object["tcp"] = tcp;
     QJsonObject http;
-    http["host"] = settings.http.host;
+    http["host"] = QJsonArray::fromStringList(settings.http.host);
     http["path"] = settings.http.path;
     object["http"] = http;
     QJsonObject ws;
-    ws["header"] = settings.ws.header;
+    ws["header"] = Utils::convertWsHeader(settings.ws.header);
     ws["path"] = settings.ws.path;
     object["ws"] = ws;
     QJsonObject kcp;
@@ -430,7 +440,7 @@ QJsonObject ConfigHelper::exportVmessSettings(const VmessSettings &settings)
     tls["allowInsecure"] = settings.tls.allowInsecure;
     tls["allowInsecureCiphers"] = settings.tls.allowInsecureCiphers;
     tls["serverName"] = settings.tls.serverName;
-    tls["alpn"] = settings.tls.alpn;
+    tls["alpn"] = QJsonArray::fromStringList(settings.tls.alpn);
     object["tls"] = tls;
 
     return object;
@@ -538,13 +548,23 @@ void ConfigHelper::generateSocks5HttpJson(QString type, TQProfile &profile)
     QJsonArray inboundsArray;
     QJsonObject socks;
     QJsonObject socksSettings;
+    socks["listen"] = inboundSettings.enableIpv6Support ? (inboundSettings.shareOverLan ? "::" : "::1") : (inboundSettings.shareOverLan ? "0.0.0.0" : "127.0.0.1");
     socks["port"] = inboundSettings.socks5LocalPort;
     socks["protocol"] = "socks";
     socksSettings["udp"] = true;
     socksSettings["auth"] = "noauth";
-    socksSettings["ip"] = getInboundSettings().enableIpv6Support ? (getInboundSettings().shareOverLan ? "::" : "::1") : (getInboundSettings().shareOverLan ? "0.0.0.0" : "127.0.0.1");
+    socksSettings["ip"] = inboundSettings.enableIpv6Support ? (inboundSettings.shareOverLan ? "::" : "::1") : (inboundSettings.shareOverLan ? "0.0.0.0" : "127.0.0.1");
     socks["settings"] = socksSettings;
     socks["tag"] = "inbound";
+    if (inboundSettings.inboundSniffing) {
+        QJsonObject sniffing;
+        sniffing["enabled"] = true;
+        QJsonArray destOverride;
+        destOverride.append("http");
+        destOverride.append("tls");
+        sniffing["destOverride"] = destOverride;
+        socks["sniffing"] = sniffing;
+    }
     QJsonObject apiIn;
     apiIn["listen"] = "127.0.0.1";
     apiIn["port"] = trojanSettings.trojanAPIPort;
@@ -693,13 +713,23 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
     QJsonArray inboundsArray;
     QJsonObject socks;
     QJsonObject socksSettings;
+    socks["listen"] = inboundSettings.enableIpv6Support ? (inboundSettings.shareOverLan ? "::" : "::1") : (inboundSettings.shareOverLan ? "0.0.0.0" : "127.0.0.1");
     socks["port"] = inboundSettings.socks5LocalPort;
     socks["protocol"] = "socks";
     socksSettings["udp"] = true;
     socksSettings["auth"] = "noauth";
-    socksSettings["ip"] = getInboundSettings().enableIpv6Support ? (getInboundSettings().shareOverLan ? "::" : "::1") : (getInboundSettings().shareOverLan ? "0.0.0.0" : "127.0.0.1");
+    socksSettings["ip"] = inboundSettings.enableIpv6Support ? (inboundSettings.shareOverLan ? "::" : "::1") : (inboundSettings.shareOverLan ? "0.0.0.0" : "127.0.0.1");
     socks["settings"] = socksSettings;
     socks["tag"] = "inbound";
+    if (inboundSettings.inboundSniffing) {
+        QJsonObject sniffing;
+        sniffing["enabled"] = true;
+        QJsonArray destOverride;
+        destOverride.append("http");
+        destOverride.append("tls");
+        sniffing["destOverride"] = destOverride;
+        socks["sniffing"] = sniffing;
+    }
     QJsonObject apiIn;
     apiIn["listen"] = "127.0.0.1";
     apiIn["port"] = trojanSettings.trojanAPIPort;
@@ -758,11 +788,11 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
     } else if (streamSettings["network"] == "ws") {
         QJsonObject wsSettings;
         wsSettings["path"] = profile.vmessSettings.ws.path;
-        wsSettings["headers"] = profile.vmessSettings.ws.header;
+        wsSettings["headers"] = Utils::convertWsHeader(profile.vmessSettings.ws.header);
         streamSettings["wsSettings"] = wsSettings;
     } else if (streamSettings["network"] == "http") {
         QJsonObject httpSettings;
-        httpSettings["host"] = profile.vmessSettings.http.host;
+        httpSettings["host"] = QJsonArray::fromStringList(profile.vmessSettings.http.host);
         httpSettings["path"] = profile.vmessSettings.http.path;
         streamSettings["httpSettings"] = httpSettings;
     } else if (streamSettings["network"] == "quic") {
@@ -777,7 +807,7 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
     tlsSettings["allowInsecure"] = profile.vmessSettings.tls.allowInsecure;
     tlsSettings["allowInsecureCiphers"] = profile.vmessSettings.tls.allowInsecureCiphers;
     tlsSettings["serverName"] = profile.vmessSettings.tls.serverName;
-    tlsSettings["alpn"] = profile.vmessSettings.tls.alpn;
+    tlsSettings["alpn"] = QJsonArray::fromStringList(profile.vmessSettings.tls.alpn);
     streamSettings["tlsSettings"] = tlsSettings;
     QJsonObject freedom;
     freedom["protocol"] = "freedom";
