@@ -2,7 +2,6 @@
 #define V2RAYSTRUCT_H
 
 #include <QObject>
-#include <QJsonArray>
 #include <QJsonObject>
 #include <QDataStream>
 
@@ -13,12 +12,17 @@ struct tcpSettings {
 };
 
 struct httpSettings {
-    QJsonArray host;
+    QStringList host;
     QString path;
 };
 
+struct WsHeader {
+    QString key;
+    QString value;
+};
+
 struct wsSettings {
-    QJsonObject header;
+    QList<WsHeader> header;
     QString path;
 };
 
@@ -45,7 +49,7 @@ struct tlsSettings {
     bool allowInsecure = false;
     bool allowInsecureCiphers = false;
     QString serverName;
-    QJsonArray alpn;
+    QStringList alpn;
 };
 
 struct VmessSettings {
@@ -63,6 +67,9 @@ QDataStream& operator >> (QDataStream &in, tcpSettings &t);
 
 QDataStream& operator << (QDataStream &out, const httpSettings &h);
 QDataStream& operator >> (QDataStream &in, httpSettings &h);
+
+QDataStream& operator << (QDataStream &out, const WsHeader &w);
+QDataStream& operator >> (QDataStream &in, WsHeader &w);
 
 QDataStream& operator << (QDataStream &out, const wsSettings &w);
 QDataStream& operator >> (QDataStream &in, wsSettings &w);

@@ -16,25 +16,25 @@ QDataStream& operator >> (QDataStream &in, GeneralSettings &g)
 
 QDataStream& operator << (QDataStream &out, const InboundSettings &i)
 {
-    out << i.enableHttpMode << i.shareOverLan << i.enableIpv6Support << i.socks5LocalPort << i.httpLocalPort << i.pacLocalPort << i.haproxyStatusPort << i.haproxyPort;
+    out << i.enableHttpMode << i.shareOverLan << i.enableIpv6Support << i.inboundSniffing << i.socks5LocalPort << i.httpLocalPort << i.pacLocalPort << i.haproxyStatusPort << i.haproxyPort;
     return out;
 }
 
 QDataStream& operator >> (QDataStream &in, InboundSettings &i)
 {
-    in >> i.enableHttpMode >> i.shareOverLan >> i.enableIpv6Support >> i.socks5LocalPort >> i.httpLocalPort >> i.pacLocalPort >> i.haproxyStatusPort >> i.haproxyPort;
+    in >> i.enableHttpMode >> i.shareOverLan >> i.enableIpv6Support >> i.inboundSniffing >> i.socks5LocalPort >> i.httpLocalPort >> i.pacLocalPort >> i.haproxyStatusPort >> i.haproxyPort;
     return in;
 }
 
 QDataStream& operator << (QDataStream &out, const OutboundSettings &o)
 {
-    out << o.forwardProxy << o.forwardProxyType << o.forwardProxyAddress << o.forwardProxyPort << o.forwardProxyAuthentication << o.forwardProxyUsername << o.forwardProxyPassword;
+    out << o.bypassBittorrent << o.forwardProxy << o.forwardProxyType << o.forwardProxyAddress << o.forwardProxyPort << o.forwardProxyAuthentication << o.forwardProxyUsername << o.forwardProxyPassword;
     return out;
 }
 
 QDataStream& operator >> (QDataStream &in, OutboundSettings &o)
 {
-    in >> o.forwardProxy >> o.forwardProxyType >> o.forwardProxyAddress >> o.forwardProxyPort >> o.forwardProxyAuthentication >> o.forwardProxyUsername >> o.forwardProxyPassword;
+    in >> o.bypassBittorrent >> o.forwardProxy >> o.forwardProxyType >> o.forwardProxyAddress >> o.forwardProxyPort >> o.forwardProxyAuthentication >> o.forwardProxyUsername >> o.forwardProxyPassword;
     return in;
 }
 

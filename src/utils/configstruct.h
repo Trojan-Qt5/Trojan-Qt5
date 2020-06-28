@@ -33,6 +33,7 @@ struct InboundSettings {
     bool enableHttpMode = true;
     bool shareOverLan = false;
     bool enableIpv6Support = false;
+    bool inboundSniffing = false;
     int socks5LocalPort = 51837;
     int httpLocalPort = 58591;
     int pacLocalPort = 54400;
@@ -46,6 +47,7 @@ struct InboundSettings {
 Q_DECLARE_METATYPE(InboundSettings)
 
 struct OutboundSettings {
+    bool bypassBittorrent = false;
     bool forwardProxy = false;
     int forwardProxyType = 0;
     QString forwardProxyAddress = "127.0.0.1";

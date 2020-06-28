@@ -24,6 +24,18 @@ QDataStream& operator >> (QDataStream &in, httpSettings &h)
     return in;
 }
 
+QDataStream& operator << (QDataStream &out, const WsHeader &w)
+{
+    out << w.key << w.value;
+    return out;
+}
+
+QDataStream& operator >> (QDataStream &in, WsHeader &w)
+{
+    in >> w.key >> w.value;
+    return in;
+}
+
 QDataStream& operator << (QDataStream &out, const wsSettings &w)
 {
     out << w.header << w.path;

@@ -32,7 +32,7 @@
       </sizepolicy>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -415,55 +415,69 @@
            </property>
           </widget>
          </item>
-         <item row="3" column="0">
+         <item row="4" column="0">
           <widget class="QLabel" name="label_14">
            <property name="text">
             <string>Sock5 Port</string>
            </property>
           </widget>
          </item>
-         <item row="3" column="1">
+         <item row="4" column="1">
           <widget class="QLineEdit" name="socks5PortLineEdit"/>
          </item>
-         <item row="4" column="0">
+         <item row="5" column="0">
           <widget class="QLabel" name="label_15">
            <property name="text">
             <string>Http Port</string>
            </property>
           </widget>
          </item>
-         <item row="4" column="1">
+         <item row="5" column="1">
           <widget class="QLineEdit" name="httpPortLineEdit"/>
          </item>
-         <item row="5" column="0">
+         <item row="6" column="0">
           <widget class="QLabel" name="label_16">
            <property name="text">
             <string>PAC Port</string>
            </property>
           </widget>
          </item>
-         <item row="5" column="1">
+         <item row="6" column="1">
           <widget class="QLineEdit" name="pacPortLineEdit"/>
          </item>
-         <item row="6" column="0">
+         <item row="7" column="0">
           <widget class="QLabel" name="label_18">
            <property name="text">
             <string>Haproxy Port</string>
            </property>
           </widget>
          </item>
-         <item row="6" column="1">
+         <item row="7" column="1">
           <widget class="QLineEdit" name="haproxyPortLineEdit"/>
          </item>
-         <item row="7" column="0">
+         <item row="8" column="0">
           <widget class="QLabel" name="label_19">
            <property name="text">
             <string>Haproxy Status Port</string>
            </property>
           </widget>
          </item>
-         <item row="7" column="1">
+         <item row="8" column="1">
           <widget class="QLineEdit" name="haproxyStatusPortLineEdit"/>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_35">
+           <property name="text">
+            <string>Inbound Sniffing</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QCheckBox" name="inboundSniffingCB">
+           <property name="text">
+            <string>Enable</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -582,7 +596,7 @@
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QCheckBox" name="checkBox">
+          <widget class="QCheckBox" name="bypassBittorrentCB">
            <property name="text">
             <string>Enable</string>
            </property>

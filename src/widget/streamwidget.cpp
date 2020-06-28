@@ -41,10 +41,9 @@ void StreamWidget::setSettings(const VmessSettings &st)
     ui->httpPathTxt->setText(st.http.path);
     // websocket settings
     QString wsHeaders;
-    foreach (const QString& key, st.ws.header.keys())
+    foreach (const WsHeader& header, st.ws.header)
     {
-        QJsonValue value = st.ws.header.value(key);
-        wsHeaders = wsHeaders % key % "|" % value.toString() % "\r\n";
+        wsHeaders = wsHeaders % header.key % "|" % header.value % "\r\n";
     }
     ui->wsHeadersTxt->setPlainText(wsHeaders);
     ui->wsPathTxt->setText(st.ws.path);
@@ -103,7 +102,7 @@ void StreamWidget::on_tcpRespTxt_textChanged()
 void StreamWidget::on_httpHostTxt_textChanged()
 {
     QStringList hosts = ui->httpHostTxt->toPlainText().replace("\r", "").split("\n");
-    QJsonArray httpHost;
+    QStringList httpHost;
     for (auto host : hosts)
     {
         if (!host.trimmed().isEmpty())
@@ -121,7 +120,7 @@ void StreamWidget::on_httpPathTxt_textEdited(const QString &arg1)
 
 void StreamWidget::on_wsHeadersTxt_textChanged()
 {
-    QJsonObject wsHeader = QJsonObject();
+    QList<WsHeader> WsHeaders;
     QStringList headers = Utils::splitLines(ui->wsHeadersTxt->toPlainText());
 
     for (auto header : headers)
@@ -131,11 +130,14 @@ void StreamWidget::on_wsHeadersTxt_textChanged()
 
         auto index = header.indexOf("|");
 
-        auto key = header.left(index);
-        auto value = header.right(header.length() - index - 1);
-        wsHeader[key] = value;
+        QString key = header.left(index);
+        QString value = header.right(header.length() - index - 1);
+        WsHeader wsHeader;
+        wsHeader.key = key;
+        wsHeader.value = value;
+        WsHeaders.append(wsHeader);
     }
-    settings.ws.header = wsHeader;
+    settings.ws.header = WsHeaders;
 }
 
 void StreamWidget::on_wsPathTxt_textEdited(const QString &arg1)
@@ -226,7 +228,7 @@ void StreamWidget::on_serverNameTxt_textEdited(const QString &arg1)
 void StreamWidget::on_alpnTxt_textChanged()
 {
     QStringList alpnList = Utils::splitLines(ui->alpnTxt->toPlainText());
-    QJsonArray alpnArray;
+    QStringList alpnArray;
     for (auto alpn : alpnList)
     {
         if (!alpn.trimmed().isEmpty())

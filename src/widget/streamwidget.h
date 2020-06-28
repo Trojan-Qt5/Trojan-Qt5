@@ -16,6 +16,7 @@ class StreamWidget : public QWidget
 public:
     explicit StreamWidget(QWidget *parent = nullptr);
     ~StreamWidget();
+
     VmessSettings getSettings();
     void setSettings(const VmessSettings &st);
 

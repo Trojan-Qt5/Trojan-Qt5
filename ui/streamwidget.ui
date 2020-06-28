@@ -79,7 +79,7 @@
           </size>
          </property>
          <property name="currentIndex">
-          <number>3</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="tcpStackPage">
           <layout class="QGridLayout" name="gridLayout_2" rowstretch="0,0,0">

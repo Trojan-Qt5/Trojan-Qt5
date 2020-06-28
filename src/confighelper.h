@@ -38,6 +38,8 @@ public:
 
     void onConfigUpdateFromOldVersion();
 
+    static QStringList jsonArraytoStringlist(const QJsonArray &array);
+
     /*
      * Call read() function to read all connection profiles into
      * specified ConnectionTableModel.
