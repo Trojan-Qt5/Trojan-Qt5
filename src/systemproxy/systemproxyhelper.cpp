@@ -67,7 +67,7 @@ void SystemProxyHelper::setSystemProxy(int method)
         LPTSTR serverString = (LPTSTR) server.utf16();
         int status = setProxy(1, serverString);
     } else if (method == 2) {
-        QString pac = QString("http://127.0.0.1:%2/proxy.pac").arg(QString::number(conf->getInboundSettings()["pacLocalPort"].toInt()));
+        QString pac = QString("http://127.0.0.1:%2/proxy.pac").arg(QString::number(conf->getInboundSettings().pacLocalPort));
         LPTSTR pacString = (LPTSTR) pac.utf16();
         int status = setProxy(2, pacString);
     } else if (method == 0) {
@@ -101,7 +101,7 @@ void SystemProxyHelper::setSystemProxy(int method)
             runShell(QString("gsettings set org.gnome.system.proxy.socks port %1").arg(QString::number(conf->getInboundSettings().socks5LocalPort)));
         } else if (method == 2) {
             runShell(QString("gsettings set org.gnome.system.proxy mode auto"));
-            runShell(QString("gsettings set org.gnome.system.proxy autoconfig-url http://127.0.0.1:%1/proxy.pac").arg(QString::number(conf->getInboundSettings()["pacLocalPort"].toInt())));
+            runShell(QString("gsettings set org.gnome.system.proxy autoconfig-url http://127.0.0.1:%1/proxy.pac").arg(QString::number(conf->getInboundSettings().pacLocalPort)));
         } else if (method == 0) {
             runShell("gsettings set org.gnome.system.proxy.mode none");
             runShell("gsettings set org.gnome.system.proxy.autoconfig ''");
@@ -123,7 +123,7 @@ void SystemProxyHelper::setSystemProxy(int method)
             runShell(QString("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key socksProxy \"127.0.0.1:%1\"").arg(conf->getInboundSettings().socks5LocalPort));
         } else if (method == 2) {
             runShell("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key ProxyType 2");
-            runShell(QString("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key 'Proxy Config Script' \"http://127.0.0.1:%1/proxy.pac\"").arg(QString::number(conf->getInboundSettings()["pacLocalPort"].toInt())));
+            runShell(QString("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key 'Proxy Config Script' \"http://127.0.0.1:%1/proxy.pac\"").arg(QString::number(conf->getInboundSettings().pacLocalPort)));
         } else if (method == 0) {
             runShell("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key ProxyType 0");
             runShell("kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key 'Proxy Config Script' \"\"");

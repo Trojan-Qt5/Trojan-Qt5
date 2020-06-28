@@ -111,7 +111,7 @@ QStatusBar::item {
 
 QToolBar {
     background : rgb(255,255,255);
-    border: none;
+    border: 1px solid rgb(203,203,203);
     spacing: 35px;
 }
 
@@ -125,7 +125,6 @@ QToolBar {
     background: rgb(255,255,255);
     border: 1px solid rgb(203,203,203);
     padding-left: 10px;
-    color: rgb(181,181,181); 
 }
 
 QComboBox {
