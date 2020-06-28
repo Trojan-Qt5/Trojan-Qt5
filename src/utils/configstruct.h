@@ -14,7 +14,7 @@ struct GeneralSettings {
     int systemTrayMaximumServer = 0;
     bool startAtLogin = false;
     bool hideWindowOnStartup = false;
-    bool onlyOneInstace = false;
+    bool onlyOneInstace = true;
     bool checkPortAvailability = true;
     bool enableNotification = true;
     bool hideDockIcon = false;

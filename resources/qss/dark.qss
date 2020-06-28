@@ -141,7 +141,6 @@ QToolBar {
     background: rgb(37,40,45);
     border: 1px solid rgb(70,73,80);
     padding-left: 10px;
-    color: rgb(181,181,181); 
 }
 
 QComboBox {
