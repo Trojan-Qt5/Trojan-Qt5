@@ -211,12 +211,16 @@ void StatusNotifier::updateServersMenu()
     serverMenu->addMenu(addServerMenu);
     serverMenu->addSeparator();
     for (int i=0; i<serverList.size(); i++) {
-        QAction *action = new QAction(serverList[i].name, ServerGroup);
-        action->setCheckable(false);
-        action->setIcon(QIcon(QString(":/icons/icons/%1_off.png").arg(serverList[i].type)));
-        if (serverList[i].equals(connected))
-            action->setIcon(QIcon(QString(":/icons/icons/%1_on.png").arg(serverList[i].type)));
-        serverMenu->addAction(action);
+        if (i < helper->getGeneralSettings().systemTrayMaximumServer || helper->getGeneralSettings().systemTrayMaximumServer == 0) {
+            QAction *action = new QAction(serverList[i].name, ServerGroup);
+            action->setCheckable(false);
+            action->setIcon(QIcon(QString(":/icons/icons/%1_off.png").arg(serverList[i].type)));
+            if (serverList[i].equals(connected))
+                action->setIcon(QIcon(QString(":/icons/icons/%1_on.png").arg(serverList[i].type)));
+            serverMenu->addAction(action);
+        } else {
+            break;
+        }
     }
 }
 
@@ -297,15 +301,21 @@ void StatusNotifier::onToggleServerLoadBalance(bool checked)
 void StatusNotifier::onCopyTerminalProxy()
 {
     QClipboard *board = QApplication::clipboard();
-    if (helper->getInboundSettings()["enableHttpMode"].toBool())
-        board->setText(QString("export HTTP_PROXY=http://127.0.0.1:%1; export HTTPS_PROXY=http://127.0.0.1:%1; export ALL_PROXY=socks5://127.0.0.1:%2").arg(helper->getInboundSettings()["httpLocalPort"].toInt()).arg(helper->getInboundSettings()["socks5LocalPort"].toInt()));
+    if (helper->getInboundSettings().enableHttpMode)
+        if (type == "windows")
+            board->setText(QString("set HTTP_PROXY=http://127.0.0.1:%1; set HTTPS_PROXY=http://127.0.0.1:%1; set ALL_PROXY=socks5://127.0.0.1:%2").arg(helper->getInboundSettings().httpLocalPort).arg(helper->getInboundSettings().socks5LocalPort));
+        else if (type == "unix")
+            board->setText(QString("export HTTP_PROXY=http://127.0.0.1:%1; export HTTPS_PROXY=http://127.0.0.1:%1; export ALL_PROXY=socks5://127.0.0.1:%2").arg(helper->getInboundSettings().httpLocalPort).arg(helper->getInboundSettings().socks5LocalPort));
     else
-        board->setText(QString("export HTTP_PROXY=socks5://127.0.0.1:%1; export HTTPS_PROXY=socks5://127.0.0.1:%1; export ALL_PROXY=socks5://127.0.0.1:%1").arg(helper->getInboundSettings()["socks5LocalPort"].toInt()));
+        if (type == "windows")
+            board->setText(QString("set HTTP_PROXY=socks5://127.0.0.1:%1; sey HTTPS_PROXY=socks5://127.0.0.1:%1; set ALL_PROXY=socks5://127.0.0.1:%1").arg(helper->getInboundSettings().socks5LocalPort));
+        else if (type == "unix")
+            board->setText(QString("export HTTP_PROXY=socks5://127.0.0.1:%1; export HTTPS_PROXY=socks5://127.0.0.1:%1; export ALL_PROXY=socks5://127.0.0.1:%1").arg(helper->getInboundSettings().socks5LocalPort));
 }
 
 void StatusNotifier::onSetProxyToTelegram()
 {
-    QDesktopServices::openUrl(QString("tg://socks?server=127.0.0.1&port=%2").arg(helper->getInboundSettings()["socks5LocalPort"].toInt()));
+    QDesktopServices::openUrl(QString("tg://socks?server=127.0.0.1&port=%2").arg(helper->getInboundSettings().socks5LocalPort));
 }
 
 #if defined (Q_OS_WIN)
@@ -328,7 +338,7 @@ void StatusNotifier::activate()
 
 void StatusNotifier::showNotification(const QString &msg)
 {
-    if (helper->getGeneralSettings()["enableNotification"].toBool()) {
+    if (helper->getGeneralSettings().enableNotification) {
 #ifdef Q_OS_LINUX
         //Using DBus to send message.
         QDBusMessage method = QDBusMessage::createMethodCall("org.freedesktop.Notifications","/org/freedesktop/Notifications", "org.freedesktop.Notifications", "Notify");
