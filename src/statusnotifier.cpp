@@ -36,7 +36,7 @@ StatusNotifier::StatusNotifier(MainWindow *w, ConfigHelper *ch, SubscribeManager
             window->raise();
         }
     });
-    minimiseRestoreAction = new QAction(helper->getGeneralSettings()["hideWindowOnStartup"].toBool() ? tr("Restore") : tr("Minimise"), this);
+    minimiseRestoreAction = new QAction(helper->getGeneralSettings().hideWindowOnStartup ? tr("Restore") : tr("Minimise"), this);
     connect(minimiseRestoreAction, &QAction::triggered, this, &StatusNotifier::activate);
     initActions();
     initConnections();
@@ -128,11 +128,14 @@ void StatusNotifier::initActions()
     serverLoadBalance->setCheckable(true);
 
     serverSpeedPlot = new QAction(tr("Server Speed Plot"));
-    copyTerminalProxyCommand = new QAction(tr("Copy terminal proxy command"));
+    copyTerminalProxyCommandMenu = new QMenu(tr("Copy terminal proxy command"));
     setProxyToTelegram = new QAction(tr("Set Proxy to Telegram"));
-#if defined (Q_OS_WIN)
-    installTapDriver = new QAction(tr("Instal TAP Driver"));
-#endif
+
+    terminalWinStyle = new QAction(tr("Copy as Windows Style"));
+    terminalUnixStyle = new QAction(tr("Copy as Unix Style"));
+
+    copyTerminalProxyCommandMenu->addAction(terminalWinStyle);
+    copyTerminalProxyCommandMenu->addAction(terminalUnixStyle);
 
     //setup systray Menu
     systrayMenu.addAction(trojanQt5Action);
@@ -146,7 +149,7 @@ void StatusNotifier::initActions()
     systrayMenu.addAction(serverLoadBalance);
     systrayMenu.addSeparator();
     systrayMenu.addAction(serverSpeedPlot);
-    systrayMenu.addAction(copyTerminalProxyCommand);
+    systrayMenu.addMenu(copyTerminalProxyCommandMenu);
     systrayMenu.addAction(setProxyToTelegram);
 #if defined (Q_OS_WIN)
     systrayMenu.addAction(installTapDriver);
@@ -178,7 +181,8 @@ void StatusNotifier::initConnections()
     connect(updateSubscribe, &QAction::triggered, this, &StatusNotifier::onUpdateSubscribeWithProxy);
     connect(updateSubscribeBypass, &QAction::triggered, this, &StatusNotifier::onUpdateSubscribe);
     connect(serverSpeedPlot, &QAction::triggered, this, [this]() { showServerSpeedPlot(); });
-    connect(copyTerminalProxyCommand, &QAction::triggered, this, [this]() { onCopyTerminalProxy(); });
+    connect(terminalWinStyle, &QAction::triggered, this, [this]() { onCopyTerminalProxy("windows"); });
+    connect(terminalUnixStyle, &QAction::triggered, this, [this]() { onCopyTerminalProxy("unix"); });
     connect(setProxyToTelegram, &QAction::triggered, this, [this]() { onSetProxyToTelegram(); });
 #if defined (Q_OS_WIN)
     connect(installTapDriver, &QAction::triggered, this, [this]() { onInstallTAPDriver(); });
