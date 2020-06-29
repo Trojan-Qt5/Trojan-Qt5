@@ -75,12 +75,12 @@
 <context>
     <name>ConfigHelper</name>
     <message>
-        <location filename="../../src/confighelper.cpp" line="67"/>
+        <location filename="../../src/confighelper.cpp" line="78"/>
         <source>Failed to start Trojan-Qt5</source>
         <translation>Trojan-Qt5啟動失敗</translation>
     </message>
     <message>
-        <location filename="../../src/confighelper.cpp" line="67"/>
+        <location filename="../../src/confighelper.cpp" line="78"/>
         <source>Your config.ini was upgraded from old version of Trojan-Qt5.
 A clean install is required.
 Checkout wiki for instructions</source>
@@ -110,7 +110,7 @@ Checkout wiki for instructions</source>
     <message>
         <location filename="../../src/connection.cpp" line="154"/>
         <location filename="../../src/connection.cpp" line="163"/>
-        <location filename="../../src/connection.cpp" line="200"/>
+        <location filename="../../src/connection.cpp" line="201"/>
         <source>Failed to start V2Ray</source>
         <translation>V2Ray啟動失敗</translation>
     </message>
@@ -161,47 +161,47 @@ Checkout wiki for instructions</source>
 <context>
     <name>ConnectionTableModel</name>
     <message>
-        <location filename="../../src/connectiontablemodel.cpp" line="43"/>
+        <location filename="../../src/connectiontablemodel.cpp" line="44"/>
         <source>Name</source>
         <translation>名稱</translation>
     </message>
     <message>
-        <location filename="../../src/connectiontablemodel.cpp" line="45"/>
+        <location filename="../../src/connectiontablemodel.cpp" line="46"/>
         <source>Type</source>
         <translation>類型</translation>
     </message>
     <message>
-        <location filename="../../src/connectiontablemodel.cpp" line="47"/>
+        <location filename="../../src/connectiontablemodel.cpp" line="48"/>
         <source>Server</source>
         <translation>伺服器</translation>
     </message>
     <message>
-        <location filename="../../src/connectiontablemodel.cpp" line="49"/>
+        <location filename="../../src/connectiontablemodel.cpp" line="50"/>
         <source>Status</source>
         <translation>狀態</translation>
     </message>
     <message>
-        <location filename="../../src/connectiontablemodel.cpp" line="51"/>
+        <location filename="../../src/connectiontablemodel.cpp" line="52"/>
         <source>Latency</source>
         <translation>延遲</translation>
     </message>
     <message>
-        <location filename="../../src/connectiontablemodel.cpp" line="53"/>
+        <location filename="../../src/connectiontablemodel.cpp" line="54"/>
         <source>Term Usage</source>
         <translation>本期使用量</translation>
     </message>
     <message>
-        <location filename="../../src/connectiontablemodel.cpp" line="55"/>
+        <location filename="../../src/connectiontablemodel.cpp" line="56"/>
         <source>Total Usage</source>
         <translation>總計使用量</translation>
     </message>
     <message>
-        <location filename="../../src/connectiontablemodel.cpp" line="57"/>
+        <location filename="../../src/connectiontablemodel.cpp" line="58"/>
         <source>Reset Date</source>
         <translation>重設日期</translation>
     </message>
     <message>
-        <location filename="../../src/connectiontablemodel.cpp" line="59"/>
+        <location filename="../../src/connectiontablemodel.cpp" line="60"/>
         <source>Last Used</source>
         <translation>上次使用</translation>
     </message>
@@ -623,66 +623,66 @@ Checkout wiki for instructions</source>
         <translation>手動新增NaiveProxy</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="371"/>
+        <location filename="../../src/mainwindow.cpp" line="370"/>
         <source>Import Connections from gui-config.json</source>
         <translation>自 gui-config.json 匯入連線</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="384"/>
+        <location filename="../../src/mainwindow.cpp" line="383"/>
         <source>Export Connections as gui-config.json</source>
         <translation>將連線匯出為 gui-config.json</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="396"/>
+        <location filename="../../src/mainwindow.cpp" line="395"/>
         <source>Import Connections from config.yaml</source>
         <translation>自 config.yaml 匯入連線</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="409"/>
+        <location filename="../../src/mainwindow.cpp" line="408"/>
         <source>Export Connections as shadowrocket.json</source>
         <translation>將連線匯出為 shadowrocket.json</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="421"/>
+        <location filename="../../src/mainwindow.cpp" line="420"/>
         <source>Export Trojan Servers as subscribe.txt</source>
         <translation>將 Trojan 伺服器匯出為 subscribe.txt</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="449"/>
-        <location filename="../../src/mainwindow.cpp" line="482"/>
+        <location filename="../../src/mainwindow.cpp" line="448"/>
+        <location filename="../../src/mainwindow.cpp" line="481"/>
         <source>QR Code Not Found</source>
         <translation>未偵測到 QR 碼</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="450"/>
-        <location filename="../../src/mainwindow.cpp" line="483"/>
+        <location filename="../../src/mainwindow.cpp" line="449"/>
+        <location filename="../../src/mainwindow.cpp" line="482"/>
         <source>Can&apos;t find any QR code image that contains valid URI on your screen(s).</source>
         <translation>螢幕上無法偵測到包含 QR 碼的影像</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="474"/>
+        <location filename="../../src/mainwindow.cpp" line="473"/>
         <source>Open QR Code Image File</source>
         <translation>開啟 QR 碼圖檔</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="521"/>
+        <location filename="../../src/mainwindow.cpp" line="520"/>
         <source>Open config.json</source>
         <translation>開啟 config.json</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="533"/>
+        <location filename="../../src/mainwindow.cpp" line="532"/>
         <source>Open shadowrocket.json</source>
         <translation>開啟 shadowrocket.json</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="577"/>
-        <location filename="../../src/mainwindow.cpp" line="593"/>
+        <location filename="../../src/mainwindow.cpp" line="576"/>
+        <location filename="../../src/mainwindow.cpp" line="592"/>
         <source>Invalid</source>
         <translation>無效</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="578"/>
-        <location filename="../../src/mainwindow.cpp" line="594"/>
+        <location filename="../../src/mainwindow.cpp" line="577"/>
+        <location filename="../../src/mainwindow.cpp" line="593"/>
         <source>The connection&apos;s profile is invalid!</source>
         <translation>此連線設定檔無效！</translation>
     </message>
@@ -690,72 +690,72 @@ Checkout wiki for instructions</source>
 <context>
     <name>NaiveProxyEditDialog</name>
     <message>
-        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="14"/>
+        <location filename="../../ui/naiveproxyeditdialog.ui" line="14"/>
         <source>Profile Editor</source>
         <translation type="unfinished">設定檔編輯器</translation>
     </message>
     <message>
-        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="41"/>
+        <location filename="../../ui/naiveproxyeditdialog.ui" line="41"/>
         <source>Profile Name</source>
         <translation type="unfinished">設定檔名稱</translation>
     </message>
     <message>
-        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="51"/>
+        <location filename="../../ui/naiveproxyeditdialog.ui" line="51"/>
         <source>Server Address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="61"/>
+        <location filename="../../ui/naiveproxyeditdialog.ui" line="61"/>
         <source>Server Port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="75"/>
+        <location filename="../../ui/naiveproxyeditdialog.ui" line="75"/>
         <source>Password</source>
         <translation type="unfinished">密碼</translation>
     </message>
     <message>
-        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="92"/>
+        <location filename="../../ui/naiveproxyeditdialog.ui" line="92"/>
         <source>Padding</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="99"/>
+        <location filename="../../ui/naiveproxyeditdialog.ui" line="99"/>
         <source>Enable</source>
         <translation type="unfinished">開啟</translation>
     </message>
     <message>
-        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="106"/>
+        <location filename="../../ui/naiveproxyeditdialog.ui" line="106"/>
         <source>Reset Data Usage after</source>
         <translation type="unfinished">指定日期重設資料使用量</translation>
     </message>
     <message>
-        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="126"/>
+        <location filename="../../ui/naiveproxyeditdialog.ui" line="126"/>
         <source>Automation</source>
         <translation type="unfinished">自動化</translation>
     </message>
     <message>
-        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="139"/>
+        <location filename="../../ui/naiveproxyeditdialog.ui" line="139"/>
         <source>Auto connect on application start</source>
         <translation type="unfinished">程式啟動時自動連線</translation>
     </message>
     <message>
-        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="146"/>
+        <location filename="../../ui/naiveproxyeditdialog.ui" line="146"/>
         <source>Username</source>
         <translation type="unfinished">使用者名稱</translation>
     </message>
     <message>
-        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="156"/>
+        <location filename="../../ui/naiveproxyeditdialog.ui" line="156"/>
         <source>Scheme</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="165"/>
+        <location filename="../../ui/naiveproxyeditdialog.ui" line="165"/>
         <source>HTTPS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/proxydialog/naiveproxyeditdialog.ui" line="172"/>
+        <location filename="../../ui/naiveproxyeditdialog.ui" line="172"/>
         <source>QUIC</source>
         <translation type="unfinished"></translation>
     </message>
@@ -795,7 +795,7 @@ See the following link for a reference:
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../src/tqprofile.cpp" line="15"/>
+        <location filename="../../src/tqprofile.cpp" line="16"/>
         <source>Unnamed Profile</source>
         <translation>未命名設定檔</translation>
     </message>
@@ -990,12 +990,12 @@ See the following link for a reference:
         <translation>匯出規則</translation>
     </message>
     <message>
-        <location filename="../../src/widget/routewidget.cpp" line="102"/>
+        <location filename="../../src/widget/routewidget.cpp" line="134"/>
         <source>Import Rules from rules.json</source>
         <translation>自 rules.json 匯入規則</translation>
     </message>
     <message>
-        <location filename="../../src/widget/routewidget.cpp" line="127"/>
+        <location filename="../../src/widget/routewidget.cpp" line="162"/>
         <source>Exports Rules to rules.json</source>
         <translation>將規則匯出至 rules.json</translation>
     </message>
@@ -1545,12 +1545,14 @@ See the following link for a reference:
         <location filename="../../ui/settingsdialog.ui" line="386"/>
         <location filename="../../ui/settingsdialog.ui" line="400"/>
         <location filename="../../ui/settingsdialog.ui" line="414"/>
-        <location filename="../../ui/settingsdialog.ui" line="540"/>
-        <location filename="../../ui/settingsdialog.ui" line="573"/>
+        <location filename="../../ui/settingsdialog.ui" line="478"/>
+        <location filename="../../ui/settingsdialog.ui" line="554"/>
         <location filename="../../ui/settingsdialog.ui" line="587"/>
-        <location filename="../../ui/settingsdialog.ui" line="822"/>
-        <location filename="../../ui/settingsdialog.ui" line="907"/>
-        <location filename="../../ui/settingsdialog.ui" line="921"/>
+        <location filename="../../ui/settingsdialog.ui" line="601"/>
+        <location filename="../../ui/settingsdialog.ui" line="615"/>
+        <location filename="../../ui/settingsdialog.ui" line="850"/>
+        <location filename="../../ui/settingsdialog.ui" line="935"/>
+        <location filename="../../ui/settingsdialog.ui" line="949"/>
         <source>Enable</source>
         <translation>開啟</translation>
     </message>
@@ -1691,270 +1693,280 @@ See the following link for a reference:
         <translation>Haproxy狀態連接埠</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="474"/>
+        <location filename="../../ui/settingsdialog.ui" line="471"/>
+        <source>Inbound Sniffing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ui/settingsdialog.ui" line="488"/>
         <source>Outbond Settings</source>
         <translation>出站設定</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="485"/>
+        <location filename="../../ui/settingsdialog.ui" line="499"/>
         <source>Forward Proxy</source>
         <translation>轉送代理</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="492"/>
+        <location filename="../../ui/settingsdialog.ui" line="506"/>
         <source>IP Address</source>
         <translation>IP位址</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="499"/>
+        <location filename="../../ui/settingsdialog.ui" line="513"/>
         <source>Port</source>
         <translation>連接埠</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="506"/>
+        <location filename="../../ui/settingsdialog.ui" line="520"/>
         <source>Authentication</source>
         <translation>驗證</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="513"/>
+        <location filename="../../ui/settingsdialog.ui" line="527"/>
         <source>Username</source>
         <translation>使用者名稱</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="523"/>
+        <location filename="../../ui/settingsdialog.ui" line="537"/>
         <source>Password</source>
         <translation>密碼</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="533"/>
+        <location filename="../../ui/settingsdialog.ui" line="547"/>
         <source>Type</source>
         <translation>類型</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="554"/>
+        <location filename="../../ui/settingsdialog.ui" line="568"/>
         <source>http</source>
         <translation>http</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="559"/>
+        <location filename="../../ui/settingsdialog.ui" line="573"/>
         <source>socks5</source>
         <translation>socks5</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="580"/>
+        <location filename="../../ui/settingsdialog.ui" line="594"/>
         <source>Bypass Bittorrent Traffic</source>
         <translation>繞過Bittorrent傳輸</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="597"/>
+        <location filename="../../ui/settingsdialog.ui" line="608"/>
+        <source>Bypass China Mainland</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ui/settingsdialog.ui" line="625"/>
         <source>Test Settings</source>
         <translation>測試設定</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="605"/>
+        <location filename="../../ui/settingsdialog.ui" line="633"/>
         <source>Latency Test Method</source>
         <translation>延遲測試方式</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="613"/>
+        <location filename="../../ui/settingsdialog.ui" line="641"/>
         <source>TCP</source>
         <translation>TCP</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="618"/>
+        <location filename="../../ui/settingsdialog.ui" line="646"/>
         <source>CONNECT</source>
         <translation>CONNECT</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="626"/>
+        <location filename="../../ui/settingsdialog.ui" line="654"/>
         <source>Real Lantency Test Url</source>
         <translation>實際延遲測試Url</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="636"/>
+        <location filename="../../ui/settingsdialog.ui" line="664"/>
         <source>Speed Test Url</source>
         <translation>測速Url</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="649"/>
+        <location filename="../../ui/settingsdialog.ui" line="677"/>
         <source>Graph Settings</source>
         <translation>圖表設定</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="657"/>
+        <location filename="../../ui/settingsdialog.ui" line="685"/>
         <source>Download Speed Color</source>
         <translation>下載速度顏色</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="670"/>
-        <location filename="../../ui/settingsdialog.ui" line="683"/>
+        <location filename="../../ui/settingsdialog.ui" line="698"/>
+        <location filename="../../ui/settingsdialog.ui" line="711"/>
         <source>PushButton</source>
         <translation>PushButton</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="690"/>
+        <location filename="../../ui/settingsdialog.ui" line="718"/>
         <source>Upload Speed Color</source>
         <translation>上傳速度顏色</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="700"/>
+        <location filename="../../ui/settingsdialog.ui" line="728"/>
         <source>Subscribe Settings</source>
         <translation>訂閱設定</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="711"/>
+        <location filename="../../ui/settingsdialog.ui" line="739"/>
         <source>GFWList Update Url</source>
         <translation>GFWList更新網址</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="725"/>
+        <location filename="../../ui/settingsdialog.ui" line="753"/>
         <source>gfwlist/gfwlist</source>
         <translation>gfwlist/gfwlist</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="730"/>
+        <location filename="../../ui/settingsdialog.ui" line="758"/>
         <source>Loukky/gfwlist-by-loukky</source>
         <translation>Loukky/gfwlist-by-loukky</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="735"/>
+        <location filename="../../ui/settingsdialog.ui" line="763"/>
         <source>Local File</source>
         <translation>本機檔案</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="743"/>
+        <location filename="../../ui/settingsdialog.ui" line="771"/>
         <source>Update User Agent</source>
         <translation>更新User Agent</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="753"/>
+        <location filename="../../ui/settingsdialog.ui" line="781"/>
         <source>Filter Keyword (,)</source>
         <translation>篩選關鍵字(,)</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="763"/>
+        <location filename="../../ui/settingsdialog.ui" line="791"/>
         <source>Maximum</source>
         <translation>上限</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="773"/>
+        <location filename="../../ui/settingsdialog.ui" line="801"/>
         <source>Overwrite AllowInsecure</source>
         <translation>覆寫允許不安全</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="780"/>
-        <location filename="../../ui/settingsdialog.ui" line="794"/>
         <location filename="../../ui/settingsdialog.ui" line="808"/>
+        <location filename="../../ui/settingsdialog.ui" line="822"/>
+        <location filename="../../ui/settingsdialog.ui" line="836"/>
         <source>Overwrite</source>
         <translation>覆寫</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="787"/>
+        <location filename="../../ui/settingsdialog.ui" line="815"/>
         <source>Overwrite AllowInsecureCiphers</source>
         <translation>覆寫允許不安全加密</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="801"/>
+        <location filename="../../ui/settingsdialog.ui" line="829"/>
         <source>Overwirte TcpFastOpen</source>
         <translation>覆寫Tcp快速打開</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="815"/>
+        <location filename="../../ui/settingsdialog.ui" line="843"/>
         <source>Auto fetch group name</source>
         <translation>自動提取群組名稱</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="832"/>
+        <location filename="../../ui/settingsdialog.ui" line="860"/>
         <source>Router Settings</source>
         <translation>路由設定</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="842"/>
+        <location filename="../../ui/settingsdialog.ui" line="870"/>
         <source>Trojan Settings</source>
         <translation>Trojan設定</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="853"/>
+        <location filename="../../ui/settingsdialog.ui" line="881"/>
         <source>TLS Fingerprint</source>
         <translation>TLS指紋</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="867"/>
+        <location filename="../../ui/settingsdialog.ui" line="895"/>
         <source>none</source>
         <translation>none</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="872"/>
+        <location filename="../../ui/settingsdialog.ui" line="900"/>
         <source>auto</source>
         <translation>auto</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="877"/>
+        <location filename="../../ui/settingsdialog.ui" line="905"/>
         <source>firefox</source>
         <translation>firefox</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="882"/>
+        <location filename="../../ui/settingsdialog.ui" line="910"/>
         <source>chrome</source>
         <translation>chrome</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="887"/>
+        <location filename="../../ui/settingsdialog.ui" line="915"/>
         <source>ios</source>
         <translation>ios</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="892"/>
+        <location filename="../../ui/settingsdialog.ui" line="920"/>
         <source>randomized</source>
         <translation>隨機</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="900"/>
+        <location filename="../../ui/settingsdialog.ui" line="928"/>
         <source>Enable Router</source>
         <translation>開啟路由</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="914"/>
+        <location filename="../../ui/settingsdialog.ui" line="942"/>
         <source>Enable API</source>
         <translation>開啟 API</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="928"/>
+        <location filename="../../ui/settingsdialog.ui" line="956"/>
         <source>Geo Path</source>
         <translation>Geo檔案路徑</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="938"/>
+        <location filename="../../ui/settingsdialog.ui" line="966"/>
         <source>API Port</source>
         <translation>API連接埠</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="948"/>
+        <location filename="../../ui/settingsdialog.ui" line="976"/>
         <source>Cert</source>
         <translation>證書</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="958"/>
+        <location filename="../../ui/settingsdialog.ui" line="986"/>
         <source>Cipher</source>
         <translation>加密</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="968"/>
+        <location filename="../../ui/settingsdialog.ui" line="996"/>
         <source>Cipher TLS13</source>
         <translation>加密TLS13</translation>
     </message>
     <message>
-        <location filename="../../ui/settingsdialog.ui" line="978"/>
+        <location filename="../../ui/settingsdialog.ui" line="1006"/>
         <source>Buffer Size</source>
         <translation>緩衝大小</translation>
     </message>
     <message>
-        <location filename="../../src/dialog/settingsdialog.cpp" line="114"/>
+        <location filename="../../src/dialog/settingsdialog.cpp" line="116"/>
         <source>Invalid</source>
         <translation>無效</translation>
     </message>
     <message>
-        <location filename="../../src/dialog/settingsdialog.cpp" line="115"/>
+        <location filename="../../src/dialog/settingsdialog.cpp" line="117"/>
         <source>You can not hide dock Icon and use native menu bar at the same time</source>
         <translation>您無法同時「隱藏Dock圖示」並「使用本機功能表」</translation>
     </message>
@@ -2161,7 +2173,7 @@ See the following link for a reference:
     <name>StatusNotifier</name>
     <message>
         <location filename="../../src/statusnotifier.cpp" line="39"/>
-        <location filename="../../src/statusnotifier.cpp" line="404"/>
+        <location filename="../../src/statusnotifier.cpp" line="418"/>
         <location filename="../../src/statusnotifier.mm" line="34"/>
         <location filename="../../src/statusnotifier.mm" line="394"/>
         <source>Restore</source>
@@ -2169,7 +2181,7 @@ See the following link for a reference:
     </message>
     <message>
         <location filename="../../src/statusnotifier.cpp" line="39"/>
-        <location filename="../../src/statusnotifier.cpp" line="404"/>
+        <location filename="../../src/statusnotifier.cpp" line="418"/>
         <location filename="../../src/statusnotifier.mm" line="34"/>
         <location filename="../../src/statusnotifier.mm" line="394"/>
         <source>Minimise</source>
@@ -2183,7 +2195,7 @@ See the following link for a reference:
     </message>
     <message>
         <location filename="../../src/statusnotifier.cpp" line="52"/>
-        <location filename="../../src/statusnotifier.cpp" line="388"/>
+        <location filename="../../src/statusnotifier.cpp" line="402"/>
         <location filename="../../src/statusnotifier.mm" line="51"/>
         <location filename="../../src/statusnotifier.mm" line="378"/>
         <source>Trojan: Off</source>
@@ -2191,7 +2203,7 @@ See the following link for a reference:
     </message>
     <message>
         <location filename="../../src/statusnotifier.cpp" line="54"/>
-        <location filename="../../src/statusnotifier.cpp" line="389"/>
+        <location filename="../../src/statusnotifier.cpp" line="403"/>
         <location filename="../../src/statusnotifier.mm" line="53"/>
         <location filename="../../src/statusnotifier.mm" line="379"/>
         <source>Turn On Trojan</source>
@@ -2362,30 +2374,31 @@ See the following link for a reference:
         <translation>設定Telegram代理</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="134"/>
         <source>Instal TAP Driver</source>
-        <translation>安裝TAP驅動程式</translation>
+        <translation type="vanished">安裝TAP驅動程式</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="266"/>
-        <location filename="../../src/statusnotifier.cpp" line="345"/>
+        <location filename="../../src/statusnotifier.cpp" line="274"/>
+        <location filename="../../src/statusnotifier.cpp" line="359"/>
         <location filename="../../src/statusnotifier.mm" line="267"/>
         <location filename="../../src/statusnotifier.mm" line="335"/>
         <source>Turn Off Trojan</source>
         <translation>關閉Trojan</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="344"/>
+        <location filename="../../src/statusnotifier.cpp" line="358"/>
         <location filename="../../src/statusnotifier.mm" line="334"/>
         <source>Trojan: On</source>
         <translation>Trojan: 已開啟</translation>
     </message>
     <message>
+        <location filename="../../src/statusnotifier.cpp" line="134"/>
         <location filename="../../src/statusnotifier.mm" line="133"/>
         <source>Copy as Windows Style</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../src/statusnotifier.cpp" line="135"/>
         <location filename="../../src/statusnotifier.mm" line="134"/>
         <source>Copy as Unix Style</source>
         <translation type="unfinished"></translation>

@@ -320,7 +320,7 @@ HEADERS += \
     src/qtcolorpicker.h
 
 FORMS += \
-    src/proxydialog/naiveproxyeditdialog.ui \
+    ui/naiveproxyeditdialog.ui \
     ui/httpeditdialog.ui \
     ui/socks5editdialog.ui \
     ui/aboutdialog.ui \

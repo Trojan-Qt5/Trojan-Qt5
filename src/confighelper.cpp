@@ -515,6 +515,14 @@ void ConfigHelper::generateSocks5HttpJson(QString type, TQProfile &profile)
     QJsonArray apiRuleInboundTag;
     apiRuleInboundTag.append("api_in");
     apiRule["inboundTag"] = apiRuleInboundTag;
+    QJsonObject bypassBittorrent;
+    if (outboundSettings.bypassBittorrent) {
+        bypassBittorrent["outboundTag"] = "direct";
+        QJsonArray protocol;
+        protocol.append("bittorrent");
+        bypassBittorrent["protocol"] = protocol;
+        bypassBittorrent["type"] = "field";
+    }
     QJsonObject direct;
     direct["type"] = "field";
     if (routerSettings.domainDirect.size() != 0)
@@ -537,6 +545,8 @@ void ConfigHelper::generateSocks5HttpJson(QString type, TQProfile &profile)
         block["ip"] = QJsonArray::fromStringList(routerSettings.ipBlock);
     block["outboundTag"] = "block";
     rules.append(apiRule);
+    if (outboundSettings.bypassBittorrent)
+        rules.append(bypassBittorrent);
     if (routerSettings.domainDirect.size() != 0 || routerSettings.ipDirect.size() != 0)
         rules.append(direct);
     if (routerSettings.domainProxy.size() != 0 || routerSettings.ipProxy.size() != 0)
@@ -680,6 +690,14 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
     QJsonArray apiRuleInboundTag;
     apiRuleInboundTag.append("api_in");
     apiRule["inboundTag"] = apiRuleInboundTag;
+    QJsonObject bypassBittorrent;
+    if (outboundSettings.bypassBittorrent) {
+        bypassBittorrent["outboundTag"] = "direct";
+        QJsonArray protocol;
+        protocol.append("bittorrent");
+        bypassBittorrent["protocol"] = protocol;
+        bypassBittorrent["type"] = "field";
+    }
     QJsonObject direct;
     direct["type"] = "field";
     if (routerSettings.domainDirect.size() != 0)
@@ -702,6 +720,8 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
         block["ip"] = QJsonArray::fromStringList(routerSettings.ipBlock);
     block["outboundTag"] = "block";
     rules.append(apiRule);
+    if (outboundSettings.bypassBittorrent)
+        rules.append(bypassBittorrent);
     if (routerSettings.domainDirect.size() != 0 || routerSettings.ipDirect.size() != 0)
         rules.append(direct);
     if (routerSettings.domainProxy.size() != 0 || routerSettings.ipProxy.size() != 0)
