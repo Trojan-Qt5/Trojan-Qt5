@@ -72,8 +72,8 @@ void HttpProxy::incomingConnection(qintptr socketDescriptor)
 void HttpProxy::onSocketError(QAbstractSocket::SocketError err)
 {
     if (err != QAbstractSocket::RemoteHostClosedError) {
-        QDebug(QtMsgType::QtWarningMsg) << "HTTP socket error: "
-                                        << err;
+        /* QDebug(QtMsgType::QtWarningMsg) << "HTTP socket error: "
+                                        << err; */
     }
     sender()->deleteLater();
 }
@@ -100,6 +100,7 @@ void HttpProxy::onSocketReadyRead()
     if (method != "CONNECT") {
         QUrl url = QUrl::fromEncoded(address);
         if (!url.isValid()) {
+            // QDebug(QtMsgType::QtCriticalMsg) << "Invalid URL: " << url;
             socket->disconnectFromHost();
             return;
         }

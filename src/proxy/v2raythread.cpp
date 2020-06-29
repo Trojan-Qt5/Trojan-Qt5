@@ -13,7 +13,6 @@ V2rayThread::~V2rayThread()
 
 void V2rayThread::run()
 {
-    qDebug() <<qgetenv("V2RAY_LOCATION_ASSET");
     startV2rayGo(filePath.toUtf8().data());
 }
 
