@@ -523,6 +523,20 @@ void ConfigHelper::generateSocks5HttpJson(QString type, TQProfile &profile)
         bypassBittorrent["protocol"] = protocol;
         bypassBittorrent["type"] = "field";
     }
+    QJsonObject bypassChinaMainlandIP;
+    QJsonObject bypassChinaMainlandDo;
+    if (outboundSettings.bypassChinaMainland) {
+        QJsonArray bypassIPArr;
+        bypassIPArr.append("geoip:cn");
+        bypassChinaMainlandIP["ip"] = bypassIPArr;
+        bypassChinaMainlandIP["outboundTag"] = "direct";
+        bypassChinaMainlandIP["type"] = "field";
+        QJsonArray bypassDoArr;
+        bypassDoArr.append("geosite:cn");
+        bypassChinaMainlandDo["domain"] = bypassDoArr;
+        bypassChinaMainlandDo["outboundTag"] = "direct";
+        bypassChinaMainlandDo["type"] = "field";
+    }
     QJsonObject direct;
     direct["type"] = "field";
     if (routerSettings.domainDirect.size() != 0)
@@ -547,6 +561,10 @@ void ConfigHelper::generateSocks5HttpJson(QString type, TQProfile &profile)
     rules.append(apiRule);
     if (outboundSettings.bypassBittorrent)
         rules.append(bypassBittorrent);
+    if (outboundSettings.bypassChinaMainland) {
+        rules.append(bypassChinaMainlandIP);
+        rules.append(bypassChinaMainlandDo);
+    }
     if (routerSettings.domainDirect.size() != 0 || routerSettings.ipDirect.size() != 0)
         rules.append(direct);
     if (routerSettings.domainProxy.size() != 0 || routerSettings.ipProxy.size() != 0)
@@ -698,6 +716,20 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
         bypassBittorrent["protocol"] = protocol;
         bypassBittorrent["type"] = "field";
     }
+    QJsonObject bypassChinaMainlandIP;
+    QJsonObject bypassChinaMainlandDo;
+    if (outboundSettings.bypassChinaMainland) {
+        QJsonArray bypassIPArr;
+        bypassIPArr.append("geoip:cn");
+        bypassChinaMainlandIP["ip"] = bypassIPArr;
+        bypassChinaMainlandIP["outboundTag"] = "direct";
+        bypassChinaMainlandIP["type"] = "field";
+        QJsonArray bypassDoArr;
+        bypassDoArr.append("geosite:cn");
+        bypassChinaMainlandDo["domain"] = bypassDoArr;
+        bypassChinaMainlandDo["outboundTag"] = "direct";
+        bypassChinaMainlandDo["type"] = "field";
+    }
     QJsonObject direct;
     direct["type"] = "field";
     if (routerSettings.domainDirect.size() != 0)
@@ -722,6 +754,10 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
     rules.append(apiRule);
     if (outboundSettings.bypassBittorrent)
         rules.append(bypassBittorrent);
+    if (outboundSettings.bypassChinaMainland) {
+        rules.append(bypassChinaMainlandIP);
+        rules.append(bypassChinaMainlandDo);
+    }
     if (routerSettings.domainDirect.size() != 0 || routerSettings.ipDirect.size() != 0)
         rules.append(direct);
     if (routerSettings.domainProxy.size() != 0 || routerSettings.ipProxy.size() != 0)

@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="zh_TW">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh_TW" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -395,7 +393,7 @@ Checkout wiki for instructions</source>
         <location filename="../../ui/mainwindow.ui" line="472"/>
         <location filename="../../ui/mainwindow.ui" line="485"/>
         <source>Return</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="477"/>
@@ -692,72 +690,72 @@ Checkout wiki for instructions</source>
     <message>
         <location filename="../../ui/naiveproxyeditdialog.ui" line="14"/>
         <source>Profile Editor</source>
-        <translation type="unfinished">設定檔編輯器</translation>
+        <translation>設定檔編輯器</translation>
     </message>
     <message>
         <location filename="../../ui/naiveproxyeditdialog.ui" line="41"/>
         <source>Profile Name</source>
-        <translation type="unfinished">設定檔名稱</translation>
+        <translation>設定檔名稱</translation>
     </message>
     <message>
         <location filename="../../ui/naiveproxyeditdialog.ui" line="51"/>
         <source>Server Address</source>
-        <translation type="unfinished"></translation>
+        <translation>伺服器地址</translation>
     </message>
     <message>
         <location filename="../../ui/naiveproxyeditdialog.ui" line="61"/>
         <source>Server Port</source>
-        <translation type="unfinished"></translation>
+        <translation>伺服器連接埠</translation>
     </message>
     <message>
         <location filename="../../ui/naiveproxyeditdialog.ui" line="75"/>
         <source>Password</source>
-        <translation type="unfinished">密碼</translation>
+        <translation>密碼</translation>
     </message>
     <message>
         <location filename="../../ui/naiveproxyeditdialog.ui" line="92"/>
         <source>Padding</source>
-        <translation type="unfinished"></translation>
+        <translation>Padding</translation>
     </message>
     <message>
         <location filename="../../ui/naiveproxyeditdialog.ui" line="99"/>
         <source>Enable</source>
-        <translation type="unfinished">開啟</translation>
+        <translation>開啟</translation>
     </message>
     <message>
         <location filename="../../ui/naiveproxyeditdialog.ui" line="106"/>
         <source>Reset Data Usage after</source>
-        <translation type="unfinished">指定日期重設資料使用量</translation>
+        <translation>指定日期重設資料使用量</translation>
     </message>
     <message>
         <location filename="../../ui/naiveproxyeditdialog.ui" line="126"/>
         <source>Automation</source>
-        <translation type="unfinished">自動化</translation>
+        <translation>自動化</translation>
     </message>
     <message>
         <location filename="../../ui/naiveproxyeditdialog.ui" line="139"/>
         <source>Auto connect on application start</source>
-        <translation type="unfinished">程式啟動時自動連線</translation>
+        <translation>程式啟動時自動連線</translation>
     </message>
     <message>
         <location filename="../../ui/naiveproxyeditdialog.ui" line="146"/>
         <source>Username</source>
-        <translation type="unfinished">使用者名稱</translation>
+        <translation>使用者名稱</translation>
     </message>
     <message>
         <location filename="../../ui/naiveproxyeditdialog.ui" line="156"/>
         <source>Scheme</source>
-        <translation type="unfinished"></translation>
+        <translation>Scheme</translation>
     </message>
     <message>
         <location filename="../../ui/naiveproxyeditdialog.ui" line="165"/>
         <source>HTTPS</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTPS</translation>
     </message>
     <message>
         <location filename="../../ui/naiveproxyeditdialog.ui" line="172"/>
         <source>QUIC</source>
-        <translation type="unfinished"></translation>
+        <translation>QUIC</translation>
     </message>
 </context>
 <context>
@@ -1620,7 +1618,7 @@ See the following link for a reference:
         <location filename="../../ui/settingsdialog.ui" line="321"/>
         <location filename="../../ui/settingsdialog.ui" line="357"/>
         <source>Follow System</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="329"/>
@@ -1630,22 +1628,22 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/settingsdialog.ui" line="337"/>
         <source>zh_CN</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="342"/>
         <source>zh_TW</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="347"/>
         <source>en_US</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="352"/>
         <source>ja_JP</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="368"/>
@@ -1695,7 +1693,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/settingsdialog.ui" line="471"/>
         <source>Inbound Sniffing</source>
-        <translation type="unfinished"></translation>
+        <translation>入站監聽</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="488"/>
@@ -1755,7 +1753,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/settingsdialog.ui" line="608"/>
         <source>Bypass China Mainland</source>
-        <translation type="unfinished"></translation>
+        <translation>繞過中國大陸</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="625"/>
@@ -2374,10 +2372,6 @@ See the following link for a reference:
         <translation>設定Telegram代理</translation>
     </message>
     <message>
-        <source>Instal TAP Driver</source>
-        <translation type="vanished">安裝TAP驅動程式</translation>
-    </message>
-    <message>
         <location filename="../../src/statusnotifier.cpp" line="274"/>
         <location filename="../../src/statusnotifier.cpp" line="359"/>
         <location filename="../../src/statusnotifier.mm" line="267"/>
@@ -2395,13 +2389,13 @@ See the following link for a reference:
         <location filename="../../src/statusnotifier.cpp" line="134"/>
         <location filename="../../src/statusnotifier.mm" line="133"/>
         <source>Copy as Windows Style</source>
-        <translation type="unfinished"></translation>
+        <translation>複製為Windows樣式</translation>
     </message>
     <message>
         <location filename="../../src/statusnotifier.cpp" line="135"/>
         <location filename="../../src/statusnotifier.mm" line="134"/>
         <source>Copy as Unix Style</source>
-        <translation type="unfinished"></translation>
+        <translation>複製為Unix樣式</translation>
     </message>
 </context>
 <context>
@@ -2409,7 +2403,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/streamwidget.ui" line="14"/>
         <source>Stream Settings Widget</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../../ui/streamwidget.ui" line="24"/>
@@ -2497,7 +2491,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/streamwidget.ui" line="468"/>
         <source>Seed (Experimental)</source>
-        <translation type="unfinished"></translation>
+        <translation>Seed (試驗性)</translation>
     </message>
     <message>
         <location filename="../../ui/streamwidget.ui" line="482"/>
@@ -2847,12 +2841,12 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/vmesseditdialog.ui" line="188"/>
         <source>Tests Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>已開啟測試</translation>
     </message>
     <message>
         <location filename="../../ui/vmesseditdialog.ui" line="201"/>
         <source>VMessAEAD</source>
-        <translation type="unfinished"></translation>
+        <translation>VMessAEAD</translation>
     </message>
     <message>
         <location filename="../../ui/vmesseditdialog.ui" line="216"/>
