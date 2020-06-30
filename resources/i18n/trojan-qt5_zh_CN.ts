@@ -2397,7 +2397,7 @@ See the following link for a reference:
         <location filename="../../src/statusnotifier.cpp" line="135"/>
         <location filename="../../src/statusnotifier.mm" line="134"/>
         <source>Copy as Unix Style</source>
-        <translation type="unfinished"></translation>
+        <translation>复制为Unix样式</translation>
     </message>
 </context>
 <context>

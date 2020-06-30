@@ -298,7 +298,7 @@ void StatusNotifier::onToggleServerLoadBalance(bool checked)
     changeIcon(helper->isTrojanOn());
 }
 
-void StatusNotifier::onCopyTerminalProxy()
+void StatusNotifier::onCopyTerminalProxy(QString type)
 {
     QClipboard *board = QApplication::clipboard();
     if (helper->getInboundSettings().enableHttpMode)
