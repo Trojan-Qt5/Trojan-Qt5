@@ -33,7 +33,7 @@ void ThemeHelper::setupTheme()
 {
     ConfigHelper *helper = Utils::getConfigHelper();
 
-    if ((isSystemDarkTheme() && helper->getGeneralSettings()["systemTheme"].toInt() == 2) || helper->getGeneralSettings()["systemTheme"].toInt() == 1) {
+    if ((isSystemDarkTheme() && helper->getGeneralSettings().systemTheme == 2) || helper->getGeneralSettings().systemTheme == 1) {
         applyDarkPalette();
         applyDarkQss();
     }

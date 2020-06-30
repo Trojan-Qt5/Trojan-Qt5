@@ -77,7 +77,6 @@ struct TQProfile
     QString pluginParam;
     // trojan only
     bool verifyCertificate;
-    bool verifyHostname;
     bool reuseSession;
     bool sessionTicket;
     bool reusePort;
@@ -95,6 +94,7 @@ struct TQProfile
     QString uuid;
     int alterID;
     QString security;
+    QString testsEnabled;
     VmessSettings vmessSettings;
 
     static const int LATENCY_TIMEOUT = -1;

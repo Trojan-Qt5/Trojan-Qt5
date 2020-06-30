@@ -129,7 +129,6 @@ void ConfigHelper::importGuiConfigJson(ConnectionTableModel *model, const QStrin
         p.serverPort = json["server_port"].toInt();
         p.serverAddress = json["server"].toString();
         p.verifyCertificate = json["verify_certificate"].toBool();
-        p.verifyHostname = json["verify_hostname"].toBool();
         p.method = json["method"].toString();
         p.password = json["password"].toString();
         p.uuid = json["uuid"].toString();
@@ -166,7 +165,6 @@ void ConfigHelper::exportGuiConfigJson(const ConnectionTableModel &model, const 
         json["server"] = QJsonValue(con->profile.serverAddress);
         json["server_port"] = QJsonValue(con->profile.serverPort);
         json["verify_certificate"] = QJsonValue(con->profile.verifyCertificate);
-        json["verify_hostname"] = QJsonValue(con->profile.verifyHostname);
         json["method"] = QJsonValue(con->profile.method);
         json["password"] = QJsonValue(con->profile.password);
         json["uuid"] = QJsonValue(con->profile.uuid);
@@ -439,8 +437,10 @@ QJsonObject ConfigHelper::exportVmessSettings(const VmessSettings &settings)
     tls["enable"] = settings.tls.enable;
     tls["allowInsecure"] = settings.tls.allowInsecure;
     tls["allowInsecureCiphers"] = settings.tls.allowInsecureCiphers;
-    tls["serverName"] = settings.tls.serverName;
-    tls["alpn"] = QJsonArray::fromStringList(settings.tls.alpn);
+    if (!settings.tls.serverName.isEmpty())
+        tls["serverName"] = settings.tls.serverName;
+    if (settings.tls.alpn.size() != 0)
+        tls["alpn"] = QJsonArray::fromStringList(settings.tls.alpn);
     object["tls"] = tls;
 
     return object;
@@ -474,7 +474,6 @@ Connection* ConfigHelper::configJsonToConnection(const QString &file)
     p.password = configObj["password"].toArray()[0].toString(); //only the first password will be used
     p.sni = configObj["ssl"].toObject()["sni"].toString();
     p.verifyCertificate = configObj["verify"].toBool();
-    p.verifyHostname = configObj["verify_hostname"].toBool();
     p.reuseSession = configObj["ssl"].toObject()["reuse_session"].toBool();
     p.sessionTicket = configObj["ssl"].toObject()["session_ticket"].toBool();
     p.reusePort = configObj["tcp"].toObject()["reuse_port"].toBool();
@@ -811,6 +810,7 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
     users["id"] = profile.uuid;
     users["alterId"] = profile.alterID;
     users["security"] = profile.security;
+    users["testsEnabled"] = profile.testsEnabled;
     usersArray.append(users);
     vnext["users"] = usersArray;
     vnextArray.append(vnext);
@@ -938,7 +938,7 @@ void ConfigHelper::generateTrojanJson(TQProfile &profile)
     configObj["log_file"] = Utils::getLogDir() + "/core.log";
     QJsonObject ssl;
     ssl["verify"] = profile.verifyCertificate;
-    ssl["verify_hostname"] = profile.verifyHostname;
+    ssl["verify_hostname"] = true;
     ssl["cert"] = trojanSettings.trojanCertPath;
     ssl["cipher"] = trojanSettings.trojanCipher;
     ssl["cipher_tls13"] = trojanSettings.trojanCipherTLS13;
