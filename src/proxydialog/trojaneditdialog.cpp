@@ -19,7 +19,6 @@ TrojanEditDialog::TrojanEditDialog(Connection *_connection, QWidget *parent) :
     ui->serverAddrEdit->setText(connection->profile.serverAddress);
     ui->serverPortEdit->setText(QString::number(connection->profile.serverPort));
     ui->verifyCertificateCheckBox->setChecked(connection->profile.verifyCertificate);
-    ui->verifyHostnameCheckBox->setChecked(connection->profile.verifyHostname);
     ui->pwdEdit->setText(connection->profile.password);
     ui->sniEdit->setText(connection->profile.sni);
     ui->reuseSessionCheckBox->setChecked(connection->profile.reuseSession);
@@ -55,7 +54,6 @@ void TrojanEditDialog::save()
     connection->profile.serverAddress = ui->serverAddrEdit->text().trimmed();
     connection->profile.serverPort = ui->serverPortEdit->text().toUShort();
     connection->profile.verifyCertificate = ui->verifyCertificateCheckBox->isChecked();
-    connection->profile.verifyHostname = ui->verifyHostnameCheckBox->isChecked();
     connection->profile.reuseSession = ui->reuseSessionCheckBox->isChecked();
     connection->profile.sessionTicket = ui->sessionTicketCheckBox->isChecked();
     connection->profile.reusePort = ui->reusePortCheckBox->isChecked();

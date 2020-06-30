@@ -13,6 +13,7 @@ VmessEditDialog::VmessEditDialog(Connection *_connection, QWidget *parent) :
     ui->serverPortEdit->setText(QString::number(connection->profile.serverPort));
     ui->uuidEdit->setText(connection->profile.uuid);
     ui->alterIDEdit->setText(QString::number(connection->profile.alterID));
+    ui->testsCB->setCurrentText(connection->profile.testsEnabled);
     ui->securityComboBox->setCurrentText(connection->profile.security);
     ui->tcpFastOpenCheckBox->setChecked(connection->profile.tcpFastOpen);
     ui->muxCheckBox->setChecked(connection->profile.mux);
@@ -43,6 +44,7 @@ void VmessEditDialog::save()
     connection->profile.security = ui->securityComboBox->currentText();
     connection->profile.uuid = ui->uuidEdit->text();
     connection->profile.alterID = ui->alterIDEdit->text().toInt();
+    connection->profile.testsEnabled = ui->testsCB->currentText();
     connection->profile.tcpFastOpen = ui->tcpFastOpenCheckBox->isChecked();
     connection->profile.mux = ui->muxCheckBox->isChecked();
     connection->profile.muxConcurrency = ui->muxConcurrencyEdit->text().toInt();

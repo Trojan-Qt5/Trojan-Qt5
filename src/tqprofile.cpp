@@ -36,9 +36,9 @@ TQProfile::TQProfile()
     uuid = QString("");
     alterID = 32;
     security = QString("auto");
+    testsEnabled = QString("none");
     // trojan only
     verifyCertificate = true;
-    verifyHostname = true;
     reuseSession = true;
     sessionTicket = false;
     reusePort = false;
@@ -82,7 +82,6 @@ bool TQProfile::equals(const TQProfile &profile) const
          && group == profile.group
          && name == profile.name
          && verifyCertificate == profile.verifyCertificate
-         && verifyHostname == profile.verifyHostname
          && reuseSession == profile.reuseSession
          && reusePort == profile.reusePort
          && tcpFastOpen == profile.tcpFastOpen
@@ -383,6 +382,8 @@ TQProfile TQProfile::fromVmessUri(const std::string& vmessUri) const
 
     QJsonObject tls = vmess["tls"].toObject();
     vmessSettings.tls.enable = vmess["tls"] == "tls" ? true : false;
+    if (vmessSettings.tls.enable)
+        vmessSettings.tls.serverName = vmess["host"].toString().isEmpty() ? result.serverAddress : vmess["host"].toString();
 
     result.vmessSettings = vmessSettings;
 
@@ -577,7 +578,7 @@ QString TQProfile::toVmessUri() const
         vmessObject["host"] = vmessSettings.quic.security;
         vmessObject["path"] = vmessSettings.quic.key;
     }
-    vmessObject["tls"] = vmessObject["tls"].toObject()["enable"].toBool() ? "tls" : "none";
+    vmessObject["tls"] = vmessSettings.tls.enable ? "tls" : "none";
     QJsonDocument uri(vmessObject);
     return "vmess://" + Utils::Base64UrlEncode(uri.toJson());
 }
@@ -613,12 +614,12 @@ QString TQProfile::toSnellUri() const
 
 QDataStream& operator << (QDataStream &out, const TQProfile &p)
 {
-    out << p.type << p.autoStart << p.serverPort << p.name << p.serverAddress << p.verifyCertificate << p.verifyHostname << p.password << p.sni << p.reuseSession << p.sessionTicket << p.reusePort << p.tcpFastOpen << p.mux << p.muxConcurrency << p.muxIdleTimeout << p.websocket << p.websocketDoubleTLS << p.websocketPath << p.websocketHostname << p.websocketObfsPassword << p.method << p.protocol << p.protocolParam << p.obfs << p.obfsParam << p.plugin << p.pluginParam << p.uuid << p.alterID << p.security << p.vmessSettings << p.latency << p.currentDownloadUsage << p.currentUploadUsage << p.totalDownloadUsage << p.totalUploadUsage << p.lastTime << p.nextResetDate;
+    out << p.type << p.autoStart << p.serverPort << p.name << p.serverAddress << p.verifyCertificate << p.password << p.sni << p.reuseSession << p.sessionTicket << p.reusePort << p.tcpFastOpen << p.mux << p.muxConcurrency << p.muxIdleTimeout << p.websocket << p.websocketDoubleTLS << p.websocketPath << p.websocketHostname << p.websocketObfsPassword << p.method << p.protocol << p.protocolParam << p.obfs << p.obfsParam << p.plugin << p.pluginParam << p.uuid << p.alterID << p.security << p.testsEnabled << p.vmessSettings << p.latency << p.currentDownloadUsage << p.currentUploadUsage << p.totalDownloadUsage << p.totalUploadUsage << p.lastTime << p.nextResetDate;
     return out;
 }
 
 QDataStream& operator >> (QDataStream &in, TQProfile &p)
 {
-    in >> p.type >> p.autoStart >> p.serverPort >> p.name >> p.serverAddress >> p.verifyCertificate >> p.verifyHostname >> p.password >> p.sni >> p.reuseSession >> p.sessionTicket >> p.reusePort >> p.tcpFastOpen >> p.mux >> p.muxConcurrency >> p.muxIdleTimeout >> p.websocket >> p.websocketDoubleTLS >> p.websocketPath >> p.websocketHostname >> p.websocketObfsPassword >> p.method >> p.protocol >> p.protocolParam >> p.obfs >> p.obfsParam >> p.plugin >> p.pluginParam >> p.uuid >> p.alterID >> p.security >> p.vmessSettings >> p.latency >> p.currentDownloadUsage >> p.currentUploadUsage >> p.totalDownloadUsage >> p.totalUploadUsage >> p.lastTime >> p.nextResetDate;
+    in >> p.type >> p.autoStart >> p.serverPort >> p.name >> p.serverAddress >> p.verifyCertificate >> p.password >> p.sni >> p.reuseSession >> p.sessionTicket >> p.reusePort >> p.tcpFastOpen >> p.mux >> p.muxConcurrency >> p.muxIdleTimeout >> p.websocket >> p.websocketDoubleTLS >> p.websocketPath >> p.websocketHostname >> p.websocketObfsPassword >> p.method >> p.protocol >> p.protocolParam >> p.obfs >> p.obfsParam >> p.plugin >> p.pluginParam >> p.uuid >> p.alterID >> p.security >> p.testsEnabled >> p.vmessSettings >> p.latency >> p.currentDownloadUsage >> p.currentUploadUsage >> p.totalDownloadUsage >> p.totalUploadUsage >> p.lastTime >> p.nextResetDate;
     return in;
 }
