@@ -18,6 +18,9 @@ SubscribeDialog::SubscribeDialog(ConfigHelper *ch, QWidget *parent) :
     connect(ui->confirmButton, &QPushButton::clicked, this, &SubscribeDialog::onAccepted);
     connect(ui->listView, SIGNAL(clicked(QModelIndex)), this, SLOT(onClicked(QModelIndex)));
 
+    // reset text
+    ui->cancelButton->setText("Cancel");
+
     ItemModel = new QStandardItemModel(this);
     subscribes = helper->readSubscribes();
 
