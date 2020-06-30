@@ -1,3 +1,13 @@
+trojan-qt5 (1.3.0-1) unstable; urgency=medium
+
+    * Fix dark mode
+    * Update V2Ray-Core Version
+    * Refactor config.ini
+    * Add seed and AEAD Support for V2Ray
+    * Add bypass bittorrent, CN Mainland and inbound sniffing
+
+ -- TheWanderingCoel <thewanderingcoel@protonmail.com>  Thu, 18 June 2020 15:06:14 +0800
+
 trojan-qt5 (1.2.0-1) unstable; urgency=medium
 
     * Dark mode support

@@ -536,27 +536,36 @@ void ConfigHelper::generateSocks5HttpJson(QString type, TQProfile &profile)
         bypassChinaMainlandDo["outboundTag"] = "direct";
         bypassChinaMainlandDo["type"] = "field";
     }
-    QJsonObject direct;
-    direct["type"] = "field";
+    QJsonObject directDO;
+    directDO["type"] = "field";
+    QJsonObject directIP;
+    directIP["type"] = "field";
     if (routerSettings.domainDirect.size() != 0)
-        direct["domain"] = QJsonArray::fromStringList(routerSettings.domainDirect);
+        directDO["domain"] = QJsonArray::fromStringList(routerSettings.domainDirect);
     if (routerSettings.ipDirect.size() != 0)
-        direct["ip"] = QJsonArray::fromStringList(routerSettings.ipDirect);
-    direct["outboundTag"] = "direct";
-    QJsonObject proxy;
-    proxy["type"] = "field";
+        directIP["ip"] = QJsonArray::fromStringList(routerSettings.ipDirect);
+    directDO["outboundTag"] = "direct";
+    directIP["outboundTag"] = "direct";
+    QJsonObject proxyDO;
+    proxyDO["type"] = "field";
+    QJsonObject proxyIP;
+    proxyIP["type"] = "field";
     if (routerSettings.domainProxy.size() != 0)
-        proxy["domain"] = QJsonArray::fromStringList(routerSettings.domainProxy);
+        proxyDO["domain"] = QJsonArray::fromStringList(routerSettings.domainProxy);
     if (routerSettings.ipProxy.size() != 0)
-        proxy["ip"] = QJsonArray::fromStringList(routerSettings.ipProxy);
-    proxy["outboundTag"] = "proxy";
-    QJsonObject block;
-    block["type"] = "field";
+        proxyIP["ip"] = QJsonArray::fromStringList(routerSettings.ipProxy);
+    proxyDO["outboundTag"] = "proxy";
+    proxyIP["outboundTag"] = "proxy";
+    QJsonObject blockDO;
+    blockDO["type"] = "field";
+    QJsonObject blockIP;
+    blockIP["type"] = "field";
     if (routerSettings.domainBlock.size() != 0)
-     block["domain"] = QJsonArray::fromStringList(routerSettings.domainBlock);
+        blockDO["domain"] = QJsonArray::fromStringList(routerSettings.domainBlock);
     if (routerSettings.ipBlock.size() != 0)
-        block["ip"] = QJsonArray::fromStringList(routerSettings.ipBlock);
-    block["outboundTag"] = "block";
+        blockIP["ip"] = QJsonArray::fromStringList(routerSettings.ipBlock);
+    blockDO["outboundTag"] = "block";
+    blockIP["outboundTag"] = "block";
     rules.append(apiRule);
     if (outboundSettings.bypassBittorrent)
         rules.append(bypassBittorrent);
@@ -564,12 +573,18 @@ void ConfigHelper::generateSocks5HttpJson(QString type, TQProfile &profile)
         rules.append(bypassChinaMainlandIP);
         rules.append(bypassChinaMainlandDo);
     }
-    if (routerSettings.domainDirect.size() != 0 || routerSettings.ipDirect.size() != 0)
-        rules.append(direct);
-    if (routerSettings.domainProxy.size() != 0 || routerSettings.ipProxy.size() != 0)
-        rules.append(proxy);
-    if (routerSettings.domainBlock.size() != 0 || routerSettings.ipBlock.size() != 0)
-        rules.append(block);
+    if (routerSettings.domainDirect.size() != 0)
+        rules.append(directDO);
+    if (routerSettings.ipDirect.size() != 0)
+        rules.append(directIP);
+    if (routerSettings.domainProxy.size() != 0)
+        rules.append(proxyDO);
+    if (routerSettings.ipProxy.size() != 0)
+        rules.append(proxyIP);
+    if (routerSettings.domainBlock.size() != 0)
+        rules.append(blockDO);
+    if (routerSettings.ipBlock.size() != 0)
+        rules.append(blockIP);
     routing["rules"] = rules;
     configObj["routing"] = routing;
     QJsonArray inboundsArray;
@@ -729,27 +744,36 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
         bypassChinaMainlandDo["outboundTag"] = "direct";
         bypassChinaMainlandDo["type"] = "field";
     }
-    QJsonObject direct;
-    direct["type"] = "field";
+    QJsonObject directDO;
+    directDO["type"] = "field";
+    QJsonObject directIP;
+    directIP["type"] = "field";
     if (routerSettings.domainDirect.size() != 0)
-        direct["domain"] = QJsonArray::fromStringList(routerSettings.domainDirect);
+        directDO["domain"] = QJsonArray::fromStringList(routerSettings.domainDirect);
     if (routerSettings.ipDirect.size() != 0)
-        direct["ip"] = QJsonArray::fromStringList(routerSettings.ipDirect);
-    direct["outboundTag"] = "direct";
-    QJsonObject proxy;
-    proxy["type"] = "field";
+        directIP["ip"] = QJsonArray::fromStringList(routerSettings.ipDirect);
+    directDO["outboundTag"] = "direct";
+    directIP["outboundTag"] = "direct";
+    QJsonObject proxyDO;
+    proxyDO["type"] = "field";
+    QJsonObject proxyIP;
+    proxyIP["type"] = "field";
     if (routerSettings.domainProxy.size() != 0)
-        proxy["domain"] = QJsonArray::fromStringList(routerSettings.domainProxy);
+        proxyDO["domain"] = QJsonArray::fromStringList(routerSettings.domainProxy);
     if (routerSettings.ipProxy.size() != 0)
-        proxy["ip"] = QJsonArray::fromStringList(routerSettings.ipProxy);
-    proxy["outboundTag"] = "proxy";
-    QJsonObject block;
-    block["type"] = "field";
+        proxyIP["ip"] = QJsonArray::fromStringList(routerSettings.ipProxy);
+    proxyDO["outboundTag"] = "proxy";
+    proxyIP["outboundTag"] = "proxy";
+    QJsonObject blockDO;
+    blockDO["type"] = "field";
+    QJsonObject blockIP;
+    blockIP["type"] = "field";
     if (routerSettings.domainBlock.size() != 0)
-     block["domain"] = QJsonArray::fromStringList(routerSettings.domainBlock);
+        blockDO["domain"] = QJsonArray::fromStringList(routerSettings.domainBlock);
     if (routerSettings.ipBlock.size() != 0)
-        block["ip"] = QJsonArray::fromStringList(routerSettings.ipBlock);
-    block["outboundTag"] = "block";
+        blockIP["ip"] = QJsonArray::fromStringList(routerSettings.ipBlock);
+    blockDO["outboundTag"] = "block";
+    blockIP["outboundTag"] = "block";
     rules.append(apiRule);
     if (outboundSettings.bypassBittorrent)
         rules.append(bypassBittorrent);
@@ -757,12 +781,18 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
         rules.append(bypassChinaMainlandIP);
         rules.append(bypassChinaMainlandDo);
     }
-    if (routerSettings.domainDirect.size() != 0 || routerSettings.ipDirect.size() != 0)
-        rules.append(direct);
-    if (routerSettings.domainProxy.size() != 0 || routerSettings.ipProxy.size() != 0)
-        rules.append(proxy);
-    if (routerSettings.domainBlock.size() != 0 || routerSettings.ipBlock.size() != 0)
-        rules.append(block);
+    if (routerSettings.domainDirect.size() != 0)
+        rules.append(directDO);
+    if (routerSettings.ipDirect.size() != 0)
+        rules.append(directIP);
+    if (routerSettings.domainProxy.size() != 0)
+        rules.append(proxyDO);
+    if (routerSettings.ipProxy.size() != 0)
+        rules.append(proxyIP);
+    if (routerSettings.domainBlock.size() != 0)
+        rules.append(blockDO);
+    if (routerSettings.ipBlock.size() != 0)
+        rules.append(blockIP);
     routing["rules"] = rules;
     configObj["routing"] = routing;
     QJsonArray inboundsArray;

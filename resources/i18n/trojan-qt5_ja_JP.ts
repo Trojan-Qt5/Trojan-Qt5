@@ -59,7 +59,7 @@
     <message>
         <location filename="../../ui/aboutdialog.ui" line="310"/>
         <source>Donation</source>
-        <translation>寄贈</translation>
+        <translation>寄付</translation>
     </message>
 </context>
 <context>
@@ -262,7 +262,7 @@ wikiや説明ドキュメントをご確認ください</translation>
     <message>
         <location filename="../../ui/mainwindow.ui" line="110"/>
         <source>Input to filter</source>
-        <translation>入力フィルター</translation>
+        <translation>項目フィルター</translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="157"/>
@@ -272,7 +272,7 @@ wikiや説明ドキュメントをご確認ください</translation>
     <message>
         <location filename="../../ui/mainwindow.ui" line="221"/>
         <source>&amp;Add</source>
-        <translation>&amp; 追加</translation>
+        <translation>追加</translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="217"/>
@@ -367,7 +367,7 @@ wikiや説明ドキュメントをご確認ください</translation>
     <message>
         <location filename="../../ui/mainwindow.ui" line="416"/>
         <source>&amp;URI</source>
-        <translation>&amp;URI</translation>
+        <translation>URI</translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="419"/>
@@ -398,7 +398,7 @@ wikiや説明ドキュメントをご確認ください</translation>
     <message>
         <location filename="../../ui/mainwindow.ui" line="477"/>
         <source>D&amp;isconnect</source>
-        <translation>接続を切断</translation>
+        <translation>切断</translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="494"/>
@@ -1582,7 +1582,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/settingsdialog.ui" line="275"/>
         <source>Use native menubar</source>
-        <translation>ネイティブメニューバーを使用</translation>
+        <translation>システムのネイティブメニューバーを使用</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="171"/>
@@ -1618,7 +1618,7 @@ See the following link for a reference:
         <location filename="../../ui/settingsdialog.ui" line="321"/>
         <location filename="../../ui/settingsdialog.ui" line="357"/>
         <source>Follow System</source>
-        <translation>システム設定による</translation>
+        <translation>Follow System</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="329"/>
@@ -1753,7 +1753,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/settingsdialog.ui" line="608"/>
         <source>Bypass China Mainland</source>
-        <translation>中国IP&amp;ドメインをバイパス</translation>
+        <translation>中国IP&amp;ドメインを経由させない</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="625"/>
@@ -1783,7 +1783,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/settingsdialog.ui" line="664"/>
         <source>Speed Test Url</source>
-        <translation>ダウンロード速度をテストするUrl</translation>
+        <translation>ダウンロード速度をテストするファイルのUrl</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="677"/>
@@ -1839,7 +1839,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/settingsdialog.ui" line="781"/>
         <source>Filter Keyword (,)</source>
-        <translation>サーバ名フィルター</translation>
+        <translation>Filter Keyword (,)</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="791"/>
@@ -2273,7 +2273,7 @@ See the following link for a reference:
         <location filename="../../src/statusnotifier.cpp" line="89"/>
         <location filename="../../src/statusnotifier.mm" line="88"/>
         <source>Update local PAC from Chn Only list</source>
-        <translation>ローカルPACをChn Onlyにアップデート（プロキシサーバーに中国のドメインだけを経由させる）</translation>
+        <translation>ローカルPACをChn Onlyにアップデート（プロキシサーバーに中国のドメインしか経由させない）</translation>
     </message>
     <message>
         <location filename="../../src/statusnotifier.cpp" line="90"/>
@@ -2327,7 +2327,7 @@ See the following link for a reference:
         <location filename="../../src/statusnotifier.cpp" line="119"/>
         <location filename="../../src/statusnotifier.mm" line="118"/>
         <source>Servers Subscribe</source>
-        <translation>サーバーのサブスクライブ</translation>
+        <translation>サーバーサブスクライブ</translation>
     </message>
     <message>
         <location filename="../../src/statusnotifier.cpp" line="120"/>
@@ -2345,7 +2345,7 @@ See the following link for a reference:
         <location filename="../../src/statusnotifier.cpp" line="122"/>
         <location filename="../../src/statusnotifier.mm" line="121"/>
         <source>Update subscribe node(bypass proxy)</source>
-        <translation>サブスクライブをアップデート（プロキシを経由せず）</translation>
+        <translation>サブスクライブをアップデート（プロキシを使用せず）</translation>
     </message>
     <message>
         <location filename="../../src/statusnotifier.cpp" line="127"/>
@@ -2579,7 +2579,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/subscribedialog.ui" line="103"/>
         <source>Add</source>
-        <translation>&amp;追加</translation>
+        <translation>追加</translation>
     </message>
     <message>
         <location filename="../../ui/subscribedialog.ui" line="110"/>
