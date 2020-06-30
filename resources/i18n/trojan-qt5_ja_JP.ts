@@ -1,12 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="ja_JP">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ja_JP" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
         <location filename="../../ui/aboutdialog.ui" line="14"/>
         <source>About Dialog</source>
-        <translation>ダイアログについて</translation>
+        <translation>各種情報</translation>
     </message>
     <message>
         <location filename="../../ui/aboutdialog.ui" line="24"/>
@@ -241,7 +239,7 @@ wikiや説明ドキュメントをご確認ください</translation>
     <message>
         <location filename="../../ui/httpeditdialog.ui" line="99"/>
         <source>Reset Data Usage after</source>
-        <translation>トラフィック使用量をリセット</translation>
+        <translation>トラフィック用量のリセット日</translation>
     </message>
     <message>
         <location filename="../../ui/httpeditdialog.ui" line="119"/>
@@ -251,7 +249,7 @@ wikiや説明ドキュメントをご確認ください</translation>
     <message>
         <location filename="../../ui/httpeditdialog.ui" line="132"/>
         <source>Auto connect on application start</source>
-        <translation>アプリケーション起動時に接続する</translation>
+        <translation>アプリケーション起動時に接続</translation>
     </message>
 </context>
 <context>
@@ -359,12 +357,12 @@ wikiや説明ドキュメントをご確認ください</translation>
     <message>
         <location filename="../../ui/mainwindow.ui" line="403"/>
         <source>&amp;From QR Code Image File</source>
-        <translation>QRコード画像を読み取って接続を追加</translation>
+        <translation>QRコード画像を読み取る</translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="406"/>
         <source>From QR code image file</source>
-        <translation>QRコード画像を読み取って接続を追加</translation>
+        <translation>QRコード画像を読み取る</translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="416"/>
@@ -374,7 +372,7 @@ wikiや説明ドキュメントをご確認ください</translation>
     <message>
         <location filename="../../ui/mainwindow.ui" line="419"/>
         <source>Add connection from URI</source>
-        <translation>URIを入力して接続を追加</translation>
+        <translation>URIを入力</translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="433"/>
@@ -400,7 +398,7 @@ wikiや説明ドキュメントをご確認ください</translation>
     <message>
         <location filename="../../ui/mainwindow.ui" line="477"/>
         <source>D&amp;isconnect</source>
-        <translation>接続を切断する</translation>
+        <translation>接続を切断</translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="494"/>
@@ -520,17 +518,17 @@ wikiや説明ドキュメントをご確認ください</translation>
     <message>
         <location filename="../../ui/mainwindow.ui" line="701"/>
         <source>&amp;Export as gui-config.json</source>
-        <translation>gui-config.json形式でエクスポートする</translation>
+        <translation>gui-config.json形式でエクスポート</translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="711"/>
         <source>&amp;Export as shadowrocket.json</source>
-        <translation>shadowrocket.json形式でエクスポートする</translation>
+        <translation>shadowrocket.json形式でエクスポート</translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="721"/>
         <source>&amp;Export as subscribe.txt</source>
-        <translation>subscribe.txt形式でエクスポートする</translation>
+        <translation>subscribe.txt形式でエクスポート</translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="731"/>
@@ -550,7 +548,7 @@ wikiや説明ドキュメントをご確認ください</translation>
     <message>
         <location filename="../../ui/mainwindow.ui" line="747"/>
         <source>Connect to this connection and disconnect any connections currently using  the same local port</source>
-        <translation>この接続に接続し、そして既に同じポートを使用中の接続を切断する</translation>
+        <translation>この接続に接続し、既に同じポートを使用中の既存接続を切断する</translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="757"/>
@@ -570,7 +568,7 @@ wikiや説明ドキュメントをご確認ください</translation>
     <message>
         <location filename="../../ui/mainwindow.ui" line="787"/>
         <source>User Rule Settings</source>
-        <translation>ユーザールール設定</translation>
+        <translation>ユーザールール編集</translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="801"/>
@@ -630,7 +628,7 @@ wikiや説明ドキュメントをご確認ください</translation>
     <message>
         <location filename="../../src/mainwindow.cpp" line="383"/>
         <source>Export Connections as gui-config.json</source>
-        <translation>gui-config.json形式で接続をエクスポートする</translation>
+        <translation>gui-config.json形式で接続をエクスポート</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="395"/>
@@ -640,12 +638,12 @@ wikiや説明ドキュメントをご確認ください</translation>
     <message>
         <location filename="../../src/mainwindow.cpp" line="408"/>
         <source>Export Connections as shadowrocket.json</source>
-        <translation>shadowrocket.json形式で接続をエクスポートする</translation>
+        <translation>shadowrocket.json形式で接続をエクスポート</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="420"/>
         <source>Export Trojan Servers as subscribe.txt</source>
-        <translation>Trojanのサーバー情報をsubscribe.txt形式でエクスポートする</translation>
+        <translation>Trojanのサーバー情報をsubscribe.txt形式でエクスポート</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="448"/>
@@ -692,72 +690,72 @@ wikiや説明ドキュメントをご確認ください</translation>
     <message>
         <location filename="../../ui/naiveproxyeditdialog.ui" line="14"/>
         <source>Profile Editor</source>
-        <translation type="unfinished">プロファイル編集</translation>
+        <translation>プロファイル編集</translation>
     </message>
     <message>
         <location filename="../../ui/naiveproxyeditdialog.ui" line="41"/>
         <source>Profile Name</source>
-        <translation type="unfinished">プロファイル名</translation>
+        <translation>プロファイル名</translation>
     </message>
     <message>
         <location filename="../../ui/naiveproxyeditdialog.ui" line="51"/>
         <source>Server Address</source>
-        <translation type="unfinished">サーバーアドレス</translation>
+        <translation>サーバーアドレス</translation>
     </message>
     <message>
         <location filename="../../ui/naiveproxyeditdialog.ui" line="61"/>
         <source>Server Port</source>
-        <translation type="unfinished">サーバーポート</translation>
+        <translation>サーバーポート</translation>
     </message>
     <message>
         <location filename="../../ui/naiveproxyeditdialog.ui" line="75"/>
         <source>Password</source>
-        <translation type="unfinished">パスワード</translation>
+        <translation>パスワード</translation>
     </message>
     <message>
         <location filename="../../ui/naiveproxyeditdialog.ui" line="92"/>
         <source>Padding</source>
-        <translation type="unfinished"></translation>
+        <translation>パディング</translation>
     </message>
     <message>
         <location filename="../../ui/naiveproxyeditdialog.ui" line="99"/>
         <source>Enable</source>
-        <translation type="unfinished">有効</translation>
+        <translation>有効</translation>
     </message>
     <message>
         <location filename="../../ui/naiveproxyeditdialog.ui" line="106"/>
         <source>Reset Data Usage after</source>
-        <translation type="unfinished">トラフィック使用量をリセット</translation>
+        <translation>トラフィック用量のリセット日</translation>
     </message>
     <message>
         <location filename="../../ui/naiveproxyeditdialog.ui" line="126"/>
         <source>Automation</source>
-        <translation type="unfinished">自動化</translation>
+        <translation>自動化</translation>
     </message>
     <message>
         <location filename="../../ui/naiveproxyeditdialog.ui" line="139"/>
         <source>Auto connect on application start</source>
-        <translation type="unfinished">アプリケーション起動時に接続する</translation>
+        <translation>アプリケーション起動時に接続</translation>
     </message>
     <message>
         <location filename="../../ui/naiveproxyeditdialog.ui" line="146"/>
         <source>Username</source>
-        <translation type="unfinished">ユーザー名</translation>
+        <translation>ユーザー名</translation>
     </message>
     <message>
         <location filename="../../ui/naiveproxyeditdialog.ui" line="156"/>
         <source>Scheme</source>
-        <translation type="unfinished"></translation>
+        <translation>スキーム</translation>
     </message>
     <message>
         <location filename="../../ui/naiveproxyeditdialog.ui" line="165"/>
         <source>HTTPS</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTPS</translation>
     </message>
     <message>
         <location filename="../../ui/naiveproxyeditdialog.ui" line="172"/>
         <source>QUIC</source>
-        <translation type="unfinished"></translation>
+        <translation>QUIC</translation>
     </message>
 </context>
 <context>
@@ -797,7 +795,7 @@ See the following link for a reference:
     <message>
         <location filename="../../src/tqprofile.cpp" line="16"/>
         <source>Unnamed Profile</source>
-        <translation>プロファイルはネーミングされていません</translation>
+        <translation>プロファイル名を入力してください</translation>
     </message>
 </context>
 <context>
@@ -987,7 +985,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/routewidget.ui" line="150"/>
         <source>Export Rules</source>
-        <translation>ルールをエクスポートする</translation>
+        <translation>ルールをエクスポート</translation>
     </message>
     <message>
         <location filename="../../src/widget/routewidget.cpp" line="134"/>
@@ -997,7 +995,7 @@ See the following link for a reference:
     <message>
         <location filename="../../src/widget/routewidget.cpp" line="162"/>
         <source>Exports Rules to rules.json</source>
-        <translation>ルールをrules.jsonにエクスポートする</translation>
+        <translation>ルールをrules.jsonにエクスポート</translation>
     </message>
 </context>
 <context>
@@ -1120,7 +1118,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/sseditdialog.ui" line="198"/>
         <source>Reset Data Usage after</source>
-        <translation>トラフィック使用量をリセット</translation>
+        <translation>トラフィック用量のリセット日</translation>
     </message>
     <message>
         <location filename="../../ui/sseditdialog.ui" line="218"/>
@@ -1130,7 +1128,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/sseditdialog.ui" line="231"/>
         <source>Auto connect on application start</source>
-        <translation>アプリケーション起動時に接続する</translation>
+        <translation>アプリケーション起動時に接続</translation>
     </message>
     <message>
         <location filename="../../ui/sseditdialog.ui" line="238"/>
@@ -1288,7 +1286,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/ssreditdialog.ui" line="219"/>
         <source>Protocol</source>
-        <translation>Protocol</translation>
+        <translation>プロトコル</translation>
     </message>
     <message>
         <location filename="../../ui/ssreditdialog.ui" line="233"/>
@@ -1418,7 +1416,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/ssreditdialog.ui" line="387"/>
         <source>Reset Data Usage after</source>
-        <translation>トラフィック使用量をリセット</translation>
+        <translation>トラフィック用量のリセット日</translation>
     </message>
     <message>
         <location filename="../../ui/ssreditdialog.ui" line="407"/>
@@ -1428,7 +1426,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/ssreditdialog.ui" line="420"/>
         <source>Auto connect on application start</source>
-        <translation>アプリケーション起動時に接続する</translation>
+        <translation>アプリケーション起動時に接続</translation>
     </message>
 </context>
 <context>
@@ -1456,7 +1454,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/settingsdialog.ui" line="69"/>
         <source>Text Only</source>
-        <translation>文字だけ</translation>
+        <translation>テキストだけ</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="74"/>
@@ -1476,7 +1474,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/settingsdialog.ui" line="92"/>
         <source>Log Level</source>
-        <translation>logレベル</translation>
+        <translation>ログレベル</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="106"/>
@@ -1564,7 +1562,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/settingsdialog.ui" line="219"/>
         <source>Enable Notification</source>
-        <translation>通知メッセージを有効にする</translation>
+        <translation>通知メッセージ</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="233"/>
@@ -1665,7 +1663,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/settingsdialog.ui" line="407"/>
         <source>Share Over LAN</source>
-        <translation>プロキシをLAN内で共有する</translation>
+        <translation>プロキシをLAN内で共有</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="421"/>
@@ -1695,7 +1693,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/settingsdialog.ui" line="471"/>
         <source>Inbound Sniffing</source>
-        <translation type="unfinished"></translation>
+        <translation>インバウンドスニッフィング</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="488"/>
@@ -1755,12 +1753,12 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/settingsdialog.ui" line="608"/>
         <source>Bypass China Mainland</source>
-        <translation type="unfinished"></translation>
+        <translation>中国IP&amp;ドメインをバイパス</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="625"/>
         <source>Test Settings</source>
-        <translation>テキスト設定</translation>
+        <translation>テスト設定</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="633"/>
@@ -1775,17 +1773,17 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/settingsdialog.ui" line="646"/>
         <source>CONNECT</source>
-        <translation>接続</translation>
+        <translation>CONNECT</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="654"/>
         <source>Real Lantency Test Url</source>
-        <translation>実際の通信遅延をテストするためのUrl</translation>
+        <translation>実際の通信遅延をテストするUrl</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="664"/>
         <source>Speed Test Url</source>
-        <translation>速度テストするためのUrl</translation>
+        <translation>ダウンロード速度をテストするUrl</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="677"/>
@@ -1795,7 +1793,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/settingsdialog.ui" line="685"/>
         <source>Download Speed Color</source>
-        <translation>ダウンロード速度の色</translation>
+        <translation>ダウンロード速度のカラー</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="698"/>
@@ -1806,7 +1804,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/settingsdialog.ui" line="718"/>
         <source>Upload Speed Color</source>
-        <translation>アップロード速度の色</translation>
+        <translation>アップロード速度のカラー</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="728"/>
@@ -1841,17 +1839,17 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/settingsdialog.ui" line="781"/>
         <source>Filter Keyword (,)</source>
-        <translation>フィルター (,)</translation>
+        <translation>サーバ名フィルター</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="791"/>
         <source>Maximum</source>
-        <translation>取得する最大サーバー数</translation>
+        <translation>最大サーバー取得数</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="801"/>
         <source>Overwrite AllowInsecure</source>
-        <translation>AllowInsecureを常に上書きする</translation>
+        <translation>AllowInsecureを常に有効にする</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="808"/>
@@ -1863,17 +1861,17 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/settingsdialog.ui" line="815"/>
         <source>Overwrite AllowInsecureCiphers</source>
-        <translation>AllowInsecureCiphersを常に上書きする</translation>
+        <translation>AllowInsecureCiphersを常に有効にする</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="829"/>
         <source>Overwirte TcpFastOpen</source>
-        <translation>TcpFastOpenを常に上書きする</translation>
+        <translation>TcpFastOpenを常に有効にする</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="843"/>
         <source>Auto fetch group name</source>
-        <translation>自動的にグループ名を取得する</translation>
+        <translation>自動的にグループ名を取得</translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="860"/>
@@ -1981,12 +1979,12 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/sharedialog.ui" line="61"/>
         <source>Save QR code as an Image file</source>
-        <translation>QRコードの画像を保存する</translation>
+        <translation>QRコードの画像を保存</translation>
     </message>
     <message>
         <location filename="../../src/dialog/sharedialog.cpp" line="27"/>
         <source>Save QR Code</source>
-        <translation>QRコードを保存する</translation>
+        <translation>QRコードを保存</translation>
     </message>
 </context>
 <context>
@@ -2054,7 +2052,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/snelleditdialog.ui" line="148"/>
         <source>Reset Data Usage after</source>
-        <translation>トラフィック使用量をリセット</translation>
+        <translation>トラフィック用量のリセット日</translation>
     </message>
     <message>
         <location filename="../../ui/snelleditdialog.ui" line="168"/>
@@ -2064,7 +2062,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/snelleditdialog.ui" line="181"/>
         <source>Auto connect on application start</source>
-        <translation>アプリケーション起動時に接続する</translation>
+        <translation>アプリケーション起動時に接続</translation>
     </message>
 </context>
 <context>
@@ -2102,7 +2100,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/socks5editdialog.ui" line="99"/>
         <source>Reset Data Usage after</source>
-        <translation>トラフィック使用量をリセット</translation>
+        <translation>トラフィック用量のリセット日</translation>
     </message>
     <message>
         <location filename="../../ui/socks5editdialog.ui" line="119"/>
@@ -2112,7 +2110,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/socks5editdialog.ui" line="132"/>
         <source>Auto connect on application start</source>
-        <translation>アプリケーション起動時に接続する</translation>
+        <translation>アプリケーション起動時に接続</translation>
     </message>
 </context>
 <context>
@@ -2365,17 +2363,13 @@ See the following link for a reference:
         <location filename="../../src/statusnotifier.cpp" line="131"/>
         <location filename="../../src/statusnotifier.mm" line="130"/>
         <source>Copy terminal proxy command</source>
-        <translation>ターミナルのプロキシコマンドをコピー</translation>
+        <translation>ターミナル用のプロキシを設定するコマンド</translation>
     </message>
     <message>
         <location filename="../../src/statusnotifier.cpp" line="132"/>
         <location filename="../../src/statusnotifier.mm" line="131"/>
         <source>Set Proxy to Telegram</source>
         <translation>Telegramにプロキシをセット</translation>
-    </message>
-    <message>
-        <source>Instal TAP Driver</source>
-        <translation type="vanished">TAPドライバーをインストール</translation>
     </message>
     <message>
         <location filename="../../src/statusnotifier.cpp" line="274"/>
@@ -2395,13 +2389,13 @@ See the following link for a reference:
         <location filename="../../src/statusnotifier.cpp" line="134"/>
         <location filename="../../src/statusnotifier.mm" line="133"/>
         <source>Copy as Windows Style</source>
-        <translation type="unfinished"></translation>
+        <translation>Windowsスタイルのコマンドをコピー</translation>
     </message>
     <message>
         <location filename="../../src/statusnotifier.cpp" line="135"/>
         <location filename="../../src/statusnotifier.mm" line="134"/>
         <source>Copy as Unix Style</source>
-        <translation type="unfinished"></translation>
+        <translation>Unixスタイルのコマンドをコピー</translation>
     </message>
 </context>
 <context>
@@ -2497,7 +2491,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/streamwidget.ui" line="468"/>
         <source>Seed (Experimental)</source>
-        <translation type="unfinished"></translation>
+        <translation>Seed （実験的）</translation>
     </message>
     <message>
         <location filename="../../ui/streamwidget.ui" line="482"/>
@@ -2570,7 +2564,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/subscribedialog.ui" line="60"/>
         <source>Auto Update</source>
-        <translation>自動的にアップデートする</translation>
+        <translation>自動的にアップデート</translation>
     </message>
     <message>
         <location filename="../../ui/subscribedialog.ui" line="80"/>
@@ -2585,7 +2579,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/subscribedialog.ui" line="103"/>
         <source>Add</source>
-        <translation>&amp; 追加</translation>
+        <translation>&amp;追加</translation>
     </message>
     <message>
         <location filename="../../ui/subscribedialog.ui" line="110"/>
@@ -2696,7 +2690,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/trojaneditdialog.ui" line="238"/>
         <source>Reset Data Usage after</source>
-        <translation>トラフィック使用量をリセット</translation>
+        <translation>トラフィック用量のリセット日</translation>
     </message>
     <message>
         <location filename="../../ui/trojaneditdialog.ui" line="258"/>
@@ -2706,7 +2700,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/trojaneditdialog.ui" line="271"/>
         <source>Auto connect on application start</source>
-        <translation>アプリケーション起動時に接続する</translation>
+        <translation>アプリケーション起動時に接続</translation>
     </message>
     <message>
         <location filename="../../ui/trojaneditdialog.ui" line="278"/>
@@ -2729,7 +2723,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/uriinputdialog.ui" line="14"/>
         <source>URI Input Dialog</source>
-        <translation>URIを入力する</translation>
+        <translation>URI入力</translation>
     </message>
     <message>
         <location filename="../../ui/uriinputdialog.ui" line="20"/>
@@ -2827,7 +2821,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/vmesseditdialog.ui" line="147"/>
         <source>Reset Data Usage After</source>
-        <translation>トラフィック使用量をリセット</translation>
+        <translation>トラフィック用量のリセット日</translation>
     </message>
     <message>
         <location filename="../../ui/vmesseditdialog.ui" line="157"/>
@@ -2837,7 +2831,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/vmesseditdialog.ui" line="164"/>
         <source>Auto connect on application start</source>
-        <translation>アプリケーション起動時に接続する</translation>
+        <translation>アプリケーション起動時に接続</translation>
     </message>
     <message>
         <location filename="../../ui/vmesseditdialog.ui" line="178"/>
@@ -2847,12 +2841,12 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/vmesseditdialog.ui" line="188"/>
         <source>Tests Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>有効なテストオプション</translation>
     </message>
     <message>
         <location filename="../../ui/vmesseditdialog.ui" line="201"/>
         <source>VMessAEAD</source>
-        <translation type="unfinished"></translation>
+        <translation>VMessAEAD</translation>
     </message>
     <message>
         <location filename="../../ui/vmesseditdialog.ui" line="216"/>

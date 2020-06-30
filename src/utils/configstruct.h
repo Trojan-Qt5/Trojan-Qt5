@@ -48,6 +48,7 @@ Q_DECLARE_METATYPE(InboundSettings)
 
 struct OutboundSettings {
     bool bypassBittorrent = false;
+    bool bypassChinaMainland = false;
     bool forwardProxy = false;
     int forwardProxyType = 0;
     QString forwardProxyAddress = "127.0.0.1";
