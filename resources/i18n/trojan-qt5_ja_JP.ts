@@ -93,7 +93,7 @@ wikiや説明ドキュメントをご確認ください</translation>
         <location filename="../../src/connection.cpp" line="121"/>
         <location filename="../../src/connection.cpp" line="130"/>
         <source>Unable to start connection</source>
-        <translation>コネクションできません</translation>
+        <translation>接続できません</translation>
     </message>
     <message>
         <location filename="../../src/connection.cpp" line="121"/>
@@ -138,7 +138,7 @@ wikiや説明ドキュメントをご確認ください</translation>
     <message>
         <location filename="../../src/connectionitem.cpp" line="233"/>
         <source>disconnected</source>
-        <translation>コネクトを切断されました</translation>
+        <translation>接続を切断されました</translation>
     </message>
     <message>
         <location filename="../../src/connectionitem.cpp" line="240"/>
@@ -148,7 +148,7 @@ wikiや説明ドキュメントをご確認ください</translation>
     <message>
         <location filename="../../src/connectionitem.cpp" line="242"/>
         <source>latency test failed</source>
-        <translation>レイテンシテストに失敗しました</translation>
+        <translation>遅延テストに失敗しました</translation>
     </message>
     <message>
         <location filename="../../src/connectionitem.cpp" line="248"/>

@@ -97,7 +97,7 @@ Use this [link](http://rakuten-co-jp.club/register?aff=COELWU) to get 10RMB init
 Use this [link](https://xbsj5673.xyz) to register now!
 
 ### 3.Qing Wan International Airline (Small Airport, better reliability)
-![QinWan](https://imgur.com/XQ2RN1m.png) 
+![QinWan](https://i.imgur.com/67tgeAj.jpg) 
 
 Use this [link](https://www.qwyun.vip/auth/register?code=COELWU) to register now! USE Long85z to get discount!
 
