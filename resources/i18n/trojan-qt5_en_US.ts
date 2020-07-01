@@ -1957,12 +1957,12 @@ See the following link for a reference:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialog/settingsdialog.cpp" line="116"/>
+        <location filename="../../src/dialog/settingsdialog.cpp" line="117"/>
         <source>Invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dialog/settingsdialog.cpp" line="117"/>
+        <location filename="../../src/dialog/settingsdialog.cpp" line="118"/>
         <source>You can not hide dock Icon and use native menu bar at the same time</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2169,7 +2169,7 @@ See the following link for a reference:
     <name>StatusNotifier</name>
     <message>
         <location filename="../../src/statusnotifier.cpp" line="39"/>
-        <location filename="../../src/statusnotifier.cpp" line="418"/>
+        <location filename="../../src/statusnotifier.cpp" line="421"/>
         <location filename="../../src/statusnotifier.mm" line="34"/>
         <location filename="../../src/statusnotifier.mm" line="394"/>
         <source>Restore</source>
@@ -2177,7 +2177,7 @@ See the following link for a reference:
     </message>
     <message>
         <location filename="../../src/statusnotifier.cpp" line="39"/>
-        <location filename="../../src/statusnotifier.cpp" line="418"/>
+        <location filename="../../src/statusnotifier.cpp" line="421"/>
         <location filename="../../src/statusnotifier.mm" line="34"/>
         <location filename="../../src/statusnotifier.mm" line="394"/>
         <source>Minimise</source>
@@ -2191,7 +2191,7 @@ See the following link for a reference:
     </message>
     <message>
         <location filename="../../src/statusnotifier.cpp" line="52"/>
-        <location filename="../../src/statusnotifier.cpp" line="402"/>
+        <location filename="../../src/statusnotifier.cpp" line="405"/>
         <location filename="../../src/statusnotifier.mm" line="51"/>
         <location filename="../../src/statusnotifier.mm" line="378"/>
         <source>Trojan: Off</source>
@@ -2199,7 +2199,7 @@ See the following link for a reference:
     </message>
     <message>
         <location filename="../../src/statusnotifier.cpp" line="54"/>
-        <location filename="../../src/statusnotifier.cpp" line="403"/>
+        <location filename="../../src/statusnotifier.cpp" line="406"/>
         <location filename="../../src/statusnotifier.mm" line="53"/>
         <location filename="../../src/statusnotifier.mm" line="379"/>
         <source>Turn On Trojan</source>
@@ -2370,27 +2370,32 @@ See the following link for a reference:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="274"/>
-        <location filename="../../src/statusnotifier.cpp" line="359"/>
+        <location filename="../../src/statusnotifier.cpp" line="134"/>
+        <source>Install TAP Driver</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/statusnotifier.cpp" line="277"/>
+        <location filename="../../src/statusnotifier.cpp" line="362"/>
         <location filename="../../src/statusnotifier.mm" line="267"/>
         <location filename="../../src/statusnotifier.mm" line="335"/>
         <source>Turn Off Trojan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="358"/>
+        <location filename="../../src/statusnotifier.cpp" line="361"/>
         <location filename="../../src/statusnotifier.mm" line="334"/>
         <source>Trojan: On</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="134"/>
+        <location filename="../../src/statusnotifier.cpp" line="137"/>
         <location filename="../../src/statusnotifier.mm" line="133"/>
         <source>Copy as Windows Style</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="135"/>
+        <location filename="../../src/statusnotifier.cpp" line="138"/>
         <location filename="../../src/statusnotifier.mm" line="134"/>
         <source>Copy as Unix Style</source>
         <translation type="unfinished"></translation>
@@ -2565,12 +2570,12 @@ See the following link for a reference:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/subscribedialog.ui" line="80"/>
+        <location filename="../../ui/subscribedialog.ui" line="87"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/subscribedialog.ui" line="87"/>
+        <location filename="../../ui/subscribedialog.ui" line="80"/>
         <source>Ok</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2614,104 +2619,98 @@ See the following link for a reference:
     </message>
     <message>
         <location filename="../../ui/trojaneditdialog.ui" line="82"/>
-        <location filename="../../ui/trojaneditdialog.ui" line="96"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="123"/>
         <location filename="../../ui/trojaneditdialog.ui" line="137"/>
         <location filename="../../ui/trojaneditdialog.ui" line="151"/>
         <location filename="../../ui/trojaneditdialog.ui" line="165"/>
         <location filename="../../ui/trojaneditdialog.ui" line="179"/>
-        <location filename="../../ui/trojaneditdialog.ui" line="193"/>
-        <location filename="../../ui/trojaneditdialog.ui" line="207"/>
-        <location filename="../../ui/trojaneditdialog.ui" line="285"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="213"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="227"/>
         <source>Enable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../ui/trojaneditdialog.ui" line="89"/>
-        <source>Verify Hostname</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="103"/>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="120"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="106"/>
         <source>SNI</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="130"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="116"/>
         <source>Reuse Session</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="144"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="130"/>
         <source>Session Ticket</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="158"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="144"/>
         <source>Reuse Port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="172"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="158"/>
         <source>TCP Fast Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="186"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="172"/>
         <source>Mux</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="200"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="206"/>
         <source>Websocket</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="214"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="234"/>
         <source>Websocket Path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="224"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="244"/>
         <source>Websocket Hostname</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="231"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="254"/>
         <source>Websocket Obfs Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="238"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="264"/>
         <source>Reset Data Usage after</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="258"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="284"/>
         <source>Automation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="271"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="297"/>
         <source>Auto connect on application start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="278"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="220"/>
         <source>Websocket Double TLS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="298"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="186"/>
         <source>Mux Concurrency</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="308"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="196"/>
         <source>Mux Idle Timeout</source>
         <translation type="unfinished"></translation>
     </message>

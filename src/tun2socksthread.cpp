@@ -1,8 +1,9 @@
 #include "confighelper.h"
 #include "tun2socksthread.h"
-#include <QProcess>
 #include "utils.h"
 #include "trojan-qt5-core.h"
+
+#include <QProcess>
 
 Tun2socksThread::Tun2socksThread()
 {}

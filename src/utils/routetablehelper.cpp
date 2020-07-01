@@ -1,4 +1,5 @@
 #include "routetablehelper.h"
+#include "logger.h"
 
 #include <stdlib.h>
 #include <QProcess>
@@ -26,8 +27,8 @@ QString RouteTableHelper::getDefaultGateWay()
 {
     QProcess *task = new QProcess;
     QStringList param;
-#if defined (Q_OS_WIN)
     QString gateway;
+#if defined (Q_OS_WIN)
     MIB_IPFORWARDROW BestRoute;
     DWORD dwRet = GetBestRoute(QHostAddress("114.114.114.114").toIPv4Address(), 0, &BestRoute);
     if (dwRet == NO_ERROR) {
@@ -35,22 +36,29 @@ QString RouteTableHelper::getDefaultGateWay()
     } else {
         gateway = "";
     }
-    return gateway;
 #elif defined (Q_OS_MAC)
     param << "-c" << "route get default | grep gateway | awk '{print $2}'";
     task->start("bash", param);
     task->waitForFinished();
-    QString gateway = task->readAllStandardOutput();
+    gateway = task->readAllStandardOutput();
     gateway = gateway.remove("\n");
-    return gateway;
 #elif defined (Q_OS_LINUX)
     param << "-c" << "route -n | awk '{print $2}' | awk 'NR == 3 {print}'";
     task->start("bash", param);
     task->waitForFinished();
-    QString gateway = task->readAllStandardOutput();
+    gateway = task->readAllStandardOutput();
     gateway = gateway.remove("\n");
-    return gateway;
 #endif
+    // let's process domain & ip address
+    QRegExp pattern("^([a-zA-Z0-9-]+.)+([a-zA-Z])+$");
+    if (pattern.exactMatch(gateway)) {
+        QList<QHostAddress> gatewayAddress = QHostInfo::fromName(gateway).addresses();
+        if (!gatewayAddress.isEmpty())
+            gateway = gatewayAddress.first().toString();
+        else
+            return "";
+    }
+    return gateway;
 }
 
 void RouteTableHelper::set()
@@ -76,6 +84,7 @@ void RouteTableHelper::setRouteTable()
     }
     else
         ip = serverAddress;
+    Logger::debug(QString("[Advance] GateWay: %1, IP: %2").arg(gateWay).arg(ip));
 #if defined (Q_OS_WIN)
     QProcess::execute(QString("route delete 0.0.0.0 mask 0.0.0.0"));
     QProcess::execute(QString("route add 0.0.0.0 mask 0.0.0.0 10.0.0.1 metric 6"));
@@ -104,14 +113,14 @@ void RouteTableHelper::resetRouteTable()
     QProcess::execute(QString("route add 0.0.0.0 mask 0.0.0.0 %1 metric 50").arg(gateWay));
 #elif defined (Q_OS_MAC)
     QProcess::execute("route delete default");
+    QProcess::execute(QString("route add default %1").arg(gateWay).toUtf8().data());
     QProcess::execute("route delete 10.0.0.0/8");
     QProcess::execute("route delete 172.16.0.0/12");
     QProcess::execute("route delete 192.168.0.0/16");
-    QProcess::execute(QString("route delete %1/32 %2").arg(ip).arg(gateWay));
-    QProcess::execute(QString("route add default %1").arg(gateWay).toUtf8().data());
+    QProcess::execute(QString("route delete %1/32").arg(ip));
 #elif defined (Q_OS_LINUX)
     QProcess::execute("ip route delete default");
-    QProcess::execute(QString("ip route delete %1/32").arg(ip));
     QProcess::execute(QString("ip route add default via %1").arg(gateWay).toUtf8().data());
+    QProcess::execute(QString("ip route delete %1/32").arg(ip));
 #endif
 }

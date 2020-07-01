@@ -331,8 +331,8 @@ void Connection::stop()
         emit stateChanged(running);
 
         if (tun2socks && conf->getSystemProxySettings() == "advance") {
-            tun2socks->stop();
             rhelper->reset();
+            tun2socks->stop();
         } else if (conf->getSystemProxySettings() != "direct") {
             //set proxy settings after emit the signal
             SystemProxyHelper::setSystemProxy(0);

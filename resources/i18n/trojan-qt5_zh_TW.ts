@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh_TW" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="zh_TW">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -393,7 +395,7 @@ Checkout wiki for instructions</source>
         <location filename="../../ui/mainwindow.ui" line="472"/>
         <location filename="../../ui/mainwindow.ui" line="485"/>
         <source>Return</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="477"/>
@@ -1618,7 +1620,7 @@ See the following link for a reference:
         <location filename="../../ui/settingsdialog.ui" line="321"/>
         <location filename="../../ui/settingsdialog.ui" line="357"/>
         <source>Follow System</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="329"/>
@@ -1628,22 +1630,22 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/settingsdialog.ui" line="337"/>
         <source>zh_CN</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="342"/>
         <source>zh_TW</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="347"/>
         <source>en_US</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="352"/>
         <source>ja_JP</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../ui/settingsdialog.ui" line="368"/>
@@ -1959,12 +1961,12 @@ See the following link for a reference:
         <translation>緩衝大小</translation>
     </message>
     <message>
-        <location filename="../../src/dialog/settingsdialog.cpp" line="116"/>
+        <location filename="../../src/dialog/settingsdialog.cpp" line="117"/>
         <source>Invalid</source>
         <translation>無效</translation>
     </message>
     <message>
-        <location filename="../../src/dialog/settingsdialog.cpp" line="117"/>
+        <location filename="../../src/dialog/settingsdialog.cpp" line="118"/>
         <source>You can not hide dock Icon and use native menu bar at the same time</source>
         <translation>您無法同時「隱藏Dock圖示」並「使用本機功能表」</translation>
     </message>
@@ -2171,7 +2173,7 @@ See the following link for a reference:
     <name>StatusNotifier</name>
     <message>
         <location filename="../../src/statusnotifier.cpp" line="39"/>
-        <location filename="../../src/statusnotifier.cpp" line="418"/>
+        <location filename="../../src/statusnotifier.cpp" line="421"/>
         <location filename="../../src/statusnotifier.mm" line="34"/>
         <location filename="../../src/statusnotifier.mm" line="394"/>
         <source>Restore</source>
@@ -2179,7 +2181,7 @@ See the following link for a reference:
     </message>
     <message>
         <location filename="../../src/statusnotifier.cpp" line="39"/>
-        <location filename="../../src/statusnotifier.cpp" line="418"/>
+        <location filename="../../src/statusnotifier.cpp" line="421"/>
         <location filename="../../src/statusnotifier.mm" line="34"/>
         <location filename="../../src/statusnotifier.mm" line="394"/>
         <source>Minimise</source>
@@ -2193,7 +2195,7 @@ See the following link for a reference:
     </message>
     <message>
         <location filename="../../src/statusnotifier.cpp" line="52"/>
-        <location filename="../../src/statusnotifier.cpp" line="402"/>
+        <location filename="../../src/statusnotifier.cpp" line="405"/>
         <location filename="../../src/statusnotifier.mm" line="51"/>
         <location filename="../../src/statusnotifier.mm" line="378"/>
         <source>Trojan: Off</source>
@@ -2201,7 +2203,7 @@ See the following link for a reference:
     </message>
     <message>
         <location filename="../../src/statusnotifier.cpp" line="54"/>
-        <location filename="../../src/statusnotifier.cpp" line="403"/>
+        <location filename="../../src/statusnotifier.cpp" line="406"/>
         <location filename="../../src/statusnotifier.mm" line="53"/>
         <location filename="../../src/statusnotifier.mm" line="379"/>
         <source>Turn On Trojan</source>
@@ -2372,27 +2374,32 @@ See the following link for a reference:
         <translation>設定Telegram代理</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="274"/>
-        <location filename="../../src/statusnotifier.cpp" line="359"/>
+        <location filename="../../src/statusnotifier.cpp" line="134"/>
+        <source>Install TAP Driver</source>
+        <translation>安裝TAP驅動程式</translation>
+    </message>
+    <message>
+        <location filename="../../src/statusnotifier.cpp" line="277"/>
+        <location filename="../../src/statusnotifier.cpp" line="362"/>
         <location filename="../../src/statusnotifier.mm" line="267"/>
         <location filename="../../src/statusnotifier.mm" line="335"/>
         <source>Turn Off Trojan</source>
         <translation>關閉Trojan</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="358"/>
+        <location filename="../../src/statusnotifier.cpp" line="361"/>
         <location filename="../../src/statusnotifier.mm" line="334"/>
         <source>Trojan: On</source>
         <translation>Trojan: 已開啟</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="134"/>
+        <location filename="../../src/statusnotifier.cpp" line="137"/>
         <location filename="../../src/statusnotifier.mm" line="133"/>
         <source>Copy as Windows Style</source>
         <translation>複製為Windows樣式</translation>
     </message>
     <message>
-        <location filename="../../src/statusnotifier.cpp" line="135"/>
+        <location filename="../../src/statusnotifier.cpp" line="138"/>
         <location filename="../../src/statusnotifier.mm" line="134"/>
         <source>Copy as Unix Style</source>
         <translation>複製為Unix樣式</translation>
@@ -2403,7 +2410,7 @@ See the following link for a reference:
     <message>
         <location filename="../../ui/streamwidget.ui" line="14"/>
         <source>Stream Settings Widget</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../ui/streamwidget.ui" line="24"/>
@@ -2567,12 +2574,12 @@ See the following link for a reference:
         <translation>自動更新</translation>
     </message>
     <message>
-        <location filename="../../ui/subscribedialog.ui" line="80"/>
+        <location filename="../../ui/subscribedialog.ui" line="87"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../../ui/subscribedialog.ui" line="87"/>
+        <location filename="../../ui/subscribedialog.ui" line="80"/>
         <source>Ok</source>
         <translation>確定</translation>
     </message>
@@ -2616,104 +2623,98 @@ See the following link for a reference:
     </message>
     <message>
         <location filename="../../ui/trojaneditdialog.ui" line="82"/>
-        <location filename="../../ui/trojaneditdialog.ui" line="96"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="123"/>
         <location filename="../../ui/trojaneditdialog.ui" line="137"/>
         <location filename="../../ui/trojaneditdialog.ui" line="151"/>
         <location filename="../../ui/trojaneditdialog.ui" line="165"/>
         <location filename="../../ui/trojaneditdialog.ui" line="179"/>
-        <location filename="../../ui/trojaneditdialog.ui" line="193"/>
-        <location filename="../../ui/trojaneditdialog.ui" line="207"/>
-        <location filename="../../ui/trojaneditdialog.ui" line="285"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="213"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="227"/>
         <source>Enable</source>
         <translation>開啟</translation>
     </message>
     <message>
         <location filename="../../ui/trojaneditdialog.ui" line="89"/>
-        <source>Verify Hostname</source>
-        <translation>驗證主機名</translation>
-    </message>
-    <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="103"/>
         <source>Password</source>
         <translation>密碼</translation>
     </message>
     <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="120"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="106"/>
         <source>SNI</source>
         <translation>SNI</translation>
     </message>
     <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="130"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="116"/>
         <source>Reuse Session</source>
         <translation>複用Session</translation>
     </message>
     <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="144"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="130"/>
         <source>Session Ticket</source>
         <translation>Session Ticket</translation>
     </message>
     <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="158"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="144"/>
         <source>Reuse Port</source>
         <translation>複用連接埠</translation>
     </message>
     <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="172"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="158"/>
         <source>TCP Fast Open</source>
         <translation>TCP快速打開</translation>
     </message>
     <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="186"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="172"/>
         <source>Mux</source>
         <translation>Mux</translation>
     </message>
     <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="200"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="206"/>
         <source>Websocket</source>
         <translation>Websocket</translation>
     </message>
     <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="214"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="234"/>
         <source>Websocket Path</source>
         <translation>Websocket路徑</translation>
     </message>
     <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="224"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="244"/>
         <source>Websocket Hostname</source>
         <translation>Websocket主機名</translation>
     </message>
     <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="231"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="254"/>
         <source>Websocket Obfs Password</source>
         <translation>Websocket混淆密碼</translation>
     </message>
     <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="238"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="264"/>
         <source>Reset Data Usage after</source>
         <translation>指定日期重設資料使用量</translation>
     </message>
     <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="258"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="284"/>
         <source>Automation</source>
         <translation>自動化</translation>
     </message>
     <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="271"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="297"/>
         <source>Auto connect on application start</source>
         <translation>程式啟動時自動連線</translation>
     </message>
     <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="278"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="220"/>
         <source>Websocket Double TLS</source>
         <translation>Websocket雙重TLS</translation>
     </message>
     <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="298"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="186"/>
         <source>Mux Concurrency</source>
         <translation>Mux併發</translation>
     </message>
     <message>
-        <location filename="../../ui/trojaneditdialog.ui" line="308"/>
+        <location filename="../../ui/trojaneditdialog.ui" line="196"/>
         <source>Mux Idle Timeout</source>
         <translation>Mux閒置逾時</translation>
     </message>
