@@ -130,6 +130,9 @@ void StatusNotifier::initActions()
     serverSpeedPlot = new QAction(tr("Server Speed Plot"));
     copyTerminalProxyCommandMenu = new QMenu(tr("Copy terminal proxy command"));
     setProxyToTelegram = new QAction(tr("Set Proxy to Telegram"));
+#if defined (Q_OS_WIN)
+    installTapDriver = new QAction(tr("Instal TAP Driver"));
+#endif
 
     terminalWinStyle = new QAction(tr("Copy as Windows Style"));
     terminalUnixStyle = new QAction(tr("Copy as Unix Style"));
