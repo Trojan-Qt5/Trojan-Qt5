@@ -14,6 +14,7 @@
 #include <tchar.h>
 #include <ras.h>
 #include <raserror.h>
+#include <QString>
 
 #pragma comment(lib, "rasapi32.lib")
 #pragma comment(lib, "Wininet.lib")
