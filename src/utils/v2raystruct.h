@@ -2,7 +2,6 @@
 #define V2RAYSTRUCT_H
 
 #include <QObject>
-#include <QJsonObject>
 #include <QDataStream>
 
 struct tcpSettings {
@@ -52,6 +51,11 @@ struct tlsSettings {
     QStringList alpn;
 };
 
+struct vmuxSettings {
+    bool enable;
+    int muxConcurrency;
+};
+
 struct VmessSettings {
     QString network = "tcp";
     tcpSettings tcp;
@@ -60,6 +64,7 @@ struct VmessSettings {
     kcpSettings kcp;
     quicSettings quic;
     tlsSettings tls;
+    vmuxSettings mux;
 };
 
 QDataStream& operator << (QDataStream &out, const tcpSettings &t);

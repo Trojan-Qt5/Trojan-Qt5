@@ -64,8 +64,10 @@ public:
     void exportGuiConfigJson(const ConnectionTableModel& model, const QString &file);
 
     static VmessSettings parseVmessSettings(const QJsonObject &settings);
-
     static QJsonObject exportVmessSettings(const VmessSettings &settings);
+
+    static TrojanGoSettings parseTrojanGoSettings(const QJsonObject &settings);
+    static QJsonObject exportTrojanGoSettings(const TrojanGoSettings &settings);
 
     void importConfigYaml(ConnectionTableModel *model, const QString &file);
 

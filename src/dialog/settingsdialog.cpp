@@ -50,6 +50,7 @@ SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
     ui->haproxyStatusPortLineEdit->setText(QString::number(helper->getInboundSettings().haproxyStatusPort));
     // outbound settings
     ui->bypassBittorrentCB->setChecked(helper->getOutboundSettings().bypassBittorrent);
+    ui->bypassPrivateAddressCB->setChecked(helper->getOutboundSettings().bypassPrivateAddress);
     ui->bypassChinaMainlandCB->setChecked(helper->getOutboundSettings().bypassChinaMainland);
     ui->forwardProxyCheckBox->setChecked(helper->getOutboundSettings().forwardProxy);
     ui->forwardProxyTypeComboBox->setCurrentIndex(helper->getOutboundSettings().forwardProxyType);
@@ -149,6 +150,7 @@ void SettingsDialog::onAccepted()
 
     OutboundSettings outboundSettings = helper->getOutboundSettings();
     outboundSettings.bypassBittorrent = ui->bypassBittorrentCB->isChecked();
+    outboundSettings.bypassPrivateAddress = ui->bypassPrivateAddressCB->isChecked();
     outboundSettings.bypassChinaMainland = ui->bypassChinaMainlandCB->isChecked();
     outboundSettings.forwardProxy = ui->forwardProxyCheckBox->isChecked();
     outboundSettings.forwardProxyType = ui->forwardProxyTypeComboBox->currentIndex();

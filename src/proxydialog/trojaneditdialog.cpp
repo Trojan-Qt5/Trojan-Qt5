@@ -23,21 +23,14 @@ TrojanEditDialog::TrojanEditDialog(Connection *_connection, QWidget *parent) :
     ui->sniEdit->setText(connection->profile.sni);
     ui->reuseSessionCheckBox->setChecked(connection->profile.reuseSession);
     ui->sessionTicketCheckBox->setChecked(connection->profile.sessionTicket);
-    ui->reusePortCheckBox->setChecked(connection->profile.reusePort);
-    ui->tcpFastOpenCheckBox->setChecked(connection->profile.tcpFastOpen);
-    ui->muxCheckBox->setChecked(connection->profile.mux);
-    ui->muxConcurrencyEdit->setText(QString::number(connection->profile.muxConcurrency));
-    ui->muxIdleTimeoutEdit->setText(QString::number(connection->profile.muxIdleTimeout));
-    ui->websocketCheckBox->setChecked(connection->profile.websocket);
-    ui->websocketDoubleTLSCheckBox->setChecked(connection->profile.websocketDoubleTLS);
-    ui->websocketPathEdit->setText(connection->profile.websocketPath);
-    ui->websocketHostnameEdit->setText(connection->profile.websocketHostname);
-    ui->websocketObfsPasswordEdit->setText(connection->profile.websocketObfsPassword);
     ui->resetDateEdit->setDate(connection->profile.nextResetDate);
     ui->resetDateEdit->setMinimumDate(QDate::currentDate());
     ui->autoStartCheckBox->setChecked(connection->profile.autoStart);
 
     connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &TrojanEditDialog::save);
+
+    trojanGoWidget = new TrojanGoWidget(this);
+    trojanGoWidget->setSettings(connection->profile.trojanGoSettings);
 
     this->adjustSize();
 }
@@ -56,18 +49,9 @@ void TrojanEditDialog::save()
     connection->profile.verifyCertificate = ui->verifyCertificateCheckBox->isChecked();
     connection->profile.reuseSession = ui->reuseSessionCheckBox->isChecked();
     connection->profile.sessionTicket = ui->sessionTicketCheckBox->isChecked();
-    connection->profile.reusePort = ui->reusePortCheckBox->isChecked();
-    connection->profile.tcpFastOpen = ui->tcpFastOpenCheckBox->isChecked();
-    connection->profile.mux = ui->muxCheckBox->isChecked();
-    connection->profile.muxConcurrency = ui->muxConcurrencyEdit->text().toInt();
-    connection->profile.muxIdleTimeout = ui->muxIdleTimeoutEdit->text().toInt();
-    connection->profile.websocket = ui->websocketCheckBox->isChecked();
-    connection->profile.websocketDoubleTLS = ui->websocketDoubleTLSCheckBox->isChecked();
-    connection->profile.websocketPath = ui->websocketPathEdit->text();
-    connection->profile.websocketHostname = ui->websocketHostnameEdit->text();
-    connection->profile.websocketObfsPassword = ui->websocketObfsPasswordEdit->text();
     connection->profile.password = ui->pwdEdit->text();
     connection->profile.sni = ui->sniEdit->text();
+    connection->profile.trojanGoSettings = trojanGoWidget->getSettings();
     connection->profile.nextResetDate = ui->resetDateEdit->date();
     connection->profile.autoStart = ui->autoStartCheckBox->isChecked();
 

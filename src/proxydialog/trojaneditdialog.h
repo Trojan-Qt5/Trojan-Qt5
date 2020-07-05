@@ -1,18 +1,18 @@
 /*
- * Copyright (C) 2015-2016 Symeon Huang <hzwhuang@gmail.com>
+ * Copyright (C) 2019-2020 TheWanderingCoel <thewanderingcoel@protonmail.com>
  *
- * shadowsocks-qt5 is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published
+ * Trojan-Qt5 is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published
  * by the Free Software Foundation; either version 3 of the License, or
  * (at your option) any later version.
  *
- * shadowsocks-qt5 is distributed in the hope that it will be useful,
+ * Trojan-Qt5 is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Lesser General Public License for more details.
+ * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with libQtShadowsocks; see the file LICENSE. If not, see
+ * You should have received a copy of the GNU General Public License
+ * along with Trojan-Qt5; see the file LICENSE. If not, see
  * <http://www.gnu.org/licenses/>.
  */
 
@@ -21,6 +21,7 @@
 
 #include <QDialog>
 #include "connection.h"
+#include "trojangowidget.h"
 
 namespace Ui {
 class TrojanEditDialog;
@@ -37,6 +38,7 @@ public:
 private:
     Ui::TrojanEditDialog *ui;
     Connection *connection;
+    TrojanGoWidget *trojanGoWidget;
 
 private slots:
     void save();

@@ -26,6 +26,7 @@
 #include <QJsonObject>
 
 #include "v2raystruct.h"
+#include "trojangostruct.h"
 
 struct TQProfile
 {
@@ -58,6 +59,7 @@ struct TQProfile
     QString name;
     QString serverAddress;
     QString password;
+    bool tcpFastOpen;
     int latency;
     quint64 currentDownloadUsage;
     quint64 currentUploadUsage;
@@ -76,20 +78,11 @@ struct TQProfile
     QString plugin;
     QString pluginParam;
     // trojan only
+    QString sni;
     bool verifyCertificate;
     bool reuseSession;
     bool sessionTicket;
-    bool reusePort;
-    bool tcpFastOpen;
-    bool websocket;
-    bool websocketDoubleTLS;
-    bool mux;
-    int muxConcurrency;
-    int muxIdleTimeout;
-    QString sni;
-    QString websocketPath;
-    QString websocketHostname;
-    QString websocketObfsPassword;
+    TrojanGoSettings trojanGoSettings;
     // vmess only
     QString uuid;
     int alterID;

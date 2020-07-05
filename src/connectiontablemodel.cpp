@@ -192,8 +192,6 @@ void ConnectionTableModel::replace(Connection *newCon)
             p.protocolParam = newCon->getProfile().protocolParam;
             p.obfs = newCon->getProfile().obfs;
             p.obfsParam = newCon->getProfile().obfsParam;
-            p.mux = newCon->getProfile().mux;
-            p.websocket = newCon->getProfile().websocket;
             p.name = newCon->getProfile().name;
             p.vmessSettings = newCon->getProfile().vmessSettings;
             p.group = newCon->getProfile().group;

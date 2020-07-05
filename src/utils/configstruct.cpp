@@ -28,13 +28,13 @@ QDataStream& operator >> (QDataStream &in, InboundSettings &i)
 
 QDataStream& operator << (QDataStream &out, const OutboundSettings &o)
 {
-    out << o.bypassBittorrent << o.bypassChinaMainland << o.forwardProxy << o.forwardProxyType << o.forwardProxyAddress << o.forwardProxyPort << o.forwardProxyAuthentication << o.forwardProxyUsername << o.forwardProxyPassword;
+    out << o.bypassBittorrent << o.bypassPrivateAddress << o.bypassChinaMainland << o.forwardProxy << o.forwardProxyType << o.forwardProxyAddress << o.forwardProxyPort << o.forwardProxyAuthentication << o.forwardProxyUsername << o.forwardProxyPassword;
     return out;
 }
 
 QDataStream& operator >> (QDataStream &in, OutboundSettings &o)
 {
-    in >> o.bypassBittorrent >> o.bypassChinaMainland >> o.forwardProxy >> o.forwardProxyType >> o.forwardProxyAddress >> o.forwardProxyPort >> o.forwardProxyAuthentication >> o.forwardProxyUsername >> o.forwardProxyPassword;
+    in >> o.bypassBittorrent >> o.bypassPrivateAddress >> o.bypassChinaMainland >> o.forwardProxy >> o.forwardProxyType >> o.forwardProxyAddress >> o.forwardProxyPort >> o.forwardProxyAuthentication >> o.forwardProxyUsername >> o.forwardProxyPassword;
     return in;
 }
 

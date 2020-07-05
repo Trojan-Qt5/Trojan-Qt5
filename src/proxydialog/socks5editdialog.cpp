@@ -38,6 +38,7 @@ void Socks5EditDialog::save()
     connection->profile.name = ui->nameEdit->text();
     connection->profile.serverAddress = ui->serverAddrEdit->text().trimmed();
     connection->profile.serverPort = ui->serverPortEdit->text().toUShort();
+    connection->profile.username = ui->usernameEdit->text();
     connection->profile.password = ui->pwdEdit->text();
     connection->profile.nextResetDate = ui->resetDateEdit->date();
     connection->profile.autoStart = ui->autoStartCheckBox->isChecked();

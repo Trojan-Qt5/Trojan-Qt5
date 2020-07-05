@@ -6,315 +6,178 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>462</width>
-    <height>688</height>
+    <width>773</width>
+    <height>502</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Profile Editor</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QFrame" name="editFrame">
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_4" columnstretch="2,0">
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="outboundSettingWrapper">
+     <property name="title">
+      <string>Trojan Settings</string>
      </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <layout class="QFormLayout" name="formLayout">
-      <property name="sizeConstraint">
-       <enum>QLayout::SetMaximumSize</enum>
-      </property>
-      <property name="fieldGrowthPolicy">
-       <enum>QFormLayout::ExpandingFieldsGrow</enum>
-      </property>
-      <property name="rowWrapPolicy">
-       <enum>QFormLayout::WrapLongRows</enum>
-      </property>
-      <property name="labelAlignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-      </property>
-      <item row="1" column="0">
-       <widget class="QLabel" name="nameLabel">
-        <property name="text">
-         <string>Profile Name</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QLineEdit" name="nameEdit"/>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="serverAddrLabel">
-        <property name="text">
-         <string>Server Address</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QLineEdit" name="serverAddrEdit"/>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="serverPortLabel">
-        <property name="text">
-         <string>Server Port</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QLineEdit" name="serverPortEdit">
-        <property name="inputMethodHints">
-         <set>Qt::ImhDigitsOnly|Qt::ImhPreferNumbers</set>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="0">
-       <widget class="QLabel" name="verifyCertificateLabel">
-        <property name="text">
-         <string>Verify Certificate</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="1">
-       <widget class="QCheckBox" name="verifyCertificateCheckBox">
-        <property name="text">
-         <string>Enable</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="pwdLabel">
-        <property name="text">
-         <string>Password</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="1">
-       <widget class="QLineEdit" name="pwdEdit">
-        <property name="inputMethodHints">
-         <set>Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData</set>
-        </property>
-        <property name="echoMode">
-         <enum>QLineEdit::PasswordEchoOnEdit</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="0">
-       <widget class="QLabel" name="sniLabel">
-        <property name="text">
-         <string>SNI</string>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="1">
-       <widget class="QLineEdit" name="sniEdit"/>
-      </item>
-      <item row="7" column="0">
-       <widget class="QLabel" name="reuseSessionLabel">
-        <property name="text">
-         <string>Reuse Session</string>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="1">
-       <widget class="QCheckBox" name="reuseSessionCheckBox">
-        <property name="text">
-         <string>Enable</string>
-        </property>
-       </widget>
-      </item>
-      <item row="8" column="0">
-       <widget class="QLabel" name="sessionTicketLabel">
-        <property name="text">
-         <string>Session Ticket</string>
-        </property>
-       </widget>
-      </item>
-      <item row="8" column="1">
-       <widget class="QCheckBox" name="sessionTicketCheckBox">
-        <property name="text">
-         <string>Enable</string>
-        </property>
-       </widget>
-      </item>
-      <item row="9" column="0">
-       <widget class="QLabel" name="reusePortLabel">
-        <property name="text">
-         <string>Reuse Port</string>
-        </property>
-       </widget>
-      </item>
-      <item row="9" column="1">
-       <widget class="QCheckBox" name="reusePortCheckBox">
-        <property name="text">
-         <string>Enable</string>
-        </property>
-       </widget>
-      </item>
-      <item row="10" column="0">
-       <widget class="QLabel" name="tcpFastOpenLabel">
-        <property name="text">
-         <string>TCP Fast Open</string>
-        </property>
-       </widget>
-      </item>
-      <item row="10" column="1">
-       <widget class="QCheckBox" name="tcpFastOpenCheckBox">
-        <property name="text">
-         <string>Enable</string>
-        </property>
-       </widget>
-      </item>
-      <item row="11" column="0">
-       <widget class="QLabel" name="muxLabel">
-        <property name="text">
-         <string>Mux</string>
-        </property>
-       </widget>
-      </item>
-      <item row="11" column="1">
-       <widget class="QCheckBox" name="muxCheckBox">
-        <property name="text">
-         <string>Enable</string>
-        </property>
-       </widget>
-      </item>
-      <item row="12" column="0">
-       <widget class="QLabel" name="label_5">
-        <property name="text">
-         <string>Mux Concurrency</string>
-        </property>
-       </widget>
-      </item>
-      <item row="12" column="1">
-       <widget class="QLineEdit" name="muxConcurrencyEdit"/>
-      </item>
-      <item row="13" column="0">
-       <widget class="QLabel" name="label_6">
-        <property name="text">
-         <string>Mux Idle Timeout</string>
-        </property>
-       </widget>
-      </item>
-      <item row="13" column="1">
-       <widget class="QLineEdit" name="muxIdleTimeoutEdit"/>
-      </item>
-      <item row="14" column="0">
-       <widget class="QLabel" name="websocketLabel">
-        <property name="text">
-         <string>Websocket</string>
-        </property>
-       </widget>
-      </item>
-      <item row="14" column="1">
-       <widget class="QCheckBox" name="websocketCheckBox">
-        <property name="text">
-         <string>Enable</string>
-        </property>
-       </widget>
-      </item>
-      <item row="15" column="0">
-       <widget class="QLabel" name="label_3">
-        <property name="text">
-         <string>Websocket Double TLS</string>
-        </property>
-       </widget>
-      </item>
-      <item row="15" column="1">
-       <widget class="QCheckBox" name="websocketDoubleTLSCheckBox">
-        <property name="text">
-         <string>Enable</string>
-        </property>
-       </widget>
-      </item>
-      <item row="16" column="0">
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Websocket Path</string>
-        </property>
-       </widget>
-      </item>
-      <item row="16" column="1">
-       <widget class="QLineEdit" name="websocketPathEdit"/>
-      </item>
-      <item row="17" column="0">
-       <widget class="QLabel" name="label_4">
-        <property name="text">
-         <string>Websocket Hostname</string>
-        </property>
-       </widget>
-      </item>
-      <item row="17" column="1">
-       <widget class="QLineEdit" name="websocketHostnameEdit"/>
-      </item>
-      <item row="18" column="0">
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>Websocket Obfs Password</string>
-        </property>
-       </widget>
-      </item>
-      <item row="18" column="1">
-       <widget class="QLineEdit" name="websocketObfsPasswordEdit"/>
-      </item>
-      <item row="19" column="0">
-       <widget class="QLabel" name="resetDateLabel">
-        <property name="text">
-         <string>Reset Data Usage after</string>
-        </property>
-       </widget>
-      </item>
-      <item row="19" column="1">
-       <widget class="QDateEdit" name="resetDateEdit">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="calendarPopup">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="20" column="0">
-       <widget class="QLabel" name="autoStartLabel">
-        <property name="text">
-         <string>Automation</string>
-        </property>
-       </widget>
-      </item>
-      <item row="20" column="1">
-       <widget class="QCheckBox" name="autoStartCheckBox">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Auto connect on application start</string>
-        </property>
-       </widget>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <layout class="QHBoxLayout" name="horizontalLayout" stretch="0">
+        <item>
+         <layout class="QFormLayout" name="formLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Profile Name</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="nameEdit"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Server Address</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="serverAddrEdit"/>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Server Port</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="serverPortEdit"/>
+          </item>
+          <item row="8" column="0">
+           <widget class="QLabel" name="label_8">
+            <property name="text">
+             <string>Reset Data Usage After</string>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="1">
+           <widget class="QDateEdit" name="resetDateEdit"/>
+          </item>
+          <item row="9" column="0">
+           <widget class="QLabel" name="label_9">
+            <property name="text">
+             <string>Automation</string>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="1">
+           <widget class="QCheckBox" name="autoStartCheckBox">
+            <property name="text">
+             <string>Auto connect on application start</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>Password</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="pwdEdit"/>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_5">
+            <property name="text">
+             <string>SNI</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QLineEdit" name="sniEdit"/>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_6">
+            <property name="text">
+             <string>Verify Certificate</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QCheckBox" name="verifyCertificateCheckBox">
+            <property name="text">
+             <string>Enable</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string>Reuse Session</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="QLabel" name="label_10">
+            <property name="text">
+             <string>Session Ticker</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <widget class="QCheckBox" name="reuseSessionCheckBox">
+            <property name="text">
+             <string>Enable</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1">
+           <widget class="QCheckBox" name="sessionTicketCheckBox">
+            <property name="text">
+             <string>Enable</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
       </item>
      </layout>
     </widget>
    </item>
-   <item>
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
+   <item row="0" column="1">
+    <widget class="QGroupBox" name="streamSettingsGroupBox">
+     <property name="title">
+      <string>Trojan-Go Settings</string>
      </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>0</height>
-      </size>
+     <property name="checked">
+      <bool>false</bool>
      </property>
-    </spacer>
+     <layout class="QGridLayout" name="gridLayout_3">
+      <item row="0" column="0">
+       <layout class="QGridLayout" name="trojangoFrame"/>
+      </item>
+     </layout>
+    </widget>
    </item>
-   <item>
+   <item row="1" column="0" colspan="2">
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -326,14 +189,6 @@
    </item>
   </layout>
  </widget>
- <tabstops>
-  <tabstop>nameEdit</tabstop>
-  <tabstop>serverAddrEdit</tabstop>
-  <tabstop>serverPortEdit</tabstop>
-  <tabstop>pwdEdit</tabstop>
-  <tabstop>resetDateEdit</tabstop>
-  <tabstop>autoStartCheckBox</tabstop>
- </tabstops>
  <resources/>
  <connections>
   <connection>
@@ -343,12 +198,12 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>316</x>
-     <y>260</y>
+     <x>386</x>
+     <y>480</y>
     </hint>
     <hint type="destinationlabel">
-     <x>286</x>
-     <y>274</y>
+     <x>386</x>
+     <y>250</y>
     </hint>
    </hints>
   </connection>

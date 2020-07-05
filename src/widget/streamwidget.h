@@ -2,7 +2,6 @@
 #define STREAMWIDGETS_H
 
 #include <QWidget>
-#include <QJsonObject>
 #include "v2raystruct.h"
 
 namespace Ui {
@@ -72,6 +71,10 @@ private slots:
     void on_serverNameTxt_textEdited(const QString &arg1);
 
     void on_alpnTxt_textChanged();
+
+    void on_muxCB_stateChanged(int arg1);
+
+    void on_muxConcurrencySB_valueChanged(int arg1);
 
 private:
     Ui::StreamWidget *ui;

@@ -141,12 +141,9 @@ void ConfigHelper::importGuiConfigJson(ConnectionTableModel *model, const QStrin
         p.sni = json["sni"].toString();
         p.reuseSession = json["reuse_session"].toBool();
         p.sessionTicket = json["session_ticket"].toBool();
-        p.reusePort = json["reuse_port"].toBool();
         p.tcpFastOpen = json["tcp_fast_open"].toBool();
-        p.mux = json["mux"].toBool();
-        p.muxConcurrency = !json["mux_concurrency"].isNull() ? json["mux_concurrency"].toInt() : 8;
-        p.muxIdleTimeout = !json["mux_idle_timeout"].isNull() ? json["mux_idle_timeout"].toInt() : 60;
         p.vmessSettings = !json["vmessSettings"].isNull() ? parseVmessSettings(json["vmessSettings"].toObject()) : parseVmessSettings(QJsonObject());
+        p.trojanGoSettings = !json["trojanGoSettings"].isNull() ? parseTrojanGoSettings(json["trojanGoSettings"].toObject()) : parseTrojanGoSettings(QJsonObject());
         Connection *con = new Connection(p, this);
         model->appendConnection(con);
     }
@@ -177,12 +174,9 @@ void ConfigHelper::exportGuiConfigJson(const ConnectionTableModel &model, const 
         json["sni"] = QJsonValue(con->profile.sni);
         json["reuse_session"] = QJsonValue(con->profile.reuseSession);
         json["session_ticket"] = QJsonValue(con->profile.sessionTicket);
-        json["reuse_port"] = QJsonValue(con->profile.reusePort);
         json["tcp_fast_open"] = QJsonValue(con->profile.tcpFastOpen);
-        json["mux"] = QJsonValue(con->profile.mux);
-        json["mux_concurrency"] = QJsonValue(con->profile.muxConcurrency);
-        json["mux_idle_timeout"] = QJsonValue(con->profile.muxConcurrency);
         json["vmessSettings"] = QJsonValue(exportVmessSettings(con->profile.vmessSettings));
+        json["trojanGoSettings"] = QJsonValue(exportTrojanGoSettings(con->profile.trojanGoSettings));
         confArray.append(QJsonValue(json));
     }
 
@@ -391,6 +385,8 @@ VmessSettings ConfigHelper::parseVmessSettings(const QJsonObject &settings)
     vmessSettings.tls.allowInsecureCiphers = settings["tls"].toObject()["allowInsecureCiphers"].toBool();
     vmessSettings.tls.serverName = settings["tls"].toObject()["serverName"].toString();
     vmessSettings.tls.alpn = jsonArraytoStringlist(settings["tls"].toObject()["alpn"].toArray());
+    vmessSettings.mux.enable = settings["mux"].toObject()["enable"].toBool();
+    vmessSettings.mux.muxConcurrency = settings["mux"].toObject()["mux_concurrency"].toInt();
     return vmessSettings;
 }
 
@@ -442,6 +438,64 @@ QJsonObject ConfigHelper::exportVmessSettings(const VmessSettings &settings)
     if (settings.tls.alpn.size() != 0)
         tls["alpn"] = QJsonArray::fromStringList(settings.tls.alpn);
     object["tls"] = tls;
+    QJsonObject mux;
+    mux["enable"] = settings.mux.enable;
+    mux["mux_concurrency"] = settings.mux.muxConcurrency;
+    object["mux"] = mux;
+
+    return object;
+}
+
+TrojanGoSettings ConfigHelper::parseTrojanGoSettings(const QJsonObject &settings)
+{
+    TrojanGoSettings trojanGoSettings;
+    if (settings.isEmpty())
+        return trojanGoSettings;
+    trojanGoSettings.mux.enable = settings["mux"].toObject()["enable"].toBool();
+    trojanGoSettings.mux.muxConcurrency = settings["mux"].toObject()["mux_concurrency"].toInt();
+    trojanGoSettings.mux.muxIdleTimeout = settings["mux"].toObject()["mux_idle_timeout"].toInt();
+    trojanGoSettings.websocket.enable = settings["websocket"].toObject()["enable"].toBool();
+    trojanGoSettings.websocket.path = settings["websocket"].toObject()["path"].toBool();
+    trojanGoSettings.websocket.hostname = settings["websocket"].toObject()["hostname"].toString();
+    trojanGoSettings.shadowsocks.enable = settings["shadowsocks"].toObject()["enable"].toBool();
+    trojanGoSettings.shadowsocks.method = settings["shadowsocks"].toObject()["method"].toString();
+    trojanGoSettings.shadowsocks.password = settings["shadowsocks"].toObject()["password"].toString();
+    trojanGoSettings.transportPlugin.enable = settings["transport_plugin"].toObject()["enable"].toBool();
+    trojanGoSettings.transportPlugin.type = settings["transport_plugin"].toObject()["type"].toString();
+    trojanGoSettings.transportPlugin.command = settings["transport_plugin"].toObject()["command"].toString();
+    trojanGoSettings.transportPlugin.arg = jsonArraytoStringlist(settings["transport_plugin"].toObject()["arg"].toArray());
+    trojanGoSettings.transportPlugin.env = jsonArraytoStringlist(settings["transport_plugin"].toObject()["env"].toArray());
+    trojanGoSettings.transportPlugin.option = settings["transport_plugin"].toObject()["option"].toString();
+
+    return trojanGoSettings;
+}
+
+QJsonObject ConfigHelper::exportTrojanGoSettings(const TrojanGoSettings &settings)
+{
+    QJsonObject object;
+    QJsonObject mux;
+    mux["enable"] = settings.mux.enable;
+    mux["mux_concurrency"] = settings.mux.muxConcurrency;
+    mux["mux_idle_timeout"] = settings.mux.muxIdleTimeout;
+    object["mux"] = mux;
+    QJsonObject websocket;
+    websocket["enable"] = settings.websocket.enable;
+    websocket["path"] = settings.websocket.path;
+    websocket["hostname"] = settings.websocket.hostname;
+    object["websocket"] = websocket;
+    QJsonObject shadowsocks;
+    shadowsocks["enable"] = settings.shadowsocks.enable;
+    shadowsocks["method"] = settings.shadowsocks.method;
+    shadowsocks["password"] = settings.shadowsocks.password;
+    object["shadowsocks"] = shadowsocks;
+    QJsonObject transportPlugin;
+    transportPlugin["enable"] = settings.transportPlugin.enable;
+    transportPlugin["type"] = settings.transportPlugin.type;
+    transportPlugin["command"] = settings.transportPlugin.command;
+    transportPlugin["arg"] = QJsonArray::fromStringList(settings.transportPlugin.arg);
+    transportPlugin["env"] = QJsonArray::fromStringList(settings.transportPlugin.env);
+    transportPlugin["option"] = settings.transportPlugin.option;
+    object["transport_plugin"] = transportPlugin;
 
     return object;
 }
@@ -476,9 +530,6 @@ Connection* ConfigHelper::configJsonToConnection(const QString &file)
     p.verifyCertificate = configObj["verify"].toBool();
     p.reuseSession = configObj["ssl"].toObject()["reuse_session"].toBool();
     p.sessionTicket = configObj["ssl"].toObject()["session_ticket"].toBool();
-    p.reusePort = configObj["tcp"].toObject()["reuse_port"].toBool();
-    p.tcpFastOpen = configObj["tcp"].toObject()["fast_open"].toBool();
-    p.mux = configObj["mux"].toObject()["enabled"].toBool();
     Connection *con = new Connection(p, this);
     return con;
 }
@@ -521,6 +572,14 @@ void ConfigHelper::generateSocks5HttpJson(QString type, TQProfile &profile)
         protocol.append("bittorrent");
         bypassBittorrent["protocol"] = protocol;
         bypassBittorrent["type"] = "field";
+    }
+    QJsonObject bypassPrivateAddress;
+    if (outboundSettings.bypassPrivateAddress) {
+        QJsonArray bypassPrivateArr;
+        bypassPrivateArr.append("geoip");
+        bypassPrivateAddress["ip"] = bypassPrivateArr;
+        bypassPrivateAddress["outboundTag"] = "direct";
+        bypassPrivateAddress["type"] = "field";
     }
     QJsonObject bypassChinaMainlandIP;
     QJsonObject bypassChinaMainlandDo;
@@ -569,6 +628,8 @@ void ConfigHelper::generateSocks5HttpJson(QString type, TQProfile &profile)
     rules.append(apiRule);
     if (outboundSettings.bypassBittorrent)
         rules.append(bypassBittorrent);
+    if (outboundSettings.bypassPrivateAddress)
+        rules.append(bypassPrivateAddress);
     if (outboundSettings.bypassChinaMainland) {
         rules.append(bypassChinaMainlandIP);
         rules.append(bypassChinaMainlandDo);
@@ -918,8 +979,8 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
     QJsonObject vmessOutSettings;
     vmessOutSettings["vnext"] = vnextArray;
     QJsonObject mux;
-    mux["enabled"] = profile.mux;
-    mux["concurrency"] = profile.muxConcurrency;
+    mux["enabled"] = profile.vmessSettings.mux.enable;
+    mux["concurrency"] = profile.vmessSettings.mux.muxConcurrency;
     outbound["mux"] = mux;
     outbound["settings"] = vmessOutSettings;
     outbound["streamSettings"] = streamSettings;
@@ -985,22 +1046,32 @@ void ConfigHelper::generateTrojanJson(TQProfile &profile)
     QJsonObject tcp;
     tcp["no_delay"] = true;
     tcp["keep_alive"] = true;
-    tcp["reuse_port"] = profile.reusePort;
     tcp["fast_open"] = profile.tcpFastOpen;
     tcp["fast_open_qlen"] = 20;
     configObj["tcp"] = QJsonValue(tcp);
     QJsonObject mux;
-    mux["enabled"] = profile.mux;
-    mux["concurrency"] = profile.muxConcurrency;
-    mux["idle_timeout"] = profile.muxIdleTimeout;
+    mux["enabled"] = profile.trojanGoSettings.mux.enable;
+    mux["concurrency"] = profile.trojanGoSettings.mux.muxConcurrency;
+    mux["idle_timeout"] = profile.trojanGoSettings.mux.muxIdleTimeout;
     configObj["mux"] = QJsonValue(mux);
     QJsonObject websocket;
-    websocket["enabled"] = profile.websocket;
-    websocket["path"] = profile.websocketPath;
-    websocket["hostname"] = profile.websocketHostname;
-    websocket["obfuscation_password"] = profile.websocketObfsPassword;
-    websocket["double_tls"] = profile.websocketDoubleTLS;
+    websocket["enabled"] = profile.trojanGoSettings.websocket.enable;
+    websocket["path"] = profile.trojanGoSettings.websocket.path;
+    websocket["hostname"] = profile.trojanGoSettings.websocket.hostname;
     configObj["websocket"] = QJsonValue(websocket);
+    QJsonObject shadowsocks;
+    shadowsocks["enabled"] = profile.trojanGoSettings.shadowsocks.enable;
+    shadowsocks["method"] = profile.trojanGoSettings.shadowsocks.method;
+    shadowsocks["password"] = profile.trojanGoSettings.shadowsocks.password;
+    configObj["shadowsocks"] = shadowsocks;
+    QJsonObject transportPlugin;
+    transportPlugin["enabled"] = profile.trojanGoSettings.transportPlugin.enable;
+    transportPlugin["type"] = profile.trojanGoSettings.transportPlugin.type;
+    transportPlugin["command"] = profile.trojanGoSettings.transportPlugin.command;
+    transportPlugin["arg"] = QJsonArray::fromStringList(profile.trojanGoSettings.transportPlugin.arg);
+    transportPlugin["env"] = QJsonArray::fromStringList(profile.trojanGoSettings.transportPlugin.env);
+    transportPlugin["plugin_option"] = profile.trojanGoSettings.transportPlugin.option;
+    configObj["transport_plugin"] = transportPlugin;
     QJsonObject router;
     router["enabled"] = trojanSettings.enableTrojanRouter;
     if (router["enabled"].toBool()) {

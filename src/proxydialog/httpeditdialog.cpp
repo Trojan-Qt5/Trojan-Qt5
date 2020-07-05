@@ -16,7 +16,7 @@ HttpEditDialog::HttpEditDialog(Connection *_connection, QWidget *parent) :
     ui->nameEdit->setText(connection->profile.name);
     ui->serverAddrEdit->setText(connection->profile.serverAddress);
     ui->serverPortEdit->setText(QString::number(connection->profile.serverPort));
-    ui->usernameEdit->setText(connection->profile.password);
+    ui->usernameEdit->setText(connection->profile.username);
     ui->pwdEdit->setText(connection->profile.password);
     ui->resetDateEdit->setDate(connection->profile.nextResetDate);
     ui->resetDateEdit->setMinimumDate(QDate::currentDate());
@@ -38,6 +38,7 @@ void HttpEditDialog::save()
     connection->profile.name = ui->nameEdit->text();
     connection->profile.serverAddress = ui->serverAddrEdit->text().trimmed();
     connection->profile.serverPort = ui->serverPortEdit->text().toUShort();
+    connection->profile.username = ui->usernameEdit->text();
     connection->profile.password = ui->pwdEdit->text();
     connection->profile.nextResetDate = ui->resetDateEdit->date();
     connection->profile.autoStart = ui->autoStartCheckBox->isChecked();

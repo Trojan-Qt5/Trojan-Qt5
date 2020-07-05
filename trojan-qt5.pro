@@ -195,6 +195,7 @@ SOURCES += \
     src/dialog/uriinputdialog.cpp \
     src/proxydialog/naiveproxyeditdialog.cpp \
     src/utils/configstruct.cpp \
+    src/utils/trojangostruct.cpp \
     src/utils/v2raystruct.cpp \
     src/validator/generalvalidator.cpp \
     src/validator/ip4validator.cpp \
@@ -250,7 +251,8 @@ SOURCES += \
     src/httpproxy.cpp \
     src/socketstream.cpp \
     src/clickablelabel.cpp \
-    src/qtcolorpicker.cpp
+    src/qtcolorpicker.cpp \
+    src/widget/trojangowidget.cpp
 
 HEADERS += \
     src/dialog/aboutdialog.h \
@@ -261,6 +263,7 @@ HEADERS += \
     src/proxydialog/naiveproxyeditdialog.h \
     src/systemproxy/mac.h \
     src/utils/configstruct.h \
+    src/utils/trojangostruct.h \
     src/utils/v2raystruct.h \
     src/validator/ip4validator.h \
     src/validator/portvalidator.h \
@@ -317,7 +320,8 @@ HEADERS += \
     src/httpproxy.h \
     src/socketstream.h \
     src/clickablelabel.h \
-    src/qtcolorpicker.h
+    src/qtcolorpicker.h \
+    src/widget/trojangowidget.h
 
 FORMS += \
     ui/naiveproxyeditdialog.ui \
@@ -334,6 +338,7 @@ FORMS += \
     ui/streamwidget.ui \
     ui/subscribedialog.ui \
     ui/trojaneditdialog.ui \
+    ui/trojangowidget.ui \
     ui/uriinputdialog.ui \
     ui/snelleditdialog.ui \
     ui/userrulesdialog.ui \

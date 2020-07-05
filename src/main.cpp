@@ -208,9 +208,5 @@ int main(int argc, char *argv[])
         w.show();
     }
 
-#if defined (Q_OS_MAC)
-    PFMoveToApplicationsFolderIfNecessary();
-#endif
-
     return a.exec();
 }

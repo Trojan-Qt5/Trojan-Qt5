@@ -32,9 +32,8 @@ void StreamWidget::setSettings(const VmessSettings &st)
     ui->tcpRespTxt->setPlainText(st.tcp.response);
     // http settings
     QString httpHosts;
-    foreach (const QJsonValue& value, st.http.host)
+    foreach (const QString& host, st.http.host)
     {
-        QString host = value.toString();
         httpHosts = httpHosts % host % "\r\n";
     }
     ui->httpHostTxt->setPlainText(httpHosts);
@@ -66,12 +65,14 @@ void StreamWidget::setSettings(const VmessSettings &st)
     ui->allowInsecureCiphersCB->setChecked(st.tls.allowInsecureCiphers);
     ui->serverNameTxt->setText(st.tls.serverName);
     QString alpns;
-    foreach (const QJsonValue& value, st.tls.alpn)
+    foreach (const QString& alpn, st.tls.alpn)
     {
-        QString alpn = value.toString();
         alpns = alpns % alpn % "\r\n";
     }
     ui->alpnTxt->setPlainText(alpns);
+    // mux settings
+    ui->muxCB->setChecked(st.mux.enable);
+    ui->muxConcurrencySB->setValue(st.mux.muxConcurrency);
 }
 
 void StreamWidget::on_transportCombo_currentIndexChanged(int index)
@@ -237,4 +238,14 @@ void StreamWidget::on_alpnTxt_textChanged()
          }
     }
     settings.tls.alpn = alpnArray;
+}
+
+void StreamWidget::on_muxCB_stateChanged(int arg1)
+{
+    settings.mux.enable = arg1 == Qt::Checked;
+}
+
+void StreamWidget::on_muxConcurrencySB_valueChanged(int arg1)
+{
+    settings.mux.muxConcurrency = arg1;
 }

@@ -48,6 +48,7 @@ Q_DECLARE_METATYPE(InboundSettings)
 
 struct OutboundSettings {
     bool bypassBittorrent = false;
+    bool bypassPrivateAddress = false;
     bool bypassChinaMainland = false;
     bool forwardProxy = false;
     int forwardProxyType = 0;

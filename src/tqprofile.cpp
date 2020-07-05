@@ -41,16 +41,7 @@ TQProfile::TQProfile()
     verifyCertificate = true;
     reuseSession = true;
     sessionTicket = false;
-    reusePort = false;
-    mux = false;
-    muxConcurrency = 8;
-    muxIdleTimeout = 60;
     sni = "";
-    websocket = false;
-    websocketDoubleTLS = false;
-    websocketPath = "";
-    websocketHostname = "";
-    websocketObfsPassword = "";
 }
 
 TQProfile::TQProfile(const QString &uri)
@@ -83,14 +74,7 @@ bool TQProfile::equals(const TQProfile &profile) const
          && name == profile.name
          && verifyCertificate == profile.verifyCertificate
          && reuseSession == profile.reuseSession
-         && reusePort == profile.reusePort
-         && tcpFastOpen == profile.tcpFastOpen
-         && mux == profile.mux
-         && websocket == profile.websocket
-         && websocketDoubleTLS == profile.websocketDoubleTLS
-         && websocketPath == profile.websocketPath
-         && websocketHostname == profile.websocketHostname
-         && websocketObfsPassword == profile.websocketObfsPassword);
+         && tcpFastOpen == profile.tcpFastOpen);
 }
 
 TQProfile TQProfile::fromSocks5Uri(const std::string& socks5Uri) const
@@ -433,15 +417,12 @@ TQProfile TQProfile::fromTrojanUri(const std::string& trojanUri) const
 
     QUrl url(QString::fromStdString(trojanUri));
     QUrlQuery query(url.query());
-    result.tcpFastOpen = query.queryItemValue("tfo").toInt();
     result.verifyCertificate = !query.queryItemValue("allowinsecure").toInt();
     if (query.queryItemValue("allowinsecure").isEmpty())
          result.verifyCertificate = !query.queryItemValue("allowInsecure").toInt();
     result.sni = query.queryItemValue("sni");
     if (result.sni.isEmpty())
         result.sni = query.queryItemValue("peer");
-    result.mux = query.queryItemValue("mux").toInt();
-    result.websocket = query.queryItemValue("ws").toInt();
     result.group = query.queryItemValue("group");
 
     return result;
@@ -590,7 +571,7 @@ QString TQProfile::toVmessUri() const
  */
 QString TQProfile::toTrojanUri() const
 {
-    QString trojanUri = password.toUtf8().toPercentEncoding() + "@" + serverAddress + ":" + QString::number(serverPort) + "?allowinsecure=" + QString::number(int(!verifyCertificate)) + "&tfo=" + QString::number(tcpFastOpen) + "&sni=" + sni + "&mux=" + QString::number(mux) + "&ws=" + QString::number(websocket) + "&wss=" + QString::number(websocketDoubleTLS) + "&wsPath=" + websocketPath + "&wsHostname=" + websocketHostname + "&wsObfsPassword=" + websocketObfsPassword.toUtf8().toPercentEncoding() + "&group=" + group.toUtf8().toPercentEncoding();
+    QString trojanUri = password.toUtf8().toPercentEncoding() + "@" + serverAddress + ":" + QString::number(serverPort) + "?allowinsecure=" + QString::number(int(!verifyCertificate)) + "&group=" + group.toUtf8().toPercentEncoding();
     QByteArray uri = QByteArray(trojanUri.toUtf8());
     uri.prepend("trojan://");
     uri.append("#");
@@ -614,12 +595,12 @@ QString TQProfile::toSnellUri() const
 
 QDataStream& operator << (QDataStream &out, const TQProfile &p)
 {
-    out << p.type << p.autoStart << p.serverPort << p.name << p.serverAddress << p.verifyCertificate << p.password << p.sni << p.reuseSession << p.sessionTicket << p.reusePort << p.tcpFastOpen << p.mux << p.muxConcurrency << p.muxIdleTimeout << p.websocket << p.websocketDoubleTLS << p.websocketPath << p.websocketHostname << p.websocketObfsPassword << p.method << p.protocol << p.protocolParam << p.obfs << p.obfsParam << p.plugin << p.pluginParam << p.uuid << p.alterID << p.security << p.testsEnabled << p.vmessSettings << p.latency << p.currentDownloadUsage << p.currentUploadUsage << p.totalDownloadUsage << p.totalUploadUsage << p.lastTime << p.nextResetDate;
+    out << p.type << p.autoStart << p.serverPort << p.name << p.serverAddress << p.verifyCertificate << p.password << p.sni << p.tcpFastOpen << p.reuseSession << p.sessionTicket << p.method << p.protocol << p.protocolParam << p.obfs << p.obfsParam << p.plugin << p.pluginParam << p.uuid << p.alterID << p.security << p.testsEnabled << p.vmessSettings << p.trojanGoSettings << p.latency << p.currentDownloadUsage << p.currentUploadUsage << p.totalDownloadUsage << p.totalUploadUsage << p.lastTime << p.nextResetDate;
     return out;
 }
 
 QDataStream& operator >> (QDataStream &in, TQProfile &p)
 {
-    in >> p.type >> p.autoStart >> p.serverPort >> p.name >> p.serverAddress >> p.verifyCertificate >> p.password >> p.sni >> p.reuseSession >> p.sessionTicket >> p.reusePort >> p.tcpFastOpen >> p.mux >> p.muxConcurrency >> p.muxIdleTimeout >> p.websocket >> p.websocketDoubleTLS >> p.websocketPath >> p.websocketHostname >> p.websocketObfsPassword >> p.method >> p.protocol >> p.protocolParam >> p.obfs >> p.obfsParam >> p.plugin >> p.pluginParam >> p.uuid >> p.alterID >> p.security >> p.testsEnabled >> p.vmessSettings >> p.latency >> p.currentDownloadUsage >> p.currentUploadUsage >> p.totalDownloadUsage >> p.totalUploadUsage >> p.lastTime >> p.nextResetDate;
+    in >> p.type >> p.autoStart >> p.serverPort >> p.name >> p.serverAddress >> p.verifyCertificate >> p.password >> p.sni >> p.tcpFastOpen >> p.reuseSession >> p.sessionTicket >> p.method >> p.protocol >> p.protocolParam >> p.obfs >> p.obfsParam >> p.plugin >> p.pluginParam >> p.uuid >> p.alterID >> p.security >> p.testsEnabled >> p.vmessSettings >> p.trojanGoSettings >> p.latency >> p.currentDownloadUsage >> p.currentUploadUsage >> p.totalDownloadUsage >> p.totalUploadUsage >> p.lastTime >> p.nextResetDate;
     return in;
 }
