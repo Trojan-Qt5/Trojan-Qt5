@@ -28,6 +28,10 @@ private slots:
 
     void on_websocketCB_stateChanged(int arg1);
 
+    void on_websocketPathEdit_textEdited(const QString &arg1);
+
+    void on_websocketHostnameEdit_textEdited(const QString &arg1);
+
     void on_shadowsocksCB_stateChanged(int arg1);
 
     void on_methodCB_currentIndexChanged(const QString &arg1);

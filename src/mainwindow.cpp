@@ -266,7 +266,9 @@ const QUrl MainWindow::issueUrl =
 
 void MainWindow::startAutoStartConnections()
 {
-    configHelper->startAllAutoStart(*model);
+    Connection *con = configHelper->startAutoStart(*model);
+    if (con != NULL)
+        connect(con, &Connection::dataTrafficAvailable, this, &MainWindow::onStatusAvailable);
 }
 
 QList<TQProfile> MainWindow::getAllServers()
@@ -875,15 +877,15 @@ void MainWindow::closeEvent(QCloseEvent *e)
     }
 }
 
-void MainWindow::onStatusAvailable(const quint64 &u, const quint64 &d)
+void MainWindow::onStatusAvailable(QList<quint64> data)
 {
     QList<int> ports;
     ports.append(configHelper->getInboundSettings().socks5LocalPort);
     ports.append(configHelper->getInboundSettings().httpLocalPort);
     ports.append(configHelper->getInboundSettings().pacLocalPort);
     QList<QString> stats;
-    stats.append(Utils::bytesConvertor(d));
-    stats.append(Utils::bytesConvertor(u));
+    stats.append(Utils::bytesConvertor(data[0]));
+    stats.append(Utils::bytesConvertor(data[1]));
     stats.append(Utils::bytesConvertor(MidMan::getConnection().getProfile().totalDownloadUsage));
     stats.append(Utils::bytesConvertor(MidMan::getConnection().getProfile().totalUploadUsage));
     m_statusBar->refresh(configHelper->getInboundSettings().enableIpv6Support ? (configHelper->getInboundSettings().shareOverLan ? "::" : "::1") : (configHelper->getInboundSettings().shareOverLan ? "0.0.0.0" : "127.0.0.1"),

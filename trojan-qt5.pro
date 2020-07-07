@@ -119,10 +119,10 @@ win32 {
 
 mac {
     HEADERS += \
-        src/LetsMove/PFMoveApplication.h
+        src/letsmove/PFMoveApplication.h
     SOURCES += \
         src/statusnotifier.mm \
-        src/LetsMove/PFMoveApplication.m \
+        src/letsmove/PFMoveApplication.m \
         src/theme/themehelper.mm \
         src/systemproxy/mac.mm
     PKG_CONFIG = /usr/local/bin/pkg-config
@@ -194,9 +194,9 @@ SOURCES += \
     src/dialog/sharedialog.cpp \
     src/dialog/uriinputdialog.cpp \
     src/proxydialog/naiveproxyeditdialog.cpp \
-    src/utils/configstruct.cpp \
-    src/utils/trojangostruct.cpp \
-    src/utils/v2raystruct.cpp \
+    src/struct/configstruct.cpp \
+    src/struct/trojangostruct.cpp \
+    src/struct/v2raystruct.cpp \
     src/validator/generalvalidator.cpp \
     src/validator/ip4validator.cpp \
     src/validator/portvalidator.cpp \
@@ -230,19 +230,19 @@ SOURCES += \
     src/connectionsortfilterproxymodel.cpp \
     src/haproxythread.cpp \
     src/logger.cpp \
-    src/midman.cpp \
+    src/utils/midman.cpp \
     src/pac/pacserver.cpp \
     src/pac/pachelper.cpp \
-    src/addresstester.cpp \
+    src/utils/addresstester.cpp \
     src/confighelper.cpp \
     src/connection.cpp \
     src/connectionitem.cpp \
     src/connectiontablemodel.cpp \
-    src/statusbar.cpp \
+    src/extension/statusbar.cpp \
     src/main.cpp \
     src/mainwindow.cpp \
-    src/qrcodecapturer.cpp \
-    src/qrwidget.cpp \
+    src/qrcode/qrcodecapturer.cpp \
+    src/qrcode/qrwidget.cpp \
     src/subscribemanager.cpp \
     src/tqprofile.cpp \
     src/tqsubscribe.cpp \
@@ -250,8 +250,8 @@ SOURCES += \
     src/subscribedialog.cpp \
     src/httpproxy.cpp \
     src/socketstream.cpp \
-    src/clickablelabel.cpp \
-    src/qtcolorpicker.cpp \
+    src/extension/clickablelabel.cpp \
+    src/extension/qtcolorpicker.cpp \
     src/widget/trojangowidget.cpp
 
 HEADERS += \
@@ -262,9 +262,9 @@ HEADERS += \
     src/dialog/uriinputdialog.h \
     src/proxydialog/naiveproxyeditdialog.h \
     src/systemproxy/mac.h \
-    src/utils/configstruct.h \
-    src/utils/trojangostruct.h \
-    src/utils/v2raystruct.h \
+    src/struct/configstruct.h \
+    src/struct/trojangostruct.h \
+    src/struct/v2raystruct.h \
     src/validator/ip4validator.h \
     src/validator/portvalidator.h \
     src/validator/generalvalidator.h \
@@ -299,18 +299,18 @@ HEADERS += \
     src/connectionsortfilterproxymodel.h \
     src/haproxythread.h \
     src/logger.h \
-    src/midman.h \
+    src/utils/midman.h \
     src/pac/pacserver.h \
     src/pac/pachelper.h \
-    src/addresstester.h \
+    src/utils/addresstester.h \
     src/confighelper.h \
     src/connection.h \
     src/connectionitem.h \
     src/connectiontablemodel.h \
-    src/statusbar.h \
+    src/extension/statusbar.h \
     src/mainwindow.h \
-    src/qrcodecapturer.h \
-    src/qrwidget.h \
+    src/qrcode/qrcodecapturer.h \
+    src/qrcode/qrwidget.h \
     src/subscribemanager.h \
     src/tqprofile.h \
     src/statusnotifier.h \
@@ -319,8 +319,8 @@ HEADERS += \
     src/subscribedialog.h \
     src/httpproxy.h \
     src/socketstream.h \
-    src/clickablelabel.h \
-    src/qtcolorpicker.h \
+    src/extension/clickablelabel.h \
+    src/extension/qtcolorpicker.h \
     src/widget/trojangowidget.h
 
 FORMS += \
@@ -377,6 +377,9 @@ INCLUDEPATH += \
     $$PWD/src/widget \
     $$PWD/src/utils \
     $$PWD/src/validator \
+    $$PWD/src/extension \
+    $$PWD/src/qrcode \
+    $$PWD/src/struct \
     $$PWD/3rd/trojan-qt5-core
 
 # Default rules for deployment.

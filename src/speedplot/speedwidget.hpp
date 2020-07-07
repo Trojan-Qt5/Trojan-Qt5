@@ -46,7 +46,7 @@ class SpeedWidget : public QWidget
   public:
     explicit SpeedWidget(QWidget *parent);
     ~SpeedWidget();
-    void AddPointData(long up, long down);
+    void AddPointData(QList<quint64> data);
     void Clear();
 
   private:

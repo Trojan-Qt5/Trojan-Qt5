@@ -86,8 +86,8 @@ public:
 
     void generateHaproxyConf(const ConnectionTableModel &model);
 
-    //start those connections marked as auto-start
-    void startAllAutoStart(const ConnectionTableModel& model);
+    //start the first connection marked as auto-start
+    Connection* startAutoStart(const ConnectionTableModel& model);
 
     //create or delete start up item for shadowsocks-qt5
     void setStartAtLogin();
@@ -103,14 +103,14 @@ public:
     GraphSettings getGraphSettings() const;
     RouterSettings getRouterSettings() const;
     SubscribeSettings getSubscribeSettings() const;
-    TrojanSettings getTrojanSettings() const;
+    CoreSettings getCoreSettings() const;
     QString getSystemProxySettings() const;
     bool isTrojanOn() const;
     bool isEnableServerLoadBalance() const;
     bool isAutoUpdateSubscribes() const;
     bool isShowToolbar() const;
     bool isShowFilterBar() const;
-    void setGeneralSettings(GeneralSettings gs, InboundSettings is, OutboundSettings os, TestSettings es, SubscribeSettings ss, GraphSettings fs, RouterSettings rs, TrojanSettings ts);
+    void setGeneralSettings(GeneralSettings gs, InboundSettings is, OutboundSettings os, TestSettings es, SubscribeSettings ss, GraphSettings fs, RouterSettings rs, CoreSettings cs);
     void setSystemProxySettings(QString mode);
     void setTrojanOn(bool on);
     void setAutoUpdateSubscribes(bool update);
@@ -140,7 +140,7 @@ private:
     GraphSettings graphSettings;
     RouterSettings routerSettings;
     SubscribeSettings subscribeSettings;
-    TrojanSettings trojanSettings;
+    CoreSettings coreSettings;
     QString systemProxyMode;
     bool trojanOn;
     bool serverLoadBalance;

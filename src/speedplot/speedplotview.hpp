@@ -41,8 +41,12 @@ class SpeedPlotView : public QGraphicsView
   public:
     enum GraphID
     {
-        UP = 0,
-        DOWN,
+        INBOUND_UP,
+        INBOUND_DOWN,
+        OUTBOUND_PROXY_UP,
+        OUTBOUND_PROXY_DOWN,
+        OUTBOUND_DIRECT_UP,
+        OUTBOUND_DIRECT_DOWN,
         NB_GRAPHS
     };
 
@@ -50,6 +54,10 @@ class SpeedPlotView : public QGraphicsView
     {
         qint64 x;
         quint64 y[NB_GRAPHS];
+        PointData()
+        {
+            for (auto i = 0; i < NB_GRAPHS; i++) y[i] = 0;
+        }
     };
 
     explicit SpeedPlotView(QWidget *parent = nullptr);
@@ -68,6 +76,7 @@ class SpeedPlotView : public QGraphicsView
 
         QString name;
         QPen pen;
+        bool enable = false;
     };
 
     quint64 maxYValue();

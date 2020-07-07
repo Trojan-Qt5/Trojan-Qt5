@@ -118,7 +118,7 @@ int main(int argc, char *argv[])
     qRegisterMetaTypeStreamOperators<SubscribeSettings>("SubscribeSettings");
     qRegisterMetaTypeStreamOperators<GraphSettings>("GraphSettings");
     qRegisterMetaTypeStreamOperators<RouterSettings>("RouterSettings");
-    qRegisterMetaTypeStreamOperators<TrojanSettings>("TrojanSettings");
+    qRegisterMetaTypeStreamOperators<CoreSettings>("CoreSettings");
     qRegisterMetaTypeStreamOperators<TQProfile>("TQProfile");
     qRegisterMetaTypeStreamOperators<TQSubscribe>("TQSubscribe");
 
@@ -207,6 +207,10 @@ int main(int argc, char *argv[])
     if (!conf.getGeneralSettings().hideWindowOnStartup) {
         w.show();
     }
+
+#if defined (Q_OS_MAC)
+    PFMoveToApplicationsFolderIfNecessary();
+#endif
 
     return a.exec();
 }

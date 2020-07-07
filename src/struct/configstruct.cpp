@@ -64,13 +64,13 @@ QDataStream& operator >> (QDataStream &in, SubscribeSettings &s)
 
 QDataStream& operator << (QDataStream &out, const GraphSettings &g)
 {
-    out << g.downloadSpeedColor << g.uploadSpeedColor;
+    out << g.detailOutboundProxy << g.detailOutboundDirect << g.proxyDownloadSpeedColor << g.proxyUploadSpeedColor << g.directDownloadSpeedColor << g.directUploadSpeedColor;
     return out;
 }
 
 QDataStream& operator >> (QDataStream &in, GraphSettings &g)
 {
-    in >> g.downloadSpeedColor >> g.uploadSpeedColor;
+    in >> g.detailOutboundProxy >> g.detailOutboundDirect >> g.proxyDownloadSpeedColor >> g.proxyUploadSpeedColor >> g.directDownloadSpeedColor >> g.directUploadSpeedColor;
     return in;
 }
 
@@ -86,14 +86,14 @@ QDataStream& operator >> (QDataStream &in, RouterSettings &r)
     return in;
 }
 
-QDataStream& operator << (QDataStream &out, const TrojanSettings &t)
+QDataStream& operator << (QDataStream &out, const CoreSettings &c)
 {
-    out << t.fingerprint << t.enableTrojanAPI << t.enableTrojanRouter << t.geoPath << t.trojanAPIPort << t.trojanCertPath << t.trojanCipher << t.trojanCipherTLS13 << t.bufferSize;
+    out << c.fingerprint << c.enableAPI << c.enableRouter << c.countInboundTraffic << c.countOutboundTraffic << c.geoPath << c.apiPort << c.trojanCertPath << c.trojanCipher << c.trojanCipherTLS13 << c.bufferSize;
     return out;
 }
 
-QDataStream& operator >> (QDataStream &in, TrojanSettings &t)
+QDataStream& operator >> (QDataStream &in, CoreSettings &c)
 {
-    in >> t.fingerprint >> t.enableTrojanAPI >> t.enableTrojanRouter >> t.geoPath >> t.trojanAPIPort >> t.trojanCertPath >> t.trojanCipher >> t.trojanCipherTLS13 >> t.bufferSize;
+    in >> c.fingerprint >> c.enableAPI >> c.enableRouter >> c.countInboundTraffic >> c.countOutboundTraffic >> c.geoPath >> c.apiPort >> c.trojanCertPath >> c.trojanCipher >> c.trojanCipherTLS13 >> c.bufferSize;
     return in;
 }

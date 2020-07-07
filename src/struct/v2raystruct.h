@@ -52,8 +52,8 @@ struct tlsSettings {
 };
 
 struct vmuxSettings {
-    bool enable;
-    int muxConcurrency;
+    bool enable = false;
+    int muxConcurrency = 8;
 };
 
 struct VmessSettings {
@@ -87,6 +87,9 @@ QDataStream& operator >> (QDataStream &in, quicSettings &q);
 
 QDataStream& operator << (QDataStream &out, const tlsSettings &t);
 QDataStream& operator >> (QDataStream &in, tlsSettings &t);
+
+QDataStream& operator << (QDataStream &out, const vmuxSettings &v);
+QDataStream& operator >> (QDataStream &in, vmuxSettings &v);
 
 QDataStream& operator << (QDataStream &out, const VmessSettings &v);
 QDataStream& operator >> (QDataStream &in, VmessSettings &v);

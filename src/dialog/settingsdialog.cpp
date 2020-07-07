@@ -73,18 +73,23 @@ SettingsDialog::SettingsDialog(ConfigHelper *ch, QWidget *parent) :
     ui->overwriteAllowInsecureCiphersCB->setChecked(helper->getSubscribeSettings().overwriteAllowInsecureCiphers);
     ui->overwriteTcpFastOpenCB->setChecked(helper->getSubscribeSettings().overwriteTcpFastOpen);
     // graph settings
-    ui->downloadColorPicker->setCurrentColor(QColor(helper->getGraphSettings().downloadSpeedColor));
-    ui->uploadColorPicker->setCurrentColor(QColor(helper->getGraphSettings().uploadSpeedColor));
+    ui->detailOutboundProxyCB->setChecked(helper->getGraphSettings().detailOutboundProxy);
+    ui->detailOutboundDirectCB->setChecked(helper->getGraphSettings().detailOutboundDirect);
+    ui->proxyDownloadColorPicker->setCurrentColor(QColor(helper->getGraphSettings().proxyDownloadSpeedColor));
+    ui->proxyUploadColorPicker->setCurrentColor(QColor(helper->getGraphSettings().proxyUploadSpeedColor));
+    ui->directDownloadColorPicker->setCurrentColor(QColor(helper->getGraphSettings().directDownloadSpeedColor));
+    ui->directUploadColorPicker->setCurrentColor(QColor(helper->getGraphSettings().directUploadSpeedColor));
     // trojan settings
-    ui->tlsFingerprintComboBox->setCurrentIndex(helper->getTrojanSettings().fingerprint);
-    ui->enableAPICheckBox->setChecked(helper->getTrojanSettings().enableTrojanAPI);
-    ui->enableRouterCheckBox->setChecked(helper->getTrojanSettings().enableTrojanRouter);
-    ui->apiPortLineEdit->setText(QString::number(helper->getTrojanSettings().trojanAPIPort));
-    ui->certLineEdit->setText(helper->getTrojanSettings().trojanCertPath);
-    ui->cipherLineEdit->setText(helper->getTrojanSettings().trojanCipher);
-    ui->cipherTLS13LineEdit->setText(helper->getTrojanSettings().trojanCipherTLS13);
-    ui->bufferSizeLineEdit->setText(QString::number(helper->getTrojanSettings().bufferSize));
-    ui->geoPathEdit->setText(helper->getTrojanSettings().geoPath);
+    ui->tlsFingerprintComboBox->setCurrentIndex(helper->getCoreSettings().fingerprint);
+    ui->enableAPICheckBox->setChecked(helper->getCoreSettings().enableAPI);
+    ui->enableRouterCheckBox->setChecked(helper->getCoreSettings().enableRouter);
+    ui->countOutboundTrafficCB->setChecked(helper->getCoreSettings().countOutboundTraffic);
+    ui->apiPortLineEdit->setText(QString::number(helper->getCoreSettings().apiPort));
+    ui->certLineEdit->setText(helper->getCoreSettings().trojanCertPath);
+    ui->cipherLineEdit->setText(helper->getCoreSettings().trojanCipher);
+    ui->cipherTLS13LineEdit->setText(helper->getCoreSettings().trojanCipherTLS13);
+    ui->bufferSizeLineEdit->setText(QString::number(helper->getCoreSettings().bufferSize));
+    ui->geoPathEdit->setText(helper->getCoreSettings().geoPath);
 
     routeWidget = new RouteWidget();
     routeWidget->setConfig(helper->getRouterSettings());
@@ -176,23 +181,28 @@ void SettingsDialog::onAccepted()
     subscribeSettings.overwriteTcpFastOpen = ui->overwriteTcpFastOpenCB->isChecked();
 
     GraphSettings graphSettings = helper->getGraphSettings();
-    graphSettings.downloadSpeedColor = ui->downloadColorPicker->currentColor().name();
-    graphSettings.uploadSpeedColor = ui->uploadColorPicker->currentColor().name();
+    graphSettings.detailOutboundProxy = ui->detailOutboundProxyCB->isChecked();
+    graphSettings.detailOutboundDirect = ui->detailOutboundDirectCB->isChecked();
+    graphSettings.proxyDownloadSpeedColor = ui->proxyDownloadColorPicker->currentColor().name();
+    graphSettings.proxyUploadSpeedColor = ui->proxyUploadColorPicker->currentColor().name();
+    graphSettings.directDownloadSpeedColor = ui->directDownloadColorPicker->currentColor().name();
+    graphSettings.directUploadSpeedColor = ui->directUploadColorPicker->currentColor().name();
 
     RouterSettings routerSettings = routeWidget->getConfig();
 
-    TrojanSettings trojanSettings = helper->getTrojanSettings();
-    trojanSettings.fingerprint = ui->tlsFingerprintComboBox->currentIndex();
-    trojanSettings.enableTrojanAPI = ui->enableAPICheckBox->isChecked();
-    trojanSettings.enableTrojanRouter = ui->enableRouterCheckBox->isChecked();
-    trojanSettings.trojanAPIPort = ui->apiPortLineEdit->text().toInt();
-    trojanSettings.trojanCertPath = ui->certLineEdit->text();
-    trojanSettings.trojanCipher = ui->cipherLineEdit->text();
-    trojanSettings.trojanCipherTLS13 = ui->cipherTLS13LineEdit->text();
-    trojanSettings.geoPath = ui->geoPathEdit->text();
-    trojanSettings.bufferSize = ui->bufferSizeLineEdit->text().toInt();
+    CoreSettings coreSettings = helper->getCoreSettings();
+    coreSettings.fingerprint = ui->tlsFingerprintComboBox->currentIndex();
+    coreSettings.enableAPI = ui->enableAPICheckBox->isChecked();
+    coreSettings.enableRouter = ui->enableRouterCheckBox->isChecked();
+    coreSettings.countOutboundTraffic = ui->countOutboundTrafficCB->isChecked();
+    coreSettings.apiPort = ui->apiPortLineEdit->text().toInt();
+    coreSettings.trojanCertPath = ui->certLineEdit->text();
+    coreSettings.trojanCipher = ui->cipherLineEdit->text();
+    coreSettings.trojanCipherTLS13 = ui->cipherTLS13LineEdit->text();
+    coreSettings.geoPath = ui->geoPathEdit->text();
+    coreSettings.bufferSize = ui->bufferSizeLineEdit->text().toInt();
 
-    helper->setGeneralSettings(generalSettings, inboundSettings, outboundSettings, testSettings, subscribeSettings, graphSettings, routerSettings, trojanSettings);
+    helper->setGeneralSettings(generalSettings, inboundSettings, outboundSettings, testSettings, subscribeSettings, graphSettings, routerSettings, coreSettings);
 
     // setup style
     QApplication::setStyle(ui->themeComboBox->currentText());

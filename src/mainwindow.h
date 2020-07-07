@@ -129,7 +129,7 @@ private slots:
     void onFilterTextChanged(const QString &text);
     void onQRCodeCapturerResultFound(const QString &uris);
     void onCheckUpdate();
-    void onStatusAvailable(const quint64 &u, const quint64 &d);
+    void onStatusAvailable(QList<quint64> data);
     void onSingleInstanceConnect();
 
 protected slots:

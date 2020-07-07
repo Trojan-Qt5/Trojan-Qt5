@@ -65,7 +65,7 @@ signals:
     void latencyAvailable(const int);
     void newLogAvailable(const QString &);
     void dataUsageChanged(const quint64 &current, const quint64 &total);
-    void dataTrafficAvailable(const quint64 &up, const quint64 &down);
+    void dataTrafficAvailable(const QList<quint64> data);
     void startFailed();
     void connectionChanged();
     void connectionSwitched();
@@ -112,6 +112,7 @@ private slots:
     void onServerAddressLookedUp(const QHostInfo &host);
     void onLatencyAvailable(const int);
     void onNewBytesTransmitted(const quint64 &, const quint64 &);
+    void onNewV2RayBytesTransmitted(const quint64 &pu, const quint64 &pd, const quint64 &du, const quint64 &dd);
 
 };
 Q_DECLARE_METATYPE(Connection*)

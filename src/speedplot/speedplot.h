@@ -19,7 +19,7 @@ public:
     ~SpeedPlot();
 
 public slots:
-    void onStatsAvailable(const quint64 &, const quint64 &);
+    void onStatsAvailable(QList<quint64> data);
     void onReconnect();
 
 private:

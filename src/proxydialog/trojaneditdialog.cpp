@@ -31,7 +31,7 @@ TrojanEditDialog::TrojanEditDialog(Connection *_connection, QWidget *parent) :
 
     trojanGoWidget = new TrojanGoWidget(this);
     trojanGoWidget->setSettings(connection->profile.trojanGoSettings);
-
+    ui->trojangoFrame->addWidget(trojanGoWidget);
     this->adjustSize();
 }
 

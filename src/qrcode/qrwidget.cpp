@@ -23,7 +23,7 @@ void QRWidget::setQRData(const QByteArray &data)
         const int s = qrcode->width > 0 ? qrcode->width : 1;
         const qreal scale = 512.0 / s;
         for(int y = 0; y < s; y++){
-            for(int x = 0; x < s; x++){
+            for(int x = 0; x < s; x++) {
                 if(qrcode->data[y * s + x] & 0x01){
                     const qreal rx1 = x * scale, ry1 = y * scale;
                     QRectF r(rx1, ry1, scale, scale);

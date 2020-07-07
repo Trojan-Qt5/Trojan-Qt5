@@ -174,19 +174,41 @@ SpeedPlotView::SpeedPlotView(QWidget *parent) : QGraphicsView(parent), m_current
 {
     ConfigHelper *helper = Utils::getConfigHelper();
 
-    QPen downPen;
-    downPen.setWidthF(1.5);
-    downPen.setColor(QColor(helper->getGraphSettings().downloadSpeedColor));
-    QPen upPen;
-    upPen.setWidthF(1.5);
-    upPen.setColor(QColor(helper->getGraphSettings().uploadSpeedColor));
-    m_properties[UP] = GraphProperties(tr("Total Upload"), upPen);
-    m_properties[DOWN] = GraphProperties(tr("Total Download"), downPen);
+    QPen proxyDownPen;
+    proxyDownPen.setWidthF(1.5);
+    proxyDownPen.setColor(QColor(helper->getGraphSettings().proxyDownloadSpeedColor));
+    QPen proxyUpPen;
+    proxyUpPen.setWidthF(1.5);
+    proxyUpPen.setColor(QColor(helper->getGraphSettings().proxyUploadSpeedColor));
+    QPen directDownPen;
+    directDownPen.setWidthF(1.5);
+    directDownPen.setColor(QColor(helper->getGraphSettings().directDownloadSpeedColor));
+    QPen directUpPen;
+    directUpPen.setWidthF(1.5);
+    directUpPen.setColor(QColor(helper->getGraphSettings().directUploadSpeedColor));
+    if (helper->getGraphSettings().detailOutboundProxy) {
+        m_properties[OUTBOUND_PROXY_UP] = GraphProperties(tr("Proxy ↑"), proxyUpPen);
+        m_properties[OUTBOUND_PROXY_UP].enable = true;
+        m_properties[OUTBOUND_PROXY_DOWN] = GraphProperties(tr("Proxy ↓"), proxyDownPen);
+        m_properties[OUTBOUND_PROXY_DOWN].enable = true;
+        if (helper->getGraphSettings().detailOutboundDirect) {
+            m_properties[OUTBOUND_DIRECT_UP] = GraphProperties(tr("Direct ↑"), directUpPen);
+            m_properties[OUTBOUND_DIRECT_UP].enable = true;
+            m_properties[OUTBOUND_DIRECT_DOWN] = GraphProperties(tr("Direct ↓"), directDownPen);
+            m_properties[OUTBOUND_DIRECT_DOWN].enable = true;
+        }
+    } else {
+        m_properties[INBOUND_UP] = GraphProperties(tr("Total ↑"), proxyUpPen);
+        m_properties[INBOUND_UP].enable = true;
+        m_properties[INBOUND_DOWN] = GraphProperties(tr("Total ↓"), proxyDownPen);
+        m_properties[INBOUND_DOWN].enable = true;
+    }
 }
 
 void SpeedPlotView::Clear()
 {
     m_datahalfMin.clear();
+
     replot();
 }
 
@@ -215,8 +237,11 @@ quint64 SpeedPlotView::maxYValue()
     auto &queue = getCurrentData();
     quint64 maxYValue = 0;
 
-    for (int id = UP; id < NB_GRAPHS; ++id)
+    for (int id = 0; id < NB_GRAPHS; ++id)
     {
+        if (!m_properties[static_cast<GraphID>(id)].enable)
+            continue;
+
         // 30 is half min
         for (int i = queue.size() - 1, j = 0; (i >= 0) && (j <= VIEWABLE); --i, ++j)
         {
@@ -288,8 +313,11 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     const double xTickSize = static_cast<double>(rect.width()) / VIEWABLE;
     auto &queue = getCurrentData();
 
-    for (int id = UP; id < NB_GRAPHS; ++id)
+    for (int id = 0; id < NB_GRAPHS; ++id)
     {
+        if (!m_properties[static_cast<GraphID>(id)].enable)
+            continue;
+
         QVector<QPoint> points;
 
         for (int i = static_cast<int>(queue.size()) - 1, j = 0; (i >= 0) && (j <= VIEWABLE); --i, ++j)
@@ -305,14 +333,20 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
 
     // draw legend
     QPoint legendTopLeft(rect.left() + 4, fullRect.top() + 4);
+
     double legendHeight = 0;
     int legendWidth = 0;
 
-    for (const auto &property : m_properties)
-    {
+    for (const auto &property : m_properties) {
+        if (!property.enable)
+            continue;
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0))
         if (fontMetrics.horizontalAdvance(property.name) > legendWidth)
             legendWidth = fontMetrics.horizontalAdvance(property.name);
-
+#else
+        if (fontMetrics.width(property.name) > legendWidth)
+            legendWidth = fontMetrics.width(property.name);
+#endif
         legendHeight += 1.5 * fontMetrics.height();
     }
 
@@ -322,10 +356,17 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     painter.fillRect(legendBackgroundRect, legendBackgroundColor);
     i = 0;
 
-    for (const auto &property : m_properties)
-    {
+    for (const auto &property : m_properties) {
+        if (!property.enable)
+            continue;
+
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0))
         int nameSize = fontMetrics.horizontalAdvance(property.name);
+#else
+        int nameSize = fontMetrics.width(property.name);
+#endif
         double indent = 1.5 * (i++) * fontMetrics.height();
+
         painter.setPen(property.pen);
         painter.drawLine(legendTopLeft + QPointF(0, indent + fontMetrics.height()),
                          legendTopLeft + QPointF(nameSize, indent + fontMetrics.height()));

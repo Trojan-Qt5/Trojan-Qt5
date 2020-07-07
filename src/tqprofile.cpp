@@ -172,6 +172,7 @@ TQProfile TQProfile::fromHttpUri(const std::string& httpUri) const
 TQProfile TQProfile::fromSSUri(const std::string& ssUri) const
 {
     std::string prefix = "ss://";
+
     if (ssUri.length() < 5) {
         throw std::invalid_argument("SS URI is too short");
     }

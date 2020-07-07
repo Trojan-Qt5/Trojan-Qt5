@@ -33,7 +33,7 @@ void SSGoAPI::run()
 
     ConfigHelper *conf = Utils::getConfigHelper();
 
-    QString address = QString("127.0.0.1:%1").arg(conf->getTrojanSettings().trojanAPIPort);
+    QString address = QString("127.0.0.1:%1").arg(conf->getCoreSettings().apiPort);
 
     while (running) {
 

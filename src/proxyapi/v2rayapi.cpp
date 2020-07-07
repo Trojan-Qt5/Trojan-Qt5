@@ -32,7 +32,7 @@ void V2rayAPI::run()
 {
     ConfigHelper *conf = Utils::getConfigHelper();
 
-    QString address = QString("127.0.0.1:%1").arg(conf->getTrojanSettings().trojanAPIPort);
+    QString address = QString("127.0.0.1:%1").arg(conf->getCoreSettings().apiPort);
 
     while (running) {
 
@@ -40,11 +40,17 @@ void V2rayAPI::run()
         StatsService service;
         Stub = service.NewStub(Channel);
 
-        quint64 up = callAPI("inbound>>>inbound>>>traffic>>>uplink");
-        quint64 down = callAPI("inbound>>>inbound>>>traffic>>>downlink");
-
-        if (up >= 0 && down >= 0)
-            emit OnDataReady(up, down);
+        if (conf->getCoreSettings().countOutboundTraffic) {
+            quint64 proxyUp = callAPI("outbound>>>proxy>>>traffic>>>uplink");
+            quint64 proxyDown = callAPI("outbound>>>proxy>>>traffic>>>downlink");
+            quint64 directUp = callAPI("outbound>>>direct>>>traffic>>>uplink");
+            quint64 directDown = callAPI("outbound>>>direct>>>traffic>>>downlink");
+            emit OnDataReady(proxyUp, proxyDown, directUp, directDown);
+        } else {
+            quint64 up = callAPI("inbound>>>inbound>>>traffic>>>uplink");
+            quint64 down = callAPI("inbound>>>inbound>>>traffic>>>downlink");
+            emit OnDataReady(up, down, 0, 0);
+        }
 
         QThread::msleep(1000); // sleep one second
     }

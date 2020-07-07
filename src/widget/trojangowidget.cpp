@@ -45,11 +45,13 @@ void TrojanGoWidget::setSettings(const TrojanGoSettings &st)
     {
         args = args % arg % "\r\n";
     }
+    ui->argPTEdit->setPlainText(args);
     QString envs;
     foreach (const QString& env, st.transportPlugin.env)
     {
         envs = envs % env % "\r\n";
     }
+    ui->envPTEdit->setPlainText(envs);
     ui->optionEdit->setText(st.transportPlugin.option);
 }
 
@@ -63,7 +65,6 @@ void TrojanGoWidget::on_muxConcurrencySB_valueChanged(int arg1)
     settings.mux.muxConcurrency = arg1;
 }
 
-
 void TrojanGoWidget::on_muxIdleTimeoutSB_valueChanged(int arg1)
 {
     settings.mux.muxIdleTimeout = arg1;
@@ -72,6 +73,16 @@ void TrojanGoWidget::on_muxIdleTimeoutSB_valueChanged(int arg1)
 void TrojanGoWidget::on_websocketCB_stateChanged(int arg1)
 {
     settings.websocket.enable = arg1 == Qt::Checked;
+}
+
+void TrojanGoWidget::on_websocketPathEdit_textEdited(const QString &arg1)
+{
+    settings.websocket.path = arg1;
+}
+
+void TrojanGoWidget::on_websocketHostnameEdit_textEdited(const QString &arg1)
+{
+    settings.websocket.hostname = arg1;
 }
 
 void TrojanGoWidget::on_shadowsocksCB_stateChanged(int arg1)
@@ -117,7 +128,6 @@ void TrojanGoWidget::on_argPTEdit_textChanged()
     }
     settings.transportPlugin.arg = argArray;
 }
-
 
 void TrojanGoWidget::on_envPTEdit_textChanged()
 {

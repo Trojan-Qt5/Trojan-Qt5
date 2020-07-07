@@ -18,13 +18,13 @@ struct websocketSettings {
 
 struct shadowsocksSettings {
     bool enable = false;
-    QString method;
+    QString method = "aes-128-gcm";
     QString password;
 };
 
 struct transportPluginSettings{
     bool enable = false;
-    QString type;
+    QString type = "plaintext";
     QString command;
     QStringList arg;
     QStringList env;

@@ -22,7 +22,7 @@ public:
     qint64 callAPI(QString);
 
 signals:
-     void OnDataReady(const quint64 up, const quint64 down);
+     void OnDataReady(const quint64 proxyUp, const quint64 proxyDown, const quint64 directUp, const quint64 directDown);
 
 public slots:
      void run();

@@ -84,14 +84,26 @@ QDataStream& operator >> (QDataStream &in, tlsSettings &t)
     return in;
 }
 
+QDataStream& operator << (QDataStream &out, const vmuxSettings &v)
+{
+    out << v.enable << v.muxConcurrency;
+    return out;
+}
+
+QDataStream& operator >> (QDataStream &in, vmuxSettings &v)
+{
+    in >> v.enable >> v.muxConcurrency;
+    return in;
+}
+
 QDataStream& operator << (QDataStream &out, const VmessSettings &v)
 {
-    out << v.network << v.tcp << v.http << v.ws << v.kcp << v.quic << v.tls;
+    out << v.network << v.tcp << v.http << v.ws << v.kcp << v.quic << v.tls << v.mux;
     return out;
 }
 
 QDataStream& operator >> (QDataStream &in, VmessSettings &v)
 {
-    in >> v.network >> v.tcp >> v.http >> v.ws >> v.kcp >> v.quic >> v.tls;
+    in >> v.network >> v.tcp >> v.http >> v.ws >> v.kcp >> v.quic >> v.tls >> v.mux;
     return in;
 }

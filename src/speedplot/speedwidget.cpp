@@ -27,6 +27,8 @@
  * delete this exception statement from your version.
  */
 
+#include "confighelper.h"
+#include "utils.h"
 #include "speedwidget.hpp"
 
 #include "speedplotview.hpp"
@@ -56,15 +58,27 @@ SpeedWidget::~SpeedWidget()
 {
 }
 
-void SpeedWidget::AddPointData(long up, long down)
+void SpeedWidget::AddPointData(QList<quint64> data)
 {
+    ConfigHelper *helper = Utils::getConfigHelper();
     SpeedPlotView::PointData point;
     point.x = QDateTime::currentMSecsSinceEpoch() / 1000;
-    point.y[SpeedPlotView::UP] = up;
-    point.y[SpeedPlotView::DOWN] = down;
+    if (helper->getGraphSettings().detailOutboundProxy) {
+        point.y[SpeedPlotView::OUTBOUND_PROXY_UP] = data[0];
+        point.y[SpeedPlotView::OUTBOUND_PROXY_DOWN] = data[1];
+        if (helper->getGraphSettings().detailOutboundDirect) {
+            point.y[SpeedPlotView::OUTBOUND_DIRECT_UP] = data[2];
+            point.y[SpeedPlotView::OUTBOUND_DIRECT_DOWN] = data[3];
+        }
+    } else {
+        point.y[SpeedPlotView::INBOUND_UP] = data[0];
+        point.y[SpeedPlotView::INBOUND_DOWN] = data[1];
+    }
     m_plot->pushPoint(point);
     m_plot->replot();
+    delete helper;
 }
+
 void SpeedWidget::Clear()
 {
     m_plot->Clear();

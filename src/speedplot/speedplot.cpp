@@ -26,7 +26,7 @@ void SpeedPlot::onReconnect()
     connect(&MidMan::getConnection(), &Connection::dataTrafficAvailable, this, &SpeedPlot::onStatsAvailable);
 }
 
-void SpeedPlot::onStatsAvailable(const quint64 &up, const quint64 &down)
+void SpeedPlot::onStatsAvailable(QList<quint64> data)
 {
-    speedChartWidget->AddPointData(up, down);
+    speedChartWidget->AddPointData(data);
 }

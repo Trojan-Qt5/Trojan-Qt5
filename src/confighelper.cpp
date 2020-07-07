@@ -70,7 +70,7 @@ void ConfigHelper::save(const ConnectionTableModel &model)
     settings->setValue("GraphSettings", QVariant(graphSettings));
     settings->setValue("RouterSettings", QVariant(routerSettings));
     settings->setValue("SubscribeSettings", QVariant(subscribeSettings));
-    settings->setValue("TrojanSettings", QVariant(trojanSettings));
+    settings->setValue("CoreSettings", QVariant(coreSettings));
 }
 
 void ConfigHelper::onConfigUpdateFromOldVersion()
@@ -670,7 +670,7 @@ void ConfigHelper::generateSocks5HttpJson(QString type, TQProfile &profile)
     }
     QJsonObject apiIn;
     apiIn["listen"] = "127.0.0.1";
-    apiIn["port"] = trojanSettings.trojanAPIPort;
+    apiIn["port"] = coreSettings.apiPort;
     apiIn["protocol"] = "dokodemo-door";
     QJsonObject apiInSettings;
     apiInSettings["address"] = "127.0.0.1";
@@ -772,6 +772,8 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
     QJsonObject system;
     system["statsInboundUplink"] = true;
     system["statsInboundDownlink"] = true;
+    system["statsOutboundUplink"] = false;
+    system["statsOutboundUplink"] = false;
     policy["system"] = system;
     configObj["policy"] = policy;
     QJsonObject routing;
@@ -878,7 +880,7 @@ void ConfigHelper::generateV2rayJson(TQProfile &profile)
     }
     QJsonObject apiIn;
     apiIn["listen"] = "127.0.0.1";
-    apiIn["port"] = trojanSettings.trojanAPIPort;
+    apiIn["port"] = coreSettings.apiPort;
     apiIn["protocol"] = "dokodemo-door";
     QJsonObject apiInSettings;
     apiInSettings["address"] = "127.0.0.1";
@@ -1021,7 +1023,7 @@ void ConfigHelper::generateTrojanJson(TQProfile &profile)
     configObj["local_port"] = inboundSettings.socks5LocalPort;
     configObj["remote_addr"] = profile.serverAddress;
     configObj["remote_port"] = profile.serverPort;
-    configObj["buffer_size"] = trojanSettings.bufferSize;
+    configObj["buffer_size"] = coreSettings.bufferSize;
     QJsonArray passwordArray;
     passwordArray.append(profile.password);
     configObj["password"] = QJsonValue(passwordArray);
@@ -1030,9 +1032,9 @@ void ConfigHelper::generateTrojanJson(TQProfile &profile)
     QJsonObject ssl;
     ssl["verify"] = profile.verifyCertificate;
     ssl["verify_hostname"] = true;
-    ssl["cert"] = trojanSettings.trojanCertPath;
-    ssl["cipher"] = trojanSettings.trojanCipher;
-    ssl["cipher_tls13"] = trojanSettings.trojanCipherTLS13;
+    ssl["cert"] = coreSettings.trojanCertPath;
+    ssl["cipher"] = coreSettings.trojanCipher;
+    ssl["cipher_tls13"] = coreSettings.trojanCipherTLS13;
     ssl["sni"] = profile.sni;
     QJsonArray alpnArray;
     alpnArray.append("h2");
@@ -1041,7 +1043,7 @@ void ConfigHelper::generateTrojanJson(TQProfile &profile)
     ssl["reuse_session"] = profile.reuseSession;
     ssl["session_ticket"] = profile.sessionTicket;
     ssl["curves"] = "";
-    ssl["fingerprint"] = parseTLSFingerprint(trojanSettings.fingerprint);
+    ssl["fingerprint"] = parseTLSFingerprint(coreSettings.fingerprint);
     configObj["ssl"] = QJsonValue(ssl);
     QJsonObject tcp;
     tcp["no_delay"] = true;
@@ -1061,7 +1063,7 @@ void ConfigHelper::generateTrojanJson(TQProfile &profile)
     configObj["websocket"] = QJsonValue(websocket);
     QJsonObject shadowsocks;
     shadowsocks["enabled"] = profile.trojanGoSettings.shadowsocks.enable;
-    shadowsocks["method"] = profile.trojanGoSettings.shadowsocks.method;
+    shadowsocks["method"] = profile.trojanGoSettings.shadowsocks.method.toUpper();
     shadowsocks["password"] = profile.trojanGoSettings.shadowsocks.password;
     configObj["shadowsocks"] = shadowsocks;
     QJsonObject transportPlugin;
@@ -1072,22 +1074,22 @@ void ConfigHelper::generateTrojanJson(TQProfile &profile)
     transportPlugin["env"] = QJsonArray::fromStringList(profile.trojanGoSettings.transportPlugin.env);
     transportPlugin["plugin_option"] = profile.trojanGoSettings.transportPlugin.option;
     configObj["transport_plugin"] = transportPlugin;
-    QJsonObject router;
-    router["enabled"] = trojanSettings.enableTrojanRouter;
-    if (router["enabled"].toBool()) {
-        router["geoip"] = trojanSettings.geoPath + "/geoip.dat";
-        router["geosite"] = trojanSettings.geoPath+ "/geosite.dat";
+    if (coreSettings.enableRouter) {
+        QJsonObject router;
+        router["enabled"] = coreSettings.enableRouter;
+        router["geoip"] = coreSettings.geoPath + "/geoip.dat";
+        router["geosite"] = coreSettings.geoPath+ "/geosite.dat";
         router["direct"] = appendJsonArray(QJsonArray::fromStringList(routerSettings.domainDirect), QJsonArray::fromStringList(routerSettings.ipDirect));
         router["proxy"] = appendJsonArray(QJsonArray::fromStringList(routerSettings.domainProxy), QJsonArray::fromStringList(routerSettings.ipProxy));
         router["block"] = appendJsonArray(QJsonArray::fromStringList(routerSettings.domainBlock), QJsonArray::fromStringList(routerSettings.ipBlock));
         router["default_policy"] = "proxy";
         router["domain_strategy"] = parseDomainStrategy(routerSettings.domainStrategy);
+        configObj["router"] = router;
     }
-    configObj["router"] = router;
     QJsonObject api;
-    api["enabled"] = trojanSettings.enableTrojanAPI;
+    api["enabled"] = coreSettings.enableAPI;
     api["api_addr"] = "127.0.0.1";
-    api["api_port"] = trojanSettings.trojanAPIPort;
+    api["api_port"] = coreSettings.apiPort;
     configObj["api"] = QJsonValue(api);
     QJsonObject forward_proxy;
     forward_proxy["enabled"] = outboundSettings.forwardProxy;
@@ -1132,12 +1134,12 @@ void ConfigHelper::generateSnellJson(TQProfile &profile)
     configObj["remote_port"] = profile.serverPort;
     configObj["log_level"] = generalSettings.logLevel;
     configObj["log_file"] = Utils::getLogDir() + "/core.log";
-    configObj["buffer_size"] = trojanSettings.bufferSize;
+    configObj["buffer_size"] = coreSettings.bufferSize;
     configObj["psk"] = profile.password;
     QJsonObject api;
-    api["enabled"] = trojanSettings.enableTrojanAPI;
+    api["enabled"] = coreSettings.enableAPI;
     api["api_addr"] = "127.0.0.1";
-    api["api_port"] = trojanSettings.trojanAPIPort;
+    api["api_port"] = coreSettings.apiPort;
     configObj["api"] = QJsonValue(api);
     QJsonObject obfs;
     obfs["obfs_type"] = profile.obfs;
@@ -1305,12 +1307,12 @@ RouterSettings ConfigHelper::getRouterSettings() const
     return routerSettings;
 }
 
-TrojanSettings ConfigHelper::getTrojanSettings() const
+CoreSettings ConfigHelper::getCoreSettings() const
 {
-    return trojanSettings;
+    return coreSettings;
 }
 
-void ConfigHelper::setGeneralSettings(GeneralSettings gs, InboundSettings is, OutboundSettings os, TestSettings es, SubscribeSettings ss, GraphSettings fs, RouterSettings rs, TrojanSettings ts)
+void ConfigHelper::setGeneralSettings(GeneralSettings gs, InboundSettings is, OutboundSettings os, TestSettings es, SubscribeSettings ss, GraphSettings fs, RouterSettings rs, CoreSettings cs)
 {
     if (gs.toolBarStyle != generalSettings.toolBarStyle) {
         emit toolbarStyleChanged(static_cast<Qt::ToolButtonStyle>(gs.toolBarStyle));
@@ -1322,7 +1324,7 @@ void ConfigHelper::setGeneralSettings(GeneralSettings gs, InboundSettings is, Ou
     subscribeSettings = ss;
     graphSettings = fs;
     routerSettings = rs;
-    trojanSettings = ts;
+    coreSettings = cs;
 }
 
 void ConfigHelper::setSystemProxySettings(QString mode)
@@ -1411,9 +1413,9 @@ void ConfigHelper::readGeneralSettings()
     graphSettings = settings->value("GraphSettings", QVariant(fSettings)).value<GraphSettings>();
     RouterSettings rSettings;
     routerSettings = settings->value("RouterSettings", QVariant(rSettings)).value<RouterSettings>();
-    TrojanSettings tSettings;
-    tSettings.geoPath = Utils::getConfigPath() + QDir::toNativeSeparators("/dat");
-    trojanSettings = settings->value("TrojanSettings", QVariant(tSettings)).value<TrojanSettings>();
+    CoreSettings cSettings;
+    cSettings.geoPath = Utils::getConfigPath() + QDir::toNativeSeparators("/dat");
+    coreSettings = settings->value("CoreSettings", QVariant(cSettings)).value<CoreSettings>();
 }
 
 void ConfigHelper::checkProfileDataUsageReset(TQProfile &profile)
@@ -1436,15 +1438,17 @@ void ConfigHelper::checkProfileDataUsageReset(TQProfile &profile)
     }
 }
 
-void ConfigHelper::startAllAutoStart(const ConnectionTableModel& model)
+Connection* ConfigHelper::startAutoStart(const ConnectionTableModel& model)
 {
     int size = model.rowCount();
     for (int i = 0; i < size; ++i) {
         Connection *con = model.getItem(i)->getConnection();
         if (con->profile.autoStart) {
             con->start();
+            return con;
         }
     }
+    return NULL;
 }
 
 void ConfigHelper::setStartAtLogin()

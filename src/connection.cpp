@@ -166,7 +166,7 @@ void Connection::start()
         }
         v2ray = new V2rayThread(file);
     } else if (profile.type == "ss") {
-        QString apiAddr = localAddr + ":" + QString::number(conf->getTrojanSettings().trojanAPIPort);
+        QString apiAddr = localAddr + ":" + QString::number(conf->getCoreSettings().apiPort);
         QString clientAddr = localAddr + ":" + QString::number(conf->getInboundSettings().socks5LocalPort);
         QString serverAddr = profile.serverAddress + ":" + QString::number(profile.serverPort);
         ss = new SSThread(clientAddr.toUtf8().data(),
@@ -175,7 +175,7 @@ void Connection::start()
                           profile.password.toUtf8().data(),
                           profile.plugin.toUtf8().data(),
                           profile.pluginParam.toUtf8().data(),
-                          conf->getTrojanSettings().enableTrojanAPI,
+                          conf->getCoreSettings().enableAPI,
                           apiAddr.toUtf8().data());
     } else if (profile.type == "ssr") {
         //initalize ssr thread
@@ -195,7 +195,7 @@ void Connection::start()
         ssr->connect(ssr.get(), &SSRThread::OnDataReady, this, &Connection::onNewBytesTransmitted);
     } else if (profile.type == "vmess") {
         conf->generateV2rayJson(profile);
-        setAssetPath(conf->getTrojanSettings().geoPath.toUtf8().data());
+        setAssetPath(conf->getCoreSettings().geoPath.toUtf8().data());
         testV2rayGo_return v2rayStatus = testV2rayGo(file.toStdString().data());
         if (!v2rayStatus.r0) {
             QMessageBox::critical(NULL, tr("Failed to start V2Ray"), v2rayStatus.r1);
@@ -219,7 +219,7 @@ void Connection::start()
 
     if (profile.type == "ss") {
         ss->start();
-        if (conf->getTrojanSettings().enableTrojanAPI) {
+        if (conf->getCoreSettings().enableAPI) {
             ssGoAPI = new SSGoAPI();
             ssGoAPI->start();
             connect(ssGoAPI, &SSGoAPI::OnDataReady, this, &Connection::onNewBytesTransmitted);
@@ -228,14 +228,14 @@ void Connection::start()
         ssr->start();
     } else if ((profile.type == "socks5" || profile.type == "http" ) || profile.type == "vmess") {
         v2ray->start();
-        if (conf->getTrojanSettings().enableTrojanAPI) {
+        if (conf->getCoreSettings().enableAPI) {
             v2rayAPI = new V2rayAPI();
             v2rayAPI->start();
-            connect(v2rayAPI, &V2rayAPI::OnDataReady, this, &Connection::onNewBytesTransmitted);
+            connect(v2rayAPI, &V2rayAPI::OnDataReady, this, &Connection::onNewV2RayBytesTransmitted);
         }
     } else if (profile.type == "trojan") {
         trojan->start();
-        if (conf->getTrojanSettings().enableTrojanAPI) {
+        if (conf->getCoreSettings().enableAPI) {
             trojanGoAPI = new TrojanGoAPI();
             trojanGoAPI->setPassword(profile.password);
             trojanGoAPI->start();
@@ -243,7 +243,7 @@ void Connection::start()
         }
     } else if (profile.type == "snell") {
         snell->start();
-        if (conf->getTrojanSettings().enableTrojanAPI) {
+        if (conf->getCoreSettings().enableAPI) {
             snellGoAPI = new SnellGoAPI();
             snellGoAPI->start();
             connect(snellGoAPI, &SnellGoAPI::OnDataReady, this, &Connection::onNewBytesTransmitted);
@@ -299,24 +299,24 @@ void Connection::stop()
 
         if (profile.type == "ss") {
             ss->stop();
-            if (ssGoAPI && conf->getTrojanSettings().enableTrojanAPI) {
+            if (ssGoAPI && conf->getCoreSettings().enableAPI) {
                 ssGoAPI->stop();
             }
         } else if (profile.type == "ssr") {
             ssr->stop();
         } else if ((profile.type == "socks5" || profile.type == "http" ) || profile.type == "vmess") {
             v2ray->stop();
-            if (v2rayAPI && conf->getTrojanSettings().enableTrojanAPI) {
+            if (v2rayAPI && conf->getCoreSettings().enableAPI) {
                 v2rayAPI->stop();
             }
         } else if (profile.type == "trojan") {
             trojan->stop();
-            if (trojanGoAPI && conf->getTrojanSettings().enableTrojanAPI) {
+            if (trojanGoAPI && conf->getCoreSettings().enableAPI) {
                 trojanGoAPI->stop();
             }
         } else if (profile.type == "snell") {
             snell->stop();
-            if (snellGoAPI && conf->getTrojanSettings().enableTrojanAPI) {
+            if (snellGoAPI && conf->getCoreSettings().enableAPI) {
                 snellGoAPI->stop();
             }
         }
@@ -355,24 +355,24 @@ void Connection::onStartFailed()
 
     if (profile.type == "ss") {
         ss->stop();
-        if (ssGoAPI && conf->getTrojanSettings().enableTrojanAPI) {
+        if (ssGoAPI && conf->getCoreSettings().enableAPI) {
             ssGoAPI->stop();
         }
     } else if (profile.type == "ssr") {
         ssr->stop();
     } else if ((profile.type == "socks5" || profile.type == "http" ) || profile.type == "vmess") {
         v2ray->stop();
-        if (v2rayAPI && conf->getTrojanSettings().enableTrojanAPI) {
+        if (v2rayAPI && conf->getCoreSettings().enableAPI) {
             v2rayAPI->stop();
         }
     } else if (profile.type == "trojan") {
         trojan->stop();
-        if (trojanGoAPI && conf->getTrojanSettings().enableTrojanAPI) {
+        if (trojanGoAPI && conf->getCoreSettings().enableAPI) {
             trojanGoAPI->stop();
         }
     } else if (profile.type == "snell") {
         snell->stop();
-        if (snellGoAPI && conf->getTrojanSettings().enableTrojanAPI) {
+        if (snellGoAPI && conf->getCoreSettings().enableAPI) {
             snellGoAPI->stop();
         }
     }
@@ -410,7 +410,19 @@ void Connection::onNewBytesTransmitted(const quint64 &u, const quint64 &d)
     profile.totalDownloadUsage += d;
     profile.totalUploadUsage += u;
     emit dataUsageChanged(profile.currentDownloadUsage + profile.currentUploadUsage, profile.totalDownloadUsage + profile.totalUploadUsage);
-    emit dataTrafficAvailable(u, d);
+    QList<quint64> data({u, d, 0, 0});
+    emit dataTrafficAvailable(data);
+}
+
+void Connection::onNewV2RayBytesTransmitted(const quint64 &pu, const quint64 &pd, const quint64 &du, const quint64 &dd)
+{
+    profile.currentDownloadUsage += pd;
+    profile.currentUploadUsage += pu;
+    profile.totalDownloadUsage += pd;
+    profile.totalUploadUsage += pu;
+    emit dataUsageChanged(profile.currentDownloadUsage + profile.currentUploadUsage, profile.totalDownloadUsage + profile.totalUploadUsage);
+    QList<quint64> data({pu, pd, du, dd});
+    emit dataTrafficAvailable(data);
 }
 
 void Connection::onServerAddressLookedUp(const QHostInfo &host)

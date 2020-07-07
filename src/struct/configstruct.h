@@ -92,8 +92,12 @@ struct SubscribeSettings {
 Q_DECLARE_METATYPE(SubscribeSettings)
 
 struct GraphSettings {
-    QString downloadSpeedColor = QColor::fromRgb(134, 196, 63).name();
-    QString uploadSpeedColor = QColor::fromRgb(50, 153, 255).name();
+    bool detailOutboundProxy = false;
+    bool detailOutboundDirect = false;
+    QString proxyDownloadSpeedColor = QColor::fromRgb(235, 220, 42).name();
+    QString proxyUploadSpeedColor = QColor::fromRgb(20, 210, 240).name();
+    QString directDownloadSpeedColor = QColor::fromRgb(50, 153, 255).name();
+    QString directUploadSpeedColor = QColor::fromRgb(134, 196, 63).name();
     operator QVariant() const
     {
         return QVariant::fromValue(*this);
@@ -116,12 +120,14 @@ struct RouterSettings {
 };
 Q_DECLARE_METATYPE(RouterSettings)
 
-struct TrojanSettings {
+struct CoreSettings {
     int fingerprint = 2;
-    bool enableTrojanAPI = true;
-    bool enableTrojanRouter = false;
+    bool enableAPI = true;
+    bool enableRouter = false;
+    bool countInboundTraffic = true;
+    bool countOutboundTraffic = false;
     QString geoPath;
-    int trojanAPIPort = 57721;
+    int apiPort = 57721;
     QString trojanCertPath;
     QString trojanCipher = "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES128-SHA:ECDHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA:AES128-SHA:AES256-SHA:DES-CBC3-SHA";
     QString trojanCipherTLS13 = "TLS_AES_128_GCM_SHA256:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_256_GCM_SHA384";
@@ -131,7 +137,7 @@ struct TrojanSettings {
         return QVariant::fromValue(*this);
     }
 };
-Q_DECLARE_METATYPE(TrojanSettings)
+Q_DECLARE_METATYPE(CoreSettings)
 
 QDataStream& operator << (QDataStream &out, const GeneralSettings &g);
 QDataStream& operator >> (QDataStream &in, GeneralSettings &g);
@@ -154,7 +160,7 @@ QDataStream& operator >> (QDataStream &in, GraphSettings &g);
 QDataStream& operator << (QDataStream &out, const RouterSettings &r);
 QDataStream& operator >> (QDataStream &in, RouterSettings &r);
 
-QDataStream& operator << (QDataStream &out, const TrojanSettings &t);
-QDataStream& operator >> (QDataStream &in, TrojanSettings &t);
+QDataStream& operator << (QDataStream &out, const CoreSettings &c);
+QDataStream& operator >> (QDataStream &in, CoreSettings &c);
 
 #endif // CONFIGSTRUCT_H
